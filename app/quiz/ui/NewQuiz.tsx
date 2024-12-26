@@ -1,7 +1,7 @@
 import LightningBoltSVG from "@/app/ui/buttons/assets/LightningBoltSVG";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 
-export default function NewQuiz({ onStartQuiz }: { onStartQuiz: () => any }) {
+export default function NewQuiz({ onStartQuiz }: { onStartQuiz: () => void }) {
 
     return (
         <div className="flex flex-1 flex-col items-center justify-center space-y-2">

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda as AppFont } from "next/font/google";
 import "./globals.css";
-import TomeLogo from "./ui/graphics/TomeLogo";
 import Header from "./ui/layout/Header";
 
 // const geistSans = Geist({
