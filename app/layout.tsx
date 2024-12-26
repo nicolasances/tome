@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bodoni_Moda as AppFont } from "next/font/google";
 import "./globals.css";
 import TomeLogo from "./ui/graphics/TomeLogo";
+import Header from "./ui/layout/Header";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function RootLayout({
         className={`${appFont.className} antialiased min-h-screen flex flex-col`}
       >
         <div className="pt-4">
-          <TomeLogo />
+          <Header/>
         </div>
         <div className="flex flex-1 flex-col justify-start p-6">
           {children}
