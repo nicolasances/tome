@@ -1,28 +1,33 @@
 'use client'
 
-import { useState } from "react";
-import NewQuiz from "./ui/NewQuiz";
-import Question from "./ui/Question";
+import { TomeQuizAPI } from "@/api/TomeQuizAPI";
+import LightningBoltSVG from "@/app/ui/buttons/assets/LightningBoltSVG";
+import RoundButton from "@/app/ui/buttons/RoundButton";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-type QuizState = 'not-started' | 'question' | 'answer' | 'finished'
+export default function NewQuiz() {
 
-export default function Quiz() {
+    const router = useRouter()
 
-    const [quizState, setQuizState] = useState<QuizState>('not-started')
+    const init = async () => {
 
-    /**
-     * Starts a new quiz
-     */
-    const startQuiz = () => {
+        const runningQuiz = await new TomeQuizAPI().getRunningQuiz()
 
-        setQuizState('question')
+        if (!runningQuiz) return; 
 
     }
 
+    useEffect(() => { init() }, [])
+
     return (
-        <>
-            {quizState == 'not-started' && <NewQuiz onStartQuiz={startQuiz} />}
-            {quizState == 'question' && <Question/>}
-        </>
-    );
+        <div className="flex flex-1 flex-col items-center justify-center space-y-2">
+            <div className="text-3xl mb-6">
+                Ready to start?
+            </div>
+            <div className="flex">
+                <RoundButton icon={<LightningBoltSVG />} onClick={() => { router.push('/quiz/question') }} />
+            </div>
+        </div>
+    )
 }
