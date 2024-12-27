@@ -14,7 +14,7 @@ export default function UserAnswerRating({ rating }: { rating: AnswerRating }) {
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
             <div className="flex justify-center">
-                <ScoreCard scoreNumerator={rating.rating.score} scoreDenominator={rating.rating.maxScore} />
+                <ScoreCard scoreNumerator={rating.rating.score} scoreDenominator={rating.rating.maxScore} label="score" />
             </div>
 
             {/* Explanation Box */}

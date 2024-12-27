@@ -10,9 +10,9 @@ export class TomeQuizAPI {
      */
     async getRunningQuiz(): Promise<RunningQuiz | TomeQuizError | undefined> {
 
-        return undefined;
+        // return undefined;
 
-        // return { id: mockQuizId, score: 3.5, maxScore: 5 }
+        return { id: mockQuizId, score: 3.5, maxScore: 5, questions: 5, maxQuestions: 10, topic: "Crusades" }
 
     }
 
@@ -66,19 +66,27 @@ export class TomeQuizAPI {
 
 }
 
-interface RunningQuiz {
+export interface RunningQuiz {
 
     id: string,
     score: number,
     maxScore: number,   // e.g. 5, if the max achievable score is 5
+    questions: number, 
+    maxQuestions: number, 
+    topic?: string
 
 }
 
-interface TomeQuizError {
+export class TomeQuizError {
 
-    code: number,
-    msg: string,
+    code: number
+    msg: string
     reason?: string
+
+    constructor(code: number, msg: string) {
+        this.code = code
+        this.msg = msg
+    }
 }
 
 export interface QuizQuestion {
