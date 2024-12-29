@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ScoreCard from "../ui/cards/ScoreCard";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { LoadingBar } from "../ui/graphics/Loading";
 
 export default function NewQuiz() {
 
@@ -58,14 +60,38 @@ function QuizSummary({ runningQuiz }: { runningQuiz: RunningQuiz }) {
 }
 
 function StartQuiz() {
+
+    const [startingQuiz, setStartingQuiz] = useState(false)
+
     const router = useRouter()
+
+    /**
+     * Starts the quiz
+     */
+    const startQuiz = async () => {
+
+        setStartingQuiz(true)
+
+        const response = await new TomeQuizAPI().startQuiz()
+
+        console.log(response);
+
+        setStartingQuiz(false)
+
+        router.push('/quiz/question')
+
+    }
+
+    if (startingQuiz) return <LoadingBar label="Creating a new Quiz.." />
+
+
     return (
         <>
             <div className="text-3xl mb-6">
                 Ready to start?
             </div>
             <div className="flex">
-                <RoundButton icon={<LightningBoltSVG />} onClick={() => { router.push('/quiz/question') }} />
+                <RoundButton icon={<LightningBoltSVG />} onClick={startQuiz} />
             </div>
         </>
     )

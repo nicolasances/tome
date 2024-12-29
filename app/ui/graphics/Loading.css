@@ -1,0 +1,41 @@
+.np-loading-bar {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    overflow: hidden;
+    padding: 3px;
+    padding-left: var(--default-card-spacing);
+    border-left: 3px solid var(--color-primary);
+    text-align: left;
+}
+
+.np-loading-bar .progress {
+    margin-top: 6px;
+    width: 0;
+    height: 3px;
+    background-color: #a5f3fc;
+    animation: loadingAnimation 3s ease-in-out infinite;
+    border-radius: 3px;
+    font-size: var(--font-xsmall);
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+.np-loading-bar .progress .text {
+    color: grey;
+    position: absolute;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: calc(100% - 3px);
+    }
+
+    100% {
+        width: 0;
+    }
+}
