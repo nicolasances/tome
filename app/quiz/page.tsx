@@ -6,7 +6,7 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ScoreCard from "../ui/cards/ScoreCard";
-import TextButton from "../ui/buttons/TextButton";
+import { Button } from "@/components/ui/button";
 
 export default function NewQuiz() {
 
@@ -31,7 +31,9 @@ export default function NewQuiz() {
             {!runningQuiz && <StartQuiz />}
             {runningQuiz && <QuizSummary runningQuiz={runningQuiz} />}
             <div className="flex-1"></div>
-            {runningQuiz && <TextButton label="Continue" onClick={() => { router.push('/quiz/question') }} />}
+            {runningQuiz &&
+                <Button onClick={() => { router.push('/quiz/question') }}>Continue</Button>
+            }
         </div>
     )
 }

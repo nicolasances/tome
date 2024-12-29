@@ -47,7 +47,7 @@ export default function Question({ question, onAnswer }: { question: QuizQuestio
             </div>
 
             {/* Answer box */}
-            <div className="flex flex-col border border-cyan-200 rounded-xl px-4 py-3">
+            <div className="flex flex-col border border-cyan-800 rounded-xl px-4 py-3">
                 <textarea onChange={(v) => { setAnswer(v.target.value); }} className="bg-transparent no-border focus:outline-none w-full text-sm" rows={textAreaRows < minTextAreaRows ? minTextAreaRows : textAreaRows} onKeyDown={onKeyDown} style={{ resize: "none" }}></textarea>
                 <div className="flex justify-end fill-cyan-800">
                     <RoundButton icon={<SendSVG />} onClick={onClickSendAnswer} size='s' />
