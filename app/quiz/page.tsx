@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ScoreCard from "../ui/cards/ScoreCard";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { LoadingBar } from "../ui/graphics/Loading";
 
 export default function NewQuiz() {
