@@ -43,7 +43,9 @@ export class TotoAPI {
 
     console.log(`About to call api ${api} with endpoint ${endpoint(api)} on path ${path}, with options ${options}`);
     
+    if (aws) return fetch(`https:/api.dev.toto.aws.to7o.com${path}`, options)
 
     return fetch(endpoint(api) + path, options);
   }
 }
+
