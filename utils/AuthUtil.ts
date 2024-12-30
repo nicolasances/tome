@@ -148,9 +148,3 @@ export async function googleSignIn(): Promise<any> {
     })
 
 }
-
-https://accounts.google.com/gsi/status?client_id=215026562306-3h5ca6u9ossaobr3atgorscveqjs1ird.apps.googleusercontent.com&as=QYyN0lxGJJF1afwBwY4J6A
-
-https://accounts.google.com/gsi/status?client_id=215026562306-3h5ca6u9ossaobr3atgorscveqjs1ird.apps.googleusercontent.com}&as=RM8VeJssTdG76Sar3A/2Fg
-
-https://accounts.google.com/gsi/status?client_id=215026562306-3h5ca6u9ossaobr3atgorscveqjs1ird.apps.googleusercontent.com&as=ZllhF1UgUImqs4hzSWgnjw
