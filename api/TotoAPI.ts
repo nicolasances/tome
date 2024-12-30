@@ -39,6 +39,9 @@ export class TotoAPI {
       if (aws) options.headers['toto-service'] = api;
     }
 
+    console.log(`About to call api ${api} with endpoint ${endpoint(api)} on path ${path}, with options ${options}`);
+    
+
     return fetch(endpoint(api) + path, options);
   }
 }

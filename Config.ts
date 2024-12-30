@@ -7,8 +7,6 @@ ApiEndpoints.set("toto-ms-tome-agent", String(process.env.NEXT_PUBLIC_TOTO_API_E
 
 export function endpoint(api: ApiName) {
 
-    console.log(process.env);
-    
     return ApiEndpoints.get(api)
 }
 
