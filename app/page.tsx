@@ -16,9 +16,6 @@ export default function Home() {
 
   const router = useRouter()
 
-  console.log("NEXT_PUBLIC_AUTH_API_ENDPOINT: " + process.env.NEXT_PUBLIC_AUTH_API_ENDPOINT);
-  
-
   /**
    * Verifies if the user is authenticated
    */
