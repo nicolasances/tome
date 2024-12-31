@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda as AppFont } from "next/font/google";
+import { Comfortaa as AppFont } from "next/font/google";
 import "./globals.css";
 import Header from "./ui/layout/Header";
 

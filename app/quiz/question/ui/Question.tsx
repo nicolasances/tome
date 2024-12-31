@@ -28,7 +28,7 @@ export default function Question({ question, onAnswer }: { question: QuizQuestio
     const onClickSendAnswer = () => {
 
         if (!answer) return
-        
+
         onAnswer(answer)
     }
 
@@ -36,13 +36,12 @@ export default function Question({ question, onAnswer }: { question: QuizQuestio
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
             {/* Question Box */}
-            <div className="flex flex-1 flex-col align-left">
-                <div className="text-[48px]">{'"'}</div>
-                <div className="-mt-8 mb-2 font-bold text-sm">
-                    Question:
+            <div className="flex flex-1 flex-col align-left mt-2">
+                <div className="font-bold text-base flex items-center">
+                    <span className="mr-2 bg-cyan-800 rounded text-base px-1 py-[2px] text-cyan-200">{question.questionNum}/{question.numQuestionsInQuiz}</span>Question:
                 </div>
-                <div className="overflow-y-auto max-h-[200px]">
-                    {question?.question}
+                <div className="overflow-y-auto max-h-[200px] mt-2 text-base">
+                    {question.question}
                 </div>
             </div>
 

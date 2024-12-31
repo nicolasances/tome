@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
   	extend: {
+		fontSize: {
+			xs: '0.5em',
+			sm: '0.6em',
+			base: '0.75em',
+			lg: '0.9em',
+			xl: '1.1em',
+			"2xl": '1.4em',
+			"3xl": '1.8em',
+		},
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)',

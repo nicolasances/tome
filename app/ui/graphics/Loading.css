@@ -13,10 +13,9 @@
     margin-top: 6px;
     width: 0;
     height: 3px;
-    background-color: #a5f3fc;
+    background-color: #bef8ff;
     animation: loadingAnimation 3s ease-in-out infinite;
     border-radius: 3px;
-    font-size: var(--font-xsmall);
     display: flex;
     align-items: center;
     padding-left: 5px;

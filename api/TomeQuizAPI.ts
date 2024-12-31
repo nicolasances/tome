@@ -10,9 +10,7 @@ export class TomeQuizAPI {
      */
     async getRunningQuiz(): Promise<RunningQuiz | TomeQuizError | undefined> {
 
-        return undefined;
-
-        // return { id: mockQuizId, score: 3.5, maxScore: 5, questions: 5, maxQuestions: 10, topic: "Crusades" }
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', '/quizzes/running', null, true)).json()
 
     }
 
@@ -27,9 +25,9 @@ export class TomeQuizAPI {
         return (await new TotoAPI().fetch('toto-ms-tome-agent', '/quizzes', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', 
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }, 
+            },
             body: JSON.stringify({})
         }, true)).json()
     }
@@ -37,13 +35,9 @@ export class TomeQuizAPI {
     /**
      * Retrieves the next question of the running quiz
      */
-    async getNextQuestion(): Promise<QuizQuestion> {
+    async getNextQuestion(quizId: string): Promise<QuizQuestion> {
 
-        return {
-            id: '897asd9a789s7d89a7sd',
-            question: 'How was Jerusalem conquered by the Crusaders for the first time and in which year did that happen?'
-        }
-
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/quizzes/${quizId}/questions/next`, null, true)).json()
     }
 
     /**
@@ -69,11 +63,13 @@ export class TomeQuizAPI {
 export interface RunningQuiz {
 
     id: string,
+    topic: string, 
+    section?: string, 
+    startedOn: string
     score: number,
     maxScore: number,   // e.g. 5, if the max achievable score is 5
-    questions: number,
-    maxQuestions: number,
-    topic?: string
+    numQuestions: number,
+    numQuestionsAnswered: number,
 
 }
 
@@ -93,6 +89,9 @@ export interface QuizQuestion {
 
     id: string,
     question: string
+    quizId: string 
+    questionNum: number 
+    numQuestionsInQuiz: number
 
 }
 

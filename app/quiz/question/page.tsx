@@ -4,15 +4,19 @@ import { AnswerRating, QuizQuestion, TomeQuizAPI } from "@/api/TomeQuizAPI";
 import { useEffect, useState } from "react";
 import Question from "./ui/Question";
 import UserAnswerRating from "./ui/AnswerRating";
+import { useSearchParams } from "next/navigation";
 
 export default function QuestionAndAnswerPage() {
 
     const [question, setQuestion] = useState<QuizQuestion>();
     const [rating, setRating] = useState<AnswerRating>();
 
+    const searchParams = useSearchParams()
+    const quizId = searchParams.get('quizId')
+
     const loadQuestion = async () => {
 
-        const question = await new TomeQuizAPI().getNextQuestion();
+        const question = await new TomeQuizAPI().getNextQuestion(quizId!);
 
         setQuestion(question)
 
