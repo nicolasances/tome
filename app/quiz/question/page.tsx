@@ -1,12 +1,21 @@
 'use client'
 
 import { AnswerRating, QuizQuestion, TomeQuizAPI } from "@/api/TomeQuizAPI";
-import { useEffect, useState } from "react";
-import Question from "./ui/Question";
+import { Suspense, useEffect, useState } from "react";
 import UserAnswerRating from "./ui/AnswerRating";
 import { useSearchParams } from "next/navigation";
+import Question from "./ui/Question";
 
 export default function QuestionAndAnswerPage() {
+
+    return (
+        <Suspense>
+            <QuestionUI/>
+        </Suspense>
+    )
+}
+
+function QuestionUI() {
 
     const [question, setQuestion] = useState<QuizQuestion>();
     const [rating, setRating] = useState<AnswerRating>();
@@ -33,14 +42,12 @@ export default function QuestionAndAnswerPage() {
 
         setRating(ratingResponse);
 
-        console.log(ratingResponse);
-
-
     }
 
     useEffect(() => { loadQuestion() }, [])
 
     return (
+
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
             {question && !rating && <Question question={question} onAnswer={sendAnswer} />}
@@ -48,4 +55,5 @@ export default function QuestionAndAnswerPage() {
 
         </div>
     )
+
 }
