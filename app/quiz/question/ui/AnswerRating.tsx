@@ -2,34 +2,53 @@
 
 import { AnswerRating } from "@/api/TomeQuizAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import ScoreCard from "@/app/ui/cards/ScoreCard";
-import OkSVG from "@/app/ui/graphics/icons/Ok";
+import BackSVG from "@/app/ui/graphics/icons/Back";
+import NextSVG from "@/app/ui/graphics/icons/Next";
+import QuestionSVG from "@/app/ui/graphics/icons/QuestionSVG";
+import { Button } from "@/components/ui/button";
+import { FormattedDetailedRatingExplanation, FormattedRatingExplanation } from "@/utils/RatingExplanation";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function UserAnswerRating({ rating }: { rating: AnswerRating }) {
+export default function UserAnswerRating({ rating, quizId }: { rating: AnswerRating, quizId: string }) {
+
+    const [showDetails, setShowDetails] = useState(false)
 
     const router = useRouter()
+    console.log(quizId);
+    
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
-            <div className="flex justify-center">
-                <ScoreCard scoreNumerator={rating.rating.score} scoreDenominator={rating.rating.maxScore} label="score" />
-            </div>
+            <div style={{ maxHeight: 'calc(90vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }}>
 
-            {/* Explanation Box */}
-            <div className="flex flex-1 flex-col align-left mt-8">
-                <div className="text-[48px]">{'"'}</div>
-                <div className="-mt-8 mb-2 font-bold text-sm">
-                    Rating:
+                <div className="flex items-center text-lg">
+                    <div className="">Rating: </div>
+                    <div className="ml-2 bg-cyan-200 rounded px-2 py-1"><span className="font-bold">{rating.rating}</span><span>/{rating.maxRating}</span></div>
                 </div>
-                <div className="">
-                    {rating.rating.explanation}
-                </div>
-            </div>
 
-            <div className="flex justify-center">
-                <RoundButton icon={<OkSVG />} onClick={() => { router.back() }} />
+                {/* Explanation Box */}
+                <div id="explanation-box" className="flex flex-1 flex-col align-left mt-4" >
+                    {!showDetails && <FormattedRatingExplanation explanation={rating.explanations} />}
+                    {showDetails &&
+                        <div className="mb-4">
+                            <FormattedDetailedRatingExplanation text={rating.detailedExplanations} />
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div className="flex-1"></div>
+
+            <div style={{ height: 'var(--app-footer-height)' }}>
+                <div className="flex justify-center flex-row space-x-2" style={{ maxHeight: 'var(--app-footer-height)' }}>
+                    {!showDetails && <RoundButton icon={<QuestionSVG />} onClick={() => { setShowDetails(true) }} />}
+                    {showDetails && <RoundButton icon={<BackSVG />} onClick={() => { setShowDetails(false) }} />}
+
+                    {!rating.quizFinished && <RoundButton icon={<NextSVG />} onClick={() => { window.location.reload() }} />}
+                    {rating.quizFinished && <Button className="text-base" onClick={() => { router.back() }}>Quiz Completed!</Button>}
+                </div>
             </div>
 
         </div>

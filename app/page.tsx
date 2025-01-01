@@ -1,14 +1,14 @@
 'use client'
 
-import Card from "./ui/cards/Card";
-import TimeSpentCard from "./ui/cards/TimeSpentCard";
 import PowerCard from "./ui/cards/PowerCard";
 import RoundButton from "./ui/buttons/RoundButton";
-import LightningBoltSVG from "./ui/buttons/assets/LightningBoltSVG";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
+import { DailyProgress } from "./ui/cards/DailyProgress";
+import TopicsCard from "./ui/cards/TopicsCard";
+import Book from "./ui/graphics/icons/Book";
 
 export default function Home() {
 
@@ -82,14 +82,16 @@ export default function Home() {
 
   return (
     <div className="flex flex-1 flex-col items-stretch justify-start space-y-2">
-      <Card title="Topics" />
-      <div className="flex flex-row flex-1 space-x-4">
-        <TimeSpentCard perc={2}></TimeSpentCard>
-        <PowerCard perc={45} />
+      <div className="flex flex-row space-x-4 items-center">
+        <div className="flex-1"><DailyProgress/></div>
+        <div className="flex-1"><PowerCard perc={45} /></div>
+      </div>
+      <div className="">
+        <TopicsCard />
       </div>
       <div className="flex-1"></div>
       <div className="flex justify-center">
-        <RoundButton icon={<LightningBoltSVG />} onClick={() => { router.push('/quiz') }} />
+        <RoundButton icon={<Book />} onClick={() => { router.push('/quiz') }} />
       </div>
     </div>
   );

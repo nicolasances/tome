@@ -4,6 +4,17 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  --app-header-height: 56px;
+  --app-footer-height: 56px;
+}
+
+.app-header {
+  height: var(--app-header-height);
+  max-height: var(--app-header-height);
+}
+
+.app-content {
+  max-height: calc(100vh - var(--app-header-height));
 }
 
 @layer base {
@@ -19,19 +30,19 @@ body {
     --cyan-800: #155e75;
     --cyan-900: #164e63;
     --cyan-950: #083344;
-    
+
     --background: #00acc1;
     --foreground: 0 0% 3.9%;
     --card: #00dffa;
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: #155e75; 
+    --primary: #155e75;
     --primary-foreground: #cffafe;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
-    --muted-foreground: rgba(0,0,0,0.5);
+    --muted-foreground: rgba(0, 0, 0, 0.5);
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
@@ -46,6 +57,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -78,6 +90,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

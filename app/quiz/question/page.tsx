@@ -51,7 +51,7 @@ function QuestionUI() {
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
             {question && !rating && <Question question={question} onAnswer={sendAnswer} />}
-            {question && rating && <UserAnswerRating rating={rating} />}
+            {question && rating && <UserAnswerRating rating={rating} quizId={quizId!} />}
 
         </div>
     )

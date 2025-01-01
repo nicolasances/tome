@@ -4,29 +4,34 @@ import { RunningQuiz, TomeQuizAPI, TomeQuizError } from "@/api/TomeQuizAPI";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ScoreCard from "../ui/cards/ScoreCard";
-import { Button } from "@/components/ui/button";
 import { LoadingBar } from "../ui/graphics/Loading";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import SingleValueCard from "../ui/cards/SingleValueCard";
-import moment from "moment";
+import Book from "../ui/graphics/icons/Book";
+import RoundButton from "../ui/buttons/RoundButton";
+import Tick from "../ui/graphics/icons/Tick";
+import QuizTopicCard from "../ui/cards/QuizTopicCard";
+import { ProgressBar } from "../ui/general/ProgressBar";
+import NextSVG from "../ui/graphics/icons/Next";
 
 export default function NewQuiz() {
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [showLoadingBar, setShowLoadingBar] = useState(false)
     const [runningQuiz, setRunningQuiz] = useState<RunningQuiz>()
 
     const router = useRouter()
 
     const init = async () => {
 
-        const timer = setTimeout(() => { setLoading(true) }, 300)
+        const timer = setTimeout(() => { setShowLoadingBar(true) }, 400)
+        setLoading(true)
 
         const runningQuiz = await new TomeQuizAPI().getRunningQuiz()
 
         clearTimeout(timer)
         setLoading(false)
+        setShowLoadingBar(false)
 
-        if (!runningQuiz) return;
+        if (!runningQuiz || runningQuiz.id == null) return;
         if (runningQuiz instanceof TomeQuizError) return;
 
         setRunningQuiz(runningQuiz)
@@ -34,14 +39,15 @@ export default function NewQuiz() {
 
     useEffect(() => { init() }, [])
 
-    if (loading) return <div className="text-base"><LoadingBar /></div>
+    if (showLoadingBar) return <div className="text-base"><LoadingBar /></div>
+    if (loading) return <></>
 
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
             {!runningQuiz && <StartQuiz />}
             {runningQuiz && <QuizSummary runningQuiz={runningQuiz} />}
             {runningQuiz &&
-                <Button className="text-base" onClick={() => { router.push(`/quiz/question?quizId=${runningQuiz.id}`) }}>Continue</Button>
+                <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/quiz/question?quizId=${runningQuiz.id}`) }} />
             }
         </div>
     )
@@ -52,22 +58,16 @@ function QuizSummary({ runningQuiz }: { runningQuiz: RunningQuiz }) {
     if (!runningQuiz) return <></>
 
     return (
-        <div className="flex flex-1 flex-col space-y-2">
-            <Card className="flex flex-col">
-                <CardHeader>
-                    <CardTitle>{runningQuiz.topic}</CardTitle>
-                    <CardDescription>{runningQuiz.section}</CardDescription>
-                </CardHeader>
-            </Card>
-            <div className="flex flex-row justify-start items-center space-x-2">
+        <div className="flex flex-1 flex-col w-full">
+            <div className="mt-3 flex">
+                <QuizTopicCard />
                 <div className="">
-                    <SingleValueCard value={moment(runningQuiz.startedOn, 'YYYYMMDD').format('DD.MM.YYYY')} label="Started On" style="none" />
+                    <ScoreCard scoreNumerator={runningQuiz.score} scoreDenominator={runningQuiz.maxScore} label="score" round={true} />
                 </div>
+            </div>
+            <div className="flex flex-row justify-start items-center space-x-2 mt-4">
                 <div className="">
-                    <ScoreCard scoreNumerator={runningQuiz.score} scoreDenominator={runningQuiz.maxScore} label="score" />
-                </div>
-                <div className="">
-                    <ScoreCard scoreNumerator={runningQuiz.numQuestionsAnswered} scoreDenominator={runningQuiz.numQuestions} label="questions" style="empty" />
+                    <ProgressBar current={runningQuiz.numQuestionsAnswered} max={runningQuiz.numQuestions} />
                 </div>
             </div>
         </div>
@@ -93,32 +93,31 @@ function StartQuiz() {
 
         setStartingQuiz(false)
 
-        router.push('/quiz/question')
+        router.push(`/quiz/question?quizId=${response.quizId}`)
 
     }
 
     return (
         <div className="flex flex-col flex-1 items-stretch w-full">
-            <div className="text-sm text-cyan-200 pl-2">
-                You are going to start a quiz on:
+            <div className="uppercase text-base text-cyan-200 font-bold text-center">
+                Chosen Quiz
             </div>
-            <div className="mt-1">
-                <Card className="flex-1 flex flex-col">
-                    <CardHeader>
-                        <CardTitle>Cortés</CardTitle>
-                        <CardDescription>The Conquest of Mexico</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        {startingQuiz &&
-                            <div className="mt-2 flex w-full text-sm">
-                                <LoadingBar label="Creating your Quiz.." />
-                            </div>
-                        }
-                    </CardContent>
-                </Card>
+            <div className="flex flex-col justify-center items-center mt-4">
+                <div className="fill-cyan-800 w-12 h-12 rounded-full border-2 border border-cyan-800 p-3">
+                    <Book />
+                </div>
+                <div className="flex-col justify-center items-center text-center pt-2">
+                    <div className="text-xl uppercase"><b>Cortés</b></div>
+                    <div className="text-lg">Invasion of Mexico and La Noche Triste</div>
+                </div>
             </div>
-            <div className="flex flex-1 flex-col justify-end">
-                <Button className="text-base" onClick={startQuiz} disabled={startingQuiz}>Start the Quiz!</Button>
+            <div className="flex-1 mt-12">
+                {startingQuiz && <LoadingBar label="Preparing the Questions.." />}
+            </div>
+            <div className="flex flex-col justify-end items-center">
+                <div className="flex">
+                    <RoundButton icon={<Tick />} onClick={startQuiz} disabled={startingQuiz} />
+                </div>
             </div>
         </div>
     )

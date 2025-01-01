@@ -3,56 +3,80 @@
 import { QuizQuestion } from "@/api/TomeQuizAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import SendSVG from "@/app/ui/graphics/icons/Send";
-import { useState } from "react";
+import { LoadingBar } from "@/app/ui/graphics/Loading";
+import { useState, useRef } from "react";
 
-export default function Question({ question, onAnswer }: { question: QuizQuestion, onAnswer: (answer: string) => void }) {
+export default function Question({ question, onAnswer }: { question: QuizQuestion, onAnswer: (answer: string) => Promise<any> }) {  // eslint-disable-line @typescript-eslint/no-explicit-any
 
-    const [textAreaRows, setTextAreaRows] = useState<number>(1)
-    const [answer, setAnswer] = useState<string>();
-    const maxTextAreaRows = 8;
-    const minTextAreaRows = 3
+    const [answer, setAnswer] = useState<string>("");
+    const [loading, setLoading] = useState(false);
+    const maxTextAreaHeight = 240; // Maximum height in pixels
+    const minTextAreaHeight = 64; // Minimum height in pixels
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     /**
-     * Used to increase the size of the text area the more the user writes
-     * @returns 
+     * Dynamically adjusts the height of the textarea based on its content, up to a maximum height.
      */
-    const onKeyDown = (ev: React.KeyboardEvent<HTMLTextAreaElement>) => {
-
-        if (ev?.keyCode == 13) {
-            if (textAreaRows == maxTextAreaRows) return;
-            setTextAreaRows(textAreaRows + 1)
+    const adjustTextAreaHeight = () => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = "auto"; // Reset height to calculate the new scrollHeight
+            const newHeight = Math.min(textareaRef.current.scrollHeight, maxTextAreaHeight);
+            textareaRef.current.style.height = `${newHeight}px`;
         }
+    };
 
-    }
+    const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setAnswer(e.target.value);
+        adjustTextAreaHeight();
+    };
 
-    const onClickSendAnswer = () => {
+    const onClickSendAnswer = async () => {
+        if (!answer.trim()) return;
 
-        if (!answer) return
+        setLoading(true);
 
-        onAnswer(answer)
-    }
+        await onAnswer(answer);
+
+        setLoading(false);
+    };
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start">
-
+        <div className="flex flex-1 flex-col items-stretch justify-start text-lg">
             {/* Question Box */}
             <div className="flex flex-1 flex-col align-left mt-2">
-                <div className="font-bold text-base flex items-center">
-                    <span className="mr-2 bg-cyan-800 rounded text-base px-1 py-[2px] text-cyan-200">{question.questionNum}/{question.numQuestionsInQuiz}</span>Question:
+                <div className="font-bold flex items-center">
+                    <span className="mr-2 bg-cyan-800 rounded px-1 py-[2px] text-cyan-200">{question.questionNum}/{question.numQuestionsInQuiz}</span>Question:
                 </div>
-                <div className="overflow-y-auto max-h-[200px] mt-2 text-base">
+                <div className="overflow-y-auto max-h-[200px] mt-2">
                     {question.question}
                 </div>
             </div>
 
+            {loading && (
+                <div className="mb-2 px-2">
+                    <LoadingBar label="Evaluating your Answer" />
+                </div>
+            )}
+
             {/* Answer box */}
             <div className="flex flex-col border border-cyan-800 rounded-xl px-4 py-3">
-                <textarea onChange={(v) => { setAnswer(v.target.value); }} className="bg-transparent no-border focus:outline-none w-full text-sm" rows={textAreaRows < minTextAreaRows ? minTextAreaRows : textAreaRows} onKeyDown={onKeyDown} style={{ resize: "none" }}></textarea>
+                <textarea
+                    ref={textareaRef}
+                    onChange={onChangeHandler}
+                    value={answer}
+                    className="bg-transparent no-border focus:outline-none w-full"
+                    rows={1}
+                    style={{
+                        resize: "none",
+                        overflowY: answer.length > 0 && textareaRef.current?.scrollHeight! > maxTextAreaHeight ? 'auto' : 'hidden', // eslint-disable-line @typescript-eslint/no-non-null-asserted-optional-chain
+                        minHeight: `${minTextAreaHeight}px`,
+                        maxHeight: `${maxTextAreaHeight}px`,
+                    }}
+                ></textarea>
                 <div className="flex justify-end fill-cyan-800">
-                    <RoundButton icon={<SendSVG />} onClick={onClickSendAnswer} size='s' />
+                    {!loading && <RoundButton icon={<SendSVG />} onClick={onClickSendAnswer} size="s" />}
                 </div>
             </div>
-
         </div>
-    )
+    );
 }

@@ -35,10 +35,10 @@ export default function RootLayout({
       <body
         className={`${appFont.className} antialiased min-h-screen flex flex-col`}
       >
-        <div className="pt-4">
+        <div className="">
           <Header/>
         </div>
-        <div className="flex flex-1 flex-col justify-start p-6">
+        <div className="app-content text-base flex flex-1 flex-col justify-start p-6">
           {children}
         </div>
       </body>

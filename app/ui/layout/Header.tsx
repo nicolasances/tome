@@ -12,7 +12,7 @@ export default function Header() {
     const isRoot = pathname == '/'
 
     return (
-        <div className="flex flex-row px-4">
+        <div className="app-header flex flex-row items-center px-4">
             <div className="w-8 h-8 fill-cyan-200">
                 {!isRoot && <div onClick={() => { router.back() }}><BackSVG /></div>}
             </div>

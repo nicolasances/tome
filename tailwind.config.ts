@@ -10,13 +10,13 @@ export default {
   theme: {
   	extend: {
 		fontSize: {
-			xs: '0.5em',
-			sm: '0.6em',
-			base: '0.75em',
-			lg: '0.9em',
-			xl: '1.1em',
-			"2xl": '1.4em',
-			"3xl": '1.8em',
+			xs: '6px',
+			sm: '8px',
+			base: '10px',
+			lg: '12px',
+			xl: '14px',
+			"2xl": '18px',
+			"3xl": '22px',
 		},
   		colors: {
   			background: 'var(--background)',
