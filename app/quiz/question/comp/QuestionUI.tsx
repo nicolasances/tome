@@ -1,9 +1,9 @@
 'use client'
 
-import { QuizQuestion } from "@/api/TomeQuizAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import SendSVG from "@/app/ui/graphics/icons/Send";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
+import { QuizQuestion } from "@/model/QuizQuestion";
 import { useState, useRef } from "react";
 
 export default function Question({ question, onAnswer }: { question: QuizQuestion, onAnswer: (answer: string) => Promise<any> }) {  // eslint-disable-line @typescript-eslint/no-explicit-any

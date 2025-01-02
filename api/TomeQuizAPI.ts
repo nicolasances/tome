@@ -1,3 +1,4 @@
+import { QuizQuestion } from "@/model/QuizQuestion";
 import { TotoAPI } from "./TotoAPI";
 
 const mockQuizId = '9898390129038190283'
@@ -11,6 +12,25 @@ export class TomeQuizAPI {
     async getRunningQuiz(): Promise<RunningQuiz | undefined> {
 
         return (await new TotoAPI().fetch('toto-ms-tome-agent', '/quizzes/running', null, true)).json()
+
+    }
+
+    /**
+     * Fetches the quiz
+     */
+    async getQuiz(quizId: string): Promise<RunningQuiz> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/quizzes/${quizId}`, null, true)).json()
+
+    }
+
+
+    /**
+     * Fetches the quiz questions
+     */
+    async getQuizQuestions(quizId: string): Promise<GetQuizQuestionsResponse> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/quizzes/${quizId}/questions`, null, true)).json()
 
     }
 
@@ -62,8 +82,8 @@ export class TomeQuizAPI {
 export interface RunningQuiz {
 
     id: string,
-    topic: string, 
-    section?: string, 
+    topic: string,
+    section?: string,
     startedOn: string
     score: number,
     maxScore: number,   // e.g. 5, if the max achievable score is 5
@@ -84,16 +104,6 @@ export class TomeQuizError {
     }
 }
 
-export interface QuizQuestion {
-
-    id: string,
-    question: string
-    quizId: string 
-    questionNum: number 
-    numQuestionsInQuiz: number
-
-}
-
 export interface QuizAnswer {
 
     questionId: string,
@@ -103,8 +113,12 @@ export interface QuizAnswer {
 export interface AnswerRating {
 
     rating: number
-    maxRating: number 
-    explanations: string 
+    maxRating: number
+    explanations: string
     detailedExplanations: string
     quizFinished: boolean
+}
+
+export interface GetQuizQuestionsResponse {
+    questions: QuizQuestion[]
 }

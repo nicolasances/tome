@@ -1,10 +1,11 @@
 'use client'
 
-import { AnswerRating, QuizQuestion, TomeQuizAPI } from "@/api/TomeQuizAPI";
+import { AnswerRating, TomeQuizAPI } from "@/api/TomeQuizAPI";
 import { Suspense, useEffect, useState } from "react";
-import UserAnswerRating from "./ui/AnswerRating";
+import UserAnswerRating from "./comp/AnswerRating";
 import { useSearchParams } from "next/navigation";
-import Question from "./ui/Question";
+import Question from "./comp/QuestionUI";
+import { QuizQuestion } from "@/model/QuizQuestion";
 
 export default function QuestionAndAnswerPage() {
 

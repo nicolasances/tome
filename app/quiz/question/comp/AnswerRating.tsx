@@ -5,7 +5,7 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import BackSVG from "@/app/ui/graphics/icons/Back";
 import NextSVG from "@/app/ui/graphics/icons/Next";
 import QuestionSVG from "@/app/ui/graphics/icons/QuestionSVG";
-import { Button } from "@/components/ui/button";
+import Tick from "@/app/ui/graphics/icons/Tick";
 import { FormattedDetailedRatingExplanation, FormattedRatingExplanation } from "@/utils/RatingExplanation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -15,8 +15,6 @@ export default function UserAnswerRating({ rating, quizId }: { rating: AnswerRat
     const [showDetails, setShowDetails] = useState(false)
 
     const router = useRouter()
-    console.log(quizId);
-    
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
@@ -47,7 +45,7 @@ export default function UserAnswerRating({ rating, quizId }: { rating: AnswerRat
                     {showDetails && <RoundButton icon={<BackSVG />} onClick={() => { setShowDetails(false) }} />}
 
                     {!rating.quizFinished && <RoundButton icon={<NextSVG />} onClick={() => { window.location.reload() }} />}
-                    {rating.quizFinished && <Button className="text-base" onClick={() => { router.back() }}>Quiz Completed!</Button>}
+                    {rating.quizFinished && <RoundButton icon={<Tick/>} onClick={() => { router.push(`/quiz/${quizId}`) }}/>}
                 </div>
             </div>
 

@@ -3,20 +3,20 @@
 import { RunningQuiz, TomeQuizAPI, TomeQuizError } from "@/api/TomeQuizAPI";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ScoreCard from "../ui/cards/ScoreCard";
 import { LoadingBar } from "../ui/graphics/Loading";
 import Book from "../ui/graphics/icons/Book";
 import RoundButton from "../ui/buttons/RoundButton";
 import Tick from "../ui/graphics/icons/Tick";
-import QuizTopicCard from "../ui/cards/QuizTopicCard";
-import { ProgressBar } from "../ui/general/ProgressBar";
 import NextSVG from "../ui/graphics/icons/Next";
+import { QuizQuestion } from "@/model/QuizQuestion";
+import QuizSummary from "./comp/QuizSummary";
 
 export default function NewQuiz() {
 
     const [loading, setLoading] = useState(true);
     const [showLoadingBar, setShowLoadingBar] = useState(false)
     const [runningQuiz, setRunningQuiz] = useState<RunningQuiz>()
+    const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>()
 
     const router = useRouter()
 
@@ -34,7 +34,20 @@ export default function NewQuiz() {
         if (!runningQuiz || runningQuiz.id == null) return;
         if (runningQuiz instanceof TomeQuizError) return;
 
+        loadQuestions(runningQuiz.id);
+
         setRunningQuiz(runningQuiz)
+    }
+
+    /**
+     * Loads the quiz questions
+     */
+    const loadQuestions = async (quizId: string) => {
+
+        const quizQuestionsResponse = await new TomeQuizAPI().getQuizQuestions(quizId);
+
+        setQuizQuestions(quizQuestionsResponse.questions)
+
     }
 
     useEffect(() => { init() }, [])
@@ -45,31 +58,10 @@ export default function NewQuiz() {
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
             {!runningQuiz && <StartQuiz />}
-            {runningQuiz && <QuizSummary runningQuiz={runningQuiz} />}
+            {runningQuiz && <QuizSummary runningQuiz={runningQuiz} quizQuestions={quizQuestions} />}
             {runningQuiz &&
                 <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/quiz/question?quizId=${runningQuiz.id}`) }} />
             }
-        </div>
-    )
-}
-
-function QuizSummary({ runningQuiz }: { runningQuiz: RunningQuiz }) {
-
-    if (!runningQuiz) return <></>
-
-    return (
-        <div className="flex flex-1 flex-col w-full">
-            <div className="mt-3 flex">
-                <QuizTopicCard />
-                <div className="">
-                    <ScoreCard scoreNumerator={runningQuiz.score} scoreDenominator={runningQuiz.maxScore} label="score" round={true} />
-                </div>
-            </div>
-            <div className="flex flex-row justify-start items-center space-x-2 mt-4">
-                <div className="">
-                    <ProgressBar current={runningQuiz.numQuestionsAnswered} max={runningQuiz.numQuestions} />
-                </div>
-            </div>
         </div>
     )
 }
