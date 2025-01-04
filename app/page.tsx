@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import { DailyProgress } from "./ui/cards/DailyProgress";
 import TopicsCard from "./ui/cards/TopicsCard";
 import Book from "./ui/graphics/icons/Book";
 
@@ -83,7 +82,7 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col items-stretch justify-start space-y-2">
       <div className="flex flex-row space-x-4 items-center">
-        <div className="flex-1"><DailyProgress/></div>
+        {/* <div className="flex-1"><DailyProgress/></div> */}
         <div className="flex-1"><PowerCard perc={45} /></div>
       </div>
       <div className="">
