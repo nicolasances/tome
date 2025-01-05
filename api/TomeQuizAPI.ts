@@ -1,5 +1,6 @@
 import { QuizQuestion } from "@/model/QuizQuestion";
 import { TotoAPI } from "./TotoAPI";
+import { Topic } from "@/model/Topic";
 
 const mockQuizId = '9898390129038190283'
 
@@ -23,7 +24,6 @@ export class TomeQuizAPI {
         return (await new TotoAPI().fetch('toto-ms-tome-agent', `/quizzes/${quizId}`, null, true)).json()
 
     }
-
 
     /**
      * Fetches the quiz questions
@@ -77,6 +77,19 @@ export class TomeQuizAPI {
 
     }
 
+    /**
+     * Get Topics
+     */
+    async getTopics(): Promise<GetTopicsResponse> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/topics`, null, true)).json()
+
+    }
+
+}
+
+interface GetTopicsResponse {
+    topics: Topic[]
 }
 
 export interface RunningQuiz {
