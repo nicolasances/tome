@@ -86,11 +86,32 @@ export class TomeQuizAPI {
 
     }
 
+    /**
+     * Posts a new topic
+     */
+    async postTopic(blogUrl: string): Promise<PostTopicResponse> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-scraper', '/blogs', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                blogURL: blogUrl,
+                blogType: 'craft'
+            })
+        }, true)).json()
+
+    }
+
 }
 
 interface GetTopicsResponse {
     topics: Topic[]
 }
+
+interface PostTopicResponse {}
 
 export interface RunningQuiz {
 
