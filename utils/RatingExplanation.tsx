@@ -54,5 +54,5 @@ export function FormattedDetailedRatingExplanation({ text }: { text: string }) {
     });
   };
 
-  return <div className="text-base">{formatText(text)}</div>;
+  return <div className="">{formatText(text)}</div>;
 };

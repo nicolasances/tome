@@ -80,7 +80,7 @@ export default function Home() {
   if (loginNeeded === true) return (<div></div>)
 
   return (
-    <div className="flex flex-1 flex-col items-stretch justify-start space-y-2">
+    <div className="flex flex-1 flex-col items-stretch justify-start space-y-4">
       <div className="flex flex-row space-x-4 items-center">
         {/* <div className="flex-1"><DailyProgress/></div> */}
         <div className="flex-1"><PowerCard perc={45} /></div>

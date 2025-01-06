@@ -28,9 +28,9 @@ export default function TopicsCard() {
     useEffect(() => {init()}, []);
 
     return (
-        <div className="flex flex-row items-center space-x-2 text-base">
+        <div className="flex flex-row items-center justify-center space-x-2 text-base">
             <div className="rounded bg-cyan-600 w-8 h-8 flex items-center justify-center text-lg">{topics ? topics.length : ''}</div>
-            <div className="flex-1"><b>Topic{topics ? (topics.length > 1 ? 's' : '') : ''}</b> in the Knowledge Base</div>
+            <div className="flex-1 md:flex-none md:pr-4"><b>Topic{topics ? (topics.length > 1 ? 's' : '') : ''}</b> in the Knowledge Base</div>
             <div className="">
                 <RoundButton icon={<Add />} onClick={() => {router.push('/new-topic')}} size="s" />
             </div>

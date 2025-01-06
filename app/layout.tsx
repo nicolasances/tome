@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <body
         className={`${appFont.className} antialiased min-h-screen flex flex-col`}
@@ -38,7 +39,7 @@ export default function RootLayout({
         <div className="">
           <Header/>
         </div>
-        <div className="app-content text-base flex flex-1 flex-col justify-start p-6">
+        <div className="app-content text-base flex flex-1 flex-col justify-start p-6 md:px-[25vw]">
           {children}
         </div>
       </body>

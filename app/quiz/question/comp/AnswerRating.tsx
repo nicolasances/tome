@@ -19,7 +19,7 @@ export default function UserAnswerRating({ rating, quizId }: { rating: AnswerRat
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
-            <div style={{ maxHeight: 'calc(90vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }}>
+            <div style={{ maxHeight: 'calc(90vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }} className="no-scrollbar">
 
                 <div className="flex items-center text-lg">
                     <div className="">Rating: </div>
@@ -30,7 +30,7 @@ export default function UserAnswerRating({ rating, quizId }: { rating: AnswerRat
                 <div id="explanation-box" className="flex flex-1 flex-col align-left mt-4" >
                     {!showDetails && <FormattedRatingExplanation explanation={rating.explanations} />}
                     {showDetails &&
-                        <div className="mb-4">
+                        <div className="mb-4 text-base md:text-lg">
                             <FormattedDetailedRatingExplanation text={rating.detailedExplanations} />
                         </div>
                     }

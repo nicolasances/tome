@@ -30,7 +30,7 @@ export default function NewTopic() {
     }
 
     return (
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col items-center">
 
             <div className="">
                 To upload a new topic, please copy below the URL of the blog you want to upload.

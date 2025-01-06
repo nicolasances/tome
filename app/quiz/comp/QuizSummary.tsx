@@ -14,8 +14,10 @@ export default function QuizSummary({ runningQuiz, quizQuestions }: { runningQui
     return (
         <div className="flex flex-1 flex-col w-full">
             <div className="mt-3 flex">
-                <QuizTopicCard />
-                <div className="">
+                <div className="md:flex-1">
+                    <QuizTopicCard />
+                </div>
+                <div className="pl-2">
                     <ScoreCard scoreNumerator={runningQuiz.score} scoreDenominator={runningQuiz.maxScore} label="score" round={true} />
                 </div>
             </div>
