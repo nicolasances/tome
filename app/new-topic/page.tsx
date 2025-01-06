@@ -30,15 +30,15 @@ export default function NewTopic() {
     }
 
     return (
-        <div className="flex flex-1 flex-col items-center">
+        <div className="flex flex-1 flex-col items-stretch text-base md:text-lg">
 
             <div className="">
                 To upload a new topic, please copy below the URL of the blog you want to upload.
             </div>
 
-            <div className="grid w-full max-w-sm items-center gap-1.5 mt-4">
+            <div className="grid w-full items-center gap-1.5 mt-4">
                 <Label htmlFor="email">URL of the Blog</Label>
-                <Input disabled={uploading} type="url" id="email" placeholder="Insert the URL of the Blog" onChange={(v) => { setBlogUrl(v.target.value) }} />
+                <Input disabled={uploading} className="text-base md:text-lg" type="url" id="email" placeholder="Insert the URL of the Blog" onChange={(v) => { setBlogUrl(v.target.value) }} />
             </div>
 
             {uploading &&
