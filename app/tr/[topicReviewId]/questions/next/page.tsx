@@ -1,12 +1,5 @@
 'use client'
 
-import { AnswerRating, TomeQuizAPI } from "@/api/TomeQuizAPI";
-import { Suspense, useEffect, useState } from "react";
-import UserAnswerRating from "./comp/AnswerRating";
-import { useSearchParams } from "next/navigation";
-import Question from "./comp/QuestionUI";
-import { QuizQuestion } from "@/model/QuizQuestion";
-
 export default function QuestionAndAnswerPage() {
 
     return (
@@ -18,7 +11,7 @@ export default function QuestionAndAnswerPage() {
 
 function QuestionUI() {
 
-    const [question, setQuestion] = useState<QuizQuestion>();
+    const [question, setQuestion] = useState<TopicReviewQuestion>();
     const [rating, setRating] = useState<AnswerRating>();
 
     const searchParams = useSearchParams()

@@ -1,6 +1,6 @@
 'use client'
 
-import { RunningQuiz, TomeQuizAPI, TomeQuizError } from "@/api/TomeQuizAPI";
+import { TomeAPI } from "@/api/TomeAPI";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LoadingBar } from "../ui/graphics/Loading";
@@ -8,15 +8,16 @@ import Book from "../ui/graphics/icons/Book";
 import RoundButton from "../ui/buttons/RoundButton";
 import Tick from "../ui/graphics/icons/Tick";
 import NextSVG from "../ui/graphics/icons/Next";
-import { QuizQuestion } from "@/model/QuizQuestion";
-import QuizSummary from "./comp/QuizSummary";
+import { TopicReviewQuestion } from "@/model/questions";
+import { TopicReview } from "@/model/topicReview";
+import TopicReviewSummary from "../ui/tr/TopicReviewSummary";
 
 export default function NewQuiz() {
 
     const [loading, setLoading] = useState(true);
     const [showLoadingBar, setShowLoadingBar] = useState(false)
-    const [runningQuiz, setRunningQuiz] = useState<RunningQuiz>()
-    const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>()
+    const [runningTopicReview, setRunningTopicReview] = useState<TopicReview>()
+    const [questions, setQuestions] = useState<TopicReviewQuestion[]>()
 
     const router = useRouter()
 
@@ -25,28 +26,26 @@ export default function NewQuiz() {
         const timer = setTimeout(() => { setShowLoadingBar(true) }, 400)
         setLoading(true)
 
-        const runningQuiz = await new TomeQuizAPI().getRunningQuiz()
-
+        const runningTopicReview = await new TomeAPI().getRunningTopicReview()
         clearTimeout(timer)
         setLoading(false)
         setShowLoadingBar(false)
 
-        if (!runningQuiz || runningQuiz.id == null) return;
-        if (runningQuiz instanceof TomeQuizError) return;
+        if (!runningTopicReview || runningTopicReview.id == null) return;
 
-        loadQuestions(runningQuiz.id);
+        loadQuestions(runningTopicReview.id);
 
-        setRunningQuiz(runningQuiz)
+        setRunningTopicReview(runningTopicReview)
     }
 
     /**
      * Loads the quiz questions
      */
-    const loadQuestions = async (quizId: string) => {
+    const loadQuestions = async (topicReviewId: string) => {
 
-        const quizQuestionsResponse = await new TomeQuizAPI().getQuizQuestions(quizId);
+        const quizQuestionsResponse = await new TomeAPI().getTopicReviewQuestions(topicReviewId);
 
-        setQuizQuestions(quizQuestionsResponse.questions)
+        setQuestions(quizQuestionsResponse.questions)
 
     }
 
@@ -57,35 +56,33 @@ export default function NewQuiz() {
 
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
-            {!runningQuiz && <StartQuiz />}
-            {runningQuiz && <QuizSummary runningQuiz={runningQuiz} quizQuestions={quizQuestions} />}
-            {runningQuiz &&
-                <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/quiz/question?quizId=${runningQuiz.id}`) }} />
+            {!runningTopicReview && <StartTopicReview />}
+            {runningTopicReview && <TopicReviewSummary topicReview={runningTopicReview} questions={questions} />}
+            {runningTopicReview &&
+                <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/tr/${runningTopicReview.id}`) }} />
             }
         </div>
     )
 }
 
-function StartQuiz() {
+function StartTopicReview() {
 
-    const [startingQuiz, setStartingQuiz] = useState(false)
+    const [startingTopicReview, setStartingTopicReview] = useState(false)
 
     const router = useRouter()
 
     /**
      * Starts the quiz
      */
-    const startQuiz = async () => {
+    const startTopicReview = async () => {
 
-        setStartingQuiz(true)
+        setStartingTopicReview(true)
 
-        const response = await new TomeQuizAPI().startQuiz()
+        const response = await new TomeAPI().startTopicReview()
 
-        console.log(response);
+        setStartingTopicReview(false)
 
-        setStartingQuiz(false)
-
-        router.push(`/quiz/question?quizId=${response.quizId}`)
+        router.push(`/tr/question?topicReviewId=${response.topicReview.id}`)
 
     }
 
@@ -104,13 +101,14 @@ function StartQuiz() {
                 </div>
             </div>
             <div className="flex-1 mt-12">
-                {startingQuiz && <LoadingBar label="Preparing the Questions.." />}
+                {startingTopicReview && <LoadingBar label="Preparing the Questions.." />}
             </div>
             <div className="flex flex-col justify-end items-center">
                 <div className="flex">
-                    <RoundButton icon={<Tick />} onClick={startQuiz} disabled={startingQuiz} />
+                    <RoundButton icon={<Tick />} onClick={startTopicReview} disabled={startingTopicReview} />
                 </div>
             </div>
         </div>
     )
 }
+

@@ -1,10 +1,10 @@
 
-export interface QuizQuestion {
+export interface TopicReviewQuestion {
     id: string 
     questionNum: number
     question: string  
-    quizId: string 
-    numQuestionsInQuiz: number
+    topicReviewId: string 
+    numQuestionsInTopicReview: number
     answer: string 
     answerOn: string 
     rating: number

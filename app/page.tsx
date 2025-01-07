@@ -90,7 +90,7 @@ export default function Home() {
       </div>
       <div className="flex-1"></div>
       <div className="flex justify-center">
-        <RoundButton icon={<Book />} onClick={() => { router.push('/quiz') }} />
+        <RoundButton icon={<Book />} onClick={() => { router.push('/tr/new') }} />
       </div>
     </div>
   );

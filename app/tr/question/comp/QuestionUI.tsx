@@ -3,10 +3,10 @@
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import SendSVG from "@/app/ui/graphics/icons/Send";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
-import { QuizQuestion } from "@/model/QuizQuestion";
+import { TopicReviewQuestion } from "@/model/questions";
 import { useState, useRef } from "react";
 
-export default function Question({ question, onAnswer }: { question: QuizQuestion, onAnswer: (answer: string) => Promise<any> }) {  // eslint-disable-line @typescript-eslint/no-explicit-any
+export default function Question({ question, onAnswer }: { question: TopicReviewQuestion, onAnswer: (answer: string) => Promise<any> }) {  // eslint-disable-line @typescript-eslint/no-explicit-any
 
     const [answer, setAnswer] = useState<string>("");
     const [loading, setLoading] = useState(false);

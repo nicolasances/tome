@@ -1,9 +1,9 @@
-import { TomeQuizAPI } from "@/api/TomeQuizAPI";
 import RoundButton from "../buttons/RoundButton";
 import Add from "../graphics/icons/Add";
 import { useEffect, useState } from "react";
-import { Topic } from "@/model/Topic";
+import { Topic } from "@/model/topic";
 import { useRouter } from "next/navigation";
+import { TomeAPI } from "@/api/TomeAPI";
 
 export default function TopicsCard() {
 
@@ -16,7 +16,7 @@ export default function TopicsCard() {
 
         // let timer = setTimeout(() => {setLoading(true)}, 500);
 
-        const topics = await new TomeQuizAPI().getTopics();
+        const topics = await new TomeAPI().getTopics();
 
         // clearTimeout(timer);
         // setLoading(false);

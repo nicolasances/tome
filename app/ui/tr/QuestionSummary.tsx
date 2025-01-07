@@ -1,6 +1,6 @@
-import { QuizQuestion } from "@/model/QuizQuestion";
+import { TopicReviewQuestion } from "@/model/questions";
 
-export default function QuizQuestionSummary({ question }: { question: QuizQuestion }) {
+export default function QuestionSummary({ question }: { question: TopicReviewQuestion }) {
 
     return (
         <div className="flex flex-row items-center space-x-2 bg-cyan-300 rounded px-2 py-2">
