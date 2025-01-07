@@ -12,9 +12,18 @@ export default function TopicReviewSummary({ topicReview, questions }: { topicRe
     // Calculate the number of questions answered
     let numQuestionsAnswered = 0;
     if (questions) {
-        for (let question of questions) {
+        for (const question of questions) {
             if (question.rating != null) numQuestionsAnswered++;
         }
+    }
+
+    // Calculate the average rating of the questions
+    let averageRating = 0;
+    if (questions) {
+        for (const question of questions) {
+            if (question.rating != null) averageRating += question.rating;
+        }
+        averageRating = averageRating / numQuestionsAnswered;
     }
 
 
@@ -25,7 +34,7 @@ export default function TopicReviewSummary({ topicReview, questions }: { topicRe
                     <TopicTitleCard topic={topicReview.topicTitle} />
                 </div>
                 <div className="pl-2">
-                    <ScoreCard scoreNumerator={topicReview.rating ? topicReview.rating : 0} scoreDenominator={topicReview.maxRating} label="score" round={true} />
+                    <ScoreCard scoreNumerator={averageRating} scoreDenominator={topicReview.maxRating} label="score" round={true} />
                 </div>
             </div>
             <div className="flex flex-row justify-start items-center space-x-2 mt-4">

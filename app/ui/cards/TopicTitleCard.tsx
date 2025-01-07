@@ -1,5 +1,4 @@
 import Book from "../graphics/icons/Book";
-import { Topic } from "@/model/topic";
 
 export default function TopicTitleCard({topic}: {topic: string}) {
     return (

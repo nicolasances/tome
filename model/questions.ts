@@ -4,7 +4,7 @@ export interface TopicReviewQuestion {
     questionNum: number
     question: string  
     topicReviewId: string 
-    numQuestionsInTopicReview: number
+    numQuestions: number
     answer: string 
     answerOn: string 
     rating: number

@@ -9,6 +9,7 @@ import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
 import { TopicReview } from "@/model/topicReview";
 import { TomeAPI } from "@/api/TomeAPI";
 import TopicReviewSummary from "@/app/ui/tr/TopicReviewSummary";
+import NextSVG from "@/app/ui/graphics/icons/Next";
 
 export default function QuizDetail() {
 
@@ -46,9 +47,16 @@ export default function QuizDetail() {
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
             {topicReview && <TopicReviewSummary topicReview={topicReview} questions={questions} />}
-            <div className="flex flex-1 flex-col justify-end">
-                <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />
-            </div>
+            {!topicReview?.completedOn &&
+                <div className="mb-4">
+                    <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/tr/${topicReviewId}/questions/next`) }} />
+                </div>
+            }   
+            {topicReview?.completedOn &&
+                <div className="flex flex-1 flex-col justify-end">
+                    <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />
+                </div>
+            }
         </div>
     )
 

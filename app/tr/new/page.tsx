@@ -10,8 +10,6 @@ import { useEffect, useState } from "react";
 
 export default function NewTopicReview() {
 
-    const router = useRouter()
-
     const init = async () => {
         
     }

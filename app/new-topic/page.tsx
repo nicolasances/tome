@@ -4,10 +4,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import RoundButton from "../ui/buttons/RoundButton"
 import Tick from "../ui/graphics/icons/Tick"
-import { TomeQuizAPI } from "@/api/TomeQuizAPI"
 import { useState } from "react"
 import { LoadingBar } from "../ui/graphics/Loading"
 import { useRouter } from "next/navigation"
+import { TomeAPI } from "@/api/TomeAPI"
 
 export default function NewTopic() {
 
@@ -22,7 +22,7 @@ export default function NewTopic() {
 
         setUploading(true);
 
-        await new TomeQuizAPI().postTopic(blogUrl);
+        await new TomeAPI().postTopic(blogUrl);
 
         setUploading(false);
 
