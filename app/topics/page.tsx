@@ -31,7 +31,7 @@ export default function TopicsPage() {
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
             <div className="flex-1 app-content">
-                {topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} last={index == topics.length - 1} />)}
+                {topics && topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} last={index == topics.length - 1} />)}
             </div>
             <div className="flex justify-center">
                 <RoundButton icon={<Add />} onClick={() => { router.push('/new-topic') }} />

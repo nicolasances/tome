@@ -10,7 +10,7 @@ export class TomeAPI {
      * Fetches the topic review that is currently running. 
      * If no topic review is running, it will return nothing
      */
-    async getRunningTopicReview(): Promise<TopicReview | undefined> {
+    async getRunningTopicReview(): Promise<GetTopicReviewResponse> {
 
         return (await new TotoAPI().fetch('toto-ms-tome-agent', '/topicreviews/running', null, true)).json()
 

@@ -8,10 +8,14 @@ import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
 import TopicsCard from "./ui/cards/TopicsCard";
 import Book from "./ui/graphics/icons/Book";
+import { TomeAPI } from "@/api/TomeAPI";
+import { TopicReview } from "@/model/topicReview";
+import NextSVG from "./ui/graphics/icons/Next";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
+  const [runningTopicReview, setRunningTopicReview] = useState<TopicReview | undefined>(undefined)
 
   const router = useRouter()
 
@@ -71,12 +75,24 @@ export default function Home() {
 
   }
 
+  /**
+   * Function that loads the Running Topic Review (if any) from the TomeAPI
+   */
+  const loadRunningTopicReview = async () => {
+
+    const response = await new TomeAPI().getRunningTopicReview()
+
+    setRunningTopicReview(response.topicReview);
+
+
+  }
+
   useEffect(() => { verifyAuthentication() }, [])
   useEffect(() => { triggerSignIn() }, [loginNeeded])
+  useEffect(() => { loadRunningTopicReview() }, [loginNeeded])
 
   // Empty screen while Google SignIn is loading
   if (loginNeeded == null) return (<div></div>)
-
   if (loginNeeded === true) return (<div></div>)
 
   return (
@@ -88,9 +104,21 @@ export default function Home() {
       <div className="">
         <TopicsCard />
       </div>
+      {/* {runningTopicReview && */}
+      <div className="flex flex-row items-center -mx-2 px-3 space-x-2">
+        <div className="w-8 h-8 p-2 fill-cyan-200 border rounded border-cyan-200"><Book /></div>
+        <div className="flex flex-col flex-1">
+          <div className="text-sm">You have a running Topic Review</div>
+          <div className="text-lg">{runningTopicReview?.topicTitle}</div>
+        </div>
+        <div className="">
+          <RoundButton icon={<NextSVG/>} size="s" onClick={() => {router.push(`/tr/${runningTopicReview?.id}`)}} />
+        </div>
+      </div>
+      {/* } */}
       <div className="flex-1"></div>
       <div className="flex justify-center">
-        <RoundButton icon={<Book />} onClick={() => { router.push('/tr/new') }} />
+        <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />
       </div>
     </div>
   );
