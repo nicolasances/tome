@@ -1,7 +1,7 @@
 import RoundButton from "../buttons/RoundButton";
 import Add from "../graphics/icons/Add";
 import { useEffect, useState } from "react";
-import { Topic } from "@/model/topic";
+import { Topic } from "@/model/Topic";
 import { useRouter } from "next/navigation";
 import { TomeAPI } from "@/api/TomeAPI";
 
