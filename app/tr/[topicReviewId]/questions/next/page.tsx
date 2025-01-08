@@ -3,11 +3,14 @@
 import { TomeAPI } from "@/api/TomeAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import BackSVG from "@/app/ui/graphics/icons/Back";
+import Book from "@/app/ui/graphics/icons/Book";
 import NextSVG from "@/app/ui/graphics/icons/Next";
 import QuestionSVG from "@/app/ui/graphics/icons/QuestionSVG";
 import SendSVG from "@/app/ui/graphics/icons/Send";
 import Tick from "@/app/ui/graphics/icons/Tick";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
+import BottomFade from "@/app/ui/layout/BottomFade";
+import Footer from "@/app/ui/layout/Footer";
 import { AnswerRating } from "@/model/answer";
 import { TopicReviewQuestion } from "@/model/questions";
 import { FormattedDetailedRatingExplanation, FormattedRatingExplanation } from "@/utils/RatingExplanation";
@@ -111,7 +114,7 @@ function Question({ question, onAnswer }: { question: TopicReviewQuestion, onAns
             )}
 
             {/* Answer box */}
-            <div className="flex flex-col border border-cyan-800 rounded-xl px-4 py-3">
+            <div className="flex flex-col border border-cyan-800 rounded-xl px-4 py-3 mb-2">
                 <textarea
                     ref={textareaRef}
                     onChange={onChangeHandler}
@@ -142,34 +145,48 @@ function UserAnswerRating({ rating, topicReviewId }: { rating: AnswerRating, top
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
-            <div style={{ maxHeight: 'calc(90vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }} className="no-scrollbar">
+            <div className="relative">
+                <div style={{ maxHeight: 'calc(96vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }} className="no-scrollbar mb-4">
 
-                <div className="flex items-center text-lg">
-                    <div className="">Rating: </div>
-                    <div className="ml-2 bg-cyan-200 rounded px-2 py-1"><span className="font-bold">{rating.rating}</span><span>/{rating.maxRating}</span></div>
+                    <div className="flex items-center text-lg">
+                        <div className="">Rating: </div>
+                        <div className="ml-2 bg-cyan-200 rounded px-2 py-1"><span className="font-bold">{rating.rating}</span><span>/{rating.maxRating}</span></div>
+                    </div>
+
+                    {/* Explanation Box */}
+                    <div id="explanation-box" className="flex flex-1 flex-col align-left mt-4" >
+                        {!showDetails && <FormattedRatingExplanation explanation={rating.explanations} />}
+                        {showDetails &&
+                            <div className="mb-4 text-base md:text-lg">
+                                <FormattedDetailedRatingExplanation text={rating.detailedExplanations} />
+                            </div>
+                        }
+                    </div>
+
                 </div>
-
-                {/* Explanation Box */}
-                <div id="explanation-box" className="flex flex-1 flex-col align-left mt-4" >
-                    {!showDetails && <FormattedRatingExplanation explanation={rating.explanations} />}
-                    {showDetails &&
-                        <div className="mb-4 text-base md:text-lg">
-                            <FormattedDetailedRatingExplanation text={rating.detailedExplanations} />
-                        </div>
-                    }
-                </div>
-
+                <BottomFade height='lg' />
             </div>
+
             <div className="flex-1"></div>
 
             <div style={{ height: 'var(--app-footer-height)' }}>
-                <div className="flex justify-center flex-row space-x-2" style={{ maxHeight: 'var(--app-footer-height)' }}>
-                    {!showDetails && <RoundButton icon={<QuestionSVG />} onClick={() => { setShowDetails(true) }} />}
-                    {showDetails && <RoundButton icon={<BackSVG />} onClick={() => { setShowDetails(false) }} />}
+                <Footer>
+                    <div className="flex justify-center items-center flex-row space-x-2" style={{ maxHeight: 'var(--app-footer-height)' }}>
+                        <div className="flex-1 flex justify-end">
+                            <RoundButton icon={<Book />} size='s' onClick={() => { router.push(`/tr/${topicReviewId}`) }} />
+                        </div>
 
-                    {!rating.topicReviewFinished && <RoundButton icon={<NextSVG />} onClick={() => { window.location.reload() }} />}
-                    {rating.topicReviewFinished && <RoundButton icon={<Tick/>} onClick={() => { router.push(`/tr/${topicReviewId}`) }}/>}
-                </div>
+                        <div className="">
+                            {!rating.topicReviewFinished && !showDetails && <RoundButton icon={<NextSVG />} onClick={() => { window.location.reload() }} />}
+                            {!rating.topicReviewFinished && showDetails && <RoundButton icon={<Tick />} onClick={() => { setShowDetails(false) }} />}
+                            {rating.topicReviewFinished && <RoundButton icon={<Tick />} onClick={() => { router.push(`/tr/${topicReviewId}`) }} />}
+                        </div>
+
+                        <div className="flex-1 flex justify-start">
+                            {!showDetails && <RoundButton icon={<QuestionSVG />} size='s' onClick={() => { setShowDetails(true) }} />}
+                        </div>
+                    </div>
+                </Footer>
             </div>
 
         </div>

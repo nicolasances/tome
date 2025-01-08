@@ -10,6 +10,7 @@ import { TopicReview } from "@/model/topicReview";
 import { TomeAPI } from "@/api/TomeAPI";
 import TopicReviewSummary from "@/app/ui/tr/TopicReviewSummary";
 import NextSVG from "@/app/ui/graphics/icons/Next";
+import Footer from "@/app/ui/layout/Footer";
 
 export default function QuizDetail() {
 
@@ -47,16 +48,26 @@ export default function QuizDetail() {
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
             {topicReview && <TopicReviewSummary topicReview={topicReview} questions={questions} />}
-            {!topicReview?.completedOn &&
-                <div className="mb-4">
-                    <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/tr/${topicReviewId}/questions/next`) }} />
+            <Footer>
+                <div className="flex flex-1 flex-row justify-center items-center space-x-2">
+                    <div className="flex-1 flex justify-end">
+                        <RoundButton icon={<HomeSVG />} size='s' onClick={() => { router.push('/') }} />
+                    </div>
+                    <div className="">
+                        {!topicReview?.completedOn &&
+                            <div>
+                                <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/tr/${topicReviewId}/questions/next`) }} />
+                            </div>
+                        }
+                        {topicReview?.completedOn &&
+                            <div className="flex flex-1 flex-col justify-end">
+                                <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />
+                            </div>
+                        }
+                    </div>
+                    <div className="flex-1"></div>
                 </div>
-            }   
-            {topicReview?.completedOn &&
-                <div className="flex flex-1 flex-col justify-end">
-                    <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />
-                </div>
-            }
+            </Footer>
         </div>
     )
 

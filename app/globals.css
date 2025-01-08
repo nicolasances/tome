@@ -13,8 +13,13 @@ body {
   max-height: var(--app-header-height);
 }
 
+.app-footer {
+  height: var(--app-footer-height);
+  max-height: var(--app-footer-height);
+}
+
 .app-content {
-  max-height: calc(100vh - var(--app-header-height));
+  max-height: calc(99vh - var(--app-header-height));
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

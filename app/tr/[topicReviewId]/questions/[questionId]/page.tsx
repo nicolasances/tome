@@ -2,7 +2,9 @@
 
 import { TomeAPI } from "@/api/TomeAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
+import BackSVG from "@/app/ui/graphics/icons/Back";
 import IdeaSVG from "@/app/ui/graphics/icons/IdeaSVG";
+import Footer from "@/app/ui/layout/Footer";
 import { TopicReviewQuestion } from "@/model/questions";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -65,9 +67,16 @@ export default function QuestionDetailPage() {
 
             <div className="flex-1"></div>
 
-            <div className="flex justify-center">
-                <RoundButton icon={<IdeaSVG/>} onClick={onClickIdea}/>
-            </div>
+            <Footer>
+                <div className="flex justify-center items-center space-x-2">
+                    <div className="flex flex-1 justify-end">
+                        <RoundButton icon={<BackSVG />} size='s' onClick={() => { router.back() }} />
+                    </div>
+                    <RoundButton icon={<IdeaSVG />} onClick={onClickIdea} />
+                    <div className="flex-1">
+                    </div>
+                </div>
+            </Footer>
         </div>
     )
 }
