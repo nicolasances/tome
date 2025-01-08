@@ -61,6 +61,23 @@ export class TomeAPI {
     }
 
     /**
+     * Retrieves a specific question
+     */
+    async getQuestion(questionId: string): Promise<TopicReviewQuestion> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/topicreviews/questions/${questionId}`, null, true)).json()
+    }
+
+    /**
+     * Provides a refresher for a given topic's section, based on a question and relative answer 
+     * from the user. 
+     */
+    async getRefresher(questionId: string): Promise<GetRefresherResponse> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/topicreviews/questions/${questionId}/refresher`, null, true)).json()
+    }
+
+    /**
      * Sends the user's answer to the question
      * @param answer the answer to send
      */
@@ -124,4 +141,9 @@ export interface StartTopicReviewResponse {
 export interface GetTopicReviewResponse {
     topicReview: TopicReview
     questions: TopicReviewQuestion[]
+}
+
+export interface GetRefresherResponse {
+    topic: Topic
+    refresher: string
 }
