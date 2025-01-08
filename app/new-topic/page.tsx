@@ -8,6 +8,9 @@ import { useState } from "react"
 import { LoadingBar } from "../ui/graphics/Loading"
 import { useRouter } from "next/navigation"
 import { TomeAPI } from "@/api/TomeAPI"
+import HomeSVG from "../ui/graphics/icons/HomeSVG"
+import Footer from "../ui/layout/Footer"
+import BackSVG from "../ui/graphics/icons/Back"
 
 export default function NewTopic() {
 
@@ -47,11 +50,17 @@ export default function NewTopic() {
                 </div>
             }
 
-            <div className="flex flex-1 flex-col justify-end items-center">
-                <div className="flex">
+            <div className="flex-1"></div>
+
+            <Footer>
+                <div className="flex justify-center items-center space-x-2">
+                    <div className="flex-1 flex justify-end items-center">
+                        <RoundButton icon={<BackSVG />} size='s' onClick={() => { router.back() }} />
+                    </div>
                     <RoundButton icon={<Tick />} onClick={uploadBlog} disabled={uploading} />
+                    <div className="flex-1"></div>
                 </div>
-            </div>
+            </Footer>
         </div>
     )
 }

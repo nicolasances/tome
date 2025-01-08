@@ -11,6 +11,7 @@ import Book from "./ui/graphics/icons/Book";
 import { TomeAPI } from "@/api/TomeAPI";
 import { TopicReview } from "@/model/topicReview";
 import NextSVG from "./ui/graphics/icons/Next";
+import Footer from "./ui/layout/Footer";
 
 export default function Home() {
 
@@ -105,21 +106,23 @@ export default function Home() {
         <TopicsCard />
       </div>
       {/* {runningTopicReview && */}
-      <div className="flex flex-row items-center -mx-2 px-3 space-x-2">
+      <div className="flex flex-row items-center justify-center -mx-2 px-3 space-x-2">
         <div className="w-8 h-8 p-2 fill-cyan-200 border rounded border-cyan-200"><Book /></div>
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 md:flex-none">
           <div className="text-sm">You have a running Topic Review</div>
           <div className="text-lg">{runningTopicReview?.topicTitle}</div>
         </div>
-        <div className="">
-          <RoundButton icon={<NextSVG/>} size="s" onClick={() => {router.push(`/tr/${runningTopicReview?.id}`)}} />
+        <div className="md:pl-8">
+          <RoundButton icon={<NextSVG />} size="s" onClick={() => { router.push(`/tr/${runningTopicReview?.id}`) }} />
         </div>
       </div>
       {/* } */}
       <div className="flex-1"></div>
-      <div className="flex justify-center">
-        <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />
-      </div>
+      <Footer>
+        <div className="flex justify-center">
+          <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />
+        </div>
+      </Footer>
     </div>
   );
 }

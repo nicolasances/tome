@@ -146,7 +146,7 @@ function UserAnswerRating({ rating, topicReviewId }: { rating: AnswerRating, top
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
             <div className="relative">
-                <div style={{ maxHeight: 'calc(96vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }} className="no-scrollbar mb-4">
+                <div style={{ maxHeight: 'calc(96vh - var(--app-header-height) - var(--app-footer-height))', height: 'calc(96vh - var(--app-header-height) - var(--app-footer-height))', overflow: 'scroll' }} className="no-scrollbar mb-4">
 
                     <div className="flex items-center text-lg">
                         <div className="">Rating: </div>
@@ -178,7 +178,7 @@ function UserAnswerRating({ rating, topicReviewId }: { rating: AnswerRating, top
 
                         <div className="">
                             {!rating.topicReviewFinished && !showDetails && <RoundButton icon={<NextSVG />} onClick={() => { window.location.reload() }} />}
-                            {!rating.topicReviewFinished && showDetails && <RoundButton icon={<Tick />} onClick={() => { setShowDetails(false) }} />}
+                            {!rating.topicReviewFinished && showDetails && <RoundButton icon={<BackSVG />} onClick={() => { setShowDetails(false) }} />}
                             {rating.topicReviewFinished && <RoundButton icon={<Tick />} onClick={() => { router.push(`/tr/${topicReviewId}`) }} />}
                         </div>
 

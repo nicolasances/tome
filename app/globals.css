@@ -20,6 +20,7 @@ body {
 
 .app-content {
   max-height: calc(99vh - var(--app-header-height));
+  padding-top: 6px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
