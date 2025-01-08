@@ -41,7 +41,7 @@ export default function RefresherPage() {
 
             <div className="flex flex-1 flex-col align-left mt-4">
                 <div className="font-bold flex items-center">
-                    Let's refresh this section!
+                    A little refresher of this section!
                 </div>
                 {loading &&
                     <div className="mt-1">
