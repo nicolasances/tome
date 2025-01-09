@@ -8,7 +8,6 @@ import { useState } from "react"
 import { LoadingBar } from "../ui/graphics/Loading"
 import { useRouter } from "next/navigation"
 import { TomeAPI } from "@/api/TomeAPI"
-import HomeSVG from "../ui/graphics/icons/HomeSVG"
 import Footer from "../ui/layout/Footer"
 import BackSVG from "../ui/graphics/icons/Back"
 
