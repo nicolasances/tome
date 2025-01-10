@@ -33,7 +33,7 @@ export default function PowerCard({ perc }: Readonly<{ perc: number }>) {
                         strokeWidth="12"
                         fill="none"
                         strokeDasharray={circumference}
-                        strokeDashoffset={offset}
+                        strokeDashoffset={-offset}
                         strokeLinecap="round"
                     />
                 </svg>
