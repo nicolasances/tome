@@ -35,12 +35,21 @@ export class TomeAPI {
     }
 
     /**
+     * Fetches the next topic review
+     */
+    async getNextTopicReview(): Promise<Topic> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/topicreviews/next`, null, true)).json()
+
+    }
+
+    /**
      * Starts a new topic review. 
      * This method will return an 400 error if a topic review already exsists
      * 
      * @returns the topic review id
      */
-    async startTopicReview(): Promise<StartTopicReviewResponse> {
+    async startTopicReview(topicCode: string): Promise<StartTopicReviewResponse> {
 
         return (await new TotoAPI().fetch('toto-ms-tome-agent', '/topicreviews', {
             method: 'POST',
@@ -48,7 +57,9 @@ export class TomeAPI {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({})
+            body: JSON.stringify({
+                topicCode: topicCode
+            })
         }, true)).json()
     }
 

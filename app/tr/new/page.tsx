@@ -7,16 +7,12 @@ import Book from "@/app/ui/graphics/icons/Book";
 import Tick from "@/app/ui/graphics/icons/Tick";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
 import Footer from "@/app/ui/layout/Footer";
+import { Topic } from "@/model/Topic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from 'next/link'
 
 export default function NewTopicReview() {
-
-    const init = async () => {
-
-    }
-
-    useEffect(() => { init() }, [])
 
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
@@ -28,20 +24,34 @@ export default function NewTopicReview() {
 function StartTopicReview() {
 
     const [startingTopicReview, setStartingTopicReview] = useState(false)
+    const [loadingTopic, setLoadingTopic] = useState(false)
+    const [topic, setTopic] = useState<Topic>()
 
     const router = useRouter()
+
+    const loadTopic = async () => {
+
+        const timer = setTimeout(() => { setLoadingTopic(true) }, 500)
+
+        const response = await new TomeAPI().getNextTopicReview()
+
+        clearTimeout(timer)
+        setLoadingTopic(false)
+
+        setTopic(response)
+
+    }
 
     /**
      * Starts the quiz
      */
     const startTopicReview = async () => {
 
+        if (!topic) return;
+
         setStartingTopicReview(true)
 
-        const response = await new TomeAPI().startTopicReview()
-
-        console.log(response);
-
+        const response = await new TomeAPI().startTopicReview(topic.code)
 
         setStartingTopicReview(false)
 
@@ -49,18 +59,24 @@ function StartTopicReview() {
 
     }
 
+    useEffect(() => { loadTopic() }, [])
+
+    if (loadingTopic) return <LoadingBar />
+    if (!topic) return <></>
+
     return (
         <div className="flex flex-col flex-1 items-stretch w-full">
             <div className="uppercase text-base text-cyan-200 font-bold text-center">
                 Starting a new Topic Review
             </div>
-            <div className="flex flex-col justify-center items-center mt-4">
-                <div className="fill-cyan-800 w-12 h-12 rounded-full border-2 border border-cyan-800 p-3">
+            <div className="flex flex-col justify-center items-center mt-[24px]">
+                <div className="fill-cyan-800 w-12 h-12 rounded border-2 border border-cyan-800 p-3">
                     <Book />
                 </div>
-                <div className="flex-col justify-center items-center text-center pt-2">
-                    <div className="text-xl uppercase"><b>Cortés</b></div>
-                    <div className="text-lg">Invasion of Mexico and La Noche Triste</div>
+                <div className="flex-col justify-center items-center text-center pt-4 ">
+                    <div className="text-xl capitalize"><b>{topic.title}</b></div>
+                    <div className="text-base"><b>{topic.sections.length}</b> sections</div>
+                    <div className="text-sm text-cyan-200 underline"><Link href={topic.blog_url} target='_blank'>{topic.blog_url}</Link></div>
                 </div>
             </div>
             <div className="flex-1 mt-12">

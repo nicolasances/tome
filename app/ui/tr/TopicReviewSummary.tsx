@@ -36,7 +36,7 @@ export default function TopicReviewSummary({ topicReview, questions }: { topicRe
                         <TopicTitleCard topic={topicReview.topicTitle} />
                     </div>
                     <div className="pl-2">
-                        <ScoreCard scoreNumerator={averageRating} scoreDenominator={topicReview.maxRating} label="score" round={true} />
+                        <ScoreCard scoreNumerator={averageRating ? averageRating : -1} scoreDenominator={topicReview.maxRating} label="score" round={true} />
                     </div>
                 </div>
                 <div className="flex flex-row justify-start items-center space-x-2 mt-4">
