@@ -2,16 +2,18 @@
 
 import { TomeAPI } from "@/api/TomeAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
+import BackSVG from "@/app/ui/graphics/icons/Back";
 import Book from "@/app/ui/graphics/icons/Book";
 import Tick from "@/app/ui/graphics/icons/Tick";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
+import Footer from "@/app/ui/layout/Footer";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function NewTopicReview() {
 
     const init = async () => {
-        
+
     }
 
     useEffect(() => { init() }, [])
@@ -39,7 +41,7 @@ function StartTopicReview() {
         const response = await new TomeAPI().startTopicReview()
 
         console.log(response);
-        
+
 
         setStartingTopicReview(false)
 
@@ -64,11 +66,18 @@ function StartTopicReview() {
             <div className="flex-1 mt-12">
                 {startingTopicReview && <LoadingBar label="Preparing the Questions.." />}
             </div>
-            <div className="flex flex-col justify-end items-center">
-                <div className="flex">
-                    <RoundButton icon={<Tick />} onClick={startTopicReview} disabled={startingTopicReview} />
+            <Footer>
+                <div className="flex flex-row justify-center items-center space-x-2">
+                    <div className="flex-1 flex justify-end">
+                        <RoundButton icon={<BackSVG />} size='s' onClick={() => { router.push('/') }} />
+                    </div>
+                    <div className="flex">
+                        <RoundButton icon={<Tick />} onClick={startTopicReview} disabled={startingTopicReview} />
+                    </div>
+                    <div className="flex-1">
+                    </div>
                 </div>
-            </div>
+            </Footer>
         </div>
     )
 }

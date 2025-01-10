@@ -51,7 +51,9 @@ export default function QuizDetail() {
             <Footer>
                 <div className="flex flex-1 flex-row justify-center items-center space-x-2">
                     <div className="flex-1 flex justify-end">
-                        <RoundButton icon={<HomeSVG />} size='s' onClick={() => { router.push('/') }} />
+                        {!topicReview?.completedOn &&
+                            <RoundButton icon={<HomeSVG />} size='s' onClick={() => { router.push('/') }} />
+                        }
                     </div>
                     <div className="">
                         {!topicReview?.completedOn &&

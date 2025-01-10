@@ -49,7 +49,7 @@ export default function TopicReviewSummary({ topicReview, questions }: { topicRe
                 questions &&
                 <div className="relative">
                     <div className="pl-2 text-cyan-200">The Questions:</div>
-                    <div className="text-base overflow-scroll no-scrollbar -mx-2 px-2 mt-1" style={{ maxHeight: 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 100px - 48px)' }}>
+                    <div className="text-base overflow-scroll no-scrollbar -mx-2 px-2 mt-1" style={{ maxHeight: 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 100px - 64px)', paddingBottom: '24px' }}>
                         <div className="flex flex-col space-y-1 relative">
                             {questions.map((question) => {
                                 if (question.rating == null) return <div key={question.id}></div>
