@@ -107,7 +107,7 @@ export default function Home() {
       </div>
       {/* {runningTopicReview && */}
       <div className="flex flex-row items-center justify-center -mx-2 px-3 space-x-2">
-        <div className="w-8 h-8 p-2 fill-cyan-200 border rounded border-cyan-200"><Book /></div>
+        <div className="w-10 h-10 p-2 fill-cyan-200 border border-2 rounded border-cyan-200"><Book /></div>
         <div className="flex flex-col flex-1 md:flex-none">
           <div className="text-sm">You have a running Topic Review</div>
           <div className="text-lg">{runningTopicReview?.topicTitle}</div>

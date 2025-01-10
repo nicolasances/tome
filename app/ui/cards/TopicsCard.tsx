@@ -33,7 +33,7 @@ export default function TopicsCard() {
 
     return (
         <div className="flex flex-row items-center justify-center space-x-2 text-base -mx-2 px-3 py-2 hover:bg-cyan-600 cursor-pointer" onClick={goToTopicsListPage}>
-            <div className="rounded bg-cyan-600 w-8 h-8 flex items-center justify-center text-lg" onClick={goToTopicsListPage}>{topics ? topics.length : ''}</div>
+            <div className="rounded bg-cyan-600 w-10 h-10 flex items-center justify-center text-lg" onClick={goToTopicsListPage}>{topics ? topics.length : ''}</div>
             <div className="flex-1 md:flex-none md:pr-4" onClick={goToTopicsListPage}><b>Topic{topics ? (topics.length > 1 ? 's' : '') : ''}</b> in the Knowledge Base</div>
             {/* <div className="">
                 <RoundButton icon={<Add />} onClick={() => {router.push('/new-topic')}} size="s" />
