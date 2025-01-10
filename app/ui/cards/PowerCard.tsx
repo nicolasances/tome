@@ -21,7 +21,7 @@ export default function PowerCard({ perc }: Readonly<{ perc: number }>) {
                         cy="80"
                         r={circleRadius}
                         stroke="#0891b2"
-                        strokeWidth="4"
+                        strokeWidth="14"
                         fill="none"
                     />
                     {/* Highlighted portion */}
