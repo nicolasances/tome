@@ -1,7 +1,7 @@
 export default function RoundButton({ icon, onClick, size, disabled }: { icon: React.ReactNode, onClick: () => void, size?: 's' | 'm' | undefined, disabled?: boolean }) {
 
-    const iconSize = size === 's' ? 'w-3 h-3' : 'w-6 h-6';
-    const buttonPadding = size === 's' ? 'p-1.5' : 'p-2'
+    const iconSize = size === 's' ? 'w-4 h-4' : 'w-8 h-8';
+    const buttonPadding = size === 's' ? 'p-2' : 'p-3'
 
     const reactToClick = () => {
 
