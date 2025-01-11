@@ -10,7 +10,7 @@ export default function PowerCard({ perc }: Readonly<{ perc: number }>) {
         <div className="flex flex-row bg-transparent rounded-md items-center justify-center h-24 min-w-24 space-x-1">
             <div className="relative w-20 h-20 flex items-center justify-center">
                 <svg
-                    className="transform -rotate-90"
+                    className="transform -rotate-90 scale-y-[-1]"
                     width="100%"
                     height="100%"
                     viewBox="0 0 160 160"
@@ -21,7 +21,7 @@ export default function PowerCard({ perc }: Readonly<{ perc: number }>) {
                         cy="80"
                         r={circleRadius}
                         stroke="#0891b2"
-                        strokeWidth="4"
+                        strokeWidth="14"
                         fill="none"
                     />
                     {/* Highlighted portion */}
@@ -33,7 +33,7 @@ export default function PowerCard({ perc }: Readonly<{ perc: number }>) {
                         strokeWidth="12"
                         fill="none"
                         strokeDasharray={circumference}
-                        strokeDashoffset={-offset}
+                        strokeDashoffset={offset}
                         strokeLinecap="round"
                     />
                 </svg>

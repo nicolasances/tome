@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+
 import moment from 'moment';
 import Cookies from 'universal-cookie';
 import { ApiName, endpoint } from '@/Config';
@@ -21,7 +22,7 @@ export function cid() {
  */
 export class TotoAPI {
 
-  fetch(api: ApiName, path: string, options?: any, noHeaderOverride: boolean = false) {
+  fetch(api: ApiName, path: string, options?: any, aws: boolean = false, noHeaderOverride: boolean = false) {
 
     if (options == null) options = { method: 'GET', headers: {} };
     if (options.headers == null) options.headers = {};
@@ -32,11 +33,16 @@ export class TotoAPI {
     if (!noHeaderOverride) {
       options.headers['Accept'] = 'application/json';
       options.headers['x-correlation-id'] = cid();
-      options.headers['x-client'] = "totoMoneyWeb";
+      // options.headers['x-client'] = "totoMoneyWeb";
       options.headers['Authorization'] = 'Bearer ' + idToken;
-      options.headers['auth-provider'] = "toto";
+      // options.headers['auth-provider'] = "toto";
+
+      if (aws) options.headers['toto-service'] = api;
     }
 
+    // console.log(`About to call api ${api} with endpoint -${endpoint(api)}- on path ${path}, with options ${options}`);
+    
     return fetch(endpoint(api) + path, options);
   }
 }
+
