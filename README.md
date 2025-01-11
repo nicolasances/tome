@@ -10,3 +10,4 @@ Tome gamifies the memorization of those topics, by leveraging the following conc
 
 Read more about: 
 * [Tome's Knowledge Base](docs/kb.md)
+* [LLM Usage](https://github.com/nicolasances/ml-notebooks/blob/main/toto/tome.ipynb) in my Tome Notebook, where the experiments on how to use LLMs to support Tome are.
