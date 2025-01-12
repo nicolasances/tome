@@ -9,4 +9,5 @@ export interface TopicReviewQuestion {
     answerOn: string 
     rating: number
     maxRating: number
+    sectionTitle: string
 }

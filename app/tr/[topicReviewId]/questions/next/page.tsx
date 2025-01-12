@@ -30,6 +30,9 @@ export default function QuestionAndAnswerPage() {
 
         const question = await new TomeAPI().getNextQuestion(topicReviewId);
 
+        console.log(question);
+        
+
         setQuestion(question)
 
     }
@@ -102,6 +105,9 @@ function Question({ question, onAnswer }: { question: TopicReviewQuestion, onAns
                 <div className="font-bold flex items-center">
                     <span className="mr-2 bg-cyan-800 rounded px-1 py-[2px] text-cyan-200">{question.questionNum}/{question.numQuestions}</span>Question:
                 </div>
+                <div className="mt-2 font-bold text-xl">
+                    {question.sectionTitle}
+                </div>
                 <div className="overflow-y-auto max-h-[200px] mt-2">
                     {question.question}
                 </div>
@@ -119,7 +125,7 @@ function Question({ question, onAnswer }: { question: TopicReviewQuestion, onAns
                     ref={textareaRef}
                     onChange={onChangeHandler}
                     value={answer}
-                    className="bg-transparent no-border focus:outline-none w-full"
+                    className="bg-transparent no-border focus:outline-none w-full text-xl"
                     rows={1}
                     style={{
                         resize: "none",
