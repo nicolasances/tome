@@ -11,11 +11,13 @@ import { TomeAPI } from "@/api/TomeAPI";
 import TopicReviewSummary from "@/app/ui/tr/TopicReviewSummary";
 import NextSVG from "@/app/ui/graphics/icons/Next";
 import Footer from "@/app/ui/layout/Footer";
+import { useTomeContext } from "@/context/TomeContext";
 
 export default function QuizDetail() {
 
     const router = useRouter()
     const params = useParams()
+    const tomeContext = useTomeContext()
 
     const topicReviewId = String(params.topicReviewId);
 
@@ -37,6 +39,11 @@ export default function QuizDetail() {
 
         setTopicReview(response.topicReview)
         setQuestions(response.questions)
+
+        tomeContext.updateTopicReviewContext({
+            topicReview: response.topicReview, 
+            questions: response.questions
+        })
 
     }
 

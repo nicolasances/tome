@@ -41,7 +41,7 @@ export default function RefresherPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start text-lg">
-            
+
             <div className="relative">
 
                 <div className="flex flex-1 flex-col align-left mt-4 pb-8 md:pb-[64px] overflow-scroll no-scrollbar" style={{ maxHeight: 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 48px)' }}>
@@ -73,9 +73,8 @@ export default function RefresherPage() {
             <Footer>
                 <div className="flex justify-center items-center space-x-2">
                     <div className="flex flex-1 justify-end">
-                        <RoundButton icon={<BackSVG />} size='s' onClick={() => { router.back() }} />
                     </div>
-                    <RoundButton icon={<Book />} onClick={() => { router.push(`/tr/${topicReviewId}`) }} />
+                    <RoundButton icon={<BackSVG />} onClick={() => { router.back() }} />
                     <div className="flex-1">
                     </div>
                 </div>

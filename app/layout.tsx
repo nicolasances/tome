@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Comfortaa as AppFont } from "next/font/google";
 import "./globals.css";
 import Header from "./ui/layout/Header";
+import { TomeContextProvider } from "@/context/TomeContext";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -54,7 +55,9 @@ export default function RootLayout({
           <Header />
         </div>
         <div className="app-content text-base flex flex-1 flex-col justify-start px-6 md:px-[25vw]">
-          {children}
+          <TomeContextProvider>
+            {children}
+          </TomeContextProvider>
         </div>
       </body>
     </html>
