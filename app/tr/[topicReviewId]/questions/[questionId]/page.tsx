@@ -16,7 +16,7 @@ import { useTomeContext } from "@/context/TomeContext";
 import { AnswerRating } from "@/model/answer";
 import { TopicReviewQuestion } from "@/model/questions";
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function QuestionDetailPage() {
 
@@ -98,7 +98,7 @@ export default function QuestionDetailPage() {
         if (!question) return null;
 
         let nextQuestion = false
-        for (let q of questions) {
+        for (const q of questions) {
 
             // If we found the next question, return it
             if (nextQuestion) return q;
@@ -108,6 +108,16 @@ export default function QuestionDetailPage() {
 
         }
 
+        return null;
+
+    }
+
+    /**
+     * Returns true if the TR is finished after this question
+     */
+    const isLastQuestion = () => {
+
+        return getNextQuestion() == null;
     }
 
     /**
@@ -135,7 +145,7 @@ export default function QuestionDetailPage() {
 
     if (!question) return <></>
 
-    let textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${maxTextAreaHeight}px)`
+    const textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${maxTextAreaHeight}px)`
     // if (textareaRef && textareaRef.current) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${textareaRef.current.style.height}px)`
 
     let displayedAnswer = question ? question.answer : undefined;
@@ -185,9 +195,10 @@ export default function QuestionDetailPage() {
                 <Footer>
                     <div className="flex justify-center items-center space-x-2">
                         <div className="flex flex-1 justify-end">
-                            <RoundButton icon={<Book />} size='s' onClick={() => { router.push(`/tr/${topicReviewId}`) }} />
+                            {!isLastQuestion() && <RoundButton icon={<Book />} size='s' onClick={() => { router.push(`/tr/${topicReviewId}`) }} />}
                         </div>
-                        <RoundButton icon={<NextSVG />} onClick={onNextQuestion} />
+                        {!isLastQuestion() && <RoundButton icon={<NextSVG />} onClick={onNextQuestion} />}
+                        {isLastQuestion() && <RoundButton icon={<Book />} onClick={() => { router.push(`/tr/${topicReviewId}`) }} />}
                         <div className="flex-1 flex">
                             {isLastQuestionOfSection() && <RoundButton icon={<IdeaSVG />} onClick={onClickIdea} size='s' />}
                         </div>

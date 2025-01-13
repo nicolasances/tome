@@ -41,11 +41,50 @@ export default function QuizDetail() {
         setQuestions(response.questions)
 
         tomeContext.updateTopicReviewContext({
-            topicReview: response.topicReview, 
+            topicReview: response.topicReview,
             questions: response.questions
         })
 
     }
+
+    /**
+     * Finds the next question to answer
+     */
+    const getNextQuestion = () => {
+
+        if (!questions) return null;
+
+        for (const q of questions) {
+
+            // If the question has no answer that's the next one!
+            if (!q.answer) return q;
+
+        }
+
+        return null;
+
+    }
+
+    /**
+     * Returns true if the TR is finished
+     */
+    const isFinished = () => {
+
+        return getNextQuestion() == null;
+    }
+
+    /**
+     * Route to the next question
+     */
+    const routeToNextQuestion = () => {
+
+        const nextQuestion = getNextQuestion()
+
+        if (!nextQuestion) return;
+
+        router.push(`/tr/${topicReviewId}/questions/${nextQuestion.id}`)
+    }
+
 
     useEffect(() => { init() }, [])
 
@@ -58,21 +97,13 @@ export default function QuizDetail() {
             <Footer>
                 <div className="flex flex-1 flex-row justify-center items-center space-x-2">
                     <div className="flex-1 flex justify-end">
-                        {!topicReview?.completedOn &&
-                            <RoundButton icon={<HomeSVG />} size='s' onClick={() => { router.push('/') }} />
-                        }
+                        {!isFinished() && <RoundButton icon={<HomeSVG />} size='s' onClick={() => { router.push('/') }} />}
                     </div>
                     <div className="">
-                        {!topicReview?.completedOn &&
-                            <div>
-                                <RoundButton icon={<NextSVG />} onClick={() => { router.push(`/tr/${topicReviewId}/questions/next`) }} />
-                            </div>
-                        }
-                        {topicReview?.completedOn &&
-                            <div className="flex flex-1 flex-col justify-end">
-                                <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />
-                            </div>
-                        }
+                        <div>
+                            {!isFinished() && <RoundButton icon={<NextSVG />} onClick={routeToNextQuestion} />}
+                            {isFinished() && <RoundButton icon={<HomeSVG />} onClick={routeToNextQuestion} />}
+                        </div>
                     </div>
                     <div className="flex-1"></div>
                 </div>

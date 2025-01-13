@@ -2,7 +2,6 @@
 
 import { TomeAPI } from "@/api/TomeAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import Book from "@/app/ui/graphics/icons/Book";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
 import { Topic } from "@/model/Topic";
 import { FormattedDetailedRatingExplanation } from "@/utils/RatingExplanation";
@@ -22,7 +21,6 @@ export default function RefresherPage() {
     const params = useParams()
     const router = useRouter()
 
-    const topicReviewId = String(params.topicReviewId);
     const questionId = String(params.questionId);
 
     const loadRefresher = async () => {
