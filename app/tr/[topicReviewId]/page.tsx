@@ -102,7 +102,7 @@ export default function QuizDetail() {
                     <div className="">
                         <div>
                             {!isFinished() && <RoundButton icon={<NextSVG />} onClick={routeToNextQuestion} />}
-                            {isFinished() && <RoundButton icon={<HomeSVG />} onClick={routeToNextQuestion} />}
+                            {isFinished() && <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />}
                         </div>
                     </div>
                     <div className="flex-1"></div>
