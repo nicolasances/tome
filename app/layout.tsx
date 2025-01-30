@@ -54,7 +54,7 @@ export default function RootLayout({
         <div className="">
           <Header />
         </div>
-        <div className="app-content text-base flex flex-1 flex-col justify-start px-6 md:px-[25vw]">
+        <div className="app-content text-base flex flex-1 flex-col justify-start px-6 md:px-[4vw] 2xl:px-[10vw]">
           <TomeContextProvider>
             {children}
           </TomeContextProvider>

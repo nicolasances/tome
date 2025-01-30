@@ -1,8 +1,17 @@
-export default function RoundButton({ icon, onClick, size, disabled }: { icon: React.ReactNode, onClick: () => void, size?: 's' | 'm' | undefined, disabled?: boolean }) {
+export default function RoundButton({ icon, onClick, size, disabled }: { icon: React.ReactNode, onClick: () => void, size?: 'xs' | 's' | 'm' | undefined, disabled?: boolean }) {
 
-    const iconSize = size === 's' ? 'w-4 h-4' : 'w-8 h-8';
-    const buttonPadding = size === 's' ? 'p-2' : 'p-3'
+    let iconSize = 'w-8 h-8';
+    let buttonPadding = 'p-3';
 
+    if (size === 's') {
+        iconSize = 'w-4 h-4';
+        buttonPadding = 'p-2'
+    }
+    else if (size == 'xs') {
+        iconSize = 'w-3 h-3'
+        buttonPadding = 'p-1'
+    }
+    
     const reactToClick = () => {
 
         if (disabled) return;

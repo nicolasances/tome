@@ -6,19 +6,18 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-// import TopicsCard from "./ui/cards/TopicsCard";
 import Book from "./ui/graphics/icons/Book";
 import { TomeAPI } from "@/api/TomeAPI";
 import { TopicReview } from "@/model/topicReview";
 import NextSVG from "./ui/graphics/icons/Next";
 import Footer from "./ui/layout/Footer";
-import MemLevel from "./ui/graphics/MemLevel";
+import TopicMemLevels from "./ui/cards/TopicMemLevels";
+import Add from "./ui/graphics/icons/Add";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
   const [runningTopicReview, setRunningTopicReview] = useState<TopicReview | undefined>(undefined)
-  const [topicMemorizationLevels, setTopicMemorizationLevels] = useState<any>(undefined)
 
   const router = useRouter()
 
@@ -90,28 +89,9 @@ export default function Home() {
 
   }
 
-  /**
-   * Loads for each topic its memorization level
-   */
-  const loadTopicMemorizationLevels = async () => {
-
-    const response = {
-      topics: [
-        { title: 'Rome', memorizationLevel: 69 },
-        { title: 'History of Japan', memorizationLevel: 46 },
-        { title: 'History of China', memorizationLevel: 12 },
-        { title: 'The Vietnam Wars', memorizationLevel: 7 },
-        { title: 'History of Middle Ages', memorizationLevel: 0 },
-      ]
-    }
-
-    setTopicMemorizationLevels(response.topics)
-  }
-
   useEffect(() => { verifyAuthentication() }, [])
   useEffect(() => { triggerSignIn() }, [loginNeeded])
   useEffect(() => { loadRunningTopicReview() }, [loginNeeded])
-  useEffect(() => { loadTopicMemorizationLevels() }, [loginNeeded])
 
   // Empty screen while Google SignIn is loading
   if (loginNeeded == null) return (<div></div>)
@@ -119,41 +99,51 @@ export default function Home() {
 
   return (
     <div className="flex flex-1 flex-col items-stretch justify-start">
-      <div className="flex flex-row space-x-4 items-center">
-        {/* <div className="flex-1"><DailyProgress/></div> */}
-        <div className="flex-1"><PowerCard perc={45} /></div>
-      </div>
-      {/* <div className="">
-        <TopicsCard />
-      </div> */}
-      {runningTopicReview &&
-        <div className="flex flex-row items-center justify-center px-3 space-x-2 mt-4">
-          <div className="w-10 h-10 p-2 fill-cyan-200 border border-2 rounded border-cyan-200"><Book /></div>
-          <div className="flex flex-col flex-1 md:flex-none">
-            <div className="text-sm">You have a running Topic Review</div>
-            <div className="text-lg">{runningTopicReview?.topicTitle}</div>
-          </div>
-          <div className="md:pl-8">
-            <RoundButton icon={<NextSVG />} size="s" onClick={() => { router.push(`/tr/${runningTopicReview?.id}`) }} />
-          </div>
+
+      <div className="flex flex-col md:flex-row md:items-center">
+        <div className="md:w-1/4">
+          <div className=""><PowerCard perc={45} /></div>
         </div>
-      }
-      {
-        topicMemorizationLevels &&
-        <div className="mx-3 border-cyan-700 mt-8">
-          <div className="text-sm mb-2">Your Memorization Levels</div>
-          {topicMemorizationLevels.map((topic: any, index: number) => {
-            // const isLastElement = index === topicMemorizationLevels.length - 1;
-            return (
-              <div className={`flex flex-row items-center `} key={topic.title} >
-                <div className="mr-2"><MemLevel perc={topic.memorizationLevel} /></div>
-                <div className="flex-1">{topic.title}</div>
+        <div className="md:flex-1">
+          {runningTopicReview &&
+            <div className="flex flex-row items-center justify-center px-3 space-x-2 mt-6 md:mt-0">
+              <div className="w-10 h-10 p-2 fill-cyan-200 border border-2 rounded border-cyan-200"><Book /></div>
+              <div className="flex flex-col flex-1 md:flex-none">
+                <div className="text-sm">You have a running Topic Review</div>
+                <div className="text-lg">{runningTopicReview?.topicTitle}</div>
               </div>
-            );
-          })}
+              <div className="md:pl-8">
+                <RoundButton icon={<NextSVG />} size="s" onClick={() => { router.push(`/tr/${runningTopicReview?.id}`) }} />
+              </div>
+            </div>
+          }
         </div>
-      }
+        <div className="md:w-1/4"></div>
+      </div>
+
+
+      <div className="flex flex-col md:flex-row md:space-x-8">
+
+        <div id="left-col" className="flex flex-col md:w-1/4 mt-8 ">
+          <div className="hidden md:flex flex-row justify-end items-center pr-2 mb-2 ">
+            <div className="mr-2 text-sm">Add a Topic</div>
+            <div className=""><RoundButton icon={<Add />} size="xs" onClick={() => { }} /></div>
+          </div>
+          <div className="bg-[#00b9cf] py-4 rounded-md">
+            <TopicMemLevels />
+          </div>
+        </div>
+
+        <div id="center-col" className="flex flex-col flex-1">
+        </div>
+
+        <div id="right-col" className="flex flex-col md:w-1/4"></div>
+
+
+      </div>
+
       <div className="flex-1"></div>
+
       <Footer>
         <div className="flex justify-center">
           <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />
