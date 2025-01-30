@@ -3,7 +3,7 @@ import MemLevel from "../graphics/MemLevel";
 
 export default function TopicMemLevels() {
 
-    const [topicMemorizationLevels, setTopicMemorizationLevels] = useState<{memorizationLevel: number, title: string} | undefined>(undefined)
+    const [topicMemorizationLevels, setTopicMemorizationLevels] = useState<{memorizationLevel: number, title: string}[] | undefined>(undefined)
 
     /**
      * Loads for each topic its memorization level
