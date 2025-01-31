@@ -145,7 +145,8 @@ export default function QuestionDetailPage() {
 
     if (!question) return <></>
 
-    const textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${maxTextAreaHeight}px)`
+    let textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${maxTextAreaHeight}px)`
+    if (question.rating) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) )`
     // if (textareaRef && textareaRef.current) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${textareaRef.current.style.height}px)`
 
     let displayedAnswer = question ? question.answer : undefined;
