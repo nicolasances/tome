@@ -1,6 +1,5 @@
 'use client'
 
-import PowerCard from "./ui/cards/PowerCard";
 import RoundButton from "./ui/buttons/RoundButton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,6 +12,7 @@ import NextSVG from "./ui/graphics/icons/Next";
 import Footer from "./ui/layout/Footer";
 import TopicMemLevels from "./ui/cards/TopicMemLevels";
 import Add from "./ui/graphics/icons/Add";
+import OverallMemLevel from "./ui/cards/OveralMemLevel";
 
 export default function Home() {
 
@@ -102,7 +102,7 @@ export default function Home() {
 
       <div className="flex flex-col md:flex-row md:items-center">
         <div className="md:w-1/4">
-          <div className=""><PowerCard perc={45} /></div>
+          <div className=""><OverallMemLevel /></div>
         </div>
         <div className="md:flex-1">
           {runningTopicReview &&
