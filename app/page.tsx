@@ -125,10 +125,6 @@ export default function Home() {
       <div className="flex flex-col md:flex-row md:space-x-8">
 
         <div id="left-col" className="flex flex-col md:w-1/4 mt-8 ">
-          <div className="hidden md:flex flex-row justify-end items-center pr-2 mb-2 ">
-            <div className="mr-2 text-sm">Add a Topic</div>
-            <div className=""><RoundButton icon={<Add />} size="xs" onClick={() => { }} /></div>
-          </div>
           <div className="bg-[#00b9cf] py-4 rounded-md">
             <TopicMemLevels />
           </div>
