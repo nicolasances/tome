@@ -133,13 +133,33 @@ export class TomeAPI {
 
     }
 
+    /**
+     * Fetches the mem levels
+     */
+    async getMemLevels(): Promise<GetMemLevelsResponse> {
+
+        return (await new TotoAPI().fetch('toto-ms-tome-agent', '/memlevels', null, true)).json()
+
+    }
+
 }
 
+export interface GetMemLevelsResponse {
+    topics: TopicMemLevel[]
+}
+
+export interface TopicMemLevel {
+    topicCode: string, 
+    topicTitle: string, 
+    memLevel: number, 
+    lastReviewedOn: string, 
+    lastRating: number
+}
 export interface GetTopicsResponse {
     topics: Topic[]
 }
 
-export interface PostTopicResponse {}
+export interface PostTopicResponse { }
 
 export interface GetTRQuestionsResponse {
     questions: TopicReviewQuestion[]
