@@ -16,7 +16,7 @@ export default function OverallMemLevel() {
 
         let sum = 0
 
-        for (let level of memLevels) {
+        for (const level of memLevels) {
             sum += level.memLevel * 100
         }
 

@@ -11,7 +11,6 @@ import { TopicReview } from "@/model/topicReview";
 import NextSVG from "./ui/graphics/icons/Next";
 import Footer from "./ui/layout/Footer";
 import TopicMemLevels from "./ui/cards/TopicMemLevels";
-import Add from "./ui/graphics/icons/Add";
 import OverallMemLevel from "./ui/cards/OveralMemLevel";
 
 export default function Home() {

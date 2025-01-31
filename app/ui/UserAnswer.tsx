@@ -3,7 +3,7 @@ import ExpandButton from "./buttons/ExpandButton"
 
 export default function UserAnswer({ answer, className }: { answer: string | undefined, className: string }) {
 
-    const [answerVisible, setAnswerVisible] = useState<Boolean>(false)
+    const [answerVisible, setAnswerVisible] = useState<boolean>(false)
 
     if (!answer) return <div></div>
 

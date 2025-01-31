@@ -4,7 +4,7 @@ import Minus from "../graphics/icons/Minus";
 
 export default function ExpandButton({ onClick }: { onClick: () => void }) {
 
-    const [expanded, setExpanded] = useState<Boolean>(false) 
+    const [expanded, setExpanded] = useState<boolean>(false) 
 
     const onButtonClick = () => {
 
