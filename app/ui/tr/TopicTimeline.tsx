@@ -2,7 +2,7 @@ import BottomFade from "../layout/BottomFade"
 
 export default function TopicTimeline() {
 
-    const height = 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 64px)'
+    const height = 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 48px)'
 
     const data = [
         { date: '631', events: ["Period, significant territorial changes occurred in the Mediterranean region involving dif", "It covers the points about Europe's lack of knowledge"] },
