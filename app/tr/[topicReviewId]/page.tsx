@@ -12,6 +12,7 @@ import TopicReviewSummary from "@/app/ui/tr/TopicReviewSummary";
 import NextSVG from "@/app/ui/graphics/icons/Next";
 import Footer from "@/app/ui/layout/Footer";
 import { useTomeContext } from "@/context/TomeContext";
+import TopicTimeline from "@/app/ui/tr/TopicTimeline";
 
 export default function QuizDetail() {
 
@@ -93,7 +94,16 @@ export default function QuizDetail() {
 
     return (
         <div className="flex flex-1 flex-col items-center justify-center">
-            {topicReview && <TopicReviewSummary topicReview={topicReview} questions={questions} />}
+
+            <div className="flex flex-row w-full space-x-4">
+                <div className="w-full md:w-2/3">
+                    {topicReview && <TopicReviewSummary topicReview={topicReview} questions={questions} />}
+                </div>
+                <div className="flex-1 hidden md:flex">
+                    <TopicTimeline />
+                </div>
+            </div>
+
             <Footer>
                 <div className="flex flex-1 flex-row justify-center items-center space-x-2">
                     <div className="flex-1 flex justify-end">
