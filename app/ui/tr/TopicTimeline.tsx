@@ -1,34 +1,18 @@
+import { Timeline, TimelineDate } from "@/model/topicReview"
 import BottomFade from "../layout/BottomFade"
 
-export default function TopicTimeline() {
+export default function TopicTimeline({ timeline, size }: { timeline?: Timeline, size?: 's' | 'm' }) {
 
-    const height = 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 48px)'
+    let height = 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 48px)'
+    if (size == 's') height = 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 48px - 94px)'
 
-    const data = [
-        { date: '631', events: ["Period, significant territorial changes occurred in the Mediterranean region involving dif", "It covers the points about Europe's lack of knowledge"] },
-        { date: '632', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '633', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '636', events: ["It covers the points about Europe's lack of knowledge", "It happens again tha Charlemagne wins"] },
-        { date: '656', events: ["It covers the points about Europe's lack of knowledge", "Defeat of the Burgundians"] },
-        { date: '657', events: ["No idea what happened here."] },
-        { date: '658', events: ["It covers the points about Europe's lack of knowledge", "Charles Martel becomes King"] },
-        { date: '700', events: ["It covers the points about Europe's lack of knowledge", "Defeat of the Arabs"] },
-        { date: '702', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '705', events: ["Conquest of Polonia by Alexander"] },
-        { date: '708', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '710', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '712', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '722', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '724', events: ["It covers the points about Europe's lack of knowledge"] },
-        { date: '726', events: ["It covers the points about Europe's lack of knowledge"] },
-
-    ]
+    if (!timeline || !timeline.timeline) return <div></div>
 
     return (
-        <div className="relative">
-            <div className="flex flex-col items-center relative no-scrollbar" style={{ maxHeight: height, height: '100%', overflow: "scroll", paddingBottom: 48}}>
+        <div className="relative pt-4">
+            <div className="flex flex-col items-center relative no-scrollbar" style={{ maxHeight: height, height: '100%', overflow: "scroll", paddingBottom: 48 }}>
                 <div className="">
-                    {data.map((date: DatePoint) => <Date key={date.date} date={date} />)}
+                    {timeline.timeline.map((date: TimelineDate) => <Date key={date.date} date={date} />)}
                 </div>
             </div>
             <BottomFade height="xl" />
@@ -36,7 +20,7 @@ export default function TopicTimeline() {
     )
 }
 
-function Date({ date }: { date: DatePoint }) {
+function Date({ date }: { date: TimelineDate }) {
     return (
         <div className="flex flex-row relative py-2">
             <div className="w-1/3 text-right pr-4 text-xl pt-1">{date.date}</div>
@@ -63,9 +47,4 @@ function DateEvent({ text }: { text: string }) {
             <li>{text}</li>
         </div>
     )
-}
-
-interface DatePoint {
-    date: string
-    events: string[]
 }

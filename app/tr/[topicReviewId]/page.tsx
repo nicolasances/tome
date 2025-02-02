@@ -6,14 +6,16 @@ import { useEffect, useState } from "react";
 import { LoadingBar } from "@/app/ui/graphics/Loading";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
-import { TopicReview } from "@/model/topicReview";
+import { Timeline, TopicReview } from "@/model/topicReview";
 import { TomeAPI } from "@/api/TomeAPI";
 import TopicReviewSummary from "@/app/ui/tr/TopicReviewSummary";
 import NextSVG from "@/app/ui/graphics/icons/Next";
 import Footer from "@/app/ui/layout/Footer";
 import { useTomeContext } from "@/context/TomeContext";
 import TopicTimeline from "@/app/ui/tr/TopicTimeline";
-import BottomFade from "@/app/ui/layout/BottomFade";
+import TimelineSVG from "@/app/ui/graphics/icons/TimelineSVG";
+import QuestionsSVG from "@/app/ui/graphics/icons/QuestionsSVG";
+import TopicReviewSummaryHeader from "@/app/ui/tr/TopicReviewSummaryHeader";
 
 export default function QuizDetail() {
 
@@ -27,6 +29,8 @@ export default function QuizDetail() {
     const [showLoadingBar, setShowLoadingBar] = useState(false)
     const [topicReview, setTopicReview] = useState<TopicReview>()
     const [questions, setQuestions] = useState<TopicReviewQuestion[]>()
+    const [timeline, setTimeline] = useState<Timeline>()
+    const [showMobileTimeline, setShowMobileTimeline] = useState<boolean>(false)
 
     const init = async () => {
 
@@ -41,6 +45,7 @@ export default function QuizDetail() {
 
         setTopicReview(response.topicReview)
         setQuestions(response.questions)
+        setTimeline({ timeline: response.timeline })
 
         tomeContext.updateTopicReviewContext({
             topicReview: response.topicReview,
@@ -98,10 +103,12 @@ export default function QuizDetail() {
 
             <div className="flex flex-row w-full space-x-4">
                 <div className="w-full md:w-2/3">
-                    {topicReview && <TopicReviewSummary topicReview={topicReview} questions={questions} />}
+                    <TopicReviewSummaryHeader topicReview={topicReview} questions={questions} />
+                    {topicReview && !showMobileTimeline && <TopicReviewSummary topicReview={topicReview} questions={questions} />}
+                    {showMobileTimeline && <TopicTimeline timeline={timeline} size="s" />}
                 </div>
                 <div className="flex-1 hidden md:flex pt-4">
-                    <TopicTimeline />
+                    <TopicTimeline timeline={timeline} />
                 </div>
             </div>
 
@@ -116,7 +123,12 @@ export default function QuizDetail() {
                             {isFinished() && <RoundButton icon={<HomeSVG />} onClick={() => { router.push('/') }} />}
                         </div>
                     </div>
-                    <div className="flex-1"></div>
+                    <div className="flex-1 flex">
+                        <div className="md:hidden">
+                            {showMobileTimeline == false && <RoundButton icon={<TimelineSVG />} size="s" onClick={() => { setShowMobileTimeline(true) }} />}
+                            {showMobileTimeline == true && <RoundButton icon={<QuestionsSVG />} size="s" onClick={() => { setShowMobileTimeline(false) }} />}
+                        </div>
+                    </div>
                 </div>
             </Footer>
         </div>

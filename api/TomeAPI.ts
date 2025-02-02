@@ -1,7 +1,7 @@
 import { TopicReviewQuestion } from "@/model/questions";
 import { TotoAPI } from "./TotoAPI";
 import { Answer, AnswerRating } from "@/model/answer";
-import { TopicReview } from "@/model/topicReview";
+import { Timeline, TimelineDate, TopicReview } from "@/model/topicReview";
 import { Topic } from "@/model/Topic";
 
 export class TomeAPI {
@@ -172,6 +172,7 @@ export interface StartTopicReviewResponse {
 export interface GetTopicReviewResponse {
     topicReview: TopicReview
     questions: TopicReviewQuestion[]
+    timeline: TimelineDate[]
 }
 
 export interface GetRefresherResponse {
