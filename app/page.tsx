@@ -8,10 +8,10 @@ import { AuthAPI } from "@/api/AuthAPI";
 import Book from "./ui/graphics/icons/Book";
 import { TomeAPI } from "@/api/TomeAPI";
 import { TopicReview } from "@/model/topicReview";
-import NextSVG from "./ui/graphics/icons/Next";
 import Footer from "./ui/layout/Footer";
 import TopicMemLevels from "./ui/cards/TopicMemLevels";
 import OverallMemLevel from "./ui/cards/OveralMemLevel";
+import RunningTopicReviewCard from "./ui/cards/RunningTopicReviewCard";
 
 export default function Home() {
 
@@ -104,18 +104,7 @@ export default function Home() {
           <div className=""><OverallMemLevel /></div>
         </div>
         <div className="md:flex-1">
-          {runningTopicReview &&
-            <div className="flex flex-row items-center justify-center px-3 space-x-2 mt-6 md:mt-0">
-              <div className="w-10 h-10 p-2 fill-cyan-200 border border-2 rounded border-cyan-200"><Book /></div>
-              <div className="flex flex-col flex-1 md:flex-none">
-                <div className="text-sm">You have a running Topic Review</div>
-                <div className="text-lg">{runningTopicReview?.topicTitle}</div>
-              </div>
-              <div className="md:pl-8">
-                <RoundButton icon={<NextSVG />} size="s" onClick={() => { router.push(`/tr/${runningTopicReview?.id}`) }} />
-              </div>
-            </div>
-          }
+          {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} />}
         </div>
         <div className="md:w-1/4"></div>
       </div>

@@ -1,11 +1,7 @@
 import QuestionSummary from "@/app/ui/tr/QuestionSummary";
-import TopicTitleCard from "../cards/TopicTitleCard";
-import ScoreCard from "../cards/ScoreCard";
-import { ProgressBar } from "../general/ProgressBar";
 import { TopicReview } from "@/model/topicReview";
 import { TopicReviewQuestion } from "@/model/questions";
 import BottomFade from "../layout/BottomFade";
-import TopicReviewSummaryHeader from "./TopicReviewSummaryHeader";
 
 export default function TopicReviewSummary({ topicReview, questions }: { topicReview: TopicReview, questions?: TopicReviewQuestion[] }) {
 
