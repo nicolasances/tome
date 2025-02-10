@@ -9,6 +9,9 @@ import Add from "../ui/graphics/icons/Add";
 import Link from "next/link";
 import Footer from "../ui/layout/Footer";
 import HomeSVG from "../ui/graphics/icons/HomeSVG";
+import RefreshSVG from "../ui/graphics/icons/RefreshSVG";
+import { LoadingBar } from "../ui/graphics/Loading";
+import Tick from "../ui/graphics/icons/Tick";
 
 export default function TopicsPage() {
 
@@ -51,13 +54,37 @@ export default function TopicsPage() {
 
 function TopicItem({ topic, last }: { topic: Topic, last: boolean }) {
 
+    const [uploadStatus, setUploadStatus] = useState<'not-started' | 'uploading' | 'failed' | 'success'>("not-started")
+
+    const reUploadBlog = async () => {
+
+        setUploadStatus("uploading")
+
+        const result = await new TomeAPI().postTopic(topic.blog_url)
+
+        if (result && result.blogUrl != null) {
+            setUploadStatus('success');
+            // Reset the upload
+            setTimeout(() => { setUploadStatus('not-started') }, 2000)
+        }
+        else setUploadStatus('failed')
+
+    }
+
     return (
-        <div className={`${!last ? "border-b" : ''} border-cyan-600 py-2`}>
+        <div className={`${!last ? "border-b" : ''} border-cyan-600 py-2 flex group`}>
             <div className=""></div>
-            <div className="flex flex-col">
+            <div className="flex flex-col flex-1">
                 <div className="text-lg">{topic.title}</div>
                 <div className="text-sm"><b>{topic.sections.length}</b> sections</div>
-                {topic.blog_url && <div className="text-sm"><Link href={topic.blog_url} /></div>}
+                {topic.blog_url != null && <div className="text-sm"><Link className="hover:text-cyan-200 hover:underline" href={topic.blog_url} target="_blank">{topic.blog_url}</Link></div>}
+            </div>
+            <div className="flex md:hidden group-hover:flex items-center mx-4">
+                {(uploadStatus != 'uploading') && <div className=""><RoundButton icon={<RefreshSVG />} size='s' onClick={reUploadBlog} /></div>}
+            </div>
+            <div className="flex items-center">
+                {(uploadStatus == 'uploading') && <div className=""><LoadingBar hideLabel={true} /></div>}
+                {(uploadStatus == 'success') && <div className="fill-cyan-200 stroke-cyan-200 w-6 h-6"><Tick /></div>}
             </div>
         </div>
     )

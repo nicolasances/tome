@@ -28,7 +28,7 @@ export default function RoundButton({ icon, onClick, size, disabled, iconOnly }:
 
     return (
         <div
-            className={`${baseClasses} ${disabled ? disabledClasses : enabledClasses}`}
+            className={`${baseClasses} ${disabled ? disabledClasses : enabledClasses} `}
             onClick={reactToClick}
         >
             <div className={`${iconClasses} ${iconColor}`}>

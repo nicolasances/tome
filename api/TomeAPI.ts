@@ -159,7 +159,9 @@ export interface GetTopicsResponse {
     topics: Topic[]
 }
 
-export interface PostTopicResponse { }
+export interface PostTopicResponse {
+    blogUrl: string
+ }
 
 export interface GetTRQuestionsResponse {
     questions: TopicReviewQuestion[]
