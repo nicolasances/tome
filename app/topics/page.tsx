@@ -1,6 +1,6 @@
 'use client'
 
-import { TomeAPI } from "@/api/TomeAPI";
+import { TomeAPI, TopicMemLevel } from "@/api/TomeAPI";
 import { Topic } from "@/model/Topic";
 import { useEffect, useState } from "react";
 import RoundButton from "../ui/buttons/RoundButton";
@@ -12,10 +12,13 @@ import HomeSVG from "../ui/graphics/icons/HomeSVG";
 import RefreshSVG from "../ui/graphics/icons/RefreshSVG";
 import { LoadingBar } from "../ui/graphics/Loading";
 import Tick from "../ui/graphics/icons/Tick";
+import MemLevel from "../ui/graphics/MemLevel";
+import ExpandButton from "../ui/buttons/ExpandButton";
 
 export default function TopicsPage() {
 
     const [topics, setTopics] = useState<Topic[]>([]);
+    const [topicMemorizationLevels, setTopicMemorizationLevels] = useState<TopicMemLevel[] | undefined>(undefined)
 
     const router = useRouter();
 
@@ -29,15 +32,33 @@ export default function TopicsPage() {
 
         // Set the topics in the state
         setTopics(topics.topics);
+
+        const response = await new TomeAPI().getMemLevels()
+
+        const memLeveledTopics = response.topics.sort((a, b) => b.memLevel - a.memLevel)
+
+        setTopicMemorizationLevels(memLeveledTopics)
+    }
+
+    const findMemLevel = (topicCode: string): TopicMemLevel | undefined => {
+
+        if (!topicMemorizationLevels) return undefined;
+
+        for (let memLevel of topicMemorizationLevels) {
+            if (memLevel.topicCode == topicCode) {
+                return memLevel
+            }
+        }
+
     }
 
     useEffect(() => { loadTopics() }, []);
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start">
+        <div className="flex flex-1 flex-col items-stretch justify-start 2xl:px-[25vw]">
             <div className="flex-1 app-content">
-                <div className="text-cyan-200 text-base font-bold">Topics in the Knowledge Base</div>
-                {topics && topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} last={index == topics.length - 1} />)}
+                <div className="text-cyan-700 text-base font-bold mb-2 border-b border-cyan-600 pb-1">Topics in the Knowledge Base</div>
+                {topics && topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} memLevel={findMemLevel(topic.code)} index={index} last={index == topics.length - 1} />)}
             </div>
             <Footer>
                 <div className="flex justify-center items-center space-x-2">
@@ -52,9 +73,10 @@ export default function TopicsPage() {
     )
 }
 
-function TopicItem({ topic, last }: { topic: Topic, last: boolean }) {
+function TopicItem({ topic, last, memLevel, index }: { topic: Topic, last: boolean, memLevel: TopicMemLevel | undefined, index: number }) {
 
     const [uploadStatus, setUploadStatus] = useState<'not-started' | 'uploading' | 'failed' | 'success'>("not-started")
+    const [showDetails, setShowDetails] = useState(false)
 
     const reUploadBlog = async () => {
 
@@ -72,20 +94,36 @@ function TopicItem({ topic, last }: { topic: Topic, last: boolean }) {
     }
 
     return (
-        <div className={`${!last ? "border-b" : ''} border-cyan-600 py-2 flex group`}>
-            <div className=""></div>
-            <div className="flex flex-col flex-1">
-                <div className="text-lg">{topic.title}</div>
-                <div className="text-sm"><b>{topic.sections.length}</b> sections</div>
-                {topic.blog_url != null && <div className="text-sm"><Link className="hover:text-cyan-200 hover:underline" href={topic.blog_url} target="_blank">{topic.blog_url}</Link></div>}
+        <div className={`my-1 py-2 group ${index % 2 == 0 ? 'bg-[#00a2b6] border-[#00a2b6]' : 'border-[#00acc1]'} border rounded hover:border-cyan-600`}>
+            <div className="flex flex-1">
+                <div className="mr-2">
+                    {memLevel != null && <MemLevel perc={memLevel.memLevel * 100} />}
+                </div>
+                <div className="flex flex-col flex-1">
+                    <div className="text-lg">{topic.title}</div>
+                    <div className="text-sm"><b>{topic.sections.length}</b> sections</div>
+                </div>
+                <div className="flex md:hidden group-hover:flex items-center mx-4">
+                    <ExpandButton onClick={() => { setShowDetails(!showDetails) }} />
+                </div>
+                <div className="flex items-center">
+                </div>
             </div>
-            <div className="flex md:hidden group-hover:flex items-center mx-4">
-                {(uploadStatus != 'uploading') && <div className=""><RoundButton icon={<RefreshSVG />} size='s' onClick={reUploadBlog} /></div>}
-            </div>
-            <div className="flex items-center">
-                {(uploadStatus == 'uploading') && <div className=""><LoadingBar hideLabel={true} /></div>}
-                {(uploadStatus == 'success') && <div className="fill-cyan-200 stroke-cyan-200 w-6 h-6"><Tick /></div>}
-            </div>
+            {/* Details */}
+            {showDetails &&
+                <div className="">
+                    <div className="flex pt-1">
+                        <div style={{ width: 48 }}></div>
+                        {topic.blog_url != null && <div className="text-sm"><Link className="hover:text-cyan-200 hover:underline" href={topic.blog_url} target="_blank">{topic.blog_url}</Link></div>}
+                    </div>
+                    <div className="flex pt-2 pb-2">
+                        <div style={{ width: 48 }}></div>
+                        {(uploadStatus == 'not-started') && <div className=""><RoundButton icon={<RefreshSVG />} size='xs' onClick={reUploadBlog} /></div>}
+                        {(uploadStatus == 'uploading') && <div className=""><LoadingBar hideLabel={true} /></div>}
+                        {(uploadStatus == 'success') && <div className="fill-cyan-200 stroke-cyan-200 w-6 h-6"><Tick /></div>}
+                    </div>
+                </div>
+            }
         </div>
     )
 }
