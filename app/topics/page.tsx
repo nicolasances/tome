@@ -44,7 +44,7 @@ export default function TopicsPage() {
 
         if (!topicMemorizationLevels) return undefined;
 
-        for (let memLevel of topicMemorizationLevels) {
+        for (const memLevel of topicMemorizationLevels) {
             if (memLevel.topicCode == topicCode) {
                 return memLevel
             }
@@ -58,7 +58,7 @@ export default function TopicsPage() {
         <div className="flex flex-1 flex-col items-stretch justify-start 2xl:px-[25vw]">
             <div className="flex-1 app-content">
                 <div className="text-cyan-700 text-base font-bold mb-2 border-b border-cyan-600 pb-1">Topics in the Knowledge Base</div>
-                {topics && topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} memLevel={findMemLevel(topic.code)} index={index} last={index == topics.length - 1} />)}
+                {topics && topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} memLevel={findMemLevel(topic.code)} index={index} />)}
             </div>
             <Footer>
                 <div className="flex justify-center items-center space-x-2">
@@ -73,7 +73,7 @@ export default function TopicsPage() {
     )
 }
 
-function TopicItem({ topic, last, memLevel, index }: { topic: Topic, last: boolean, memLevel: TopicMemLevel | undefined, index: number }) {
+function TopicItem({ topic, memLevel, index }: { topic: Topic, memLevel: TopicMemLevel | undefined, index: number }) {
 
     const [uploadStatus, setUploadStatus] = useState<'not-started' | 'uploading' | 'failed' | 'success'>("not-started")
     const [showDetails, setShowDetails] = useState(false)
