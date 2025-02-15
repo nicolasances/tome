@@ -53,7 +53,12 @@ export default function RefresherPage() {
                     }
                     {!loading && refresher &&
                         <div className="mt-2">
-                            <FormattedDetailedRatingExplanation text={refresher} />
+                            {refresher.includes('</div>') && (
+                                <div className="" dangerouslySetInnerHTML={{ __html: refresher }} />
+                            )}
+                            {!refresher.includes('</div>') && (
+                                <FormattedDetailedRatingExplanation text={refresher} />
+                            )}
                             {topic &&
                                 <div className="mt-4">
                                     <div className="text-cyan-200">Want more information?</div>

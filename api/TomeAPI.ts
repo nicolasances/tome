@@ -118,19 +118,33 @@ export class TomeAPI {
      * Posts a new topic
      */
     async postTopic(blogUrl: string): Promise<PostTopicResponse> {
-
-        return (await new TotoAPI().fetch('toto-ms-tome-scraper', '/blogs', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                blogURL: blogUrl,
-                blogType: 'craft'
-            })
-        }, true)).json()
-
+        try {
+            const response = await new TotoAPI().fetch('toto-ms-tome-scraper', '/blogs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    blogURL: blogUrl,
+                    blogType: 'craft'
+                })
+            }, true);
+    
+            if (!response.ok) {
+                // Handle non-OK responses
+                if (response.status === 504) {
+                    throw new Error('Gateway Timeout: The server took too long to respond.');
+                } else {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+            }
+    
+            return await response.json();
+        } catch (error) {
+            console.error('Error posting topic:', error);
+            throw error;
+        }
     }
 
     /**

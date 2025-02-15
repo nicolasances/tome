@@ -9,6 +9,7 @@ export default {
   ],
   theme: {
   	extend: {
+
 		fontSize: {
 			xs: '8px',
 			sm: '10px',

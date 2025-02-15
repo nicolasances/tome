@@ -82,14 +82,21 @@ function TopicItem({ topic, memLevel, index }: { topic: Topic, memLevel: TopicMe
 
         setUploadStatus("uploading")
 
-        const result = await new TomeAPI().postTopic(topic.blog_url)
+        try {
+            const result = await new TomeAPI().postTopic(topic.blog_url)
 
-        if (result && result.blogUrl != null) {
-            setUploadStatus('success');
-            // Reset the upload
-            setTimeout(() => { setUploadStatus('not-started') }, 2000)
+            if (result && result.blogUrl != null) {
+                setUploadStatus('success');
+                // Reset the upload
+                setTimeout(() => { setUploadStatus('not-started') }, 2000)
+            }
         }
-        else setUploadStatus('failed')
+        catch (e) {
+            console.log(e);
+            setUploadStatus('failed')
+            // Reset the upload
+            setTimeout(() => { setUploadStatus('not-started') }, 1000)
+        }
 
     }
 
