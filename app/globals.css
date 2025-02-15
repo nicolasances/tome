@@ -118,21 +118,25 @@ h1 {
   @apply text-xl font-bold leading-tight my-4 text-sky-200 border-b-2 border-sky-200 pb-2;
 }
 h2 {
-  @apply text-lg font-bold leading-tight my-2 text-indigo-900 border-l-8 border-sky-800 pl-2 rounded;
+  @apply text-lg font-bold leading-tight mt-8 mb-2 text-indigo-900 border-l-8 border-sky-800 pl-2 rounded;
 }
 h3 {
-  @apply text-lg font-bold italic leading-tight my-2 text-violet-900  border-l-4 border-violet-900 pl-2 rounded;
+  @apply text-lg font-bold italic leading-tight mt-8 mb-2 text-violet-900  border-l-4 border-violet-900 pl-2 rounded;
 }
 ul {
   @apply px-8 py-4 list-disc
 }
 p {
-  @apply my-1
+  @apply my-2
+}
+
+.refresher b {
+  @apply text-lime-300
 }
 
 .highlight-person {
-  @apply bg-pink-200 rounded px-1 inline 
+  @apply bg-violet-200 rounded px-1 inline 
 }
 .highlight-date {
-  @apply bg-green-200 rounded px-1 inline
+  @apply bg-green-400 rounded px-1 inline font-bold
 }
