@@ -55,7 +55,7 @@ export default function TopicsPage() {
     useEffect(() => { loadTopics() }, []);
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start 2xl:px-[25vw]">
+        <div className="flex flex-1 flex-col items-stretch justify-start">
             <div className="flex-1 app-content">
                 <div className="text-cyan-700 text-base font-bold mb-2 border-b border-cyan-600 pb-1">Topics in the Knowledge Base</div>
                 {topics && topics.map((topic, index) => <TopicItem key={topic.code} topic={topic} memLevel={findMemLevel(topic.code)} index={index} />)}
