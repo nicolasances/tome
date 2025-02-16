@@ -97,37 +97,22 @@ export default function Home() {
   if (loginNeeded === true) return (<div></div>)
 
   return (
-    <div className="flex flex-1 flex-col items-stretch justify-start">
+    <div>
 
-      <div className="flex flex-col md:flex-row md:items-center">
-        <div className="md:w-1/4">
-          <div className=""><OverallMemLevel /></div>
-        </div>
-        <div className="md:flex-1">
-          {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} />}
-        </div>
-        <div className="md:w-1/4"></div>
-      </div>
+      <div className="app-content">
+        <div className="flex flex-1 flex-col items-stretch justify-start">
 
+          <div className="flex flex-col xl:flex-row xl:justify-center xl:space-x-16">
+            <div className="mt-4 mb-4"><OverallMemLevel /></div>
+            {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} />}
+          </div>
 
-      <div className="flex flex-col md:flex-row md:space-x-8">
-
-        <div id="left-col" className="flex flex-col md:w-1/4 mt-8 ">
-          <div className="bg-[#00b9cf] py-4 rounded-md">
+          <div className="bg-[#00b9cf] py-4 rounded-md mt-8">
             <TopicMemLevels />
           </div>
         </div>
 
-        <div id="center-col" className="flex flex-col flex-1">
-        </div>
-
-        <div id="right-col" className="flex flex-col md:w-1/4"></div>
-
-
       </div>
-
-      <div className="flex-1"></div>
-
       <Footer>
         <div className="flex justify-center">
           <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />

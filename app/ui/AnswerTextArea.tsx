@@ -32,7 +32,7 @@ export function AnswerTextArea({ answer, onChange, onClickSendAnswer, loading }:
                 ref={textareaRef}
                 onChange={onChangeHandler}
                 value={answer}
-                className="bg-transparent no-border focus:outline-none w-full text-xl"
+                className="bg-transparent no-border focus:outline-none w-full text-xl no-scrollbar"
                 rows={1}
                 style={{
                     resize: "none",

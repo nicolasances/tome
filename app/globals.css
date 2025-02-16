@@ -16,11 +16,16 @@ body {
 .app-footer {
   height: var(--app-footer-height);
   max-height: var(--app-footer-height);
+  @apply bg-background
 }
 
 .app-content {
-  max-height: calc(99vh - var(--app-header-height));
+  max-height: calc(99vh - var(--app-header-height) - var(--app-footer-height));
+  height: calc(99vh - var(--app-header-height) - var(--app-footer-height));
+  min-height: calc(99vh - var(--app-header-height) - var(--app-footer-height));
   padding-top: 6px;
+  padding-bottom: 60px;
+  @apply text-base flex flex-1 flex-col justify-start overflow-scroll no-scrollbar
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

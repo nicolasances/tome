@@ -31,7 +31,7 @@ export default function QuestionDetailPage() {
     const router = useRouter()
     const pathname = usePathname()
 
-    const maxTextAreaHeight = 240; // Maximum height in pixels
+    const maxTextAreaHeight = 340; // Maximum height in pixels
 
     const topicReviewId = String(params.topicReviewId);
     const questionId = String(params.questionId);
@@ -145,13 +145,6 @@ export default function QuestionDetailPage() {
 
     if (!question) return <></>
 
-    let textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${maxTextAreaHeight}px)`
-    if (question.rating) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) )`
-    // if (textareaRef && textareaRef.current) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${textareaRef.current.style.height}px)`
-
-    let displayedAnswer = question ? question.answer : undefined;
-    if (!displayedAnswer && answer) displayedAnswer = answer;
-
     let displayedRating: AnswerRating | undefined = undefined;
     if (question.rating != null) displayedRating = {
         rating: question.rating,
@@ -161,12 +154,21 @@ export default function QuestionDetailPage() {
     }
     else if (rating != null) displayedRating = rating;
 
+    const bottomPadding = '12px'
+    const contentHeight = `calc(100vh - var(--app-header-height) - ${bottomPadding})`
+    let textHeight = `calc(${contentHeight} - ${maxTextAreaHeight}px)`
+    if (displayedRating) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) )`
+    // if (textareaRef && textareaRef.current) textHeight = `calc(96vh - var(--app-header-height) - var(--app-footer-height) - ${textareaRef.current.style.height}px)`
+
+    let displayedAnswer = question ? question.answer : undefined;
+    if (!displayedAnswer && answer) displayedAnswer = answer;
+
     return (
 
-        <div className="flex flex-1 flex-col items-stretch justify-start text-lg">
+        <div className={`flex flex-1 flex-col items-stretch justify-start text-lg`} style={{minHeight: contentHeight}}>
 
             <div className="relative">
-                <div style={{ maxHeight: textHeight, height: textHeight, overflow: 'scroll' }} className="no-scrollbar mb-4">
+                <div style={{ minHeight: textHeight, maxHeight: textHeight, height: textHeight, overflow: 'scroll' }} className="no-scrollbar mb-4">
 
                     {/* Question Box */}
                     <QuestionBox question={question} />

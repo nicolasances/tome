@@ -9,13 +9,10 @@ export default function TopicTimeline({ timeline, size }: { timeline?: Timeline,
     if (!timeline || !timeline.timeline) return <div></div>
 
     return (
-        <div className="relative pt-4">
-            <div className="flex flex-col items-center relative no-scrollbar" style={{ maxHeight: height, height: '100%', overflow: "scroll", paddingBottom: 48 }}>
-                <div className="">
-                    {timeline.timeline.map((date: TimelineDate) => <Date key={date.date} date={date} />)}
-                </div>
+        <div className="flex flex-col items-center relative no-scrollbar" style={{ maxHeight: height, height: '100%', overflow: "scroll", paddingBottom: 48 }}>
+            <div className="">
+                {timeline.timeline.map((date: TimelineDate) => <Date key={date.date} date={date} />)}
             </div>
-            <BottomFade height="xl" />
         </div>
     )
 }
@@ -43,7 +40,7 @@ function Date({ date }: { date: TimelineDate }) {
 function DateEvent({ text }: { text: string }) {
 
     return (
-        <div className="pl-2 text-md">
+        <div className="pl-2 text-base">
             <li>{text}</li>
         </div>
     )

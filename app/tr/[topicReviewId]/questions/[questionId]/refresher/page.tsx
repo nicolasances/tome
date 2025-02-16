@@ -44,9 +44,6 @@ export default function RefresherPage() {
             <div className="relative" >
 
                 <div className="flex flex-1 flex-col align-left mt-4 pb-8 md:pb-[64px] overflow-scroll no-scrollbar" style={{ maxHeight: 'calc(100vh - var(--app-header-height) - var(--app-footer-height) - 48px)' }}>
-                    <div className="font-bold flex items-center">
-                        A little refresher of this section!
-                    </div>
                     {loading &&
                         <div className="mt-1">
                             <LoadingBar />
