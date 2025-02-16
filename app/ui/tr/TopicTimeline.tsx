@@ -1,5 +1,4 @@
 import { Timeline, TimelineDate } from "@/model/topicReview"
-import BottomFade from "../layout/BottomFade"
 
 export default function TopicTimeline({ timeline, size }: { timeline?: Timeline, size?: 's' | 'm' }) {
 

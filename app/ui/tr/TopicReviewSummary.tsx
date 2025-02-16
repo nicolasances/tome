@@ -1,7 +1,6 @@
 import QuestionSummary from "@/app/ui/tr/QuestionSummary";
 import { TopicReview } from "@/model/topicReview";
 import { TopicReviewQuestion } from "@/model/questions";
-import BottomFade from "../layout/BottomFade";
 
 export default function TopicReviewSummary({ topicReview, questions }: { topicReview: TopicReview, questions?: TopicReviewQuestion[] }) {
 

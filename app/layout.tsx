@@ -1,14 +1,9 @@
 'use client'
 
-import type { Metadata } from "next";
 import { Comfortaa as AppFont } from "next/font/google";
 import "./globals.css";
 import Header from "./ui/layout/Header";
 import { TomeContextProvider } from "@/context/TomeContext";
-import Footer from "./ui/layout/Footer";
-import BackSVG from "./ui/graphics/icons/Back";
-import RoundButton from "./ui/buttons/RoundButton";
-import BottomFade from "./ui/layout/BottomFade";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
