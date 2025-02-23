@@ -1,24 +1,19 @@
 'use client'
 
-import RoundButton from "./ui/buttons/RoundButton";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import Book from "./ui/graphics/icons/Book";
 import { TomeAPI } from "@/api/TomeAPI";
 import { TopicReview } from "@/model/topicReview";
-import Footer from "./ui/layout/Footer";
 import TopicMemLevels from "./ui/cards/TopicMemLevels";
 import OverallMemLevel from "./ui/cards/OveralMemLevel";
 import RunningTopicReviewCard from "./ui/cards/RunningTopicReviewCard";
+import NewTopicReviewCard from "./ui/cards/NewTopicReviewCard";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
   const [runningTopicReview, setRunningTopicReview] = useState<TopicReview | undefined>(undefined)
-
-  const router = useRouter()
 
   /**
    * Verifies if the user is authenticated
@@ -99,12 +94,13 @@ export default function Home() {
   return (
     <div>
 
-      <div className="app-content">
+      <div className="app-content px-8">
         <div className="flex flex-1 flex-col items-stretch justify-start">
 
           <div className="flex flex-col xl:flex-row xl:justify-center xl:space-x-16">
             <div className="mt-4 mb-4"><OverallMemLevel /></div>
             {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} />}
+            {!runningTopicReview && <NewTopicReviewCard />}
           </div>
 
           <div className="bg-[#00b9cf] py-4 rounded-md mt-8">
@@ -113,11 +109,6 @@ export default function Home() {
         </div>
 
       </div>
-      <Footer>
-        <div className="flex justify-center">
-          <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />
-        </div>
-      </Footer>
     </div>
   );
 }

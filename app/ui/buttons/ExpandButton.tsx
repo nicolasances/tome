@@ -1,17 +1,12 @@
-import { useState } from "react";
 import DotsSVG from "../graphics/icons/DotsSVG";
 import Minus from "../graphics/icons/Minus";
 
-export default function ExpandButton({ onClick }: { onClick: () => void }) {
-
-    const [expanded, setExpanded] = useState<boolean>(false) 
+export default function ExpandButton({ expanded, onClick }: { expanded: boolean, onClick: () => void }) {
 
     const onButtonClick = () => {
 
         onClick()
 
-        setExpanded(!expanded)
-        
     }
 
     return (

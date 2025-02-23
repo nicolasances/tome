@@ -165,7 +165,7 @@ export default function QuestionDetailPage() {
 
     return (
 
-        <div className={`flex flex-1 flex-col items-stretch justify-start text-lg`} style={{minHeight: contentHeight}}>
+        <div className={`flex flex-1 flex-col items-stretch justify-start text-lg px-4`} style={{minHeight: contentHeight}}>
 
             <div className="relative">
                 <div style={{ minHeight: textHeight, maxHeight: textHeight, height: textHeight, overflow: 'scroll' }} className="no-scrollbar mb-4">

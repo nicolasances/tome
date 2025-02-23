@@ -98,10 +98,13 @@ export default function QuizDetail() {
     if (showLoadingBar) return <div className="text-base"><LoadingBar /></div>
     if (loading) return <></>
 
-    return (
-        <div className="flex flex-1 flex-col items-center justify-center">
+    const bottomPadding = '12px'
+    const contentHeight = `calc(100vh - var(--app-header-height) - ${bottomPadding})`
 
-            <div className="flex flex-row w-full space-x-4">
+    return (
+        <div className="flex flex-1 flex-col items-center justify-start px-4  xl:px-0" style={{minHeight: contentHeight}}>
+
+            <div className="flex flex-row w-full space-x-4 flex-1">
                 <div className="w-full md:w-2/3">
                     <TopicReviewSummaryHeader topicReview={topicReview} questions={questions} />
                     {topicReview && !showMobileTimeline && <TopicReviewSummary topicReview={topicReview} questions={questions} />}

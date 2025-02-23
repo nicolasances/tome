@@ -38,8 +38,11 @@ export default function RefresherPage() {
 
     useEffect(() => { loadRefresher() }, [])
 
+    const bottomPadding = '12px'
+    const contentHeight = `calc(100vh - var(--app-header-height) - ${bottomPadding})`
+
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start text-lg">
+        <div className="flex flex-1 flex-col items-stretch justify-start text-lg px-4" style={{minHeight: contentHeight}}>
 
             <div className="relative" >
 
