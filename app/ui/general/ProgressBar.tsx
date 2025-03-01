@@ -3,17 +3,23 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
 
-export function ProgressBar({current, max}: {current: number, max: number}) {
+export function ProgressBar({ current, max, size }: { current: number, max: number, size?: string }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState(0);
 
     const drawProgress = () => {
         if (containerWidth === 0) return;
 
-        const height = 20;
-        const barHeight = 12;
+        let height = 20;
+        let barHeight = 12;
         const targetProgress = (current / max) * 100; // Set target percentage (0 to 100)
-        const borderRadius = 5; // Border radius for the rectangles
+        let borderRadius = 5; // Border radius for the rectangles
+
+        if (size == 's') {
+            height = 10
+            barHeight = 4
+            borderRadius = 3
+        }
 
         const svg = d3.select("#daily-progress-card")
             .attr("width", containerWidth)
@@ -63,9 +69,11 @@ export function ProgressBar({current, max}: {current: number, max: number}) {
 
     return (
         <div className="w-full flex flex-row items-center">
-            <div className='flex'>
-                <div className='text-lg px-2'>{current}<span className='text-sm'>/{max}</span></div>
-            </div>
+            {!size &&
+                <div className='flex'>
+                    <div className='text-lg px-2'>{current}<span className='text-sm'>/{max}</span></div>
+                </div>
+            }
             <div ref={containerRef} className="w-full">
                 <svg id="daily-progress-card"></svg>
             </div>

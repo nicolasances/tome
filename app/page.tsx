@@ -9,11 +9,13 @@ import TopicMemLevels from "./ui/cards/TopicMemLevels";
 import OverallMemLevel from "./ui/cards/OveralMemLevel";
 import RunningTopicReviewCard from "./ui/cards/RunningTopicReviewCard";
 import NewTopicReviewCard from "./ui/cards/NewTopicReviewCard";
+import { TopicReviewQuestion } from "@/model/questions";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
   const [runningTopicReview, setRunningTopicReview] = useState<TopicReview | undefined>(undefined)
+  const [runningTRQuestions, setRunningTRQuestions] = useState<TopicReviewQuestion[] | undefined>(undefined)
 
   /**
    * Verifies if the user is authenticated
@@ -79,6 +81,7 @@ export default function Home() {
     const response = await new TomeAPI().getRunningTopicReview()
 
     setRunningTopicReview(response.topicReview);
+    setRunningTRQuestions(response.questions);
 
 
   }
@@ -99,7 +102,7 @@ export default function Home() {
 
           <div className="flex flex-col xl:flex-row xl:justify-center xl:space-x-16">
             <div className="mt-4 mb-4"><OverallMemLevel /></div>
-            {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} />}
+            {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} questions={runningTRQuestions} />}
             {!runningTopicReview && <NewTopicReviewCard />}
           </div>
 
