@@ -16,6 +16,7 @@ export default function TopicsCard({ onSelectTopic }: { onSelectTopic?: (topic: 
     const [topics, setTopics] = useState<Topic[]>([]);
     const [topicMemorizationLevels, setTopicMemorizationLevels] = useState<TopicMemLevel[] | undefined>(undefined)
 
+
     /**
      * Function to load Topics from the TomeAPI and set them in the state
      */
@@ -24,14 +25,22 @@ export default function TopicsCard({ onSelectTopic }: { onSelectTopic?: (topic: 
         // Call the API to get the topics
         const topics = await new TomeAPI().getTopics();
 
-        // Set the topics in the state
-        setTopics(topics.topics);
+        if (!topics || !topics.topics || topics.topics.length == 0) return;
 
         const response = await new TomeAPI().getMemLevels()
 
         const memLeveledTopics = response.topics.sort((a, b) => b.memLevel - a.memLevel)
 
         setTopicMemorizationLevels(memLeveledTopics)
+
+        // Sort topic by their memorization level: topics with hight mem level come first
+        const sortedTopics = topics.topics.sort((a, b) => {
+            const memLevelA = memLeveledTopics.find((memLevel) => memLevel.topicCode === a.code)?.memLevel || 0;
+            const memLevelB = memLeveledTopics.find((memLevel) => memLevel.topicCode === b.code)?.memLevel || 0;
+            return memLevelB - memLevelA;
+        });
+
+        setTopics(sortedTopics);
     }
 
     const findMemLevel = (topicCode: string): TopicMemLevel | undefined => {
