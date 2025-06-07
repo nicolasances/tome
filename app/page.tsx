@@ -10,12 +10,11 @@ import OverallMemLevel from "./ui/cards/OveralMemLevel";
 import RunningTopicReviewCard from "./ui/cards/RunningTopicReviewCard";
 import NewTopicReviewCard from "./ui/cards/NewTopicReviewCard";
 import { TopicReviewQuestion } from "@/model/questions";
+import FlashCardsSession from "./ui/complex/FlashCardsSession";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
-  const [runningTopicReview, setRunningTopicReview] = useState<TopicReview | undefined>(undefined)
-  const [runningTRQuestions, setRunningTRQuestions] = useState<TopicReviewQuestion[] | undefined>(undefined)
 
   /**
    * Verifies if the user is authenticated
@@ -73,22 +72,8 @@ export default function Home() {
 
   }
 
-  /**
-   * Function that loads the Running Topic Review (if any) from the TomeAPI
-   */
-  const loadRunningTopicReview = async () => {
-
-    const response = await new TomeAPI().getRunningTopicReview()
-
-    setRunningTopicReview(response.topicReview);
-    setRunningTRQuestions(response.questions);
-
-
-  }
-
   useEffect(() => { verifyAuthentication() }, [])
   useEffect(() => { triggerSignIn() }, [loginNeeded])
-  useEffect(() => { loadRunningTopicReview() }, [loginNeeded])
 
   // Empty screen while Google SignIn is loading
   if (loginNeeded == null) return (<div></div>)
@@ -98,18 +83,8 @@ export default function Home() {
     <div>
 
       <div className="app-content px-8">
-        <div className="flex flex-1 flex-col items-stretch justify-start">
 
-          <div className="flex flex-col xl:flex-row xl:justify-center xl:space-x-16">
-            <div className="mt-4 mb-4"><OverallMemLevel /></div>
-            {runningTopicReview && <RunningTopicReviewCard topicReview={runningTopicReview} questions={runningTRQuestions} />}
-            {!runningTopicReview && <NewTopicReviewCard />}
-          </div>
-
-          <div className="bg-[#00b9cf] py-4 rounded-md mt-8">
-            <TopicMemLevels />
-          </div>
-        </div>
+        <FlashCardsSession />
 
       </div>
     </div>
