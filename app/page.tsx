@@ -3,13 +3,6 @@
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import { TomeAPI } from "@/api/TomeAPI";
-import { TopicReview } from "@/model/topicReview";
-import TopicMemLevels from "./ui/cards/TopicMemLevels";
-import OverallMemLevel from "./ui/cards/OveralMemLevel";
-import RunningTopicReviewCard from "./ui/cards/RunningTopicReviewCard";
-import NewTopicReviewCard from "./ui/cards/NewTopicReviewCard";
-import { TopicReviewQuestion } from "@/model/questions";
 import FlashCardsSession from "./ui/complex/FlashCardsSession";
 
 export default function Home() {

@@ -1,8 +1,8 @@
-import { Texturina as LogoFont } from "next/font/google";
+// import { Texturina as LogoFont } from "next/font/google";
 
-const logoFont = LogoFont({
-    subsets: ["latin"],
-});
+// const logoFont = LogoFont({
+//     subsets: ["latin"],
+// });
 
 export default function TomeLogo() {
 
