@@ -15,11 +15,11 @@ import { GetTopicsResponse, TomeAPI } from "@/api/TomeAPI";
  * Use tailwind for styling.
  * Use TomeAPI to fetch the topics with the getTopics() method.
  */
-
 const TopicsCarousel: React.FC = () => {
     const [topics, setTopics] = useState<Topic[]>([]);
     const [loading, setLoading] = useState(true);
     const [current, setCurrent] = useState(0);
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         new TomeAPI().getTopics().then((data: GetTopicsResponse) => {
@@ -36,7 +36,10 @@ const TopicsCarousel: React.FC = () => {
         speed: 500,
         arrows: false,
         dots: false,
-        beforeChange: (_: number, next: number) => setCurrent(next),
+        beforeChange: (_: number, next: number) => {
+            setCurrent(next);
+            setClicked(false);
+        },
         responsive: [
             {
                 breakpoint: 1024,
@@ -75,21 +78,21 @@ const TopicsCarousel: React.FC = () => {
 
     return (
         <div className="w-full max-w-4xl mx-auto py-8">
-            <div className="overflow-visible"> {/* Ensure overflow is visible for scaling */}
+            <div className="overflow-visible">
                 <Slider {...settings}>
                     {topics.map((topic, idx) => {
-                        // Determine if this is the center card
                         const isCenter =
                             idx === current ||
-                            (topics.length < 3 && idx === 1); // fallback for <3 topics
+                            (topics.length < 3 && idx === 1);
 
                         return (
-                            <div key={topic.code} className="px-[1px]"> {/* Increase px for spacing */}
+                            <div key={topic.code} className="px-[1px]">
                                 <div
                                     className={`
                                         transition-all duration-200
                                         ${isCenter
-                                            ? "scale-100 shadow-2xl bg-white border-2 border-cyan-600 z-10"
+                                            ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer
+                                               ${clicked ? "active:scale-95 animate-press" : ""}`
                                             : "scale-85 bg-gray-100 border border-gray-200 opacity-80"
                                         }
                                         rounded-lg flex flex-col items-center
@@ -102,12 +105,20 @@ const TopicsCarousel: React.FC = () => {
                                             ? "0 8px 32px rgba(59,130,246,0.15)"
                                             : "0 2px 8px rgba(0,0,0,0.05)",
                                     }}
+                                    onClick={
+                                        isCenter
+                                            ? () => {
+                                                setClicked(true);
+                                                setTimeout(() => setClicked(false), 150);
+                                            }
+                                            : undefined
+                                    }
                                 >
                                     <div className="text-sm font-bold mb-4 text-center px-2 pt-4">{topic.title}</div>
                                     {/* <p className="text-gray-600 text-xs mb-4 text-center">{topic.description}</p> */}
                                     <div className="flex flex-col items-center w-full flex-1">
                                         <div className="flex flex-col items-center mb-4 flex-1">
-                                            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-100 text-blue-700 font-bold text-sm shadow">
+                                            <div className="w-8 h-8 flex items-center justify-center rounded-full border border-cyan-300 text-cyan-700 font-bold text-sm">
                                                 {topic.lastScore !== null && topic.lastScore !== undefined
                                                     ? `${parseFloat((topic.lastScore * 100).toFixed(1))}`
                                                     : "N/A"}
@@ -124,6 +135,16 @@ const TopicsCarousel: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <style jsx global>{`
+                                    .animate-press {
+                                        animation: pressAnim 150ms cubic-bezier(0.4,0,0.2,1);
+                                    }
+                                    @keyframes pressAnim {
+                                        0% { transform: scale(1); }
+                                        50% { transform: scale(0.95); }
+                                        100% { transform: scale(1); }
+                                    }
+                                `}</style>
                             </div>
                         );
                     })}
