@@ -15,7 +15,11 @@ import { GetTopicsResponse, TomeAPI } from "@/api/TomeAPI";
  * Use tailwind for styling.
  * Use TomeAPI to fetch the topics with the getTopics() method.
  */
-const TopicsCarousel: React.FC = () => {
+interface TopicsCarouselProps {
+    onCentralCardClick?: (topic: Topic) => void;
+}
+
+const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) => {
     const [topics, setTopics] = useState<Topic[]>([]);
     const [loading, setLoading] = useState(true);
     const [current, setCurrent] = useState(0);
@@ -109,6 +113,9 @@ const TopicsCarousel: React.FC = () => {
                                         isCenter
                                             ? () => {
                                                 setClicked(true);
+                                                if (onCentralCardClick) {
+                                                    onCentralCardClick(topic);
+                                                }
                                                 setTimeout(() => setClicked(false), 150);
                                             }
                                             : undefined
@@ -117,7 +124,7 @@ const TopicsCarousel: React.FC = () => {
                                     <div className="text-sm font-bold mb-4 text-center px-2 pt-4">{topic.title}</div>
                                     {/* <p className="text-gray-600 text-xs mb-4 text-center">{topic.description}</p> */}
                                     <div className="flex flex-col items-center w-full flex-1">
-                                        <div className="flex flex-col items-center mb-4 flex-1">
+                                        <div className="flex flex-col items-center mb-2 flex-1">
                                             <div className="w-8 h-8 flex items-center justify-center rounded-full border border-cyan-300 text-cyan-700 font-bold text-sm">
                                                 {topic.lastScore !== null && topic.lastScore !== undefined
                                                     ? `${parseFloat((topic.lastScore * 100).toFixed(1))}`
@@ -131,6 +138,11 @@ const TopicsCarousel: React.FC = () => {
                                                         month: "short",
                                                     })
                                                     : "Never"}
+                                            </span>
+                                        </div>
+                                        <div className="flex w-full justify-end items-end pr-3 pb-2 mt-auto">
+                                            <span className="bg-cyan-200 text-cyan-800 text-2xs font-semibold rounded-full px-2 py-[2px] shadow-sm">
+                                                {idx + 1} / {topics.length}
                                             </span>
                                         </div>
                                     </div>

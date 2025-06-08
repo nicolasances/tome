@@ -5,6 +5,9 @@ import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
 import FlashCardsSession from "./ui/complex/FlashCardsSession";
 import TopicsCarousel from "./ui/complex/TopicsCarousel";
+import RoundButton from "./ui/buttons/RoundButton";
+import CiakSVG from "./ui/graphics/icons/Ciak";
+import SwordSVG from "./ui/graphics/icons/Sword";
 
 export default function Home() {
 
@@ -80,9 +83,10 @@ export default function Home() {
 
         {/* <FlashCardsSession /> */}
         <TopicsCarousel />
-        
-
+        <div className="flex justify-center">
+          <RoundButton icon={<SwordSVG />} onClick={() => { }} size="m" />
+        </div>
       </div>
-    </div>
+    </div >
   );
 }
