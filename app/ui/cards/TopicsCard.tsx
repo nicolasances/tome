@@ -120,7 +120,7 @@ function TopicItem({ topic, memLevel, index, onClick }: { topic: Topic, memLevel
                 </div>
                 <div className="flex flex-col flex-1">
                     <div className="text-lg">{topic.title}</div>
-                    <div className="text-sm"><b>{topic.sections.length}</b> sections</div>
+                    {/* <div className="text-sm"><b>{topic.sections.length}</b> sections</div> */}
                 </div>
                 <div className="flex md:hidden group-hover:flex items-center mx-4">
                     {showDetails && <ExpandButton expanded={showDetails} onClick={() => { setShowDetails(!showDetails) }} />}
