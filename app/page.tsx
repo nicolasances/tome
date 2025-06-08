@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
 import FlashCardsSession from "./ui/complex/FlashCardsSession";
+import TopicsCarousel from "./ui/complex/TopicsCarousel";
 
 export default function Home() {
 
@@ -75,9 +76,11 @@ export default function Home() {
   return (
     <div>
 
-      <div className="app-content px-8">
+      <div className="app-content px-4">
 
-        <FlashCardsSession />
+        {/* <FlashCardsSession /> */}
+        <TopicsCarousel />
+        
 
       </div>
     </div>

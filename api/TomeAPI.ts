@@ -110,7 +110,18 @@ export class TomeAPI {
      */
     async getTopics(): Promise<GetTopicsResponse> {
 
-        return (await new TotoAPI().fetch('toto-ms-tome-agent', `/topics`, null, true)).json()
+        return {
+            topics: [
+                { title: 'The Bad Popes', code: 'bad-popes', description: 'A topic about the bad popes in history.', lastReviewedOn: '2023-10-01', flashcardsCount: 22, lastScore: 18/22, blog_url: '' },
+                { title: 'History of Rome', code: 'history-of-rome', description: 'A topic about the history of Rome.', lastReviewedOn: '2023-10-02', flashcardsCount: 15, lastScore: 12/15, blog_url: '' },
+                { title: 'Byzantine Empire', code: 'byzantine-empire', description: 'A topic about the Byzantine Empire.', lastReviewedOn: '2023-10-03', flashcardsCount: 30, lastScore: 25/30, blog_url: '' },
+                { title: 'The Crusades', code: 'the-crusades', description: 'A topic about the Crusades.', lastReviewedOn: '2023-10-04', flashcardsCount: 18, lastScore: 15/18, blog_url: '' },
+                { title: 'Charlemagne', code: 'charlemagne', description: 'A topic about Charlemagne and his empire.', lastReviewedOn: '2023-10-05', flashcardsCount: 20, lastScore: 17/20, blog_url: '' },
+                { title: 'Cortes', code: 'cortes', description: 'A topic about Hernán Cortés and the conquest of the Aztec Empire.', lastReviewedOn: '2023-10-06', flashcardsCount: 25, lastScore: 20/25, blog_url: '' },
+            ]
+        }
+
+        // return (await new TotoAPI().fetch('toto-ms-tome-agent', `/topics`, null, true)).json()
 
     }
 

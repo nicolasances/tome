@@ -10,6 +10,8 @@ export default {
 	theme: {
 		extend: {
 			scale: {
+				80: '0.80',
+				85: '0.85',
 				98: '0.98',
 			},
 			transitionDuration: {
