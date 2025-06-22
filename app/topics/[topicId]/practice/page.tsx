@@ -36,7 +36,7 @@ export default function PracticeTopicPage() {
                 </div>
             </div>
             <div className="mt-4 flex justify-center text-2xl">{topic.name}</div>
-            <div className="mt-8 flex justify-center">
+            <div className="flex justify-center">
                 <FlashCardsSession topicId={String(params.topicId)}/>
             </div>
         </div>
