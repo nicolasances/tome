@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Topic } from "@/model/Topic";
-import { GetTopicsResponse, TomeAPI } from "@/api/TomeAPI";
+import { GetTopicsResponse, TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 
 /**
  * The TopicsCarousel component displays a carousel of topics. 
@@ -26,10 +25,12 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
     const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
-        new TomeAPI().getTopics().then((data: GetTopicsResponse) => {
+
+        new TomeTopicsAPI().getTopics().then((data: GetTopicsResponse) => {
             setTopics(data.topics);
             setLoading(false);
         });
+
     }, []);
 
     const settings = {
@@ -90,7 +91,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                             (topics.length < 3 && idx === 1);
 
                         return (
-                            <div key={topic.code} className="px-[1px]">
+                            <div key={topic.id} className="px-[1px]">
                                 <div
                                     className={`
                                         transition-all duration-200
@@ -121,7 +122,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                             : undefined
                                     }
                                 >
-                                    <div className="text-sm font-bold mb-4 text-center px-2 pt-4">{topic.title}</div>
+                                    <div className="text-sm font-bold mb-4 text-center px-2 pt-4">{topic.name}</div>
                                     {/* <p className="text-gray-600 text-xs mb-4 text-center">{topic.description}</p> */}
                                     <div className="flex flex-col items-center w-full flex-1">
                                         <div className="flex flex-col items-center mb-2 flex-1">

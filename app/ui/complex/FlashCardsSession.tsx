@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FlashCard, TomeFlashAPI } from '@/api/TomeFlashAPI';
+import { FlashCard, TomeFlashcardsAPI } from '@/api/TomeFlashcardsAPI';
 import { FlashCard as FlashCardWidget } from '../cards/FlashCard';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -35,7 +35,7 @@ const FlashCardsSession: React.FC = () => {
     useEffect(() => {
         const fetchCards = async () => {
             setIsLoading(true);
-            const { cards } = await new TomeFlashAPI().getFlashCards('');
+            const { cards } = await new TomeFlashcardsAPI().getFlashCards('');
             setCards(cards);
             setIsLoading(false);
         };

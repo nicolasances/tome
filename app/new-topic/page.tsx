@@ -32,7 +32,7 @@ export default function NewTopic() {
     }
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start">
+        <div className="flex flex-1 flex-col items-stretch justify-start px-4">
 
             <div className="flex-1 app-content">
 

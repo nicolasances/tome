@@ -6,10 +6,13 @@ import { AuthAPI } from "@/api/AuthAPI";
 import TopicsCarousel from "./ui/complex/TopicsCarousel";
 import RoundButton from "./ui/buttons/RoundButton";
 import LampSVG from "./ui/graphics/icons/Lamp";
+import Add from "./ui/graphics/icons/Add";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
+  const router = useRouter();
 
   /**
    * Verifies if the user is authenticated
@@ -81,8 +84,9 @@ export default function Home() {
 
         {/* <FlashCardsSession /> */}
         <TopicsCarousel />
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center space-x-2">
           <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
+          <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />
         </div>
       </div>
     </div >
