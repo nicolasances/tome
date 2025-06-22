@@ -8,6 +8,7 @@ import RoundButton from "./ui/buttons/RoundButton";
 import LampSVG from "./ui/graphics/icons/Lamp";
 import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
+import { Topic } from "@/api/TomeTopicsAPI";
 
 export default function Home() {
 
@@ -83,7 +84,7 @@ export default function Home() {
       <div className="app-content px-4">
 
         {/* <FlashCardsSession /> */}
-        <TopicsCarousel />
+        <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
         <div className="flex justify-center items-center space-x-2">
           <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
           <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />

@@ -1,0 +1,46 @@
+'use client'
+
+import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import LampSVG from "../../ui/graphics/icons/Lamp";
+import RoundButton from "@/app/ui/buttons/RoundButton";
+import moment from "moment";
+
+
+export default function TopicDetailPage() {
+
+    const router = useRouter();
+    const params = useParams()
+
+    const [topic, setTopic] = useState<Topic>()
+
+    /**
+     * Load the topic 
+     */
+    const loadTopic = async () => {
+
+        const topic = await new TomeTopicsAPI().getTopic(String(params.topicId));
+
+        setTopic(topic);
+    }
+
+    useEffect(() => { loadTopic() }, [])
+
+    if (!topic) return <></>
+
+    return (
+        <div className="flex flex-1 flex-col items-stretch justify-start px-4">
+            <div className="flex">
+                <div className="flex-1"></div>
+                <div className="text-sm bg-cyan-200 rounded-full px-2">
+                    {moment(topic.createdOn, 'YYYYMMDD').format('DD/MM/YYYY')}
+                </div>
+            </div>
+            <div className="mt-4 flex justify-center text-2xl">{topic.name}</div>
+            <div className="mt-8 flex justify-center">
+                <RoundButton icon={<LampSVG />} onClick={() => { router.push(`${params.topicId}/practice`) }} size="m" />
+            </div>
+        </div>
+    )
+}

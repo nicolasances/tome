@@ -22,5 +22,5 @@ export interface FlashCard {
 }
 
 export interface GetFlashCardsResponse {
-    cards: FlashCard[];
+    flashcards: FlashCard[];
 }

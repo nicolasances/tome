@@ -25,7 +25,8 @@ import 'slick-carousel/slick/slick-theme.css';
  * Make sure you handle the flashcard widget interface: interface FlashCardProps { question: string; answers: string[]; correctAnswerIndex: number; onAnswerSelect: (isCorrect: boolean) => void; tag: string; cardNumber: number; totalCards: number;}
  * 
  */
-const FlashCardsSession: React.FC = () => {
+const FlashCardsSession: React.FC<{ topicId: string }> = ({ topicId }) => {
+
     const [cards, setCards] = useState<FlashCard[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
@@ -33,10 +34,17 @@ const FlashCardsSession: React.FC = () => {
     const sliderRef = useRef<Slider>(null);
 
     useEffect(() => {
+        
         const fetchCards = async () => {
+            
             setIsLoading(true);
-            const { cards } = await new TomeFlashcardsAPI().getFlashCards('');
-            setCards(cards);
+            
+            const { flashcards } = await new TomeFlashcardsAPI().getFlashCards(topicId);
+
+            console.log(flashcards);
+            
+            
+            setCards(flashcards);
             setIsLoading(false);
         };
         fetchCards();
@@ -75,7 +83,7 @@ const FlashCardsSession: React.FC = () => {
         );
     }
 
-    if (!cards.length) {
+    if (!cards || !cards.length) {
         return (
             <div className="flex items-center justify-center h-64">
                 <span className="text-gray-500">No flashcards available.</span>
@@ -90,8 +98,8 @@ const FlashCardsSession: React.FC = () => {
                     <div key={idx} className="px-2">
                         <FlashCardWidget
                             question={card.question}
-                            answers={card.answers}
-                            correctAnswerIndex={card.correctAnswerIndex}
+                            answers={card.options}
+                            correctAnswerIndex={card.rightAnswerIndex}
                             onAnswerSelect={handleAnswerSelect}
                             tag={card.tag}
                             cardNumber={idx + 1}

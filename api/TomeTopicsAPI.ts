@@ -8,7 +8,18 @@ export class TomeTopicsAPI {
     async getTopics(): Promise<GetTopicsResponse> {
 
         return (await new TotoAPI().fetch('tome-ms-topics', '/topics', null)).json()
-
+        
+    }
+    
+    /**
+     * Finds the topic with the given id
+     * 
+     * @param id the id of the topic
+     * @returns the Topic
+     */
+    async getTopic(id: string): Promise<Topic> {
+        
+        return (await new TotoAPI().fetch('tome-ms-topics', `/topics/${id}`, null)).json()
     }
 
 
