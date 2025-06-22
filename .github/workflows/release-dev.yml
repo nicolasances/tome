@@ -31,7 +31,7 @@ jobs:
         export PACKAGE_NAME=$(cat package.json | grep name | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')
         echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
         echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-        echo "${{ vars.TOME_FLASHCARDS_API_ENDPOINT }} "
+        echo "${{ vars.GCP_PID }} "
 
     - name: Build Docker image
       run: |
