@@ -31,8 +31,7 @@ jobs:
         export PACKAGE_NAME=$(cat package.json | grep name | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')
         echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
         echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-        echo ${{ secrets.TOME_FLASHCARDS_API_ENDPOINT }} >> $TOME_FLASHCARDS_API_ENDPOINT
-        echo $TOME_FLASHCARDS_API_ENDPOINT
+        echo ${{ env.TOME_FLASHCARDS_API_ENDPOINT }} 
 
     - name: Build Docker image
       run: |
@@ -40,7 +39,7 @@ jobs:
         --build-arg AUTH_API_ENDPOINT=${{ secrets.AUTH_API_ENDPOINT }} \
         --build-arg AWS_TOTO_API_ENDPOINT=${{ secrets.AWS_TOTO_API_ENDPOINT }} \
         --build-arg TOME_FLASHCARDS_API_ENDPOINT=${{ secrets.TOME_FLASHCARDS_API_ENDPOINT }} \
-        --build-arg TOME_TOPICS_API_ENDPOINT=${{ secrets.TOME_TOPICS_API_ENDPOINT }} \
+        --build-arg TOME_TOPICS_API_ENDPOINT=${{ env.TOME_TOPICS_API_ENDPOINT }} \
         --build-arg GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
         . -t europe-west1-docker.pkg.dev/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
  
