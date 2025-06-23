@@ -9,6 +9,7 @@ import LampSVG from "./ui/graphics/icons/Lamp";
 import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
 import { Topic } from "@/api/TomeTopicsAPI";
+import Header from "./ui/layout/Header";
 
 export default function Home() {
 
@@ -80,9 +81,8 @@ export default function Home() {
 
   return (
     <div>
-
       <div className="app-content px-4">
-
+        <Header />
         {/* <FlashCardsSession /> */}
         <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
         <div className="flex justify-center items-center space-x-2">

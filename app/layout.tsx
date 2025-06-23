@@ -52,9 +52,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
         </div>
         <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8">
-          <div className="">
-            <Header />
-          </div>
           <TomeContextProvider>
             {children}
           </TomeContextProvider>

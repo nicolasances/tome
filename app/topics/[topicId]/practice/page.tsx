@@ -29,15 +29,14 @@ export default function PracticeTopicPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4">
-            <div className="flex">
-                <div className="flex-1"></div>
+            <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
+            <div className="flex justify-center mt-2">
                 <div className="text-sm bg-cyan-200 rounded-full px-2">
                     {moment(topic.createdOn, 'YYYYMMDD').format('DD/MM/YYYY')}
                 </div>
             </div>
-            <div className="mt-4 flex justify-center text-2xl">{topic.name}</div>
             <div className="flex justify-center">
-                <FlashCardsSession topicId={String(params.topicId)}/>
+                <FlashCardsSession topicId={String(params.topicId)} />
             </div>
         </div>
     )

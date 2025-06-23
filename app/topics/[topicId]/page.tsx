@@ -31,13 +31,12 @@ export default function TopicDetailPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4">
-            <div className="flex">
-                <div className="flex-1"></div>
+            <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
+            <div className="flex justify-center mt-2">
                 <div className="text-sm bg-cyan-200 rounded-full px-2">
                     {moment(topic.createdOn, 'YYYYMMDD').format('DD/MM/YYYY')}
                 </div>
             </div>
-            <div className="mt-4 flex justify-center text-2xl">{topic.name}</div>
             <div className="mt-8 flex justify-center">
                 <RoundButton icon={<LampSVG />} onClick={() => { router.push(`${params.topicId}/practice`) }} size="m" />
             </div>
