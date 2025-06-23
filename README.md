@@ -4,11 +4,22 @@ Tome is a web app to help memorize information read.
 
 Tome is based on a **Knowlege Base**, that is built upon a series of blogs, articles, books, and other documents that the user has read. 
 
-Tome gamifies the memorization of those topics, by leveraging the following concepts: 
-* [Topic Review](./docs/topic-review.md): Q&As for the user to review topics of the Knowledge Base. 
-* Other mechanisms to be defined.
+---
+## The Core Concepts
 
-Read more about: 
-* [Memorization Level](docs/mem-level.md) - how is the **Memorization Level** determined.
-* [Tome's Knowledge Base](docs/kb.md) - how is documentation stuctured withing tome.
-* [LLM Usage](https://github.com/nicolasances/ml-notebooks/blob/main/toto/tome.ipynb) in my Tome Notebook, where the experiments on how to use LLMs to support Tome are.
+Tome revoles around simple concepts: 
+
+1. Topic <br>
+A Topic is something you need to remember. <br>
+It can be a book, an article, anything.
+
+2. Flashcards <br>
+Flashcards are "memory cards". They are different types of card that are supposed to help the memorization of a Topic. <br>
+Examples could be cards with multiple options to choose from, fill-the-missing-text flashcards, timeline flashcards, etc. 
+
+3. Practice <br>
+A Practice is a session where the user reviews a topic. It can be the user going through a series of flashcards meant to accelerate memorization, etc. 
+<br>
+<br>
+
+![](./docs/drawings/model.drawio.svg)
