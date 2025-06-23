@@ -3,7 +3,7 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
 
-export function ProgressBar({ current, max, size }: { current: number, max: number, size?: string }) {
+export function ProgressBar({ current, max, size, hideNumber = false }: { current: number, max: number, size?: string, hideNumber?: boolean }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState(0);
 
@@ -69,7 +69,7 @@ export function ProgressBar({ current, max, size }: { current: number, max: numb
 
     return (
         <div className="w-full flex flex-row items-center">
-            {!size &&
+            {(!size && !hideNumber) && 
                 <div className='flex'>
                     <div className='text-lg px-2'>{current}<span className='text-sm'>/{max}</span></div>
                 </div>
