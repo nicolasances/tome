@@ -2,7 +2,6 @@
 
 import { Comfortaa as AppFont } from "next/font/google";
 import "./globals.css";
-import Header from "./ui/layout/Header";
 import { TomeContextProvider } from "@/context/TomeContext";
 
 // const geistSans = Geist({
