@@ -37,6 +37,9 @@ export default function TopicDetailPage() {
 
         const response = await new TomePracticeAPI().startPractice(String(params.topicId), "options")
 
+        console.log(response);
+        
+
         if (response && response.practiceId) { 
 
             router.push(`${params.topicId}/practice`)
