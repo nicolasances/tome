@@ -21,6 +21,7 @@ export default {
 				50: '50ms',
 			},
 			fontSize: {
+				"3xs": '4px',
 				"2xs": '6px',
 				xs: '8px',
 				sm: '10px',

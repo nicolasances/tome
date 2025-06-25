@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FlashCard, TomeFlashcardsAPI } from '@/api/TomeFlashcardsAPI';
 import { FlashCard as FlashCardWidget } from '../cards/FlashCard';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { TomePracticeAPI } from '@/api/TomePracticeAPI';
+import { PracticeFlashcard } from '@/model/PracticeFlashcard';
 
 
 /**
@@ -25,43 +26,76 @@ import 'slick-carousel/slick/slick-theme.css';
  * Make sure you handle the flashcard widget interface: interface FlashCardProps { question: string; answers: string[]; correctAnswerIndex: number; onAnswerSelect: (isCorrect: boolean) => void; tag: string; cardNumber: number; totalCards: number;}
  * 
  */
-const FlashCardsSession: React.FC<{ topicId: string }> = ({ topicId }) => {
+export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession: (stats: FlashcardSessionStats) => void }> = ({ practiceId, onFinishedSession }) => {
 
-    const [cards, setCards] = useState<FlashCard[]>([]);
+    const [cards, setCards] = useState<PracticeFlashcard[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const sliderRef = useRef<Slider>(null);
+    const [firstUnansweredIndex, setFirstUnansweredIndex] = useState<number | null>(null);
 
-    useEffect(() => {
-        
-        const fetchCards = async () => {
-            
-            setIsLoading(true);
-            
-            const { flashcards } = await new TomeFlashcardsAPI().getFlashCards(topicId);
+    /**
+     * Loads the flashcards for the given practiceId from the TomePracticeAPI.
+     */
+    const loadCards = async () => {
 
-            console.log(flashcards);
-            
-            
-            setCards(flashcards);
-            setIsLoading(false);
-        };
-        fetchCards();
-    }, []);
+        setIsLoading(true);
 
-    const handleAnswerSelect = (isCorrect: boolean) => {
+        const { flashcards } = await new TomePracticeAPI().getPracticeFlashcards(practiceId);
+
+        setCards(flashcards);
+
+        // Go through the flashcards and find the first one that has not been answered yet
+        const firstUnansweredIndex = flashcards.findIndex(card => card.correctlyAsnwerAt == null);
+
+        setFirstUnansweredIndex(firstUnansweredIndex);
+
+        setIsLoading(false);
+    };
+
+    /**
+     * Handles the answer selection by the user.
+     * 
+     * 1. Posts the answer through the TomePracticeAPI
+     * 2. Shows the next flashcard, if the answer is correct 
+     * 
+     * @param isCorrect Whether the answer is correct or not
+     * @param flashcardId the id of the flashcard
+     * @param selectedAnswerIndex the index of the answer selected by the user
+     */
+    const handleAnswerSelect = async (isCorrect: boolean, flashcardId: string, selectedAnswerIndex: number) => {
+
         if (isCorrect && !answeredCorrectly) {
+
             setAnsweredCorrectly(true);
+
+            // Wait a sec and move to the next flashcard
             setTimeout(() => {
+                
                 if (sliderRef.current && currentIndex < cards.length - 1) {
                     sliderRef.current.slickNext();
+                    setAnsweredCorrectly(false);
+                    setCurrentIndex((prev) => Math.min(prev + 1, cards.length - 1));
                 }
-                setCurrentIndex((prev) => Math.min(prev + 1, cards.length - 1));
-                setAnsweredCorrectly(false);
+                
             }, 1800);
         }
+
+        // 2. Meanwhile send the answer to the API
+        const response = await new TomePracticeAPI().answerFlashcard(practiceId, flashcardId, selectedAnswerIndex);
+
+        console.log(`Flashcard answered: ${flashcardId}, Correct: ${response.isCorrect}, Response:`, response);
+
+        if (response.finished) onFinishedSession({
+            score: response.score!, 
+            numCards: cards.length, 
+            numWrongAnswers: cards.filter(card => card.numWrongAnswers && card.numWrongAnswers > 0).length
+        })
+
     };
+
+    useEffect(() => { loadCards() }, []);
 
     const settings = {
         dots: false,
@@ -73,6 +107,7 @@ const FlashCardsSession: React.FC<{ topicId: string }> = ({ topicId }) => {
         swipe: false,
         draggable: false,
         beforeChange: (_: number, next: number) => setCurrentIndex(next),
+        initialSlide: firstUnansweredIndex !== null ? firstUnansweredIndex : 0,
     };
 
     if (isLoading) {
@@ -92,16 +127,16 @@ const FlashCardsSession: React.FC<{ topicId: string }> = ({ topicId }) => {
     }
 
     return (
-        <div className="w-full max-w-md mx-auto mt-8">
+        <div className="w-full max-w-md mx-auto">
             <Slider ref={sliderRef} {...settings}>
                 {cards.map((card, idx) => (
                     <div key={idx} className="px-2">
                         <FlashCardWidget
-                            question={card.question}
-                            answers={card.options}
-                            correctAnswerIndex={card.rightAnswerIndex}
-                            onAnswerSelect={handleAnswerSelect}
-                            tag={card.tag}
+                            question={card.originalFlashcard.question}
+                            answers={card.originalFlashcard.options}
+                            correctAnswerIndex={card.originalFlashcard.rightAnswerIndex}
+                            onAnswerSelect={(isCorrect, selectedAnswerIndex) => handleAnswerSelect(isCorrect, card.id!, selectedAnswerIndex)}
+                            tag="options"
                             cardNumber={idx + 1}
                             totalCards={cards.length}
                         />
@@ -112,4 +147,8 @@ const FlashCardsSession: React.FC<{ topicId: string }> = ({ topicId }) => {
     );
 };
 
-export default FlashCardsSession;
+export interface FlashcardSessionStats {
+    score: number; 
+    numCards: number;
+    numWrongAnswers: number;
+}

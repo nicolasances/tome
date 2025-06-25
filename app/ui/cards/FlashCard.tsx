@@ -25,7 +25,7 @@ interface FlashCardProps {
     question: string;
     answers: string[];
     correctAnswerIndex: number;
-    onAnswerSelect: (isCorrect: boolean) => void;
+    onAnswerSelect: (isCorrect: boolean, selectedAnswerIndex: number) => void;
     tag: string;
     cardNumber: number;
     totalCards: number;
@@ -41,7 +41,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correct
         setTimeout(() => setClickedIndex(null), 150); // Reset the clicked state after animation
         setSelectedAnswerIndex(index);
         const isCorrect = index === correctAnswerIndex;
-        onAnswerSelect(isCorrect);
+        onAnswerSelect(isCorrect, index);
 
         if (isCorrect) {
             setShowFireworks(true);
@@ -57,10 +57,10 @@ export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correct
             return `${baseClass} ${activeClass}`;
         }
         if (index === correctAnswerIndex && selectedAnswerIndex === correctAnswerIndex) {
-            return `p-2 mb-2 rounded bg-green-300 animate-fade-in ${activeClass}`;
+            return `p-2 mb-2 rounded bg-green-300 animate-fade-in text-base ${activeClass}`;
         }
         if (index === selectedAnswerIndex) {
-            return `p-2 mb-2 rounded bg-red-200 animate-fade-in ${activeClass}`;
+            return `p-2 mb-2 rounded bg-red-200 animate-fade-in text-base ${activeClass}`;
         }
         return `${baseClass} ${activeClass}`;
     };

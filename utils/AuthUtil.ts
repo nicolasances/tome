@@ -88,10 +88,26 @@ export function storeUser(user: AuthenticatedUser) {
 
 }
 
+function canUseCookiesOrStorage() {
+    try {
+        document.cookie = "cookietest=1";
+        const ret = document.cookie.indexOf("cookietest=") !== -1;
+        document.cookie = "cookietest=; expires=Thu, 01 Jan 1970 00:00:01 GMT";
+        return ret;
+    } catch {
+        return false;
+    }
+}
+
 /**
  * Sign-in using Google
  */
 export async function googleSignIn(): Promise<any> {
+
+    const cookiesEnabled = canUseCookiesOrStorage();
+
+    console.log(`Cookies enabled? [${cookiesEnabled}]`);
+
 
     return new Promise((success, failure) => {
 
@@ -103,7 +119,7 @@ export async function googleSignIn(): Promise<any> {
             (window as any).google.accounts.id.initialize({
 
                 client_id: googleClientID,
-                auto_select: true,
+                auto_select: false,
 
                 callback: (auth: any) => {
 
@@ -138,7 +154,13 @@ export async function googleSignIn(): Promise<any> {
                 }
             });
 
-            (window as any).google.accounts.id.prompt();
+            console.log("Google Login - about to prompt");
+
+            (window as any).google.accounts.id.prompt((notification: any) => {
+                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                    console.warn('Google prompt not shown:', notification.getNotDisplayedReason());
+                }
+            });
         }
         else {
             console.log("Google API not loaded... waiting..");
