@@ -6,12 +6,14 @@ export default function RoundButton({
     size,
     disabled,
     iconOnly,
+    loading,
 }: {
     icon: React.ReactNode;
     onClick: () => void;
     size?: "xs" | "s" | "m" | undefined;
     disabled?: boolean;
     iconOnly?: boolean;
+    loading?: boolean
 }) {
     const [pressed, setPressed] = useState(false);
 
@@ -27,24 +29,25 @@ export default function RoundButton({
     }
 
     const reactToClick = () => {
-        if (disabled) return;
+        if (disabled || loading) return;
         if (onClick) onClick();
     };
 
-    const baseClasses = `rounded-full ${buttonPadding} ${
-        iconOnly ? "" : "border-2"
-    } cursor-pointer transition-transform duration-100`;
+    const baseClasses = `rounded-full ${buttonPadding} ${iconOnly ? "" : "border-2"
+        } cursor-pointer transition-transform duration-100`;
     const enabledClasses = "border-lime-200";
-    const disabledClasses = "border-cyan-600 cursor-not-allowed";
+    const disabledClasses = disabled ? "border-cyan-600 cursor-not-allowed" : "border-transparent cursor-not-allowed";
 
     const iconClasses = `${iconSize} stroke-current fill-current`;
-    const iconColor = disabled
+    const iconColor = disabled || loading
         ? "text-cyan-600"
-        : "text-lime-200 group-hover:text-current";
+        :  "text-lime-200 group-hover:text-current";
+
+    const animatedCircleRadius = 15;
 
     return (
         <div
-            className={`${baseClasses} ${disabled ? disabledClasses : enabledClasses}`}
+            className={`${baseClasses} ${disabled || loading ? disabledClasses : enabledClasses}`}
             style={{
                 transform: pressed ? "scale(0.95)" : "scale(1)",
             }}
@@ -59,6 +62,40 @@ export default function RoundButton({
             aria-disabled={disabled}
         >
             <div className={`${iconClasses} ${iconColor}`}>{icon}</div>
+
+            {/* Looading animation */}
+            {loading && (
+                <svg
+                    className="absolute inset-0 w-full h-full"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    style={{ zIndex: 1 }}
+                >
+                    <circle
+                        cx="16"
+                        cy="16"
+                        r={animatedCircleRadius}
+                        stroke="#0891b2"
+                        strokeWidth="1"
+                        strokeDasharray={Math.PI * 2 * animatedCircleRadius}
+                        strokeDashoffset={0}
+                        strokeLinecap="round"
+                        style={{
+                            transition: "stroke-dashoffset 2s linear",
+                            animation: "fillCircle 2s linear infinite"
+                        }}
+                    />
+                    <style>
+                        {`
+                @keyframes fillCircle {
+                    0% { stroke-dashoffset: ${Math.PI * 2 * animatedCircleRadius}; }
+                    50% { stroke-dashoffset: 0; }
+                    100% { stroke-dashoffset: -${Math.PI * 2 * animatedCircleRadius}; }
+                }
+                `}
+                    </style>
+                </svg>
+            )}
         </div>
     );
 }

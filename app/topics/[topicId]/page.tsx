@@ -7,6 +7,7 @@ import LampSVG from "../../ui/graphics/icons/Lamp";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import moment from "moment";
 import { ProgressBar } from "@/app/ui/general/ProgressBar";
+import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 
 
 export default function TopicDetailPage() {
@@ -15,6 +16,7 @@ export default function TopicDetailPage() {
     const params = useParams()
 
     const [topic, setTopic] = useState<Topic>()
+    const [startingPractice, setStartingPractice] = useState<boolean>(false)
 
     /**
      * Load the topic 
@@ -24,6 +26,23 @@ export default function TopicDetailPage() {
         const topic = await new TomeTopicsAPI().getTopic(String(params.topicId));
 
         setTopic(topic);
+    }
+
+    /**
+     * Starts a practice on this topic
+     */
+    const startPractice = async () => {
+
+        setStartingPractice(true);
+
+        const response = await new TomePracticeAPI().startPractice(String(params.topicId), "options")
+
+        if (response && response.practiceId) { 
+
+            router.push(`${params.topicId}/practice`)
+            
+        }
+
     }
 
     useEffect(() => { loadTopic() }, [])
@@ -50,7 +69,7 @@ export default function TopicDetailPage() {
                 <ProgressBar hideNumber={true} current={12} max={100} />
             </div>
             <div className="mt-8 flex justify-center">
-                <RoundButton icon={<LampSVG />} onClick={() => { router.push(`${params.topicId}/practice`) }} size="m" />
+                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} />
             </div>
         </div>
     )
