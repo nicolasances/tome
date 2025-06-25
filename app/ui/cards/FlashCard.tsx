@@ -50,7 +50,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correct
     };
 
     const getAnswerClass = (index: number): string => {
-        const baseClass = "p-2 mb-2 rounded cursor-pointer bg-white hover:bg-cyan-200 transition-transform duration-20 ease-out";
+        const baseClass = "p-2 mb-2 rounded cursor-pointer bg-white hover:bg-cyan-200 transition-transform duration-20 ease-out text-base";
         const activeClass = clickedIndex === index ? "scale-98" : "";
 
         if (selectedAnswerIndex === null) {
@@ -80,7 +80,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correct
                     {cardNumber}/{totalCards}
                 </span>
             </div>
-            <div className="mb-4 text-lg font-bold">{question}</div>
+            <div className="mb-4 text-base font-bold">{question}</div>
             <ul className="list-none p-0 m-0">
                 {answers.map((answer, index) => (
                     <li

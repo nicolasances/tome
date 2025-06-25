@@ -6,7 +6,7 @@ export class TomePracticeAPI {
     /**
      * Starts a practice
      */
-    async startPractice(topicId: string, type: PracticeType): Promise<StartPracticeResponse> {
+    async startPractice(topicId: string, type: PracticeType): Promise<StartPracticeResponse | TotoError> {
 
         return (await new TotoAPI().fetch('tome-ms-practice', `/practices`, {
             method: 'POST',
@@ -30,4 +30,10 @@ interface StartPracticeResponse {
     practiceId: string;
     flashcardsInsertedCount: number;
 
+}
+
+interface TotoError {
+    code: number
+    message: string 
+    subcode: string
 }
