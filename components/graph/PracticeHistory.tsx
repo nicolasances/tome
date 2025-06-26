@@ -21,6 +21,7 @@ export function PracticeHistoryGraph({ historicalPractices }: { historicalPracti
     const height = 300;
     const margin = { top: 40, right: 10, bottom: 40, left: 10 };
 
+
     useEffect(() => {
         function handleResize() {
             if (containerRef.current) {
@@ -112,7 +113,7 @@ export function PracticeHistoryGraph({ historicalPractices }: { historicalPracti
             .attr("fill", "#0e7490") // Tailwind's cyan-700 hex value
             .attr("font-size", 10)
             .attr("font-weight", "bold")
-            .text(d => d.score);
+            .text(d => d.score.toFixed(0));
 
         // Labels for local minima
         svg.selectAll("text.local-min-label")
@@ -126,12 +127,12 @@ export function PracticeHistoryGraph({ historicalPractices }: { historicalPracti
             .attr("fill", "#0e7490") // Tailwind's cyan-700 hex value
             .attr("font-size", 10)
             .attr("font-weight", "bold")
-            .text(d => d.score);
+            .text(d => d.score.toFixed(0));
 
     }, [historicalPractices, width, height]);
 
     if (historicalPractices.length < 2) return (
-        <div ref={containerRef}  className="flex justify-center items-center text-gray-700 uppercase text-base" style={{ width: "100%", height: 300 }}>
+        <div ref={containerRef} className="flex justify-center items-center text-gray-700 uppercase text-base" style={{ width: "100%", height: 300 }}>
             Not enough data yet
         </div>
     )

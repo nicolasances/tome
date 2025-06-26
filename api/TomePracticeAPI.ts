@@ -45,6 +45,23 @@ export class TomePracticeAPI {
     }
 
     /**
+     * Returns the latest finished practice for a topic
+     * 
+     * @param topicId the id of the topic to get the latest finished practice for
+     * @returns the latest finished practice for the topic, or null if none exists
+     */
+    async getLatestFinishedPractice(topicId: string): Promise<Practice | null> {
+        return (await new TotoAPI().fetch('tome-ms-practice', `/topics/${topicId}/practices/latestFinished`)).json()
+    }
+
+    /**
+     * Load all the historical finished practices for a topic
+     */
+    async getHistoricalPractices(topicId: string): Promise<GetHistoricalPracticesReponse> {
+        return (await new TotoAPI().fetch('tome-ms-practice', `/topics/${topicId}/practices?finished=true`)).json();
+    }
+
+    /**
      * Posts the answer to a flashcard
      */
     async answerFlashcard(practiceId: string, flashcardId: string, selectedAnswerIndex: number): Promise<AnswerFlashcardResponse> {
@@ -61,6 +78,10 @@ export class TomePracticeAPI {
     }
 
 
+}
+
+interface GetHistoricalPracticesReponse {
+    practices: Practice[];
 }
 
 interface AnswerFlashcardResponse {

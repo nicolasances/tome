@@ -65,7 +65,7 @@ export function ProgressBar({ current, max, size, hideNumber = false }: { curren
 
     useEffect(() => {
         drawProgress();
-    }, [containerWidth]);
+    }, [containerWidth, current]);
 
     return (
         <div className="w-full flex flex-row items-center">
