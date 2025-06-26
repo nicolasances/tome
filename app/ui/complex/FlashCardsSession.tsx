@@ -89,8 +89,9 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
 
         if (response.finished) onFinishedSession({
             score: response.score!, 
-            numCards: cards.length, 
-            numWrongAnswers: cards.filter(card => card.numWrongAnswers && card.numWrongAnswers > 0).length
+            numCards: response.stats!.numCards, 
+            averageAttempts: response.stats!.averageAttempts, 
+            totalWrongAnswers: response.stats!.totalWrongAnswers
         })
 
     };
@@ -150,5 +151,6 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
 export interface FlashcardSessionStats {
     score: number; 
     numCards: number;
-    numWrongAnswers: number;
+    averageAttempts: number;
+    totalWrongAnswers: number;
 }

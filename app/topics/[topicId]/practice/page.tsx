@@ -20,8 +20,9 @@ export default function PracticeTopicPage() {
     const [finished, setFinished] = useState(false);
     const [endOfPracticeStats, setEndOfPracticeStats] = useState<FlashcardSessionStats>({
         score: 35, 
-        numCards: 46, 
-        numWrongAnswers: 14
+        numCards: 46,
+        averageAttempts: 1.4, 
+        totalWrongAnswers: 23 
     });
     
 
