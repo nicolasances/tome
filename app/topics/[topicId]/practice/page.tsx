@@ -17,7 +17,7 @@ export default function PracticeTopicPage() {
 
     const [topic, setTopic] = useState<Topic>()
     const [practice, setPractice] = useState<Practice>() // TODO: Define the type for practice
-    const [finished, setFinished] = useState(true);
+    const [finished, setFinished] = useState(false);
     const [endOfPracticeStats, setEndOfPracticeStats] = useState<FlashcardSessionStats>({
         score: 35, 
         numCards: 46, 
