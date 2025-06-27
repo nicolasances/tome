@@ -10,10 +10,16 @@ import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
 import { Topic } from "@/api/TomeTopicsAPI";
 import Header from "./ui/layout/Header";
+import { SegmentedBar } from "@/components/widgets/SegmentedBar";
+import { Practice } from "@/model/Practice";
+import { WeekPractice, WeekPractices } from "@/components/widgets/WeekPracticesBar";
+import { TomePracticeAPI } from "@/api/TomePracticeAPI";
+import moment from "moment";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
+  const [weekPractices, setWeekPractices] = useState<Practice[]>([]);
   const router = useRouter();
 
   /**
@@ -72,24 +78,40 @@ export default function Home() {
 
   }
 
+  const loadData = async () => {
+
+    if (loginNeeded === true) return;
+
+    // Load the practices for the current week
+    let beginningOfTheWeek = new Date();
+    beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
+
+    const result = await new TomePracticeAPI().getPractices({startedFrom: moment(beginningOfTheWeek).format("YYYYMMDD")})
+
+    setWeekPractices(result.practices)
+  }
+
   useEffect(() => { verifyAuthentication() }, [])
   useEffect(() => { triggerSignIn() }, [loginNeeded])
+  useEffect(() => { loadData() }, [loginNeeded]);
 
   // Empty screen while Google SignIn is loading
-  if (loginNeeded == null) return (<div></div>)
-  if (loginNeeded === true) return (<div></div>)
+  if (loginNeeded == null) return (<div></div>);
+  if (loginNeeded === true) return (<div></div>);
 
   return (
-    <div>
-      <div className="app-content px-4">
-        <Header />
-        {/* <FlashCardsSession /> */}
-        <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
-        <div className="flex justify-center items-center space-x-2">
-          <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
-          <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />
-        </div>
+    <div className="p-4 h-full flex flex-col">
+      <Header />
+      {/* <FlashCardsSession /> */}
+      <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
+      <div className="flex justify-center items-center space-x-2">
+        <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
+        <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />
       </div>
-    </div >
+      <div className="flex-1"></div>
+      <div className="">
+        <WeekPractices weekPractices={WeekPractice.generateWeekPracticeFromHistory(weekPractices)} />
+      </div>
+    </div>
   );
 }

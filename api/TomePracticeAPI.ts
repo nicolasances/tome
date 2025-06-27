@@ -62,6 +62,13 @@ export class TomePracticeAPI {
     }
 
     /**
+     * Load all the practices
+     */
+    async getPractices({startedFrom}: {startedFrom?: string}): Promise<GetHistoricalPracticesReponse> {
+        return (await new TotoAPI().fetch('tome-ms-practice', `/practices?startedFrom=${startedFrom}`)).json();
+    }
+
+    /**
      * Posts the answer to a flashcard
      */
     async answerFlashcard(practiceId: string, flashcardId: string, selectedAnswerIndex: number): Promise<AnswerFlashcardResponse> {
