@@ -159,9 +159,9 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
 
 function TopicProgressBar({ current, max }: { current: number, max: number }) {
 
-    let height = 10;
-    let iconHeight = 14;
-    let barHeight = 12;
+    const height = 10;
+    const iconHeight = 14;
+    // let barHeight = 12;
     const targetProgress = (current / max) * 100; // Set target percentage (0 to 100)
 
     return (

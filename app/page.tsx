@@ -82,7 +82,7 @@ export default function Home() {
     if (loginNeeded === true) return;
 
     // Load the practices for the current week
-    let beginningOfTheWeek = new Date();
+    const beginningOfTheWeek = new Date();
     beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
 
     const result = await new TomePracticeAPI().getPractices({startedFrom: moment(beginningOfTheWeek).format("YYYYMMDD")})

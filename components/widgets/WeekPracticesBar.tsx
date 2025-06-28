@@ -67,7 +67,7 @@ export function WeekPractices({ weekPractices }: { weekPractices: WeekPractice[]
                             }
                             style={{ transition: "all 0.3s" }}
                         />
-                        {/* Number of practices inside bar, bottom-aligned */}}
+                        {/* Number of practices inside bar, bottom-aligned */}
                         {wp.practicesDone > 0 && (
                             <text
                                 x={barWidth * 0.35}
