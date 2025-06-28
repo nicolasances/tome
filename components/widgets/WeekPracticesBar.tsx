@@ -58,10 +58,16 @@ export function WeekPractices({ weekPractices }: { weekPractices: WeekPractice[]
                             width={barWidth * 0.7}
                             height={barHeight}
                             rx={4}
-                            fill={twColors.cyan[700]}
+                            fill={
+                                wp.averageDayScore < 50
+                                    ? twColors.cyan[600]
+                                    : wp.averageDayScore < 70
+                                        ? twColors.cyan[700]
+                                        : twColors.cyan[800]
+                            }
                             style={{ transition: "all 0.3s" }}
                         />
-                        {/* Number of practices inside bar, bottom-aligned */}
+                        {/* Number of practices inside bar, bottom-aligned */}}
                         {wp.practicesDone > 0 && (
                             <text
                                 x={barWidth * 0.35}
@@ -88,6 +94,20 @@ export function WeekPractices({ weekPractices }: { weekPractices: WeekPractice[]
                             style={{ userSelect: "none" }}
                         >
                             {DAY_LABELS[i]}
+                        </text>
+
+                        {/* Average score on top of the bar */}
+                        <text
+                            x={barWidth * 0.35}
+                            y={y - 6}
+                            textAnchor="middle"
+                            fontSize={11}
+                            fill={twColors.cyan[700]}
+                            fontWeight="bold"
+                            pointerEvents="none"
+                            style={{ userSelect: "none" }}
+                        >
+                            {wp.averageDayScore > 0 ? wp.averageDayScore.toFixed(1) : ""}
                         </text>
                     </g>
                 );
@@ -136,10 +156,10 @@ export class WeekPractice {
             const practicesDone = history.filter(practice => {
 
                 // You can say that today you have practice if the practice started on the date or finished on the date. 
-                const practiceDate = moment(practice.startedOn, "YYYYMMDD").toDate();
+                // const practiceDate = moment(practice.startedOn, "YYYYMMDD").toDate();
                 const practiceEndDate = moment(practice.finishedOn, "YYYYMMDD").toDate();
 
-                return (practiceDate.toDateString() === date.toDateString() || practiceEndDate.toDateString() === date.toDateString())
+                return (practiceEndDate.toDateString() === date.toDateString())
 
             });
 
