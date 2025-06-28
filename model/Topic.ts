@@ -6,6 +6,7 @@ export interface Topic {
     lastReviewedOn: string
     lastScore: number
     blog_url: string
+    lastPracticed: string // format YYYYMMDD
 }
 
 export interface TopicSection {

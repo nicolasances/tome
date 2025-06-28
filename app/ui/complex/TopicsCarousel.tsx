@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GetTopicsResponse, TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import LeafSVG from "../graphics/icons/LeafSVG";
+import { calculateFreshness } from "@/utils/TopicUtil";
 
 /**
  * The TopicsCarousel component displays a carousel of topics. 
@@ -87,9 +88,11 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
             <div className="overflow-visible">
                 <Slider {...settings}>
                     {topics.map((topic, idx) => {
-                        const isCenter =
-                            idx === current ||
-                            (topics.length < 3 && idx === 1);
+                        
+                        const isCenter = idx === current || (topics.length < 3 && idx === 1);
+
+                        // Calculate the "freshness" of the topic, based on the last practice date
+                        const freshness = calculateFreshness(topic);
 
                         return (
                             <div key={topic.id} className="px-[1px] py-8">
@@ -125,7 +128,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                     <div className="text-base text-cyan-800 font-bold mb-4 text-center px-2 pt-4">{topic.name}</div>
                                     {/* <p className="text-cyan-700 text-xs mb-4 text-center">{topic.description}</p> */}
                                     <div className="flex w-full px-2 flex-1 items-end">
-                                        <TopicProgressBar current={Math.random() * 100 + 1} max={100} />
+                                        <TopicProgressBar current={freshness} max={100} />
                                     </div>
                                     <div className="flex flex-col items-center w-full flex-1">
                                         <div className="flex w-full justify-end items-end pr-3 pb-2 mt-auto">

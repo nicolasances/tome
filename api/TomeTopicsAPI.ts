@@ -32,7 +32,7 @@ export interface Topic {
     createdOn: string; // Date in format YYYYMMDD
     user: string; // User email
     lastScore?: number;
-    lastReviewedOn?: string;
+    lastPracticed?: string;
 }
 
 export interface GetTopicsResponse {

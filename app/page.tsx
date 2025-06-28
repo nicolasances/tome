@@ -100,14 +100,18 @@ export default function Home() {
 
   return (
     <div className="p-4 h-full flex flex-col">
+      
       <Header />
-      {/* <FlashCardsSession /> */}
+      
       <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
+      
       <div className="flex justify-center items-center space-x-2">
         <RoundButton icon={<LampSVG />} onClick={() => { }} size="s" />
         <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />
       </div>
+      
       <div className="flex-1"></div>
+      
       <div className="">
         <WeekPractices weekPractices={WeekPractice.generateWeekPracticeFromHistory(weekPractices)} />
       </div>
