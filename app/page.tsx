@@ -10,7 +10,6 @@ import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
 import { Topic } from "@/api/TomeTopicsAPI";
 import Header from "./ui/layout/Header";
-import { SegmentedBar } from "@/components/widgets/SegmentedBar";
 import { Practice } from "@/model/Practice";
 import { WeekPractice, WeekPractices } from "@/components/widgets/WeekPracticesBar";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";

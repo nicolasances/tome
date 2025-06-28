@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GetTopicsResponse, TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
+import LeafSVG from "../graphics/icons/LeafSVG";
 
 /**
  * The TopicsCarousel component displays a carousel of topics. 
@@ -96,14 +97,13 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                     className={`
                                         transition-all duration-200
                                         ${isCenter
-                                            ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer
-                                               ${clicked ? "active:scale-95 animate-press" : ""}`
+                                            ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer ${clicked ? "active:scale-95 animate-press" : ""}`
                                             : "scale-85 bg-gray-100 border border-gray-200 opacity-80"
                                         }
                                         rounded-lg flex flex-col items-center
                                     `}
                                     style={{
-                                        minHeight: "140px",
+                                        minHeight: "120px",
                                         maxWidth: "260px",
                                         margin: "0 auto",
                                         boxShadow: isCenter
@@ -124,23 +124,10 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                 >
                                     <div className="text-sm font-bold mb-4 text-center px-2 pt-4">{topic.name}</div>
                                     {/* <p className="text-gray-600 text-xs mb-4 text-center">{topic.description}</p> */}
+                                    <div className="flex w-full px-2 flex-1 items-end">
+                                        <TopicProgressBar current={Math.random() * 100 + 1} max={100} />
+                                    </div>
                                     <div className="flex flex-col items-center w-full flex-1">
-                                        <div className="flex flex-col items-center mb-2 flex-1">
-                                            <div className="w-8 h-8 flex items-center justify-center rounded-full border border-cyan-300 text-cyan-700 font-bold text-sm">
-                                                {topic.lastScore !== null && topic.lastScore !== undefined
-                                                    ? `${parseFloat((topic.lastScore * 100).toFixed(1))}`
-                                                    : "N/A"}
-                                            </div>
-                                            <span className="text-xs text-gray-500 mt-1">last score</span>
-                                            <span className="text-xs font-bold">
-                                                {topic.lastReviewedOn
-                                                    ? new Date(topic.lastReviewedOn).toLocaleString("en-US", {
-                                                        day: "2-digit",
-                                                        month: "short",
-                                                    })
-                                                    : "Never"}
-                                            </span>
-                                        </div>
                                         <div className="flex w-full justify-end items-end pr-3 pb-2 mt-auto">
                                             <span className="bg-cyan-200 text-cyan-800 text-2xs font-semibold rounded-full px-2 py-[2px] shadow-sm">
                                                 {idx + 1} / {topics.length}
@@ -166,5 +153,25 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
         </div>
     );
 };
+
+function TopicProgressBar({ current, max }: { current: number, max: number }) {
+
+    let height = 10;
+    let iconHeight = 14;
+    let barHeight = 12;
+    const targetProgress = (current / max) * 100; // Set target percentage (0 to 100)
+
+    return (
+        <div className="flex flex-row w-full items-center">
+            <div className="flex items-center fill-cyan-600" style={{height: iconHeight, width: iconHeight, marginRight: 4}}>
+                <LeafSVG/>
+            </div>
+            <div className="w-full relative" style={{ height: height }}>
+                <div className="bg-cyan-700 w-full h-full rounded-full" style={{ zIndex: 1 }} ></div>
+                {current > 4 && <div className="bg-cyan-500 absolute h-full rounded-full" style={{ width: `${targetProgress}%`, top: 0, zIndex: 2 }}></div>}
+            </div>
+        </div>
+    )
+}
 
 export default TopicsCarousel;

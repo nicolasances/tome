@@ -3,7 +3,7 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
 
-export function ProgressBar({ current, max, size, hideNumber = false }: { current: number, max: number, size?: string, hideNumber?: boolean }) {
+export function ProgressBar({ current, max, size, id, hideNumber = false }: { current: number, max: number, size?: "s" | "m", id?: string, hideNumber?: boolean }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState(0);
 
@@ -21,7 +21,7 @@ export function ProgressBar({ current, max, size, hideNumber = false }: { curren
             borderRadius = 3
         }
 
-        const svg = d3.select("#daily-progress-card")
+        const svg = d3.select(`#daily-progress-card${id}`)
             .attr("width", containerWidth)
             .attr("height", height);
 
@@ -75,7 +75,7 @@ export function ProgressBar({ current, max, size, hideNumber = false }: { curren
                 </div>
             }
             <div ref={containerRef} className="w-full">
-                <svg id="daily-progress-card"></svg>
+                <svg id={`daily-progress-card${id}`}></svg>
             </div>
         </div>
     );
