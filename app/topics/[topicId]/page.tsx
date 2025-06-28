@@ -4,6 +4,7 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LampSVG from "../../ui/graphics/icons/Lamp";
+import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import moment from "moment";
 import { ProgressBar } from "@/app/ui/general/ProgressBar";
@@ -44,7 +45,7 @@ export default function TopicDetailPage() {
      */
     const loadHistoricalPractices = async () => {
 
-        const {practices} = await new TomePracticeAPI().getHistoricalPractices(String(params.topicId));
+        const { practices } = await new TomePracticeAPI().getHistoricalPractices(String(params.topicId));
 
         setHistoricalPractices(practices);
     }
@@ -97,7 +98,8 @@ export default function TopicDetailPage() {
                 <div className="text-xs uppercase">Last Score</div>
                 <ProgressBar hideNumber={true} current={lastScore} max={100} />
             </div>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex justify-center items-center space-x-2">
+                <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
                 <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} />
             </div>
             <div className="flex-1"></div>
@@ -114,7 +116,7 @@ function LastPracticeTimedelta({ lastPracticeDate }: { lastPracticeDate: string 
     if (!lastPracticeDate) return <></>
 
     const daysAgo = moment().diff(moment(lastPracticeDate, 'YYYYMMDD'), 'days');
-    
+
     return (
         <div className="text-base">
             {daysAgo == 0 && "Today!"}
