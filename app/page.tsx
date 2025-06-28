@@ -104,7 +104,7 @@ export default function Home() {
       {/* <FlashCardsSession /> */}
       <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
       <div className="flex justify-center items-center space-x-2">
-        <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
+        <RoundButton icon={<LampSVG />} onClick={() => { }} size="s" />
         <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />
       </div>
       <div className="flex-1"></div>
