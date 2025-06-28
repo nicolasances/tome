@@ -83,7 +83,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
     }
 
     return (
-        <div className="w-full max-w-4xl mx-auto py-8">
+        <div className="w-full max-w-4xl mx-auto">
             <div className="overflow-visible">
                 <Slider {...settings}>
                     {topics.map((topic, idx) => {
@@ -92,13 +92,13 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                             (topics.length < 3 && idx === 1);
 
                         return (
-                            <div key={topic.id} className="px-[1px]">
+                            <div key={topic.id} className="px-[1px] py-8">
                                 <div
                                     className={`
                                         transition-all duration-200
                                         ${isCenter
                                             ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer ${clicked ? "active:scale-95 animate-press" : ""}`
-                                            : "scale-85 bg-gray-100 border border-gray-200 opacity-80"
+                                            : "scale-85 bg-cyan-100 border border-cyan-600 opacity-100"
                                         }
                                         rounded-lg flex flex-col items-center
                                     `}
@@ -107,8 +107,8 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                         maxWidth: "260px",
                                         margin: "0 auto",
                                         boxShadow: isCenter
-                                            ? "0 8px 32px rgba(59,130,246,0.15)"
-                                            : "0 2px 8px rgba(0,0,0,0.05)",
+                                            ? "0 8px 32px rgba(29, 86, 179, 0.5)"
+                                            : "0 2px 8px rgba(0,0,0,0.2)",
                                     }}
                                     onClick={
                                         isCenter
@@ -122,8 +122,8 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                             : undefined
                                     }
                                 >
-                                    <div className="text-sm font-bold mb-4 text-center px-2 pt-4">{topic.name}</div>
-                                    {/* <p className="text-gray-600 text-xs mb-4 text-center">{topic.description}</p> */}
+                                    <div className="text-base text-cyan-800 font-bold mb-4 text-center px-2 pt-4">{topic.name}</div>
+                                    {/* <p className="text-cyan-700 text-xs mb-4 text-center">{topic.description}</p> */}
                                     <div className="flex w-full px-2 flex-1 items-end">
                                         <TopicProgressBar current={Math.random() * 100 + 1} max={100} />
                                     </div>
