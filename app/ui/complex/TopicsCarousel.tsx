@@ -125,7 +125,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                             : undefined
                                     }
                                 >
-                                    <div className="text-base text-cyan-800 font-bold mb-4 text-center px-2 pt-4">{topic.name}</div>
+                                    <div className="text-base text-cyan-800 font-bold mb-2 text-center px-2 pt-4">{topic.name}</div>
                                     {/* <p className="text-cyan-700 text-xs mb-4 text-center">{topic.description}</p> */}
                                     <div className="flex w-full px-2 flex-1 items-end">
                                         <TopicProgressBar current={freshness} max={100} />
