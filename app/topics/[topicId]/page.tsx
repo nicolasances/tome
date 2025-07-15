@@ -66,7 +66,7 @@ export default function TopicDetailPage() {
 
         setRefreshingTopic(true)
 
-        const response = await new TomeTopicsAPI().refreshTopic(String(params.topicId));
+        await new TomeTopicsAPI().refreshTopic(String(params.topicId));
 
         setRefreshingTopic(false)
 
