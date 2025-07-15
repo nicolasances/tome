@@ -79,7 +79,7 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
                     setCurrentIndex((prev) => Math.min(prev + 1, cards.length - 1));
                 }
                 
-            }, 1800);
+            }, 300);
         }
 
         // 2. Meanwhile send the answer to the API
@@ -133,6 +133,7 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
                 {cards.map((card, idx) => (
                     <div key={idx} className="px-2">
                         <FlashCardWidget
+                            context={card.originalFlashcard.sectionTitle}
                             question={card.originalFlashcard.question}
                             answers={card.originalFlashcard.options}
                             correctAnswerIndex={card.originalFlashcard.rightAnswerIndex}
@@ -140,6 +141,7 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
                             tag="options"
                             cardNumber={idx + 1}
                             totalCards={cards.length}
+                            disableFireworks={true} // Disable fireworks for practice sessions
                         />
                     </div>
                 ))}

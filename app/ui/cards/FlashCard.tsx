@@ -22,6 +22,7 @@ import { Fireworks } from '@fireworks-js/react';
  * 3. shows a fireworks animation on the card
  *  */
 interface FlashCardProps {
+    context: string;
     question: string;
     answers: string[];
     correctAnswerIndex: number;
@@ -29,9 +30,10 @@ interface FlashCardProps {
     tag: string;
     cardNumber: number;
     totalCards: number;
+    disableFireworks?: boolean; 
 }
 
-export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correctAnswerIndex, onAnswerSelect, tag, cardNumber, totalCards }) => {
+export const FlashCard: React.FC<FlashCardProps> = ({ context, question, answers, correctAnswerIndex, onAnswerSelect, tag, cardNumber, totalCards, disableFireworks }) => {
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number | null>(null);
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
     const [showFireworks, setShowFireworks] = useState(false);
@@ -43,7 +45,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correct
         const isCorrect = index === correctAnswerIndex;
         onAnswerSelect(isCorrect, index);
 
-        if (isCorrect) {
+        if (isCorrect && !disableFireworks) {
             setShowFireworks(true);
             setTimeout(() => setShowFireworks(false), 2000); // Hide fireworks after 2 seconds
         }
@@ -80,6 +82,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ question, answers, correct
                     {cardNumber}/{totalCards}
                 </span>
             </div>
+            <div className='text-sm mb-2 opacity-60'>{context}</div>
             <div className="mb-4 text-base font-bold">{question}</div>
             <ul className="list-none p-0 m-0">
                 {answers.map((answer, index) => (

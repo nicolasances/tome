@@ -11,6 +11,7 @@ import { ProgressBar } from "@/app/ui/general/ProgressBar";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import { PracticeHistoryGraph } from "@/components/graph/PracticeHistory";
 import { Practice } from "@/model/Practice";
+import RefreshSVG from "@/app/ui/graphics/icons/RefreshSVG";
 
 
 export default function TopicDetailPage() {
@@ -19,6 +20,7 @@ export default function TopicDetailPage() {
     const params = useParams()
 
     const [topic, setTopic] = useState<Topic>()
+    const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
     const [startingPractice, setStartingPractice] = useState<boolean>(false)
     const [lastScore, setLastScore] = useState<number>(0)
     const [lastPracticeDate, setLastPracticeDate] = useState<string>("");
@@ -58,6 +60,16 @@ export default function TopicDetailPage() {
         const latestFinishedPractice = await new TomePracticeAPI().getLatestFinishedPractice(String(params.topicId));
         setLastScore(latestFinishedPractice?.score ?? 0);
         setLastPracticeDate(latestFinishedPractice?.finishedOn ?? "");
+    }
+
+    const refreshTopic = async () => {
+
+        setRefreshingTopic(true)
+
+        const response = await new TomeTopicsAPI().refreshTopic(String(params.topicId));
+
+        setRefreshingTopic(false)
+
     }
 
     /**
@@ -101,6 +113,7 @@ export default function TopicDetailPage() {
             <div className="mt-8 flex justify-center items-center space-x-2">
                 <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
                 <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} />
+                <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic} />
             </div>
             <div className="flex-1"></div>
             <div className="">

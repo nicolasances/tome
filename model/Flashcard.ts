@@ -9,5 +9,6 @@ export interface Flashcard {
     question: string; 
     options: string[];
     rightAnswerIndex: number; 
+    sectionTitle: string;
     id?: string;
 }

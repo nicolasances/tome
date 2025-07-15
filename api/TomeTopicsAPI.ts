@@ -37,6 +37,14 @@ export class TomeTopicsAPI {
     }
 
     /**
+     * Refreshes the topic
+     * @param topicId the id of the topic to refresh
+     */
+    async refreshTopic(topicId: string): Promise<void> {
+        await new TotoAPI().fetch('tome-ms-topics', `/topics/${topicId}/refresh`, {method: 'POST'}, false);
+    }
+
+    /**
      * Retrieves the list of topics
      */
     async getTopics(): Promise<GetTopicsResponse> {
