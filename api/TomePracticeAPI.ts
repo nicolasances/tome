@@ -64,8 +64,14 @@ export class TomePracticeAPI {
     /**
      * Load all the practices
      */
-    async getPractices({startedFrom}: {startedFrom?: string}): Promise<GetHistoricalPracticesReponse> {
-        return (await new TotoAPI().fetch('tome-ms-practice', `/practices?startedFrom=${startedFrom}`)).json();
+    async getPractices({startedFrom, finishedFrom}: {startedFrom?: string, finishedFrom?: string}): Promise<GetHistoricalPracticesReponse> {
+
+        const params = new URLSearchParams();
+        if (startedFrom) params.append('startedFrom', startedFrom);
+        if (finishedFrom) params.append('finishedFrom', finishedFrom);
+        const queryString = params.toString();
+
+        return (await new TotoAPI().fetch('tome-ms-practice', `/practices?${queryString}`)).json();
     }
 
     /**

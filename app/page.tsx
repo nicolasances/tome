@@ -85,7 +85,7 @@ export default function Home() {
     const beginningOfTheWeek = new Date();
     beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
 
-    const result = await new TomePracticeAPI().getPractices({startedFrom: moment(beginningOfTheWeek).format("YYYYMMDD")})
+    const result = await new TomePracticeAPI().getPractices({finishedFrom: moment(beginningOfTheWeek).format("YYYYMMDD")})
 
     setWeekPractices(result.practices)
   }
