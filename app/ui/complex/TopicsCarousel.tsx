@@ -24,7 +24,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
     const [topics, setTopics] = useState<Topic[]>([]);
     const [loading, setLoading] = useState(true);
     const [current, setCurrent] = useState(0);
-    const [clicked, setClicked] = useState(false);
+    const [clicked, setClicked] = useState<string | null>(null);
 
     useEffect(() => {
 
@@ -45,7 +45,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
         dots: false,
         beforeChange: (_: number, next: number) => {
             setCurrent(next);
-            setClicked(false);
+            setClicked(null);
         },
         responsive: [
             {
@@ -99,9 +99,9 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                 <div
                                     className={`
                                         transition-all duration-200
-                                        ${isCenter
-                                            ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer ${clicked ? "active:scale-95 animate-press" : ""}`
-                                            : "scale-85 bg-cyan-100 border border-cyan-600 opacity-100"
+                                        ${isCenter 
+                                            ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer ${topic.id == clicked ? "active:scale-95 animate-press" : ""}`
+                                            : `scale-85 bg-cyan-100 border border-cyan-600 opacity-100 ${topic.id == clicked ? "active:scale-80 animate-press" : ""}`
                                         }
                                         rounded-lg flex flex-col items-center
                                     `}
@@ -114,15 +114,13 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                             : "0 2px 8px rgba(0,0,0,0.2)",
                                     }}
                                     onClick={
-                                        isCenter
-                                            ? () => {
-                                                setClicked(true);
+                                            () => {
+                                                setClicked(topic.id!);
                                                 if (onCentralCardClick) {
                                                     onCentralCardClick(topic);
                                                 }
-                                                setTimeout(() => setClicked(false), 150);
+                                                setTimeout(() => setClicked(null), 150);
                                             }
-                                            : undefined
                                     }
                                 >
                                     <div className="text-base text-cyan-800 font-bold mb-2 text-center px-2 pt-4">{topic.name}</div>
@@ -138,11 +136,21 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                         </div>
                                     </div>
                                 </div>
-                                <style jsx global>{`
+                                <style>
+                                {`
                                     .animate-press {
                                         animation: pressAnim 150ms cubic-bezier(0.4,0,0.2,1);
                                     }
                                     @keyframes pressAnim {
+                                        0% { transform: scale(0.85); }
+                                        50% { transform: scale(0.80); }
+                                        100% { transform: scale(0.85); }
+                                    }
+                                    /* For central card (scale-100) */
+                                    .scale-100.animate-press {
+                                        animation: pressAnimCenter 150ms cubic-bezier(0.4,0,0.2,1);
+                                    }
+                                    @keyframes pressAnimCenter {
                                         0% { transform: scale(1); }
                                         50% { transform: scale(0.95); }
                                         100% { transform: scale(1); }
