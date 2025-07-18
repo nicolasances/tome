@@ -141,10 +141,12 @@ export class WeekPractice {
         const today = new Date();
 
         const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - today.getDay() + 1); // Set to Monday
+        if (today.getDay() === 0) startOfWeek.setDate(today.getDate() - 6);
+        else startOfWeek.setDate(today.getDate() - today.getDay() + 1); // Set to Monday
 
         const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to Sunday
+        if (today.getDay() == 0) endOfWeek.setDate(today.getDate()); 
+        else endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to Sunday
 
         const weekPractices: WeekPractice[] = [];
 

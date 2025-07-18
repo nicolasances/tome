@@ -83,7 +83,8 @@ export default function Home() {
 
     // Load the practices for the current week
     const beginningOfTheWeek = new Date();
-    beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
+    if (new Date().getDay() === 0) beginningOfTheWeek.setDate(new Date().getDate() - 6);
+    else beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
 
     const result = await new TomePracticeAPI().getPractices({finishedFrom: moment(beginningOfTheWeek).format("YYYYMMDD")})
 
@@ -106,8 +107,8 @@ export default function Home() {
       <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
       
       <div className="flex justify-center items-center space-x-2">
-        <RoundButton icon={<LampSVG />} onClick={() => { }} size="s" />
-        <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="s" />
+        <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
+        <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
       </div>
       
       <div className="flex-1"></div>

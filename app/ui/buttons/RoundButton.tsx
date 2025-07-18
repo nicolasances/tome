@@ -17,8 +17,8 @@ export default function RoundButton({
 }) {
     const [pressed, setPressed] = useState(false);
 
-    let iconSize = "w-8 h-8";
-    let buttonPadding = "p-3";
+    let iconSize = "w-6 h-6";
+    let buttonPadding = "p-2";
 
     if (size === "s") {
         iconSize = "w-4 h-4";
