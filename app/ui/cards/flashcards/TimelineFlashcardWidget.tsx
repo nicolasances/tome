@@ -5,7 +5,7 @@ import {
     closestCenter,
     PointerSensor,
     useSensor,
-    useSensors, DragEndEvent
+    useSensors, DragEndEvent, TouchSensor
 } from '@dnd-kit/core';
 import {
     arrayMove,
@@ -14,7 +14,6 @@ import {
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-
 interface FlashCardProps {
     context: string;
     card: SectionTimelineFlashcard;
@@ -59,43 +58,18 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({
     const [isAnswered, setIsAnswered] = useState(false);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
-    // Sortable item component
-    function SortableEvent({ event, id, disabled }: { event: SectionTimelineEvent, id: string, disabled: boolean }) {
-        const {
-            attributes,
-            listeners,
-            setNodeRef,
-            transform,
-            transition,
-            isDragging,
-        } = useSortable({ id });
-
-        const style = {
-            transform: CSS.Transform.toString(transform),
-            transition,
-            opacity: isDragging ? 0.5 : 1,
-            cursor: disabled ? 'default' : 'grab',
-        };
-
-        return (
-            <div
-                ref={setNodeRef}
-                style={style}
-                className={`bg-white rounded-md shadow p-3 mb-2 flex items-center border ${disabled ? 'opacity-70' : ''}`}
-                {...attributes}
-                {...(!disabled ? listeners : {})}
-            >
-                <span className="text-base">{event.event}</span>
-                <span className="ml-auto text-gray-400 text-xs">{event.date}</span>
-            </div>
-        );
-    }
 
     // Setup sensors for mouse and touch
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
                 distance: 5,
+            },
+        }),
+        useSensor(TouchSensor, {
+            activationConstraint: {
+                delay: 250,
+                tolerance: 5,
             },
         })
     );
@@ -129,7 +103,7 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({
     }
 
     return (
-        <div className="bg-white rounded-xl shadow-lg p-6 max-w-xl mx-auto relative">
+        <div className="p-4 shadow-lg rounded-lg bg-cyan-100 max-w-md mx-auto relative">
             {/* Tag and card number */}
             <div className="flex justify-between mb-4">
                 <span className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">{tag}</span>
@@ -176,3 +150,36 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({
     );
 
 };
+
+
+// Sortable item component
+function SortableEvent({ event, id, disabled }: { event: SectionTimelineEvent, id: string, disabled: boolean }) {
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition,
+        isDragging,
+    } = useSortable({ id });
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.5 : 1,
+        cursor: disabled ? 'default' : 'grab',
+    };
+
+    return (
+        <div
+            ref={setNodeRef}
+            style={style}
+            className={`bg-white rounded shadow p-3 mb-2 flex items-center ${disabled ? 'opacity-70' : ''}`}
+            {...attributes}
+            {...(!disabled ? listeners : {})}
+        >
+            <span className="text-base">{event.event}</span>
+            {/* <span className="ml-auto text-gray-400 text-xs">{event.date}</span> */}
+        </div>
+    );
+}
