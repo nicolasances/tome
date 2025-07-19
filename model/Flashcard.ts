@@ -1,14 +1,5 @@
+import { MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
 
 
-export interface Flashcard {
 
-    type: string;
-    user: string;
-    topicId: string; 
-    topicCode: string; 
-    question: string; 
-    options: string[];
-    rightAnswerIndex: number; 
-    sectionTitle: string;
-    id?: string;
-}
+export type Flashcard = MultipleOptionsFlashcard | SectionTimelineFlashcard;

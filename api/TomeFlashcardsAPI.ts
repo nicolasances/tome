@@ -14,13 +14,38 @@ export class TomeFlashcardsAPI {
 
 }
 
-export interface FlashCard {
+export interface SectionTimelineFlashcard {
+    id?: string;
+    type: string;
+    user: string;
+    topicId: string;
+    topicCode: string;
+    sectionTitle: string; 
+    events: SectionTimelineEvent[]; 
+}
+
+export interface SectionTimelineEvent {
+
+    event: string;
+    date: string; 
+    dateFormat: string;
+    real: boolean;
+    order: number;
+
+}
+
+export interface MultipleOptionsFlashcard {
+    id?: string;
+    type: string;
     question: string;
     options: string[];
     rightAnswerIndex: number;
     tag: string;
+    sectionTitle: string; 
 }
 
 export interface GetFlashCardsResponse {
-    flashcards: FlashCard[];
+    sectionTimelineFlascards: SectionTimelineFlashcard[];
+    multipleOptionsFlashcards: MultipleOptionsFlashcard[];
 }
+    

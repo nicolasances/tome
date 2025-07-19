@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FlashCard as FlashCardWidget } from '../cards/FlashCard';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { TomePracticeAPI } from '@/api/TomePracticeAPI';
 import { PracticeFlashcard } from '@/model/PracticeFlashcard';
+import { FlashcardFactory } from '../cards/flashcards/FlashcardFactory';
 
 
 /**
@@ -132,17 +132,12 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
             <Slider ref={sliderRef} {...settings}>
                 {cards.map((card, idx) => (
                     <div key={idx} className="px-2">
-                        <FlashCardWidget
-                            context={card.originalFlashcard.sectionTitle}
-                            question={card.originalFlashcard.question}
-                            answers={card.originalFlashcard.options}
-                            correctAnswerIndex={card.originalFlashcard.rightAnswerIndex}
-                            onAnswerSelect={(isCorrect, selectedAnswerIndex) => handleAnswerSelect(isCorrect, card.id!, selectedAnswerIndex)}
-                            tag="options"
-                            cardNumber={idx + 1}
-                            totalCards={cards.length}
-                            disableFireworks={true} // Disable fireworks for practice sessions
-                        />
+                        {FlashcardFactory.createFlashcardWidget(
+                            card.originalFlashcard,
+                            idx, 
+                            cards.length, 
+                            handleAnswerSelect
+                        )}
                     </div>
                 ))}
             </Slider>
