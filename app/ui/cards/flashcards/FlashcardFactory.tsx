@@ -3,15 +3,16 @@ import { JSX } from "react";
 import { FlashCard as FlashCardWidget } from './FlashCard';
 import { MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
 import { TimelineFlashcardWidget } from "./TimelineFlashcardWidget";
+import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 
 
 export class FlashcardFactory {
 
-    static createFlashcardWidget(flashcard: Flashcard, idx: number, numCards: number, handleAnswerSelect: (isCorrect: boolean, cardId: string, selectedAnswerIndex: number) => void): JSX.Element {
+    static createFlashcardWidget(flashcard: PracticeFlashcard, idx: number, numCards: number, handleAnswerSelect: (isCorrect: boolean, cardId: string) => void): JSX.Element {
 
-        if (flashcard.type === 'options') {
+        if (flashcard.originalFlashcard.type === 'options') {
 
-            const card = flashcard as MultipleOptionsFlashcard;
+            const card = flashcard.originalFlashcard as MultipleOptionsFlashcard;
 
             return (
                 <FlashCardWidget
@@ -19,7 +20,7 @@ export class FlashcardFactory {
                     question={card.question}
                     answers={card.options}
                     correctAnswerIndex={card.rightAnswerIndex}
-                    onAnswerSelect={(isCorrect, selectedAnswerIndex) => handleAnswerSelect(isCorrect, card.id!, selectedAnswerIndex)}
+                    onAnswerSelect={(isCorrect, selectedAnswerIndex) => handleAnswerSelect(isCorrect, flashcard.id!)}
                     tag="options"
                     cardNumber={idx + 1}
                     totalCards={numCards}
@@ -27,16 +28,14 @@ export class FlashcardFactory {
                 />
             )
         }
-        else if (flashcard.type == 'timeline') { 
-
-            const card = flashcard as SectionTimelineFlashcard; 
+        else if (flashcard.originalFlashcard.type == 'timeline') {
 
             return (
-                <TimelineFlashcardWidget card={card} cardNumber={idx + 1} totalCards={numCards} disableFireworks={true} context={card.sectionTitle} onAnswerSelect={() => {}} tag="timeline" />
+                <TimelineFlashcardWidget card={flashcard.originalFlashcard as SectionTimelineFlashcard} cardNumber={idx + 1} totalCards={numCards} disableFireworks={true} context={flashcard.originalFlashcard.sectionTitle} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }} tag = "timeline" />
             )
-        }
+    }
 
-        return (<div className="text-base text-center">Card of type <b className="text-cyan-300">{flashcard.type}</b> is not currently supported.</div>)
+    return(<div className = "text-base text-center" > Card of type <b className = "text-cyan-300" > { flashcard.originalFlashcard.type }</b> is not currently supported.</div >)
 
     }
 }

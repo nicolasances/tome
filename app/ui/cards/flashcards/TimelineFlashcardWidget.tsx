@@ -6,11 +6,15 @@ import OkSVG from '../../graphics/icons/Ok';
 interface FlashCardProps {
     context: string;
     card: SectionTimelineFlashcard;
-    onAnswerSelect: () => void;
+    onAnswerSelect: (isCorrect: boolean) => void;
     tag: string;
     cardNumber: number;
     totalCards: number;
     disableFireworks?: boolean;
+}
+
+interface SectionTimelineEventExtended extends SectionTimelineEvent {
+    isCorrect?: boolean; // Added to track correctness of the event position
 }
 
 /**
@@ -29,14 +33,14 @@ interface FlashCardProps {
  *  event: string;
  *  date: string; 
  *  dateFormat: string;
- *  real: boolean;
- *  order: number;
+ *  correctIndex: number;
  * }
  *  */
 export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, card, onAnswerSelect, tag, cardNumber, totalCards, }) => {
-    const [events, setEvents] = useState<SectionTimelineEvent[]>([...card.events]);
+    const [events, setEvents] = useState<SectionTimelineEventExtended[]>([...card.events]);
     const [selectedEventIndex, setSelectedEventIndex] = useState<number | null>(null);
     const [lastMovedEventIndex, setLastMovedEventIndex] = useState<number | null>(null);
+    const [allEventsCorrect, setAllEventsCorrect] = useState<boolean>(false);
 
     // Refs for each event
     const eventRefs = React.useRef<(HTMLDivElement | null)[]>([]);
@@ -49,15 +53,21 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
     // Scroll to selected event when selectedEventIndex changes
     React.useEffect(() => {
         if (selectedEventIndex !== null && eventRefs.current[selectedEventIndex]) {
-            eventRefs.current[selectedEventIndex]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            eventRefs.current[selectedEventIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }, [selectedEventIndex]);
 
     const moveSelectedEventHere = (index: number) => {
+        
         if (selectedEventIndex === null) return;
         const selectedEvent = events[selectedEventIndex];
+        
         const updatedEvents = events.filter((_, i) => i !== selectedEventIndex);
+        
+        if (index > selectedEventIndex) index--; // Adjust index if moving down
+        
         updatedEvents.splice(index, 0, selectedEvent);
+        
         setEvents(updatedEvents);
         setSelectedEventIndex(null);
         setLastMovedEventIndex(index);
@@ -65,7 +75,22 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
     }
 
     const submit = () => {
-        onAnswerSelect()
+
+        // Check the correctness of the answer: verify that each event has been positioned in the correct order (determined by the correctIndex field). Add a field to each event called isCorrect, which is true if the event is in the correct position, false otherwise.
+        const checkedEvents = events.map((event, index) => {
+            return {
+                ...event, 
+                isCorrect: event.correctIndex == null || event.correctIndex === index
+            }
+        })
+
+        // Check if all events are correct
+        const allCorrect = checkedEvents.every(event => event.isCorrect === true);
+
+        setEvents(checkedEvents);
+        setAllEventsCorrect(allCorrect);
+
+        onAnswerSelect(allCorrect);
     }
 
     return (
@@ -81,7 +106,7 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
             <div className='text-sm mb-2 opacity-60'>{context}</div>
 
             <div className="flex flex-col space-y-3 relative ml-2">
-                <div className="absolute h-full border mt-4 ml-3" style={{ zIndex: 0 }}></div>
+                <div className={`absolute h-full border mt-4 ml-3 ${allEventsCorrect ? 'border-green-300' : ''}`} style={{ zIndex: 0 }}></div>
                 {events.map((event, index) => (
                     <div
                         key={index}
@@ -96,9 +121,11 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
 
                         <div className='flex items-start'>
                             <div
-                                className={`w-6 h-6 min-w-6 border mr-2 mt-[1px] bg-cyan-100 text-xs
-                                    ${selectedEventIndex === index ? 'rounded-full border-cyan-300' : 'rounded'}
+                                className={`w-6 h-6 min-w-6 border mr-2 mt-[1px] text-xs
+                                    ${event.isCorrect == null ? 'bg-cyan-100' : ''}
+                                    ${selectedEventIndex === index && event.isCorrect == null ? 'rounded-full border-cyan-300' : 'rounded'}
                                     ${lastMovedEventIndex === index ? 'border-amber-600' : ''}
+                                    ${event.isCorrect == null ? '' : event.isCorrect ? 'border-green-300 bg-green-200' : 'border-red-300 bg-red-200'}
                                 `}
                                 style={{
                                     transition: 'border-color 0.4s, border-radius 0.4s'
@@ -118,13 +145,13 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
                         </div>
 
                         {selectedEventIndex != null && index == events.length - 1 &&
-                            <MoveDivider onClick={moveSelectedEventHere} index={index} />
+                            <MoveDivider onClick={moveSelectedEventHere} index={events.length} />
                         }
                     </div>
                 ))}
             </div>
             <div style={{ zIndex: 2 }} className='flex mt-4'>
-                <RoundButton icon={<OkSVG />} onClick={submit} size='m' dark={true} />
+                <RoundButton icon={<OkSVG />} onClick={submit} size='m' dark={true} disabled={allEventsCorrect} />
             </div>
         </div >
     );

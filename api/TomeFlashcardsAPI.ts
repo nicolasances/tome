@@ -28,9 +28,8 @@ export interface SectionTimelineEvent {
 
     event: string;
     date: string; 
-    "date-format": string;
-    real: boolean;
-    order: number;
+    dateFormat: string;
+    correctIndex: number;
 
 }
 

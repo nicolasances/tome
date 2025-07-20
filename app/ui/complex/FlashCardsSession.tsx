@@ -64,7 +64,7 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
      * @param flashcardId the id of the flashcard
      * @param selectedAnswerIndex the index of the answer selected by the user
      */
-    const handleAnswerSelect = async (isCorrect: boolean, flashcardId: string, selectedAnswerIndex: number) => {
+    const handleAnswerSelect = async (isCorrect: boolean, flashcardId: string) => {
 
         if (isCorrect && !answeredCorrectly) {
 
@@ -83,7 +83,7 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
         }
 
         // 2. Meanwhile send the answer to the API
-        const response = await new TomePracticeAPI().answerFlashcard(practiceId, flashcardId, selectedAnswerIndex);
+        const response = await new TomePracticeAPI().answerFlashcard(practiceId, flashcardId, isCorrect);
 
         console.log(`Flashcard answered: ${flashcardId}, Correct: ${response.isCorrect}, Response:`, response);
 
@@ -133,7 +133,7 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
                 {cards.map((card, idx) => (
                     <div key={idx} className="px-2">
                         {FlashcardFactory.createFlashcardWidget(
-                            card.originalFlashcard,
+                            card,
                             idx, 
                             cards.length, 
                             handleAnswerSelect

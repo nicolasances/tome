@@ -77,7 +77,7 @@ export class TomePracticeAPI {
     /**
      * Posts the answer to a flashcard
      */
-    async answerFlashcard(practiceId: string, flashcardId: string, selectedAnswerIndex: number): Promise<AnswerFlashcardResponse> {
+    async answerFlashcard(practiceId: string, flashcardId: string, isCorrect: boolean): Promise<AnswerFlashcardResponse> {
 
         return (await new TotoAPI().fetch('tome-ms-practice', `/practices/${practiceId}/flashcards/${flashcardId}/answer`, {
             method: 'POST',
@@ -85,7 +85,9 @@ export class TomePracticeAPI {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ selectedAnswerIndex})
+            body: JSON.stringify({ 
+                isCorrect: isCorrect
+            })
         })).json()
 
     }
