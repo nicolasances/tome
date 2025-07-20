@@ -28,7 +28,7 @@ export interface SectionTimelineEvent {
 
     event: string;
     date: string; 
-    dateFormat: string;
+    "date-format": string;
     real: boolean;
     order: number;
 

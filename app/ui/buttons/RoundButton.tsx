@@ -7,13 +7,15 @@ export default function RoundButton({
     disabled,
     iconOnly,
     loading,
+    dark,
 }: {
     icon: React.ReactNode;
     onClick: () => void;
     size?: "xs" | "s" | "m" | undefined;
     disabled?: boolean;
     iconOnly?: boolean;
-    loading?: boolean
+    loading?: boolean;
+    dark?: boolean;
 }) {
     const [pressed, setPressed] = useState(false);
 
@@ -35,13 +37,13 @@ export default function RoundButton({
 
     const baseClasses = `rounded-full ${buttonPadding} ${iconOnly ? "" : "border-2"
         } cursor-pointer transition-transform duration-100`;
-    const enabledClasses = "border-lime-200";
+    const enabledClasses = dark ? "border-cyan-800" : "border-lime-200";
     const disabledClasses = disabled ? "border-cyan-600 cursor-not-allowed" : "border-transparent cursor-not-allowed";
 
     const iconClasses = `${iconSize} stroke-current fill-current`;
     const iconColor = disabled || loading
         ? "text-cyan-600"
-        :  "text-lime-200 group-hover:text-current";
+        :  `${dark ? "text-cyan-600" : "text-lime-200"} group-hover:text-current`;
 
     const animatedCircleRadius = 15;
 
