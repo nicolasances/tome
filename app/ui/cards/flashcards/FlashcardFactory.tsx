@@ -1,4 +1,3 @@
-import { Flashcard } from "@/model/Flashcard";
 import { JSX } from "react";
 import { FlashCard as FlashCardWidget } from './FlashCard';
 import { MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
@@ -20,7 +19,7 @@ export class FlashcardFactory {
                     question={card.question}
                     answers={card.options}
                     correctAnswerIndex={card.rightAnswerIndex}
-                    onAnswerSelect={(isCorrect, selectedAnswerIndex) => handleAnswerSelect(isCorrect, flashcard.id!)}
+                    onAnswerSelect={(isCorrect) => handleAnswerSelect(isCorrect, flashcard.id!)}
                     tag="options"
                     cardNumber={idx + 1}
                     totalCards={numCards}
