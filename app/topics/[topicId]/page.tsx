@@ -94,9 +94,15 @@ export default function TopicDetailPage() {
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-8 h-full">
             <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
-            <div className="flex justify-center mt-2">
-                <div className="text-sm bg-cyan-200 rounded-full px-2">
+            <div className="flex justify-center mt-2 space-x-2 text-sm">
+                <div className="bg-cyan-200 rounded-full px-2">
                     {moment(topic.createdOn, 'YYYYMMDD').format('DD/MM/YYYY')}
+                </div>
+                <div className="bg-green-200 rounded-full px-2">
+                    {topic.generation ?? 'g0.0'}
+                </div>
+                <div className="bg-pink-300 rounded-full px-2">
+                    {`${topic.flashcardsCount ?? 0} flashcards`}
                 </div>
             </div>
             <div className="flex items-center mt-8">

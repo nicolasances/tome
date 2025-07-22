@@ -79,6 +79,8 @@ export interface Topic {
     user: string; // User email
     lastScore?: number;
     lastPracticed?: string;
+    generation?: string; 
+    flashcardsCount?: number; 
 }
 
 export interface GetTopicsResponse {
