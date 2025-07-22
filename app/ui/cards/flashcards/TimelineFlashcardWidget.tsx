@@ -58,16 +58,16 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
     }, [selectedEventIndex]);
 
     const moveSelectedEventHere = (index: number) => {
-        
+
         if (selectedEventIndex === null) return;
         const selectedEvent = events[selectedEventIndex];
-        
+
         const updatedEvents = events.filter((_, i) => i !== selectedEventIndex);
-        
+
         if (index > selectedEventIndex) index--; // Adjust index if moving down
-        
+
         updatedEvents.splice(index, 0, selectedEvent);
-        
+
         setEvents(updatedEvents);
         setSelectedEventIndex(null);
         setLastMovedEventIndex(index);
@@ -79,13 +79,13 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
         // Check the correctness of the answer: verify that each event has been positioned in the correct order (determined by the correctIndex field). Add a field to each event called isCorrect, which is true if the event is in the correct position, false otherwise.
         const checkedEvents = events.map((event, index) => {
             return {
-                ...event, 
+                ...event,
                 isCorrect: event.correctIndex == null || event.correctIndex === index
             }
         })
 
         // Check if all events are correct
-        const allCorrect = checkedEvents.every(event => event.isCorrect === true);
+        const allCorrect = events.filter((event) => event.correctIndex != null).map((event, index) => { return { isCorrect: event.correctIndex == index } }).every(event => event.isCorrect === true)
 
         setEvents(checkedEvents);
         setAllEventsCorrect(allCorrect);
