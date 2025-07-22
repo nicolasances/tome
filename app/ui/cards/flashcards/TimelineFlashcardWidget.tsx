@@ -42,6 +42,9 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
     const [lastMovedEventIndex, setLastMovedEventIndex] = useState<number | null>(null);
     const [allEventsCorrect, setAllEventsCorrect] = useState<boolean>(false);
 
+    console.log(card.events);
+
+
     // Refs for each event
     const eventRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
@@ -132,7 +135,7 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
                                 }}
                             >
                             </div>
-                            <div className={`text-base cursor-pointer 
+                            <div className={`flex flex-col items-start text-base cursor-pointer 
                                 ${selectedEventIndex === index ? 'opacity-40 transition' : 'opacity-100'}
                                 ${lastMovedEventIndex === index ? 'text-amber-600' : ''}`
                             }
@@ -140,7 +143,9 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
                                     transition: 'color 0.4s'
                                 }}
                                 onClick={() => { selectEvent(event, index) }}>
-                                {event.event}
+                                <div>
+                                    {event.event}
+                                </div>
                             </div>
                         </div>
 

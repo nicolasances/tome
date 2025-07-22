@@ -62,9 +62,16 @@ export class TomePracticeAPI {
     }
 
     /**
+     * Delete the specified practice
+     */
+    async deletePractice(practiceId: string): Promise<{ deletePracticesCount: number }> {
+        return (await new TotoAPI().fetch('tome-ms-practice', `/practices/${practiceId}`, { method: 'DELETE' })).json()
+    }
+
+    /**
      * Load all the practices
      */
-    async getPractices({startedFrom, finishedFrom}: {startedFrom?: string, finishedFrom?: string}): Promise<GetHistoricalPracticesReponse> {
+    async getPractices({ startedFrom, finishedFrom }: { startedFrom?: string, finishedFrom?: string }): Promise<GetHistoricalPracticesReponse> {
 
         const params = new URLSearchParams();
         if (startedFrom) params.append('startedFrom', startedFrom);
@@ -85,7 +92,7 @@ export class TomePracticeAPI {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
                 isCorrect: isCorrect
             })
         })).json()
@@ -111,7 +118,7 @@ interface PracticeStats {
     averageAttempts: number;    // The average number of attempts before getting the answer right
     totalWrongAnswers: number;  // The absolute total number of wrong answers (if a users gets it 2 times wrong on a question before getting the right answer, the number of wrong answers for that question is 2 and gets summed to this total)
     numCards: number;           // The total number of flashcards
-    
+
 }
 
 interface StartPracticeResponse {
@@ -127,6 +134,6 @@ interface GetPracticeFlashcardsResponse {
 
 interface TotoError {
     code: number
-    message: string 
+    message: string
     subcode: string
 }

@@ -8,6 +8,8 @@ import { FlashcardSessionStats, FlashCardsSession } from "@/app/ui/complex/Flash
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import { Practice } from "@/model/Practice";
 import { PracticeFinished } from "@/app/ui/complex/PracticeFinished";
+import TrashSVG from "@/app/ui/graphics/icons/TrashSVG";
+import RoundButton from "@/app/ui/buttons/RoundButton";
 
 
 export default function PracticeTopicPage() {
@@ -19,12 +21,12 @@ export default function PracticeTopicPage() {
     const [practice, setPractice] = useState<Practice>() // TODO: Define the type for practice
     const [finished, setFinished] = useState(false);
     const [endOfPracticeStats, setEndOfPracticeStats] = useState<FlashcardSessionStats>({
-        score: 35, 
+        score: 35,
         numCards: 46,
-        averageAttempts: 1.4, 
-        totalWrongAnswers: 23 
+        averageAttempts: 1.4,
+        totalWrongAnswers: 23
     });
-    
+
 
     /**
      * Load the flashcards
@@ -38,6 +40,18 @@ export default function PracticeTopicPage() {
 
         setTopic(topic);
         setPractice(practice);
+    }
+
+    /**
+     * Delete the practice
+     */
+    const deletePractice = async () => {
+
+        if (!practice || !practice.id) return;
+
+        await new TomePracticeAPI().deletePractice(practice.id)
+
+        router.back()
     }
 
     /**
@@ -55,8 +69,14 @@ export default function PracticeTopicPage() {
     if (!topic || !practice) return <></>
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start px-4">
-            <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
+        <div className="flex flex-1 flex-col items-stretch justify-start px-4 mt-6 ">
+            <div className="flex w-full items-center">
+                <div className="flex-1"></div>
+                <div className="flex justify-center text-xl">{topic.name}</div>
+                <div className="flex-1 flex justify-end cursor-pointer">
+                    <RoundButton icon={<TrashSVG/>} onClick={deletePractice} iconOnly={true} size='s'/>
+                </div>
+            </div>
             <div className="flex justify-center mt-2">
                 <div className="text-sm bg-cyan-200 rounded-full px-2">
                     {moment(topic.createdOn, 'YYYYMMDD').format('DD/MM/YYYY')}
