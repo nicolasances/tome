@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { GetTopicsResponse, TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
+import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import LeafSVG from "../graphics/icons/LeafSVG";
+import LampSVG from "../graphics/icons/Lamp";
 import { calculateFreshness } from "@/utils/TopicUtil";
+import { TomePracticeAPI } from "@/api/TomePracticeAPI";
+import { Practice } from "@/model/Practice";
 
 /**
  * The TopicsCarousel component displays a carousel of topics. 
@@ -20,20 +23,45 @@ interface TopicsCarouselProps {
     onCentralCardClick?: (topic: Topic) => void;
 }
 
+interface ExetendedTopic extends Topic {
+    ongoingPractice?: Practice; // The ongoing practice for this topic, if any
+}
+
 const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) => {
-    const [topics, setTopics] = useState<Topic[]>([]);
+    const [topics, setTopics] = useState<ExetendedTopic[]>([]);
     const [loading, setLoading] = useState(true);
     const [current, setCurrent] = useState(0);
     const [clicked, setClicked] = useState<string | null>(null);
 
-    useEffect(() => {
+    const loadData = async () => {
 
-        new TomeTopicsAPI().getTopics().then((data: GetTopicsResponse) => {
-            setTopics(data.topics);
-            setLoading(false);
+        const { topics } = await new TomeTopicsAPI().getTopics();
+
+        await loadOngoingPractices(topics);
+
+        setLoading(false);
+
+    }
+
+    /**
+     * Load the ongoing practices for each topic and update the topics state with the ongoing practice if it exists.
+     */
+    const loadOngoingPractices = async (topics: Topic[]) => {
+
+        const { practices } = await new TomePracticeAPI().getAllOngoingPractices();
+        
+        // Update the topics with the ongoing practice if it exists
+        const updatedTopics = topics.map((topic) => {
+
+            const ongoingPractice = practices == null ? null : practices.find(practice => practice.topicId === topic.id);
+
+            return { ...topic, ongoingPractice: ongoingPractice || undefined };
         });
 
-    }, []);
+        setTopics(updatedTopics);
+    }
+
+    useEffect(() => { loadData() }, []);
 
     const settings = {
         centerMode: true,
@@ -88,7 +116,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
             <div className="overflow-visible">
                 <Slider {...settings}>
                     {topics.map((topic, idx) => {
-                        
+
                         const isCenter = idx === current || (topics.length < 3 && idx === 1);
 
                         // Calculate the "freshness" of the topic, based on the last practice date
@@ -99,7 +127,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                 <div
                                     className={`
                                         transition-all duration-200
-                                        ${isCenter 
+                                        ${isCenter
                                             ? `scale-100 bg-cyan-100 border-1 border-cyan-600 z-10 cursor-pointer ${topic.id == clicked ? "active:scale-95 animate-press" : ""}`
                                             : `scale-85 bg-cyan-100 border border-cyan-600 opacity-100 ${topic.id == clicked ? "active:scale-80 animate-press" : ""}`
                                         }
@@ -114,13 +142,13 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                             : "0 2px 8px rgba(0,0,0,0.2)",
                                     }}
                                     onClick={
-                                            () => {
-                                                setClicked(topic.id!);
-                                                if (onCentralCardClick) {
-                                                    onCentralCardClick(topic);
-                                                }
-                                                setTimeout(() => setClicked(null), 150);
+                                        () => {
+                                            setClicked(topic.id!);
+                                            if (onCentralCardClick) {
+                                                onCentralCardClick(topic);
                                             }
+                                            setTimeout(() => setClicked(null), 150);
+                                        }
                                     }
                                 >
                                     <div className="text-base text-cyan-800 font-bold mb-2 text-center px-2 pt-4">{topic.name}</div>
@@ -129,7 +157,13 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                         <TopicProgressBar current={freshness} max={100} />
                                     </div>
                                     <div className="flex flex-col items-center w-full flex-1">
-                                        <div className="flex w-full justify-end items-end pr-3 pb-2 mt-auto">
+                                        <div className="flex w-full items-center pr-3 pb-2 mt-auto">
+                                            {topic.ongoingPractice &&
+                                                <div className="h-3 w-3 ml-2 text-lime-500 fill-current">
+                                                    <LampSVG />
+                                                </div>
+                                            }
+                                            <div className="flex-1"></div>
                                             <span className="bg-cyan-200 text-cyan-800 text-2xs font-semibold rounded-full px-2 py-[2px] shadow-sm">
                                                 {idx + 1} / {topics.length}
                                             </span>
@@ -137,7 +171,7 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
                                     </div>
                                 </div>
                                 <style>
-                                {`
+                                    {`
                                     .animate-press {
                                         animation: pressAnim 150ms cubic-bezier(0.4,0,0.2,1);
                                     }
@@ -174,8 +208,8 @@ function TopicProgressBar({ current, max }: { current: number, max: number }) {
 
     return (
         <div className="flex flex-row w-full items-center">
-            <div className="flex items-center fill-cyan-600" style={{height: iconHeight, width: iconHeight, marginRight: 4}}>
-                <LeafSVG/>
+            <div className="flex items-center fill-cyan-600" style={{ height: iconHeight, width: iconHeight, marginRight: 4 }}>
+                <LeafSVG />
             </div>
             <div className="w-full relative" style={{ height: height }}>
                 <div className="bg-cyan-700 w-full h-full rounded-full" style={{ zIndex: 1 }} ></div>

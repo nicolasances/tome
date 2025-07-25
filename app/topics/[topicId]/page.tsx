@@ -40,10 +40,10 @@ export default function TopicDetailPage() {
      */
     const loadOngoingPractice = async () => {
 
-        const ongoingPractice = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
+        const { practices } = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
 
-        setOngoingPractice(ongoingPractice);
-        computeOngoingPracticeProgress(ongoingPractice);
+        setOngoingPractice(practices[0]);
+        computeOngoingPracticeProgress(practices[0]);
 
     }
 

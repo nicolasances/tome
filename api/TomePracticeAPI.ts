@@ -40,9 +40,18 @@ export class TomePracticeAPI {
      * @param topicId the id of the topic to get the ongoing practice for
      * @returns the ongoing practice for the topic
      */
-    async getOngoingPractice(topicId: string): Promise<Practice> {
+    async getOngoingPractice(topicId: string): Promise<GetAllOngoingPracticesResponse> {
         return (await new TotoAPI().fetch('tome-ms-practice', `/practices/ongoing?topicId=${topicId}`)).json()
     }
+
+    /**
+     * Returns all the ongoing practices
+     * @returns all the ongoing practices
+     */
+    async getAllOngoingPractices(): Promise<GetAllOngoingPracticesResponse> {
+        return (await new TotoAPI().fetch('tome-ms-practice', `/practices/ongoing`)).json()
+    }
+
 
     /**
      * Returns the latest finished practice for a topic
@@ -130,6 +139,10 @@ interface StartPracticeResponse {
 
 interface GetPracticeFlashcardsResponse {
     flashcards: PracticeFlashcard[]
+}
+
+interface GetAllOngoingPracticesResponse {
+    practices: Practice[];
 }
 
 interface TotoError {

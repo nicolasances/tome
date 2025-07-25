@@ -86,7 +86,7 @@ export default function Home() {
     if (new Date().getDay() === 0) beginningOfTheWeek.setDate(new Date().getDate() - 6);
     else beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
 
-    const result = await new TomePracticeAPI().getPractices({finishedFrom: moment(beginningOfTheWeek).format("YYYYMMDD")})
+    const result = await new TomePracticeAPI().getPractices({ finishedFrom: moment(beginningOfTheWeek).format("YYYYMMDD") })
 
     setWeekPractices(result.practices)
   }
@@ -101,18 +101,18 @@ export default function Home() {
 
   return (
     <div className="p-4 h-full flex flex-col">
-      
+
       <Header />
-      
+
       <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
-      
+
       <div className="flex justify-center items-center space-x-2">
         <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
         <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
       </div>
-      
+
       <div className="flex-1"></div>
-      
+
       <div className="">
         <WeekPractices weekPractices={WeekPractice.generateWeekPracticeFromHistory(weekPractices)} />
       </div>
