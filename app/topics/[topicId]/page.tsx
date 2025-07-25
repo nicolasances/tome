@@ -22,10 +22,8 @@ export default function TopicDetailPage() {
     const [topic, setTopic] = useState<Topic>()
     const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
     const [startingPractice, setStartingPractice] = useState<boolean>(false)
-    const [lastScore, setLastScore] = useState<number>(0)
     const [lastPracticeDate, setLastPracticeDate] = useState<string>("");
     const [historicalPractices, setHistoricalPractices] = useState<Practice[]>([]);
-    const [ongoingPractice, setOngoingPractice] = useState<Practice | null>(null);
     const [ongoingPracticeProgress, setOngoingPracticeProgress] = useState<number | null>(null);
 
     const loadData = async () => {
@@ -42,7 +40,6 @@ export default function TopicDetailPage() {
 
         const { practices } = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
 
-        setOngoingPractice(practices[0]);
         computeOngoingPracticeProgress(practices[0]);
 
     }
@@ -93,7 +90,6 @@ export default function TopicDetailPage() {
      */
     const loadLatestFinishedPractice = async () => {
         const latestFinishedPractice = await new TomePracticeAPI().getLatestFinishedPractice(String(params.topicId));
-        setLastScore(latestFinishedPractice?.score ?? 0);
         setLastPracticeDate(latestFinishedPractice?.finishedOn ?? "");
     }
 

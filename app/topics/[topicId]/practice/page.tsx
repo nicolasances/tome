@@ -33,13 +33,13 @@ export default function PracticeTopicPage() {
      */
     const loadTopic = async () => {
 
-        const [topic, practice] = await Promise.all([
+        const [topic, { practices }] = await Promise.all([
             new TomeTopicsAPI().getTopic(String(params.topicId)),
             new TomePracticeAPI().getOngoingPractice(String(params.topicId))
         ]);
 
         setTopic(topic);
-        setPractice(practice);
+        setPractice(practices[0]);
     }
 
     /**
@@ -74,7 +74,7 @@ export default function PracticeTopicPage() {
                 <div className="flex-1"></div>
                 <div className="flex justify-center text-xl">{topic.name}</div>
                 <div className="flex-1 flex justify-end cursor-pointer">
-                    <RoundButton icon={<TrashSVG/>} onClick={deletePractice} iconOnly={true} size='s'/>
+                    <RoundButton icon={<TrashSVG />} onClick={deletePractice} iconOnly={true} size='s' />
                 </div>
             </div>
             <div className="flex justify-center mt-2">
