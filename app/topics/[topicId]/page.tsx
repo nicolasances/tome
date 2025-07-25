@@ -25,11 +25,46 @@ export default function TopicDetailPage() {
     const [lastScore, setLastScore] = useState<number>(0)
     const [lastPracticeDate, setLastPracticeDate] = useState<string>("");
     const [historicalPractices, setHistoricalPractices] = useState<Practice[]>([]);
+    const [ongoingPractice, setOngoingPractice] = useState<Practice | null>(null);
+    const [ongoingPracticeProgress, setOngoingPracticeProgress] = useState<number | null>(null);
 
     const loadData = async () => {
         loadTopic();
         loadLatestFinishedPractice();
         loadHistoricalPractices();
+        loadOngoingPractice();
+    }
+
+    /**
+     * Load the ongoing practice for this topic, if any
+     */
+    const loadOngoingPractice = async () => {
+
+        const ongoingPractice = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
+
+        setOngoingPractice(ongoingPractice);
+        computeOngoingPracticeProgress(ongoingPractice);
+
+    }
+
+    /**
+     * Compute the progress of the ongoing practice
+     * @param practice The practice to compute the progress for
+     * @returns 
+     */
+    const computeOngoingPracticeProgress = async (practice: Practice | null) => {
+
+        if (!practice || !practice.id) return;
+
+        // 1. Looad ongoing practice flashcards
+        const { flashcards } = await new TomePracticeAPI().getPracticeFlashcards(practice.id);
+
+        // 2. Compute progress
+        const answeredFlashcards = flashcards.filter(f => f.correctlyAsnwerAt !== null).length;
+        const totalFlashcards = flashcards.length;
+
+        setOngoingPracticeProgress(answeredFlashcards / totalFlashcards * 100);
+
     }
 
     /**
@@ -112,10 +147,12 @@ export default function TopicDetailPage() {
                     <LastPracticeTimedelta lastPracticeDate={lastPracticeDate} />
                 </div>
             </div>
-            <div className="mt-4">
-                <div className="text-xs uppercase">Last Score</div>
-                <ProgressBar hideNumber={true} current={lastScore} max={100} />
-            </div>
+            {ongoingPracticeProgress &&
+                <div className="mt-4">
+                    <div className="text-xs uppercase">Ongoing Practice...</div>
+                    <ProgressBar hideNumber={true} current={ongoingPracticeProgress} max={100} />
+                </div>
+            }
             <div className="mt-8 flex justify-center items-center space-x-2">
                 <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
                 <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} />
