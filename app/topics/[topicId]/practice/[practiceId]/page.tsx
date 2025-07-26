@@ -4,7 +4,6 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import moment from "moment";
-import { PracticeStats, FlashCardsSession } from "@/app/ui/complex/FlashCardsSession";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import { Practice } from "@/model/Practice";
 import { PracticeFinished } from "@/app/ui/complex/PracticeFinished";

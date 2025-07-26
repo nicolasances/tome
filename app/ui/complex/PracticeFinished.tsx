@@ -2,8 +2,6 @@ import { Practice, PracticeStats } from "@/model/Practice";
 import RoundButton from "../buttons/RoundButton";
 import MemLevel from "../graphics/MemLevel";
 import BackSVG from "../graphics/icons/Back";
-import Fireworks from "@fireworks-js/react";
-
 
 export function PracticeFinished({ practice, stats, onClose }: { practice: Practice, stats: PracticeStats, onClose: () => void }) {
 

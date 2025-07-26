@@ -1,11 +1,9 @@
 'use client';
 
-import { PracticeStats, FlashCardsSession } from "@/app/ui/complex/FlashCardsSession";
+import { FlashCardsSession } from "@/app/ui/complex/FlashCardsSession";
 import { useTomeContext } from "@/context/TomeContext";
-import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import moment from "moment";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 
 export default function SegmentPracticePage() {
@@ -17,7 +15,7 @@ export default function SegmentPracticePage() {
     const topic = segment!.topic;
     const practice = segment!.practice;
 
-    const [flashcards, setFlashcards] = useState<PracticeFlashcard[]>(segment!.flashcards);
+    const flashcards = segment!.flashcards;
 
     const sectionTitle = flashcards[0].originalFlashcard.sectionTitle;
 

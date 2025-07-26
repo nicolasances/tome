@@ -5,7 +5,6 @@ import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
 import TopicsCarousel from "./ui/complex/TopicsCarousel";
 import RoundButton from "./ui/buttons/RoundButton";
-import LampSVG from "./ui/graphics/icons/Lamp";
 import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
 import { Topic } from "@/api/TomeTopicsAPI";

@@ -145,7 +145,6 @@ function Segment({ items, index, last }: { items: React.ReactNode[], index: numb
 export function PracticeItem({ id, title, cardType, status, denseLine, lastInPractice, randomNoise, onPracticeItemClick }: { id: SegmentItemId, title: string, cardType: CardType, status?: Status, denseLine?: boolean, lastInPractice?: boolean, randomNoise: number, onPracticeItemClick: (id: SegmentItemId) => void }) {
 
     const [pressed, setPressed] = useState(false);
-    const [disabled, setDisabled] = useState(false);
 
     const borderWidth = 2;
     const marginTop = (denseLine && !lastInPractice ? -56 : -46) + randomNoise; // -46 is the default margin-top, -56 is for dense lines
@@ -169,10 +168,10 @@ export function PracticeItem({ id, title, cardType, status, denseLine, lastInPra
                     transform: pressed ? "scale(0.95)" : "scale(1)",
                     marginLeft: '-4px'
                 }}
-                onMouseDown={() => !disabled && setPressed(true)}
+                onMouseDown={() => setPressed(true)}
                 onMouseUp={() => setPressed(false)}
                 onMouseLeave={() => setPressed(false)}
-                onTouchStart={() => !disabled && setPressed(true)}
+                onTouchStart={() => setPressed(true)}
                 onTouchEnd={() => setPressed(false)}
                 onClick={() => { if (status != 'done') onPracticeItemClick(id) }}
                 role="button"

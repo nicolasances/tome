@@ -28,12 +28,13 @@ import { FlashcardFactory } from '../cards/flashcards/FlashcardFactory';
  */
 export const FlashCardsSession: React.FC<{ practiceId: string, flashcards: PracticeFlashcard[], onFinishedSession: () => void, onFinishedPractice: () => void }> = ({ practiceId, flashcards, onFinishedSession, onFinishedPractice }) => {
 
-    const [cards, setCards] = useState<PracticeFlashcard[]>(flashcards);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const sliderRef = useRef<Slider>(null);
     const [firstUnansweredIndex, setFirstUnansweredIndex] = useState<number | null>(null);
+
+    const cards = flashcards;
 
     /**
      * Loads the flashcards for the given practiceId from the TomePracticeAPI.
