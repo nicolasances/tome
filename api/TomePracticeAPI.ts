@@ -25,6 +25,15 @@ export class TomePracticeAPI {
     }
 
     /**
+     * Gets the practice with the specified id
+     * @param practiceId Returns the practice with the specified id
+     * @returns the practice with the specified id
+     */
+    async getPractice(practiceId: string): Promise<Practice> {
+        return (await new TotoAPI().fetch('tome-ms-practice', `/practices/${practiceId}`)).json()
+    }
+
+    /**
      * Returns the flashcards for a practice
      * 
      * @param practiceId the id of the practice to get the flashcards for

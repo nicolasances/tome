@@ -107,7 +107,6 @@ export default function Home() {
       <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
 
       <div className="flex justify-center items-center space-x-2">
-        <RoundButton icon={<LampSVG />} onClick={() => { }} size="m" />
         <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
       </div>
 

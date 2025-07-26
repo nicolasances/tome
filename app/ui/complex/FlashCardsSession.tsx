@@ -26,9 +26,9 @@ import { FlashcardFactory } from '../cards/flashcards/FlashcardFactory';
  * Make sure you handle the flashcard widget interface: interface FlashCardProps { question: string; answers: string[]; correctAnswerIndex: number; onAnswerSelect: (isCorrect: boolean) => void; tag: string; cardNumber: number; totalCards: number;}
  * 
  */
-export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession: (stats: FlashcardSessionStats) => void }> = ({ practiceId, onFinishedSession }) => {
+export const FlashCardsSession: React.FC<{ practiceId: string, flashcards: PracticeFlashcard[], onFinishedSession: () => void, onFinishedPractice: () => void }> = ({ practiceId, flashcards, onFinishedSession, onFinishedPractice }) => {
 
-    const [cards, setCards] = useState<PracticeFlashcard[]>([]);
+    const [cards, setCards] = useState<PracticeFlashcard[]>(flashcards);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answeredCorrectly, setAnsweredCorrectly] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -41,10 +41,6 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
     const loadCards = async () => {
 
         setIsLoading(true);
-
-        const { flashcards } = await new TomePracticeAPI().getPracticeFlashcards(practiceId);
-
-        setCards(flashcards);
 
         // Go through the flashcards and find the first one that has not been answered yet
         const firstUnansweredIndex = flashcards.findIndex(card => card.correctlyAsnwerAt == null);
@@ -66,34 +62,35 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
      */
     const handleAnswerSelect = async (isCorrect: boolean, flashcardId: string) => {
 
+        // 1. Send the answer to the API
+        const response = await new TomePracticeAPI().answerFlashcard(practiceId, flashcardId, isCorrect);
+
+        console.log(`Flashcard answered: ${flashcardId}, Correct: ${response.isCorrect}, Response:`, response);
+
+        if (response.finished) {
+            onFinishedPractice();
+            return;
+        }
+
         if (isCorrect && !answeredCorrectly) {
 
             setAnsweredCorrectly(true);
 
             // Wait a sec and move to the next flashcard
             setTimeout(() => {
-                
+
                 if (sliderRef.current && currentIndex < cards.length - 1) {
                     sliderRef.current.slickNext();
                     setAnsweredCorrectly(false);
                     setCurrentIndex((prev) => Math.min(prev + 1, cards.length - 1));
                 }
-                
+                else {
+                    // There are no more flashcards, finish the practice
+                    onFinishedSession();
+                }
+
             }, 300);
         }
-
-        // 2. Meanwhile send the answer to the API
-        const response = await new TomePracticeAPI().answerFlashcard(practiceId, flashcardId, isCorrect);
-
-        console.log(`Flashcard answered: ${flashcardId}, Correct: ${response.isCorrect}, Response:`, response);
-
-        if (response.finished) onFinishedSession({
-            score: response.score!, 
-            numCards: response.stats!.numCards, 
-            averageAttempts: response.stats!.averageAttempts, 
-            totalWrongAnswers: response.stats!.totalWrongAnswers
-        })
-
     };
 
     useEffect(() => { loadCards() }, []);
@@ -134,8 +131,8 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
                     <div key={idx} className="px-2">
                         {FlashcardFactory.createFlashcardWidget(
                             card,
-                            idx, 
-                            cards.length, 
+                            idx,
+                            cards.length,
                             handleAnswerSelect
                         )}
                     </div>
@@ -145,8 +142,8 @@ export const FlashCardsSession: React.FC<{ practiceId: string, onFinishedSession
     );
 };
 
-export interface FlashcardSessionStats {
-    score: number; 
+export interface PracticeStats {
+    score: number;
     numCards: number;
     averageAttempts: number;
     totalWrongAnswers: number;

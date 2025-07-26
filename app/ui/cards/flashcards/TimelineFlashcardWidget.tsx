@@ -42,9 +42,6 @@ export const TimelineFlashcardWidget: React.FC<FlashCardProps> = ({ context, car
     const [lastMovedEventIndex, setLastMovedEventIndex] = useState<number | null>(null);
     const [allEventsCorrect, setAllEventsCorrect] = useState<boolean>(false);
 
-    console.log(card.events);
-
-
     // Refs for each event
     const eventRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 

@@ -20,7 +20,9 @@ export interface SectionTimelineFlashcard {
     user: string;
     topicId: string;
     topicCode: string;
+    sectionCode: string;
     sectionTitle: string; 
+    sectionShortTitle: string;
     events: SectionTimelineEvent[]; 
 }
 
@@ -41,6 +43,8 @@ export interface MultipleOptionsFlashcard {
     rightAnswerIndex: number;
     tag: string;
     sectionTitle: string; 
+    sectionShortTitle: string;
+    sectionCode: string;
 }
 
 export interface GetFlashCardsResponse {

@@ -40,7 +40,7 @@ export default function TopicDetailPage() {
 
         const { practices } = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
 
-        computeOngoingPracticeProgress(practices[0]);
+        if (practices) computeOngoingPracticeProgress(practices[0]);
 
     }
 
@@ -112,8 +112,17 @@ export default function TopicDetailPage() {
 
         const response = await new TomePracticeAPI().startPractice(String(params.topicId), "options")
 
-        if (response && 'practiceId' in response) router.push(`${params.topicId}/practice`);
-        else if (response && response.subcode == 'ongoing-practice-found') router.push(`${params.topicId}/practice`);
+        if (response && 'practiceId' in response) {
+            router.push(`${params.topicId}/practice/${response.practiceId}`);
+        }
+        else if (response && response.subcode == 'ongoing-practice-found') {
+
+            // Load ongoing practice
+            const { practices } = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
+
+            // Route
+            router.push(`${params.topicId}/practice/${practices[0].id}`);
+        }
 
 
     }
@@ -143,7 +152,7 @@ export default function TopicDetailPage() {
                     <LastPracticeTimedelta lastPracticeDate={lastPracticeDate} />
                 </div>
             </div>
-            {ongoingPracticeProgress &&
+            {ongoingPracticeProgress != null &&
                 <div className="mt-4">
                     <div className="text-xs uppercase">Ongoing Practice...</div>
                     <ProgressBar hideNumber={true} current={ongoingPracticeProgress} max={100} />
@@ -151,8 +160,8 @@ export default function TopicDetailPage() {
             }
             <div className="mt-8 flex justify-center items-center space-x-2">
                 <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
-                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} />
-                <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic} />
+                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount} />
+                <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic} disabled={startingPractice} />
             </div>
             <div className="flex-1"></div>
             <div className="">
