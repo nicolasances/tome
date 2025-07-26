@@ -58,6 +58,13 @@ const TopicsCarousel: React.FC<TopicsCarouselProps> = ({ onCentralCardClick }) =
             return { ...topic, ongoingPractice: ongoingPractice || undefined };
         });
 
+        // Sort the topics, putting first the ones with ongoing practice
+        updatedTopics.sort((a, b) => {
+            if (a.ongoingPractice && !b.ongoingPractice) return -1;
+            if (!a.ongoingPractice && b.ongoingPractice) return 1;
+            return 0; // Keep the original order if both have or don't have ongoing practice
+        });
+
         setTopics(updatedTopics);
     }
 
