@@ -1,5 +1,5 @@
-import { MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
+import { DateFlashcard, MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
 
 
 
-export type Flashcard = MultipleOptionsFlashcard | SectionTimelineFlashcard;
+export type Flashcard = MultipleOptionsFlashcard | SectionTimelineFlashcard | DateFlashcard;

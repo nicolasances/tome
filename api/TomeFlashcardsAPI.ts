@@ -21,15 +21,15 @@ export interface SectionTimelineFlashcard {
     topicId: string;
     topicCode: string;
     sectionCode: string;
-    sectionTitle: string; 
+    sectionTitle: string;
     sectionShortTitle: string;
-    events: SectionTimelineEvent[]; 
+    events: SectionTimelineEvent[];
 }
 
 export interface SectionTimelineEvent {
 
     event: string;
-    date: string; 
+    date: string;
     dateFormat: string;
     correctIndex: number;
 
@@ -42,13 +42,27 @@ export interface MultipleOptionsFlashcard {
     options: string[];
     rightAnswerIndex: number;
     tag: string;
-    sectionTitle: string; 
+    sectionTitle: string;
     sectionShortTitle: string;
     sectionCode: string;
+}
+
+export interface DateFlashcard {
+    id?: string
+    type: string;
+    user: string
+    topicId: string
+    topicCode: string;
+    sectionCode: string;
+    sectionTitle: string;
+    sectionShortTitle: string;
+
+    question: string;
+    correctYear: number;
+
 }
 
 export interface GetFlashCardsResponse {
     sectionTimelineFlascards: SectionTimelineFlashcard[];
     multipleOptionsFlashcards: MultipleOptionsFlashcard[];
 }
-    
