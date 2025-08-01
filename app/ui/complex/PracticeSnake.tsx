@@ -3,6 +3,7 @@ import { ChessSVG } from "../graphics/icons/ChessSVG";
 import JusticeSVG from "../graphics/icons/JusticeSVG";
 import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import DateSVG from "../graphics/icons/DateSVG";
+import GraphSVG from "../graphics/icons/GraphSVG";
 
 export function PracticeSnake({ flashcards, onItemClick }: { flashcards: PracticeFlashcard[], onItemClick: (itemId: SegmentItemId) => void }) {
 
@@ -182,7 +183,7 @@ export function PracticeItem({ id, title, cardType, status, denseLine, lastInPra
                     w-7 h-7 flex items-center justify-center
                     ${status == 'done' ? 'fill-cyan-400' : 'fill-lime-200'}
                     `}>
-                    {cardType == 'timeline' ? <ChessSVG /> : cardType == 'date' ? <DateSVG /> : <JusticeSVG />}
+                    {cardType == 'graph' ? <GraphSVG /> : cardType == 'date' ? <DateSVG /> : <JusticeSVG />}
                 </div>
 
             </div>
@@ -190,7 +191,7 @@ export function PracticeItem({ id, title, cardType, status, denseLine, lastInPra
     )
 }
 
-export type CardType = 'options' | 'timeline' | 'date';
+export type CardType = 'options' | 'timeline' | 'date' | 'graph';
 export type Status = 'done' | 'todo';
 
 interface SegmentData { sectionCode: string, type: string, sectionShortTitle: string, status: Status }

@@ -1,9 +1,10 @@
 import { JSX } from "react";
 import { FlashCard as FlashCardWidget } from './FlashCard';
-import { MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
+import { DateFlashcard, MultipleOptionsFlashcard, SectionTimelineFlashcard } from "@/api/TomeFlashcardsAPI";
 import { TimelineFlashcardWidget } from "./TimelineFlashcardWidget";
 import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import { DateFlashcardWidget } from "./DateFlashcardWidget";
+import { GraphWidget } from "./GraphWidget";
 
 
 export class FlashcardFactory {
@@ -34,8 +35,12 @@ export class FlashcardFactory {
                 <TimelineFlashcardWidget card={flashcard.originalFlashcard as SectionTimelineFlashcard} cardNumber={idx + 1} totalCards={numCards} disableFireworks={true} context={flashcard.originalFlashcard.sectionTitle} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }} tag="timeline" />
             )
         }
-        else {
-            return <DateFlashcardWidget flashcard={flashcard} cardNumber={idx + 1} totalCards={numCards} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }} />
+        else if (flashcard.originalFlashcard.type == 'date') {
+            const fc = flashcard.originalFlashcard as DateFlashcard;
+            return <DateFlashcardWidget correctYear={fc.correctYear} id={flashcard.id!} question={fc.question} sectionTitle={fc.sectionTitle} cardNumber={idx + 1} totalCards={numCards} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }} />
+        }
+        else if (flashcard.originalFlashcard.type == 'graph') {
+            return <GraphWidget flashcard={flashcard} />
         }
 
         return (<div className="text-base text-center" > Card of type <b className="text-cyan-300" > {flashcard.originalFlashcard.type}</b> is not currently supported.</div >)

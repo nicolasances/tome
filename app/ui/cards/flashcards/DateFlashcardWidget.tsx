@@ -1,8 +1,6 @@
-import { DateFlashcard } from "@/api/TomeFlashcardsAPI";
-import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import React, { useRef, useState } from "react";
 
-export function DateFlashcardWidget({ flashcard, cardNumber, totalCards, onAnswerSelect }: { flashcard: PracticeFlashcard, cardNumber: number, totalCards: number, onAnswerSelect: (isCorrect: boolean) => void }) {
+export function DateFlashcardWidget({ question, correctYear, sectionTitle, id, cardNumber, totalCards, onAnswerSelect }: { question: string, correctYear: number, sectionTitle: string, id: string, cardNumber: number, totalCards: number, onAnswerSelect: (isCorrect: boolean) => void }) {
 
     return (
         <div className="p-4 shadow-lg rounded-lg bg-cyan-100 max-w-md mx-auto relative">
@@ -14,10 +12,10 @@ export function DateFlashcardWidget({ flashcard, cardNumber, totalCards, onAnswe
                     {cardNumber}/{totalCards}
                 </span>
             </div>
-            <div className='text-sm mb-2 opacity-60'>{flashcard.originalFlashcard.sectionTitle}</div>
-            <div className="mb-8 text-base font-bold">{(flashcard.originalFlashcard as DateFlashcard).question}</div>
+            <div className='text-sm mb-2 opacity-60'>{sectionTitle}</div>
+            <div className="mb-8 text-base font-bold">{question}</div>
             <div className="flex justify-center space-y-3 relative ml-2">
-                <YearInput correctYear={(flashcard.originalFlashcard as DateFlashcard).correctYear} flashcard={flashcard} onAnswer={onAnswerSelect} />
+                <YearInput correctYear={correctYear} flashcardId={id} onAnswer={onAnswerSelect} />
             </div>
         </div>
     );
@@ -33,7 +31,7 @@ export function DateFlashcardWidget({ flashcard, cardNumber, totalCards, onAnswe
  * 
  * @returns 
  */
-function YearInput({ correctYear, flashcard, onAnswer }: { correctYear: number, flashcard: PracticeFlashcard, onAnswer: (isCorrect: boolean) => void }) {
+function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: string, onAnswer: (isCorrect: boolean) => void }) {
 
     const getDigits = (year: number) => year.toString().split("");
 
@@ -42,11 +40,6 @@ function YearInput({ correctYear, flashcard, onAnswer }: { correctYear: number, 
     const [values, setValues] = useState<string[]>(Array(numDigits).fill(""));
     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
     const [correct, setCorrect] = useState<boolean | null>(null);
-
-    // // Focus first box on mount
-    // React.useEffect(() => {
-    //     inputsRef.current[0]?.focus();
-    // }, []);
 
     const handleChange = (idx: number, e: React.ChangeEvent<HTMLInputElement>) => {
         let val = e.target.value.replace(/[^0-9]/g, "");
@@ -58,7 +51,7 @@ function YearInput({ correctYear, flashcard, onAnswer }: { correctYear: number, 
 
         // Move focus to next box if filled
         if (val && idx < numDigits - 1) {
-            document.getElementById(`${idx + 1}-${flashcard.id}`)?.focus();
+            document.getElementById(`${idx + 1}-${flashcardId}`)?.focus();
             // inputsRef.current[idx + 1]?.focus();
         }
 
@@ -70,12 +63,7 @@ function YearInput({ correctYear, flashcard, onAnswer }: { correctYear: number, 
             const isAnswerCorrect = inputYear === correctYear.toString();
 
             setCorrect(isAnswerCorrect);
-            onAnswer(isAnswerCorrect);
-
-            if (!isAnswerCorrect) {
-                // The correct answer will be shown, so wait a second and then call onAnswer(true) to move to the next slide
-                setTimeout(() => {onAnswer(true);}, 1000);
-            }
+            setTimeout(() => { onAnswer(isAnswerCorrect); }, 1000);
 
         }
     };
@@ -91,11 +79,11 @@ function YearInput({ correctYear, flashcard, onAnswer }: { correctYear: number, 
 
     return (
         <div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 justify-center">
                 {digits.map((_, idx) => (
                     <input
-                        id={`${idx}-${flashcard.id}`}
-                        key={`${idx}-${flashcard.id}`}
+                        id={`${idx}-${flashcardId}`}
+                        key={`${idx}-${flashcardId}`}
                         type="text"
                         inputMode="numeric"
                         maxLength={1}
@@ -119,7 +107,7 @@ function YearInput({ correctYear, flashcard, onAnswer }: { correctYear: number, 
                     <div className="flex space-x-2">
                         {digits.map((_, idx) => (
                             <input
-                                key={`corr-${idx}-${flashcard.id}`}
+                                key={`corr-${idx}-${flashcardId}`}
                                 type="text"
                                 inputMode="numeric"
                                 maxLength={1}
