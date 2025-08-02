@@ -38,11 +38,21 @@ export const FlashCard: React.FC<FlashCardProps> = ({ context, question, answers
     const [clickedIndex, setClickedIndex] = useState<number | null>(null);
     const [showFireworks, setShowFireworks] = useState(false);
 
+    const [shuffledAnswers, setShuffledAnswers] = useState<string[]>(answers);
+    const [postShuffleCorrectAnswerIndex, setPostShuffleCorrectAnswerIndex] = useState<number>(correctAnswerIndex);
+
+    // Shuffle answers and adjust the correct answer index
+    React.useEffect(() => {
+        const shuffled = [...answers].sort(() => Math.random() - 0.5);
+        setShuffledAnswers(shuffled);
+        setPostShuffleCorrectAnswerIndex(shuffled.indexOf(answers[correctAnswerIndex]));
+    }, [answers, correctAnswerIndex]);
+
     const handleAnswerClick = (index: number) => {
         setClickedIndex(index);
         setTimeout(() => setClickedIndex(null), 150); // Reset the clicked state after animation
         setSelectedAnswerIndex(index);
-        const isCorrect = index === correctAnswerIndex;
+        const isCorrect = index === postShuffleCorrectAnswerIndex;
         onAnswerSelect(isCorrect, index);
 
         if (isCorrect && !disableFireworks) {
@@ -58,7 +68,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ context, question, answers
         if (selectedAnswerIndex === null) {
             return `${baseClass} ${activeClass}`;
         }
-        if (index === correctAnswerIndex && selectedAnswerIndex === correctAnswerIndex) {
+        if (index === postShuffleCorrectAnswerIndex && selectedAnswerIndex === postShuffleCorrectAnswerIndex) {
             return `p-2 mb-2 rounded bg-green-300 animate-fade-in text-base ${activeClass}`;
         }
         if (index === selectedAnswerIndex) {
@@ -85,7 +95,7 @@ export const FlashCard: React.FC<FlashCardProps> = ({ context, question, answers
             <div className='text-sm mb-2 opacity-60'>{context}</div>
             <div className="mb-4 text-base font-bold">{question}</div>
             <ul className="list-none p-0 m-0">
-                {answers.map((answer, index) => (
+                {shuffledAnswers.map((answer, index) => (
                     <li
                         key={index}
                         className={getAnswerClass(index)}

@@ -67,7 +67,7 @@ export function GraphWidget({ flashcard, onAnswerSelect }: { flashcard: Practice
                 </div>
             </div>
             <div className="flex justify-center mt-4 mb-8">
-                <RoundButton icon={<Tick />} size="m" onClick={() => { }} />
+                {/* <RoundButton icon={<Tick />} size="m" onClick={() => { }} /> */}
             </div>
         </div>
     )
