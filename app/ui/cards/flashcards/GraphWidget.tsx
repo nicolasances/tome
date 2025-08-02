@@ -36,10 +36,16 @@ export function GraphWidget({ flashcard, onAnswerSelect }: { flashcard: Practice
      * When the user answers the event question correctly, you can show the next event
      */
     const onEventAnsweredCorrectly = () => {
+        
+        // Was this the last event? 
+        const lastEvent = currentIndex + 1 >= events.length;
+
+        console.log(`Event answered correctly: ${events[currentIndex].code} - Last event: ${lastEvent}`);
+        
         setCurrentIndex(index => index + 1);
 
         // If the current index is the last one, we can consider the practice finished
-        if (currentIndex + 1 >= events.length) {
+        if (lastEvent) {
 
             // Call the onAnswerSelect to complete the Graph Flashcard
             onAnswerSelect(true);
