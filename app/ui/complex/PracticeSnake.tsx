@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { ChessSVG } from "../graphics/icons/ChessSVG";
 import JusticeSVG from "../graphics/icons/JusticeSVG";
 import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import DateSVG from "../graphics/icons/DateSVG";

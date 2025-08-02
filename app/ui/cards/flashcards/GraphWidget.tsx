@@ -8,12 +8,12 @@ import { DateFlashcardPopup, OptionsFlashcardPopup } from "../util/OptionsFlashc
 
 const nameColorPalette = ["bg-amber-100", "bg-rose-200", "bg-lime-400", "bg-sky-200", "bg-rose-300", "bg-violet-200"];
 
-export function GraphWidget({ flashcard }: { flashcard: PracticeFlashcard }) {
+export function GraphWidget({ flashcard, onAnswerSelect }: { flashcard: PracticeFlashcard, onAnswerSelect: (isCorrect: boolean) => void }) {
 
     const [currentIndex, setCurrentIndex] = useState<number>(0); // Tracks the current index in the events storyline. 
 
     const graph = (flashcard.originalFlashcard as HistoricalGraphFC).graph;
-    const summary = graph.summary;
+    // const summary = graph.summary;
     const eventGraph = graph.eventGraph;
 
     // Flatten the event graph into a list of events
@@ -23,10 +23,27 @@ export function GraphWidget({ flashcard }: { flashcard: PracticeFlashcard }) {
     const uniqueNames = extractAllUniqueNames(events);
 
     /**
+     * Records the answer as wrong. 
+     * 
+     * Concretely this will increase the counter of wrong answers for the flashcard, and will not move to the next event.
+     */
+    const recordWrongAnswer = () => {
+
+        onAnswerSelect(false);
+    }
+
+    /**
      * When the user answers the event question correctly, you can show the next event
      */
-    function onEventAnsweredCorrectly(): void {
+    const onEventAnsweredCorrectly = () => {
         setCurrentIndex(index => index + 1);
+
+        // If the current index is the last one, we can consider the practice finished
+        if (currentIndex + 1 >= events.length) {
+
+            // Call the onAnswerSelect to complete the Graph Flashcard
+            onAnswerSelect(true);
+        }
     }
 
     return (
@@ -34,7 +51,7 @@ export function GraphWidget({ flashcard }: { flashcard: PracticeFlashcard }) {
             <div className="flex flex-col justify-left relative pb-8">
                 {events && events.map((event, index) => (
                     index <= currentIndex &&
-                    <GraphItem key={event.code} event={event} uniqueNames={uniqueNames} answered={index < currentIndex} onItemAnsweredCorrectly={onEventAnsweredCorrectly} />
+                    <GraphItem key={event.code} event={event} uniqueNames={uniqueNames} onItemAnsweredCorrectly={onEventAnsweredCorrectly} onWrongAnswer={recordWrongAnswer} />
                 )
                 )}
                 <div className="mt-2"></div>
@@ -89,11 +106,11 @@ function mapNameToColor(name: string, uniqueName: string[]): string {
  * On item of the graph, so represents an Event Node
  * @returns 
  */
-function GraphItem({ event, uniqueNames, answered, onItemAnsweredCorrectly }: { event: Event, uniqueNames: string[], answered: boolean, onItemAnsweredCorrectly: () => void }) {
+function GraphItem({ event, uniqueNames, onItemAnsweredCorrectly, onWrongAnswer }: { event: Event, uniqueNames: string[], onItemAnsweredCorrectly: () => void, onWrongAnswer: () => void }) {
 
     const [eventAnswered, setEventAnswered] = useState<boolean>(false);
-    const [dateAnswered, setDateAnswered] = useState<boolean>(false); 
-    const [numFactsAnswered, setNumFactsAnswered] = useState<number>(0);
+    const [dateAnswered, setDateAnswered] = useState<boolean>(false);
+    // const [numFactsAnswered, setNumFactsAnswered] = useState<number>(0);
 
     const eventText = event.event;
 
@@ -106,17 +123,29 @@ function GraphItem({ event, uniqueNames, answered, onItemAnsweredCorrectly }: { 
         return `<span class="text-cyan-100">${content}</span>`;
     });
 
-    function onEventAnsweredCorrectly() {
-        setEventAnswered(true);
+    const onEventAnswer = (isCorrect: boolean): void => {
 
-        // If there's no date, we can consider the event answered
-        if (event.date === null || event.date === undefined) {
-            onDateAnswered();
+        if (isCorrect) {
+            setEventAnswered(true);
+
+            // If there's no date, we can consider the event answered
+            if (event.date === null || event.date === undefined) {
+                onDateAnswered(true);
+            }
         }
+        else {
+            onWrongAnswer();
+        }
+
     }
 
-    function onDateAnswered() {
+    const onDateAnswered = (isCorrect: boolean) => {
+
         setDateAnswered(true);
+
+        if (!isCorrect) onWrongAnswer();
+
+        // No matter what, we can move on, because if the user answered wrongly, the right answer was shown and the popup closed
         onItemAnsweredCorrectly();
     }
 
@@ -130,7 +159,7 @@ function GraphItem({ event, uniqueNames, answered, onItemAnsweredCorrectly }: { 
             <div className="w-6 h-6 min-w-6 min-h-6 border-2 border-cyan-200 rounded-full" style={{ backgroundColor: 'var(--background)', zIndex: 1 }}></div>
             <div className="ml-2">
                 {eventAnswered && <div className="text-base" dangerouslySetInnerHTML={{ __html: formattedEventText }} />}
-                {!eventAnswered && <div><EventQuestionButton event={event} onAnsweredCorrectly={onEventAnsweredCorrectly} /></div>}
+                {!eventAnswered && <div><EventQuestionButton event={event} onAnswer={onEventAnswer} /></div>}
 
                 {dateAnswered &&
                     <div className="flex flex-col space-y-2 mt-2 mb-2">
@@ -144,18 +173,18 @@ function GraphItem({ event, uniqueNames, answered, onItemAnsweredCorrectly }: { 
     )
 }
 
-function EventQuestionButton({ event, onAnsweredCorrectly }: { event: Event, onAnsweredCorrectly: () => void }) {
+function EventQuestionButton({ event, onAnswer }: { event: Event, onAnswer: (isCorrect: boolean) => void }) {
     const [pressed, setPressed] = useState(false);
     const [showQuestion, setShowQuestion] = useState(false);
     const disabled = false; // Set to true if you want to disable the button
 
-    function onAnswerSelected(isCorrect: boolean, selectedAnswerIndex: number): void {
+    const onAnswerSelected = (isCorrect: boolean): void => {
 
-        // If the answer is correct, we can move to the next event
-        if (isCorrect) {
-            setShowQuestion(false);
-            onAnsweredCorrectly();
-        }
+        setTimeout(() => {
+            setShowQuestion(!isCorrect) // If the answer is correct, we can close the question popup
+            onAnswer(isCorrect);
+        }, isCorrect ? 500 : 50);
+
     }
 
     return (
@@ -183,10 +212,12 @@ function EventDateQuestionButton({ event, onAnswered }: { event: Event, onAnswer
     const [showQuestion, setShowQuestion] = useState(false);
     const disabled = false; // Set to true if you want to disable the button
 
-    function onAnswerSelected(isCorrect: boolean): void {
+    const onAnswerSelected = (isCorrect: boolean): void => {
 
-        setShowQuestion(false);
-        onAnswered(isCorrect);
+        setTimeout(() => {
+            setShowQuestion(false);
+            onAnswered(isCorrect);
+        }, isCorrect ? 500 : 1000);
     }
 
     return (
@@ -204,7 +235,7 @@ function EventDateQuestionButton({ event, onAnswered }: { event: Event, onAnswer
             >
                 ?
             </div>
-            <DateFlashcardPopup cardNumber={1} totalCards={1} open={showQuestion} question="When did the event happen?" correctYear={parseInt(event.date!)} sectionTitle="" id={event.code} onClose={() => setShowQuestion(false)} onAnswerSelected={onAnswerSelected} />
+            <DateFlashcardPopup open={showQuestion} question="When did the event happen?" correctYear={parseInt(event.date!)} sectionTitle="" id={event.code} onClose={() => setShowQuestion(false)} onAnswerSelected={onAnswerSelected} />
         </>
     )
 }

@@ -40,7 +40,7 @@ export class FlashcardFactory {
             return <DateFlashcardWidget correctYear={fc.correctYear} id={flashcard.id!} question={fc.question} sectionTitle={fc.sectionTitle} cardNumber={idx + 1} totalCards={numCards} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }} />
         }
         else if (flashcard.originalFlashcard.type == 'graph') {
-            return <GraphWidget flashcard={flashcard} />
+            return <GraphWidget flashcard={flashcard} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }}  />
         }
 
         return (<div className="text-base text-center" > Card of type <b className="text-cyan-300" > {flashcard.originalFlashcard.type}</b> is not currently supported.</div >)

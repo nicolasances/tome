@@ -63,7 +63,7 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
             const isAnswerCorrect = inputYear === correctYear.toString();
 
             setCorrect(isAnswerCorrect);
-            setTimeout(() => { onAnswer(isAnswerCorrect); }, 1000);
+            onAnswer(isAnswerCorrect);
 
         }
     };

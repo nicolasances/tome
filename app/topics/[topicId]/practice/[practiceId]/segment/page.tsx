@@ -46,13 +46,13 @@ export default function SegmentPracticePage() {
                 <div className="flex-1 flex justify-end cursor-pointer">
                 </div>
             </div>
-            <div className="text-center text-base text-gray-700 mt-2">
-                {sectionTitle}
-            </div>
             <div className="flex justify-center mt-2">
                 <div className="text-sm bg-cyan-200 rounded-full px-2">
                     {moment(practice.startedOn, 'YYYYMMDD').format('DD/MM/YYYY')}
                 </div>
+            </div>
+            <div className="text-center text-base text-gray-700 mt-2">
+                {sectionTitle}
             </div>
 
             <div className="flex justify-center mt-8">
