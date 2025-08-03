@@ -90,12 +90,11 @@ export function PracticeSections({ flashcards, onItemClick }: { flashcards: Prac
                 const status: Status = segment.items.every(item => item.status === 'done') ? 'done' : 'todo';
 
                 return (
-                    <Segment key={index} index={index} last={index === segments.length - 1} status={status} title={segment.items[0].sectionShortTitle} items={segment.items.map((item, idx) => {
+                    <Segment key={index} index={index} status={status} title={segment.items[0].sectionShortTitle} items={segment.items.map((item, idx) => {
 
                         return <PracticeItem
                             key={idx}
                             id={{ sectionCode: item.sectionCode, type: item.type } as SegmentItemId}
-                            title={item.sectionShortTitle}
                             cardType={item.type as CardType}
                             status={item.status}
                             onPracticeItemClick={onItemClick}
@@ -109,7 +108,7 @@ export function PracticeSections({ flashcards, onItemClick }: { flashcards: Prac
 
 }
 
-function Segment({ items, index, last, title, status }: { items: React.ReactNode[], index: number, last?: boolean, title: string, status: Status }) {
+function Segment({ items, index, title, status }: { items: React.ReactNode[], index: number, title: string, status: Status }) {
 
     return (
         <div className={`rounded py-4 px-4 ${status == 'done' ? 'bg-cyan-800 opacity-50' : 'bg-cyan-800'}`}>
@@ -131,7 +130,7 @@ function Segment({ items, index, last, title, status }: { items: React.ReactNode
     )
 }
 
-export function PracticeItem({ id, title, cardType, status, onPracticeItemClick }: { id: SegmentItemId, title: string, cardType: CardType, status?: Status, onPracticeItemClick: (id: SegmentItemId) => void }) {
+export function PracticeItem({ id, cardType, status, onPracticeItemClick }: { id: SegmentItemId, cardType: CardType, status?: Status, onPracticeItemClick: (id: SegmentItemId) => void }) {
 
     const [pressed, setPressed] = useState(false);
 
