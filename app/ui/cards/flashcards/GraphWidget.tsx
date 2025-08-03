@@ -160,9 +160,9 @@ function GraphItem({ event, uniqueNames, onItemAnsweredCorrectly, onWrongAnswer 
             {dateAnswered && (
                 <div className="min-w-[56px] text-base rounded-full bg-cyan-700 text-white text-center mr-2 mt-1">
                     <b>
-                        {event.date && event.dateFormat
-                            ? moment(event.date, event.dateFormat).format('YYYY')
-                            : ''}
+                        {event.date && event.dateFormat && event.dateFormat != "YYYY"
+                            ? moment(event.date, event.dateFormat).format('YYYY').replace(/^0+/, '')
+                            : event.date}
                     </b>
                 </div>
             )}

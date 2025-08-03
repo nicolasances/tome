@@ -2,7 +2,7 @@ import React from "react";
 import { FlashCard } from "../flashcards/FlashCard";
 import { Dialog, DialogContent } from "@mui/material";
 import { DateFlashcardWidget } from "../flashcards/DateFlashcardWidget";
-
+import "./Popup.css";
 
 export function OptionsFlashcardPopup({ open, question, options, correctAnswerIndex, onClose, onAnswerSelected }: { open: boolean, question: string, options: string[], correctAnswerIndex: number, onClose: () => void, onAnswerSelected: (isCorrect: boolean, selectedAnswerIndex: number) => void }) {
 
