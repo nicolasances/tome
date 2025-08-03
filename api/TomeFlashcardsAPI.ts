@@ -21,6 +21,7 @@ export interface SectionTimelineFlashcard {
     topicId: string;
     topicCode: string;
     sectionCode: string;
+    sectionIndex: number;
     sectionTitle: string;
     sectionShortTitle: string;
     events: SectionTimelineEvent[];
@@ -45,6 +46,7 @@ export interface MultipleOptionsFlashcard {
     sectionTitle: string;
     sectionShortTitle: string;
     sectionCode: string;
+    sectionIndex: number;
 }
 
 export interface DateFlashcard {
@@ -54,6 +56,7 @@ export interface DateFlashcard {
     topicId: string
     topicCode: string;
     sectionCode: string;
+    sectionIndex: number;
     sectionTitle: string;
     sectionShortTitle: string;
 

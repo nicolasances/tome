@@ -3,6 +3,7 @@ import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import IdeaSVG from "../../graphics/icons/IdeaSVG";
 import { useState } from "react";
 import { DateFlashcardPopup, OptionsFlashcardPopup } from "../util/OptionsFlashcardPopup";
+import moment from "moment";
 
 const nameColorPalette = ["bg-amber-100", "bg-rose-200", "bg-lime-400", "bg-sky-200", "bg-rose-300", "bg-violet-200"];
 
@@ -156,7 +157,15 @@ function GraphItem({ event, uniqueNames, onItemAnsweredCorrectly, onWrongAnswer 
     return (
         <div className="flex flex-row justify-start items-start" style={{ margin: "6px 0" }}>
 
-            {dateAnswered && <div className="min-w-[56px] text-base rounded-full bg-cyan-700 text-white text-center mr-2 mt-1"><b>{event.date}</b></div>}
+            {dateAnswered && (
+                <div className="min-w-[56px] text-base rounded-full bg-cyan-700 text-white text-center mr-2 mt-1">
+                    <b>
+                        {event.date && event.dateFormat
+                            ? moment(event.date, event.dateFormat).format('YYYY')
+                            : ''}
+                    </b>
+                </div>
+            )}
             {!dateAnswered && eventAnswered && <EventDateQuestionButton event={event} onAnswered={onDateAnswered} />}
             {!dateAnswered && !eventAnswered && <div className="min-w-[56px] mr-2 mt-1"></div>}
 

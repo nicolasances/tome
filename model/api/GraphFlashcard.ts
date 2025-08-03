@@ -5,6 +5,7 @@ export interface HistoricalGraphFC {
     topicId: string;
     topicCode: string;
     sectionCode: string;
+    sectionIndex: number;
     user: string;
     
     sectionTitle: string; 

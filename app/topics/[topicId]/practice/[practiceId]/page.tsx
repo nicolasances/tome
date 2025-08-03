@@ -9,9 +9,9 @@ import { Practice } from "@/model/Practice";
 import { PracticeFinished } from "@/app/ui/complex/PracticeFinished";
 import TrashSVG from "@/app/ui/graphics/icons/TrashSVG";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import { PracticeSnake } from "@/app/ui/complex/PracticeSnake";
 import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import { useTomeContext } from "@/context/TomeContext";
+import { PracticeSections } from "@/app/ui/complex/PracticeSections";
 
 
 export default function PracticeTopicPage() {
@@ -30,8 +30,6 @@ export default function PracticeTopicPage() {
      */
     const loadData = async () => {
 
-        console.log(`Loading practice for topic ${params.topicId} and practice ${params.practiceId}`)
-
         const [topic, practice] = await Promise.all([
             new TomeTopicsAPI().getTopic(String(params.topicId)),
             new TomePracticeAPI().getPractice(String(params.practiceId))
@@ -42,6 +40,11 @@ export default function PracticeTopicPage() {
 
         // Load the flashcards 
         const { flashcards } = await new TomePracticeAPI().getPracticeFlashcards(practice.id!);
+
+        // Sort the flashcards by the "originalFlashcard.sectionIndex"
+        flashcards.sort((a, b) => {
+            return a.originalFlashcard.sectionIndex - b.originalFlashcard.sectionIndex;
+        });
 
         setFlashcards(flashcards);
     }
@@ -89,7 +92,7 @@ export default function PracticeTopicPage() {
     return (
         <div className="flex flex-col h-screen items-stretch justify-start px-4 h-full max-h-screen">
             {/* Header - make sticky */}
-            <div className="sticky top-0 z-10 pt-4">
+            <div className="sticky top-0 z-10 pt-4 mb-4">
                 <div className="flex w-full items-center">
                     <div className="flex-1"></div>
                     <div className="flex justify-center text-xl">{topic.name}</div>
@@ -112,8 +115,8 @@ export default function PracticeTopicPage() {
             `}</style>
                 {practice.finishedOn != null && <PracticeFinished practice={practice} stats={practice.stats!} onClose={() => { router.back() }} />}
                 {practice.finishedOn == null && flashcards && flashcards.length > 0 &&
-                    <div className="mt-16">
-                        <PracticeSnake flashcards={flashcards} onItemClick={onPracticeItemClick} />
+                    <div className="mb-4">
+                        <PracticeSections flashcards={flashcards} onItemClick={onPracticeItemClick} />
                     </div>
                 }
             </div>
