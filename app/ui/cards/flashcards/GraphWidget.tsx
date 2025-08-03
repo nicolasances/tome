@@ -1,8 +1,6 @@
 import { EventGraph, EventNode, Fact, HistoricalGraphFC } from "@/model/api/GraphFlashcard";
 import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import IdeaSVG from "../../graphics/icons/IdeaSVG";
-import RoundButton from "../../buttons/RoundButton";
-import Tick from "../../graphics/icons/Tick";
 import { useState } from "react";
 import { DateFlashcardPopup, OptionsFlashcardPopup } from "../util/OptionsFlashcardPopup";
 
