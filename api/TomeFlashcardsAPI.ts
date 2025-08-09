@@ -11,6 +11,11 @@ export class TomeFlashcardsAPI {
 
     }
 
+    async getLatestFlashcardsGeneration(): Promise<{latestGeneration: string}> {
+
+        return (await new TotoAPI().fetch('tome-ms-flashcards', `/generation/latest`, null)).json()
+
+    }
 
 }
 

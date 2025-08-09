@@ -81,6 +81,8 @@ export interface Topic {
     lastPracticed?: string;
     generation?: string; 
     flashcardsCount?: number; 
+    numSections?: number;
+    flashcardsGenerationComplete?: boolean;
 }
 
 export interface GetTopicsResponse {

@@ -12,6 +12,8 @@ import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import { PracticeHistoryGraph } from "@/components/graph/PracticeHistory";
 import { Practice } from "@/model/Practice";
 import RefreshSVG from "@/app/ui/graphics/icons/RefreshSVG";
+import { TomeFlashcardsAPI } from "@/api/TomeFlashcardsAPI";
+import OkSVG from "@/app/ui/graphics/icons/Ok";
 
 
 export default function TopicDetailPage() {
@@ -19,18 +21,36 @@ export default function TopicDetailPage() {
     const router = useRouter();
     const params = useParams()
 
+    let topicRefreshInterval: NodeJS.Timeout | undefined;
+
     const [topic, setTopic] = useState<Topic>()
-    const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
+    const [refreshingTopic, setRefreshingTopic] = useState<boolean | null>(false)
     const [startingPractice, setStartingPractice] = useState<boolean>(false)
     const [lastPracticeDate, setLastPracticeDate] = useState<string>("");
     const [historicalPractices, setHistoricalPractices] = useState<Practice[]>([]);
     const [ongoingPracticeProgress, setOngoingPracticeProgress] = useState<number | null>(null);
+    const [latestGeneration, setLatestGeneration] = useState<string>("");
+    const [loadingLatestGeneration, setLoadingLatestGeneration] = useState<boolean>(false);
 
     const loadData = async () => {
         loadTopic();
         loadLatestFinishedPractice();
         loadHistoricalPractices();
         loadOngoingPractice();
+        loadLatestFlashcardsGeneration();
+    }
+
+    /**
+     * Load the latest flashcards generation for this topic
+     */
+    const loadLatestFlashcardsGeneration = async () => {
+
+        setLoadingLatestGeneration(true);
+
+        const { latestGeneration } = await new TomeFlashcardsAPI().getLatestFlashcardsGeneration();
+
+        setLatestGeneration(latestGeneration);
+        setLoadingLatestGeneration(false);  
     }
 
     /**
@@ -72,6 +92,25 @@ export default function TopicDetailPage() {
         const topic = await new TomeTopicsAPI().getTopic(String(params.topicId));
 
         setTopic(topic);
+
+        // If the flashcards generation is marked as complete, make sure to stop any running topicRefreshInterval
+        if (topic.flashcardsGenerationComplete) {
+            console.log("Flashcards Generation Complete - Stopping any running interval.");
+
+            clearInterval(topicRefreshInterval);
+
+            setRefreshingTopic(false);
+        }
+        else if (topic.flashcardsGenerationComplete === false && !refreshingTopic) {
+            // Start refreshing the topic
+            console.log("Flashcards Generation Incomplete - Starting interval.");
+
+            setRefreshingTopic(true);
+
+            clearInterval(topicRefreshInterval);
+            topicRefreshInterval = setInterval(() => { loadTopic() }, 3000);
+
+        }
     }
 
     /**
@@ -99,7 +138,7 @@ export default function TopicDetailPage() {
 
         await new TomeTopicsAPI().refreshTopic(String(params.topicId));
 
-        setRefreshingTopic(false)
+        topicRefreshInterval = setInterval(() => { loadTopic() }, 3000);
 
     }
 
@@ -135,14 +174,15 @@ export default function TopicDetailPage() {
         <div className="flex flex-1 flex-col items-stretch justify-start px-8 h-full">
             <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
             <div className="flex justify-center mt-2 space-x-2 text-sm">
-                <div className="bg-cyan-200 rounded-full px-2">
-                    {moment(topic.createdOn, 'YYYYMMDD').format('DD/MM/YYYY')}
-                </div>
-                <div className="bg-green-200 rounded-full px-2">
+                <div className="flex items-center bg-green-200 rounded-full px-2">
+                    <div className={`${latestGeneration == topic.generation ? "fill-green-600" : "fill-red-600 text-red-600"}`} style={{marginRight: 3, width: 12}}>{latestGeneration == topic.generation ? (<OkSVG/>) : (<RefreshSVG/>)}</div>
                     {topic.generation ?? 'g0.0'}
                 </div>
                 <div className="bg-pink-300 rounded-full px-2">
                     {`${topic.flashcardsCount ?? 0} flashcards`}
+                </div>
+                <div className="bg-cyan-900 rounded-full px-2 text-white">
+                    {`${topic.numSections ?? '-'} sections`}
                 </div>
             </div>
             <div className="flex items-center mt-8">
@@ -160,8 +200,8 @@ export default function TopicDetailPage() {
             }
             <div className="mt-8 flex justify-center items-center space-x-2">
                 <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
-                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount} />
-                <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic} disabled={startingPractice} />
+                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} />
+                <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} />
             </div>
             <div className="flex-1"></div>
             <div className="">
