@@ -11,13 +11,41 @@ export class TomeFlashcardsAPI {
 
     }
 
-    async getLatestFlashcardsGeneration(): Promise<{latestGeneration: string}> {
+    async getLatestFlashcardsGeneration(): Promise<{ latestGeneration: string }> {
 
         return (await new TotoAPI().fetch('tome-ms-flashcards', `/generation/latest`, null)).json()
 
     }
 
+    async getTrackingEvents(topicId: string): Promise<GetTrackingEventsResponse> {
+
+        return (await new TotoAPI().fetch('tome-ms-flashcards', `/topics/${topicId}/events`, null)).json()
+
+    }
+
 }
+
+export interface GetTrackingEventsResponse {
+    events: TrackingEvent[];
+}
+
+export interface TrackingEvent {
+    topicId: string;
+    topicCode: string;
+    sectionCode: string;
+    flashcardType: string;
+    timestamp: string;      // formatted YYYY.MM.DD HH:mm:ss
+    cid: string;
+    trackingId: string;     // Extra id that can be used to track requests in logs (i.e. a request Id)
+    eventType: EventType;
+}
+
+export type EventType =
+    "genRequestedEventSent" |
+    "llmRequestSent" |
+    "llmResponded" |
+    "fcSaved" |
+    "fcCreatedEventSent"
 
 export interface SectionTimelineFlashcard {
     id?: string;

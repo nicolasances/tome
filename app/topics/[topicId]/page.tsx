@@ -14,6 +14,7 @@ import { Practice } from "@/model/Practice";
 import RefreshSVG from "@/app/ui/graphics/icons/RefreshSVG";
 import { TomeFlashcardsAPI } from "@/api/TomeFlashcardsAPI";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
+import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 
 
 export default function TopicDetailPage() {
@@ -50,7 +51,7 @@ export default function TopicDetailPage() {
         const { latestGeneration } = await new TomeFlashcardsAPI().getLatestFlashcardsGeneration();
 
         setLatestGeneration(latestGeneration);
-        setLoadingLatestGeneration(false);  
+        setLoadingLatestGeneration(false);
     }
 
     /**
@@ -175,7 +176,7 @@ export default function TopicDetailPage() {
             <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
             <div className="flex justify-center mt-2 space-x-2 text-sm">
                 <div className="flex items-center bg-green-200 rounded-full px-2">
-                    {!loadingLatestGeneration && <div className={`${latestGeneration == topic.generation ? "fill-green-600" : "fill-red-600 text-red-600"}`} style={{marginRight: 3, width: 12}}>{latestGeneration == topic.generation ? (<OkSVG/>) : (<RefreshSVG/>)}</div>}
+                    {!loadingLatestGeneration && <div className={`${latestGeneration == topic.generation ? "fill-green-600" : "fill-red-600 text-red-600"}`} style={{ marginRight: 3, width: 12 }}>{latestGeneration == topic.generation ? (<OkSVG />) : (<RefreshSVG />)}</div>}
                     {topic.generation ?? 'g0.0'}
                 </div>
                 <div className="bg-pink-300 rounded-full px-2">
@@ -202,6 +203,7 @@ export default function TopicDetailPage() {
                 <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
                 <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} />
                 <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} />
+                {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
             </div>
             <div className="flex-1"></div>
             <div className="">
