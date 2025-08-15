@@ -144,5 +144,4 @@ export function PracticeItem({ id, cardType, flashcards, onPracticeItemClick }: 
 export type CardType = 'options' | 'timeline' | 'date' | 'graph';
 export type Status = 'done' | 'todo';
 
-interface SegmentData { sectionCode: string, type: CardType, sectionShortTitle: string, status: Status }
 interface SegmentItemId { sectionCode: string, type: string }
