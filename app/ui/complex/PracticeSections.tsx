@@ -4,11 +4,25 @@ import GraphSVG from "../graphics/icons/GraphSVG";
 import DateSVG from "../graphics/icons/DateSVG";
 import JusticeSVG from "../graphics/icons/JusticeSVG";
 import Tick from "../graphics/icons/Tick";
+import { EventNode, HistoricalGraphFC } from "@/model/api/GraphFlashcard";
 
 
 export function PracticeSections({ flashcards, onItemClick }: { flashcards: PracticeFlashcard[], onItemClick: (itemId: SegmentItemId) => void }) {
 
     const [segments, setSegments] = useState<{ items: SegmentData[] }[]>([]);
+    const [sections, setSections] = useState<string[]>([]);
+
+    /**
+     * Get distinct section codes from the flashcards.
+     * @returns a set of distinct section codes
+     */
+    const getSections = () => {
+
+        const sectionCodes = flashcards.sort((a, b) => a.originalFlashcard.sectionIndex - b.originalFlashcard.sectionIndex).map(card => card.originalFlashcard.sectionCode)
+
+        setSections(Array.from(new Set(sectionCodes).values()));
+    }
+
 
     /**
      * Extract distinct practice items from the provided flashcards. 
@@ -74,33 +88,18 @@ export function PracticeSections({ flashcards, onItemClick }: { flashcards: Prac
 
     useEffect(() => {
         createSegments(extractDistinctPracticeItems(flashcards));
+        getSections();
     }, []);
 
     return (
-        <div className="w-full px-4 flex flex-col gap-2">
-            {segments && segments.map((segment, index) => {
+        <div className="w-full flex flex-col">
+            {sections && sections.map((section, index) => {
 
-                // Sort items in the segment to first show "graph" then "options" and then "date". 
-                segment.items.sort((a, b) => {
-                    const order = { 'graph': 0, 'options': 1, 'timeline': 2, 'date': 3 };
-                    return (order[a.type] ?? 4) - (order[b.type] ?? 4);
-                });
-
-                // Define the status of the segment as done if all items are done, otherwise todo
-                const status: Status = segment.items.every(item => item.status === 'done') ? 'done' : 'todo';
+                // // Define the status of the segment as done if all items are done, otherwise todo
+                // const status: Status = segment.items.every(item => item.status === 'done') ? 'done' : 'todo';
 
                 return (
-                    <Segment key={index} index={index} status={status} title={segment.items[0].sectionShortTitle} items={segment.items.map((item, idx) => {
-
-                        return <PracticeItem
-                            key={idx}
-                            id={{ sectionCode: item.sectionCode, type: item.type } as SegmentItemId}
-                            cardType={item.type as CardType}
-                            status={item.status}
-                            onPracticeItemClick={onItemClick}
-                        />
-
-                    })} />
+                    <Section key={index} sectionCode={section} sectionFlashcards={flashcards.filter(card => card.originalFlashcard.sectionCode === section)} index={index} onPracticeItemClick={onItemClick} />
                 )
             })}
         </div>
@@ -108,43 +107,78 @@ export function PracticeSections({ flashcards, onItemClick }: { flashcards: Prac
 
 }
 
-function Segment({ items, index, title, status }: { items: React.ReactNode[], index: number, title: string, status: Status }) {
+function Section({ sectionCode, sectionFlashcards, index, onPracticeItemClick }: { sectionCode: string, sectionFlashcards: PracticeFlashcard[], index: number, onPracticeItemClick: (id: SegmentItemId) => void }) {
+
+    const [status, setStatus] = useState<Status>('todo');
+
+    const title = sectionFlashcards[0].originalFlashcard.sectionShortTitle;
+
+    const cardTypes = Array.from(new Set(sectionFlashcards.map(card => card.originalFlashcard.type))).sort((a, b) => {
+        const order: Record<CardType, number> = { 'graph': 0, 'options': 1, 'timeline': 2, 'date': 3 };
+        return (order[a as CardType] ?? 4) - (order[b as CardType] ?? 4);
+    });
+
+    useEffect(() => {
+        // Check if all the cards in the section have been completed, a.k.a have a  correctlyAsnwerAt != null
+        const allCompleted = sectionFlashcards.every(card => card.correctlyAsnwerAt != null);
+        setStatus(allCompleted ? 'done' : 'todo');
+    }, [])
 
     return (
-        <div className={`rounded py-4 px-4 ${status == 'done' ? 'bg-cyan-800 opacity-50' : 'bg-cyan-800'}`}>
-            <div className="text-base text-cyan-200 mb-4 flex justify-start items-center gap-2">
-                {title}
-                <div className="flex-1"></div>
-                <div className={`text-sm flex justify-center items-center border w-6 h-6 rounded border-cyan-200 ${status === 'done' ? 'bg-cyan-200' : ''}`}>
+        <div className={`rounded pt-4 pb-2 px-2 `}>
+            <div className={`text-base mb-4 flex justify-start items-end gap-2 border-b border-gray-200 pb-2 ${status == 'done' ? 'text-cyan-300' : 'text-gray-900'}`}>
+                <div className={`text-sm flex justify-center items-center border ${status === 'done' ? 'bg-cyan-300 rounded-full' : ''}`}>
                     {status == 'done' ? <div className="w-4 h-4 text-cyan-500"><Tick /></div> : <span>{index + 1}</span>}
                 </div>
+                {title}
+                <div className="flex-1 flex justify-end px-2">{sectionFlashcards.length}</div>
             </div>
             <div className="flex flex-row justify-start items-center gap-4">
-
-                {items.map((item, idx) => (
-                    <React.Fragment key={idx}>{item}</React.Fragment>
+                {cardTypes.map((type, idx) => (
+                    <PracticeItem key={idx} id={{ sectionCode, type }} cardType={type as CardType} flashcards={sectionFlashcards.filter(card => card.originalFlashcard.type === type)} onPracticeItemClick={onPracticeItemClick} />
                 ))}
-
             </div>
         </div>
     )
 }
 
-export function PracticeItem({ id, cardType, status, onPracticeItemClick }: { id: SegmentItemId, cardType: CardType, status?: Status, onPracticeItemClick: (id: SegmentItemId) => void }) {
+export function PracticeItem({ id, cardType, flashcards, onPracticeItemClick }: { id: SegmentItemId, cardType: CardType, flashcards: PracticeFlashcard[], onPracticeItemClick: (id: SegmentItemId) => void }) {
 
     const [pressed, setPressed] = useState(false);
+    const [status, setStatus] = useState<Status>('todo');
 
     const borderWidth = 2;
+
+    const countGraphItems = (graphCard: HistoricalGraphFC) => {
+        const graph = graphCard.graph.eventGraph;
+
+        let count = 0;
+        let node = graph.firstEvent as EventNode | null;
+        while (node != null) {
+            count++;
+            node = node.nextEvent;
+        }
+
+        return count;
+    }
+
+    let count = flashcards.length;
+    if (cardType == 'graph') count = countGraphItems(flashcards[0].originalFlashcard as HistoricalGraphFC);
+
+    useEffect(() => {
+        // Check if all the cards in the section have been completed, a.k.a have a  correctlyAsnwerAt != null
+        const allCompleted = flashcards.every(card => card.correctlyAsnwerAt != null);
+        setStatus(allCompleted ? 'done' : 'todo');
+    }, [])
 
     return (
         <div className="flex flex-col items-center">
 
             <div className={`
-                flex items-center justify-center h-10 w-10 rounded-full border-${borderWidth}
-                ${status == 'done' ? 'border-cyan-300 bg-cyan-300' : 'border-lime-200 cursor-pointer bg-cyan-800'}
+                flex items-center justify-center h-10 w-10 rounded-full border-${borderWidth} relative
+                ${status == 'done' ? 'border-cyan-300 bg-cyan-300' : 'border-lime-200 cursor-pointer'}
                 `}
                 style={{
-                    minWidth: "3.5rem",
                     transform: pressed ? "scale(0.95)" : "scale(1)",
                 }}
                 onMouseDown={() => setPressed(true)}
@@ -157,10 +191,13 @@ export function PracticeItem({ id, cardType, status, onPracticeItemClick }: { id
             >
 
                 <div className={`
-                    w-6 h-6 flex items-center justify-center
+                    w-4 h-4 flex items-center justify-center
                     ${status == 'done' ? 'fill-cyan-400' : 'fill-lime-200'}
                     `}>
                     {cardType == 'graph' ? <GraphSVG /> : cardType == 'date' ? <DateSVG /> : <JusticeSVG />}
+                </div>
+            <div className={`absolute bg-cyan-300 w-4 h-4 rounded-full flex justify-center items-center top-0 -right-2 text-xs ${status == 'done' ? 'text-cyan-500' : 'text-gray-900'}`}>
+                    {count}
                 </div>
 
             </div>
