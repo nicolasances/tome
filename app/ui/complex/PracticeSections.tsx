@@ -9,7 +9,6 @@ import { EventNode, HistoricalGraphFC } from "@/model/api/GraphFlashcard";
 
 export function PracticeSections({ flashcards, onItemClick }: { flashcards: PracticeFlashcard[], onItemClick: (itemId: SegmentItemId) => void }) {
 
-    const [segments, setSegments] = useState<{ items: SegmentData[] }[]>([]);
     const [sections, setSections] = useState<string[]>([]);
 
     /**
@@ -24,70 +23,7 @@ export function PracticeSections({ flashcards, onItemClick }: { flashcards: Prac
     }
 
 
-    /**
-     * Extract distinct practice items from the provided flashcards. 
-     * A practice item is considered distinct if it has a unique sectionTitle and card type.
-     * @param flashcards the flashcards to extract sections from
-     * @returns a list of objects { sectionTitle: string, type: CardType }
-     */
-    const extractDistinctPracticeItems = (flashcards: PracticeFlashcard[]) => {
-
-        const distinctItems: { [key: string]: SegmentData } = {};
-
-        flashcards.forEach(card => {
-
-            const key = `${card.originalFlashcard.sectionCode}-${card.originalFlashcard.type}`;
-
-            if (!distinctItems[key]) {
-
-                distinctItems[key] = {
-                    sectionCode: card.originalFlashcard.sectionCode,
-                    type: card.originalFlashcard.type as CardType,
-                    sectionShortTitle: card.originalFlashcard.sectionShortTitle,
-                    status: flashcards.filter(fc => fc.originalFlashcard.sectionCode === card.originalFlashcard.sectionCode && fc.originalFlashcard.type === card.originalFlashcard.type && fc.correctlyAsnwerAt == null).length == 0 ? 'done' : 'todo'
-                };
-
-            }
-        });
-        return Object.values(distinctItems);
-    }
-
-    /**
-     * Creates segments from the distinct items. 
-     * Concretely: 
-     *  - creates an array of segments. 
-     *  - each segment is a list of items 
-     *  - there can be either 2 or 3 items in a segment, the number is chosen randomly 
-     *  - the last segment can have 1 item if there's only one item left. 
-     * @param distinctItems the distinct items to create segments from
-     * @return segments as an array of json objects
-     */
-    const createSegments = (distinctItems: SegmentData[]) => {
-
-        const segments: { items: SegmentData[] }[] = [];
-
-        let currentSegment: SegmentData[] = [];
-
-        distinctItems.forEach(item => {
-
-            currentSegment.push(item);
-
-            if (currentSegment.length === 3) {
-                segments.push({ items: currentSegment });
-                currentSegment = [];
-            }
-        });
-
-        if (currentSegment.length > 0) {
-            segments.push({ items: currentSegment });
-        }
-
-        // Store in a state variable to use in the component
-        setSegments(segments);
-    }
-
     useEffect(() => {
-        createSegments(extractDistinctPracticeItems(flashcards));
         getSections();
     }, []);
 
