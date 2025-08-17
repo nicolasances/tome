@@ -121,7 +121,7 @@ export function TopicsAndPractices() {
 
 function SectionHeader({ title }: { title: string }) {
     return (
-        <div className="flex items-center text-sm opacity-70 bg-cyan-300 -ml-8 px-4 py-1 rounded-r-full w-fit">
+        <div className="flex items-center text-sm opacity-70 bg-cyan-300 -ml-8 px-4 py-1 mb-4 rounded-r-full w-fit">
             <div className="w-3 h-3 mr-2"><LampSVG /> </div>
             <div className="uppercase">{title}</div>
         </div>

@@ -7,16 +7,12 @@ import RoundButton from "./ui/buttons/RoundButton";
 import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
 import Header from "./ui/layout/Header";
-import { Practice } from "@/model/Practice";
-import { WeekPractice, WeekPractices } from "@/components/widgets/WeekPracticesBar";
-import { TomePracticeAPI } from "@/api/TomePracticeAPI";
-import moment from "moment";
 import { TopicsAndPractices } from "@/components/TopicsAndPractices";
+import { WeeklyPractices } from "@/components/WeeklyPractices";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
-  const [weekPractices, setWeekPractices] = useState<Practice[]>([]);
   const router = useRouter();
 
   /**
@@ -75,23 +71,8 @@ export default function Home() {
 
   }
 
-  const loadData = async () => {
-
-    if (loginNeeded === true) return;
-
-    // Load the practices for the current week
-    const beginningOfTheWeek = new Date();
-    if (new Date().getDay() === 0) beginningOfTheWeek.setDate(new Date().getDate() - 6);
-    else beginningOfTheWeek.setDate(beginningOfTheWeek.getDate() - beginningOfTheWeek.getDay() + 1); // Set to Monday
-
-    const result = await new TomePracticeAPI().getPractices({ finishedFrom: moment(beginningOfTheWeek).format("YYYYMMDD") })
-
-    setWeekPractices(result.practices)
-  }
-
   useEffect(() => { verifyAuthentication() }, [])
   useEffect(() => { triggerSignIn() }, [loginNeeded])
-  useEffect(() => { loadData() }, [loginNeeded]);
 
   // Empty screen while Google SignIn is loading
   if (loginNeeded == null) return (<div></div>);
@@ -110,8 +91,8 @@ export default function Home() {
 
       <div className="flex-1"></div>
 
-      <div className="">
-        <WeekPractices weekPractices={WeekPractice.generateWeekPracticeFromHistory(weekPractices)} />
+      <div className="mb-2">
+        <WeeklyPractices />
       </div>
     </div>
   );
