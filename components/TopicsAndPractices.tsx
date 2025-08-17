@@ -97,10 +97,7 @@ export function TopicsAndPractices() {
 
             {/* Topics that have an ongoing practice */}
             <div className="mb-6 mx-4 space-y-2">
-                <div className="flex items-center text-sm opacity-70">
-                    <div className="w-3 h-3 mr-2"><LampSVG /> </div>
-                    <div className="uppercase">Ongoing Practices</div>
-                </div>
+                <SectionHeader title="Ongoing Practices" />
                 {ongoingTopics.map((topic, idx) => (
                     <OngoingTopic key={topic.id} topic={topic} idx={idx} />
                 ))}
@@ -108,10 +105,7 @@ export function TopicsAndPractices() {
 
             {/* Suggested Topics */}
             <div className="mb-4 mx-4 space-y-2">
-                <div className="flex items-center text-sm opacity-70">
-                    <div className="w-3 h-3 mr-2"><LampSVG /> </div>
-                    <div className="uppercase">Suggested Topics to practice</div>
-                </div>
+                <SectionHeader title="Suggested Topics to practice" />
                 {topics.map((topic) => (
                     <SuggestedTopic key={topic.id} topic={topic} />
                 ))}
@@ -121,6 +115,15 @@ export function TopicsAndPractices() {
                 </div>
             </div>
 
+        </div>
+    )
+}
+
+function SectionHeader({ title }: { title: string }) {
+    return (
+        <div className="flex items-center text-sm opacity-70 bg-cyan-300 -ml-8 px-4 py-1 rounded-r-full w-fit">
+            <div className="w-3 h-3 mr-2"><LampSVG /> </div>
+            <div className="uppercase">{title}</div>
         </div>
     )
 }
