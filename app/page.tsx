@@ -3,16 +3,15 @@
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import TopicsCarousel from "./ui/complex/TopicsCarousel";
 import RoundButton from "./ui/buttons/RoundButton";
 import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
-import { Topic } from "@/api/TomeTopicsAPI";
 import Header from "./ui/layout/Header";
 import { Practice } from "@/model/Practice";
 import { WeekPractice, WeekPractices } from "@/components/widgets/WeekPracticesBar";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import moment from "moment";
+import { TopicsAndPractices } from "@/components/TopicsAndPractices";
 
 export default function Home() {
 
@@ -103,9 +102,9 @@ export default function Home() {
 
       <Header />
 
-      <TopicsCarousel onCentralCardClick={(topic: Topic) => { router.push(`/topics/${topic.id}`) }} />
+      <TopicsAndPractices />
 
-      <div className="flex justify-center items-center space-x-2">
+      <div className="flex justify-center items-center space-x-2 mt-4">
         <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
       </div>
 
