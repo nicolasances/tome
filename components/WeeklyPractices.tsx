@@ -19,7 +19,7 @@ export function WeeklyPractices() {
         const weeksDepth = 4;
 
         // Calculate the beginning of the period: the Monday of weeksDepth weeks ago => weeksDepth + this week
-        let beginningOfPeriod = moment(beginningOfTheWeek).subtract(weeksDepth, "weeks").isoWeekday(1).startOf("isoWeek");
+        const beginningOfPeriod = moment(beginningOfTheWeek).subtract(weeksDepth, "weeks").isoWeekday(1).startOf("isoWeek");
 
         const result = await new TomePracticeAPI().getPractices({ finishedFrom: beginningOfPeriod.format("YYYYMMDD") })
 
