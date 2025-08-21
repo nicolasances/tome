@@ -22,4 +22,13 @@ A Practice is a session where the user reviews a topic. It can be the user going
 <br>
 <br>
 
+4. Practice Points (pp) <br>
+Every time a user fills question he/she gets practice points (pp). Practice points are used then to measure progress and are used as part of Challenges. 
+
+5. Badges <br>
+Badges help gamify the practice and memorization of topics. 
+Badges get emitted at the reaching of specific goals, often described in terms of Practice Points (but could be related to other metrics).
+
+<br>
+
 ![](./docs/drawings/model.drawio.svg)
