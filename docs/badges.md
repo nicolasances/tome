@@ -3,6 +3,10 @@ Badges help gamify the practice and memorization of topics.
 
 There are **different types of badges** available, linked to different goals. 
 
+Badges can generally calculated based on 
+* [Accumulated Practice Points](./practice-points.md)
+* Accumulated Practices
+
 ## Interface
 
 The interface shows the following: 
@@ -18,4 +22,7 @@ The most common badge, it is issued when a user reaches a certain amount of *Pra
 
 ### Perfect Week Badge
 This badge is issued when a *Daily Practice Badge* has been issued **every day of the week**. 
+
+### Weekly Goal Badge
+This badge is issued when the user has **completed a certain amount of Practices** during the week.
 
