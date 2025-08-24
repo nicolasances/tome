@@ -1,7 +1,7 @@
 import { TomePointsAPI } from "@/api/TomePointsAPI";
 import LaureateSVG from "@/app/ui/graphics/icons/LaureateSVG";
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 
 /**
@@ -42,8 +42,8 @@ function isFuture(dayIdx: number) {
 
 export function WeekDailyGoals() {
 
-    const [dailyGoal, setDailyGoal] = React.useState<number>(1000);
-    const [dailyPoints, setDailyPoints] = React.useState<{ day: string; points: number }[]>([]);
+    const [dailyGoal, setDailyGoal] = useState<number>(1000);
+    const [dailyPoints, setDailyPoints] = useState<{ day: string; points: number }[] | null>(null);
 
     const beginningOfWeek = moment().startOf("isoWeek").format("YYYYMMDD");
     const endOfWeek = moment().endOf("isoWeek").format("YYYYMMDD");
@@ -55,14 +55,14 @@ export function WeekDailyGoals() {
     }
 
     const init = async () => {
-        loadDailyGoal();
         loadDailyPoints();
+        loadDailyGoal();
     }
 
     const loadDailyPoints = async () => {
 
-
         const dailyPoints = await new TomePointsAPI().getDailyPoints(beginningOfWeek);
+
         dailyPoints.dailyTotals.sort((a, b) => a.day.localeCompare(b.day));
 
         setDailyPoints(dailyPoints.dailyTotals);
@@ -79,6 +79,8 @@ export function WeekDailyGoals() {
     }
 
     useEffect(() => { init() }, []);
+
+    if (!dailyGoal || !dailyPoints) return <></>;
 
     return (
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
