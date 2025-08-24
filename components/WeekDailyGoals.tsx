@@ -1,5 +1,7 @@
+import { TomePointsAPI } from "@/api/TomePointsAPI";
 import LaureateSVG from "@/app/ui/graphics/icons/LaureateSVG";
-import React from "react";
+import moment from "moment";
+import React, { useEffect } from "react";
 
 
 /**
@@ -14,14 +16,6 @@ import React from "react";
  * 
  * Under each circle the day of the week is shown as a single letter (M, T, W, T, F, S, S). 
  */
-type DayStatus = {
-    points: number;
-    goal: number;
-};
-
-type WeekDailyGoalsProps = {
-    weekStatus: DayStatus[]; // Array of 7 elements, Monday to Sunday
-};
 
 const dayLabels = ["M", "T", "W", "T", "F", "S", "S"];
 
@@ -46,12 +40,52 @@ function isFuture(dayIdx: number) {
     return dayIdx > jsDay;
 }
 
-export const WeekDailyGoals: React.FC<WeekDailyGoalsProps> = ({ weekStatus }) => {
+export function WeekDailyGoals() {
+
+    const [dailyGoal, setDailyGoal] = React.useState<number>(1000);
+    const [dailyPoints, setDailyPoints] = React.useState<{ day: string; points: number }[]>([]);
+
+    const beginningOfWeek = moment().startOf("isoWeek").format("YYYYMMDD");
+    const endOfWeek = moment().endOf("isoWeek").format("YYYYMMDD");
+
+    // Create a list of all days of the week
+    const allDays = [];
+    for (let m = moment(beginningOfWeek); m.isSameOrBefore(endOfWeek); m.add(1, "days")) {
+        allDays.push(m.format("YYYYMMDD"));
+    }
+
+    const init = async () => {
+        loadDailyGoal();
+        loadDailyPoints();
+    }
+
+    const loadDailyPoints = async () => {
+
+
+        const dailyPoints = await new TomePointsAPI().getDailyPoints(beginningOfWeek);
+        dailyPoints.dailyTotals.sort((a, b) => a.day.localeCompare(b.day));
+
+        setDailyPoints(dailyPoints.dailyTotals);
+    }
+
+    const loadDailyGoal = async () => {
+
+        const pref = await new TomePointsAPI().getUserPreferences();
+
+        const dailyGoal = pref.preferences.find((p) => p.code === 'dailyPointsGoal')?.value ?? 1000
+
+        setDailyGoal(dailyGoal);
+
+    }
+
+    useEffect(() => { init() }, []);
+
     return (
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-            {weekStatus.map((status, idx) => {
 
-                const fill = getCircleFill(status.points, status.goal);
+            {allDays.map((day, idx) => {
+
+                const fill = getCircleFill(dailyPoints.find(dp => dp.day === day)?.points ?? 0, dailyGoal);
                 const future = isFuture(idx);
                 const today = isToday(idx);
 
