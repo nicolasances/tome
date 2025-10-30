@@ -8,7 +8,8 @@ import Add from "./ui/graphics/icons/Add";
 import { useRouter } from "next/navigation";
 import Header from "./ui/layout/Header";
 import { TopicsAndPractices } from "@/components/TopicsAndPractices";
-import { WeeklyPractices } from "@/components/WeeklyPractices";
+import { WeekDailyGoals } from "@/components/WeekDailyGoals";
+import WeeklyPracticeGoal from "@/components/WeeklyPracticeGoal";
 
 export default function Home() {
 
@@ -91,8 +92,12 @@ export default function Home() {
 
       <div className="flex-1"></div>
 
+      <div className="mb-8">
+        <WeeklyPracticeGoal />
+      </div>
+
       <div className="mb-2">
-        <WeeklyPractices />
+        <WeekDailyGoals />
       </div>
     </div>
   );
