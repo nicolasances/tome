@@ -127,6 +127,7 @@ export async function googleSignIn(): Promise<any> {
 
                     if (auth.credential) {
 
+                        // console.log(auth.credential);
                         console.log("Google Sign-in Successfull!");
 
                         getTotoToken(auth.credential).then((totoToken) => {

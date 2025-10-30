@@ -22,7 +22,7 @@ export default function Home() {
   const verifyAuthentication = async () => {
 
     // Get the user from local storage
-    const user = getStoredUserToken()
+    const user = getStoredUserToken();
 
     // Login is needed if the user is not in local storage
     if (!user) {
