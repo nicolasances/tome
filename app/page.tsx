@@ -1,24 +1,20 @@
 'use client'
 
-import PowerCard from "./ui/cards/PowerCard";
-import RoundButton from "./ui/buttons/RoundButton";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import TopicsCard from "./ui/cards/TopicsCard";
-import Book from "./ui/graphics/icons/Book";
-import { TomeAPI } from "@/api/TomeAPI";
-import { TopicReview } from "@/model/topicReview";
-import NextSVG from "./ui/graphics/icons/Next";
-import Footer from "./ui/layout/Footer";
+import RoundButton from "./ui/buttons/RoundButton";
+import Add from "./ui/graphics/icons/Add";
+import { useRouter } from "next/navigation";
+import Header from "./ui/layout/Header";
+import { TopicsAndPractices } from "@/components/TopicsAndPractices";
+import { WeekDailyGoals } from "@/components/WeekDailyGoals";
+import WeeklyPracticeGoal from "@/components/WeeklyPracticeGoal";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
-  const [runningTopicReview, setRunningTopicReview] = useState<TopicReview | undefined>(undefined)
-
-  const router = useRouter()
+  const router = useRouter();
 
   /**
    * Verifies if the user is authenticated
@@ -76,53 +72,33 @@ export default function Home() {
 
   }
 
-  /**
-   * Function that loads the Running Topic Review (if any) from the TomeAPI
-   */
-  const loadRunningTopicReview = async () => {
-
-    const response = await new TomeAPI().getRunningTopicReview()
-
-    setRunningTopicReview(response.topicReview);
-
-
-  }
-
   useEffect(() => { verifyAuthentication() }, [])
   useEffect(() => { triggerSignIn() }, [loginNeeded])
-  useEffect(() => { loadRunningTopicReview() }, [loginNeeded])
 
   // Empty screen while Google SignIn is loading
-  if (loginNeeded == null) return (<div></div>)
-  if (loginNeeded === true) return (<div></div>)
+  if (loginNeeded == null) return (<div></div>);
+  if (loginNeeded === true) return (<div></div>);
 
   return (
-    <div className="flex flex-1 flex-col items-stretch justify-start space-y-4">
-      <div className="flex flex-row space-x-4 items-center">
-        {/* <div className="flex-1"><DailyProgress/></div> */}
-        <div className="flex-1"><PowerCard perc={45} /></div>
+    <div className="p-4 h-full flex flex-col">
+
+      <Header />
+
+      <TopicsAndPractices />
+
+      <div className="flex justify-center items-center space-x-2 mt-4">
+        <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
       </div>
-      <div className="">
-        <TopicsCard />
-      </div>
-      {runningTopicReview &&
-        <div className="flex flex-row items-center justify-center -mx-2 px-3 space-x-2">
-          <div className="w-10 h-10 p-2 fill-cyan-200 border border-2 rounded border-cyan-200"><Book /></div>
-          <div className="flex flex-col flex-1 md:flex-none">
-            <div className="text-sm">You have a running Topic Review</div>
-            <div className="text-lg">{runningTopicReview?.topicTitle}</div>
-          </div>
-          <div className="md:pl-8">
-            <RoundButton icon={<NextSVG />} size="s" onClick={() => { router.push(`/tr/${runningTopicReview?.id}`) }} />
-          </div>
-        </div>
-      }
+
       <div className="flex-1"></div>
-      <Footer>
-        <div className="flex justify-center">
-          <RoundButton icon={<Book />} disabled={runningTopicReview != null} onClick={() => { router.push('/tr/new') }} />
-        </div>
-      </Footer>
+
+      <div className="mb-8">
+        <WeeklyPracticeGoal />
+      </div>
+
+      <div className="mb-2">
+        <WeekDailyGoals />
+      </div>
     </div>
   );
 }

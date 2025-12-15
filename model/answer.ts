@@ -11,6 +11,6 @@ export interface AnswerRating {
     rating: number
     maxRating: number
     explanations: string
-    detailedExplanations: string
-    topicReviewFinished: boolean
+    detailedExplanations: string 
+    topicReviewFinished?: boolean
 }

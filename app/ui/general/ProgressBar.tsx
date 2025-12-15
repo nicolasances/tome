@@ -3,19 +3,25 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
 
-export function ProgressBar({current, max}: {current: number, max: number}) {
+export function ProgressBar({ current, max, size, id, hideNumber = false }: { current: number, max: number, size?: "s" | "m", id?: string, hideNumber?: boolean }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [containerWidth, setContainerWidth] = useState(0);
 
     const drawProgress = () => {
         if (containerWidth === 0) return;
 
-        const height = 20;
-        const barHeight = 12;
+        let height = 20;
+        let barHeight = 12;
         const targetProgress = (current / max) * 100; // Set target percentage (0 to 100)
-        const borderRadius = 5; // Border radius for the rectangles
+        let borderRadius = 5; // Border radius for the rectangles
 
-        const svg = d3.select("#daily-progress-card")
+        if (size == 's') {
+            height = 10
+            barHeight = 4
+            borderRadius = 3
+        }
+
+        const svg = d3.select(`#daily-progress-card${id}`)
             .attr("width", containerWidth)
             .attr("height", height);
 
@@ -59,15 +65,17 @@ export function ProgressBar({current, max}: {current: number, max: number}) {
 
     useEffect(() => {
         drawProgress();
-    }, [containerWidth]);
+    }, [containerWidth, current]);
 
     return (
         <div className="w-full flex flex-row items-center">
-            <div className='flex'>
-                <div className='text-lg px-2'>{current}<span className='text-sm'>/{max}</span></div>
-            </div>
+            {(!size && !hideNumber) && 
+                <div className='flex'>
+                    <div className='text-lg px-2'>{current}<span className='text-sm'>/{max}</span></div>
+                </div>
+            }
             <div ref={containerRef} className="w-full">
-                <svg id="daily-progress-card"></svg>
+                <svg id={`daily-progress-card${id}`}></svg>
             </div>
         </div>
     );

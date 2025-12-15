@@ -16,11 +16,16 @@ body {
 .app-footer {
   height: var(--app-footer-height);
   max-height: var(--app-footer-height);
+  @apply bg-background
 }
 
 .app-content {
-  max-height: calc(99vh - var(--app-header-height));
+  max-height: calc(99vh - var(--app-header-height) - var(--app-footer-height));
+  height: calc(99vh - var(--app-header-height) - var(--app-footer-height));
+  min-height: calc(99vh - var(--app-header-height) - var(--app-footer-height));
   padding-top: 6px;
+  padding-bottom: 60px;
+  @apply text-base flex flex-1 flex-col justify-start overflow-scroll no-scrollbar
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -101,6 +106,7 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+
 }
 
 @layer base {
@@ -111,4 +117,31 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+h1 {
+  @apply text-xl font-bold leading-tight my-4 text-sky-200 border-b-2 border-sky-200 pb-2;
+}
+h2 {
+  @apply text-lg font-bold leading-tight mt-8 mb-2 text-indigo-900 border-l-8 border-sky-800 pl-2 rounded;
+}
+h3 {
+  @apply text-lg font-bold italic leading-tight mt-8 mb-2 text-violet-900  border-l-4 border-violet-900 pl-2 rounded;
+}
+ul {
+  @apply px-8 py-4 list-disc
+}
+p {
+  @apply my-2
+}
+
+.refresher b {
+  @apply text-lime-300
+}
+
+.highlight-person {
+  @apply bg-violet-200 rounded px-1 inline 
+}
+.highlight-date {
+  @apply bg-green-400 rounded px-1 inline font-bold
 }

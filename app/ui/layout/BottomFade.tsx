@@ -7,6 +7,6 @@ export default function BottomFade({height}: {height?: 'm' | 'lg' | 'xl'}) {
     if (height == 'xl') h = 'h-[64px]'
 
     return (
-        <div className={`absolute ${h} bg-[#00acc1] bottom-0 w-full`} style={{ background: "linear-gradient(to bottom, rgba(0, 172, 193, 0) 0%, rgba(0, 172, 193, 1) 100%)" }}></div>
+        <div className={`absolute ${h} bg-[#00acc1] bottom-0 w-full`} style={{ zIndex:10, background: "linear-gradient( to bottom, rgba(0, 172, 193, 0) 30%, rgba(0, 172, 193, 0.8) 60%, rgb(0, 172, 193) 100% )" }}></div>
     )
 }

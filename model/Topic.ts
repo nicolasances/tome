@@ -1,8 +1,12 @@
 export interface Topic {
     title: string
+    description: string
     code: string
-    sections: TopicSection[]
+    flashcardsCount: number
+    lastReviewedOn: string
+    lastScore: number
     blog_url: string
+    lastPracticed?: string // format YYYYMMDD
 }
 
 export interface TopicSection {

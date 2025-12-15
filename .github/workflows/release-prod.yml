@@ -1,4 +1,4 @@
-name: Release
+name: Prod Release
 
 on:
   push:
@@ -16,13 +16,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: Login to Container Registry
-      uses: docker/login-action@v1
-      with: 
-          registry: eu.gcr.io
-          username: _json_key
-          password: ${{ secrets.CICD_SERVICE_ACCOUNT }}
-
+    - name: Authenticate to Artifact Registry
+      run: |
+        echo '${{ secrets.CICD_SERVICE_ACCOUNT }}' > ./credentials.json
+        gcloud auth activate-service-account --key-file=./credentials.json
+        gcloud auth configure-docker europe-west1-docker.pkg.dev
+        
     - name: Create Environment Variables
       run: |
         export PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]')
@@ -35,12 +34,16 @@ jobs:
         docker build \
         --build-arg AUTH_API_ENDPOINT=${{ secrets.AUTH_API_ENDPOINT }} \
         --build-arg AWS_TOTO_API_ENDPOINT=${{ secrets.AWS_TOTO_API_ENDPOINT }} \
+        --build-arg TOME_FLASHCARDS_API_ENDPOINT=${{ secrets.TOME_FLASHCARDS_API_ENDPOINT }} \
+        --build-arg TOME_TOPICS_API_ENDPOINT=${{ vars.TOME_TOPICS_API_ENDPOINT }} \
+        --build-arg TOME_PRACTICE_API_ENDPOINT=${{ vars.TOME_PRACTICE_API_ENDPOINT }} \
+        --build-arg TOME_POINTS_API_ENDPOINT=${{ vars.TOME_POINTS_API_ENDPOINT }} \
         --build-arg GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
-        . -t eu.gcr.io/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
+        . -t europe-west1-docker.pkg.dev/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
  
     - name: Push Docker image to Dockerhub 
       run: |
-        docker push eu.gcr.io/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
+        docker push europe-west1-docker.pkg.dev/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
     
     - name: Setup GCloud 
       uses: google-github-actions/setup-gcloud@v0
@@ -51,4 +54,4 @@ jobs:
     
     - name: Deploy image
       run: | 
-        gcloud run deploy ${{env.PACKAGE_NAME}} --project=${{ secrets.GCP_PID }} --service-account=${{ secrets.SERVICE_ACCOUNT }} --image=eu.gcr.io/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}} --platform=managed --region=europe-west1 --allow-unauthenticated
+        gcloud run deploy ${{env.PACKAGE_NAME}} --project=${{ secrets.GCP_PID }} --service-account=${{ secrets.SERVICE_ACCOUNT }} --image=europe-west1-docker.pkg.dev/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}} --platform=managed --region=europe-west1 --allow-unauthenticated

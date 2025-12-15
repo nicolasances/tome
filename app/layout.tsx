@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+'use client'
+
 import { Comfortaa as AppFont } from "next/font/google";
 import "./globals.css";
-import Header from "./ui/layout/Header";
+import { TomeContextProvider } from "@/context/TomeContext";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -17,16 +18,13 @@ const appFont = AppFont({
 //   subsets: ["latin"],
 // });
 
-export const metadata: Metadata = {
-  title: "Tome",
-  description: "Toto Memory & Knowledge",
-};
+// export const metadata: Metadata = {
+//   title: "Tome",
+//   description: "Toto Memory & Knowledge",
+// };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+
   return (
     <html lang="en">
       <head>
@@ -48,13 +46,18 @@ export default function RootLayout({
         <title>Tome</title>
       </head>
       <body
-        className={`${appFont.className} antialiased min-h-screen flex flex-col`}
+        className={`${appFont.className} antialiased min-h-screen flex flex-row`}
       >
-        <div className="">
-          <Header />
+        <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
         </div>
-        <div className="app-content text-base flex flex-1 flex-col justify-start px-6 md:px-[25vw]">
-          {children}
+        <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8">
+          
+          <TomeContextProvider>
+            {children}
+          </TomeContextProvider>
+
+        </div>
+        <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
         </div>
       </body>
     </html>
