@@ -75,7 +75,7 @@ function TopicItem({ topic, signalIcon }: { topic: Topic, signalIcon: string }) 
 
     return (
         <div className="text-base flex items-center cursor-pointer"
-            // onClick={() => router.push(`/topics/${topic.id}`)}
+            onClick={() => router.push(`/topics/${topic.id}`)}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}

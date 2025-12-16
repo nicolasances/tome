@@ -1,4 +1,4 @@
-export type ApiName = 'toto-ms-tome-scraper' | 'auth' | 'tome-ms-flashcards' | 'tome-ms-topics' | 'tome-ms-practice' | 'tome-ms-points'
+export type ApiName = 'toto-ms-tome-scraper' | 'auth' | 'tome-ms-flashcards' | 'tome-ms-topics' | 'tome-ms-practice' | 'tome-ms-points' | 'tome-ms-challenges';
 export interface ApiEndpoint { name: ApiName, endpoint: string }
  
 const ApiEndpoints = new Map<ApiName, string>();
@@ -8,6 +8,7 @@ ApiEndpoints.set("tome-ms-topics", String(process.env.NEXT_PUBLIC_TOME_TOPICS_AP
 ApiEndpoints.set("tome-ms-practice", String(process.env.NEXT_PUBLIC_TOME_PRACTICE_API_ENDPOINT))
 ApiEndpoints.set("tome-ms-points", String(process.env.NEXT_PUBLIC_TOME_POINTS_API_ENDPOINT))
 ApiEndpoints.set("tome-ms-flashcards", String(process.env.NEXT_PUBLIC_TOME_FLASHCARDS_API_ENDPOINT))
+ApiEndpoints.set("tome-ms-challenges", String(process.env.NEXT_PUBLIC_TOME_CHALLENGES_API_ENDPOINT))
 
 export function endpoint(api: ApiName) {
 

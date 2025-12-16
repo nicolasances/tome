@@ -175,13 +175,13 @@ export default function TopicDetailPage() {
         <div className="flex flex-1 flex-col items-stretch justify-start px-8 h-full">
             <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
             <div className="flex justify-center mt-2 space-x-2 text-sm">
-                <div className="flex items-center bg-green-200 rounded-full px-2">
+                {/* <div className="flex items-center bg-green-200 rounded-full px-2">
                     {!loadingLatestGeneration && <div className={`${latestGeneration == topic.generation ? "fill-green-600" : "fill-red-600 text-red-600"}`} style={{ marginRight: 3, width: 12 }}>{latestGeneration == topic.generation ? (<OkSVG />) : (<RefreshSVG />)}</div>}
                     {topic.generation ?? 'g0.0'}
                 </div>
                 <div className="bg-pink-300 rounded-full px-2">
                     {`${topic.flashcardsCount ?? 0} flashcards`}
-                </div>
+                </div> */}
                 <div className="bg-cyan-900 rounded-full px-2 text-white">
                     {`${topic.numSections ?? '-'} sections`}
                 </div>
@@ -206,10 +206,10 @@ export default function TopicDetailPage() {
                 {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
             </div>
             <div className="flex-1"></div>
-            <div className="">
+            {/* <div className="">
                 <div className="text-center text-base text-cyan-900 uppercase ">Historical Scores</div>
                 {historicalPractices && <PracticeHistoryGraph historicalPractices={historicalPractices} />}
-            </div>
+            </div> */}
         </div>
     )
 }
