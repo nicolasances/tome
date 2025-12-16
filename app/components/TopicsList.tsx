@@ -44,14 +44,14 @@ export function TopicsList() {
         if (!numSections) return 'signal-weak';
         if (numSections <= 3) return 'signal-weak';
         if (numSections <= 6) return 'signal-fair';
-        if (numSections <= 10) return 'signal-good';
-        return 'signal';
+        if (numSections <= 10) return 'signal';
+        return 'signal-good';
     }
 
     return (
-        <div className="mt-2">
+        <div className="mt-2 ml-4">
             <SectionHeader title="All Topics" />
-            <div className="mb-6 mx-4 space-y-2">
+            <div className="mb-6 space-y-2">
                 {topics.map((topic) => (
                     <TopicItem key={topic.id} topic={topic} signalIcon={getSignalIcon(topic.numSections)} />
                 ))}
@@ -62,7 +62,7 @@ export function TopicsList() {
 
 function SectionHeader({ title }: { title: string }) {
     return (
-        <div className="flex items-center text-sm opacity-70 ml-2 py-1 mb-4 w-fit">
+        <div className="flex items-center text-sm opacity-70 py-1 mb-4 w-fit">
             <div className="uppercase">{title}</div>
         </div>
     )
@@ -75,14 +75,14 @@ function TopicItem({ topic, signalIcon }: { topic: Topic, signalIcon: string }) 
 
     return (
         <div className="text-base flex items-center cursor-pointer"
-            onClick={() => router.push(`/topics/${topic.id}`)}
+            // onClick={() => router.push(`/topics/${topic.id}`)}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
             onTouchStart={() => setPressed(true)}
             onTouchEnd={() => setPressed(false)}
             style={{
-                transform: pressed ? "scale(0.95)" : "scale(1)",
+                opacity: pressed ? 0.5 : 1,
             }}
         >
             <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1 relative">
