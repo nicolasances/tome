@@ -10,6 +10,7 @@ import Header from "./ui/layout/Header";
 import { TopicsAndPractices } from "@/components/TopicsAndPractices";
 import { WeekDailyGoals } from "@/components/WeekDailyGoals";
 import WeeklyPracticeGoal from "@/components/WeeklyPracticeGoal";
+import { TopicsList } from "@/app/components/TopicsList";
 
 export default function Home() {
 
@@ -84,17 +85,9 @@ export default function Home() {
 
       <Header />
 
-      <TopicsAndPractices />
-
-      <div className="flex justify-center items-center space-x-2 mt-4">
-        <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
-      </div>
+      <TopicsList />
 
       <div className="flex-1"></div>
-
-      <div className="mb-8">
-        <WeeklyPracticeGoal />
-      </div>
 
       <div className="mb-2">
         <WeekDailyGoals />
