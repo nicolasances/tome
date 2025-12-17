@@ -67,7 +67,7 @@ function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: 
                     color="bg-cyan-800"
                 />
             </div>
-            <div>{challenge.type}</div>
+            <div className="capitalize">{challenge.name || challenge.type}</div>
         </div>
     )
 }

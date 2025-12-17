@@ -50,7 +50,15 @@ export default function TopicDetailPage() {
 
         const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId));
 
-        setChallenges(challenges);
+        // There are multiple challenges of a given type per topic (there's one per section), so we only keep one challenge per type for now
+        const uniqueChallenges = challenges.reduce((acc: Challenge[], challenge) => {
+            if (!acc.find(c => c.type === challenge.type)) {
+                acc.push(challenge);
+            }
+            return acc;
+        }, []);
+
+        setChallenges(uniqueChallenges);
     }
 
     /**

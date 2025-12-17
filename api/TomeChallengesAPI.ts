@@ -21,6 +21,8 @@ export interface Challenge {
     topicId: string;
     topicCode: string;
     sectionCode: string;
+    name: string;
+    description: string;
 }
 
 export interface JuiceChallenge {
