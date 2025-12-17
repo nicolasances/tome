@@ -9,12 +9,12 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import moment from "moment";
 import { ProgressBar } from "@/app/ui/general/ProgressBar";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
-import { PracticeHistoryGraph } from "@/components/graph/PracticeHistory";
 import { Practice } from "@/model/Practice";
 import RefreshSVG from "@/app/ui/graphics/icons/RefreshSVG";
 import { TomeFlashcardsAPI } from "@/api/TomeFlashcardsAPI";
-import OkSVG from "@/app/ui/graphics/icons/Ok";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
+import { Challenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import { ChallengesList } from "@/app/components/ChallengesList";
 
 
 export default function TopicDetailPage() {
@@ -32,6 +32,7 @@ export default function TopicDetailPage() {
     const [ongoingPracticeProgress, setOngoingPracticeProgress] = useState<number | null>(null);
     const [latestGeneration, setLatestGeneration] = useState<string>("");
     const [loadingLatestGeneration, setLoadingLatestGeneration] = useState<boolean>(false);
+    const [challenges, setChallenges] = useState<Challenge[]>([]);
 
     const loadData = async () => {
         loadTopic();
@@ -39,6 +40,17 @@ export default function TopicDetailPage() {
         loadHistoricalPractices();
         loadOngoingPractice();
         loadLatestFlashcardsGeneration();
+        loadChallenges();
+    }
+
+    /**
+     * Load the challenges for this topic
+     */
+    const loadChallenges = async () => {
+
+        const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId));
+
+        setChallenges(challenges);
     }
 
     /**
@@ -172,7 +184,7 @@ export default function TopicDetailPage() {
     if (!topic) return <></>
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start px-8 h-full">
+        <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
             <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
             <div className="flex justify-center mt-2 space-x-2 text-sm">
                 {/* <div className="flex items-center bg-green-200 rounded-full px-2">
@@ -186,13 +198,13 @@ export default function TopicDetailPage() {
                     {`${topic.numSections ?? '-'} sections`}
                 </div>
             </div>
-            <div className="flex items-center mt-8">
+            {/* <div className="flex items-center mt-8">
                 <div className="w-6"><LampSVG /></div>
                 <div className="flex flex-col px-4">
                     <div className="text-xs uppercase">Last Practice</div>
                     <LastPracticeTimedelta lastPracticeDate={lastPracticeDate} />
                 </div>
-            </div>
+            </div> */}
             {ongoingPracticeProgress != null &&
                 <div className="mt-4">
                     <div className="text-xs uppercase">Ongoing Practice...</div>
@@ -205,6 +217,7 @@ export default function TopicDetailPage() {
                 <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} />
                 {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
             </div>
+            <ChallengesList challenges={challenges} topicId={String(params.topicId)} />
             <div className="flex-1"></div>
             {/* <div className="">
                 <div className="text-center text-base text-cyan-900 uppercase ">Historical Scores</div>

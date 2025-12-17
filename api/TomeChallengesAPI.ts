@@ -22,3 +22,25 @@ export interface Challenge {
     topicCode: string;
     sectionCode: string;
 }
+
+export interface JuiceChallenge {
+
+    type: string;
+    context: string;
+    topicId: string;
+    topicCode: string;
+    sectionCode: string; 
+    toRemember: ToRemember[];
+
+}
+
+interface ToRemember {
+    toRemember: string;
+    date?: SplitDate | null;
+}
+
+interface SplitDate {
+    day: number | null;
+    month: number | null;
+    year: number | null;
+}
