@@ -70,13 +70,19 @@ function ChallengeDetailItem({ challenge }: { challenge: Challenge }) {
  * Format section code to human-readable form
  * - Replace hyphens with spaces
  * - Capitalize each word
- * - Replace lowercase 'i' with 'I' (for roman numerals)
+ * - Convert roman numerals to uppercase
  */
 const formatSectionCode = (code: string): string => {
     return code
         .replace(/-/g, ' ')
         .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ')
-        .replace(/i/g, 'I');
+        .map(word => {
+            // Check if the word is a roman numeral (contains only i, v, x, l, c, d, m)
+            if (/^[ivxlcdm]+$/.test(word)) {
+                return word.toUpperCase();
+            }
+            // Otherwise, capitalize first letter and keep the rest as is
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        })
+        .join(' ');
 };
