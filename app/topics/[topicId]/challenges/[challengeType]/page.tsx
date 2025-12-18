@@ -3,9 +3,11 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
+import { TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import BackSVG from "@/app/ui/graphics/icons/Back";
+import { ChallengeDetailList } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 
 export default function ChallengeDetailPage() {
 
@@ -13,9 +15,29 @@ export default function ChallengeDetailPage() {
     const params = useParams()
 
     const [topic, setTopic] = useState<Topic>()
+    const [challenges, setChallenges] = useState<any[]>([]);
+    const [challengeName, setChallengeName] = useState<string>("");
 
     const loadData = async () => {
         loadTopic();
+        loadChallenges();
+    }
+
+    const loadChallenges = async () => {
+
+
+        const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId));
+
+        if (!challenges) return;
+
+        // Filter out to only keep the challenge with the matching type
+        const filteredChallenges = challenges.filter(challenge => challenge.type === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
+
+        setChallenges(filteredChallenges);
+
+        if (filteredChallenges && filteredChallenges.length > 0) {
+            setChallengeName(filteredChallenges[0].name);
+        }
     }
 
     /**
@@ -31,12 +53,13 @@ export default function ChallengeDetailPage() {
     if (!topic) return <></>
 
     const challengeType = String(params.challengeType);
-    const challengeName = challengeType.charAt(0).toUpperCase() + challengeType.slice(1);
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
             <div className="mt-6 flex justify-between items-center">
-                <div className="flex-1"></div>
+                <div className="flex-1 flex">
+                    <RoundButton icon={<BackSVG />} onClick={() => { router.back() }} size="s" secondary />
+                </div>
                 <div className="flex justify-center text-xl">{topic.name}</div>
                 <div className="flex flex-1 items-center justify-end p-1 flex-shrink-0">
                     <MaskedSvgIcon 
@@ -47,13 +70,12 @@ export default function ChallengeDetailPage() {
                     />
                 </div>
             </div>
-            <div className="flex justify-center mt-4 text-base opacity-70">
+            <div className="flex justify-center text-base opacity-70">
                 {challengeName}
             </div>
-            <div className="mt-8 flex justify-center items-center">
-                <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
+            <ChallengeDetailList challenges={challenges} />
+            <div className="flex-1 mt-6 text-center">
             </div>
-            <div className="flex-1"></div>
         </div>
     )
 }

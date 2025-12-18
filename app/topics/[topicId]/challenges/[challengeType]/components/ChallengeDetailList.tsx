@@ -1,16 +1,14 @@
 'use client'
 
-import { Challenge } from "@/api/TomeChallengesAPI";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { MaskedSvgIcon } from "./MaskedSvgIcon";
+import { MaskedSvgIcon } from "../../../../../components/MaskedSvgIcon";
+import { Challenge } from "@/api/TomeChallengesAPI";
 
-interface ChallengesListProps {
+interface ChallengeDetailListProps {
     challenges: Challenge[];
-    topicId: string;
 }
 
-export function ChallengesList({ challenges, topicId }: ChallengesListProps) {
+export function ChallengeDetailList({ challenges }: ChallengeDetailListProps) {
 
     if (challenges.length === 0) {
         return <div className="text-base opacity-50">No challenges yet</div>
@@ -18,13 +16,12 @@ export function ChallengesList({ challenges, topicId }: ChallengesListProps) {
 
     return (
         <div className="mt-2 ml-4">
-            <SectionHeader title="Challenges" />
+            <SectionHeader title="Sections" />
             <div className="mb-6 space-y-2">
                 {challenges.map((challenge, index) => (
-                    <ChallengeItem 
-                        key={`${challenge.type}-${index}`} 
+                    <ChallengeDetailItem 
+                        key={`${challenge.sectionCode}-${index}`} 
                         challenge={challenge} 
-                        topicId={topicId}
                     />
                 ))}
             </div>
@@ -40,14 +37,12 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: string }) {
+function ChallengeDetailItem({ challenge }: { challenge: Challenge }) {
 
     const [pressed, setPressed] = useState(false);
-    const router = useRouter();
 
     return (
         <div className="text-base flex items-center cursor-pointer"
-            onClick={() => router.push(`/topics/${topicId}/challenges/${challenge.type}`)}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -59,13 +54,29 @@ function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: 
         >
             <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1">
                 <MaskedSvgIcon 
-                    src={`/images/challenges/${challenge.type}.svg`}
-                    alt={challenge.type}
+                    src="/images/challenge-todo.svg"
+                    alt="challenge"
                     size="w-5 h-5"
                     color="bg-cyan-800"
                 />
             </div>
-            <div className="capitalize">{challenge.name || challenge.type}</div>
+            <div>{formatSectionCode(challenge.sectionCode)}</div>
         </div>
     )
 }
+
+
+/**
+ * Format section code to human-readable form
+ * - Replace hyphens with spaces
+ * - Capitalize each word
+ * - Replace lowercase 'i' with 'I' (for roman numerals)
+ */
+const formatSectionCode = (code: string): string => {
+    return code
+        .replace(/-/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+        .replace(/i/g, 'I');
+};

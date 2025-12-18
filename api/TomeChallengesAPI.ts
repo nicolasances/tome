@@ -20,6 +20,7 @@ export interface Challenge {
     context: string;
     topicId: string;
     topicCode: string;
+    sectionIndex: number;
     sectionCode: string;
     name: string;
     description: string;
@@ -31,8 +32,10 @@ export interface JuiceChallenge {
     context: string;
     topicId: string;
     topicCode: string;
+    sectionIndex: number;
     sectionCode: string; 
     toRemember: ToRemember[];
+    tests: TomeTest[];
 
 }
 
@@ -45,4 +48,10 @@ interface SplitDate {
     day: number | null;
     month: number | null;
     year: number | null;
+}
+
+interface TomeTest {
+    type: string;
+    testId: string;   
+    question: string;
 }

@@ -8,6 +8,7 @@ export default function RoundButton({
     iconOnly,
     loading,
     dark,
+    secondary,
 }: {
     icon: React.ReactNode;
     onClick: () => void;
@@ -16,6 +17,7 @@ export default function RoundButton({
     iconOnly?: boolean;
     loading?: boolean;
     dark?: boolean;
+    secondary?: boolean;
 }) {
     const [pressed, setPressed] = useState(false);
 
@@ -35,10 +37,9 @@ export default function RoundButton({
         if (onClick) onClick();
     };
 
-    const baseClasses = `rounded-full ${buttonPadding} ${iconOnly ? "" : "border-2"
-        } cursor-pointer transition-transform duration-100`;
-    const enabledClasses = dark ? "border-cyan-800" : "border-lime-200";
-    const disabledClasses = disabled ? "border-cyan-600 cursor-not-allowed" : "border-transparent cursor-not-allowed";
+    const baseClasses = `rounded-full ${buttonPadding} ${secondary ? "" : "border-2"} cursor-pointer transition-transform duration-100`;
+    const enabledClasses = secondary ? "text-cyan-600 hover:opacity-70" : dark ? "border-cyan-800" : "border-lime-200";
+    const disabledClasses = secondary ? "text-cyan-600 cursor-not-allowed opacity-50" : disabled ? "border-cyan-600 cursor-not-allowed" : "border-transparent cursor-not-allowed";
 
     const iconClasses = `${iconSize} stroke-current fill-current`;
     const iconColor = disabled || loading
