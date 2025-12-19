@@ -8,7 +8,6 @@ export function TopicsList() {
 
     const [topics, setTopics] = useState<Topic[]>([]);
     const [loading, setLoading] = useState(true);
-    const router = useRouter();
 
     const loadTopics = async () => {
         try {

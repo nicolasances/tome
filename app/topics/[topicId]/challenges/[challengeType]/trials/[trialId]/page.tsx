@@ -31,11 +31,11 @@ export default function TrialPage() {
         setTrial(trialData);
 
         // Load the challenge
-        const challengeData = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
-        setChallenge(challengeData);
+        const {challenge} = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
+        setChallenge(challenge);
 
         // Load the topic
-        const topicData = await new TomeTopicsAPI().getTopic(challengeData.topicId);
+        const topicData = await new TomeTopicsAPI().getTopic(challenge.topicId);
         setTopic(topicData);
     }
 

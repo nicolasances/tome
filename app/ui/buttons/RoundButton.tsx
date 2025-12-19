@@ -5,7 +5,6 @@ export default function RoundButton({
     onClick,
     size,
     disabled,
-    iconOnly,
     loading,
     dark,
     secondary,

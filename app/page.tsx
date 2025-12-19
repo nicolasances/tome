@@ -3,19 +3,13 @@
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import RoundButton from "./ui/buttons/RoundButton";
-import Add from "./ui/graphics/icons/Add";
-import { useRouter } from "next/navigation";
 import Header from "./ui/layout/Header";
-import { TopicsAndPractices } from "@/components/TopicsAndPractices";
 import { WeekDailyGoals } from "@/components/WeekDailyGoals";
-import WeeklyPracticeGoal from "@/components/WeeklyPracticeGoal";
 import { TopicsList } from "@/app/components/TopicsList";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
-  const router = useRouter();
 
   /**
    * Verifies if the user is authenticated

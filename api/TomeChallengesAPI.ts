@@ -17,7 +17,7 @@ export class TomeChallengesAPI {
      * @param challengeId 
      * @returns 
      */
-    async getChallenge(challengeId: string): Promise<Challenge> {
+    async getChallenge(challengeId: string): Promise<{challenge: Challenge}> {
         return (await new TotoAPI().fetch(this.name, `/challenges/${challengeId}`)).json()
     }
 
@@ -36,7 +36,7 @@ export class TomeChallengesAPI {
      * 
      * @param challengeId the id of the challenge
      */
-    async startOrResumeTrial(challengeId: string): Promise<{ trialId: string }> {
+    async startOrResumeTrial(challengeId: string): Promise<{ id: string }> {
 
         return (await new TotoAPI().fetch('tome-ms-challenges', `/trials`, {
             method: 'POST',

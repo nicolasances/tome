@@ -55,7 +55,10 @@ export default function ChallengeDetailPage() {
      */
     const startOrResumeTrial = async (challengeId: string) => {
 
-        const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { trialId: string } | {code: string; message: string};
+        console.log(`Starting trial on challenge ${challengeId}`);
+        
+
+        const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | {code: string; message: string};
 
         if ('code' in response) {
             console.log('Error starting or resuming trial:', response.code, response.message);
@@ -63,7 +66,7 @@ export default function ChallengeDetailPage() {
         }
 
         // Redirect to the trial page
-        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.trialId}`);
+        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}`);
         
     }
 

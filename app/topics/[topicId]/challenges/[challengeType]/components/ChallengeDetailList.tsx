@@ -51,10 +51,9 @@ function ChallengeDetailItem({ challenge, onChallengeClick }: { challenge: Chall
     return (
         <div className="text-base flex items-center cursor-pointer"
             onMouseDown={() => setPressed(true)}
-            onMouseUp={() => { setPressed(false); handleClick(); }}
+            onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
-            onTouchStart={() => setPressed(true)}
-            onTouchEnd={() => { setPressed(false); handleClick(); }}
+            onClick={handleClick}
             style={{
                 opacity: pressed ? 0.5 : 1,
             }}
