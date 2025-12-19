@@ -5,9 +5,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
-import { TomeChallengesAPI, Challenge, Trial } from "@/api/TomeChallengesAPI";
+import { TomeChallengesAPI, Challenge, Trial, JuiceChallenge } from "@/api/TomeChallengesAPI";
 import BackSVG from "@/app/ui/graphics/icons/Back";
 import { formatSectionCode } from "@/app/utils/sectionFormatting";
+import { JuiceTrial } from "@/app/topics/[topicId]/challenges/[challengeType]/trials/[trialId]/components/JuiceTrial";
 
 export default function TrialPage() {
 
@@ -15,7 +16,7 @@ export default function TrialPage() {
     const params = useParams()
 
     const [topic, setTopic] = useState<Topic>()
-    const [challenge, setChallenge] = useState<Challenge>()
+    const [challenge, setChallenge] = useState<Challenge | JuiceChallenge>()
     const [trial, setTrial] = useState<Trial>()
 
     const loadData = async () => {
@@ -31,20 +32,26 @@ export default function TrialPage() {
         setTrial(trialData);
 
         // Load the challenge
-        const {challenge} = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
-        setChallenge(challenge);
+        const challengeData = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
+        setChallenge(challengeData);
 
         // Load the topic
-        const topicData = await new TomeTopicsAPI().getTopic(challenge.topicId);
+        const topicData = await new TomeTopicsAPI().getTopic(challengeData.topicId);
         setTopic(topicData);
+    }
+
+    const handleTrialComplete = () => {
+        console.log("Trial completed!");
+        // TODO: Save trial results, then redirect back
+        router.back();
     }
 
     useEffect(() => { loadData() }, [])
 
     if (!topic || !challenge || !trial) return <></>
 
-    const challengeType = challenge.code;
-    const sectionName = formatSectionCode(challenge.sectionCode);
+    const challengeType = (challenge as Challenge).code || 'juice';
+    const sectionName = formatSectionCode((challenge as Challenge).sectionCode);
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
@@ -65,6 +72,13 @@ export default function TrialPage() {
             <div className="flex justify-center text-base opacity-70">
                 {sectionName}
             </div>
+            {challenge.type === 'juice' && (
+                <JuiceTrial 
+                    challenge={challenge as JuiceChallenge} 
+                    trialId={String(params.trialId)}
+                    onTrialComplete={handleTrialComplete}
+                />
+            )}
         </div>
     )
 }
