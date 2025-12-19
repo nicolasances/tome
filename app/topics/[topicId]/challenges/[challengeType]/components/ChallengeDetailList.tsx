@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { MaskedSvgIcon } from "../../../../../components/MaskedSvgIcon";
 import { Challenge } from "@/api/TomeChallengesAPI";
+import { formatSectionCode } from "@/app/utils/sectionFormatting";
 
 interface ChallengeDetailListProps {
     challenges: Challenge[];
+    onChallengeClick?: (challengeId: string) => void;
 }
 
-export function ChallengeDetailList({ challenges }: ChallengeDetailListProps) {
+export function ChallengeDetailList({ challenges, onChallengeClick }: ChallengeDetailListProps) {
 
     if (challenges.length === 0) {
         return <div className="text-base opacity-50">No challenges yet</div>
@@ -22,6 +24,7 @@ export function ChallengeDetailList({ challenges }: ChallengeDetailListProps) {
                     <ChallengeDetailItem 
                         key={`${challenge.sectionCode}-${index}`} 
                         challenge={challenge} 
+                        onChallengeClick={onChallengeClick}
                     />
                 ))}
             </div>
@@ -37,17 +40,21 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function ChallengeDetailItem({ challenge }: { challenge: Challenge }) {
+function ChallengeDetailItem({ challenge, onChallengeClick }: { challenge: Challenge; onChallengeClick?: (challengeId: string) => void }) {
 
     const [pressed, setPressed] = useState(false);
+
+    const handleClick = () => {
+        onChallengeClick?.(challenge.id);
+    }
 
     return (
         <div className="text-base flex items-center cursor-pointer"
             onMouseDown={() => setPressed(true)}
-            onMouseUp={() => setPressed(false)}
+            onMouseUp={() => { setPressed(false); handleClick(); }}
             onMouseLeave={() => setPressed(false)}
             onTouchStart={() => setPressed(true)}
-            onTouchEnd={() => setPressed(false)}
+            onTouchEnd={() => { setPressed(false); handleClick(); }}
             style={{
                 opacity: pressed ? 0.5 : 1,
             }}
@@ -64,25 +71,3 @@ function ChallengeDetailItem({ challenge }: { challenge: Challenge }) {
         </div>
     )
 }
-
-
-/**
- * Format section code to human-readable form
- * - Replace hyphens with spaces
- * - Capitalize each word
- * - Convert roman numerals to uppercase
- */
-const formatSectionCode = (code: string): string => {
-    return code
-        .replace(/-/g, ' ')
-        .split(' ')
-        .map(word => {
-            // Check if the word is a roman numeral (contains only i, v, x, l, c, d, m)
-            if (/^[ivxlcdm]+$/.test(word)) {
-                return word.toUpperCase();
-            }
-            // Otherwise, capitalize first letter and keep the rest as is
-            return word.charAt(0).toUpperCase() + word.slice(1);
-        })
-        .join(' ');
-};

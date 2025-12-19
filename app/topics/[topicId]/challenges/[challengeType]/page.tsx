@@ -31,7 +31,7 @@ export default function ChallengeDetailPage() {
         if (!challenges) return;
 
         // Filter out to only keep the challenge with the matching type
-        const filteredChallenges = challenges.filter(challenge => challenge.type === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
+        const filteredChallenges = challenges.filter(challenge => challenge.code === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
 
         setChallenges(filteredChallenges);
 
@@ -46,6 +46,25 @@ export default function ChallengeDetailPage() {
     const loadTopic = async () => {
         const topic = await new TomeTopicsAPI().getTopic(String(params.topicId));
         setTopic(topic);
+    }
+
+    /**
+     * Starts or resumes a trial for the given challenge
+     * 
+     * @param challengeId the id of the challenge to start or resume a trial for
+     */
+    const startOrResumeTrial = async (challengeId: string) => {
+
+        const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { trialId: string } | {code: string; message: string};
+
+        if ('code' in response) {
+            console.log('Error starting or resuming trial:', response.code, response.message);
+            return;
+        }
+
+        // Redirect to the trial page
+        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.trialId}`);
+        
     }
 
     useEffect(() => { loadData() }, [])
@@ -73,7 +92,7 @@ export default function ChallengeDetailPage() {
             <div className="flex justify-center text-base opacity-70">
                 {challengeName}
             </div>
-            <ChallengeDetailList challenges={challenges} />
+            <ChallengeDetailList challenges={challenges} onChallengeClick={startOrResumeTrial} />
             <div className="flex-1 mt-6 text-center">
             </div>
         </div>

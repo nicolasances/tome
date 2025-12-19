@@ -47,7 +47,7 @@ function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: 
 
     return (
         <div className="text-base flex items-center cursor-pointer"
-            onClick={() => router.push(`/topics/${topicId}/challenges/${challenge.type}`)}
+            onClick={() => router.push(`/topics/${topicId}/challenges/${challenge.code}`)}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -59,13 +59,13 @@ function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: 
         >
             <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1">
                 <MaskedSvgIcon 
-                    src={`/images/challenges/${challenge.type}.svg`}
-                    alt={challenge.type}
+                    src={`/images/challenges/${challenge.code}.svg`}
+                    alt={challenge.code}
                     size="w-5 h-5"
                     color="bg-cyan-800"
                 />
             </div>
-            <div className="capitalize">{challenge.name || challenge.type}</div>
+            <div className="capitalize">{challenge.name || challenge.code}</div>
         </div>
     )
 }
