@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
-export function DateFlashcardWidget({ question, correctYear, onAnswer }: { question: string, correctYear: number, onAnswer: (isCorrect: boolean) => void }) {
+export function DateFlashcardWidget({ question, correctYear, onAnswer }: { question: string, correctYear: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void }) {
 
     return (
         <div className="w-full max-w-2xl mx-auto mt-8">
@@ -22,7 +22,7 @@ export function DateFlashcardWidget({ question, correctYear, onAnswer }: { quest
  * 
  * @returns 
  */
-function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: number, onAnswer: (isCorrect: boolean) => void }) {
+function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void }) {
 
     const getDigits = (year: number) => year.toString().split("");
 
@@ -62,7 +62,7 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
 
             // Wait a bit before calling onAnswer to let the user see if they were correct
             setTimeout(() => {
-                onAnswer(isAnswerCorrect);
+                onAnswer({ year: parseInt(inputYear) });
             }, 2000);
         }
     };
