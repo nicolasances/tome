@@ -49,6 +49,26 @@ export class TomeChallengesAPI {
 
     }
 
+    /**
+     * Posts a trial answer
+     * @param trialId 
+     * @param test the Tome Test for which the answer is given
+     * @param answer the user answer
+     * @returns 
+     */
+    async postTrialAnswer(trialId: string, test: TomeTest, answer: any): Promise<{ score: number }> {
+
+        return (await new TotoAPI().fetch('tome-ms-challenges', `/trials/${trialId}/answers`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ test, answer })
+        })).json()
+
+    }
+
 }
 
 export interface GetChallengeResponse {

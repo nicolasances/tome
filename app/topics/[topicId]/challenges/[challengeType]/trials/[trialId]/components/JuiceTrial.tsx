@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { JuiceChallenge } from "@/api/TomeChallengesAPI";
+import { JuiceChallenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
 import { TestFactory } from "./TestFactory";
@@ -17,6 +17,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>('context');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
+    const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
 
     // Get the first "open" test
     const firstOpenTestIndex = challenge.tests.findIndex(test => test.type === 'open');
@@ -39,34 +40,38 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
         setCurrentPhase('test');
     };
 
-    const handleOpenTestAnswer = (answer: string) => {
+    /**
+     * Handles the user answer: 
+     * 1. Stores it 
+     * 2. Sends it to the Tome Challenges API and gets back the score
+     * 3. Moves to the next test or completes the trial
+     * 
+     * @param answer 
+     */
+    const handleAnswer = async (answer: any) => {
+
         const newAnswers = {
             ...answers,
             [currentTest.testId]: answer
         };
         setAnswers(newAnswers);
 
-        // Move to next test
-        if (!isLastTest) {
-            setCurrentTestIndex(currentTestIndex + 1);
-        } else {
-            onTrialComplete();
-        }
-    };
+        // Send answer to API
+        const scorePromise = new TomeChallengesAPI().postTrialAnswer(trialId, currentTest, answer);
 
-    const handleDateTestAnswer = (isCorrect: boolean) => {
-        // For date tests, we just track that it was answered
-        const newAnswers = {
-            ...answers,
-            [currentTest.testId]: isCorrect
-        };
-        setAnswers(newAnswers);
+        setPendingScores([...pendingScores, scorePromise])
 
         // Move to next test
         if (!isLastTest) {
             setCurrentTestIndex(currentTestIndex + 1);
         } else {
-            onTrialComplete();
+            Promise.all(pendingScores.concat(scorePromise))
+                .then(() => onTrialComplete())
+                .catch((error) => {
+                    console.error('Error scoring answers:', error);
+                    // Still complete the trial even if scoring failed
+                    onTrialComplete();
+                });
         }
     };
 
@@ -93,7 +98,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
         <div className="flex flex-1 flex-col items-center justify-start px-4">
             {TestFactory.createTestComponent(
                 currentTest,
-                currentTest.type === 'open' ? handleOpenTestAnswer : handleDateTestAnswer
+                handleAnswer
             )}
         </div>
     );

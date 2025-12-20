@@ -5,10 +5,8 @@ import { DateFlashcardWidget } from "@/app/ui/cards/flashcards/DateFlashcardWidg
 
 export class TestFactory {
 
-    static createTestComponent(test: TomeTest, handleAnswer: (answer: any, test: TomeTest) => void) {
+    static createTestComponent(test: TomeTest, handleAnswer: (answer: any, test: TomeTest) => Promise<void>) {
 
-        console.log(test);
-        
         switch (test.type) {
             case 'open':
                 return (
