@@ -13,22 +13,31 @@ Tome revoles around simple concepts:
 A Topic is something you need to remember. <br>
 It can be a book, an article, anything.
 
-2. **Flashcards** <br>
-Flashcards are "memory cards". They are different types of card that are supposed to help the memorization of a Topic. <br>
-Examples could be cards with multiple options to choose from, fill-the-missing-text flashcards, timeline flashcards, etc. 
-
-3. **Practice** <br>
-A Practice is a session where the user reviews a topic. It can be the user going through a series of flashcards meant to accelerate memorization, etc. 
-<br>
-
-4. **Practice Points** (pp) <br>
-Every time a user fills question he/she gets practice points (pp). Practice points are used then to measure progress and are used as part of Challenges. 
-
-5. **Badges** <br>
-Badges help gamify the practice and memorization of topics. 
-Badges get emitted at the reaching of specific goals, often described in terms of Practice Points (but could be related to other metrics).
+2. **Challenges** <br>
+Challenges are a way to gamify the memorization of Topics. <br>
+There are different types of challenges, and they typically correspond to **difficulty levels**. The following challenges are currently supported: 
+    * **Juice Challenge** - the easiest challenge, the user mostly need to remember: 
+        * The core concepts or events of the topic 
+        * The core dates and people involved
 
 <br>
+
+3. **Trial** <br>
+A Trial is an instance of a Challenge. <br>
+When a user starts a Challenge, a Trial is created. <br>
+
+<br>
+
+4. **Tests** (pp) <br>
+They are the core element of Challenges and Trials. <br>
+Each challenge is made of a series of Tests. <br>
+Tests are questions that the user needs to answer to prove they have memorized the Topic. <br>
+Tests can be of different types:
+* Date Tests
+* Free Text Tests 
+* Genealogic Tree Tests
+* Timeline Tests
+
 
 ![](./docs/drawings/model.drawio.svg)
 

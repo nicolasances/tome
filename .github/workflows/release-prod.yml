@@ -38,6 +38,7 @@ jobs:
         --build-arg TOME_TOPICS_API_ENDPOINT=${{ vars.TOME_TOPICS_API_ENDPOINT }} \
         --build-arg TOME_PRACTICE_API_ENDPOINT=${{ vars.TOME_PRACTICE_API_ENDPOINT }} \
         --build-arg TOME_POINTS_API_ENDPOINT=${{ vars.TOME_POINTS_API_ENDPOINT }} \
+        --build-arg TOME_CHALLENGES_API_ENDPOINT=${{ vars.TOME_CHALLENGES_API_ENDPOINT }} \
         --build-arg GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
         . -t europe-west1-docker.pkg.dev/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
  

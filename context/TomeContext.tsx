@@ -1,6 +1,5 @@
 "use client";
 
-import { TopicMemLevel } from "@/api/TomeAPI";
 import { Topic } from "@/api/TomeTopicsAPI";
 import { PracticeStats } from "@/app/ui/complex/FlashCardsSession";
 import { Practice } from "@/model/Practice";
@@ -11,22 +10,16 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 interface TomeContextContent {
   topicReviewContext: TopicReviewContext | undefined
-  topicMemLevels: TopicMemorizationLevels | undefined
   
   segmentPractice: SegmentPracticeData | undefined
   
   updateSegmentPractice: (data: SegmentPracticeData) => void
   updateTopicReviewContext: (trc: TopicReviewContext) => void
-  updateTopicMemLevels: (tml: TopicMemorizationLevels) => void
 }
 
 interface TopicReviewContext {
   topicReview: TopicReview 
   questions: TopicReviewQuestion[]
-}
-
-interface TopicMemorizationLevels {
-  memLevels: TopicMemLevel[]
 }
 
 interface SegmentPracticeData {
@@ -52,23 +45,18 @@ interface TomeContextProviderProps {
 // Create the provider component
 export const TomeContextProvider: React.FC<TomeContextProviderProps> = ({ children }) => {
   const [topicReviewContext, setTopicReviewContext] = useState<TopicReviewContext | undefined>(undefined);
-  const [topicMemLevels, setTopicMemLevels] = useState<TopicMemorizationLevels | undefined>(undefined);
   const [segmentPractice, setSegmentPractice] = useState<SegmentPracticeData | undefined>(undefined);
 
   const updateTopicReviewContext = (newValue: TopicReviewContext) => {
     setTopicReviewContext(newValue)
   };
 
-  const updateTopicMemLevels = (newValue: TopicMemorizationLevels) => {
-    setTopicMemLevels(newValue)
-  }
-
   const updateSegmentPractice = (newValue: SegmentPracticeData) => {
     setSegmentPractice(newValue)
   };
   
   return (
-    <TomeContext.Provider value={{ topicReviewContext, updateTopicReviewContext, topicMemLevels, updateTopicMemLevels, segmentPractice, updateSegmentPractice }}>
+    <TomeContext.Provider value={{ topicReviewContext, updateTopicReviewContext, segmentPractice, updateSegmentPractice }}>
       {children}
     </TomeContext.Provider>
   );

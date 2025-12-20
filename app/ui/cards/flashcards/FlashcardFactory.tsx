@@ -39,12 +39,12 @@ export class FlashcardFactory {
 
             const fc = flashcard.originalFlashcard as DateFlashcard;
 
-            const onDateAnswer = (isCorrect: boolean) => {
-                if (!isCorrect) handleAnswerSelect(false, flashcard.id!); // This one just to record the wrong answer
-                handleAnswerSelect(true, flashcard.id!);
-            }
+            // const onDateAnswer = (isCorrect: boolean) => {
+            //     if (!isCorrect) handleAnswerSelect(false, flashcard.id!); // This one just to record the wrong answer
+            //     handleAnswerSelect(true, flashcard.id!);
+            // }
 
-            return <DateFlashcardWidget correctYear={fc.correctYear} id={flashcard.id!} question={fc.question} sectionTitle={fc.sectionTitle} cardNumber={idx + 1} totalCards={numCards} onAnswerSelect={onDateAnswer} />
+            return <DateFlashcardWidget correctYear={fc.correctYear} question={fc.question} onAnswer={() => {}} />
         }
         else if (flashcard.originalFlashcard.type == 'graph') {
             return <GraphWidget flashcard={flashcard} onAnswerSelect={(isCorrect) => { handleAnswerSelect(isCorrect, flashcard.id!) }}  />

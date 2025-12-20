@@ -3,18 +3,13 @@
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import RoundButton from "./ui/buttons/RoundButton";
-import Add from "./ui/graphics/icons/Add";
-import { useRouter } from "next/navigation";
 import Header from "./ui/layout/Header";
-import { TopicsAndPractices } from "@/components/TopicsAndPractices";
 import { WeekDailyGoals } from "@/components/WeekDailyGoals";
-import WeeklyPracticeGoal from "@/components/WeeklyPracticeGoal";
+import { TopicsList } from "@/app/components/TopicsList";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
-  const router = useRouter();
 
   /**
    * Verifies if the user is authenticated
@@ -84,17 +79,9 @@ export default function Home() {
 
       <Header />
 
-      <TopicsAndPractices />
-
-      <div className="flex justify-center items-center space-x-2 mt-4">
-        <RoundButton icon={<Add />} onClick={() => { router.push(`/new-topic`) }} size="m" />
-      </div>
+      <TopicsList />
 
       <div className="flex-1"></div>
-
-      <div className="mb-8">
-        <WeeklyPracticeGoal />
-      </div>
 
       <div className="mb-2">
         <WeekDailyGoals />
