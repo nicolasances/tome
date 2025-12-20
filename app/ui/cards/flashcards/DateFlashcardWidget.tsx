@@ -1,21 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
-export function DateFlashcardWidget({ question, correctYear, sectionTitle, id, cardNumber, totalCards, onAnswerSelect }: { question: string, correctYear: number, sectionTitle: string, id: string, cardNumber: number, totalCards: number, onAnswerSelect: (isCorrect: boolean) => void }) {
+export function DateFlashcardWidget({ question, correctYear, onAnswer }: { question: string, correctYear: number, onAnswer: (isCorrect: boolean) => void }) {
 
     return (
-        <div className="p-4 shadow-lg rounded-lg bg-cyan-100 max-w-md mx-auto relative">
-            <div className="flex justify-between items-center mb-4">
-                <span className="bg-blue-200 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full">
-                    date
-                </span>
-                <span className="text-gray-600 text-xs font-semibold">
-                    {cardNumber}/{totalCards}
-                </span>
-            </div>
-            <div className='text-sm mb-2 opacity-60'>{sectionTitle}</div>
-            <div className="mb-8 text-base font-bold">{question}</div>
-            <div className="flex justify-center space-y-3 relative ml-2">
-                <YearInput correctYear={correctYear} flashcardId={id} onAnswer={onAnswerSelect} />
+        <div className="w-full max-w-2xl mx-auto mt-8">
+            <div className="mb-8 text-xl font-bold">{question}</div>
+            <div className="flex justify-center relative">
+                <YearInput correctYear={correctYear} flashcardId={Math.random()} onAnswer={onAnswer} />
             </div>
         </div>
     );
@@ -31,7 +22,7 @@ export function DateFlashcardWidget({ question, correctYear, sectionTitle, id, c
  * 
  * @returns 
  */
-function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: string, onAnswer: (isCorrect: boolean) => void }) {
+function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: number, onAnswer: (isCorrect: boolean) => void }) {
 
     const getDigits = (year: number) => year.toString().split("");
 
@@ -40,6 +31,11 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
     const [values, setValues] = useState<string[]>(Array(numDigits).fill(""));
     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
     const [correct, setCorrect] = useState<boolean | null>(null);
+
+    // Auto-focus the first input on mount
+    useEffect(() => {
+        document.getElementById(`0-${flashcardId}`)?.focus();
+    }, [flashcardId]);
 
     const handleChange = (idx: number, e: React.ChangeEvent<HTMLInputElement>) => {
         let val = e.target.value.replace(/[^0-9]/g, "");
@@ -63,8 +59,11 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
             const isAnswerCorrect = inputYear === correctYear.toString();
 
             setCorrect(isAnswerCorrect);
-            onAnswer(isAnswerCorrect);
 
+            // Wait a bit before calling onAnswer to let the user see if they were correct
+            setTimeout(() => {
+                onAnswer(isAnswerCorrect);
+            }, 2000);
         }
     };
 
@@ -88,12 +87,12 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
                         inputMode="numeric"
                         maxLength={1}
                         className={`
-                        w-10 h-12 text-center text-xl border rounded focus:outline-none focus:ring-2 focus:ring-cyan-400
+                        w-10 h-12 text-center text-xl border rounded focus:outline-none focus:ring-2 focus:ring-cyan-200
                         ${correct === null
                                 ? "border-gray-300 bg-white text-grey-700"
                                 : correct
                                     ? "border-green-400 bg-green-200 text-green-600"
-                                    : "border-red-400 bg-red-200 text-red-600"}
+                                    : "border-red-400 bg-red-300 text-red-600"}
                         `}
                         value={values[idx]}
                         onChange={e => handleChange(idx, e)}

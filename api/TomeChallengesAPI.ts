@@ -17,7 +17,7 @@ export class TomeChallengesAPI {
      * @param challengeId 
      * @returns 
      */
-    async getChallenge(challengeId: string): Promise<Challenge | JuiceChallenge> {
+    async getChallenge(challengeId: string): Promise<GetChallengeResponse> {
         return (await new TotoAPI().fetch(this.name, `/challenges/${challengeId}`)).json()
     }
 
@@ -49,6 +49,10 @@ export class TomeChallengesAPI {
 
     }
 
+}
+
+export interface GetChallengeResponse {
+    challenge: Challenge;
 }
 
 export interface GetTopicChallengesResponse {
@@ -89,18 +93,18 @@ export interface JuiceChallenge {
     tests: TomeTest[];
 }
 
-interface ToRemember {
+export interface ToRemember {
     toRemember: string;
     date?: SplitDate | null;
 }
 
-interface SplitDate {
+export interface SplitDate {
     day: number | null;
     month: number | null;
     year: number | null;
 }
 
-interface TomeTest {
+export interface TomeTest {
     type: string;
     testId: string;
     question: string;

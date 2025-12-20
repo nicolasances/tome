@@ -16,7 +16,7 @@ export default function TrialPage() {
     const params = useParams()
 
     const [topic, setTopic] = useState<Topic>()
-    const [challenge, setChallenge] = useState<Challenge | JuiceChallenge>()
+    const [challenge, setChallenge] = useState<Challenge>()
     const [trial, setTrial] = useState<Trial>()
 
     const loadData = async () => {
@@ -32,11 +32,11 @@ export default function TrialPage() {
         setTrial(trialData);
 
         // Load the challenge
-        const challengeData = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
-        setChallenge(challengeData);
+        const { challenge } = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
+        setChallenge(challenge);
 
         // Load the topic
-        const topicData = await new TomeTopicsAPI().getTopic(challengeData.topicId);
+        const topicData = await new TomeTopicsAPI().getTopic(challenge.topicId);
         setTopic(topicData);
     }
 
@@ -61,7 +61,7 @@ export default function TrialPage() {
                 </div>
                 <div className="flex justify-center text-xl">{topic.name}</div>
                 <div className="flex flex-1 items-center justify-end p-1 flex-shrink-0">
-                    <MaskedSvgIcon 
+                    <MaskedSvgIcon
                         src={`/images/challenges/${challengeType}.svg`}
                         alt={challengeType}
                         size="w-5 h-5"
@@ -72,9 +72,9 @@ export default function TrialPage() {
             <div className="flex justify-center text-base opacity-70">
                 {sectionName}
             </div>
-            {challenge.type === 'juice' && (
-                <JuiceTrial 
-                    challenge={challenge as JuiceChallenge} 
+            {challenge.code === 'juice' && (
+                <JuiceTrial
+                    challenge={challenge as any as JuiceChallenge}
                     trialId={String(params.trialId)}
                     onTrialComplete={handleTrialComplete}
                 />
