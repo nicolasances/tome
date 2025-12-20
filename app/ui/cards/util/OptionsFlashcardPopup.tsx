@@ -66,11 +66,7 @@ export function DateFlashcardPopup({ open, question, correctYear, sectionTitle, 
                 <DateFlashcardWidget
                     question={question}
                     correctYear={correctYear}
-                    sectionTitle={sectionTitle}
-                    id={id}
-                    cardNumber={1}
-                    totalCards={1}
-                    onAnswerSelect={onAnswerSelected}
+                    onAnswer={() => {}}
                 />
             </DialogContent>
         </Dialog>

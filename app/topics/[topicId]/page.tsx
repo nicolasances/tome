@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 import LampSVG from "../../ui/graphics/icons/Lamp";
 import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import moment from "moment";
-import { ProgressBar } from "@/app/ui/general/ProgressBar";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
-import RefreshSVG from "@/app/ui/graphics/icons/RefreshSVG";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 import { Challenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
 import { ChallengesList } from "@/app/components/ChallengesList";
@@ -77,16 +74,6 @@ export default function TopicDetailPage() {
             topicRefreshInterval = setInterval(() => { loadTopic() }, 3000);
 
         }
-    }
-
-    const refreshTopic = async () => {
-
-        setRefreshingTopic(true)
-
-        await new TomeTopicsAPI().refreshTopic(String(params.topicId));
-
-        topicRefreshInterval = setInterval(() => { loadTopic() }, 3000);
-
     }
 
     /**
