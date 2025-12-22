@@ -85,6 +85,17 @@ export interface GetTrialResponse {
 export interface Trial {
     id: string;
     challengeId: string;
+    startedOn: Date;
+    completedOn?: Date;
+    expiresOn: Date;    // The date when the trial's results expire. This is typically defined at a challenge level, and tracked in the trial for convenience, but also for tracking and ML.
+    score?: number;
+    
+    answers?: TestAnswer[];
+}
+export interface TestAnswer {
+    testId: string; 
+    answer: any;
+    score: number;
 }
 
 export interface Challenge {
