@@ -4,7 +4,7 @@ export function DateFlashcardWidget({ question, correctYear, onAnswer }: { quest
 
     return (
         <div className="w-full max-w-2xl mx-auto mt-8">
-            <div className="mb-8 text-xl font-bold">{question}</div>
+            <div className="mb-8 text-xl">{question}</div>
             <div className="flex justify-center relative">
                 <YearInput correctYear={correctYear} flashcardId={Math.random()} onAnswer={onAnswer} />
             </div>

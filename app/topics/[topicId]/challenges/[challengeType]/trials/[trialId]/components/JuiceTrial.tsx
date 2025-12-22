@@ -78,7 +78,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     if (currentPhase === 'context') {
         return (
             <div className="flex flex-1 flex-col items-center justify-start px-6 py-8">
-                <div className="text-xl font-semibold mb-8 text-center">
+                <div className="text-xl mb-8 text-center">
                     {challenge.context}
                 </div>
                 <div className="flex-1"></div>
