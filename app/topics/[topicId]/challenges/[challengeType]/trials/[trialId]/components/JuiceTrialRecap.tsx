@@ -1,6 +1,8 @@
 'use client'
 
 import { Trial, JuiceChallenge, TestAnswer, SplitDate } from "@/api/TomeChallengesAPI";
+import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
+import { ProgressBar } from "@/app/ui/general/ProgressBar";
 
 interface JuiceTrialRecapProps {
     trial: Trial;
@@ -43,41 +45,57 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
      */
     const formatSplitDate = (splitDate: SplitDate | any): string => {
         if (!splitDate) return '(no answer)';
-        
+
         const parts: string[] = [];
         if (splitDate.year !== null && splitDate.year !== undefined) parts.push(`${splitDate.year}`);
         if (splitDate.month !== null && splitDate.month !== undefined) parts.push(`${String(splitDate.month).padStart(2, '0')}`);
         if (splitDate.day !== null && splitDate.day !== undefined) parts.push(`${String(splitDate.day).padStart(2, '0')}`);
-        
+
         if (parts.length === 0) return '(no answer)';
         return parts.join('-');
     };
 
-
+    const expiresProgress = {
+        total: trial.expiresOn && trial.startedOn ? new Date(trial.expiresOn).getTime() - new Date(trial.startedOn).getTime() : 0,
+        current: 100 * (new Date().getTime() - new Date(trial.startedOn).getTime()) / (trial.expiresOn && trial.startedOn ? new Date(trial.expiresOn).getTime() - new Date(trial.startedOn).getTime() : 1), // the current day, on a scale from startedOn to expiresOn
+    }
 
     return (
         <div className="flex flex-1 flex-col w-full py-8 space-y-8">
             {/* Top Section: Completion Date and Final Score */}
-            <div className="space-y-4 pb-6 border-b-2 border-cyan-300">
-                <div className="text-cyan-800 font-semibold mb-4">Trial Complete</div>
-                <div className="flex justify-between items-center">
-                    <div className="flex flex-col">
-                        <span className="text-cyan-800 text-sm font-semibold">Completed On</span>
-                        <span className="text-cyan-800 text-lg">{formatCompletionDate(trial.completedOn)}</span>
-                    </div>
+            <div className="space-y-4 pb-2">
+                <div className="text-cyan-800 mb-4 text-base flex items-center space-x-2">
+                    <MaskedSvgIcon src="/images/challenge-completed.svg" color="bg-cyan-800" alt="completed" />
+                    <div>Trial Complete</div>
+                    <div className="flex-1"></div>
                     <div className="flex flex-col items-end">
-                        <span className="text-cyan-800 text-sm font-semibold">Final Score</span>
+                        <span className="text-cyan-800 text-xs font-semibold">Final Score</span>
                         <span className="text-lg font-bold text-cyan-800">
                             {trial.score !== undefined ? Math.round(trial.score * 100) : '—'} %
                         </span>
+                    </div>
+                </div>
+                <div className="flex flex-col">
+                    <div className="flex items-center justify-between">
+                        <div className="flex flex-col">
+                            <span className="text-cyan-800 text-xs">Completed On</span>
+                            <span className="text-cyan-800 text-base">{formatCompletionDate(trial.completedOn)}</span>
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-cyan-800 text-xs">Expires On</span>
+                            <span className="text-cyan-800 text-base">{formatCompletionDate(trial.expiresOn)}</span>
+                        </div>
+                    </div>
+                    <div className="mt-2">
+                        <ProgressBar current={expiresProgress.current} max={100} hideNumber={true} size="s" />
                     </div>
                 </div>
             </div>
 
             {/* Test Results Section */}
             <div className="space-y-4">
-                <h2 className="text-xl font-semibold text-cyan-800">Test Results</h2>
-                
+                <div className="text-lg font-semibold text-cyan-800">Test Results</div>
+
                 {trial.answers && trial.answers.length > 0 ? (
                     <div className="space-y-6">
                         {trial.answers.map((testAnswer: TestAnswer, index: number) => {
@@ -85,10 +103,10 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
                             if (!test) return null;
 
                             return (
-                                <div key={testAnswer.testId} className="space-y-3 pb-6 border-b border-cyan-300 last:border-b-0">
+                                <div key={testAnswer.testId} className="space-y-3 pb-6 ">
                                     <div className="flex justify-between items-start">
-                                        <div className="flex-1">
-                                            <div className="text-cyan-800 font-semibold text-base">
+                                        <div className="">
+                                            <div className="text-cyan-800 font-semibold text-base bg-cyan-200 rounded-full px-3 inline-block">
                                                 Question {index + 1}
                                             </div>
                                             <p className="text-cyan-800 text-sm mt-2">{test.question}</p>
