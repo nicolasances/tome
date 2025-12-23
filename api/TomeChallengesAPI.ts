@@ -111,8 +111,8 @@ export interface Challenge {
     description: string;
 }
 
-export interface JuiceChallenge {
-    id?: string;
+export interface JuiceChallenge extends Challenge {
+    id: string;
     type: string;
     code: string;
     context: string;
@@ -140,4 +140,5 @@ export interface TomeTest {
     testId: string;
     question: string;
     correctAnswer?: any;
+    score?: number;
 }

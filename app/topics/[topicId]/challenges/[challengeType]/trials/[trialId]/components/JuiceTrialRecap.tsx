@@ -3,6 +3,8 @@
 import { Trial, JuiceChallenge, TestAnswer, SplitDate } from "@/api/TomeChallengesAPI";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { ProgressBar } from "@/app/ui/general/ProgressBar";
+import { TestHead } from "./TestHead";
+import { TestFactory } from "./TestFactory";
 
 interface JuiceTrialRecapProps {
     trial: Trial;
@@ -28,31 +30,6 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
      */
     const getTest = (testId: string) => {
         return challenge.tests.find(t => t.testId === testId);
-    };
-
-    /**
-     * Format answer based on test type
-     */
-    const formatAnswer = (answer: any, testType: string): string => {
-        if (testType === 'date') {
-            return formatSplitDate(answer);
-        }
-        return String(answer || '');
-    };
-
-    /**
-     * Format a split date (with optional year, month, day)
-     */
-    const formatSplitDate = (splitDate: SplitDate | any): string => {
-        if (!splitDate) return '(no answer)';
-
-        const parts: string[] = [];
-        if (splitDate.year !== null && splitDate.year !== undefined) parts.push(`${splitDate.year}`);
-        if (splitDate.month !== null && splitDate.month !== undefined) parts.push(`${String(splitDate.month).padStart(2, '0')}`);
-        if (splitDate.day !== null && splitDate.day !== undefined) parts.push(`${String(splitDate.day).padStart(2, '0')}`);
-
-        if (parts.length === 0) return '(no answer)';
-        return parts.join('-');
     };
 
     const expiresProgress = {
@@ -97,41 +74,15 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
                 <div className="text-lg font-semibold text-cyan-800">Test Results</div>
 
                 {trial.answers && trial.answers.length > 0 ? (
-                    <div className="space-y-6">
+                    <div className="space-y-2">
                         {trial.answers.map((testAnswer: TestAnswer, index: number) => {
                             const test = getTest(testAnswer.testId);
                             if (!test) return null;
 
                             return (
                                 <div key={testAnswer.testId} className="space-y-3 pb-6 ">
-                                    <div className="flex justify-between items-start">
-                                        <div className="">
-                                            <div className="text-cyan-800 font-semibold text-base bg-cyan-200 rounded-full px-3 inline-block">
-                                                Question {index + 1}
-                                            </div>
-                                            <p className="text-cyan-800 text-sm mt-2">{test.question}</p>
-                                        </div>
-                                        <div className="text-base font-bold ml-4 flex-shrink-0 text-cyan-800">
-                                            {Math.round(testAnswer.score * 100)} %
-                                        </div>
-                                    </div>
-                                    <div className="space-y-3">
-                                        {/* User Answer */}
-                                        <div>
-                                            <span className="text-cyan-800 text-sm font-semibold">Your Answer</span>
-                                            <p className="text-cyan-800 mt-1 break-words">
-                                                {formatAnswer(testAnswer.answer, test.type)}
-                                            </p>
-                                        </div>
-
-                                        {/* Correct Answer */}
-                                        <div>
-                                            <span className="text-cyan-800 text-sm font-semibold">Correct Answer</span>
-                                            <p className="text-cyan-800 mt-1 break-words">
-                                                {formatAnswer(test.correctAnswer, test.type)}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <TestHead test={test} testIndex={index} />
+                                    {TestFactory.createTestAnswerComponent(test, trial, challenge)}
                                 </div>
                             );
                         })}
