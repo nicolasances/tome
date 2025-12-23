@@ -3,10 +3,8 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import LampSVG from "../../ui/graphics/icons/Lamp";
 import BackSVG from "@/app/ui/graphics/icons/Back";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesList";
@@ -15,13 +13,12 @@ import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesLi
 export default function TopicDetailPage() {
 
     const router = useRouter();
-    const params = useParams()
+    const params = useParams();
 
     let topicRefreshInterval: NodeJS.Timeout | undefined;
 
     const [topic, setTopic] = useState<Topic>()
     const [refreshingTopic, setRefreshingTopic] = useState<boolean | null>(false)
-    const [startingPractice, setStartingPractice] = useState<boolean>(false)
     const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
 
     const loadData = async () => {
@@ -138,30 +135,6 @@ export default function TopicDetailPage() {
             topicRefreshInterval = setInterval(() => { loadTopic() }, 3000);
 
         }
-    }
-
-    /**
-     * Starts a practice on this topic
-     */
-    const startPractice = async () => {
-
-        setStartingPractice(true);
-
-        const response = await new TomePracticeAPI().startPractice(String(params.topicId), "options")
-
-        if (response && 'practiceId' in response) {
-            router.push(`${params.topicId}/practice/${response.practiceId}`);
-        }
-        else if (response && response.subcode == 'ongoing-practice-found') {
-
-            // Load ongoing practice
-            const { practices } = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
-
-            // Route
-            router.push(`${params.topicId}/practice/${practices[0].id}`);
-        }
-
-
     }
 
     useEffect(() => { loadData() }, [])
