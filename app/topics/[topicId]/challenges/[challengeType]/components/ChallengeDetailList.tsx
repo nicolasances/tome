@@ -58,7 +58,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
      * Returns the icon URL for the given challenge Id based on whether there are no trials, active trials or completed trials
      * @param challengeId
      */
-    const getChallengeIcon = (challengeId: string) => {
+    const getChallengeIcon = () => {
 
         if (isChallengeCompleted) return "/images/challenge-completed.svg";
 
@@ -89,7 +89,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
         >
             <div className={`w-10 h-10 mr-3 flex items-center justify-center border-2 ${isChallengeCompleted ? "border-cyan-200" : "border-cyan-800"} rounded-full p-1`}>
                 <MaskedSvgIcon
-                    src={getChallengeIcon(challenge.id)}
+                    src={getChallengeIcon()}
                     alt="challenge"
                     size="w-5 h-5"
                     color={`${isChallengeCompleted ? "bg-cyan-200" : "bg-cyan-800"}`}

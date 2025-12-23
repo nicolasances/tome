@@ -22,13 +22,13 @@ export default function ChallengeDetailPage() {
     const loadData = async () => {
         loadTopic();
         loadChallenges();
-        loadTrials(challenges);
+        loadTrials();
     }
 
     /**
      * Loads all the non-expired trials for the challenge identified by the code (in params) and for the given topic
      */
-    const loadTrials = async (challenges: Challenge[]) => {
+    const loadTrials = async () => {
 
         const { trials } = await new TomeChallengesAPI().getNonExpiredTrialsOnChallenge(String(params.topicId), String(params.challengeType));
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { Challenge, Trial } from "@/api/TomeChallengesAPI";
+import { Challenge } from "@/api/TomeChallengesAPI";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MaskedSvgIcon } from "./MaskedSvgIcon";

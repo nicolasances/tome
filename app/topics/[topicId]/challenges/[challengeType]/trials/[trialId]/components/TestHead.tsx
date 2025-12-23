@@ -2,7 +2,7 @@ import { TomeTest } from "@/api/TomeChallengesAPI";
 
 export function TestHead({ test, score, testIndex }: { test: TomeTest, score: number, testIndex: number }) {
 
-    let percentScore = score * 100;
+    const percentScore = score * 100;
 
     const getScoreColor = (score: number): string => {
         if (score < 30) return 'text-red-200';

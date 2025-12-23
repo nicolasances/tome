@@ -5,6 +5,14 @@ export class TomeChallengesAPI {
     name: "tome-ms-challenges" = "tome-ms-challenges";
 
     /**
+     * Retrieves all challenges, with their status
+     * @returns 
+     */
+    async getChallenges(): Promise<{ challenges: {challenge: Challenge, status: "not-started" | "in-progress" | "completed"} }> {
+        return (await new TotoAPI().fetch(this.name, `/challenges?includeStatus=true`)).json()
+    }
+
+    /**
      * Retrieves the list of challenges available for the Topic. 
      */
     async getTopicChallenges(topicId: string): Promise<GetTopicChallengesResponse> {
@@ -133,6 +141,7 @@ export interface Challenge {
     name: string;
     description: string;
     tests: TomeTest[];
+    status?: "not-started" | "in-progress" | "completed";
 }
 
 export interface JuiceChallenge extends Challenge {

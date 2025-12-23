@@ -1,7 +1,7 @@
 import { Challenge, SplitDate, TomeTest, Trial } from "@/api/TomeChallengesAPI";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 
-export function DateTestAnswer({ trial, test, challenge }: { trial: Trial, test: TomeTest, challenge: Challenge }) {
+export function DateTestAnswer({ trial, test }: { trial: Trial, test: TomeTest, challenge: Challenge }) {
 
     const testAnswer = trial.answers?.find(ta => ta.testId === test.testId);
 
