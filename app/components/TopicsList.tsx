@@ -3,16 +3,46 @@
 import { useEffect, useState } from "react";
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useRouter } from "next/navigation";
+import { Challenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import { ProgressBar } from "../ui/general/ProgressBar";
+
+interface ExtendedTopic {
+    topic: Topic;
+    progress: number;  // Progress in percent (0-100)
+    status: "not-started" | "in-progress" | "completed";
+}
 
 export function TopicsList() {
 
-    const [topics, setTopics] = useState<Topic[]>([]);
+    const [topics, setTopics] = useState<ExtendedTopic[]>([]);
     const [loading, setLoading] = useState(true);
 
     const loadTopics = async () => {
         try {
-            const { topics } = await new TomeTopicsAPI().getTopics();
-            setTopics(topics);
+
+            const promises = [];
+            promises.push(new TomeTopicsAPI().getTopics());
+            promises.push(new TomeChallengesAPI().getChallenges());
+
+            const [topicsResponse, challengesResponse] = await Promise.all(promises) as [{ topics: Topic[] }, { challenges: { challenge: Challenge, status: "not-started" | "in-progress" | "completed" }[] }];
+
+            // Calculate progress for each topic based on challenges. For now it's just the number of completed challenges / total challenges for the topic 
+            const extendedTopics: ExtendedTopic[] = topicsResponse.topics.map(topic => {
+
+                const topicChallenges = challengesResponse.challenges.filter(c => c.challenge.topicId === topic.id);
+
+                const numCompletedChallenges = topicChallenges.filter(c => c.status === "completed").length;
+                const status = topicChallenges.some(c => c.status === "in-progress") ? "in-progress" : (numCompletedChallenges === 0 ? "not-started" : "completed");
+                
+                let progress = topicChallenges.length === 0 ? 0 : Math.round((numCompletedChallenges / topicChallenges.length) * 100);
+                
+                if (status == "in-progress" && progress < 3) progress = 3;
+
+                return { topic, progress, status };
+            });
+
+            setTopics(extendedTopics);
+
         } catch (error) {
             console.error('Error loading topics:', error);
         } finally {
@@ -51,8 +81,8 @@ export function TopicsList() {
         <div className="mt-2 ml-4">
             <SectionHeader title="All Topics" />
             <div className="mb-6 space-y-2">
-                {topics.map((topic) => (
-                    <TopicItem key={topic.id} topic={topic} signalIcon={getSignalIcon(topic.numSections)} />
+                {topics.map((extendedTopic) => (
+                    <TopicItem key={extendedTopic.topic.id} topic={extendedTopic} signalIcon={getSignalIcon(extendedTopic.topic.numSections)} />
                 ))}
             </div>
         </div>
@@ -67,14 +97,14 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function TopicItem({ topic, signalIcon }: { topic: Topic, signalIcon: string }) {
+function TopicItem({ topic, signalIcon }: { topic: ExtendedTopic, signalIcon: string }) {
 
     const [pressed, setPressed] = useState(false);
     const router = useRouter();
 
     return (
         <div className="text-base flex items-center cursor-pointer"
-            onClick={() => router.push(`/topics/${topic.id}`)}
+            onClick={() => router.push(`/topics/${topic.topic.id}`)}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -86,7 +116,7 @@ function TopicItem({ topic, signalIcon }: { topic: Topic, signalIcon: string }) 
         >
             <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1 relative">
                 {/* Background: full signal with low opacity */}
-                <div 
+                <div
                     className="absolute w-5 h-5 bg-cyan-800 opacity-20"
                     style={{
                         maskImage: `url(/images/signal.svg)`,
@@ -100,7 +130,7 @@ function TopicItem({ topic, signalIcon }: { topic: Topic, signalIcon: string }) 
                     }}
                 ></div>
                 {/* Foreground: actual signal icon */}
-                <div 
+                <div
                     className="w-5 h-5 bg-cyan-800 relative z-10"
                     style={{
                         maskImage: `url(/images/${signalIcon}.svg)`,
@@ -114,7 +144,10 @@ function TopicItem({ topic, signalIcon }: { topic: Topic, signalIcon: string }) 
                     }}
                 ></div>
             </div>
-            <div>{topic.name}</div>
+            <div>
+                <div>{topic.topic.name}</div>
+                {topic.progress > 0 && (<div><ProgressBar size='s' id={topic.topic.id} current={topic.progress} max={100} hideNumber={true} /></div>)}
+            </div>
         </div>
     )
 }

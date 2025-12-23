@@ -1,6 +1,8 @@
-import { TomeTest } from "@/api/TomeChallengesAPI";
+import { Challenge, JuiceChallenge, TomeTest, Trial } from "@/api/TomeChallengesAPI";
 import { OpenTestWidget } from "./OpenTestWidget";
 import { DateFlashcardWidget } from "@/app/ui/cards/flashcards/DateFlashcardWidget";
+import { DateTestAnswer } from "./DateTestAnswer";
+import { JuiceOpenTestAnswer } from "./JuiceOpenTestAnswer";
 
 
 export class TestFactory {
@@ -24,6 +26,18 @@ export class TestFactory {
                         onAnswer={(answer) => handleAnswer(answer, test)}
                     />
                 )
+            default:
+                throw new Error(`Unknown test type: ${test.type}`);
+        }
+    }
+
+    static createTestAnswerComponent(test: TomeTest, trial: Trial, challenge: Challenge) {
+
+        switch (test.type) {
+            case 'date':
+                return <DateTestAnswer trial={trial} test={test} challenge={challenge} />;
+            case 'open':
+                return <JuiceOpenTestAnswer trial={trial} test={test} challenge={challenge as JuiceChallenge} />;
             default:
                 throw new Error(`Unknown test type: ${test.type}`);
         }

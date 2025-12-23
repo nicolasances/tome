@@ -41,7 +41,7 @@ export function OptionsFlashcardPopup({ open, question, options, correctAnswerIn
         </Dialog>
     );
 }
-export function DateFlashcardPopup({ open, question, correctYear, sectionTitle, id, onClose, onAnswerSelected }: { open: boolean, question: string, correctYear: number, sectionTitle: string, id: string, onClose: () => void, onAnswerSelected: (isCorrect: boolean) => void }) {
+export function DateFlashcardPopup({ open, question, correctYear, onClose }: { open: boolean, question: string, correctYear: number, sectionTitle: string, id: string, onClose: () => void, onAnswerSelected: (isCorrect: boolean) => void }) {
 
     return (
         <Dialog

@@ -5,6 +5,14 @@ export class TomeChallengesAPI {
     name: "tome-ms-challenges" = "tome-ms-challenges";
 
     /**
+     * Retrieves all challenges, with their status
+     * @returns 
+     */
+    async getChallenges(): Promise<{ challenges: {challenge: Challenge, status: "not-started" | "in-progress" | "completed"} }> {
+        return (await new TotoAPI().fetch(this.name, `/challenges?includeStatus=true`)).json()
+    }
+
+    /**
      * Retrieves the list of challenges available for the Topic. 
      */
     async getTopicChallenges(topicId: string): Promise<GetTopicChallengesResponse> {
@@ -29,6 +37,29 @@ export class TomeChallengesAPI {
      */
     async getTrial(trialId: string): Promise<GetTrialResponse> {
         return (await new TotoAPI().fetch(this.name, `/trials/${trialId}`)).json()
+    }
+
+    /**
+     * Retrieves the non-expired trials for the given topic and challenge code
+     * E.g. Retrieves all non-expired trials for challenge code "juice" on topic 984092384908209384
+     * 
+     * @param topicId the DB Id of the topic
+     * @param challengeCode the challenge code (e.g. "juice")
+     * 
+     * @returns all the non-expired trials for the given topic and challenge code
+     */
+    async getNonExpiredTrialsOnChallenge(topicId: string, challengeCode: string): Promise<{ trials: Trial[] }> {
+        return (await new TotoAPI().fetch(this.name, `/trials?topicId=${topicId}&challengeCode=${challengeCode}`)).json()
+    }
+
+    /**
+     * Retrievs the non-expired trials for the given topic, for all challenges (regardless of challenge code)
+     * 
+     * @param topicId the DB Id of the topic
+     * @returns 
+     */
+    async getNonExpiredTrialsOnTopic(topicId: string): Promise<{ trials: Trial[] }> {
+        return (await new TotoAPI().fetch(this.name, `/trials?topicId=${topicId}`)).json()
     }
 
     /**
@@ -85,6 +116,17 @@ export interface GetTrialResponse {
 export interface Trial {
     id: string;
     challengeId: string;
+    startedOn: Date;
+    completedOn?: Date;
+    expiresOn: Date;    // The date when the trial's results expire. This is typically defined at a challenge level, and tracked in the trial for convenience, but also for tracking and ML.
+    score?: number;
+    
+    answers?: TestAnswer[];
+}
+export interface TestAnswer {
+    testId: string; 
+    answer: any;
+    score: number;
 }
 
 export interface Challenge {
@@ -98,10 +140,12 @@ export interface Challenge {
     sectionCode: string;
     name: string;
     description: string;
+    tests: TomeTest[];
+    status?: "not-started" | "in-progress" | "completed";
 }
 
-export interface JuiceChallenge {
-    id?: string;
+export interface JuiceChallenge extends Challenge {
+    id: string;
     type: string;
     code: string;
     context: string;
@@ -129,4 +173,5 @@ export interface TomeTest {
     testId: string;
     question: string;
     correctAnswer?: any;
+    score?: number;
 }

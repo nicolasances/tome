@@ -9,6 +9,7 @@ import { TomeChallengesAPI, Challenge, Trial, JuiceChallenge } from "@/api/TomeC
 import BackSVG from "@/app/ui/graphics/icons/Back";
 import { formatSectionCode } from "@/app/utils/sectionFormatting";
 import { JuiceTrial } from "@/app/topics/[topicId]/challenges/[challengeType]/trials/[trialId]/components/JuiceTrial";
+import { JuiceTrialRecap } from "./components/JuiceTrialRecap";
 
 export default function TrialPage() {
 
@@ -40,10 +41,22 @@ export default function TrialPage() {
         setTopic(topicData);
     }
 
+    /**
+     * When the trial is complete show a recap: 
+     * - Final Score (for that we reload the trial)
+     * - A list of individual test results and scores. For each test, the question, the given and correct answers are shown together with the score. 
+     */
     const handleTrialComplete = () => {
-        console.log("Trial completed!");
-        // TODO: Save trial results, then redirect back
-        router.back();
+
+        loadTrial();
+
+    }
+
+    const trialIsCompleted = () => {
+
+        if (!trial) return false;
+
+        return trial?.completedOn != null && trial?.completedOn !== undefined;
     }
 
     useEffect(() => { loadData() }, [])
@@ -72,11 +85,17 @@ export default function TrialPage() {
             <div className="flex justify-center text-base opacity-70">
                 {sectionName}
             </div>
-            {challenge.code === 'juice' && (
+            {!trialIsCompleted() && challenge.code === 'juice' && (
                 <JuiceTrial
                     challenge={challenge as any as JuiceChallenge}
                     trialId={String(params.trialId)}
                     onTrialComplete={handleTrialComplete}
+                />
+            )}
+            {trialIsCompleted() && (
+                <JuiceTrialRecap
+                    challenge={challenge as any as JuiceChallenge}
+                    trial={trial}
                 />
             )}
         </div>

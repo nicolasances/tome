@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
-import { TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import BackSVG from "@/app/ui/graphics/icons/Back";
 import { ChallengeDetailList } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 
@@ -17,12 +17,28 @@ export default function ChallengeDetailPage() {
     const [topic, setTopic] = useState<Topic>()
     const [challenges, setChallenges] = useState<any[]>([]);
     const [challengeName, setChallengeName] = useState<string>("");
+    const [trials, setTrials] = useState<Trial[]>([]);
 
     const loadData = async () => {
         loadTopic();
         loadChallenges();
+        loadTrials();
     }
 
+    /**
+     * Loads all the non-expired trials for the challenge identified by the code (in params) and for the given topic
+     */
+    const loadTrials = async () => {
+
+        const { trials } = await new TomeChallengesAPI().getNonExpiredTrialsOnChallenge(String(params.topicId), String(params.challengeType));
+
+        setTrials(trials);
+    }
+
+    /**
+     * Loads the challenges for the topic
+     * @returns 
+     */
     const loadChallenges = async () => {
 
 
@@ -56,9 +72,9 @@ export default function ChallengeDetailPage() {
     const startOrResumeTrial = async (challengeId: string) => {
 
         console.log(`Starting trial on challenge ${challengeId}`);
-        
 
-        const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | {code: string; message: string};
+
+        const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | { code: string; message: string };
 
         if ('code' in response) {
             console.log('Error starting or resuming trial:', response.code, response.message);
@@ -67,7 +83,7 @@ export default function ChallengeDetailPage() {
 
         // Redirect to the trial page
         router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}`);
-        
+
     }
 
     useEffect(() => { loadData() }, [])
@@ -84,7 +100,7 @@ export default function ChallengeDetailPage() {
                 </div>
                 <div className="flex justify-center text-xl">{topic.name}</div>
                 <div className="flex flex-1 items-center justify-end p-1 flex-shrink-0">
-                    <MaskedSvgIcon 
+                    <MaskedSvgIcon
                         src={`/images/challenges/${challengeType}.svg`}
                         alt={challengeType}
                         size="w-5 h-5"
@@ -95,7 +111,7 @@ export default function ChallengeDetailPage() {
             <div className="flex justify-center text-base opacity-70">
                 {challengeName}
             </div>
-            <ChallengeDetailList challenges={challenges} onChallengeClick={startOrResumeTrial} />
+            <ChallengeDetailList challenges={challenges} nonExpiredTrials={trials} onChallengeClick={startOrResumeTrial} />
             <div className="flex-1 mt-6 text-center">
             </div>
         </div>

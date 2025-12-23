@@ -3,30 +3,35 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import LampSVG from "../../ui/graphics/icons/Lamp";
-import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
+import BackSVG from "@/app/ui/graphics/icons/Back";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
-import { Challenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
-import { ChallengesList } from "@/app/components/ChallengesList";
+import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
+import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesList";
 
 
 export default function TopicDetailPage() {
 
     const router = useRouter();
-    const params = useParams()
+    const params = useParams();
 
     let topicRefreshInterval: NodeJS.Timeout | undefined;
 
     const [topic, setTopic] = useState<Topic>()
     const [refreshingTopic, setRefreshingTopic] = useState<boolean | null>(false)
-    const [startingPractice, setStartingPractice] = useState<boolean>(false)
-    const [challenges, setChallenges] = useState<Challenge[]>([]);
+    const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
 
     const loadData = async () => {
         loadTopic();
         loadChallenges();
+        loadTopicTrials();
+    }
+
+    const loadTopicTrials = async () => {
+
+        const { trials } = await new TomeChallengesAPI().getNonExpiredTrialsOnTopic(String(params.topicId));
+
+        return trials;
     }
 
     /**
@@ -34,13 +39,69 @@ export default function TopicDetailPage() {
      */
     const loadChallenges = async () => {
 
-        const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId));
+        const promises = [];
+        promises.push(new TomeChallengesAPI().getTopicChallenges(String(params.topicId)));
+        promises.push(loadTopicTrials());
+
+        const [challengesResponse, trials] = await Promise.all(promises) as [{ challenges: Challenge[] }, Trial[]];
+
+        // Create a map of challengeId -> challengeCode for quick lookup
+        const challengeIdToCode = new Map(
+            challengesResponse.challenges.map(challenge => [challenge.id!, challenge.code])
+        );
+
+        // Group trials by challenge code
+        const trialsByChallengeCode: { [code: string]: Trial[] } = {};          // Actually ongoing or completed non-expired trials per challenge code
+        let expectedTrialsByChallengeCode: { [code: string]: number } = {};   // Count of expected trials per challenge code
+
+        expectedTrialsByChallengeCode = challengesResponse.challenges.reduce((acc: { [code: string]: number }, challenge: Challenge) => {
+            acc[challenge.code] = (acc[challenge.code] || 0) + 1;
+            return acc;
+        }, {});
+
+        trials.forEach(trial => {
+            const challengeCode = challengeIdToCode.get(trial.challengeId);
+            if (challengeCode) {
+                if (!trialsByChallengeCode[challengeCode]) {
+                    trialsByChallengeCode[challengeCode] = [];
+                }
+                trialsByChallengeCode[challengeCode].push(trial);
+            }
+        });
 
         // There are multiple challenges of a given type per topic (there's one per section), so we only keep one challenge per type for now
-        const uniqueChallenges = challenges.reduce((acc: Challenge[], challenge) => {
-            if (!acc.find(c => c.type === challenge.type)) {
-                acc.push(challenge);
+        const uniqueChallenges = challengesResponse.challenges.reduce((acc: ExtendedChallenge[], challenge: Challenge) => {
+
+            if (!acc.find(c => c.challenge.type === challenge.type)) {
+
+                const extendedChallenge = {
+                    challenge: challenge,
+                    progress: 0,
+                    score: 0
+                }
+
+                // Calculate the progress and score for this challenge based on its trials
+                const trialsForChallenge = trialsByChallengeCode[challenge.code] || []
+
+                if (trialsForChallenge.length > 0) {
+                    // Progress is the num of trials completed / total trials for this challenge
+                    const numCompletedTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined).length;
+                    const totalTrials = expectedTrialsByChallengeCode[challenge.code] || 0;
+
+                    console.log(`${numCompletedTrials} / ` + totalTrials);
+                    
+                    extendedChallenge.progress = Math.round((numCompletedTrials / totalTrials) * 100);
+
+                    // Score is calculated ONLY if all trials are completed
+                    if (numCompletedTrials === totalTrials) {
+                        const totalScore = trialsForChallenge.reduce((sum, trial) => sum + (trial.score || 0), 0);
+                        extendedChallenge.score = Math.round(totalScore * 100 / totalTrials);
+                    }
+                }
+
+                acc.push(extendedChallenge);
             }
+
             return acc;
         }, []);
 
@@ -76,38 +137,20 @@ export default function TopicDetailPage() {
         }
     }
 
-    /**
-     * Starts a practice on this topic
-     */
-    const startPractice = async () => {
-
-        setStartingPractice(true);
-
-        const response = await new TomePracticeAPI().startPractice(String(params.topicId), "options")
-
-        if (response && 'practiceId' in response) {
-            router.push(`${params.topicId}/practice/${response.practiceId}`);
-        }
-        else if (response && response.subcode == 'ongoing-practice-found') {
-
-            // Load ongoing practice
-            const { practices } = await new TomePracticeAPI().getOngoingPractice(String(params.topicId));
-
-            // Route
-            router.push(`${params.topicId}/practice/${practices[0].id}`);
-        }
-
-
-    }
-
     useEffect(() => { loadData() }, [])
 
     if (!topic) return <></>
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
-            <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
-            <div className="flex justify-center mt-2 space-x-2 text-sm">
+            <div className="mt-6 flex justify-between items-center">
+                <div className="flex-1 flex">
+                    <RoundButton icon={<BackSVG />} onClick={() => { router.back() }} size="s" secondary />
+                </div>
+                <div className="flex justify-center text-xl flex-1 whitespace-nowrap">{topic.name}</div>
+                <div className="flex-1"></div>
+            </div>
+            <div className="flex justify-center mt-1 space-x-2 text-sm">
                 <div className="bg-cyan-900 rounded-full px-2 text-white">
                     {`${topic.numSections ?? '-'} sections`}
                 </div>
@@ -119,8 +162,7 @@ export default function TopicDetailPage() {
                 </div>
             } */}
             <div className="mt-8 flex justify-center items-center space-x-2">
-                <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
-                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} />
+                {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
                 {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
             </div>
