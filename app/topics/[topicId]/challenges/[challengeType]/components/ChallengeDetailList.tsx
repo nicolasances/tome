@@ -50,6 +50,8 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     const handleClick = () => {
         onChallengeClick?.(challenge.id);
     }
+    const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
+    const isChallengeCompleted = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
 
     /**
      * Returns the icon URL for the given challenge Id based on whether there are no trials, active trials or completed trials
@@ -57,17 +59,12 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
      */
     const getChallengeIcon = (challengeId: string) => {
 
-        const trialsOnChallenge = nonExpiredTrials.filter(trial => trial.challengeId === challengeId);
+        if (isChallengeCompleted) return "/images/challenge-completed.svg";
 
-        if (!trialsOnChallenge || trialsOnChallenge.length === 0) return "/images/challenge-todo.svg";
-
-        if (trialsOnChallenge.some(trial => !trial.completedOn)) return "/images/challenge-todo.svg";
-
-        return "/images/challenge-completed.svg";
+        return "/images/challenge-todo.svg";
 
     }
 
-    const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
 
     let currentProgress = 0;
     if (isChallengeInProgress) {
@@ -89,16 +86,16 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
                 opacity: pressed ? 0.5 : 1,
             }}
         >
-            <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1">
+            <div className={`w-10 h-10 mr-3 flex items-center justify-center border-2 ${isChallengeCompleted ? "border-cyan-200" : "border-cyan-800"} rounded-full p-1`}>
                 <MaskedSvgIcon
                     src={getChallengeIcon(challenge.id)}
                     alt="challenge"
                     size="w-5 h-5"
-                    color="bg-cyan-800"
+                    color={`${isChallengeCompleted ? "bg-cyan-200" : "bg-cyan-800"}`}
                 />
             </div>
             <div>
-                <div>{formatSectionCode(challenge.sectionCode)}</div>
+                <div className={`${isChallengeCompleted ? 'text-cyan-200' : ''}`}>{formatSectionCode(challenge.sectionCode)}</div>
                 {isChallengeInProgress && (
                     <div>
                         <ProgressBar id={`progress-${challenge.id}`} hideNumber={true} current={currentProgress} max={100} size="s" />
