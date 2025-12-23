@@ -32,6 +32,19 @@ export class TomeChallengesAPI {
     }
 
     /**
+     * Retrieves the non-expired trials for the given topic and challenge code
+     * E.g. Retrieves all non-expired trials for challenge code "juice" on topic 984092384908209384
+     * 
+     * @param topicId the DB Id of the topic
+     * @param challengeCode the challenge code (e.g. "juice")
+     * 
+     * @returns all the non-expired trials for the given topic and challenge code
+     */
+    async getNonExpiredTrialsOnChallenge(topicId: string, challengeCode: string): Promise<{ trials: Trial[] }> {
+        return (await new TotoAPI().fetch(this.name, `/trials?topicId=${topicId}&challengeCode=${challengeCode}`)).json()
+    }
+
+    /**
      * Starts or resumes a trial on the given challenge.
      * 
      * @param challengeId the id of the challenge
@@ -109,6 +122,7 @@ export interface Challenge {
     sectionCode: string;
     name: string;
     description: string;
+    tests: TomeTest[];
 }
 
 export interface JuiceChallenge extends Challenge {
