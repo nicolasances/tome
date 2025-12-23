@@ -52,6 +52,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     }
     const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
     const isChallengeCompleted = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
+    const challengeScore = isChallengeCompleted ? nonExpiredTrials.find(trial => trial.challengeId === challenge.id && trial.completedOn)?.score || 0 : 0;
 
     /**
      * Returns the icon URL for the given challenge Id based on whether there are no trials, active trials or completed trials
@@ -77,7 +78,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     }
 
     return (
-        <div className="text-base flex items-center cursor-pointer"
+        <div className={`text-base flex items-center cursor-pointer ${isChallengeCompleted ? 'text-cyan-200' : ''}`}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -94,12 +95,17 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
                     color={`${isChallengeCompleted ? "bg-cyan-200" : "bg-cyan-800"}`}
                 />
             </div>
-            <div>
-                <div className={`${isChallengeCompleted ? 'text-cyan-200' : ''}`}>{formatSectionCode(challenge.sectionCode)}</div>
+            <div className="flex-1">
+                <div>{formatSectionCode(challenge.sectionCode)}</div>
                 {isChallengeInProgress && (
                     <div>
                         <ProgressBar id={`progress-${challenge.id}`} hideNumber={true} current={currentProgress} max={100} size="s" />
                     </div>
+                )}
+            </div>
+            <div>
+                {isChallengeCompleted && (
+                    <span>{challengeScore * 100}%</span>
                 )}
             </div>
         </div>
