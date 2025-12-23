@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
-import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
+import { TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import BackSVG from "@/app/ui/graphics/icons/Back";
 import { ChallengeDetailList } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 
