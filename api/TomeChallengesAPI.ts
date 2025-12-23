@@ -45,6 +45,16 @@ export class TomeChallengesAPI {
     }
 
     /**
+     * Retrievs the non-expired trials for the given topic, for all challenges (regardless of challenge code)
+     * 
+     * @param topicId the DB Id of the topic
+     * @returns 
+     */
+    async getNonExpiredTrialsOnTopic(topicId: string): Promise<{ trials: Trial[] }> {
+        return (await new TotoAPI().fetch(this.name, `/trials?topicId=${topicId}`)).json()
+    }
+
+    /**
      * Starts or resumes a trial on the given challenge.
      * 
      * @param challengeId the id of the challenge

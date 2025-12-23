@@ -1,12 +1,19 @@
 'use client'
 
-import { Challenge } from "@/api/TomeChallengesAPI";
+import { Challenge, Trial } from "@/api/TomeChallengesAPI";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MaskedSvgIcon } from "./MaskedSvgIcon";
+import { ProgressBar } from "../ui/general/ProgressBar";
+
+export interface ExtendedChallenge {
+    challenge: Challenge;
+    progress: number;       // Progress in percent (0-100)
+    score: number;          // Score in percent (0-100) for challenges that are currently completed
+}
 
 interface ChallengesListProps {
-    challenges: Challenge[];
+    challenges: ExtendedChallenge[];    // All the challenges for the current topic
     topicId: string;
 }
 
@@ -17,13 +24,13 @@ export function ChallengesList({ challenges, topicId }: ChallengesListProps) {
     }
 
     return (
-        <div className="mt-2 ml-4">
+        <div className="mt-2 ml-1">
             <SectionHeader title="Challenges" />
             <div className="mb-6 space-y-2">
                 {challenges.map((challenge, index) => (
-                    <ChallengeItem 
-                        key={`${challenge.type}-${index}`} 
-                        challenge={challenge} 
+                    <ChallengeItem
+                        key={`${challenge.challenge.code}-${index}`}
+                        challenge={challenge}
                         topicId={topicId}
                     />
                 ))}
@@ -40,14 +47,14 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: string }) {
+function ChallengeItem({ challenge, topicId }: { challenge: ExtendedChallenge, topicId: string }) {
 
     const [pressed, setPressed] = useState(false);
     const router = useRouter();
 
     return (
         <div className="text-base flex items-center cursor-pointer"
-            onClick={() => router.push(`/topics/${topicId}/challenges/${challenge.code}`)}
+            onClick={() => router.push(`/topics/${topicId}/challenges/${challenge.challenge.code}`)}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -57,15 +64,20 @@ function ChallengeItem({ challenge, topicId }: { challenge: Challenge, topicId: 
                 opacity: pressed ? 0.5 : 1,
             }}
         >
-            <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1">
-                <MaskedSvgIcon 
-                    src={`/images/challenges/${challenge.code}.svg`}
-                    alt={challenge.code}
+            <div className="w-10 h-10 max-h-10 max-w-10 min-w-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1">
+                <MaskedSvgIcon
+                    src={`/images/challenges/${challenge.challenge.code}.svg`}
+                    alt={challenge.challenge.code}
                     size="w-5 h-5"
                     color="bg-cyan-800"
                 />
             </div>
-            <div className="capitalize">{challenge.name || challenge.code}</div>
+            <div>
+                <div className="capitalize">{challenge.challenge.name || challenge.challenge.code}</div>
+                {challenge.progress &&
+                    (<div><ProgressBar id={challenge.challenge.code} current={challenge.progress} max={100} hideNumber={true} size='s' /></div>)
+                }
+            </div>
         </div>
     )
 }
