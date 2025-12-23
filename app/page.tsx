@@ -75,7 +75,7 @@ export default function Home() {
   if (loginNeeded === true) return (<div></div>);
 
   return (
-    <div className="p-4 h-full flex flex-col">
+    <div className="py-4 px-1 h-full flex flex-col">
 
       <Header />
 

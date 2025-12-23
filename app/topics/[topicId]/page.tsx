@@ -4,7 +4,7 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LampSVG from "../../ui/graphics/icons/Lamp";
-import HomeSVG from "@/app/ui/graphics/icons/HomeSVG";
+import BackSVG from "@/app/ui/graphics/icons/Back";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { TomePracticeAPI } from "@/api/TomePracticeAPI";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
@@ -170,8 +170,14 @@ export default function TopicDetailPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
-            <div className="mt-6 flex justify-center text-xl">{topic.name}</div>
-            <div className="flex justify-center mt-2 space-x-2 text-sm">
+            <div className="mt-6 flex justify-between items-center">
+                <div className="flex-1 flex">
+                    <RoundButton icon={<BackSVG />} onClick={() => { router.back() }} size="s" secondary />
+                </div>
+                <div className="flex justify-center text-xl flex-1 whitespace-nowrap">{topic.name}</div>
+                <div className="flex-1"></div>
+            </div>
+            <div className="flex justify-center mt-1 space-x-2 text-sm">
                 <div className="bg-cyan-900 rounded-full px-2 text-white">
                     {`${topic.numSections ?? '-'} sections`}
                 </div>
@@ -183,8 +189,7 @@ export default function TopicDetailPage() {
                 </div>
             } */}
             <div className="mt-8 flex justify-center items-center space-x-2">
-                <RoundButton icon={<HomeSVG />} onClick={() => { router.back() }} size="s" />
-                <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} />
+                {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
                 {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
             </div>
