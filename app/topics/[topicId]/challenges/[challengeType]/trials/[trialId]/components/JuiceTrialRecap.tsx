@@ -37,6 +37,12 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
         current: 100 * (new Date().getTime() - new Date(trial.startedOn).getTime()) / (trial.expiresOn && trial.startedOn ? new Date(trial.expiresOn).getTime() - new Date(trial.startedOn).getTime() : 1), // the current day, on a scale from startedOn to expiresOn
     }
 
+    const getScoreColor = (score: number): string => {
+        if (score < 30) return 'text-red-200';
+        if (score < 70) return 'text-lime-200';
+        return 'text-green-300';
+    };
+
     return (
         <div className="flex flex-1 flex-col w-full py-8 space-y-8">
             {/* Top Section: Completion Date and Final Score */}
@@ -47,7 +53,7 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
                     <div className="flex-1"></div>
                     <div className="flex flex-col items-end">
                         <span className="text-cyan-800 text-xs font-semibold">Final Score</span>
-                        <span className="text-lg font-bold text-cyan-800">
+                        <span className={`text-lg font-bold ${getScoreColor(trial.score !== undefined ? Math.round(trial.score * 100) : 0)}`}>
                             {trial.score !== undefined ? Math.round(trial.score * 100) : '—'} %
                         </span>
                     </div>
@@ -81,7 +87,7 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
 
                             return (
                                 <div key={testAnswer.testId} className="space-y-3 pb-6 ">
-                                    <TestHead test={test} testIndex={index} />
+                                    <TestHead test={test} score={testAnswer.score} testIndex={index} />
                                     {TestFactory.createTestAnswerComponent(test, trial, challenge)}
                                 </div>
                             );

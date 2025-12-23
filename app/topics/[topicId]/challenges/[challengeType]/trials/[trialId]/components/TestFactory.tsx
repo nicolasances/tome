@@ -1,4 +1,4 @@
-import { Challenge, TomeTest, Trial } from "@/api/TomeChallengesAPI";
+import { Challenge, JuiceChallenge, TomeTest, Trial } from "@/api/TomeChallengesAPI";
 import { OpenTestWidget } from "./OpenTestWidget";
 import { DateFlashcardWidget } from "@/app/ui/cards/flashcards/DateFlashcardWidget";
 import { DateTestAnswer } from "./DateTestAnswer";
@@ -37,7 +37,7 @@ export class TestFactory {
             case 'date':
                 return <DateTestAnswer trial={trial} test={test} challenge={challenge} />;
             case 'open':
-                return <JuiceOpenTestAnswer trial={trial} test={test} challenge={challenge} />;
+                return <JuiceOpenTestAnswer trial={trial} test={test} challenge={challenge as JuiceChallenge} />;
             default:
                 throw new Error(`Unknown test type: ${test.type}`);
         }
