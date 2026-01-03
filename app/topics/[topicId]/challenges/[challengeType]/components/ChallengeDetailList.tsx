@@ -105,7 +105,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
             </div>
             <div>
                 {isChallengeCompleted && (
-                    <span>{challengeScore * 100}%</span>
+                    <span>{Math.round(challengeScore * 100)}%</span>
                 )}
             </div>
         </div>

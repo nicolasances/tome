@@ -74,7 +74,7 @@ function ChallengeItem({ challenge, topicId }: { challenge: ExtendedChallenge, t
             </div>
             <div>
                 <div className="capitalize">{challenge.challenge.name || challenge.challenge.code}</div>
-                {challenge.progress &&
+                {challenge.progress > 0 &&
                     (<div><ProgressBar id={challenge.challenge.code} current={challenge.progress} max={100} hideNumber={true} size='s' /></div>)
                 }
             </div>

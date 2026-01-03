@@ -16,7 +16,7 @@ export default function TopicDetailPage() {
     const params = useParams();
 
     const [topic, setTopic] = useState<Topic>()
-    const [refreshingTopic, setRefreshingTopic] = useState<boolean | null>(false)
+    const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
     const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
 
     const loadData = async () => {
@@ -150,7 +150,7 @@ export default function TopicDetailPage() {
                 </div>
             } */}
             <div className="mt-8 flex justify-center items-center space-x-2">
-                <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic}/>
+                <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic}/>
                 {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
                 {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
