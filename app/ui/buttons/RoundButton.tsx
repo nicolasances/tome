@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 
 export default function RoundButton({
     icon,
+    svgIconPath,
     onClick,
     size,
     disabled,
@@ -9,7 +11,14 @@ export default function RoundButton({
     dark,
     secondary,
 }: {
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
+    svgIconPath?: {
+        src: string;
+        alt: string;
+        color?: string;
+        backgroundSrc?: string;
+        backgroundOpacity?: number;
+    };
     onClick: () => void;
     size?: "xs" | "s" | "m" | undefined;
     disabled?: boolean;
@@ -44,6 +53,10 @@ export default function RoundButton({
     const iconColor = disabled || loading
         ? "text-cyan-600"
         :  `${dark ? "text-cyan-600" : "text-lime-200"} group-hover:text-current`;
+    
+    const svgIconColor = disabled || loading
+        ? "bg-cyan-600"
+        : dark ? "bg-cyan-600" : "bg-lime-200";
 
     const animatedCircleRadius = 15;
 
@@ -63,7 +76,18 @@ export default function RoundButton({
             role="button"
             aria-disabled={disabled}
         >
-            <div className={`${iconClasses} ${iconColor}`}>{icon}</div>
+            {svgIconPath ? (
+                <MaskedSvgIcon
+                    src={svgIconPath.src}
+                    alt={svgIconPath.alt}
+                    size={iconSize}
+                    color={svgIconPath.color || svgIconColor}
+                    backgroundSrc={svgIconPath.backgroundSrc}
+                    backgroundOpacity={svgIconPath.backgroundOpacity}
+                />
+            ) : (
+                <div className={`${iconClasses} ${iconColor}`}>{icon}</div>
+            )}
 
             {/* Looading animation */}
             {loading && (
