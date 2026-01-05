@@ -1,17 +1,8 @@
 'use client'
 
-import { Comfortaa as AppFont } from "next/font/google";
+import "./fonts.css";
 import "./globals.css";
 import { TomeContextProvider } from "@/context/TomeContext";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-const appFont = AppFont({
-  subsets: ["latin"],
-});
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
@@ -46,7 +37,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <title>Tome</title>
       </head>
       <body
-        className={`${appFont.className} antialiased min-h-screen flex flex-row`}
+        style={{ fontFamily: "'Comfortaa', sans-serif" }}
+        className="antialiased min-h-screen flex flex-row"
       >
         <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
         </div>
