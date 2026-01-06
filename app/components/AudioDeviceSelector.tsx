@@ -13,6 +13,7 @@ export function AudioDeviceSelector({
     audioDevices,
     loadAudioDevices,
 }: AudioDeviceSelectorProps) {
+    
     useEffect(() => {
         loadAudioDevices();
     }, [loadAudioDevices]);
