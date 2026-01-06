@@ -60,7 +60,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
         };
 
         // Auto-stop after 5 seconds of silence or speech
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
             recognition.stop();
         }, 5000);
 
@@ -87,7 +87,6 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
         };
 
         const words = cleaned.split(/\s+/);
-        let year = 0;
         let current = 0;
 
         for (const word of words) {

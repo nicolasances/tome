@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Readable } from 'stream';
 import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
