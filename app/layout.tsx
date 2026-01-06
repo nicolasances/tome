@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="icon" href="/favicon.ico" />
         <script src="https://accounts.google.com/gsi/client" async defer></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
         <meta name="theme-color" content="#00acc1" />
         <meta name="description" content="Tome app" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* <link
           rel="apple-touch-icon"
           href="/apple-icon?<generated>"
-          type="image/<generated>"
+          type="image/<generated>"\
           sizes="<generated>"
         /> */}
         <title>Tome</title>
