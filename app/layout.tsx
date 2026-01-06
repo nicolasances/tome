@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* <link
           rel="apple-touch-icon"
           href="/apple-icon?<generated>"
-          type="image/<generated>"
+          type="image/<generated>"\
           sizes="<generated>"
         /> */}
         <title>Tome</title>
