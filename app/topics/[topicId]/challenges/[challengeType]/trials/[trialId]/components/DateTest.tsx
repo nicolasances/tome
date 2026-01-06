@@ -5,11 +5,15 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
 
     const yearInputRef = useRef<{ fillYearFromSpeech: (year: number) => void }>(null);
     const [isListening, setIsListening] = useState(false);
+    const [speechMessage, setSpeechMessage] = useState<string | null>(null);
 
     const handleSpeechRecognition = () => {
+
+        setSpeechMessage(null);
+
         // Check browser support
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        
+
         if (!SpeechRecognition) {
             alert("Speech Recognition is not supported in your browser.");
             return;
@@ -42,16 +46,20 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
             }
 
             console.log("Speech Recognition done. Transcript: ", transcript);
-            
+
             // Parse the transcript to extract the year
             const year = parseYearFromSpeech(transcript);
+
             if (year) {
                 yearInputRef.current?.fillYearFromSpeech(year);
+            }
+            else {
+                setSpeechMessage(`Sorry, I could not recognize a valid year. I got "${transcript}". Please try again.`);
             }
         };
 
         recognition.onerror = (event: any) => {
-            console.error("Speech recognition error", event.error);
+            setSpeechMessage(`Sorry, there was an error with speech recognition: ${event.error}`);
             setIsListening(false);
         };
 
@@ -118,10 +126,14 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                 <YearInput ref={yearInputRef} correctYear={correctYear} flashcardId={Math.random()} onAnswer={onAnswer} />
             </div>
             <div className="flex-1"></div>
+            {speechMessage && (
+                <div className="text-center text-red-100 mb-8">{speechMessage}</div>
+            )}
             <div className="flex items-center justify-center mb-8">
                 <RoundButton
                     onClick={handleSpeechRecognition}
-                    svgIconPath={{ src: "/images/microphone.svg", alt: "Record Answer", color: isListening ? "bg-red-400" : "" }}
+                    svgIconPath={{ src: "/images/microphone.svg", alt: "Record Answer", color: isListening ? "bg-red-700" : "" }}
+                    secondary={isListening}
                 />
             </div>
         </div>

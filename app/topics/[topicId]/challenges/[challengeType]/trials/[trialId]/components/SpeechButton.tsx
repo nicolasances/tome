@@ -36,8 +36,9 @@ export function SpeechButton({
             svgIconPath={{
                 src: "/images/microphone.svg",
                 alt: isRecording ? "Stop recording" : "Start recording",
-                color: isRecording ? "bg-red-400" : "",
+                color: isRecording ? "bg-red-700" : "",
             }}
+            secondary={isRecording}
         />
     );
 }
