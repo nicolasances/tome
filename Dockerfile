@@ -1,5 +1,5 @@
 # Use official Node.js image from Docker Hub
-FROM node:18 AS build
+FROM node:20 AS build
 
 ARG AUTH_API_ENDPOINT
 ARG AWS_TOTO_API_ENDPOINT
@@ -37,7 +37,7 @@ COPY . .
 RUN npm run build
 
 # Use a lighter image for serving the app (e.g., official Node.js Alpine image)
-FROM node:18-alpine AS production
+FROM node:20-alpine AS production
 
 # Set working directory
 WORKDIR /app
