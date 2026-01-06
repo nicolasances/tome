@@ -1,6 +1,6 @@
 'use client'
 
-import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
+import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useVoiceRecording } from "@/app/hooks/useVoiceRecording";
 
 interface SpeechButtonProps {
@@ -31,22 +31,13 @@ export function SpeechButton({
     };
 
     return (
-        <button
+        <RoundButton
             onClick={handleToggleRecording}
-            disabled={false}
-            className="absolute right-14 bottom-3 flex items-center justify-center transition"
-            title={isRecording ? "Stop recording" : "Start recording"}
-        >
-            <MaskedSvgIcon
-                src="/images/microphone.svg"
-                alt="Speech"
-                size="w-6 h-6"
-                color={
-                    isRecording
-                        ? "bg-red-400"
-                        : "bg-cyan-200"
-                }
-            />
-        </button>
+            svgIconPath={{
+                src: "/images/microphone.svg",
+                alt: isRecording ? "Stop recording" : "Start recording",
+                color: isRecording ? "bg-red-400" : "",
+            }}
+        />
     );
 }
