@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { JuiceChallenge, TomeChallengesAPI, TomeTest } from "@/api/TomeChallengesAPI";
 import { GoogleTTSAPI } from "@/api/GoogleTTSAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
@@ -81,10 +81,6 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
                 });
         }
     };
-
-    const replayQuestion = async () => {
-        // Replay is handled through context now
-    }
 
     const speakQuestionAloud = async (currentTest: TomeTest) => {
 
@@ -173,7 +169,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
 
     return (
         <div className="flex flex-1 flex-col items-center justify-start px-4">
-            {TestFactory.createTestComponent(currentTest, handleAnswer, {speechButtonRef, replayQuestion})}
+            {TestFactory.createTestComponent(currentTest, handleAnswer, {speechButtonRef})}
         </div>
     );
 }

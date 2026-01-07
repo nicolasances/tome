@@ -8,7 +8,6 @@ import { SpeechButtonHandle } from "./SpeechButton";
 
 interface TestOptions {
     speechButtonRef?: Ref<SpeechButtonHandle>;
-    replayQuestion?: () => void;
 }
 
 export class TestFactory {
@@ -22,7 +21,6 @@ export class TestFactory {
                         ref={options?.speechButtonRef}
                         question={test.question}
                         onAnswer={(answer) => handleAnswer(answer, test)}
-                        replayQuestion={options?.replayQuestion}
                     />
                 )
             case 'date':

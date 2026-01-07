@@ -2,12 +2,14 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import React, { useRef, useState, useEffect, useImperativeHandle } from "react";
 import { SpeechButton } from "./SpeechButton";
 import { useCarMode } from "@/context/CarModeContext";
+import { useAudio } from "@/context/AudioContext";
 
 export function DateTestWidget({ question, correctYear, onAnswer }: { question: string, correctYear: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void }) {
 
     const yearInputRef = useRef<{ fillYearFromSpeech: (year: number) => void }>(null);
     const [speechMessage, setSpeechMessage] = useState<string | null>(null);
     const { carMode } = useCarMode();
+    const { replay } = useAudio();
 
     const handleSpeechRecording = (transcribedText: string) => {
 
@@ -84,12 +86,21 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                 <div className="text-center text-red-100 mb-8">{speechMessage}</div>
             )}
             <div className="flex items-center justify-center mb-8">
-                <SpeechButton
-                    ref={useRef(null)}
-                    size={carMode ? "car" : undefined}
-                    onRecordingComplete={handleSpeechRecording}
-                    mode="default"
-                />
+                <div className="flex-1"></div>
+                <div className="flex">
+                    <SpeechButton
+                        ref={useRef(null)}
+                        size={carMode ? "car" : undefined}
+                        onRecordingComplete={handleSpeechRecording}
+                        mode="default"
+                    />
+                </div>
+                <div className="flex-1 flex justify-end">
+                    <RoundButton
+                        svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
+                        onClick={() => { replay(); }}
+                    />
+                </div>
             </div>
         </div>
     );

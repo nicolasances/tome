@@ -6,6 +6,7 @@ interface AudioContextType {
     play: (audioUrl: string, onEnded?: () => void) => Promise<void>;
     stop: () => void;
     pause: () => void;
+    replay: () => Promise<void>;
     isSpeaking: boolean;
 }
 
@@ -14,6 +15,7 @@ const AudioContext = createContext<AudioContextType | undefined>(undefined);
 export function AudioProvider({ children }: { children: React.ReactNode }) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const isSpeakingRef = useRef(false);
+    const lastAudioUrlRef = useRef<string | null>(null);
 
     const stop = useCallback(() => {
         if (audioRef.current) {
@@ -35,6 +37,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
         // Stop any currently playing audio
         stop();
 
+        lastAudioUrlRef.current = audioUrl;
         isSpeakingRef.current = true;
 
         try {
@@ -58,8 +61,14 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
         }
     }, [stop]);
 
+    const replay = useCallback(async () => {
+        if (lastAudioUrlRef.current) {
+            await play(lastAudioUrlRef.current);
+        }
+    }, [play]);
+
     return (
-        <AudioContext.Provider value={{ play, stop, pause, isSpeaking: isSpeakingRef.current }}>
+        <AudioContext.Provider value={{ play, stop, pause, replay, isSpeaking: isSpeakingRef.current }}>
             {children}
         </AudioContext.Provider>
     );
