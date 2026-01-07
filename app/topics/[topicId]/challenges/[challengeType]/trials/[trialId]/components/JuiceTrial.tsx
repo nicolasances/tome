@@ -101,9 +101,6 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
      * When car mode is active, start speech: the context is spoken aloud and for each test the question is spoken too.
      */
     const startSpeech = () => {
-
-        // startNativeBrowserSpeech(); 
-
         // Google TTS
         startGoogleTTSSpeech(challenge.context, handleStartClick);
     }
