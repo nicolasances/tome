@@ -3,18 +3,26 @@ import { OpenTestWidget } from "./OpenTestWidget";
 import { DateTestAnswer } from "./DateTestAnswer";
 import { JuiceOpenTestAnswer } from "./JuiceOpenTestAnswer";
 import { DateTestWidget } from "./DateTest";
+import { Ref } from "react";
+import { SpeechButtonHandle } from "./SpeechButton";
 
+interface TestOptions {
+    speechButtonRef?: Ref<SpeechButtonHandle>;
+    replayQuestion?: () => void;
+}
 
 export class TestFactory {
 
-    static createTestComponent(test: TomeTest, handleAnswer: (answer: any, test: TomeTest) => Promise<void>) {
+    static createTestComponent(test: TomeTest, handleAnswer: (answer: any, test: TomeTest) => Promise<void>, options?: TestOptions) {
 
         switch (test.type) {
             case 'open':
                 return (
                     <OpenTestWidget
+                        ref={options?.speechButtonRef}
                         question={test.question}
                         onAnswer={(answer) => handleAnswer(answer, test)}
+                        replayQuestion={options?.replayQuestion}
                     />
                 )
             case 'date':

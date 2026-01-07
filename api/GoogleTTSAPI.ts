@@ -18,12 +18,19 @@ export class GoogleTTSAPI {
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(`TTS API error: ${error.message || response.statusText}`);
+            throw new Error(`TTS API error: ${response.status} ${response.statusText}`);
         }
 
+        console.log('Response received:', {
+            status: response.status,
+            contentType: response.headers.get('content-type'),
+            contentLength: response.headers.get('content-length')
+        });
+
         const blob = await response.blob();
+        
         const audioUrl = URL.createObjectURL(blob);
+        
         return audioUrl;
 
     }
