@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { JuiceChallenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import { GoogleTTSAPI } from "@/api/GoogleTTSAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
 import { TestFactory } from "./TestFactory";
@@ -20,6 +21,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
     const { carMode, toggleCarMode } = useCarMode();
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     // Get the first "open" test
     const firstOpenTestIndex = challenge.tests.findIndex(test => test.type === 'open');
@@ -77,7 +79,62 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
         }
     };
 
+    /**
+     * When car mode is active, start speech: the context is spoken aloud and for each test the question is spoken too.
+     */
+    const startSpeech = () => {
 
+        // startNativeBrowserSpeech(); 
+
+        // Google TTS
+        startGoogleTTSSpeech();
+    }
+
+    const startGoogleTTSSpeech = async () => {
+
+        // Stop any currently playing audio
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+        }
+        
+        if (!carMode) return;
+
+        // Only speak the context when in the context phase
+        if (currentPhase === 'context') {
+            try {
+                const audioUrl = await new GoogleTTSAPI().synthesizeSpeech(challenge.context);
+                const audio = new Audio(audioUrl);
+                audioRef.current = audio;
+                audio.play();
+            } catch (error) {
+                console.error('Error with Google TTS:', error);
+            }
+        }
+    }
+
+    const startNativeBrowserSpeech = async () => {
+        
+        // Always cancel any ongoing speech first
+        window.speechSynthesis.cancel();
+        
+        if (!carMode) return;
+
+        // Only speak the context when in the context phase
+        if (currentPhase === 'context') {
+            // Create utterance with the challenge context
+            const utterance = new SpeechSynthesisUtterance(challenge.context);
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+            
+            // Speak the text
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    // Start speech when car mode is activated
+    useEffect(startSpeech, [carMode]);
 
     if (currentPhase === 'context') {
         return (
