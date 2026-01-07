@@ -96,10 +96,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
 
     return (
         <div className="flex flex-1 flex-col items-center justify-start px-4">
-            {TestFactory.createTestComponent(
-                currentTest,
-                handleAnswer
-            )}
+            {TestFactory.createTestComponent(currentTest, handleAnswer)}
         </div>
     );
 }
