@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { JuiceChallenge, TomeChallengesAPI, TomeTest } from "@/api/TomeChallengesAPI";
 import { GoogleTTSAPI } from "@/api/GoogleTTSAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
@@ -116,25 +116,25 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
         }
     }
 
-    const startNativeBrowserSpeech = async () => {
+    // const startNativeBrowserSpeech = async () => {
 
-        // Always cancel any ongoing speech first
-        window.speechSynthesis.cancel();
+    //     // Always cancel any ongoing speech first
+    //     window.speechSynthesis.cancel();
 
-        if (!carMode) return;
+    //     if (!carMode) return;
 
-        // Only speak the context when in the context phase
-        if (currentPhase === 'context') {
-            // Create utterance with the challenge context
-            const utterance = new SpeechSynthesisUtterance(challenge.context);
-            utterance.rate = 1.0;
-            utterance.pitch = 1.0;
-            utterance.volume = 1.0;
+    //     // Only speak the context when in the context phase
+    //     if (currentPhase === 'context') {
+    //         // Create utterance with the challenge context
+    //         const utterance = new SpeechSynthesisUtterance(challenge.context);
+    //         utterance.rate = 1.0;
+    //         utterance.pitch = 1.0;
+    //         utterance.volume = 1.0;
 
-            // Speak the text
-            window.speechSynthesis.speak(utterance);
-        }
-    }
+    //         // Speak the text
+    //         window.speechSynthesis.speak(utterance);
+    //     }
+    // }
 
     // Stop audio on component unmount
     useEffect(() => {

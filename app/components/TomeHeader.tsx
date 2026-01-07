@@ -1,6 +1,5 @@
 'use client';
 
-import { ReactNode } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import BackSVG from "@/app/ui/graphics/icons/Back";
