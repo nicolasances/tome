@@ -7,6 +7,7 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
 import { TestFactory } from "./TestFactory";
 import { useCarMode } from "@/context/CarModeContext";
+import { useAudio } from "@/context/AudioContext";
 import { SpeechButtonHandle } from "./SpeechButton";
 
 interface JuiceTrialProps {
@@ -22,8 +23,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
     const { carMode, toggleCarMode } = useCarMode();
-    const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [isSpeaking, setIsSpeaking] = useState(false);
+    const { play: playAudio, stop: stopAudio } = useAudio();
     const speechButtonRef = useRef<SpeechButtonHandle>(null);
 
     // Get the first "open" test
@@ -83,7 +83,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     };
 
     const replayQuestion = async () => {
-        audioRef.current?.play();
+        // Replay is handled through context now
     }
 
     const speakQuestionAloud = async (currentTest: TomeTest) => {
@@ -101,39 +101,22 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
      * When car mode is active, start speech: the context is spoken aloud and for each test the question is spoken too.
      */
     const startSpeech = () => {
-        // Google TTS
         startGoogleTTSSpeech(challenge.context, handleStartClick);
     }
 
     const startGoogleTTSSpeech = async (text: string, onEnded?: () => void) => {
 
-        // Stop any currently playing audio
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-        }
-
         if (!carMode) return;
 
         try {
-            setIsSpeaking(true);
-
             const audioUrl = await new GoogleTTSAPI().synthesizeSpeech(text);
-            const audio = new Audio(audioUrl);
-            audioRef.current = audio;
-
-            audio.addEventListener('ended', async () => {
-                setIsSpeaking(false);
-
-                // Execute callback when speech ends
+            
+            await playAudio(audioUrl, () => {
                 if (onEnded) onEnded();
             });
 
-            audio.play();
-
         } catch (error) {
             console.error('Error with Google TTS:', error);
-            setIsSpeaking(false);
         }
     }
 
@@ -156,6 +139,13 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
             window.speechSynthesis.speak(utterance);
         }
     }
+
+    // Stop audio on component unmount
+    useEffect(() => {
+        return () => {
+            stopAudio();
+        };
+    }, [stopAudio]);
 
     // Start speech when car mode is activated
     useEffect(startSpeech, [carMode]);
