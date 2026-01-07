@@ -5,6 +5,7 @@ import { JuiceChallenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
 import { TestFactory } from "./TestFactory";
+import { useCarMode } from "@/context/CarModeContext";
 
 interface JuiceTrialProps {
     challenge: JuiceChallenge;
@@ -18,6 +19,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
+    const { carMode, toggleCarMode } = useCarMode();
 
     // Get the first "open" test
     const firstOpenTestIndex = challenge.tests.findIndex(test => test.type === 'open');
@@ -75,6 +77,8 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
         }
     };
 
+
+
     if (currentPhase === 'context') {
         return (
             <div className="flex flex-1 flex-col items-center justify-start px-6 py-8">
@@ -82,7 +86,8 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
                     {challenge.context}
                 </div>
                 <div className="flex-1"></div>
-                <div className="flex justify-center">
+                <div className="flex justify-between gap-2 items-center">
+                    <RoundButton svgIconPath={{src: "/images/car.svg", alt: "Car Mode", color: carMode ? 'bg-red-700' : '' }} secondary={carMode} onClick={toggleCarMode} />
                     <RoundButton icon={<OkSVG />} onClick={handleStartClick} size="m" />
                 </div>
             </div>
