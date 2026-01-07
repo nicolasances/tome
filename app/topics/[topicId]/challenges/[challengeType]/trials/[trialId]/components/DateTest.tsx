@@ -120,6 +120,7 @@ const YearInput = React.forwardRef(function YearInputInner(
     { correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void },
     ref: React.Ref<{ fillYearFromSpeech: (year: number) => void }>
 ) {
+    const { carMode } = useCarMode();
 
     const getDigits = (year: number) => year.toString().split("");
 
@@ -129,10 +130,12 @@ const YearInput = React.forwardRef(function YearInputInner(
     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
     const [correct, setCorrect] = useState<boolean | null>(null);
 
-    // Auto-focus the first input on mount
+    // Auto-focus the first input on mount (skip if in car mode)
     useEffect(() => {
-        document.getElementById(`0-${flashcardId}`)?.focus();
-    }, [flashcardId]);
+        if (!carMode) {
+            document.getElementById(`0-${flashcardId}`)?.focus();
+        }
+    }, [flashcardId, carMode]);
 
     const handleChange = (idx: number, e: React.ChangeEvent<HTMLInputElement>) => {
         let val = e.target.value.replace(/[^0-9]/g, "");
@@ -214,6 +217,7 @@ const YearInput = React.forwardRef(function YearInputInner(
                         type="text"
                         inputMode="numeric"
                         maxLength={1}
+                        disabled={carMode}
                         className={`
                         w-10 h-12 text-center text-xl border rounded focus:outline-none focus:ring-2 focus:ring-cyan-200
                         ${correct === null
