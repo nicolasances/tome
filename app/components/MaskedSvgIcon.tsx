@@ -5,6 +5,7 @@ interface MaskedSvgIconProps {
     color?: string;
     backgroundSrc?: string;
     backgroundOpacity?: number;
+    onClick?: () => void;
 }
 
 /**
@@ -24,14 +25,15 @@ export function MaskedSvgIcon({
     size = "w-5 h-5",
     color = "bg-cyan-800",
     backgroundSrc,
-    backgroundOpacity = 0.2
+    backgroundOpacity = 0.2, 
+    onClick = () => {}
 }: MaskedSvgIconProps) {
 
     const sizeClasses = size;
     const colorClass = color;
 
     return (
-        <div className={`${sizeClasses} relative flex items-center justify-center`}>
+        <div className={`${sizeClasses} relative flex items-center justify-center`} onClick={onClick}>
             {/* Background SVG with low opacity */}
             {backgroundSrc && (
                 <div 
