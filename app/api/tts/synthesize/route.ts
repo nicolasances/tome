@@ -3,7 +3,7 @@ import * as textToSpeech from '@google-cloud/text-to-speech';
 
 export async function POST(request: NextRequest) {
     try {
-        const { text, languageCode = 'en-US', voiceName = 'en-US-Neural2-D', ssmlGender = 'MALE' } = await request.json();
+        const { text } = await request.json();
 
         if (!text) {
             return NextResponse.json(
@@ -15,48 +15,14 @@ export async function POST(request: NextRequest) {
         // Create the text-to-speech client
         const client = new textToSpeech.TextToSpeechClient();
 
-        const [result] = await client.listVoices({ languageCode });
-        const voices = result.voices;
-
-        if (!voices || voices.length === 0) {
-            return NextResponse.json(
-                { message: `No voices available for language '${languageCode}'` },
-                { status: 500 }
-            );
-        }
-
-        // Log available voices for debugging
-        // console.log(`Available voices for ${languageCode}:`, voices.map(v => ({ name: v.name, gender: v.ssmlGender })));
-
-        // Find the voice by exact name match first
-        let selectedVoice = voices.find(v => v.name === voiceName);
-        
-        // If exact match not found, try matching by gender
-        if (!selectedVoice && ssmlGender !== 'NEUTRAL') {
-            const genderMap: { [key: string]: textToSpeech.protos.google.cloud.texttospeech.v1.SsmlVoiceGender } = {
-                'MALE': textToSpeech.protos.google.cloud.texttospeech.v1.SsmlVoiceGender.MALE,
-                'FEMALE': textToSpeech.protos.google.cloud.texttospeech.v1.SsmlVoiceGender.FEMALE,
-                'NEUTRAL': textToSpeech.protos.google.cloud.texttospeech.v1.SsmlVoiceGender.NEUTRAL,
-            };
-            const targetGender = genderMap[ssmlGender];
-            selectedVoice = voices.find(v => v.ssmlGender === targetGender);
-        }
-
-        // Fall back to first available voice
-        if (!selectedVoice) {
-            selectedVoice = voices[0];
-        }
-
-        console.log(`Selected voice: ${selectedVoice.name}`);
-
         const request_body = {
             input: {
                 text: text,
             },
             voice: {
-                languageCode,
-                name: selectedVoice.name,
-                ssmlGender: selectedVoice.ssmlGender,
+                languageCode: "en-US",
+                name: "en-US-Neural2-J",
+                ssmlGender: textToSpeech.protos.google.cloud.texttospeech.v1.SsmlVoiceGender.MALE,
             },
             audioConfig: {
                 audioEncoding: textToSpeech.protos.google.cloud.texttospeech.v1.AudioEncoding.MP3,
