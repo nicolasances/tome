@@ -1,81 +1,35 @@
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import React, { useRef, useState, useEffect, useImperativeHandle } from "react";
+import { SpeechButton } from "./SpeechButton";
+import { useCarMode } from "@/context/CarModeContext";
 
 export function DateTestWidget({ question, correctYear, onAnswer }: { question: string, correctYear: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void }) {
 
     const yearInputRef = useRef<{ fillYearFromSpeech: (year: number) => void }>(null);
-    const [isListening, setIsListening] = useState(false);
     const [speechMessage, setSpeechMessage] = useState<string | null>(null);
+    const { carMode } = useCarMode();
 
-    const handleSpeechRecognition = () => {
+    const handleSpeechRecording = (transcribedText: string) => {
 
-        setSpeechMessage(null);
+        // Parse the transcript to extract the year
+        const year = parseYearFromSpeech(transcribedText);
 
-        // Check browser support
-        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-
-        if (!SpeechRecognition) {
-            alert("Speech Recognition is not supported in your browser.");
-            return;
+        if (year) {
+            yearInputRef.current?.fillYearFromSpeech(year);
         }
-
-        const recognition = new SpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = "en-US";
-
-        if (isListening) {
-            console.log("Stopping Speech Recognition");
-            // Stop listening if already active
-            recognition.stop();
-            setIsListening(false);
-            return;
+        else {
+            setSpeechMessage(`Sorry, I could not recognize a valid year. I got "${transcribedText}". Please try again.`);
         }
-
-        setIsListening(true);
-
-        recognition.onstart = () => {
-            console.log("Speech Recognition started");
-            setIsListening(true);
-        };
-
-        recognition.onresult = (event: any) => {
-            let transcript = "";
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                transcript += event.results[i][0].transcript;
-            }
-
-            console.log("Speech Recognition done. Transcript: ", transcript);
-
-            // Parse the transcript to extract the year
-            const year = parseYearFromSpeech(transcript);
-
-            if (year) {
-                yearInputRef.current?.fillYearFromSpeech(year);
-            }
-            else {
-                setSpeechMessage(`Sorry, I could not recognize a valid year. I got "${transcript}". Please try again.`);
-            }
-        };
-
-        recognition.onerror = (event: any) => {
-            setSpeechMessage(`Sorry, there was an error with speech recognition: ${event.error}`);
-            setIsListening(false);
-        };
-
-        recognition.onend = () => {
-            setIsListening(false);
-        };
-
-        // Auto-stop after 5 seconds of silence or speech
-        setTimeout(() => {
-            recognition.stop();
-        }, 5000);
-
-        recognition.start();
     };
 
+    /**
+     * Parses a year from the given transcript.
+     * It can parse both numeric years (e.g., "2021") and spoken years (e.g., "twenty twenty one").
+     * @param transcript the recorded text
+     * @returns 
+     */
     const parseYearFromSpeech = (transcript: string): number | null => {
+
         // Remove extra whitespace and convert to lowercase
         const cleaned = transcript.toLowerCase().trim();
 
@@ -130,10 +84,11 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                 <div className="text-center text-red-100 mb-8">{speechMessage}</div>
             )}
             <div className="flex items-center justify-center mb-8">
-                <RoundButton
-                    onClick={handleSpeechRecognition}
-                    svgIconPath={{ src: "/images/microphone.svg", alt: "Record Answer", color: isListening ? "bg-red-700" : "" }}
-                    secondary={isListening}
+                <SpeechButton
+                    ref={useRef(null)}
+                    size={carMode ? "car" : undefined}
+                    onRecordingComplete={handleSpeechRecording}
+                    mode="default"
                 />
             </div>
         </div>
