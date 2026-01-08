@@ -20,9 +20,6 @@ export function AudioDeviceSelector({
 
     return (
         <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-                Select Audio Input Device:
-            </label>
             {audioDevices.length > 0 ? (
                 <select
                     onChange={(e) => onDeviceSelected(e.target.value)}

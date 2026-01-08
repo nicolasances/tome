@@ -21,7 +21,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
         lang = 'en-US',
         continuous = false,
         interimResults = false,
-        timeoutMs = 5000,
+        timeoutMs = 15000,
         onTranscript,
         onError,
     } = options;
@@ -34,6 +34,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
     });
 
     const startListening = useCallback(() => {
+
         if (!isSupported) {
             console.warn('Speech Recognition is not supported in this browser');
             onError?.('Speech Recognition is not supported in your browser.');

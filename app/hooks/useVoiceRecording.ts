@@ -58,14 +58,14 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
                 }
             });
 
-            console.log('Got audio stream:', stream);
-            console.log('Audio tracks:', stream.getAudioTracks());
-            console.log('Audio track enabled:', stream.getAudioTracks()[0]?.enabled);
+            // console.log('Got audio stream:', stream);
+            // console.log('Audio tracks:', stream.getAudioTracks());
+            // console.log('Audio track enabled:', stream.getAudioTracks()[0]?.enabled);
 
             // Create a new MediaRecorder instance using the audio stream
             const mediaRecorder = new MediaRecorder(stream);
 
-            console.log('MediaRecorder created with MIME type:', mediaRecorder.mimeType);
+            // console.log('MediaRecorder created with MIME type:', mediaRecorder.mimeType);
 
             // Save the recorder instance to the ref so it can be accessed later
             mediaRecorderRef.current = mediaRecorder;
@@ -118,6 +118,9 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
                 // Notify parent component with the final audio Blob
                 options.onRecordingComplete?.(audioBlob);
 
+                // Stop all tracks from the media stream to release the microphone
+                mediaRecorder.stream.getTracks().forEach((track) => track.stop());
+
                 // Update recording state to false
                 setIsRecording(false);
                 resolve();
@@ -125,9 +128,6 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
 
             // Stop the media recorder (this triggers the 'stop' event)
             mediaRecorder.stop();
-
-            // Stop all tracks from the media stream to release the microphone
-            mediaRecorder.stream.getTracks().forEach((track) => track.stop());
         });
     }, [options]);
 

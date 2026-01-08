@@ -10,6 +10,7 @@ export default function RoundButton({
     loading,
     dark,
     secondary,
+    slim
 }: {
     icon?: React.ReactNode;
     svgIconPath?: {
@@ -26,6 +27,7 @@ export default function RoundButton({
     loading?: boolean;
     dark?: boolean;
     secondary?: boolean;
+    slim?: boolean;
 }) {
     const [pressed, setPressed] = useState(false);
 
@@ -45,14 +47,18 @@ export default function RoundButton({
         buttonPadding = "p-6";
     }
 
+    if (slim) {
+        buttonPadding = "p-0";
+    }
+
     const reactToClick = () => {
         if (disabled || loading) return;
         if (onClick) onClick();
     };
 
-    const baseClasses = `rounded-full ${buttonPadding} ${secondary ? "" : "border-2"} cursor-pointer transition-transform duration-100`;
-    const enabledClasses = secondary ? "text-cyan-600 hover:opacity-70" : dark ? "border-cyan-800" : "border-lime-200";
-    const disabledClasses = secondary ? "text-cyan-600 cursor-not-allowed opacity-50" : disabled ? "border-cyan-600 cursor-not-allowed" : "border-transparent cursor-not-allowed";
+ const baseClasses = `rounded-full ${buttonPadding} ${secondary || slim ? "" : "border-2"} cursor-pointer transition-transform duration-100`;
+    const enabledClasses = secondary || slim ? "text-cyan-600 hover:opacity-70" : dark ? "border-cyan-800" : "border-lime-200";
+    const disabledClasses = secondary || slim ? "text-cyan-600 cursor-not-allowed opacity-50" : disabled ? "border-cyan-600 cursor-not-allowed" : "border-transparent cursor-not-allowed";
 
     const iconClasses = `${iconSize} stroke-current fill-current`;
     const iconColor = disabled || loading

@@ -17,12 +17,14 @@ interface TomeHeaderProps {
     size?: string;
     color?: string;
   };
+  rightButton?: React.ReactNode
 }
 
 export default function TomeHeader({
   title,
   backButton,
   rightIcon,
+  rightButton,
 }: TomeHeaderProps) {
   const { carMode, toggleCarMode } = useCarMode();
 
@@ -49,7 +51,7 @@ export default function TomeHeader({
           <MaskedSvgIcon
             src="/images/car.svg"
             alt="car mode"
-            size="w-5 h-5"
+            size="w-4 h-4"
             color="bg-red-700"
             onClick={toggleCarMode}
           />
@@ -58,10 +60,11 @@ export default function TomeHeader({
           <MaskedSvgIcon
             src={rightIcon.src}
             alt={rightIcon.alt}
-            size={rightIcon.size || "w-5 h-5"}
+            size={rightIcon.size || "w-4 h-4"}
             color={rightIcon.color || "bg-cyan-800"}
           />
         )}
+        {rightButton}
       </div>
     </div>
   );

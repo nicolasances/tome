@@ -9,7 +9,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
     const yearInputRef = useRef<{ fillYearFromSpeech: (year: number) => void }>(null);
     const [speechMessage, setSpeechMessage] = useState<string | null>(null);
     const { carMode } = useCarMode();
-    const { replay } = useAudio();
+    const { replay, isSpeaking } = useAudio();
 
     const handleSpeechRecording = (transcribedText: string) => {
 
@@ -35,8 +35,11 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
         // Remove extra whitespace and convert to lowercase
         const cleaned = transcript.toLowerCase().trim();
 
+        // Remove anything that is not a number
+        const numericOnly = cleaned.replace(/[^0-9]/g, '');
+
         // Try to extract a 4-digit number
-        const match = cleaned.match(/\b(\d{4})\b/);
+        const match = numericOnly.match(/\b(\d{4})\b/);
         if (match) {
             return parseInt(match[1]);
         }
@@ -92,14 +95,17 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                         ref={useRef(null)}
                         size={carMode ? "car" : undefined}
                         onRecordingComplete={handleSpeechRecording}
-                        mode="default"
+                        mode="whisper"
                     />
                 </div>
                 <div className="flex-1 flex justify-end">
-                    <RoundButton
-                        svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
-                        onClick={() => { replay(); }}
-                    />
+                    {carMode && (
+                        <RoundButton
+                            svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
+                            disabled={isSpeaking}
+                            onClick={() => { replay(); }}
+                        />
+                    )}
                 </div>
             </div>
         </div>
