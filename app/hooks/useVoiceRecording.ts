@@ -16,6 +16,7 @@ interface UseVoiceRecordingReturn {
 }
 
 export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVoiceRecordingReturn {
+
     const [isRecording, setIsRecording] = useState(false);
     const [isSupported] = useState(() => {
         if (typeof window === 'undefined') return false;

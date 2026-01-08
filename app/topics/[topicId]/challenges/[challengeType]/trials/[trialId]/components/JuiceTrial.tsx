@@ -1,10 +1,14 @@
 'use client'
 
-import { useState } from "react";
-import { JuiceChallenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import { useEffect, useRef, useState } from "react";
+import { JuiceChallenge, TomeChallengesAPI, TomeTest } from "@/api/TomeChallengesAPI";
+import { GoogleTTSAPI } from "@/api/GoogleTTSAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
 import { TestFactory } from "./TestFactory";
+import { useCarMode } from "@/context/CarModeContext";
+import { useAudio } from "@/context/AudioContext";
+import { SpeechButtonHandle } from "./SpeechButton";
 
 interface JuiceTrialProps {
     challenge: JuiceChallenge;
@@ -18,6 +22,9 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
+    const { carMode, toggleCarMode } = useCarMode();
+    const { play: playAudio, stop: stopAudio } = useAudio();
+    const speechButtonRef = useRef<SpeechButtonHandle>(null);
 
     // Get the first "open" test
     const firstOpenTestIndex = challenge.tests.findIndex(test => test.type === 'open');
@@ -75,6 +82,71 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
         }
     };
 
+    const speakQuestionAloud = async (currentTest: TomeTest) => {
+
+        if (!carMode) return;
+
+        await startGoogleTTSSpeech("Answer the following question: " + currentTest.question, () => {
+            // Auto-start recording when question finishes in car mode
+            // CHOSEN NOT TO AUTO-START RECORDING FOR NOW
+            // speechButtonRef.current?.startRecording();
+        });
+    }
+
+    /**
+     * When car mode is active, start speech: the context is spoken aloud and for each test the question is spoken too.
+     */
+    const startSpeech = () => {
+        startGoogleTTSSpeech(challenge.context, handleStartClick);
+    }
+
+    const startGoogleTTSSpeech = async (text: string, onEnded?: () => void) => {
+
+        if (!carMode) return;
+
+        try {
+            const audioUrl = await new GoogleTTSAPI().synthesizeSpeech(text);
+            
+            await playAudio(audioUrl, () => {
+                if (onEnded) onEnded();
+            });
+
+        } catch (error) {
+            console.error('Error with Google TTS:', error);
+        }
+    }
+
+    // const startNativeBrowserSpeech = async () => {
+
+    //     // Always cancel any ongoing speech first
+    //     window.speechSynthesis.cancel();
+
+    //     if (!carMode) return;
+
+    //     // Only speak the context when in the context phase
+    //     if (currentPhase === 'context') {
+    //         // Create utterance with the challenge context
+    //         const utterance = new SpeechSynthesisUtterance(challenge.context);
+    //         utterance.rate = 1.0;
+    //         utterance.pitch = 1.0;
+    //         utterance.volume = 1.0;
+
+    //         // Speak the text
+    //         window.speechSynthesis.speak(utterance);
+    //     }
+    // }
+
+    // Stop audio on component unmount
+    useEffect(() => {
+        return () => {
+            stopAudio();
+        };
+    }, [stopAudio]);
+
+    // Start speech when car mode is activated
+    useEffect(startSpeech, [carMode]);
+    useEffect(() => { if (currentPhase == 'test' && currentTest) speakQuestionAloud(currentTest); }, [currentPhase, currentTestIndex]);
+
     if (currentPhase === 'context') {
         return (
             <div className="flex flex-1 flex-col items-center justify-start px-6 py-8">
@@ -82,8 +154,9 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
                     {challenge.context}
                 </div>
                 <div className="flex-1"></div>
-                <div className="flex justify-center">
-                    <RoundButton icon={<OkSVG />} onClick={handleStartClick} size="m" />
+                <div className="flex justify-between gap-2 items-center">
+                    <RoundButton svgIconPath={{ src: "/images/car.svg", alt: "Car Mode", color: carMode ? 'bg-red-700' : '' }} secondary={carMode} onClick={toggleCarMode} />
+                    {!carMode && <RoundButton icon={<OkSVG />} onClick={handleStartClick} size="m" />}
                 </div>
             </div>
         );
@@ -96,10 +169,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
 
     return (
         <div className="flex flex-1 flex-col items-center justify-start px-4">
-            {TestFactory.createTestComponent(
-                currentTest,
-                handleAnswer
-            )}
+            {TestFactory.createTestComponent(currentTest, handleAnswer, {speechButtonRef})}
         </div>
     );
 }

@@ -1,81 +1,37 @@
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import React, { useRef, useState, useEffect, useImperativeHandle } from "react";
+import { SpeechButton } from "./SpeechButton";
+import { useCarMode } from "@/context/CarModeContext";
+import { useAudio } from "@/context/AudioContext";
 
 export function DateTestWidget({ question, correctYear, onAnswer }: { question: string, correctYear: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void }) {
 
     const yearInputRef = useRef<{ fillYearFromSpeech: (year: number) => void }>(null);
-    const [isListening, setIsListening] = useState(false);
     const [speechMessage, setSpeechMessage] = useState<string | null>(null);
+    const { carMode } = useCarMode();
+    const { replay } = useAudio();
 
-    const handleSpeechRecognition = () => {
+    const handleSpeechRecording = (transcribedText: string) => {
 
-        setSpeechMessage(null);
+        // Parse the transcript to extract the year
+        const year = parseYearFromSpeech(transcribedText);
 
-        // Check browser support
-        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-
-        if (!SpeechRecognition) {
-            alert("Speech Recognition is not supported in your browser.");
-            return;
+        if (year) {
+            yearInputRef.current?.fillYearFromSpeech(year);
         }
-
-        const recognition = new SpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = "en-US";
-
-        if (isListening) {
-            console.log("Stopping Speech Recognition");
-            // Stop listening if already active
-            recognition.stop();
-            setIsListening(false);
-            return;
+        else {
+            setSpeechMessage(`Sorry, I could not recognize a valid year. I got "${transcribedText}". Please try again.`);
         }
-
-        setIsListening(true);
-
-        recognition.onstart = () => {
-            console.log("Speech Recognition started");
-            setIsListening(true);
-        };
-
-        recognition.onresult = (event: any) => {
-            let transcript = "";
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                transcript += event.results[i][0].transcript;
-            }
-
-            console.log("Speech Recognition done. Transcript: ", transcript);
-
-            // Parse the transcript to extract the year
-            const year = parseYearFromSpeech(transcript);
-
-            if (year) {
-                yearInputRef.current?.fillYearFromSpeech(year);
-            }
-            else {
-                setSpeechMessage(`Sorry, I could not recognize a valid year. I got "${transcript}". Please try again.`);
-            }
-        };
-
-        recognition.onerror = (event: any) => {
-            setSpeechMessage(`Sorry, there was an error with speech recognition: ${event.error}`);
-            setIsListening(false);
-        };
-
-        recognition.onend = () => {
-            setIsListening(false);
-        };
-
-        // Auto-stop after 5 seconds of silence or speech
-        setTimeout(() => {
-            recognition.stop();
-        }, 5000);
-
-        recognition.start();
     };
 
+    /**
+     * Parses a year from the given transcript.
+     * It can parse both numeric years (e.g., "2021") and spoken years (e.g., "twenty twenty one").
+     * @param transcript the recorded text
+     * @returns 
+     */
     const parseYearFromSpeech = (transcript: string): number | null => {
+
         // Remove extra whitespace and convert to lowercase
         const cleaned = transcript.toLowerCase().trim();
 
@@ -130,11 +86,21 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                 <div className="text-center text-red-100 mb-8">{speechMessage}</div>
             )}
             <div className="flex items-center justify-center mb-8">
-                <RoundButton
-                    onClick={handleSpeechRecognition}
-                    svgIconPath={{ src: "/images/microphone.svg", alt: "Record Answer", color: isListening ? "bg-red-700" : "" }}
-                    secondary={isListening}
-                />
+                <div className="flex-1"></div>
+                <div className="flex">
+                    <SpeechButton
+                        ref={useRef(null)}
+                        size={carMode ? "car" : undefined}
+                        onRecordingComplete={handleSpeechRecording}
+                        mode="default"
+                    />
+                </div>
+                <div className="flex-1 flex justify-end">
+                    <RoundButton
+                        svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
+                        onClick={() => { replay(); }}
+                    />
+                </div>
             </div>
         </div>
     );
@@ -154,6 +120,7 @@ const YearInput = React.forwardRef(function YearInputInner(
     { correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void },
     ref: React.Ref<{ fillYearFromSpeech: (year: number) => void }>
 ) {
+    const { carMode } = useCarMode();
 
     const getDigits = (year: number) => year.toString().split("");
 
@@ -163,10 +130,12 @@ const YearInput = React.forwardRef(function YearInputInner(
     const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
     const [correct, setCorrect] = useState<boolean | null>(null);
 
-    // Auto-focus the first input on mount
+    // Auto-focus the first input on mount (skip if in car mode)
     useEffect(() => {
-        document.getElementById(`0-${flashcardId}`)?.focus();
-    }, [flashcardId]);
+        if (!carMode) {
+            document.getElementById(`0-${flashcardId}`)?.focus();
+        }
+    }, [flashcardId, carMode]);
 
     const handleChange = (idx: number, e: React.ChangeEvent<HTMLInputElement>) => {
         let val = e.target.value.replace(/[^0-9]/g, "");
@@ -248,6 +217,7 @@ const YearInput = React.forwardRef(function YearInputInner(
                         type="text"
                         inputMode="numeric"
                         maxLength={1}
+                        disabled={carMode}
                         className={`
                         w-10 h-12 text-center text-xl border rounded focus:outline-none focus:ring-2 focus:ring-cyan-200
                         ${correct === null

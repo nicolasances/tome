@@ -20,7 +20,7 @@ export default function RoundButton({
         backgroundOpacity?: number;
     };
     onClick: () => void;
-    size?: "xs" | "s" | "m" | undefined;
+    size?: "xs" | "s" | "m" | "car" | undefined;
     disabled?: boolean;
     iconOnly?: boolean;
     loading?: boolean;
@@ -35,9 +35,14 @@ export default function RoundButton({
     if (size === "s") {
         iconSize = "w-4 h-4";
         buttonPadding = "p-2";
-    } else if (size == "xs") {
+    } 
+    else if (size == "xs") {
         iconSize = "w-3 h-3";
         buttonPadding = "p-1";
+    }
+    else if (size === "car") {
+        iconSize = "w-12 h-12";
+        buttonPadding = "p-6";
     }
 
     const reactToClick = () => {
