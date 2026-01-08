@@ -22,7 +22,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
-    const { carMode, toggleCarMode } = useCarMode();
+    const { carMode } = useCarMode();
     const { play: playAudio, stop: stopAudio } = useAudio();
     const speechButtonRef = useRef<SpeechButtonHandle>(null);
 

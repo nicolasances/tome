@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import Header from "./ui/layout/Header";
 import { WeekDailyGoals } from "@/components/WeekDailyGoals";
 import { TopicsList } from "@/app/components/TopicsList";
 import TomeHeader from "./components/TomeHeader";
