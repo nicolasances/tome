@@ -84,6 +84,7 @@ export default function TrialPage() {
             </div>
             {!trialIsCompleted() && challenge.code === 'juice' && (
                 <JuiceTrial
+                    trial={trial}
                     challenge={challenge as any as JuiceChallenge}
                     trialId={String(params.trialId)}
                     onTrialComplete={handleTrialComplete}

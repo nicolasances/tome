@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react";
-import { JuiceChallenge, TomeChallengesAPI, TomeTest } from "@/api/TomeChallengesAPI";
+import { JuiceChallenge, TomeChallengesAPI, TomeTest, Trial } from "@/api/TomeChallengesAPI";
 import { GoogleTTSAPI } from "@/api/GoogleTTSAPI";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import OkSVG from "@/app/ui/graphics/icons/Ok";
@@ -13,12 +13,13 @@ import { SpeechButtonHandle } from "./SpeechButton";
 interface JuiceTrialProps {
     challenge: JuiceChallenge;
     trialId: string;
+    trial: Trial;
     onTrialComplete: () => void;
 }
 
-export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialProps) {
+export function JuiceTrial({ challenge, trialId, trial, onTrialComplete }: JuiceTrialProps) {
 
-    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>('context');
+    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>(trial.answers && trial.answers.length > 0 ? 'test' : 'context');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
@@ -30,18 +31,31 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     const firstOpenTestIndex = challenge.tests.findIndex(test => test.type === 'open');
 
     // Get the remaining tests in order (all tests except the first open one)
-    const getTestsInOrder = () => {
+    const getTestsInOrder = (tests: TomeTest[]) => {
         if (firstOpenTestIndex === -1) {
-            return challenge.tests;
+            return tests;
         }
-        const openTest = challenge.tests[firstOpenTestIndex];
-        const remainingTests = challenge.tests.filter((_, idx) => idx !== firstOpenTestIndex);
+        const openTest = tests[firstOpenTestIndex];
+        const remainingTests = tests.filter((_, idx) => idx !== firstOpenTestIndex);
         return [openTest, ...remainingTests];
     };
 
-    const testsInOrder = getTestsInOrder();
-    const currentTest = testsInOrder[currentTestIndex];
-    const isLastTest = currentTestIndex === testsInOrder.length - 1;
+    /**
+     * Filters out the tests that have already been answered in this trial
+     */
+    const filterOutAnsweredTests = (tests: TomeTest[]): TomeTest[] => {
+
+        if (!trial || !trial.answers || trial.answers.length === 0) return tests; 
+
+        const answeredTestIds = trial.answers!.map(a => a.testId);
+        
+        return tests.filter(test => !answeredTestIds.includes(test.testId));
+    }
+
+    const tests = filterOutAnsweredTests(getTestsInOrder(challenge.tests));
+    
+    const currentTest = tests[currentTestIndex];
+    const isLastTest = currentTestIndex === tests.length - 1;
 
     const handleStartClick = () => {
         setCurrentPhase('test');
