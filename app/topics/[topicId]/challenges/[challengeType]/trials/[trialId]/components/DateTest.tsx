@@ -92,7 +92,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                         ref={useRef(null)}
                         size={carMode ? "car" : undefined}
                         onRecordingComplete={handleSpeechRecording}
-                        mode="default"
+                        mode="whisper"
                     />
                 </div>
                 <div className="flex-1 flex justify-end">
