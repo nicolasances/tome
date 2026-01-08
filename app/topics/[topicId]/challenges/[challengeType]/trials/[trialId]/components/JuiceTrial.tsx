@@ -96,7 +96,9 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     /**
      * When car mode is active, start speech: the context is spoken aloud and for each test the question is spoken too.
      */
-    const startSpeech = () => {
+    const readContextAloud = () => {
+        if (currentPhase !== 'context') return;
+
         startGoogleTTSSpeech(challenge.context, handleStartClick);
     }
 
@@ -144,7 +146,7 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
     }, [stopAudio]);
 
     // Start speech when car mode is activated
-    useEffect(startSpeech, [carMode]);
+    useEffect(readContextAloud, [carMode]);
     useEffect(() => { if (currentPhase == 'test' && currentTest) speakQuestionAloud(currentTest); }, [currentPhase, currentTestIndex]);
 
     if (currentPhase === 'context') {

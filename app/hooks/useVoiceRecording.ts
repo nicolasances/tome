@@ -58,14 +58,14 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
                 }
             });
 
-            console.log('Got audio stream:', stream);
-            console.log('Audio tracks:', stream.getAudioTracks());
-            console.log('Audio track enabled:', stream.getAudioTracks()[0]?.enabled);
+            // console.log('Got audio stream:', stream);
+            // console.log('Audio tracks:', stream.getAudioTracks());
+            // console.log('Audio track enabled:', stream.getAudioTracks()[0]?.enabled);
 
             // Create a new MediaRecorder instance using the audio stream
             const mediaRecorder = new MediaRecorder(stream);
 
-            console.log('MediaRecorder created with MIME type:', mediaRecorder.mimeType);
+            // console.log('MediaRecorder created with MIME type:', mediaRecorder.mimeType);
 
             // Save the recorder instance to the ref so it can be accessed later
             mediaRecorderRef.current = mediaRecorder;
