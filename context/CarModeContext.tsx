@@ -1,6 +1,9 @@
 "use client";
 
 import { createContext, ReactNode, useContext, useState } from "react";
+import { useAudio } from "./AudioContext";
+import { useVoiceRecording } from "@/app/hooks/useVoiceRecording";
+import { useSpeechRecognition } from "@/app/hooks/useSpeechRecognition";
 
 interface CarModeContextContent {
   carMode: boolean;
@@ -18,9 +21,27 @@ interface CarModeContextProviderProps {
 // Create the provider component
 export const CarModeContextProvider: React.FC<CarModeContextProviderProps> = ({ children }) => {
   const [carMode, setCarMode] = useState(false);
+  const { stop: stopAudio } = useAudio();
+  const { stopRecording: stopVoiceRecording } = useVoiceRecording();
+  const { stopListening: stopSpeechRecognition } = useSpeechRecognition();
 
   const toggleCarMode = () => {
+
+    const stoppingCarMode = carMode;
+
+    // When toggling car mode, also stop any ongoing speech or microphone recording
+    if (stoppingCarMode) {
+      // Stop running audio
+      stopAudio();
+
+      // Stop running voice recording 
+      stopVoiceRecording();
+      stopSpeechRecognition();
+    }
+
+
     setCarMode(!carMode);
+
   };
 
   return (

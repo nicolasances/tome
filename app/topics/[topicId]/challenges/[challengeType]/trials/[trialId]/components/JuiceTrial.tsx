@@ -18,7 +18,7 @@ interface JuiceTrialProps {
 
 export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialProps) {
 
-    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>('context');
+    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>('test');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);

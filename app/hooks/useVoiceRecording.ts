@@ -118,6 +118,9 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
                 // Notify parent component with the final audio Blob
                 options.onRecordingComplete?.(audioBlob);
 
+                // Stop all tracks from the media stream to release the microphone
+                mediaRecorder.stream.getTracks().forEach((track) => track.stop());
+
                 // Update recording state to false
                 setIsRecording(false);
                 resolve();
@@ -125,9 +128,6 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
 
             // Stop the media recorder (this triggers the 'stop' event)
             mediaRecorder.stop();
-
-            // Stop all tracks from the media stream to release the microphone
-            mediaRecorder.stream.getTracks().forEach((track) => track.stop());
         });
     }, [options]);
 
