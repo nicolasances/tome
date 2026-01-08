@@ -45,10 +45,10 @@ export function AudioDevicePopup({
                     {/* Modal */}
                     <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
                         <div className="pointer-events-auto">
-                            <div className="bg-slate-950 border-2 border-cyan-300 rounded-lg p-6 w-80 shadow-2xl">
-                                <h2 className="text-lg font-semibold text-cyan-300 mb-4">
+                            <div className="rounded-lg p-4 w-80 shadow-2xl" style={{ backgroundColor: 'var(--background)' }}>
+                                <div className="text-lg font-semibold text-cyan-700 mb-4">
                                     Select Audio Device
-                                </h2>
+                                </div>
                                 <AudioDeviceSelector
                                     audioDevices={audioDevices}
                                     loadAudioDevices={loadAudioDevices}
