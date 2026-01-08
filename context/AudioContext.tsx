@@ -53,6 +53,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
             audio.play().catch((error) => {
                 if (error.name !== 'AbortError') {
                     console.error('Error playing audio:', error);
+                    setIsSpeaking(false);
                 }
             });
         } catch (error) {
