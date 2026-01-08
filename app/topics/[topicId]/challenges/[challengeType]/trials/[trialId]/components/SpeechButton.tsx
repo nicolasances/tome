@@ -119,7 +119,7 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
             size={size}
             onClick={handleToggleRecording}
             svgIconPath={{
-                src: "/images/microphone.svg",
+                src: isTranscribing ? "/images/processing-voice.svg" : "/images/microphone.svg",
                 alt: isActive ? "Stop recording" : "Start recording",
                 color: isActive || isTranscribing ? "bg-red-700" : "",
             }}
