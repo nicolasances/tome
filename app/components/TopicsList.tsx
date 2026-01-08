@@ -78,7 +78,7 @@ export function TopicsList() {
     }
 
     return (
-        <div className="mt-2 ml-4">
+        <div className="mt-2">
             <SectionHeader title="All Topics" />
             <div className="mb-6 space-y-2">
                 {topics.map((extendedTopic) => (
@@ -114,7 +114,7 @@ function TopicItem({ topic, signalIcon }: { topic: ExtendedTopic, signalIcon: st
                 opacity: pressed ? 0.5 : 1,
             }}
         >
-            <div className="w-10 h-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1 relative">
+            <div className="w-10 h-10 min-w-10 mr-3 flex items-center justify-center border-2 border-cyan-800 rounded-full p-1 relative">
                 {/* Background: full signal with low opacity */}
                 <div
                     className="absolute w-5 h-5 bg-cyan-800 opacity-20"

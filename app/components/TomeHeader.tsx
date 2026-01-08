@@ -29,7 +29,7 @@ export default function TomeHeader({
   const { carMode, toggleCarMode } = useCarMode();
 
   return (
-    <div className="mt-6 flex justify-between items-center mx-4">
+    <div className="mt-6 flex justify-between items-center">
       {/* Left section: Back button */}
       <div className="flex-1 flex">
         {backButton?.enabled && (

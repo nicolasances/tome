@@ -9,7 +9,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
     const yearInputRef = useRef<{ fillYearFromSpeech: (year: number) => void }>(null);
     const [speechMessage, setSpeechMessage] = useState<string | null>(null);
     const { carMode } = useCarMode();
-    const { replay } = useAudio();
+    const { replay, isSpeaking } = useAudio();
 
     const handleSpeechRecording = (transcribedText: string) => {
 
@@ -99,6 +99,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                     {carMode && (
                         <RoundButton
                             svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
+                            disabled={isSpeaking}
                             onClick={() => { replay(); }}
                         />
                     )}
