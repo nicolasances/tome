@@ -96,10 +96,12 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                     />
                 </div>
                 <div className="flex-1 flex justify-end">
-                    <RoundButton
-                        svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
-                        onClick={() => { replay(); }}
-                    />
+                    {carMode && (
+                        <RoundButton
+                            svgIconPath={{ src: "/images/voice.svg", alt: "Replay question" }}
+                            onClick={() => { replay(); }}
+                        />
+                    )}
                 </div>
             </div>
         </div>

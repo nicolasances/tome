@@ -18,7 +18,7 @@ interface JuiceTrialProps {
 
 export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialProps) {
 
-    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>('test');
+    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>('context');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
     const [pendingScores, setPendingScores] = useState<Promise<{ score: number }>[]>([]);
@@ -157,8 +157,8 @@ export function JuiceTrial({ challenge, trialId, onTrialComplete }: JuiceTrialPr
                 </div>
                 <div className="flex-1"></div>
                 <div className="flex justify-between gap-2 items-center">
-                    <RoundButton svgIconPath={{ src: "/images/car.svg", alt: "Car Mode", color: carMode ? 'bg-red-700' : '' }} secondary={carMode} onClick={toggleCarMode} />
-                    {!carMode && <RoundButton icon={<OkSVG />} onClick={handleStartClick} size="m" />}
+                    {/* <RoundButton svgIconPath={{ src: "/images/car.svg", alt: "Car Mode", color: carMode ? 'bg-red-700' : '' }} secondary={carMode} onClick={toggleCarMode} /> */}
+                    <RoundButton icon={<OkSVG />} onClick={handleStartClick} size="m" />
                 </div>
             </div>
         );

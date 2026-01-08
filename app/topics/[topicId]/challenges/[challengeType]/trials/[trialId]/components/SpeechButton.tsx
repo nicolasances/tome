@@ -59,7 +59,7 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
         lang: "en-US",
         continuous: false,
         interimResults: false,
-        timeoutMs: 5000,
+        timeoutMs: 15000,
         onTranscript: (transcript: string) => {
             console.log("Speech Recognition result:", transcript);
             onRecordingComplete?.(transcript);

@@ -6,10 +6,14 @@ import { AuthAPI } from "@/api/AuthAPI";
 import Header from "./ui/layout/Header";
 import { WeekDailyGoals } from "@/components/WeekDailyGoals";
 import { TopicsList } from "@/app/components/TopicsList";
+import TomeHeader from "./components/TomeHeader";
+import RoundButton from "./ui/buttons/RoundButton";
+import { useCarMode } from "@/context/CarModeContext";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
+  const {toggleCarMode, carMode} = useCarMode();
 
   /**
    * Verifies if the user is authenticated
@@ -77,7 +81,11 @@ export default function Home() {
   return (
     <div className="py-4 px-1 h-full flex flex-col">
 
-      <Header />
+      <TomeHeader title="Tome" 
+        rightButton={!carMode && (
+          <RoundButton svgIconPath={{src: "/images/car.svg", alt: "Car Mode", color: carMode ? "bg-red-700" : "bg-cyan-800"}} onClick={toggleCarMode} slim={true} size='s' />
+        )}
+      />
 
       <TopicsList />
 
