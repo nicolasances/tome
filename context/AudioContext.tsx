@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useRef, useCallback } from 'react';
+import { createContext, useContext, useRef, useCallback, useState } from 'react';
 
 interface AudioContextType {
     play: (audioUrl: string, onEnded?: () => void) => Promise<void>;
@@ -14,7 +14,7 @@ const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export function AudioProvider({ children }: { children: React.ReactNode }) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const isSpeakingRef = useRef(false);
+    const [isSpeaking, setIsSpeaking] = useState(false);
     const lastAudioUrlRef = useRef<string | null>(null);
 
     const stop = useCallback(() => {
@@ -24,7 +24,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
             audioRef.current = null;
         }
         window.speechSynthesis.cancel();
-        isSpeakingRef.current = false;
+        setIsSpeaking(false);
     }, []);
 
     const pause = useCallback(() => {
@@ -38,14 +38,14 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
         stop();
 
         lastAudioUrlRef.current = audioUrl;
-        isSpeakingRef.current = true;
+        setIsSpeaking(true);
 
         try {
             const audio = new Audio(audioUrl);
             audioRef.current = audio;
 
             audio.addEventListener('ended', () => {
-                isSpeakingRef.current = false;
+                setIsSpeaking(false);
                 if (onEnded) onEnded();
             });
 
@@ -57,7 +57,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
             });
         } catch (error) {
             console.error('Error playing audio:', error);
-            isSpeakingRef.current = false;
+            setIsSpeaking(false);
         }
     }, [stop]);
 
@@ -68,7 +68,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }, [play]);
 
     return (
-        <AudioContext.Provider value={{ play, stop, pause, replay, isSpeaking: isSpeakingRef.current }}>
+        <AudioContext.Provider value={{ play, stop, pause, replay, isSpeaking }}>
             {children}
         </AudioContext.Provider>
     );

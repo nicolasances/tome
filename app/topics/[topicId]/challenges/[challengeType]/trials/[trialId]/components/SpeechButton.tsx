@@ -5,6 +5,7 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useVoiceRecording } from "@/app/hooks/useVoiceRecording";
 import { useSpeechRecognition } from "@/app/hooks/useSpeechRecognition";
 import { WhisperAPI } from "@/api/WhisperAPI";
+import { useAudio } from "@/context/AudioContext";
 
 interface SpeechButtonProps {
     size?: "xs" | "s" | "m" | "car";
@@ -21,6 +22,7 @@ export interface SpeechButtonHandle {
 export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "default" }, ref) {
 
     const [isTranscribing, setIsTranscribing] = useState(false);
+    const { isSpeaking } = useAudio();
 
     // ============ WHISPER MODE ============
     const handleRecordingComplete = async (audioBlob: Blob) => {
@@ -113,6 +115,7 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
     return (
         <RoundButton
+            disabled={isSpeaking}
             size={size}
             onClick={handleToggleRecording}
             svgIconPath={{
