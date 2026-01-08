@@ -35,8 +35,11 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
         // Remove extra whitespace and convert to lowercase
         const cleaned = transcript.toLowerCase().trim();
 
+        // Remove anything that is not a number
+        const numericOnly = cleaned.replace(/[^0-9]/g, '');
+
         // Try to extract a 4-digit number
-        const match = cleaned.match(/\b(\d{4})\b/);
+        const match = numericOnly.match(/\b(\d{4})\b/);
         if (match) {
             return parseInt(match[1]);
         }
