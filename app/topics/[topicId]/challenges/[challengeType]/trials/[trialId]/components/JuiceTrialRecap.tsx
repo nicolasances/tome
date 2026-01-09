@@ -8,6 +8,8 @@ import { TestFactory } from "./TestFactory";
 import { useCarMode } from "@/context/CarModeContext";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useState } from "react";
+import { useAudio } from "@/context/AudioContext";
+import { GoogleTTSAPI } from "@/api/GoogleTTSAPI";
 
 interface JuiceTrialRecapProps {
     trial: Trial;
@@ -17,6 +19,7 @@ interface JuiceTrialRecapProps {
 export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
 
     const { carMode } = useCarMode();
+    const { play, isSpeaking } = useAudio();
 
     /**
      * Format the completion date
@@ -40,6 +43,25 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
         if (score < 70) return 'text-lime-200 border-lime-200';
         return 'text-green-300 border-green-300';
     };
+
+    /**
+     * Read important aspects to remember aloud
+     */
+    const readImportantAspects = async () => {
+
+        const aspectsToRemember = challenge.toRemember.reduce((acc, item, idx) => {
+            return acc + "Aspect " + (idx + 1) + ": " + item.toRemember + ". "
+        }, "Here are the most important aspects to remember: ");
+
+        try {
+            const audioUrl = await new GoogleTTSAPI().synthesizeSpeech(aspectsToRemember);
+
+            await play(audioUrl, () => { });
+
+        } catch (error) {
+            console.error('Error with Google TTS:', error);
+        }
+    }
 
     return (
         <div className="flex flex-1 flex-col w-full py-8 space-y-8 items-center">
@@ -85,7 +107,12 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
 
             {carMode &&
                 <div className={`fixed bottom-8 flex bg-cyan-800/80 w-80 rounded-xl justify-center py-4`}>
-                    <RoundButton svgIconPath={{ src: "/images/voice.svg", alt: "Read" }} size='car' onClick={() => { }} />
+                    <RoundButton
+                        svgIconPath={{ src: "/images/voice.svg", alt: "Read" }}
+                        size='car'
+                        onClick={readImportantAspects}
+                        disabled={isSpeaking}
+                    />
                 </div>
             }
         </div>
