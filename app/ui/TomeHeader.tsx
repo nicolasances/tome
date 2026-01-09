@@ -51,7 +51,7 @@ export default function TomeHeader() {
                     )}
                     {config.actions}
                     {config.rightButton}
-                    
+
                     {/* Menu Button */}
                     <RoundButton
                         svgIconPath={{
@@ -75,39 +75,35 @@ export default function TomeHeader() {
 
             {/* Slide-out Menu */}
             <div
-                className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out flex flex-col p-6 ${
-                    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
+                className={`fixed top-0 right-0 h-full w-64 shadow-lg z-50 transform transition-transform duration-300 ease-in-out flex flex-col p-6 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
+                style={{ backgroundColor: 'var(--background)' }}
             >
-                <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-lg font-semibold">Menu</h2>
-                    <button
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-2xl leading-none text-gray-600 hover:text-gray-900"
-                    >
-                        ×
-                    </button>
-                </div>
-
                 <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between p-3 bg-gray-100 rounded">
-                        <span className="text-sm font-medium text-gray-700">Car Mode</span>
-                        <button
-                            onClick={() => {
-                                toggleCarMode();
-                                setIsMenuOpen(false);
-                            }}
-                            className={`px-3 py-1 rounded text-sm font-semibold transition-colors ${
-                                carMode
-                                    ? 'bg-red-500 text-white'
-                                    : 'bg-gray-300 text-gray-700'
-                            }`}
-                        >
-                            {carMode ? 'ON' : 'OFF'}
-                        </button>
-                    </div>
+                    <MenuItem onClick={toggleCarMode} icon="/images/car.svg" iconColor={carMode ? "bg-red-700" : "bg-cyan-700"} label="Car Mode" tag={carMode ? "active" : undefined} />
                 </div>
             </div>
         </>
     );
+}
+
+function MenuItem({ onClick, icon, iconColor, label, tag }: { onClick?: () => void, icon: string, iconColor: string, label: string, tag?: string }) {
+
+    const [pressed, setPressed] = useState(false);
+
+    return (
+        <div className="flex items-center text-base gap-4 cursor-pointer" onClick={onClick}
+            style={{ transform: pressed ? "scale(0.95)" : "scale(1)", }}
+            onMouseDown={() => setPressed(true)}
+            onMouseUp={() => setPressed(false)}
+            onMouseLeave={() => setPressed(false)}
+            onTouchStart={() => setPressed(true)}
+            onTouchEnd={() => setPressed(false)}
+        >
+            <div>
+                <MaskedSvgIcon src={icon} alt={label} color={iconColor} />
+            </div>
+            <div className="pt-1">{label} {tag && (<span className='rounded-full bg-red-300 px-2 ml-2'>{tag}</span>)}</div>
+        </div>
+    )
 }
