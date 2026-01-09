@@ -2,14 +2,17 @@
 
 import { FlashCardsSession } from "@/app/ui/complex/FlashCardsSession";
 import { useTomeContext } from "@/context/TomeContext";
+import { useHeader } from "@/context/HeaderContext";
 import moment from "moment";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 
 export default function SegmentPracticePage() {
 
     const tomeContext = useTomeContext();
     const router = useRouter()
+    const { setConfig } = useHeader();
 
     const segment = tomeContext.segmentPractice;
     const topic = segment!.topic;
@@ -18,6 +21,13 @@ export default function SegmentPracticePage() {
     const flashcards = segment!.flashcards;
 
     const sectionTitle = flashcards[0].originalFlashcard.sectionTitle;
+
+    useEffect(() => {
+        setConfig({
+            title: `${topic.name} - ${sectionTitle}`,
+            actions: undefined,
+        });
+    }, [topic, sectionTitle, setConfig]);
 
     /**
      * When the session is finished, we navigate back to the practice page.

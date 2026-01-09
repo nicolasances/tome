@@ -3,21 +3,33 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import RoundButton from "@/app/ui/buttons/RoundButton";
-import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
-import BackSVG from "@/app/ui/graphics/icons/Back";
 import { ChallengeDetailList } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
+import { useHeader } from "@/context/HeaderContext";
 
 export default function ChallengeDetailPage() {
 
     const router = useRouter();
     const params = useParams()
+    const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
     const [challenges, setChallenges] = useState<any[]>([]);
     const [challengeName, setChallengeName] = useState<string>("");
     const [trials, setTrials] = useState<Trial[]>([]);
+
+    useEffect(() => {
+        if (topic) {
+            setConfig({
+                title: `${topic.name}`,
+                backButton: {
+                    enabled: true,
+                    onClick: () => { router.back() }
+                },
+                actions: undefined,
+            });
+        }
+    }, [topic, challengeName, setConfig]);
 
     const loadData = async () => {
         loadTopic();
@@ -90,24 +102,8 @@ export default function ChallengeDetailPage() {
 
     if (!topic) return <></>
 
-    const challengeType = String(params.challengeType);
-
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
-            <div className="mt-6 flex justify-between items-center">
-                <div className="flex-1 flex">
-                    <RoundButton icon={<BackSVG />} onClick={() => { router.back() }} size="s" secondary />
-                </div>
-                <div className="flex justify-center text-xl">{topic.name}</div>
-                <div className="flex flex-1 items-center justify-end p-1 flex-shrink-0">
-                    <MaskedSvgIcon
-                        src={`/images/challenges/${challengeType}.svg`}
-                        alt={challengeType}
-                        size="w-5 h-5"
-                        color="bg-cyan-800"
-                    />
-                </div>
-            </div>
             <div className="flex justify-center text-base opacity-70">
                 {challengeName}
             </div>

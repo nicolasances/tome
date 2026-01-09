@@ -9,13 +9,24 @@ import Tick from "@/app/ui/graphics/icons/Tick";
 import { FCTypeTracking, groupTrackingEvents, SectionTracking, TopicTracking } from "@/utils/TrackingEventUtil";
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react";
+import { useHeader } from "@/context/HeaderContext";
 
 export default function TopicRefreshTrackingPage() {
 
     const params = useParams()
+    const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
     const [groupedEvents, setGroupedEvents] = useState<TopicTracking>()
+
+    useEffect(() => {
+        if (topic) {
+            setConfig({
+                title: `${topic.name} - Tracking`,
+                actions: undefined,
+            });
+        }
+    }, [topic, setConfig]);
 
     const loadData = async () => {
         loadTopic();

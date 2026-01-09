@@ -7,16 +7,30 @@ import { TomeChallengesAPI, Challenge, Trial, JuiceChallenge } from "@/api/TomeC
 import { formatSectionCode } from "@/app/utils/sectionFormatting";
 import { JuiceTrial } from "@/app/topics/[topicId]/challenges/[challengeType]/trials/[trialId]/components/JuiceTrial";
 import { JuiceTrialRecap } from "./components/JuiceTrialRecap";
-import TomeHeader from "@/app/components/TomeHeader";
+import { useHeader } from "@/context/HeaderContext";
 
 export default function TrialPage() {
 
     const router = useRouter();
     const params = useParams()
+    const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
     const [challenge, setChallenge] = useState<Challenge>()
     const [trial, setTrial] = useState<Trial>()
+
+    useEffect(() => {
+        if (topic) {
+            setConfig({
+                title: topic.name,
+                backButton: {
+                    enabled: true,
+                    onClick: () => { router.back() }
+                },
+                actions: undefined,
+            });
+        }
+    }, [topic, setConfig]);
 
     const loadData = async () => {
         loadTrial();
@@ -61,24 +75,10 @@ export default function TrialPage() {
 
     if (!topic || !challenge || !trial) return <></>
 
-    const challengeType = (challenge as Challenge).code || 'juice';
     const sectionName = formatSectionCode((challenge as Challenge).sectionCode);
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
-            <TomeHeader
-                title={topic.name}
-                backButton={{
-                    enabled: true,
-                    onClick: () => router.back(),
-                }}
-                rightIcon={{
-                    src: `/images/challenges/${challengeType}.svg`,
-                    alt: challengeType,
-                    size: "w-5 h-5",
-                    color: "bg-cyan-800",
-                }}
-            />
             <div className="flex justify-center text-base opacity-70">
                 {sectionName}
             </div>

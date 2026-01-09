@@ -12,6 +12,7 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import { PracticeFlashcard } from "@/model/PracticeFlashcard";
 import { useTomeContext } from "@/context/TomeContext";
 import { PracticeSections } from "@/app/ui/complex/PracticeSections";
+import { useHeader } from "@/context/HeaderContext";
 
 
 export default function PracticeTopicPage() {
@@ -19,10 +20,20 @@ export default function PracticeTopicPage() {
     const params = useParams()
     const router = useRouter()
     const tomeContext = useTomeContext()
+    const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
     const [practice, setPractice] = useState<Practice>() // TODO: Define the type for practice
     const [flashcards, setFlashcards] = useState<PracticeFlashcard[]>([]); // Assuming PracticeFlashcard is the type for flashcards
+
+    useEffect(() => {
+        if (topic) {
+            setConfig({
+                title: `${topic.name} - Practice`,
+                actions: undefined,
+            });
+        }
+    }, [topic, setConfig]);
 
 
     /**
