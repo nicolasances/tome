@@ -4,7 +4,8 @@ import { FlashCardsSession } from "@/app/ui/complex/FlashCardsSession";
 import { useTomeContext } from "@/context/TomeContext";
 import { useHeader } from "@/context/HeaderContext";
 import moment from "moment";
-import { useRouter, useEffect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 
 export default function SegmentPracticePage() {

@@ -1,7 +1,6 @@
 'use client'
 
 import { Trial, JuiceChallenge, TestAnswer } from "@/api/TomeChallengesAPI";
-import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { ProgressBar } from "@/app/ui/general/ProgressBar";
 import { TestHead } from "./TestHead";
 import { TestFactory } from "./TestFactory";

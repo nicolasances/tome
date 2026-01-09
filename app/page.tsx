@@ -5,14 +5,11 @@ import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
 import { WeekDailyGoals } from "@/components/WeekDailyGoals";
 import { TopicsList } from "@/app/components/TopicsList";
-import RoundButton from "./ui/buttons/RoundButton";
-import { useCarMode } from "@/context/CarModeContext";
 import { useHeader } from "@/context/HeaderContext";
 
 export default function Home() {
 
   const [loginNeeded, setLoginNeeded] = useState<boolean | null>(null)
-  const { toggleCarMode, carMode } = useCarMode();
   const { setConfig } = useHeader();
 
   useEffect(() => {

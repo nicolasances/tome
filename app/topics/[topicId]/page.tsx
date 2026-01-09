@@ -3,7 +3,6 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import BackSVG from "@/app/ui/graphics/icons/Back";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";

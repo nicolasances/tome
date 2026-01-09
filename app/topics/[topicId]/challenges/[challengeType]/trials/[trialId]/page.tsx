@@ -8,8 +8,6 @@ import { formatSectionCode } from "@/app/utils/sectionFormatting";
 import { JuiceTrial } from "@/app/topics/[topicId]/challenges/[challengeType]/trials/[trialId]/components/JuiceTrial";
 import { JuiceTrialRecap } from "./components/JuiceTrialRecap";
 import { useHeader } from "@/context/HeaderContext";
-import RoundButton from "@/app/ui/buttons/RoundButton";
-import { useCarMode } from "@/context/CarModeContext";
 
 export default function TrialPage() {
 
@@ -20,7 +18,6 @@ export default function TrialPage() {
     const [topic, setTopic] = useState<Topic>()
     const [challenge, setChallenge] = useState<Challenge>()
     const [trial, setTrial] = useState<Trial>()
-    const { carMode } = useCarMode();
 
     useEffect(() => {
         if (topic) {
@@ -78,7 +75,6 @@ export default function TrialPage() {
 
     if (!topic || !challenge || !trial) return <></>
 
-    const challengeType = (challenge as Challenge).code || 'juice';
     const sectionName = formatSectionCode((challenge as Challenge).sectionCode);
 
     return (
