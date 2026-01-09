@@ -4,20 +4,29 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import RoundButton from "../ui/buttons/RoundButton"
 import Tick from "../ui/graphics/icons/Tick"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { LoadingBar } from "../ui/graphics/Loading"
 import { useRouter } from "next/navigation"
 import Footer from "../ui/layout/Footer"
 import BackSVG from "../ui/graphics/icons/Back"
 import { TomeTopicsAPI } from "@/api/TomeTopicsAPI"
+import { useHeader } from "@/context/HeaderContext"
 
 export default function NewTopic() {
 
     const [blogUrl, setBlogUrl] = useState('')
     const [topicName, setTopicName] = useState<string>()
     const [uploading, setUploading] = useState(false)
+    const { setConfig } = useHeader();
 
     const router = useRouter()
+
+    useEffect(() => {
+        setConfig({
+            title: 'New Topic',
+            actions: undefined,
+        });
+    }, [setConfig]);
 
     const uploadBlog = async () => {
 

@@ -8,16 +8,31 @@ import RoundButton from "@/app/ui/buttons/RoundButton";
 import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesList";
+import { useHeader } from "@/context/HeaderContext";
 
 
 export default function TopicDetailPage() {
 
     const router = useRouter();
     const params = useParams();
+    const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
     const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
     const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
+
+    useEffect(() => {
+        if (topic) {
+            setConfig({
+                title: topic.name,
+                backButton: {
+                    enabled: true,
+                    onClick: () => { router.back()}
+                },
+                actions: undefined,
+            });
+        }
+    }, [topic, setConfig]);
 
     const loadData = async () => {
         loadTopic();
@@ -131,13 +146,6 @@ export default function TopicDetailPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
-            <div className="mt-6 flex justify-between items-center">
-                <div className="flex-1 flex">
-                    <RoundButton icon={<BackSVG />} onClick={() => { router.back() }} size="s" secondary />
-                </div>
-                <div className="flex justify-center text-xl flex-1 whitespace-nowrap">{topic.name}</div>
-                <div className="flex-1"></div>
-            </div>
             <div className="flex justify-center mt-1 space-x-2 text-sm">
                 <div className="bg-cyan-900 rounded-full px-2 text-white">
                     {`${topic.numSections ?? '-'} sections`}

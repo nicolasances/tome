@@ -5,6 +5,8 @@ import "./globals.css";
 import { TomeContextProvider } from "@/context/TomeContext";
 import { CarModeContextProvider } from "@/context/CarModeContext";
 import { AudioProvider } from "@/context/AudioContext";
+import { HeaderProvider } from "@/context/HeaderContext";
+import TomeHeader from "@/app/ui/TomeHeader";
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
@@ -44,13 +46,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       >
         <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
         </div>
-        <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8">
+        <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8 flex flex-col">
           
           <AudioProvider>
             <CarModeContextProvider>
-              <TomeContextProvider>
-                {children}
-              </TomeContextProvider>
+              <HeaderProvider>
+                <TomeHeader />
+                <TomeContextProvider>
+                  {children}
+                </TomeContextProvider>
+              </HeaderProvider>
             </CarModeContextProvider>
           </AudioProvider>
 

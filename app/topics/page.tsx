@@ -5,10 +5,20 @@ import { useRouter } from "next/navigation";
 import Add from "../ui/graphics/icons/Add";
 import Footer from "../ui/layout/Footer";
 import HomeSVG from "../ui/graphics/icons/HomeSVG";
+import { useEffect } from "react";
+import { useHeader } from "@/context/HeaderContext";
 
 export default function TopicsPage() {
 
     const router = useRouter();
+    const { setConfig } = useHeader();
+
+    useEffect(() => {
+        setConfig({
+            title: 'Topics',
+            actions: undefined,
+        });
+    }, [setConfig]);
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
