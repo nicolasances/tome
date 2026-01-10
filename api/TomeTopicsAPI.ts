@@ -37,6 +37,25 @@ export class TomeTopicsAPI {
     }
 
     /**
+     * Updates the Topic with an icon
+     * 
+     * @param topicId the topic Id
+     * @param iconUrl the relative path of the chosen icon
+     */
+    async updateTopicIcon(topicId: string, iconUrl: string): Promise<void> {
+        await new TotoAPI().fetch('tome-ms-topics', `/topics/${topicId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                icon: iconUrl
+            })
+        }, false);
+    }
+
+    /**
      * Refreshes the topic
      * @param topicId the id of the topic to refresh
      */
@@ -83,6 +102,7 @@ export interface Topic {
     flashcardsCount?: number; 
     numSections?: number;
     flashcardsGenerationComplete?: boolean;
+    icon?: string;
 }
 
 export interface GetTopicsResponse {

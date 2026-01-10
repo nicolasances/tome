@@ -157,6 +157,7 @@ export default function TopicDetailPage() {
                 </div>
             } */}
             <div className="mt-8 flex justify-center items-center space-x-2">
+                <RoundButton svgIconPath={{ src: "/images/edit.svg", alt: "Change Icon" }} size="s" onClick={() => { router.push(`${params.topicId}/icon`) }}/>
                 <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic}/>
                 {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
