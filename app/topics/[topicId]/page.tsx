@@ -26,7 +26,7 @@ export default function TopicDetailPage() {
                 title: topic.name,
                 backButton: {
                     enabled: true,
-                    onClick: () => { router.back()}
+                    onClick: () => { router.back() }
                 },
                 actions: undefined,
             });
@@ -101,7 +101,7 @@ export default function TopicDetailPage() {
                     const totalTrials = expectedTrialsByChallengeCode[challenge.code] || 0;
 
                     console.log(`${numCompletedTrials} / ` + totalTrials);
-                    
+
                     extendedChallenge.progress = Math.round((numCompletedTrials / totalTrials) * 100);
 
                     // Score is calculated ONLY if all trials are completed
@@ -157,8 +157,13 @@ export default function TopicDetailPage() {
                 </div>
             } */}
             <div className="mt-8 flex justify-center items-center space-x-2">
-                <RoundButton svgIconPath={{ src: "/images/edit.svg", alt: "Change Icon" }} size="s" onClick={() => { router.push(`${params.topicId}/icon`) }}/>
-                <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic}/>
+                <RoundButton
+                    svgIconPath={{ src: topic?.icon ?? "/images/tome-logo.svg", alt: "Change Icon" }}
+                    size={topic?.icon ? "m" : "s"}
+                    secondary={topic?.icon != null}
+                    onClick={() => { router.push(`${params.topicId}/icon`) }}
+                />
+                <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic} />
                 {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
                 {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}

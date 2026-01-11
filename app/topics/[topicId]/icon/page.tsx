@@ -33,6 +33,17 @@ const AVAILABLE_ICONS = [
     'war-axe.svg',
     'war-tank.svg',
     'warrior.svg',
+    'castle.svg',
+    'castle-flag.svg',
+    'london-bridge.svg',
+    'uk.svg',
+    'flower-tulip.svg',
+    'king.svg',
+    'spinning-sword.svg',
+    'axe.svg',
+    'branch.svg',
+    'globe.svg',
+    'explosion.svg',
 ];
 
 export default function TopicIconPage() {
@@ -46,7 +57,7 @@ export default function TopicIconPage() {
     useEffect(() => {
         if (topic) {
             setConfig({
-                title: `${topic.name} - Icon`,
+                title: `${topic.name}`,
                 backButton: {
                     enabled: true,
                     onClick: () => { router.back() }
@@ -72,8 +83,8 @@ export default function TopicIconPage() {
     if (!topic) return <></>
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full py-6">
-            <div className="text-sm text-center mb-6 text-gray-400">
+        <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full mb-8">
+            <div className="text-base text-center mb-8 text-cyan-900">
                 Select an icon for this topic
             </div>
             <div className="grid grid-cols-4 gap-4">

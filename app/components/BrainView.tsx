@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useRouter } from "next/navigation";
 import { Challenge, TomeChallengesAPI } from "@/api/TomeChallengesAPI";
+import { MaskedSvgIcon } from "./MaskedSvgIcon";
 
 interface ExtendedTopic {
     topic: Topic;
@@ -71,7 +72,7 @@ export function BrainTile({ topic, onClick }: { topic: ExtendedTopic, onClick?: 
     const opacity = topic.status === "not-started" ? 0.1 : topic.progress / 100;
 
     return (
-        <div className={`w-10 h-10 rounded bg-cyan-700 cursor-pointer`}
+        <div className={`w-10 h-10 rounded bg-cyan-700 cursor-pointer relative`}
             style={{
                 transform: pressed ? "scale(0.95)" : "scale(1)",
             }}
@@ -82,7 +83,16 @@ export function BrainTile({ topic, onClick }: { topic: ExtendedTopic, onClick?: 
             onTouchEnd={() => setPressed(false)}
             onClick={() => { if (onClick) onClick(topic) }}
         >
-            <div className={`w-full h-full flex items-center rounded justify-center ${bgColor}`} style={{ opacity }}>
+            <div className={`absolute inset-0 rounded ${bgColor}`} style={{ opacity }} />
+            <div className={`w-full h-full flex items-center rounded justify-center relative z-10`}>
+                {topic.topic.icon && (
+                    <MaskedSvgIcon
+                        src={topic.topic.icon}
+                        alt={topic.topic.name}
+                        size="w-6 h-6"
+                        color="bg-cyan-800"
+                    />
+                )}
             </div>
         </div >
     )
