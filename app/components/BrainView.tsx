@@ -31,7 +31,6 @@ export function BrainView() {
             promises.push(new TomeChallengesAPI().getChallenges());
 
             const [topicsResponse, challengesResponse] = await Promise.all(promises) as [{ topics: Topic[] }, { challenges: { challenge: Challenge, status: "not-started" | "in-progress" | "completed" }[] }];
-            await new Promise(resolve => setTimeout(resolve, 3000)); // Artificial delay to show loading state
 
             // Calculate progress for each topic based on challenges. For now it's just the number of completed challenges / total challenges for the topic 
             const extendedTopics: ExtendedTopic[] = topicsResponse.topics.map(topic => {
