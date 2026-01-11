@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { getStoredUserToken, googleSignIn } from "@/utils/AuthUtil";
 import { AuthAPI } from "@/api/AuthAPI";
-import { WeekDailyGoals } from "@/components/WeekDailyGoals";
-import { TopicsList } from "@/app/components/TopicsList";
 import { useHeader } from "@/context/HeaderContext";
+import { BrainView } from "./components/BrainView";
 
 export default function Home() {
 
@@ -85,13 +84,10 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
 
-      <TopicsList />
-
-      <div className="flex-1"></div>
-
-      <div className="mb-2">
-        <WeekDailyGoals />
+      <div className="mt-6 mx-4">
+        <BrainView />
       </div>
+
     </div>
   );
 }
