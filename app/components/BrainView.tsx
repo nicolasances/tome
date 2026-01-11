@@ -15,17 +15,23 @@ interface ExtendedTopic {
 export function BrainView() {
 
     const [topics, setTopics] = useState<ExtendedTopic[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const loadTopics = async () => {
+
         try {
+
+            setTimeout(() => {
+                if (topics.length === 0) setLoading(true)
+            }, 300); // Show loading only if it takes more than 200ms
 
             const promises = [];
             promises.push(new TomeTopicsAPI().getTopics());
             promises.push(new TomeChallengesAPI().getChallenges());
 
             const [topicsResponse, challengesResponse] = await Promise.all(promises) as [{ topics: Topic[] }, { challenges: { challenge: Challenge, status: "not-started" | "in-progress" | "completed" }[] }];
+            await new Promise(resolve => setTimeout(resolve, 3000)); // Artificial delay to show loading state
 
             // Calculate progress for each topic based on challenges. For now it's just the number of completed challenges / total challenges for the topic 
             const extendedTopics: ExtendedTopic[] = topicsResponse.topics.map(topic => {
@@ -58,18 +64,35 @@ export function BrainView() {
     return (
         <div className="grid grid-cols-7 gap-2">
             {topics && topics.map((t) => (
-                <BrainTile key={`braintile-${t.topic.id!}`} topic={t} onClick={() => { router.push(`/topics/${t.topic.id}`) }} />
+                <BrainTile key={`braintile-${t.topic.id!}`} topic={t} onClick={() => { router.push(`/topics/${t.topic.id}`) }} loading={false} />
+            ))}
+            {loading && topics.length === 0 && Array.from({ length: 12 }).map((_, i) => (
+                <BrainTile key={`braintile-loading-${i}`} loading={true} />
             ))}
         </div>
     )
 }
 
-export function BrainTile({ topic, onClick }: { topic: ExtendedTopic, onClick?: (topic: ExtendedTopic) => void }) {
+export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, onClick?: (topic: ExtendedTopic) => void, loading: boolean }) {
 
     const [pressed, setPressed] = useState(false);
+    const [opacity, setOpacity] = useState(0);
+    const [bgColor, setBgColor] = useState("bg-lime-200");
+    const timerRef = 0;
 
-    const bgColor = "bg-lime-200";  // That's 100% progress 
-    const opacity = topic.status === "not-started" ? 0.1 : topic.progress / 100;
+    // const finalOpacity = (topic?.status === "not-started" ? 0.1 : (topic?.progress ?? 0) / 100);
+
+    useEffect(() => {
+        if (loading) setInterval(() => {
+            setOpacity(Math.random() * 0.2);
+            setBgColor("bg-black");
+        }, 500)
+        else {
+            setOpacity((topic?.status === "not-started" ? 0.1 : (topic?.progress ?? 0) / 100));
+            setBgColor("bg-lime-200");
+            clearInterval(timerRef);
+        }
+    }, [loading])
 
     return (
         <div className={`w-10 h-10 rounded bg-cyan-700 cursor-pointer relative`}
@@ -81,11 +104,11 @@ export function BrainTile({ topic, onClick }: { topic: ExtendedTopic, onClick?: 
             onMouseLeave={() => setPressed(false)}
             onTouchStart={() => setPressed(true)}
             onTouchEnd={() => setPressed(false)}
-            onClick={() => { if (onClick) onClick(topic) }}
+            onClick={() => { if (onClick && topic) onClick(topic) }}
         >
             <div className={`absolute inset-0 rounded ${bgColor}`} style={{ opacity }} />
             <div className={`w-full h-full flex items-center rounded justify-center relative z-10`}>
-                {topic.topic.icon && (
+                {topic?.topic.icon && (
                     <MaskedSvgIcon
                         src={topic.topic.icon}
                         alt={topic.topic.name}
