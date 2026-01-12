@@ -44,6 +44,11 @@ const AVAILABLE_ICONS = [
     'branch.svg',
     'globe.svg',
     'explosion.svg',
+    'russia-cathedral.svg',
+    'viking-face.svg',
+    'viking-ship.svg',
+    'viking-helmet.svg',
+    'helm.svg'
 ];
 
 export default function TopicIconPage() {
