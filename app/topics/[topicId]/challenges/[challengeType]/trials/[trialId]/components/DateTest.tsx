@@ -14,7 +14,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
     const handleSpeechRecording = (transcribedText: string) => {
 
         // Parse the transcript to extract the year
-        const year = parseYearFromSpeech(transcribedText);
+        const year = parseYearFromSpeech(transcribedText, correctYear);
 
         if (year) {
             yearInputRef.current?.fillYearFromSpeech(year);
@@ -28,9 +28,10 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
      * Parses a year from the given transcript.
      * It can parse both numeric years (e.g., "2021") and spoken years (e.g., "twenty twenty one").
      * @param transcript the recorded text
+     * @param correctYear the expected year to match digit count
      * @returns 
      */
-    const parseYearFromSpeech = (transcript: string): number | null => {
+    const parseYearFromSpeech = (transcript: string, correctYear: number): number | null => {
 
         // Remove extra whitespace and convert to lowercase
         const cleaned = transcript.toLowerCase().trim();
@@ -38,8 +39,12 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
         // Remove anything that is not a number
         const numericOnly = cleaned.replace(/[^0-9]/g, '');
 
-        // Try to extract a 4-digit number
-        const match = numericOnly.match(/\b(\d{4})\b/);
+        // Determine the number of digits in correctYear
+        const digitCount = correctYear.toString().length;
+
+        // Try to extract a number with the same digit count as correctYear
+        const regexPattern = new RegExp(`\\b(\\d{${digitCount}})\\b`);
+        const match = numericOnly.match(regexPattern);
         if (match) {
             return parseInt(match[1]);
         }
