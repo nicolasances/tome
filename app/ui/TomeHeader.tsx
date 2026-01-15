@@ -80,8 +80,9 @@ export default function TomeHeader() {
                 style={{ backgroundColor: 'var(--background)' }}
             >
                 <div className="flex flex-col gap-4">
-                    <MenuItem onClick={() => {window.location = "/" as any}} icon="/images/home.svg" iconColor="bg-cyan-700" label="Home" />
-                    <MenuItem onClick={toggleCarMode} icon="/images/car.svg" iconColor={carMode ? "bg-red-700" : "bg-cyan-700"} label="Car Mode" tag={carMode ? "active" : undefined} />
+                    <MenuItem onClick={() => {setIsMenuOpen(false); window.location = "/" as any}} icon="/images/home.svg" iconColor="bg-cyan-700" label="Home" />
+                    <MenuItem onClick={() => {setIsMenuOpen(false); toggleCarMode()}} icon="/images/car.svg" iconColor={carMode ? "bg-red-700" : "bg-cyan-700"} label="Car Mode" tag={carMode ? "active" : undefined} />
+                    <MenuItem onClick={() => {setIsMenuOpen(false); window.location = "/settings" as any}} icon="/images/settings.svg" iconColor="bg-cyan-700" label="Settings" />
                 </div>
             </div>
         </>

@@ -3,11 +3,14 @@
  */
 export class WhisperAPI {
   /**
-   * Transcribe audio blob to text using OpenAI Whisper
+   * Transcribe audio blob to text using OpenAI Whisper model. 
+   * 
    * @param audioBlob - The audio blob to transcribe
+   * @param modelHost - who is hosting the model: "toto" means that Toto is hosting the model (on the chosen hyperscaler), while "openai" uses the OpenAI API (paying)
+   * 
    * @returns Promise with the transcribed text
    */
-  async transcribeAudio(audioBlob: Blob): Promise<string> {
+  async transcribeAudio(audioBlob: Blob, modelHost: "toto" | "openai"): Promise<string> {
     const formData = new FormData();
     
     // Determine file extension based on MIME type
@@ -20,6 +23,8 @@ export class WhisperAPI {
     
     console.log('Sending audio blob with MIME type:', audioBlob.type, 'as', fileName);
     formData.append('file', audioBlob, fileName);
+
+    formData.append("modelHost", modelHost);
 
     try {
       const response = await fetch('/api/transcribe', {

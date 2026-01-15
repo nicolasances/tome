@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
+import { TotoAPI } from '@/api/TotoAPI';
 
 const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
@@ -10,10 +11,11 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   let tempFilePath: string | null = null;
-  
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const modelHost = formData.get('modelHost') as string;
 
     if (!file) {
       return NextResponse.json(
@@ -21,8 +23,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    console.log('Received file:', file.name, 'type:', file.type, 'size:', file.size);
 
     // Convert File to Buffer
     const arrayBuffer = await file.arrayBuffer();
@@ -36,18 +36,36 @@ export async function POST(request: NextRequest) {
     const fileExtension = file.name.split('.').pop() || 'webm';
     const tempFileName = `audio-${Date.now()}.${fileExtension}`;
     tempFilePath = path.join(tempDir, tempFileName);
-    
+
     fs.writeFileSync(tempFilePath, buffer);
     console.log('Wrote temporary file:', tempFilePath, 'size:', buffer.length);
 
     // Read the file back as a stream for OpenAI
     const fileStream = fs.createReadStream(tempFilePath);
 
-    // Call OpenAI Whisper API
-    const transcription = await openai.audio.transcriptions.create({
-      file: fileStream as any,
-      model: 'whisper-1',
-    });
+    // Call Whisper API, depending on the model host
+    let transcription = { text: "" };
+
+    if (modelHost === 'openai') {
+      transcription = await openai.audio.transcriptions.create({
+        file: fileStream as any,
+        model: 'whisper-1',
+      });
+    }
+    else {
+      const body = new FormData();
+      body.append("file", file);
+
+      const response = await new TotoAPI().fetch('whispering', `/transcribe`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: body
+      }, false);
+
+      transcription = response.json() as any;
+    }
 
     console.log('Transcription result:', transcription.text);
 
