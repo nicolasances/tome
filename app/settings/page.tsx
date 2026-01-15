@@ -1,73 +1,55 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { SettingsContext } from "@/context/SettingsContext";
+import { MaskedSvgIcon } from "../components/MaskedSvgIcon";
+import RoundButton from "../ui/buttons/RoundButton";
+import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
 
 export default function Settings() {
 
-  const { setConfig } = useHeader();
-  const [whisperingModel, setWhisperingModel] = useState<'openai' | 'toto'>('openai');
+  const { whisperHost, setWhisperHost } = useContext(SettingsContext)!;
+  const router = useRouter();
+  const { setConfig } = useHeader()
 
   useEffect(() => {
     setConfig({
-      title: 'Settings',
-      actions: undefined,
-    });
-
-    // Load saved preference from localStorage
-    const saved = localStorage.getItem('whisperingModel');
-    if (saved === 'toto' || saved === 'openai') {
-      setWhisperingModel(saved);
-    }
-  }, [setConfig]);
+      title: "Settings" 
+    })
+  }, [setConfig])
 
   const handleWhisperingModelChange = (value: 'openai' | 'toto') => {
-    setWhisperingModel(value);
-    localStorage.setItem('whisperingModel', value);
+    setWhisperHost(value);
   };
 
   return (
-    <div className="w-full px-4">
-      <div className="space-y-6 pt-6">
+    <div className="w-full px-8">
+      <div className="space-y-6 pt-10">
         {/* Whispering Model Setting */}
         <div className="">
           <div className="text-lg mb-4 text-gray-800">Whisper Model</div>
           <div className="space-y-3">
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="whisperingModel"
-                value="openai"
-                checked={whisperingModel === 'openai'}
-                onChange={(e) => handleWhisperingModelChange(e.target.value as 'openai')}
-                className="w-4 h-4 text-cyan-600 cursor-pointer"
-              />
-              <span className="ml-3 text-gray-700">Open AI Whisper</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="radio"
-                name="whisperingModel"
-                value="toto"
-                checked={whisperingModel === 'toto'}
-                onChange={(e) => handleWhisperingModelChange(e.target.value as 'toto')}
-                className="w-4 h-4 text-cyan-600 cursor-pointer"
-              />
-              <span className="ml-3 text-gray-700">Toto Whisper</span>
-            </label>
+            <RadioButton label="OpenAI Whisper" selected={whisperHost === 'openai'} onClick={() => handleWhisperingModelChange('openai')} />
+            <RadioButton label="Toto Whisper" selected={whisperHost === 'toto'} onClick={() => handleWhisperingModelChange('toto')} />
           </div>
         </div>
+      </div>
+      <div className="flex justify-center fixed bottom-6 left-0 right-0">
+        <RoundButton svgIconPath={{ src: "/images/home.svg", alt: "Home" }} onClick={() => { router.push("/") }} />
       </div>
     </div>
   );
 }
 
-function RadioButton({label, selected, onClick}: {label: string, selected: boolean, onClick: () => void}) {
+function RadioButton({ label, selected, onClick }: { label: string, selected: boolean, onClick: () => void }) {
 
   return (
-    <div className="flex items-center">
-      <div className={"w-4 h-4 min-w-4 ${selected ? 'bg-green-200' : ''}"}></div>
-      <div className="">{label}</div>
+    <div className="flex items-center text-base" onClick={onClick}>
+      <div className={`w-6 h-6 min-w-6 border-2 rounded-full ${selected ? 'bg-cyan-300 border-cyan-300' : 'border-cyan-700'}`}>
+        {selected && <MaskedSvgIcon src="/images/tick.svg" alt="Selected" />}
+      </div>
+      <div className={`ml-2 ${selected ? 'text-cyan-300' : ''}`}>{label}</div>
     </div>
   )
 } 
