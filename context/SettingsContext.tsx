@@ -2,7 +2,7 @@
 import { createContext, useState, useEffect } from "react";
 
 interface SettingsContextType {
-    whisperHost: "toto" | "openai";
+    whisperHost?: "toto" | "openai";
     setWhisperHost: (host: "toto" | "openai") => void;
 }
 
@@ -12,7 +12,7 @@ export const SettingsContext = createContext<SettingsContextType | undefined>(un
 export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
     // Always start with default to match server-side render
-    const [whisperHost, setWhisperHost] = useState<"toto" | "openai">("openai");
+    const [whisperHost, setWhisperHost] = useState<"toto" | "openai" | undefined>(undefined);
 
     // Load from localStorage after component mounts (client-side only)
     useEffect(() => {
@@ -24,7 +24,9 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
     // Save to localStorage whenever it changes
     useEffect(() => {
-        localStorage.setItem("whisperHost", whisperHost);
+        if (whisperHost) {
+            localStorage.setItem("whisperHost", whisperHost);
+        }
     }, [whisperHost]);
 
     return (

@@ -28,6 +28,12 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
     // ============ WHISPER MODE ============
     const handleRecordingComplete = async (audioBlob: Blob) => {
+        
+        if (!whisperHost) {
+            console.error("Whisper host is not set in SettingsContext");
+            return;
+        }
+        
         // If caller wants raw audio blob, provide it
         onAudioBlob?.(audioBlob);
 
