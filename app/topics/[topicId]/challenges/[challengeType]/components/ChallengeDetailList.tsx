@@ -6,8 +6,13 @@ import { Challenge, Trial } from "@/api/TomeChallengesAPI";
 import { formatSectionCode } from "@/app/utils/sectionFormatting";
 import { ProgressBar } from "@/app/ui/general/ProgressBar";
 
+
+export interface ExtendedChallenge extends Challenge {
+    enabled: boolean;
+}
+
 interface ChallengeDetailListProps {
-    challenges: Challenge[];
+    challenges: ExtendedChallenge[];
     nonExpiredTrials: Trial[];
     onChallengeClick?: (challengeId: string) => void;
 }
@@ -43,11 +48,14 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: { challenge: Challenge; nonExpiredTrials: Trial[]; onChallengeClick?: (challengeId: string) => void }) {
+function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: { challenge: ExtendedChallenge; nonExpiredTrials: Trial[]; onChallengeClick?: (challengeId: string) => void }) {
 
     const [pressed, setPressed] = useState(false);
 
     const handleClick = () => {
+
+        if (!challenge.enabled) return;
+
         onChallengeClick?.(challenge.id);
     }
     const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
@@ -61,6 +69,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     const getChallengeIcon = () => {
 
         if (isChallengeCompleted) return "/images/challenge-completed.svg";
+        else if (!challenge.enabled) return "/images/pause.svg";
 
         return "/images/challenge-todo.svg";
 
@@ -78,21 +87,23 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     }
 
     return (
-        <div className={`text-base flex items-center cursor-pointer ${isChallengeCompleted ? 'text-cyan-200' : ''}`}
+        <div className={`text-base flex items-center cursor-pointer ${isChallengeCompleted ? 'text-cyan-200' : !challenge.enabled ? 'text-cyan-700' : ''}`}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
+            onTouchStart={() => setPressed(true)}
+            onTouchEnd={() => setPressed(false)}
             onClick={handleClick}
             style={{
                 opacity: pressed ? 0.5 : 1,
             }}
         >
-            <div className={`w-10 h-10 mr-3 flex items-center justify-center border-2 ${isChallengeCompleted ? "border-cyan-200" : "border-cyan-800"} rounded-full p-1`}>
+            <div className={`w-10 h-10 mr-3 flex items-center justify-center border-2 ${isChallengeCompleted ? "border-cyan-200" :  !challenge.enabled ? "border-cyan-600" : "border-cyan-800"} rounded-full p-1`}>
                 <MaskedSvgIcon
                     src={getChallengeIcon()}
                     alt="challenge"
                     size="w-5 h-5"
-                    color={`${isChallengeCompleted ? "bg-cyan-200" : "bg-cyan-800"}`}
+                    color={`${isChallengeCompleted ? "bg-cyan-200" :  !challenge.enabled ? "bg-cyan-600": "bg-cyan-800"}`}
                 />
             </div>
             <div className="flex-1">

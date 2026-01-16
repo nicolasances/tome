@@ -3,8 +3,8 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
-import { ChallengeDetailList } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
+import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
+import { ChallengeDetailList, ExtendedChallenge } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 import { useHeader } from "@/context/HeaderContext";
 
 export default function ChallengeDetailPage() {
@@ -14,7 +14,7 @@ export default function ChallengeDetailPage() {
     const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
-    const [challenges, setChallenges] = useState<any[]>([]);
+    const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
     const [challengeName, setChallengeName] = useState<string>("");
     const [trials, setTrials] = useState<Trial[]>([]);
 
@@ -34,17 +34,6 @@ export default function ChallengeDetailPage() {
     const loadData = async () => {
         loadTopic();
         loadChallenges();
-        loadTrials();
-    }
-
-    /**
-     * Loads all the non-expired trials for the challenge identified by the code (in params) and for the given topic
-     */
-    const loadTrials = async () => {
-
-        const { trials } = await new TomeChallengesAPI().getNonExpiredTrialsOnChallenge(String(params.topicId), String(params.challengeType));
-
-        setTrials(trials);
     }
 
     /**
@@ -53,15 +42,43 @@ export default function ChallengeDetailPage() {
      */
     const loadChallenges = async () => {
 
+        const [{challenges}, {trials}] = await Promise.all([
+            new TomeChallengesAPI().getTopicChallenges(String(params.topicId)),
+            new TomeChallengesAPI().getNonExpiredTrialsOnChallenge(String(params.topicId), String(params.challengeType))
+        ]);
 
-        const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId));
+        setTrials(trials);
 
         if (!challenges) return;
 
         // Filter out to only keep the challenge with the matching type
-        const filteredChallenges = challenges.filter(challenge => challenge.code === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
+        // Sort by section index
+        const filteredChallenges: Challenge[] = challenges.filter(challenge => challenge.code === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
 
-        setChallenges(filteredChallenges);
+        // Extend challenges
+        // 1. Find the lowest section index that has NOT completed the trial
+        // 1.1. Find the set of completed section indexes
+        const completedSectionIndexes = new Set<number>();
+        trials.forEach(trial => {
+            const challenge = challenges.find(challenge => challenge.id === trial.challengeId);
+            if (challenge && trial.completedOn) {
+                completedSectionIndexes.add(challenge.sectionIndex);
+            }
+        });
+        
+        // 1.2. Find the lowest section index that is not in the completed set
+        let lowestIncompleteSectionIndex = 0;
+        if (completedSectionIndexes.size > 0) {
+            lowestIncompleteSectionIndex = Array.from(completedSectionIndexes.values()).sort((a, b) => a - b)[completedSectionIndexes.size - 1] + 1;
+        }
+
+        // 2. Mark challenges as enabled if their section index is less than or equal to the lowest incomplete section index
+        const extendedChallenges: ExtendedChallenge[] = filteredChallenges.map(challenge => ({
+            ...challenge,
+            enabled: challenge.sectionIndex <= lowestIncompleteSectionIndex
+        }));
+
+        setChallenges(extendedChallenges);
 
         if (filteredChallenges && filteredChallenges.length > 0) {
             setChallengeName(filteredChallenges[0].name);
@@ -82,9 +99,6 @@ export default function ChallengeDetailPage() {
      * @param challengeId the id of the challenge to start or resume a trial for
      */
     const startOrResumeTrial = async (challengeId: string) => {
-
-        console.log(`Starting trial on challenge ${challengeId}`);
-
 
         const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | { code: string; message: string };
 
