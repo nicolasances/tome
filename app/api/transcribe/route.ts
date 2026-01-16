@@ -3,7 +3,6 @@ import OpenAI from 'openai';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-import { TotoAPI } from '@/api/TotoAPI';
 
 const openai = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
@@ -15,7 +14,6 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    const modelHost = formData.get('modelHost') as string;
 
     if (!file) {
       return NextResponse.json(
@@ -46,26 +44,10 @@ export async function POST(request: NextRequest) {
     // Call Whisper API, depending on the model host
     let transcription = { text: "" };
 
-    if (modelHost === 'openai') {
-      transcription = await openai.audio.transcriptions.create({
-        file: fileStream as any,
-        model: 'whisper-1',
-      });
-    }
-    else {
-      const body = new FormData();
-      body.append("file", file);
-
-      const response = await new TotoAPI().fetch('whispering', `/transcribe`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: body
-      }, false);
-
-      transcription = response.json() as any;
-    }
+    transcription = await openai.audio.transcriptions.create({
+      file: fileStream as any,
+      model: 'whisper-1',
+    });
 
     console.log('Transcription result:', transcription.text);
 
