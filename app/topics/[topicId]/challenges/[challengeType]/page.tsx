@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengeDetailList, ExtendedChallenge } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 import { useHeader } from "@/context/HeaderContext";
+import { loadTopicChallenges } from "./trials/[trialId]/logic/trialLogic";
 
 export default function ChallengeDetailPage() {
 
@@ -42,46 +43,15 @@ export default function ChallengeDetailPage() {
      */
     const loadChallenges = async () => {
 
-        const [{challenges}, {trials}] = await Promise.all([
-            new TomeChallengesAPI().getTopicChallenges(String(params.topicId)),
-            new TomeChallengesAPI().getNonExpiredTrialsOnChallenge(String(params.topicId), String(params.challengeType))
-        ]);
+        const response = await loadTopicChallenges(String(params.topicId), String(params.challengeType));
 
-        setTrials(trials);
+        if (!response) return;
 
-        if (!challenges) return;
+        setTrials(response.trials);
+        setChallenges(response.challenges);
 
-        // Filter out to only keep the challenge with the matching type
-        // Sort by section index
-        const filteredChallenges: Challenge[] = challenges.filter(challenge => challenge.code === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
-
-        // Extend challenges
-        // 1. Find the lowest section index that has NOT completed the trial
-        // 1.1. Find the set of completed section indexes
-        const completedSectionIndexes = new Set<number>();
-        trials.forEach(trial => {
-            const challenge = challenges.find(challenge => challenge.id === trial.challengeId);
-            if (challenge && trial.completedOn) {
-                completedSectionIndexes.add(challenge.sectionIndex);
-            }
-        });
-        
-        // 1.2. Find the lowest section index that is not in the completed set
-        let lowestIncompleteSectionIndex = 0;
-        if (completedSectionIndexes.size > 0) {
-            lowestIncompleteSectionIndex = Array.from(completedSectionIndexes.values()).sort((a, b) => a - b)[completedSectionIndexes.size - 1] + 1;
-        }
-
-        // 2. Mark challenges as enabled if their section index is less than or equal to the lowest incomplete section index
-        const extendedChallenges: ExtendedChallenge[] = filteredChallenges.map(challenge => ({
-            ...challenge,
-            enabled: challenge.sectionIndex <= lowestIncompleteSectionIndex
-        }));
-
-        setChallenges(extendedChallenges);
-
-        if (filteredChallenges && filteredChallenges.length > 0) {
-            setChallengeName(filteredChallenges[0].name);
+        if (response.challenges && response.challenges.length > 0) {
+            setChallengeName(response.challenges[0].name);
         }
     }
 
