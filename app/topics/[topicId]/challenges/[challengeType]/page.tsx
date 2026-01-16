@@ -68,7 +68,7 @@ export default function ChallengeDetailPage() {
      * 
      * @param challengeId the id of the challenge to start or resume a trial for
      */
-    const startOrResumeTrial = async (challengeId: string) => {
+    const startOrResumeTrial = async (challengeId: string, action: "run" | "recap") => {
 
         const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | { code: string; message: string };
 

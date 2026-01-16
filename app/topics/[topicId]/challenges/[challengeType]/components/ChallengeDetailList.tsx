@@ -16,7 +16,7 @@ export interface ExtendedChallenge extends Challenge {
 interface ChallengeDetailListProps {
     challenges: ExtendedChallenge[];
     nonExpiredTrials: Trial[];
-    onChallengeClick?: (challengeId: string) => void;
+    onChallengeClick?: (challengeId: string, action: "run" | "recap") => void;
 }
 
 export function ChallengeDetailList({ challenges, nonExpiredTrials, onChallengeClick }: ChallengeDetailListProps) {
@@ -50,19 +50,20 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: { challenge: ExtendedChallenge; nonExpiredTrials: Trial[]; onChallengeClick?: (challengeId: string) => void }) {
+function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: { challenge: ExtendedChallenge; nonExpiredTrials: Trial[]; onChallengeClick?: (challengeId: string, action: "run" | "recap") => void }) {
 
     const [pressed, setPressed] = useState(false);
+
+    const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
+    const isChallengeCompleted = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
+    const challengeScore = isChallengeCompleted ? nonExpiredTrials.find(trial => trial.challengeId === challenge.id && trial.completedOn)?.score || 0 : 0;
 
     const handleClick = () => {
 
         if (!challenge.enabled) return;
 
-        onChallengeClick?.(challenge.id);
+        onChallengeClick?.(challenge.id, challenge.toRepeat || isChallengeInProgress ? "run" : "recap");
     }
-    const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
-    const isChallengeCompleted = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
-    const challengeScore = isChallengeCompleted ? nonExpiredTrials.find(trial => trial.challengeId === challenge.id && trial.completedOn)?.score || 0 : 0;
 
     /**
      * Returns the icon URL for the given challenge Id based on whether there are no trials, active trials or completed trials
