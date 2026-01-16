@@ -10,7 +10,7 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   let tempFilePath: string | null = null;
-  
+
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
@@ -21,8 +21,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    console.log('Received file:', file.name, 'type:', file.type, 'size:', file.size);
 
     // Convert File to Buffer
     const arrayBuffer = await file.arrayBuffer();
@@ -36,15 +34,17 @@ export async function POST(request: NextRequest) {
     const fileExtension = file.name.split('.').pop() || 'webm';
     const tempFileName = `audio-${Date.now()}.${fileExtension}`;
     tempFilePath = path.join(tempDir, tempFileName);
-    
+
     fs.writeFileSync(tempFilePath, buffer);
     console.log('Wrote temporary file:', tempFilePath, 'size:', buffer.length);
 
     // Read the file back as a stream for OpenAI
     const fileStream = fs.createReadStream(tempFilePath);
 
-    // Call OpenAI Whisper API
-    const transcription = await openai.audio.transcriptions.create({
+    // Call Whisper API, depending on the model host
+    let transcription = { text: "" };
+
+    transcription = await openai.audio.transcriptions.create({
       file: fileStream as any,
       model: 'whisper-1',
     });

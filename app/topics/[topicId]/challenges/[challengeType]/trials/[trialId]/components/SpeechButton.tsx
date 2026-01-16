@@ -1,11 +1,12 @@
 'use client'
 
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useContext, useImperativeHandle, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useVoiceRecording } from "@/app/hooks/useVoiceRecording";
 import { useSpeechRecognition } from "@/app/hooks/useSpeechRecognition";
 import { WhisperAPI } from "@/api/WhisperAPI";
 import { useAudio } from "@/context/AudioContext";
+import { SettingsContext } from "@/context/SettingsContext";
 
 interface SpeechButtonProps {
     size?: "xs" | "s" | "m" | "car";
@@ -23,9 +24,16 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
     const [isTranscribing, setIsTranscribing] = useState(false);
     const { isSpeaking } = useAudio();
+    const { whisperHost } = useContext(SettingsContext)!;
 
     // ============ WHISPER MODE ============
     const handleRecordingComplete = async (audioBlob: Blob) => {
+        
+        if (!whisperHost) {
+            console.error("Whisper host is not set in SettingsContext");
+            return;
+        }
+        
         // If caller wants raw audio blob, provide it
         onAudioBlob?.(audioBlob);
 
@@ -35,7 +43,7 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
             try {
                 const whisperAPI = new WhisperAPI();
-                const transcribedText = await whisperAPI.transcribeAudio(audioBlob);
+                const transcribedText = await whisperAPI.transcribeAudio(audioBlob, whisperHost);
 
                 console.log("Transcribed text:", transcribedText);
 

@@ -27,7 +27,7 @@ const HeaderContext = createContext<HeaderContextType | undefined>(undefined);
 
 export function HeaderProvider({ children }: { children: ReactNode }) {
     const [config, setConfig] = useState<HeaderConfig>({
-        title: 'Tome',
+        title: '',
         actions: undefined,
         backButton: {
             enabled: false,

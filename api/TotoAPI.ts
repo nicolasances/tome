@@ -25,7 +25,6 @@ export class TotoAPI {
   fetch(api: ApiName, path: string, options?: any, aws: boolean = false, noHeaderOverride: boolean = false) {
 
     console.log(endpoint(api));
-    
 
     if (options == null) options = { method: 'GET', headers: {} };
     if (options.headers == null) options.headers = {};
