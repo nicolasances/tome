@@ -26,9 +26,46 @@ export async function loadTopicChallenges(topicId: string, challengeType: string
     const filteredChallenges: Challenge[] = challenges.filter(challenge => challenge.code === String(challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
 
     // Extend challenges
-    const extendedChallenges = sequentialGate(filteredChallenges, trials);
+    let extendedChallenges = extendChallenges(filteredChallenges, trials);
+
+    // Apply Sequential Gate
+    extendedChallenges = sequentialGate(extendedChallenges);
+
+    // Apply Sections Group Score Gate
+    extendedChallenges = sectionsGroupScoreGate(extendedChallenges);
 
     return { challenges: extendedChallenges, trials };
+
+}
+
+/**
+ * Takes each challenge and converts it into an Extended Challenge, by adding needed additional properties (see ExtendedChallenge interface)
+ * 
+ * By default, all challenges are enabled. The gating logic is implemented elsewhere.
+ * 
+ * @param challenges 
+ * @param trials 
+ */
+function extendChallenges(challenges: Challenge[], trials: Trial[]): ExtendedChallenge[] {
+
+    // Go through each trial and take the score and apply it to the extended challenge
+    const extendedChallenges: ExtendedChallenge[] = challenges.map(challenge => {
+
+        // Find the trial for this challenge
+        const trial = trials.find(trial => trial.challengeId === challenge.id);
+
+        let score: number | undefined = undefined;
+        if (trial && trial.score !== undefined && trial.score !== null) score = trial.score;
+
+        return {
+            ...challenge,
+            enabled: true,
+            toRepeat: false,
+            score: score,
+        }
+    });
+
+    return extendedChallenges;
 
 }
 
@@ -38,29 +75,70 @@ export async function loadTopicChallenges(topicId: string, challengeType: string
  * @param challenges 
  * @param trials 
  */
-function sequentialGate(challenges: Challenge[], trials: Trial[]): ExtendedChallenge[] {
+function sequentialGate(challenges: ExtendedChallenge[]): ExtendedChallenge[] {
 
     // 1. Find the lowest section index that has NOT completed the trial
-    // 1.1. Find the set of completed section indexes
-    const completedSectionIndexes = new Set<number>();
-    trials.forEach(trial => {
-        const challenge = challenges.find(challenge => challenge.id === trial.challengeId);
-        if (challenge && trial.completedOn) {
-            completedSectionIndexes.add(challenge.sectionIndex);
-        }
-    });
+    // 1.1. Sort challenges by seciton index 
+    const sortedChallenges = challenges.slice().sort((a, b) => a.sectionIndex - b.sectionIndex);
 
     // 1.2. Find the lowest section index that is not in the completed set
     let lowestIncompleteSectionIndex = 0;
-    if (completedSectionIndexes.size > 0) {
-        lowestIncompleteSectionIndex = Array.from(completedSectionIndexes.values()).sort((a, b) => a - b)[completedSectionIndexes.size - 1] + 1;
+    for (const challenge of sortedChallenges) {
+        if (challenge.score === undefined) {
+            lowestIncompleteSectionIndex = challenge.sectionIndex;
+            break;
+        }
     }
 
     // 2. Mark challenges as enabled if their section index is less than or equal to the lowest incomplete section index
-    const extendedChallenges: ExtendedChallenge[] = challenges.map(challenge => ({
-        ...challenge,
-        enabled: challenge.sectionIndex <= lowestIncompleteSectionIndex
-    }));
+    const extendedChallenges: ExtendedChallenge[] = challenges.map(challenge => {
+        challenge.enabled = challenge.sectionIndex <= lowestIncompleteSectionIndex;
+        return challenge;
+    });
 
     return extendedChallenges;
+}
+
+/**
+ * Implements the Sections Score Gate logic. 
+ * 
+ * The logic goes as follows: 
+ * - There are N sections in a topic 
+ * - The next section in line to be executed is section Ni 
+ * - That section can only be enabled if the user has achieved a MIN_AVG_SCORE on the previous SECTIONS_WINDOW sections (Ni-1, Ni-2, ... Ni-SECTIONS_WINDOW)
+ * 
+ * @param challenges 
+ * @param trials 
+ */
+function sectionsGroupScoreGate(challenges: ExtendedChallenge[]): ExtendedChallenge[] {
+
+    const sortedChallenges = challenges.sort((a, b) => a.sectionIndex - b.sectionIndex);
+
+    const numSections = challenges.length; 
+    const SECTIONS_WINDOW = 3;
+    const MIN_AVG_SCORE = 60;
+    const currentSectionIndex = sortedChallenges.findIndex(challenge => challenge.score === undefined);
+
+    // Find the (Ni-1, Ni-2, ... Ni-SECTIONS_WINDOW)
+    if (currentSectionIndex >= SECTIONS_WINDOW && currentSectionIndex < numSections) {
+
+        const previousSections = sortedChallenges.slice(currentSectionIndex - SECTIONS_WINDOW, currentSectionIndex);
+
+        // Calculate average score
+        const totalScore = previousSections.reduce((sum, challenge) => sum + (challenge.score || 0), 0);
+        const avgScore = totalScore / SECTIONS_WINDOW;
+
+        // If average score is less than MIN_AVG_SCORE, disable the current section
+        if (avgScore < MIN_AVG_SCORE) {
+            sortedChallenges[currentSectionIndex].enabled = false;
+        }
+
+        // Mark all previous sections to be repeated
+        previousSections.forEach(challenge => {
+            challenge.toRepeat = true;
+        });
+    }
+
+    return sortedChallenges;
+
 }

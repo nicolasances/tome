@@ -9,6 +9,8 @@ import { ProgressBar } from "@/app/ui/general/ProgressBar";
 
 export interface ExtendedChallenge extends Challenge {
     enabled: boolean;
+    score?: number;          // Score in percent (0-100) for challenges that are currently completed
+    toRepeat: boolean;      // Whether the challenge needs to be repeated due to low score over a section group (window)
 }
 
 interface ChallengeDetailListProps {
@@ -68,12 +70,28 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
      */
     const getChallengeIcon = () => {
 
-        if (isChallengeCompleted) return "/images/challenge-completed.svg";
+        if (challenge.toRepeat) return "/images/teacher.svg";
+        else if (isChallengeCompleted) return "/images/challenge-completed.svg";
         else if (!challenge.enabled) return "/images/pause.svg";
 
         return "/images/challenge-todo.svg";
 
     }
+
+    /**
+     * Returns the colors for the challenge based on its state
+     * 
+     * @returns 
+     */
+    const getChallengeColors = () => {
+        
+        if (challenge.toRepeat) return {border: "border-cyan-800", bg: "bg-cyan-800", text: "text-cyan-800"};
+        else if (isChallengeCompleted) return {border: "border-cyan-200", bg: "bg-cyan-200", text: "text-cyan-200"};
+        else if (!challenge.enabled) return {border: "border-cyan-600", bg: "bg-cyan-600", text: "text-cyan-600"};
+
+        return {border: "border-cyan-800", bg: "bg-cyan-800", text: "text-cyan-800"};
+    }
+
 
 
     let currentProgress = 0;
@@ -87,7 +105,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     }
 
     return (
-        <div className={`text-base flex items-center cursor-pointer ${isChallengeCompleted ? 'text-cyan-200' : !challenge.enabled ? 'text-cyan-700' : ''}`}
+        <div className={`text-base flex items-center cursor-pointer ${getChallengeColors().text}`}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
             onMouseLeave={() => setPressed(false)}
@@ -98,16 +116,16 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
                 opacity: pressed ? 0.5 : 1,
             }}
         >
-            <div className={`w-10 h-10 mr-3 flex items-center justify-center border-2 ${isChallengeCompleted ? "border-cyan-200" :  !challenge.enabled ? "border-cyan-600" : "border-cyan-800"} rounded-full p-1`}>
+            <div className={`w-10 h-10 mr-3 flex items-center justify-center border-2 ${getChallengeColors().border} rounded-full p-1`}>
                 <MaskedSvgIcon
                     src={getChallengeIcon()}
                     alt="challenge"
                     size="w-5 h-5"
-                    color={`${isChallengeCompleted ? "bg-cyan-200" :  !challenge.enabled ? "bg-cyan-600": "bg-cyan-800"}`}
+                    color={`${getChallengeColors().bg}`}
                 />
             </div>
             <div className="flex-1">
-                <div>{formatSectionCode(challenge.sectionCode)}</div>
+                <div>{`${formatSectionCode(challenge.sectionCode)} ${challenge.toRepeat ? "(Repeat)" : ""}`}</div>
                 {isChallengeInProgress && (
                     <div>
                         <ProgressBar id={`progress-${challenge.id}`} hideNumber={true} current={currentProgress} max={100} size="s" />
