@@ -15,9 +15,10 @@ interface JuiceTrialProps {
     trialId: string;
     trial: Trial;
     onTrialComplete: () => void;
+    onTrialDeleted: () => void;
 }
 
-export function JuiceTrial({ challenge, trialId, trial, onTrialComplete }: JuiceTrialProps) {
+export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrialDeleted }: JuiceTrialProps) {
 
     const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>(trial.answers && trial.answers.length > 0 ? 'test' : 'context');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
@@ -132,25 +133,16 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete }: Juice
         }
     }
 
-    // const startNativeBrowserSpeech = async () => {
+    /**
+     * Deletes the current trial
+     */
+    const deleteTrial = async () => { 
 
-    //     // Always cancel any ongoing speech first
-    //     window.speechSynthesis.cancel();
+        await new TomeChallengesAPI().deleteTrial(trialId);
 
-    //     if (!carMode) return;
+        onTrialDeleted();
+    }
 
-    //     // Only speak the context when in the context phase
-    //     if (currentPhase === 'context') {
-    //         // Create utterance with the challenge context
-    //         const utterance = new SpeechSynthesisUtterance(challenge.context);
-    //         utterance.rate = 1.0;
-    //         utterance.pitch = 1.0;
-    //         utterance.volume = 1.0;
-
-    //         // Speak the text
-    //         window.speechSynthesis.speak(utterance);
-    //     }
-    // }
 
     // Stop audio on component unmount
     useEffect(() => {
@@ -171,6 +163,7 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete }: Juice
                 </div>
                 <div className="flex-1"></div>
                 <div className="flex justify-between gap-2 items-center">
+                    <RoundButton svgIconPath={{src: "/images/trash.svg", alt: "Delete Trial"}} onClick={deleteTrial} />
                     {!carMode && <RoundButton svgIconPath={{ src: "/images/car.svg", alt: "Car Mode", color: carMode ? 'bg-red-700' : '' }} secondary={carMode} onClick={toggleCarMode} />}
                     <RoundButton icon={<OkSVG />} onClick={handleStartClick} size="m" />
                 </div>

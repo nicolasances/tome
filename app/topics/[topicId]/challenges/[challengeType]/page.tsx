@@ -4,8 +4,9 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
-import { ChallengeDetailList } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
+import { ChallengeDetailList, ExtendedChallenge } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 import { useHeader } from "@/context/HeaderContext";
+import { loadTopicChallenges } from "./trials/[trialId]/logic/trialLogic";
 
 export default function ChallengeDetailPage() {
 
@@ -14,7 +15,7 @@ export default function ChallengeDetailPage() {
     const { setConfig } = useHeader();
 
     const [topic, setTopic] = useState<Topic>()
-    const [challenges, setChallenges] = useState<any[]>([]);
+    const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
     const [challengeName, setChallengeName] = useState<string>("");
     const [trials, setTrials] = useState<Trial[]>([]);
 
@@ -34,17 +35,6 @@ export default function ChallengeDetailPage() {
     const loadData = async () => {
         loadTopic();
         loadChallenges();
-        loadTrials();
-    }
-
-    /**
-     * Loads all the non-expired trials for the challenge identified by the code (in params) and for the given topic
-     */
-    const loadTrials = async () => {
-
-        const { trials } = await new TomeChallengesAPI().getNonExpiredTrialsOnChallenge(String(params.topicId), String(params.challengeType));
-
-        setTrials(trials);
     }
 
     /**
@@ -53,18 +43,15 @@ export default function ChallengeDetailPage() {
      */
     const loadChallenges = async () => {
 
+        const response = await loadTopicChallenges(String(params.topicId), String(params.challengeType));
 
-        const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId));
+        if (!response) return;
 
-        if (!challenges) return;
+        setTrials(response.trials);
+        setChallenges(response.challenges);
 
-        // Filter out to only keep the challenge with the matching type
-        const filteredChallenges = challenges.filter(challenge => challenge.code === String(params.challengeType)).sort((a, b) => a.sectionIndex - b.sectionIndex);
-
-        setChallenges(filteredChallenges);
-
-        if (filteredChallenges && filteredChallenges.length > 0) {
-            setChallengeName(filteredChallenges[0].name);
+        if (response.challenges && response.challenges.length > 0) {
+            setChallengeName(response.challenges[0].name);
         }
     }
 
@@ -81,21 +68,23 @@ export default function ChallengeDetailPage() {
      * 
      * @param challengeId the id of the challenge to start or resume a trial for
      */
-    const startOrResumeTrial = async (challengeId: string) => {
+    const startOrResumeTrial = async (challengeId: string, action: "run" | "recap", trialId?: string) => {
 
-        console.log(`Starting trial on challenge ${challengeId}`);
+        if (action == 'run') {
 
+            const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | { code: string; message: string };
 
-        const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | { code: string; message: string };
-
-        if ('code' in response) {
-            console.log('Error starting or resuming trial:', response.code, response.message);
-            return;
+            if ('code' in response) {
+                console.log('Error starting or resuming trial:', response.code, response.message);
+                return;
+            }
+            // Redirect to the trial  page
+            router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}/${action}`);
         }
-
-        // Redirect to the trial page
-        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}`);
-
+        else {
+            // Redirect to the trial page
+            router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${trialId}/${action}`);
+        }
     }
 
     useEffect(() => { loadData() }, [])

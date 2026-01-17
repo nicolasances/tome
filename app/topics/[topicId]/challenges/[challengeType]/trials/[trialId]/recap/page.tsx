@@ -5,8 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TomeChallengesAPI, Challenge, Trial, JuiceChallenge } from "@/api/TomeChallengesAPI";
 import { formatSectionCode } from "@/app/utils/sectionFormatting";
-import { JuiceTrial } from "@/app/topics/[topicId]/challenges/[challengeType]/trials/[trialId]/components/JuiceTrial";
-import { JuiceTrialRecap } from "./components/JuiceTrialRecap";
+import { JuiceTrialRecap } from "../components/JuiceTrialRecap";
 import { useHeader } from "@/context/HeaderContext";
 
 export default function TrialPage() {
@@ -44,6 +43,9 @@ export default function TrialPage() {
         const trialData = trialResponse.trial;
         setTrial(trialData);
 
+        console.log(trialData);
+        
+
         // Load the challenge
         const { challenge } = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
         setChallenge(challenge);
@@ -51,24 +53,6 @@ export default function TrialPage() {
         // Load the topic
         const topicData = await new TomeTopicsAPI().getTopic(challenge.topicId);
         setTopic(topicData);
-    }
-
-    /**
-     * When the trial is complete show a recap: 
-     * - Final Score (for that we reload the trial)
-     * - A list of individual test results and scores. For each test, the question, the given and correct answers are shown together with the score. 
-     */
-    const handleTrialComplete = () => {
-
-        loadTrial();
-
-    }
-
-    const trialIsCompleted = () => {
-
-        if (!trial) return false;
-
-        return trial?.completedOn != null && trial?.completedOn !== undefined;
     }
 
     useEffect(() => { loadData() }, [])
@@ -82,15 +66,7 @@ export default function TrialPage() {
             <div className="flex justify-center text-base opacity-70">
                 {sectionName}
             </div>
-            {!trialIsCompleted() && challenge.code === 'juice' && (
-                <JuiceTrial
-                    trial={trial}
-                    challenge={challenge as any as JuiceChallenge}
-                    trialId={String(params.trialId)}
-                    onTrialComplete={handleTrialComplete}
-                />
-            )}
-            {trialIsCompleted() && (
+            {challenge.code === 'juice' && (
                 <JuiceTrialRecap
                     challenge={challenge as any as JuiceChallenge}
                     trial={trial}
