@@ -64,6 +64,7 @@ function extendChallenges(challenges: Challenge[], trials: Trial[]): ExtendedCha
             enabled: true,
             toRepeat: false,
             score: score,
+            trialId: trial ? trial.id : undefined,
         }
     });
 

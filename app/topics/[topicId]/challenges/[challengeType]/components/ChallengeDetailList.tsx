@@ -11,6 +11,7 @@ export interface ExtendedChallenge extends Challenge {
     enabled: boolean;
     score?: number;          // Score in percent (0-100) for challenges that are currently completed
     toRepeat: boolean;      // Whether the challenge needs to be repeated due to low score over a section group (window)
+    trialId?: string;       // The trial Id of the completed trial for this challenge (if any)
 }
 
 interface ChallengeDetailListProps {
@@ -50,7 +51,7 @@ function SectionHeader({ title }: { title: string }) {
     )
 }
 
-function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: { challenge: ExtendedChallenge; nonExpiredTrials: Trial[]; onChallengeClick?: (challengeId: string, action: "run" | "recap") => void }) {
+function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: { challenge: ExtendedChallenge; nonExpiredTrials: Trial[]; onChallengeClick?: (challengeId: string, action: "run" | "recap", trialId?: string) => void }) {
 
     const [pressed, setPressed] = useState(false);
 
@@ -62,7 +63,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
 
         if (!challenge.enabled) return;
 
-        onChallengeClick?.(challenge.id, isChallengeCompleted && !challenge.toRepeat ? "recap" : "run");
+        onChallengeClick?.(challenge.id, isChallengeCompleted && !challenge.toRepeat ? "recap" : "run", challenge.trialId);
     }
 
     /**

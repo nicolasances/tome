@@ -68,24 +68,23 @@ export default function ChallengeDetailPage() {
      * 
      * @param challengeId the id of the challenge to start or resume a trial for
      */
-    const startOrResumeTrial = async (challengeId: string, action: "run" | "recap") => {
+    const startOrResumeTrial = async (challengeId: string, action: "run" | "recap", trialId?: string) => {
 
-        let trialId = undefined;
         if (action == 'run') {
+
             const response = await new TomeChallengesAPI().startOrResumeTrial(challengeId) as { id: string } | { code: string; message: string };
 
             if ('code' in response) {
                 console.log('Error starting or resuming trial:', response.code, response.message);
                 return;
             }
-            trialId = response.id;
+            // Redirect to the trial  page
+            router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}/${action}`);
         }
         else {
-            trialId = trials.find(trial => trial.challengeId == challengeId && trial.completedOn)?.id;
+            // Redirect to the trial page
+            router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${trialId}/${action}`);
         }
-
-        // Redirect to the trial page
-        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${trialId}/${action}`);
     }
 
     useEffect(() => { loadData() }, [])
