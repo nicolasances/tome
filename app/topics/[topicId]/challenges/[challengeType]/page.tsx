@@ -3,7 +3,7 @@
 import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
+import { TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengeDetailList, ExtendedChallenge } from "@/app/topics/[topicId]/challenges/[challengeType]/components/ChallengeDetailList";
 import { useHeader } from "@/context/HeaderContext";
 import { loadTopicChallenges } from "./trials/[trialId]/logic/trialLogic";

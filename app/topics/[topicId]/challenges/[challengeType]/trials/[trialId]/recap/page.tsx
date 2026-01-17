@@ -55,24 +55,6 @@ export default function TrialPage() {
         setTopic(topicData);
     }
 
-    /**
-     * When the trial is complete show a recap: 
-     * - Final Score (for that we reload the trial)
-     * - A list of individual test results and scores. For each test, the question, the given and correct answers are shown together with the score. 
-     */
-    const handleTrialComplete = () => {
-
-        loadTrial();
-
-    }
-
-    const trialIsCompleted = () => {
-
-        if (!trial) return false;
-
-        return trial?.completedOn != null && trial?.completedOn !== undefined;
-    }
-
     useEffect(() => { loadData() }, [])
 
     if (!topic || !challenge || !trial) return <></>

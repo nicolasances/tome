@@ -63,13 +63,6 @@ export default function TrialPage() {
 
     }
 
-    const trialIsCompleted = () => {
-
-        if (!trial) return false;
-
-        return trial?.completedOn != null && trial?.completedOn !== undefined;
-    }
-
     useEffect(() => { loadData() }, [])
 
     if (!topic || !challenge || !trial) return <></>
