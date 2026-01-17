@@ -57,7 +57,6 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
     const isChallengeCompleted = !isChallengeInProgress && nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
     // const noTrialOnChallengeStarted = !isChallengeInProgress && !isChallengeCompleted;
-    const challengeScore = isChallengeCompleted ? nonExpiredTrials.find(trial => trial.challengeId === challenge.id && trial.completedOn)?.score || 0 : 0;
 
     const handleClick = () => {
 
@@ -136,7 +135,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
             </div>
             <div>
                 {isChallengeCompleted && (
-                    <span>{Math.round(challengeScore * 100)}%</span>
+                    <span>{challenge.score ? Math.round(challenge.score * 100) : 0}%</span>
                 )}
             </div>
         </div>

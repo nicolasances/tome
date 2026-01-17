@@ -51,8 +51,10 @@ function extendChallenges(challenges: Challenge[], trials: Trial[]): ExtendedCha
     // Go through each trial and take the score and apply it to the extended challenge
     const extendedChallenges: ExtendedChallenge[] = challenges.map(challenge => {
 
+        // Important: there could be multiple trials on the same challenge (due to retries): keep the latest completed one. 
+
         // Find the trial for this challenge
-        const trial = trials.find(trial => trial.challengeId === challenge.id);
+        const trial = trials.filter(trial => trial.challengeId === challenge.id && trial.completedOn).sort((a, b) => new Date(b.completedOn!).getTime() - new Date(a.completedOn!).getTime())[0];
 
         let score: number | undefined = undefined;
         if (trial && trial.score !== undefined && trial.score !== null) score = trial.score;
@@ -114,9 +116,9 @@ function sectionsGroupScoreGate(challenges: ExtendedChallenge[]): ExtendedChalle
 
     const sortedChallenges = challenges.sort((a, b) => a.sectionIndex - b.sectionIndex);
 
-    const numSections = challenges.length; 
+    const numSections = challenges.length;
     const SECTIONS_WINDOW = 3;
-    const MIN_AVG_SCORE = 60;
+    const MIN_AVG_SCORE = 0.6;
     const currentSectionIndex = sortedChallenges.findIndex(challenge => challenge.score === undefined);
 
     // Find the (Ni-1, Ni-2, ... Ni-SECTIONS_WINDOW)
@@ -131,12 +133,12 @@ function sectionsGroupScoreGate(challenges: ExtendedChallenge[]): ExtendedChalle
         // If average score is less than MIN_AVG_SCORE, disable the current section
         if (avgScore < MIN_AVG_SCORE) {
             sortedChallenges[currentSectionIndex].enabled = false;
-        }
 
-        // Mark all previous sections to be repeated
-        previousSections.forEach(challenge => {
-            challenge.toRepeat = true;
-        });
+            // Mark all previous sections to be repeated
+            previousSections.forEach(challenge => {
+                challenge.toRepeat = true;
+            });
+        }
     }
 
     return sortedChallenges;
