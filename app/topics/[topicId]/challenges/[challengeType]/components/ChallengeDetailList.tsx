@@ -56,14 +56,14 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
 
     const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
     const isChallengeCompleted = !isChallengeInProgress && nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
-    const noTrialOnChallengeStarted = !isChallengeInProgress && !isChallengeCompleted;
+    // const noTrialOnChallengeStarted = !isChallengeInProgress && !isChallengeCompleted;
     const challengeScore = isChallengeCompleted ? nonExpiredTrials.find(trial => trial.challengeId === challenge.id && trial.completedOn)?.score || 0 : 0;
 
     const handleClick = () => {
 
         if (!challenge.enabled) return;
 
-        onChallengeClick?.(challenge.id, challenge.toRepeat || isChallengeInProgress || noTrialOnChallengeStarted ? "run" : "recap");
+        onChallengeClick?.(challenge.id, isChallengeCompleted && !challenge.toRepeat ? "recap" : "run");
     }
 
     /**

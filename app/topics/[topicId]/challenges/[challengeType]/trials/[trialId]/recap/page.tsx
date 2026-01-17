@@ -43,6 +43,9 @@ export default function TrialPage() {
         const trialData = trialResponse.trial;
         setTrial(trialData);
 
+        console.log(trialData);
+        
+
         // Load the challenge
         const { challenge } = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
         setChallenge(challenge);

@@ -59,7 +59,7 @@ export default function TrialPage() {
      */
     const handleTrialComplete = () => {
 
-        loadTrial();
+        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${params.trialId}/recap`);
 
     }
 
