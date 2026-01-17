@@ -78,7 +78,7 @@ export default function ChallengeDetailPage() {
         }
 
         // Redirect to the trial page
-        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}`);
+        router.push(`/topics/${params.topicId}/challenges/${params.challengeType}/trials/${response.id}/${action}`);
 
     }
 

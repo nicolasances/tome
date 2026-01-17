@@ -55,7 +55,7 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
     const [pressed, setPressed] = useState(false);
 
     const isChallengeInProgress = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && !trial.completedOn);
-    const isChallengeCompleted = nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
+    const isChallengeCompleted = !isChallengeInProgress && nonExpiredTrials.some(trial => trial.challengeId === challenge.id && trial.completedOn);
     const challengeScore = isChallengeCompleted ? nonExpiredTrials.find(trial => trial.challengeId === challenge.id && trial.completedOn)?.score || 0 : 0;
 
     const handleClick = () => {
