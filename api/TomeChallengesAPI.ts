@@ -63,6 +63,17 @@ export class TomeChallengesAPI {
     }
 
     /**
+     * Delete a trial by its id
+     * @param trialId 
+     */
+    async deleteTrial(trialId: string): Promise<void> {
+
+        await new TotoAPI().fetch(this.name, `/trials/${trialId}`, {
+            method: 'DELETE'
+        });
+    }
+
+    /**
      * Starts or resumes a trial on the given challenge.
      * 
      * @param challengeId the id of the challenge

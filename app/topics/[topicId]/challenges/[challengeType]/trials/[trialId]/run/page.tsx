@@ -87,6 +87,7 @@ export default function TrialPage() {
                     challenge={challenge as any as JuiceChallenge}
                     trialId={String(params.trialId)}
                     onTrialComplete={handleTrialComplete}
+                    onTrialDeleted={() => router.back()}
                 />
             )}
         </div>
