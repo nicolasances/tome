@@ -12,7 +12,7 @@ export class WhisperAPI {
    * 
    * @returns Promise with the transcribed text
    */
-  async transcribeAudio(audioBlob: Blob, modelHost: "toto" | "openai"): Promise<string> {
+  async transcribeAudio(audioBlob: Blob, modelHost: "toto" | "openai", mode?: "sync" | "async"): Promise<WhisperResponse> {
     const formData = new FormData();
 
     // Determine file extension based on MIME type
@@ -40,23 +40,49 @@ export class WhisperAPI {
         }
 
         const data = await response.json();
-        return data.text;
+
+        return { text: data.text };
+
       } catch (error) {
         console.error('Error transcribing audio:', error);
         throw error;
       }
     }
     else {
-      const response = (await new TotoAPI().fetch('whispering', '/transcribe', {
-        method: 'POST',
-        headers: {
-          "Accept": "application/json"
-        },
-        body: formData
-      })).json() as Promise<{ text?: string }>;
 
-      return (await response).text || "";
+      // 1. Check if there's a request to run this as a job
+      if (mode == "async") {
+        
+        // Run as a job
+        const response = (await new TotoAPI().fetch('whispering', '/transcribejob', {
+          method: 'POST',
+          headers: {
+            "Accept": "application/json"
+          },
+          body: formData
+        })).json() as Promise<{ jobId: string }>;
+
+        return { jobId: (await response).jobId };
+      }
+      else {
+
+        // Run synchronously - ok for small audio files
+        const response = (await new TotoAPI().fetch('whispering', '/transcribe', {
+          method: 'POST',
+          headers: {
+            "Accept": "application/json"
+          },
+          body: formData
+        })).json() as Promise<{ text?: string }>;
+
+        return { text: (await response).text || "" };
+      }
     }
 
   }
+}
+
+class WhisperResponse {
+  text?: string;
+  jobId?: string;
 }
