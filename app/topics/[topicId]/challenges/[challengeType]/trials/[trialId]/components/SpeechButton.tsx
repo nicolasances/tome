@@ -10,17 +10,18 @@ import { SettingsContext } from "@/context/SettingsContext";
 
 interface SpeechButtonProps {
     size?: "xs" | "s" | "m" | "car";
-    onRecordingComplete?: (transcribedText: string) => void;    // Callback to receive transcribed text
+    onRecordingComplete?: ({ transcribedText, jobId }: { transcribedText?: string, jobId?: string }) => void;    // Callback to receive transcribed text or the async job id if the mode is "async"
     onAudioBlob?: (audioBlob: Blob) => void;                    // Callback to receive raw audio blob, in case the caller wants to process it themselves
     deviceId?: string;                                          // Optional audio input device ID
-    mode?: "whisper" | "default";                               // "whisper" for audio transcription, "default" for embedded (browser) API (default: "default")
+    mode?: "sync" | "async";                                    // Mode for the transcription ("sync" or "async" for Whisper API) default is "sync"
+
 }
 
 export interface SpeechButtonHandle {
     startRecording: () => Promise<void>;
 }
 
-export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "default" }, ref) {
+export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "sync" }, ref) {
 
     const [isTranscribing, setIsTranscribing] = useState(false);
     const { isSpeaking } = useAudio();
@@ -28,12 +29,12 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
     // ============ WHISPER MODE ============
     const handleRecordingComplete = async (audioBlob: Blob) => {
-        
+
         if (!whisperHost) {
             console.error("Whisper host is not set in SettingsContext");
             return;
         }
-        
+
         // If caller wants raw audio blob, provide it
         onAudioBlob?.(audioBlob);
 
@@ -43,16 +44,21 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
             try {
                 const whisperAPI = new WhisperAPI();
-                const transcribedText = await whisperAPI.transcribeAudio(audioBlob, whisperHost);
+                const speechResponse = await whisperAPI.transcribeAudio(audioBlob, whisperHost, mode);
 
-                console.log("Transcribed text:", transcribedText);
+                if (mode == 'sync') {
+                    onRecordingComplete({ transcribedText: speechResponse.text});
+                }
+                else {
+                    // We're in async mode. Return the job ID for now
+                    onRecordingComplete({ jobId: speechResponse.jobId });
+                }
 
-                onRecordingComplete(transcribedText);
 
             }
             catch (error) {
                 console.error("Error transcribing audio:", error);
-                onRecordingComplete(""); // Pass empty string on error
+                onRecordingComplete({transcribedText: ""}); // Pass empty string on error
             }
             finally {
                 setIsTranscribing(false);
@@ -70,16 +76,16 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
         timeoutMs: 15000,
         onTranscript: (transcript: string) => {
             console.log("Speech Recognition result:", transcript);
-            onRecordingComplete?.(transcript);
+            onRecordingComplete?.({ transcribedText: transcript });
         },
         onError: (error: string) => {
             console.error("Speech Recognition error:", error);
-            onRecordingComplete?.(""); // Pass empty string on error
+            onRecordingComplete?.({ transcribedText: "" }); // Pass empty string on error
         },
     });
 
     // Determine which mode to use and if it's supported
-    const isUsingWhisper = mode === "whisper";
+    const isUsingWhisper = true;    // Always use Whisper for now
     const isSupported = isUsingWhisper ? isSupportedWhisper : isSupportedDefault;
     const isActive = isUsingWhisper ? isRecordingWhisper : isListening;
 

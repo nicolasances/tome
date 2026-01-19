@@ -8,6 +8,7 @@ import { SpeechButtonHandle } from "./SpeechButton";
 
 interface TestOptions {
     speechButtonRef?: Ref<SpeechButtonHandle>;
+    onTranscriptionJobTriggered?: (jobId: string) => void;
 }
 
 export class TestFactory {
@@ -21,6 +22,7 @@ export class TestFactory {
                         ref={options?.speechButtonRef}
                         question={test.question}
                         onAnswer={(answer) => handleAnswer(answer, test)}
+                        onTranscriptionJobTriggered={options?.onTranscriptionJobTriggered}
                     />
                 )
             case 'date':
