@@ -7,8 +7,11 @@ export class WhisperAPI {
   /**
    * Transcribe audio blob to text using OpenAI Whisper model. 
    * 
+   * Supports a mode, that specifies if this should be used synchronously (for small audio files) or asynchronously (for larger files, via a job system).
+   * 
    * @param audioBlob - The audio blob to transcribe
    * @param modelHost - who is hosting the model: "toto" means that Toto is hosting the model (on the chosen hyperscaler), while "openai" uses the OpenAI API (paying)
+   * @param mode - "sync" for synchronous transcription, "async" to run as a job (default: "sync")
    * 
    * @returns Promise with the transcribed text
    */
@@ -80,9 +83,29 @@ export class WhisperAPI {
     }
 
   }
+
+  /**
+   * Retrieves the status of a transcription job. 
+   * 
+   * If the job is completed, the transcribed text is also returned.
+   * 
+   * @param jobId - The ID of the transcription job
+   * 
+   * @returns Promise with the job status and transcribed text if completed
+   */
+  async getTranscriptionJobStatus(jobId: string): Promise<WhisperStatusResponse> {
+
+    return (await new TotoAPI().fetch('whispering', `/transcriptions/${jobId}`)).json();
+  }
 }
 
-class WhisperResponse {
+interface WhisperResponse {
   text?: string;
   jobId?: string;
+}
+
+
+interface WhisperStatusResponse {
+  status: "completed" | "not_ready"
+  text?: string;
 }
