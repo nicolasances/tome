@@ -32,7 +32,6 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
     const { carMode, toggleCarMode } = useCarMode();
     const { play: playAudio, stop: stopAudio } = useAudio();
 
-    const asyncJobTimer = useRef<NodeJS.Timeout | null>(null);
     const translationJobs = useRef<{ [key: string]: NodeJS.Timeout }>({});
 
     // Get the first "open" test
@@ -259,7 +258,7 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
     }
 
     // If we're waiting for the scores to be calculated but the user has done it all, show a loading indicator
-    if (isLastTest && answers && Object.keys(answers).length === tests.length) return (
+    if (isLastTest && pendingScores.current.length === tests.length) return (
          <div className="flex flex-1 flex-col text-base items-center justify-start px-4 pt-8 gap-4">
             <AudioLoadingBar color="bg-cyan-200" barCount={20} />
             <div>Scoring your answers..</div>
