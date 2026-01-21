@@ -26,7 +26,7 @@ export default function TopicDetailPage() {
                 title: topic.name,
                 backButton: {
                     enabled: true,
-                    onClick: () => { router.back() }
+                    onClick: () => { router.push('/') }
                 },
                 actions: undefined,
             });

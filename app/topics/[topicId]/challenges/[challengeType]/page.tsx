@@ -25,7 +25,7 @@ export default function ChallengeDetailPage() {
                 title: `${topic.name}`,
                 backButton: {
                     enabled: true,
-                    onClick: () => { router.back() }
+                    onClick: () => { router.push(`/topics/${params.topicId}`) }
                 },
                 actions: undefined,
             });
