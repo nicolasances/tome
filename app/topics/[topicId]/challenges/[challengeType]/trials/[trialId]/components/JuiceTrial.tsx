@@ -10,6 +10,7 @@ import { useCarMode } from "@/context/CarModeContext";
 import { useAudio } from "@/context/AudioContext";
 import { SpeechButtonHandle } from "./SpeechButton";
 import { WhisperAPI } from "@/api/WhisperAPI";
+import { AudioLoadingBar } from "@/components/AudioLoadingBar";
 
 interface JuiceTrialProps {
     challenge: JuiceChallenge;
@@ -24,15 +25,15 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
     const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>(trial.answers && trial.answers.length > 0 ? 'test' : 'context');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
-    
+
     const pendingScores = useRef<Promise<{ score: number }>[]>([]);
     const speechButtonRef = useRef<SpeechButtonHandle>(null);
-    const asyncJobIdsRef = useRef<string[]>([]);
-    
+
     const { carMode, toggleCarMode } = useCarMode();
     const { play: playAudio, stop: stopAudio } = useAudio();
 
     const asyncJobTimer = useRef<NodeJS.Timeout | null>(null);
+    const translationJobs = useRef<{ [key: string]: NodeJS.Timeout }>({});
 
     // Get the first "open" test
     const firstOpenTestIndex = challenge.tests.findIndex(test => test.type === 'open');
@@ -78,18 +79,6 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
      */
     const handleAnswer = async (answer: any) => {
 
-        await onAnswer(answer);
-
-        // Move to next test
-        nextTest();
-    };
-
-    /**
-     * Reacts to the user answer: stores it and sends it to the API for scoring
-     * @param answer the answer given by the user
-     */
-    const onAnswer = async (answer: any) => {
-
         const newAnswers = {
             ...answers,
             [currentTest.testId]: answer
@@ -101,7 +90,28 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
 
         pendingScores.current = [...pendingScores.current, scorePromise];
 
+        // Move to next test
+        nextTest();
+    };
 
+    /**
+     * METHOD USED ALTERNATIVELY TO handleAnswer 
+     * 
+     * Method used to handle transcription job triggered in async mode. 
+     * This method moves on to the next question, as the answer will be processed in the background.
+     * When the answer comes, it will post it to the Trial automatically. 
+     * 
+     * If there are no more questions, and the job is not yet ready, we'll wait. 
+     * 
+     * @param jobId 
+     */
+    const onTranscriptionJobTriggered = (jobId: string) => {
+
+        const scorePromise = waitForTranscriptionAndScore(jobId);
+
+        pendingScores.current = [...pendingScores.current, scorePromise];
+
+        nextTest();
     }
 
     /**
@@ -111,19 +121,14 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
      * - if some answers are pending (async transcription jobs), waits for them to complete
      */
     const nextTest = () => {
-        
+
         // Move to next test
         if (!isLastTest) {
             setCurrentTestIndex(currentTestIndex + 1);
-        } 
+        }
         else {
             // No more tests: 
-            // If there are pending transcriptions, wait for them to complete
-            if (asyncJobIdsRef.current.length > 0) {
-                return;
-            }
-
-            // If there are no pending transcriptions, wait for all scoring to complete then complete the trial
+            // Wait for all scoring to complete then complete the trial
             Promise.all(pendingScores.current)
                 .then(() => onTrialComplete())
                 .catch((error) => {
@@ -181,46 +186,43 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
     }
 
     /**
-     * Method used to handle transcription job triggered in async mode. 
-     * This method moves on to the next question, as the answer will be processed in the background.
-     * When the answer comes, it will post it to the Trial automatically. 
+     * This function returns a Promise that releases when BOTH: 
+     * - the transcription job is complete
+     * - the transcription has been sent as answer and the answer has been scored
      * 
-     * If there are no more questions, and the job is not yet ready, we'll wait. 
+     * That allows this Promise to be considered the same as any other pendingScores Promise.
      * 
      * @param jobId 
      */
-    const onTranscriptionJobTriggered = (jobId: string) => {
+    const waitForTranscriptionAndScore = async (jobId: string): Promise<{ score: number }> => {
 
-        // Add to the list of async job IDs to monitor
-        asyncJobIdsRef.current = [...asyncJobIdsRef.current, jobId];
+        return new Promise<{ score: number }>((resolve, reject) => {
 
-        // Check if the timer is already running
-        if (!asyncJobTimer.current) {
-            // Start the timer to poll for job status every 5 seconds
-            asyncJobTimer.current = setInterval(checkAsyncJobsStatus, 2000);
-        }
+            // Set up a timer to poll for job status every 3 seconds
+            translationJobs.current[jobId] = setInterval(async () => {
 
-        nextTest();
-    }
+                const statusResponse = await new WhisperAPI().getTranscriptionJobStatus(jobId);
 
-    /**
-     * Checks the status of all pending async transcription jobs. 
-     * If any job is completed, retrieves the transcribed text and posts the answer to the trial.
-     */
-    const checkAsyncJobsStatus = async () => {
+                if (statusResponse.status === 'completed' && statusResponse.text) {
 
-        for (const jobId of asyncJobIdsRef.current) {
+                    // Clear the timer
+                    clearInterval(translationJobs.current[jobId]);
+                    delete translationJobs.current[jobId];
 
-            const statusResponse = await new WhisperAPI().getTranscriptionJobStatus(jobId);
+                    // Save the answer
+                    const newAnswers = {
+                        ...answers,
+                        [currentTest.testId]: statusResponse.text
+                    };
+                    setAnswers(newAnswers);
 
-            if (statusResponse.status === 'completed' || statusResponse.text) {
-                // Post the answer to the trial question
-                onAnswer(statusResponse.text || "");
+                    // Send answer to API
+                    const scoreResponse = await new TomeChallengesAPI().postTrialAnswer(trialId, currentTest, statusResponse.text);
 
-                // Remove the job ID from the list
-                asyncJobIdsRef.current = asyncJobIdsRef.current.filter(id => id !== jobId);
-            }
-        }
+                    resolve(scoreResponse)
+                }
+            }, 4000);
+        });
     }
 
 
@@ -253,8 +255,16 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
 
     // Test phase
     if (!currentTest) {
-        return <div>No tests available</div>;
+        return  <div className="flex flex-1 flex-col items-center justify-start px-4">No tests available</div>;
     }
+
+    // If we're waiting for the scores to be calculated but the user has done it all, show a loading indicator
+    if (isLastTest && answers && Object.keys(answers).length === tests.length) return (
+         <div className="flex flex-1 flex-col text-base items-center justify-start px-4 pt-8 gap-4">
+            <AudioLoadingBar color="bg-cyan-200" barCount={20} />
+            <div>Scoring your answers..</div>
+         </div>
+    )
 
     return (
         <div className="flex flex-1 flex-col items-center justify-start px-4">
