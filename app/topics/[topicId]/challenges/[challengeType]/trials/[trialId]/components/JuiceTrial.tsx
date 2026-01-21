@@ -78,6 +78,18 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
      */
     const handleAnswer = async (answer: any) => {
 
+        await onAnswer(answer);
+
+        // Move to next test
+        nextTest();
+    };
+
+    /**
+     * Reacts to the user answer: stores it and sends it to the API for scoring
+     * @param answer the answer given by the user
+     */
+    const onAnswer = async (answer: any) => {
+
         const newAnswers = {
             ...answers,
             [currentTest.testId]: answer
@@ -89,9 +101,8 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
 
         pendingScores.current = [...pendingScores.current, scorePromise];
 
-        // Move to next test
-        nextTest();
-    };
+
+    }
 
     /**
      * Moves to the next test. 
@@ -188,6 +199,8 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
             // Start the timer to poll for job status every 5 seconds
             asyncJobTimer.current = setInterval(checkAsyncJobsStatus, 2000);
         }
+
+        nextTest();
     }
 
     /**
@@ -202,7 +215,7 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
 
             if (statusResponse.status === 'completed' || statusResponse.text) {
                 // Post the answer to the trial question
-                handleAnswer(statusResponse.text || "");
+                onAnswer(statusResponse.text || "");
 
                 // Remove the job ID from the list
                 asyncJobIdsRef.current = asyncJobIdsRef.current.filter(id => id !== jobId);
