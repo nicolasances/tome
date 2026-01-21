@@ -24,7 +24,7 @@ export default function TrialPage() {
                 title: topic.name,
                 backButton: {
                     enabled: true,
-                    onClick: () => { router.back() }
+                    onClick: () => { router.push(`/topics/${params.topicId}/challenges/${params.challengeType}`) }
                 },
                 actions: undefined,
             });
@@ -39,12 +39,10 @@ export default function TrialPage() {
      * Load the trial
      */
     const loadTrial = async () => {
+
         const trialResponse = await new TomeChallengesAPI().getTrial(String(params.trialId));
         const trialData = trialResponse.trial;
         setTrial(trialData);
-
-        console.log(trialData);
-        
 
         // Load the challenge
         const { challenge } = await new TomeChallengesAPI().getChallenge(trialData.challengeId);
