@@ -11,10 +11,10 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
     const { carMode } = useCarMode();
     const { replay, isSpeaking } = useAudio();
 
-    const handleSpeechRecording = (transcribedText: string) => {
+    const handleSpeechRecording = ({transcribedText}: {transcribedText?: string}) => {
 
         // Parse the transcript to extract the year
-        const year = parseYearFromSpeech(transcribedText, correctYear);
+        const year = parseYearFromSpeech(transcribedText!, correctYear);
 
         if (year) {
             yearInputRef.current?.fillYearFromSpeech(year);
@@ -100,7 +100,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                         ref={useRef(null)}
                         size={carMode ? "car" : undefined}
                         onRecordingComplete={handleSpeechRecording}
-                        mode="whisper"
+                        mode="sync"
                     />
                 </div>
                 <div className="flex-1 flex justify-end">

@@ -61,6 +61,8 @@ function ChallengeDetailItem({ challenge, nonExpiredTrials, onChallengeClick }: 
 
     const handleClick = () => {
 
+        if (isChallengeCompleted && !challenge.toRepeat) onChallengeClick?.(challenge.id, "recap", challenge.trialId);
+
         if (!challenge.enabled) return;
 
         onChallengeClick?.(challenge.id, isChallengeCompleted && !challenge.toRepeat ? "recap" : "run", challenge.trialId);
