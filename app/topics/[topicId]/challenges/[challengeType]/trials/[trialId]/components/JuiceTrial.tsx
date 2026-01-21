@@ -133,11 +133,11 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
             // Wait for all scoring to complete then complete the trial
             Promise.all(pendingScores.current)
                 .then(() => {
-                    scoringPhaseDelayTimer.current && clearTimeout(scoringPhaseDelayTimer.current);
+                    if (scoringPhaseDelayTimer.current) clearTimeout(scoringPhaseDelayTimer.current);
                     onTrialComplete()
                 })
                 .catch((error) => {
-                    scoringPhaseDelayTimer.current && clearTimeout(scoringPhaseDelayTimer.current);
+                    if (scoringPhaseDelayTimer.current) clearTimeout(scoringPhaseDelayTimer.current);
                     console.error('Error scoring answers:', error);
                     onTrialComplete();
                 });
