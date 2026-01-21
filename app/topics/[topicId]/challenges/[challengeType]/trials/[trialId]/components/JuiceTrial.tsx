@@ -197,30 +197,36 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
 
         return new Promise<{ score: number }>((resolve, reject) => {
 
-            // Set up a timer to poll for job status every 3 seconds
-            translationJobs.current[jobId] = setInterval(async () => {
+            try {
+                // Set up a timer to poll for job status every 3 seconds
+                translationJobs.current[jobId] = setInterval(async () => {
+    
+                    const statusResponse = await new WhisperAPI().getTranscriptionJobStatus(jobId);
+    
+                    if (statusResponse.status === 'completed' && statusResponse.text) {
+    
+                        // Clear the timer
+                        clearInterval(translationJobs.current[jobId]);
+                        delete translationJobs.current[jobId];
+    
+                        // Save the answer
+                        const newAnswers = {
+                            ...answers,
+                            [currentTest.testId]: statusResponse.text
+                        };
+                        setAnswers(newAnswers);
+    
+                        // Send answer to API
+                        const scoreResponse = await new TomeChallengesAPI().postTrialAnswer(trialId, currentTest, statusResponse.text);
+    
+                        resolve(scoreResponse)
+                    }
+                }, 4000);
+            }
+            catch (error) {
+                reject(error);
+            }
 
-                const statusResponse = await new WhisperAPI().getTranscriptionJobStatus(jobId);
-
-                if (statusResponse.status === 'completed' && statusResponse.text) {
-
-                    // Clear the timer
-                    clearInterval(translationJobs.current[jobId]);
-                    delete translationJobs.current[jobId];
-
-                    // Save the answer
-                    const newAnswers = {
-                        ...answers,
-                        [currentTest.testId]: statusResponse.text
-                    };
-                    setAnswers(newAnswers);
-
-                    // Send answer to API
-                    const scoreResponse = await new TomeChallengesAPI().postTrialAnswer(trialId, currentTest, statusResponse.text);
-
-                    resolve(scoreResponse)
-                }
-            }, 4000);
         });
     }
 
