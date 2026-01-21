@@ -97,7 +97,11 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
         }
     }, [isSupported]);
 
+    /**
+     * Stops the voice recording
+     */
     const stopRecording = useCallback(async () => {
+
         return new Promise<void>((resolve) => {
             if (!mediaRecorderRef.current) {
                 resolve();
@@ -106,8 +110,16 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
 
             const mediaRecorder = mediaRecorderRef.current;
 
-            // When recording stops, combine chunks and trigger callback
-            mediaRecorder.addEventListener('stop', () => {
+            // Set up a timeout fallback for iOS Safari where events might not fire reliably
+            const timeoutId = setTimeout(() => {
+                console.warn('Stop event timeout - forcing cleanup');
+                cleanup();
+                resolve();
+            }, 1000);
+
+            const cleanup = () => {
+                clearTimeout(timeoutId);
+                
                 console.log('Recording stopped. Total chunks:', audioChunksRef.current.length);
                 
                 // Combine the audio chunks into a single Blob
@@ -115,19 +127,39 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
 
                 console.log('Created audio blob with size:', audioBlob.size, 'bytes');
 
+                // Stop all tracks from the media stream to release the microphone FIRST
+                // This is critical for iOS Safari
+                mediaRecorder.stream.getTracks().forEach((track) => {
+                    track.stop();
+                    console.log('Stopped track:', track.kind);
+                });
+
                 // Notify parent component with the final audio Blob
                 options.onRecordingComplete?.(audioBlob);
 
-                // Stop all tracks from the media stream to release the microphone
-                mediaRecorder.stream.getTracks().forEach((track) => track.stop());
-
                 // Update recording state to false
                 setIsRecording(false);
+                
+                // Clear the reference
+                mediaRecorderRef.current = null;
+            };
+
+            // When recording stops, combine chunks and trigger callback
+            mediaRecorder.addEventListener('stop', () => {
+                cleanup();
                 resolve();
             }, { once: true });
 
             // Stop the media recorder (this triggers the 'stop' event)
-            mediaRecorder.stop();
+            try {
+                if (mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+            } catch (error) {
+                console.error('Error stopping media recorder:', error);
+                cleanup();
+                resolve();
+            }
         });
     }, [options]);
 
