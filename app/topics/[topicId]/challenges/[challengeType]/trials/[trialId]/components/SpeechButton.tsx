@@ -23,7 +23,6 @@ export interface SpeechButtonHandle {
 
 export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "sync" }, ref) {
 
-    const [isTranscribing, setIsTranscribing] = useState(false);
     const { isSpeaking } = useAudio();
     const { whisperHost } = useContext(SettingsContext)!;
 
@@ -40,7 +39,6 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
         // If caller wants transcribed text, transcribe it
         if (onRecordingComplete) {
-            setIsTranscribing(true);
 
             try {
                 const whisperAPI = new WhisperAPI();
@@ -59,9 +57,6 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
             catch (error) {
                 console.error("Error transcribing audio:", error);
                 onRecordingComplete({transcribedText: ""}); // Pass empty string on error
-            }
-            finally {
-                setIsTranscribing(false);
             }
         }
     };
