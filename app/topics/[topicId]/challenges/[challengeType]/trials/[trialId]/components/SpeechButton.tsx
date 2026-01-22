@@ -1,6 +1,6 @@
 'use client'
 
-import { forwardRef, useContext, useImperativeHandle, useState } from "react";
+import { forwardRef, useContext, useImperativeHandle } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useVoiceRecording } from "@/app/hooks/useVoiceRecording";
 import { useSpeechRecognition } from "@/app/hooks/useSpeechRecognition";
