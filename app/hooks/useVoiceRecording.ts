@@ -49,7 +49,7 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
             audioChunksRef.current = [];
 
             // Request access to the user's microphone
-            const stream = await navigator.mediaDevices.getUserMedia({ 
+            const stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
                     deviceId: options.deviceId ? { exact: options.deviceId } : undefined,
                     echoCancellation: false,
@@ -103,6 +103,10 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
     const stopRecording = useCallback(async () => {
 
         return new Promise<void>((resolve) => {
+
+            // Update recording state to false
+            setIsRecording(false);
+            
             if (!mediaRecorderRef.current) {
                 resolve();
                 return;
@@ -119,9 +123,9 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
 
             const cleanup = () => {
                 clearTimeout(timeoutId);
-                
+
                 console.log('Recording stopped. Total chunks:', audioChunksRef.current.length);
-                
+
                 // Combine the audio chunks into a single Blob
                 const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
 
@@ -137,9 +141,6 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
                 // Notify parent component with the final audio Blob
                 options.onRecordingComplete?.(audioBlob);
 
-                // Update recording state to false
-                setIsRecording(false);
-                
                 // Clear the reference
                 mediaRecorderRef.current = null;
             };

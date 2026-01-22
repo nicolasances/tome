@@ -135,9 +135,9 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
             svgIconPath={{
                 src: "/images/microphone.svg",
                 alt: isActive ? "Stop recording" : "Start recording",
-                color: isActive || isTranscribing ? "bg-red-700" : "",
+                color: isActive ? "bg-red-700" : "",
             }}
-            secondary={isActive || isTranscribing}
+            secondary={isActive}
         />
     );
 });
