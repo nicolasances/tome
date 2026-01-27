@@ -12,6 +12,7 @@ interface SpeechButtonProps {
     size?: "xs" | "s" | "m" | "car";
     onRecordingComplete?: ({ transcribedText, jobId }: { transcribedText?: string, jobId?: string }) => void;    // Callback to receive transcribed text or the async job id if the mode is "async"
     onAudioBlob?: (audioBlob: Blob) => void;                    // Callback to receive raw audio blob, in case the caller wants to process it themselves
+    onClick?: () => void;                                       // Optional click handler
     deviceId?: string;                                          // Optional audio input device ID
     mode?: "sync" | "async";                                    // Mode for the transcription ("sync" or "async" for Whisper API) default is "sync"
 
@@ -21,7 +22,7 @@ export interface SpeechButtonHandle {
     startRecording: () => Promise<void>;
 }
 
-export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "sync" }, ref) {
+export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "sync", onClick }, ref) {
 
     const { isSpeaking } = useAudio();
     const { whisperHost } = useContext(SettingsContext)!;
@@ -107,6 +108,9 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
      * Toggles the recording state (start/stop)
      */
     const handleToggleRecording = async () => {
+
+        onClick?.();
+
         if (isUsingWhisper) {
             if (isRecordingWhisper) {
                 await stopRecordingWhisper();

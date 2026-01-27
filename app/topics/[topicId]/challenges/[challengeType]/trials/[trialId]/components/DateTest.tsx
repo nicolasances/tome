@@ -99,6 +99,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
                     <SpeechButton
                         ref={useRef(null)}
                         size={carMode ? "car" : undefined}
+                        onClick={() => setSpeechMessage(null)}
                         onRecordingComplete={handleSpeechRecording}
                         mode="sync"
                     />
