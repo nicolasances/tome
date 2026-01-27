@@ -22,12 +22,13 @@ interface JuiceTrialProps {
 
 export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrialDeleted }: JuiceTrialProps) {
 
-    const [currentPhase, setCurrentPhase] = useState<'context' | 'test'>(trial.answers && trial.answers.length > 0 ? 'test' : 'context');
+    const [currentPhase, setCurrentPhase] = useState<'context' | 'test' | 'scoring'>(trial.answers && trial.answers.length > 0 ? 'test' : 'context');
     const [currentTestIndex, setCurrentTestIndex] = useState(0);
     const [answers, setAnswers] = useState<{ [key: string]: any }>({});
 
     const pendingScores = useRef<Promise<{ score: number }>[]>([]);
     const speechButtonRef = useRef<SpeechButtonHandle>(null);
+    const scoringPhaseDelayTimer = useRef<NodeJS.Timeout | null>(null);
 
     const { carMode, toggleCarMode } = useCarMode();
     const { play: playAudio, stop: stopAudio } = useAudio();
@@ -126,13 +127,18 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
             setCurrentTestIndex(currentTestIndex + 1);
         }
         else {
-            // No more tests: 
+            // No more tests
+            scoringPhaseDelayTimer.current = setTimeout(() => setCurrentPhase('scoring'), 300);
+            
             // Wait for all scoring to complete then complete the trial
             Promise.all(pendingScores.current)
-                .then(() => onTrialComplete())
+                .then(() => {
+                    if (scoringPhaseDelayTimer.current) clearTimeout(scoringPhaseDelayTimer.current);
+                    onTrialComplete()
+                })
                 .catch((error) => {
+                    if (scoringPhaseDelayTimer.current) clearTimeout(scoringPhaseDelayTimer.current);
                     console.error('Error scoring answers:', error);
-                    // Still complete the trial even if scoring failed
                     onTrialComplete();
                 });
         }
@@ -263,8 +269,7 @@ export function JuiceTrial({ challenge, trialId, trial, onTrialComplete, onTrial
         return  <div className="flex flex-1 flex-col items-center justify-start px-4">No tests available</div>;
     }
 
-    // If we're waiting for the scores to be calculated but the user has done it all, show a loading indicator
-    if (isLastTest && pendingScores.current.length === tests.length) return (
+    if (currentPhase == 'scoring') return (
          <div className="flex flex-1 flex-col text-base items-center justify-start px-4 pt-8 gap-4">
             <AudioLoadingBar color="bg-cyan-200" barCount={20} />
             <div>Scoring your answers..</div>

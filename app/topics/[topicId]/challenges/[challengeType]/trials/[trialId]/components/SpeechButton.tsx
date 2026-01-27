@@ -1,6 +1,6 @@
 'use client'
 
-import { forwardRef, useContext, useImperativeHandle, useState } from "react";
+import { forwardRef, useContext, useImperativeHandle } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 import { useVoiceRecording } from "@/app/hooks/useVoiceRecording";
 import { useSpeechRecognition } from "@/app/hooks/useSpeechRecognition";
@@ -12,6 +12,7 @@ interface SpeechButtonProps {
     size?: "xs" | "s" | "m" | "car";
     onRecordingComplete?: ({ transcribedText, jobId }: { transcribedText?: string, jobId?: string }) => void;    // Callback to receive transcribed text or the async job id if the mode is "async"
     onAudioBlob?: (audioBlob: Blob) => void;                    // Callback to receive raw audio blob, in case the caller wants to process it themselves
+    onClick?: () => void;                                       // Optional click handler
     deviceId?: string;                                          // Optional audio input device ID
     mode?: "sync" | "async";                                    // Mode for the transcription ("sync" or "async" for Whisper API) default is "sync"
 
@@ -21,9 +22,8 @@ export interface SpeechButtonHandle {
     startRecording: () => Promise<void>;
 }
 
-export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "sync" }, ref) {
+export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(function SpeechButton({ onRecordingComplete, onAudioBlob, deviceId, size, mode = "sync", onClick }, ref) {
 
-    const [isTranscribing, setIsTranscribing] = useState(false);
     const { isSpeaking } = useAudio();
     const { whisperHost } = useContext(SettingsContext)!;
 
@@ -40,7 +40,6 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
 
         // If caller wants transcribed text, transcribe it
         if (onRecordingComplete) {
-            setIsTranscribing(true);
 
             try {
                 const whisperAPI = new WhisperAPI();
@@ -59,9 +58,6 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
             catch (error) {
                 console.error("Error transcribing audio:", error);
                 onRecordingComplete({transcribedText: ""}); // Pass empty string on error
-            }
-            finally {
-                setIsTranscribing(false);
             }
         }
     };
@@ -112,6 +108,9 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
      * Toggles the recording state (start/stop)
      */
     const handleToggleRecording = async () => {
+
+        onClick?.();
+
         if (isUsingWhisper) {
             if (isRecordingWhisper) {
                 await stopRecordingWhisper();
@@ -133,11 +132,11 @@ export const SpeechButton = forwardRef<SpeechButtonHandle, SpeechButtonProps>(fu
             size={size}
             onClick={handleToggleRecording}
             svgIconPath={{
-                src: isTranscribing ? "/images/processing-voice.svg" : "/images/microphone.svg",
+                src: "/images/microphone.svg",
                 alt: isActive ? "Stop recording" : "Start recording",
-                color: isActive || isTranscribing ? "bg-red-700" : "",
+                color: isActive ? "bg-red-700" : "",
             }}
-            secondary={isActive || isTranscribing}
+            secondary={isActive}
         />
     );
 });

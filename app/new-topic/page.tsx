@@ -8,7 +8,6 @@ import { useState, useEffect } from "react"
 import { LoadingBar } from "../ui/graphics/Loading"
 import { useRouter } from "next/navigation"
 import Footer from "../ui/layout/Footer"
-import BackSVG from "../ui/graphics/icons/Back"
 import { TomeTopicsAPI } from "@/api/TomeTopicsAPI"
 import { useHeader } from "@/context/HeaderContext"
 
@@ -25,6 +24,13 @@ export default function NewTopic() {
         setConfig({
             title: 'New Topic',
             actions: undefined,
+            backButton: {
+                enabled: true,
+                onClick: () => {
+                    router.back()
+
+                }
+            }
         });
     }, [setConfig]);
 
@@ -45,8 +51,6 @@ export default function NewTopic() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4">
-            <div className="mt-6 flex justify-center text-xl">{topicName ? topicName : "New Topic"}</div>
-
             <div className="flex-1 app-content">
 
                 <div className="grid w-full items-center gap-1.5 mt-4">
@@ -73,7 +77,6 @@ export default function NewTopic() {
             <Footer>
                 <div className="flex justify-center items-center space-x-2">
                     <div className="flex-1 flex justify-end items-center">
-                        <RoundButton icon={<BackSVG />} size='s' onClick={() => { router.back() }} />
                     </div>
                     <RoundButton icon={<Tick />} onClick={uploadBlog} loading={uploading} />
                     <div className="flex-1"></div>

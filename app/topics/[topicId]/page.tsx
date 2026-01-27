@@ -4,10 +4,10 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesList";
 import { useHeader } from "@/context/HeaderContext";
+import ConfirmationPopup from "@/app/components/ConfirmationPopup";
 
 
 export default function TopicDetailPage() {
@@ -19,6 +19,7 @@ export default function TopicDetailPage() {
     const [topic, setTopic] = useState<Topic>()
     const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
     const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState<boolean>(false);
 
     useEffect(() => {
         if (topic) {
@@ -96,8 +97,15 @@ export default function TopicDetailPage() {
                 const trialsForChallenge = trialsByChallengeCode[challenge.code] || []
 
                 if (trialsForChallenge.length > 0) {
-                    // Progress is the num of trials completed / total trials for this challenge
-                    const numCompletedTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined).length;
+
+                    // Progress is the num of unique trials (different challengeId) completed / total trials for this challenge
+                    // 1. Get nnum of completed trials
+                    const completedNonExpiredTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined); 
+
+                    // 2. Make sure you count the distinct sections only
+                    const distinctCompletedTrials = new Set(completedNonExpiredTrials.map(trial => trial.challengeId));
+
+                    const numCompletedTrials = distinctCompletedTrials.size;
                     const totalTrials = expectedTrialsByChallengeCode[challenge.code] || 0;
 
                     console.log(`${numCompletedTrials} / ` + totalTrials);
@@ -139,6 +147,14 @@ export default function TopicDetailPage() {
 
     }
 
+    /**
+     * Deletes the topic
+     */
+    const deleteTopic = async () => {
+        await new TomeTopicsAPI().deleteTopic(String(params.topicId));
+        router.push('/');
+    }
+
     useEffect(() => { loadData() }, [])
 
     if (!topic) return <></>
@@ -164,12 +180,24 @@ export default function TopicDetailPage() {
                     onClick={() => { router.push(`${params.topicId}/icon`) }}
                 />
                 <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic} />
+                <RoundButton svgIconPath={{ src: "/images/trash.svg", alt: "Delete Topic" }} size="s" onClick={() => setShowDeleteConfirmation(true)} />
                 {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
-                {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />}
+                {/* {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />} */}
             </div>
             <ChallengesList challenges={challenges} topicId={String(params.topicId)} />
             <div className="flex-1"></div>
+
+            {showDeleteConfirmation && (
+                <ConfirmationPopup
+                    message="Do you really want to delete this topic?"
+                    onConfirm={() => {
+                        setShowDeleteConfirmation(false);
+                        deleteTopic();
+                    }}
+                    onCancel={() => setShowDeleteConfirmation(false)}
+                />
+            )}
         </div>
     )
 }

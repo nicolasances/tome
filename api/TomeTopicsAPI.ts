@@ -83,6 +83,15 @@ export class TomeTopicsAPI {
         return (await new TotoAPI().fetch('tome-ms-topics', `/topics/${id}`, null)).json()
     }
 
+    /**
+     * Deletes the topic with the given id
+     * 
+     * @param topicId 
+     */
+    async deleteTopic(topicId: string): Promise<void> {
+        await new TotoAPI().fetch('tome-ms-topics', `/topics/${topicId}`, { method: 'DELETE' }, false);
+    }
+
 
 }
 

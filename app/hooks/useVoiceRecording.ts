@@ -49,7 +49,7 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
             audioChunksRef.current = [];
 
             // Request access to the user's microphone
-            const stream = await navigator.mediaDevices.getUserMedia({ 
+            const stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
                     deviceId: options.deviceId ? { exact: options.deviceId } : undefined,
                     echoCancellation: false,
@@ -97,8 +97,16 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
         }
     }, [isSupported]);
 
+    /**
+     * Stops the voice recording
+     */
     const stopRecording = useCallback(async () => {
+
         return new Promise<void>((resolve) => {
+
+            // Update recording state to false
+            setIsRecording(false);
+            
             if (!mediaRecorderRef.current) {
                 resolve();
                 return;
@@ -106,28 +114,53 @@ export function useVoiceRecording(options: UseVoiceRecordingOptions = {}): UseVo
 
             const mediaRecorder = mediaRecorderRef.current;
 
-            // When recording stops, combine chunks and trigger callback
-            mediaRecorder.addEventListener('stop', () => {
+            // Set up a timeout fallback for iOS Safari where events might not fire reliably
+            const timeoutId = setTimeout(() => {
+                console.warn('Stop event timeout - forcing cleanup');
+                cleanup();
+                resolve();
+            }, 1000);
+
+            const cleanup = () => {
+                clearTimeout(timeoutId);
+
                 console.log('Recording stopped. Total chunks:', audioChunksRef.current.length);
-                
+
                 // Combine the audio chunks into a single Blob
                 const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
 
                 console.log('Created audio blob with size:', audioBlob.size, 'bytes');
 
+                // Stop all tracks from the media stream to release the microphone FIRST
+                // This is critical for iOS Safari
+                mediaRecorder.stream.getTracks().forEach((track) => {
+                    track.stop();
+                    console.log('Stopped track:', track.kind);
+                });
+
                 // Notify parent component with the final audio Blob
                 options.onRecordingComplete?.(audioBlob);
 
-                // Stop all tracks from the media stream to release the microphone
-                mediaRecorder.stream.getTracks().forEach((track) => track.stop());
+                // Clear the reference
+                mediaRecorderRef.current = null;
+            };
 
-                // Update recording state to false
-                setIsRecording(false);
+            // When recording stops, combine chunks and trigger callback
+            mediaRecorder.addEventListener('stop', () => {
+                cleanup();
                 resolve();
             }, { once: true });
 
             // Stop the media recorder (this triggers the 'stop' event)
-            mediaRecorder.stop();
+            try {
+                if (mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+            } catch (error) {
+                console.error('Error stopping media recorder:', error);
+                cleanup();
+                resolve();
+            }
         });
     }, [options]);
 

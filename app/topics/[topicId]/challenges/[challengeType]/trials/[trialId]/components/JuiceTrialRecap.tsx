@@ -44,16 +44,44 @@ export function JuiceTrialRecap({ trial, challenge }: JuiceTrialRecapProps) {
     };
 
     /**
+     * Goes through the trial answers and finds which important aspects were remembered and which were missed
+     */
+    const findImportantAspectsRemembered = (): { rememberedIndexes: number[], missedIndexes: number[] } => {
+
+        // Get the answer to the Juice Open Test (there's only one)
+        const openTestAnswer = trial.answers?.find(ta => ta.testId === challenge.tests.find(t => t.type === 'open')?.testId);
+
+        // Check if this item was found in the answer
+        const testDetails = openTestAnswer?.details || {};
+        const juiceIndexesFound: number[] = testDetails.juiceIndexesFound || [];
+
+        return {
+            rememberedIndexes: juiceIndexesFound,
+            missedIndexes: challenge.toRemember.map((_, idx) => idx).filter(idx => !juiceIndexesFound.includes(idx)),
+        }
+    }
+
+    /**
      * Read important aspects to remember aloud
      */
     const readImportantAspects = async () => {
 
+        // Get the remembered and missed aspects
+        const { rememberedIndexes, missedIndexes } = findImportantAspectsRemembered();
+
         const aspectsToRemember = challenge.toRemember.reduce((acc, item, idx) => {
             return acc + "Aspect " + (idx + 1) + ": " + item.toRemember + ". "
-        }, "Here are the most important aspects to remember: ");
+        }, "These were the most important aspects to remember: ");
+
+        // Create the speech text
+        let speechText = ""; 
+        if (rememberedIndexes.length == 0) speechText += "You did not remember any of the important aspects. " + aspectsToRemember;
+        else if (rememberedIndexes.length == 1) speechText += `You correctly remembered aspect ${rememberedIndexes[0] + 1}. You missed the rest. ` + aspectsToRemember;
+        else if (rememberedIndexes.length == challenge.toRemember.length) speechText += "Congratulations! You remembered all the important aspects. ";
+        else speechText += `Among the important aspects to remember, you correctly remembered aspects ${rememberedIndexes.map(i => i + 1).join(", ")}. You missed aspects ${missedIndexes.length > 0 ? missedIndexes.map(i => i + 1).join(", ") : 'none'}. ` + aspectsToRemember;
 
         try {
-            const audioUrl = await new GoogleTTSAPI().synthesizeSpeech(aspectsToRemember);
+            const audioUrl = await new GoogleTTSAPI().synthesizeSpeech(speechText);
 
             await play(audioUrl, () => { });
 
