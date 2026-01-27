@@ -11,7 +11,7 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
     const { carMode } = useCarMode();
     const { replay, isSpeaking } = useAudio();
 
-    const handleSpeechRecording = ({transcribedText}: {transcribedText?: string}) => {
+    const handleSpeechRecording = ({ transcribedText }: { transcribedText?: string }) => {
 
         // Parse the transcript to extract the year
         const year = parseYearFromSpeech(transcribedText!, correctYear);
@@ -218,10 +218,17 @@ const YearInput = React.forwardRef(function YearInputInner(
 
         setCorrect(isAnswerCorrect);
 
+        // If in Car Mdoe, play the "public/audio/correct.mp3" sound
+        const audio = new Audio(isAnswerCorrect ? "/audio/correct.mp3" : "/audio/incorrect.mp3");
+        audio.play();
+
+        // Timeout before calling onAnswer to let the user see if they were correct
+        let timeoutDuration = 3000;
+
         // Wait a bit before calling onAnswer to let the user see if they were correct
         setTimeout(() => {
-            // onAnswer({ year: parseInt(inputYear) });
-        }, 2000);
+            onAnswer({ year: parseInt(inputYear) });
+        }, timeoutDuration);
     };
 
     // Expose the fillYearFromSpeech method via the ref
