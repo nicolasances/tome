@@ -87,7 +87,7 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
             setBgColor("bg-black");
         }, 500)
         else {
-            setOpacity((topic?.status === "not-started" ? 0.1 : (topic?.progress ?? 0) / 100));
+            setOpacity((topic?.status === "not-started" ? 0.1 : ((topic?.progress ?? 0) + 20) / 100));
             setBgColor("bg-lime-200");
             clearInterval(timerRef);
         }
