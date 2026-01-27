@@ -172,10 +172,20 @@ const YearInput = React.forwardRef(function YearInputInner(
 
             setCorrect(isAnswerCorrect);
 
+            // If in Car Mdoe, play the "public/audio/correct.mp3" sound
+            // if (carMode) {
+                const audio = new Audio(isAnswerCorrect ? "/audio/correct.mp3" : "/audio/incorrect.mp3");
+                audio.play();
+            // }
+
+            // Timeout before calling onAnswer to let the user see if they were correct
+            let timeoutDuration = 2000;
+            if (carMode) timeoutDuration = 4000;
+
             // Wait a bit before calling onAnswer to let the user see if they were correct
             setTimeout(() => {
-                onAnswer({ year: parseInt(inputYear) });
-            }, 2000);
+                // onAnswer({ year: parseInt(inputYear) });
+            }, timeoutDuration);
         }
     };
 
@@ -210,7 +220,7 @@ const YearInput = React.forwardRef(function YearInputInner(
 
         // Wait a bit before calling onAnswer to let the user see if they were correct
         setTimeout(() => {
-            onAnswer({ year: parseInt(inputYear) });
+            // onAnswer({ year: parseInt(inputYear) });
         }, 2000);
     };
 
@@ -231,12 +241,13 @@ const YearInput = React.forwardRef(function YearInputInner(
                         maxLength={1}
                         disabled={carMode}
                         className={`
-                        w-10 h-12 text-center text-xl border rounded focus:outline-none focus:ring-2 focus:ring-cyan-200
+                        ${carMode ? "w-16 h-20 text-4xl" : "w-10 h-12 text-xl"}
+                        text-center border rounded focus:outline-none focus:ring-2 focus:ring-cyan-200
                         ${correct === null
                                 ? "border-gray-300 bg-white text-grey-700"
                                 : correct
-                                    ? "border-green-400 bg-green-200 text-green-600"
-                                    : "border-red-400 bg-red-300 text-red-600"}
+                                    ? "border-green-400 bg-green-200 text-green-800"
+                                    : "border-red-400 bg-red-300 text-red-800"}
                         `}
                         value={values[idx]}
                         onChange={e => handleChange(idx, e)}
@@ -246,7 +257,7 @@ const YearInput = React.forwardRef(function YearInputInner(
             </div>
             {correct === false &&
                 <div className="flex flex-col items-center mb-4">
-                    <div className="text-base mt-6 mb-2">The correct answer was</div>
+                    <div className={`mt-6 mb-2 ${carMode ? "text-xl" : "text-base"}`}>The correct answer was</div>
                     <div className="flex space-x-2">
                         {digits.map((_, idx) => (
                             <input
@@ -255,7 +266,9 @@ const YearInput = React.forwardRef(function YearInputInner(
                                 inputMode="numeric"
                                 maxLength={1}
                                 disabled={true}
-                                className={`w-10 h-12 text-grey-600 bg.white text-center text-xl border rounded focus:outline-none`}
+                                className={`
+                                    ${carMode ? "w-16 h-20 text-4xl" : "w-10 h-12 text-xl"}
+                                    text-grey-600 bg.white text-center border rounded focus:outline-none`}
                                 defaultValue={correctYear.toString().split("")[idx] || ""}
                             />
                         ))}
