@@ -96,8 +96,15 @@ export default function TopicDetailPage() {
                 const trialsForChallenge = trialsByChallengeCode[challenge.code] || []
 
                 if (trialsForChallenge.length > 0) {
-                    // Progress is the num of trials completed / total trials for this challenge
-                    const numCompletedTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined).length;
+
+                    // Progress is the num of unique trials (different challengeId) completed / total trials for this challenge
+                    // 1. Get nnum of completed trials
+                    const completedNonExpiredTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined); 
+
+                    // 2. Make sure you count the distinct sections only
+                    const distinctCompletedTrials = new Set(completedNonExpiredTrials.map(trial => trial.challengeId));
+
+                    const numCompletedTrials = distinctCompletedTrials.size;
                     const totalTrials = expectedTrialsByChallengeCode[challenge.code] || 0;
 
                     console.log(`${numCompletedTrials} / ` + totalTrials);

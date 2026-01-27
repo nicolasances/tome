@@ -131,6 +131,7 @@ export interface Trial {
     completedOn?: Date;
     expiresOn: Date;    // The date when the trial's results expire. This is typically defined at a challenge level, and tracked in the trial for convenience, but also for tracking and ML.
     score?: number;
+    attempt: boolean;
     
     answers?: TestAnswer[];
 }
