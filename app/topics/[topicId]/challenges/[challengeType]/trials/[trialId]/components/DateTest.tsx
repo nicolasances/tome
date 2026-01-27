@@ -223,7 +223,7 @@ const YearInput = React.forwardRef(function YearInputInner(
         audio.play();
 
         // Timeout before calling onAnswer to let the user see if they were correct
-        let timeoutDuration = 3000;
+        const timeoutDuration = 3000;
 
         // Wait a bit before calling onAnswer to let the user see if they were correct
         setTimeout(() => {

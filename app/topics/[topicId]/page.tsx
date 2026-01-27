@@ -4,7 +4,6 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import DotsSVG from "@/app/ui/graphics/icons/DotsSVG";
 import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesList";
 import { useHeader } from "@/context/HeaderContext";
