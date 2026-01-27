@@ -93,6 +93,8 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
         }
     }, [loading])
 
+    const isInProgress = topic?.status === "in-progress";
+
     return (
         <div className={`w-10 h-10 rounded bg-cyan-700 cursor-pointer relative`}
             style={{
@@ -105,7 +107,7 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
             onTouchEnd={() => setPressed(false)}
             onClick={() => { if (onClick && topic) onClick(topic) }}
         >
-            <div className={`absolute inset-0 rounded ${bgColor}`} style={{ opacity }} />
+            <div className={`absolute inset-0 rounded ${bgColor} ${isInProgress ? 'animate-pulse' : ''}`} style={{ opacity }} />
             <div className={`w-full h-full flex items-center rounded justify-center relative z-10`}>
                 {topic?.topic.icon && (
                     <MaskedSvgIcon
