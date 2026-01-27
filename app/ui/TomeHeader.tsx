@@ -6,11 +6,13 @@ import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import BackSVG from '@/app/ui/graphics/icons/Back';
 import { useCarMode } from '@/context/CarModeContext';
 import { useHeader } from '@/context/HeaderContext';
+import { useRouter } from 'next/navigation';
 
 export default function TomeHeader() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { carMode, toggleCarMode } = useCarMode();
     const { config } = useHeader();
+    const router = useRouter();
 
     return (
         <>
@@ -83,6 +85,8 @@ export default function TomeHeader() {
                     <MenuItem onClick={() => {setIsMenuOpen(false); window.location = "/" as any}} icon="/images/home.svg" iconColor="bg-cyan-700" label="Home" />
                     <MenuItem onClick={() => {setIsMenuOpen(false); toggleCarMode()}} icon="/images/car.svg" iconColor={carMode ? "bg-red-700" : "bg-cyan-700"} label="Car Mode" tag={carMode ? "active" : undefined} />
                     <MenuItem onClick={() => {setIsMenuOpen(false); window.location = "/settings" as any}} icon="/images/settings.svg" iconColor="bg-cyan-700" label="Settings" />
+                    <div className="pt-4"></div>
+                    <MenuItem onClick={() => {router.push('/new-topic'); setIsMenuOpen(false);}} icon="/images/plus.svg" iconColor="bg-cyan-700" label="New Topic" />
                 </div>
             </div>
         </>
