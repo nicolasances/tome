@@ -184,7 +184,7 @@ const YearInput = React.forwardRef(function YearInputInner(
 
             // Wait a bit before calling onAnswer to let the user see if they were correct
             setTimeout(() => {
-                // onAnswer({ year: parseInt(inputYear) });
+                onAnswer({ year: parseInt(inputYear) });
             }, timeoutDuration);
         }
     };
