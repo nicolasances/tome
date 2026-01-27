@@ -173,10 +173,10 @@ const YearInput = React.forwardRef(function YearInputInner(
             setCorrect(isAnswerCorrect);
 
             // If in Car Mdoe, play the "public/audio/correct.mp3" sound
-            // if (carMode) {
+            if (carMode) {
                 const audio = new Audio(isAnswerCorrect ? "/audio/correct.mp3" : "/audio/incorrect.mp3");
                 audio.play();
-            // }
+            }
 
             // Timeout before calling onAnswer to let the user see if they were correct
             let timeoutDuration = 2000;
