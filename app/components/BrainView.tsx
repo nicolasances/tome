@@ -77,23 +77,23 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
     const [pressed, setPressed] = useState(false);
     const [opacity, setOpacity] = useState(0);
     const [bgColor, setBgColor] = useState("bg-lime-200");
-    const timerRef = 0;
-
-    // const finalOpacity = (topic?.status === "not-started" ? 0.1 : (topic?.progress ?? 0) / 100);
 
     useEffect(() => {
-        if (loading) setInterval(() => {
-            setOpacity(Math.random() * 0.2);
-            setBgColor("bg-black");
-        }, 500)
-        else {
+        if (loading) {
+            const interval = setInterval(() => {
+                setOpacity(Math.random() * 0.2);
+                setBgColor("bg-black");
+            }, 500);
+            
+            return () => clearInterval(interval);
+        } else {
+            console.log(`Topic ${topic?.topic.name} - Status: ${topic?.status}, Progress: ${topic?.progress}`);
+            
             setOpacity((topic?.status === "not-started" ? 0.1 : ((topic?.progress ?? 0) + 20) / 100));
             if (topic?.status == 'in-progress') setBgColor("bg-lime-200");
             else if (topic?.status == 'completed') setBgColor("bg-teal-300");
-
-            clearInterval(timerRef);
         }
-    }, [loading])
+    }, [loading, topic])
 
     const isInProgress = topic?.status === "in-progress";
 
