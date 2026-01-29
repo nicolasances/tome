@@ -9,8 +9,10 @@ import { MaskedSvgIcon } from "./MaskedSvgIcon";
 interface ExtendedTopic {
     topic: Topic;
     progress: number;  // Progress in percent (0-100)
-    status: "not-started" | "in-progress" | "completed";
+    status: Status;
 }
+
+type Status = "not-started" | "in-progress" | "completed";
 
 export function BrainView() {
 
@@ -38,11 +40,14 @@ export function BrainView() {
                 const topicChallenges = challengesResponse.challenges.filter(c => c.challenge.topicId === topic.id);
 
                 const numCompletedChallenges = topicChallenges.filter(c => c.status === "completed").length;
-                const status = topicChallenges.some(c => c.status === "in-progress") ? "in-progress" : (numCompletedChallenges === 0 ? "not-started" : "completed");
 
                 let progress = topicChallenges.length === 0 ? 0 : Math.round((numCompletedChallenges / topicChallenges.length) * 100);
 
-                if (status == "in-progress" && progress < 3) progress = 3;
+                let status: Status = "not-started";
+                if (numCompletedChallenges > 0 && numCompletedChallenges < topicChallenges.length) status = "in-progress";
+                else if (numCompletedChallenges === topicChallenges.length) status = "completed";
+
+                if (progress < 3) progress = 3;
 
                 return { topic, progress, status };
             });
