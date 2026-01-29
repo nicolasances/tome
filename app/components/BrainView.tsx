@@ -88,7 +88,9 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
         }, 500)
         else {
             setOpacity((topic?.status === "not-started" ? 0.1 : ((topic?.progress ?? 0) + 20) / 100));
-            setBgColor("bg-lime-200");
+            if (topic?.status == 'in-progress') setBgColor("bg-lime-200");
+            else if (topic?.status == 'completed') setBgColor("bg-teal-300");
+
             clearInterval(timerRef);
         }
     }, [loading])
@@ -107,7 +109,7 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
             onTouchEnd={() => setPressed(false)}
             onClick={() => { if (onClick && topic) onClick(topic) }}
         >
-            <div className={`absolute inset-0 rounded ${bgColor} ${isInProgress ? 'animate-pulse' : ''}`} style={{ opacity }} />
+            <div className={`absolute inset-0 rounded ${bgColor} ${isInProgress ? 'animate-pulse' : ''}`} style={{ opacity, willChange: 'opacity', transform: 'translateZ(0)' }} />
             <div className={`w-full h-full flex items-center rounded justify-center relative z-10`}>
                 {topic?.topic.icon && (
                     <MaskedSvgIcon
