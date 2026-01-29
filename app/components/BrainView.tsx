@@ -88,7 +88,9 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
         }, 500)
         else {
             setOpacity((topic?.status === "not-started" ? 0.1 : ((topic?.progress ?? 0) + 20) / 100));
-            setBgColor("bg-lime-200");
+            if (topic?.status == 'in-progress') setBgColor("bg-lime-200");
+            else if (topic?.status == 'completed') setBgColor("bg-teal-300");
+
             clearInterval(timerRef);
         }
     }, [loading])
