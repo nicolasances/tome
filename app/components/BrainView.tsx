@@ -107,7 +107,7 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
             onTouchEnd={() => setPressed(false)}
             onClick={() => { if (onClick && topic) onClick(topic) }}
         >
-            <div className={`absolute inset-0 rounded ${bgColor} ${isInProgress ? 'animate-pulse' : ''}`} style={{ opacity }} />
+            <div className={`absolute inset-0 rounded ${bgColor} ${isInProgress ? 'animate-pulse' : ''}`} style={{ opacity, willChange: 'opacity', transform: 'translateZ(0)' }} />
             <div className={`w-full h-full flex items-center rounded justify-center relative z-10`}>
                 {topic?.topic.icon && (
                     <MaskedSvgIcon
