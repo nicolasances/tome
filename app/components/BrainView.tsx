@@ -9,8 +9,10 @@ import { MaskedSvgIcon } from "./MaskedSvgIcon";
 interface ExtendedTopic {
     topic: Topic;
     progress: number;  // Progress in percent (0-100)
-    status: "not-started" | "in-progress" | "completed";
+    status: Status;
 }
+
+type Status = "not-started" | "in-progress" | "completed";
 
 export function BrainView() {
 
@@ -38,11 +40,14 @@ export function BrainView() {
                 const topicChallenges = challengesResponse.challenges.filter(c => c.challenge.topicId === topic.id);
 
                 const numCompletedChallenges = topicChallenges.filter(c => c.status === "completed").length;
-                const status = topicChallenges.some(c => c.status === "in-progress") ? "in-progress" : (numCompletedChallenges === 0 ? "not-started" : "completed");
 
                 let progress = topicChallenges.length === 0 ? 0 : Math.round((numCompletedChallenges / topicChallenges.length) * 100);
 
-                if (status == "in-progress" && progress < 3) progress = 3;
+                let status: Status = "not-started";
+                if (numCompletedChallenges > 0 && numCompletedChallenges < topicChallenges.length) status = "in-progress";
+                else if (numCompletedChallenges === topicChallenges.length) status = "completed";
+
+                if (progress < 3) progress = 3;
 
                 return { topic, progress, status };
             });
@@ -77,23 +82,23 @@ export function BrainTile({ topic, onClick, loading }: { topic?: ExtendedTopic, 
     const [pressed, setPressed] = useState(false);
     const [opacity, setOpacity] = useState(0);
     const [bgColor, setBgColor] = useState("bg-lime-200");
-    const timerRef = 0;
-
-    // const finalOpacity = (topic?.status === "not-started" ? 0.1 : (topic?.progress ?? 0) / 100);
 
     useEffect(() => {
-        if (loading) setInterval(() => {
-            setOpacity(Math.random() * 0.2);
-            setBgColor("bg-black");
-        }, 500)
-        else {
+        if (loading) {
+            const interval = setInterval(() => {
+                setOpacity(Math.random() * 0.2);
+                setBgColor("bg-black");
+            }, 500);
+            
+            return () => clearInterval(interval);
+        } else {
+            console.log(`Topic ${topic?.topic.name} - Status: ${topic?.status}, Progress: ${topic?.progress}`);
+            
             setOpacity((topic?.status === "not-started" ? 0.1 : ((topic?.progress ?? 0) + 20) / 100));
             if (topic?.status == 'in-progress') setBgColor("bg-lime-200");
             else if (topic?.status == 'completed') setBgColor("bg-teal-300");
-
-            clearInterval(timerRef);
         }
-    }, [loading])
+    }, [loading, topic])
 
     const isInProgress = topic?.status === "in-progress";
 
