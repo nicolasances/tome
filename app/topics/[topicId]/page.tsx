@@ -4,10 +4,11 @@ import { TomeTopicsAPI, Topic } from "@/api/TomeTopicsAPI";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
-import { Challenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
+import { Challenge, JuiceChallenge, TomeChallengesAPI, Trial } from "@/api/TomeChallengesAPI";
 import { ChallengesList, ExtendedChallenge } from "@/app/components/ChallengesList";
 import { useHeader } from "@/context/HeaderContext";
 import ConfirmationPopup from "@/app/components/ConfirmationPopup";
+import { GaleBrokerAPI } from "@/api/GaleBrokerAPI";
 
 
 export default function TopicDetailPage() {
@@ -100,7 +101,7 @@ export default function TopicDetailPage() {
 
                     // Progress is the num of unique trials (different challengeId) completed / total trials for this challenge
                     // 1. Get nnum of completed trials
-                    const completedNonExpiredTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined); 
+                    const completedNonExpiredTrials = trialsForChallenge.filter(trial => trial.completedOn != null && trial.completedOn != undefined);
 
                     // 2. Make sure you count the distinct sections only
                     const distinctCompletedTrials = new Set(completedNonExpiredTrials.map(trial => trial.challengeId));
@@ -155,6 +156,28 @@ export default function TopicDetailPage() {
         router.push('/');
     }
 
+    /**
+     * UPdates the Topic metadata based on some of its information: 
+     * - Geographical location based on the juice of its sections (taken from the Juice Challenge)
+     */
+    const updateTopicMetadata = async () => {
+
+        const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId))
+
+        // Extract the juice of the challenge
+        const juice = challenges?.filter(challenge => challenge.code === 'juice').map(challenge => (challenge as JuiceChallenge).toRemember.flatMap(item => item.toRemember)).flat();
+
+        if (!juice || juice.length === 0) return;
+
+        // Posts the Gale BRoker task to activate the Agent
+        await new GaleBrokerAPI().postTask("topic.locations.build", {
+            topicId: String(params.topicId),
+            topicCode: topic?.name ?? "",
+            juice: juice 
+        })
+
+    }
+
     useEffect(() => { loadData() }, [])
 
     if (!topic) return <></>
@@ -181,6 +204,7 @@ export default function TopicDetailPage() {
                 />
                 <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic} />
                 <RoundButton svgIconPath={{ src: "/images/trash.svg", alt: "Delete Topic" }} size="s" onClick={() => setShowDeleteConfirmation(true)} />
+                <RoundButton svgIconPath={{ src: "/images/leaf.svg", alt: "Update Topic Metadata" }} size="s" onClick={updateTopicMetadata} />
                 {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
                 {/* {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />} */}
