@@ -20,7 +20,7 @@ interface ChallengesListProps {
 export function ChallengesList({ challenges, topicId }: ChallengesListProps) {
 
     if (challenges.length === 0) {
-        return <div className="text-base opacity-50">No challenges yet</div>
+        return <div className="text-base opacity-50 text-center mt-8">No challenges yet</div>
     }
 
     return (

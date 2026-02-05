@@ -33,6 +33,7 @@ export default function TopicDetailPage() {
     const [refreshingTopic, setRefreshingTopic] = useState<boolean>(false)
     const [challenges, setChallenges] = useState<ExtendedChallenge[]>([]);
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState<boolean>(false);
+    const [refreshingMetadata, setRefreshingMetadata] = useState<boolean>(false);
 
     useEffect(() => {
         if (topic) {
@@ -174,19 +175,28 @@ export default function TopicDetailPage() {
      */
     const updateTopicMetadata = async () => {
 
+        setRefreshingMetadata(true);
+
         const { challenges } = await new TomeChallengesAPI().getTopicChallenges(String(params.topicId))
 
         // Extract the juice of the challenge
         const juice = challenges?.filter(challenge => challenge.code === 'juice').map(challenge => (challenge as JuiceChallenge).toRemember.flatMap(item => item.toRemember)).flat();
 
-        if (!juice || juice.length === 0) return;
+        if (!juice || juice.length === 0) {
+            setRefreshingMetadata(false);
+            return
+        }
 
         // Posts the Gale BRoker task to activate the Agent
         await new GaleBrokerAPI().postTask("topic.locations.build", {
             topicId: String(params.topicId),
             topicCode: topic?.name ?? "",
-            juice: juice 
+            juice: juice
         })
+
+        await loadTopic();
+
+        setTimeout(() => { setRefreshingMetadata(false) }, 300)
 
     }
 
@@ -198,8 +208,8 @@ export default function TopicDetailPage() {
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
             <div className="flex justify-center mt-1 space-x-2 text-sm">
                 <Tag text={`${topic.numSections ?? '-'} sections`} color="bg-cyan-900" />
-                <Tag text={`${topic.geoArea?.mainArea ?? '-'}`} color="bg-sky-800"/>
-                <Tag text={`Year ${topic.timePeriod?.startYear ?? '-'} - ${topic.timePeriod?.endYear ?? '-'}`} color="bg-lime-900"/>
+                <Tag text={`${topic.geoArea?.mainArea ?? '-'}`} color="bg-sky-800" />
+                <Tag text={`Year ${topic.timePeriod?.startYear ?? '-'} - ${topic.timePeriod?.endYear ?? '-'}`} color="bg-lime-900" />
             </div>
             {/* {ongoingPracticeProgress != null &&
                 <div className="mt-4">
@@ -215,8 +225,8 @@ export default function TopicDetailPage() {
                     onClick={() => { router.push(`${params.topicId}/icon`) }}
                 />
                 <RoundButton svgIconPath={{ src: "/images/spider.svg", alt: "Crawl & Regenerate Challenges" }} size="s" onClick={refreshTopic} disabled={refreshingTopic} />
-                <RoundButton svgIconPath={{ src: "/images/trash.svg", alt: "Delete Topic" }} size="s" onClick={() => setShowDeleteConfirmation(true)} />
-                <RoundButton svgIconPath={{ src: "/images/leaf.svg", alt: "Update Topic Metadata" }} size="s" onClick={updateTopicMetadata} />
+                <RoundButton svgIconPath={{ src: "/images/trash.svg", alt: "Delete Topic" }} size="s" onClick={() => setShowDeleteConfirmation(true)} disabled={refreshingTopic} />
+                {challenges && challenges.length > 0 && <RoundButton svgIconPath={{ src: "/images/metadata-missing.svg", alt: "Update Topic Metadata" }} size="s" onClick={updateTopicMetadata} loading={refreshingMetadata} />}
                 {/* <RoundButton icon={<LampSVG />} onClick={startPractice} size="m" loading={startingPractice} disabled={!topic.flashcardsCount || refreshingTopic!} /> */}
                 {/* <RoundButton icon={<RefreshSVG />} onClick={refreshTopic} size="s" loading={refreshingTopic!} disabled={startingPractice || ongoingPracticeProgress != null} /> */}
                 {/* {refreshingTopic && <RoundButton icon={<DotsSVG />} onClick={() => { router.push(`${params.topicId}/tracking`) }} size="s" />} */}
