@@ -10,6 +10,18 @@ import { useHeader } from "@/context/HeaderContext";
 import ConfirmationPopup from "@/app/components/ConfirmationPopup";
 import { GaleBrokerAPI } from "@/api/GaleBrokerAPI";
 
+interface TagProps {
+    text: string;
+    color: string;
+}
+
+function Tag({ text, color }: TagProps) {
+    return (
+        <div className={`${color} rounded-full px-2 text-white`}>
+            {text}
+        </div>
+    );
+}
 
 export default function TopicDetailPage() {
 
@@ -38,7 +50,7 @@ export default function TopicDetailPage() {
     const loadData = async () => {
         loadTopic();
         loadChallenges();
-        loadTopicTrials();
+        // loadTopicTrials();
     }
 
     const loadTopicTrials = async () => {
@@ -185,9 +197,9 @@ export default function TopicDetailPage() {
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start px-4 h-full">
             <div className="flex justify-center mt-1 space-x-2 text-sm">
-                <div className="bg-cyan-900 rounded-full px-2 text-white">
-                    {`${topic.numSections ?? '-'} sections`}
-                </div>
+                <Tag text={`${topic.numSections ?? '-'} sections`} color="bg-cyan-900" />
+                <Tag text={`${topic.geoArea?.mainArea ?? '-'}`} color="bg-sky-800"/>
+                <Tag text={`Year ${topic.timePeriod?.startYear ?? '-'} - ${topic.timePeriod?.endYear ?? '-'}`} color="bg-lime-900"/>
             </div>
             {/* {ongoingPracticeProgress != null &&
                 <div className="mt-4">

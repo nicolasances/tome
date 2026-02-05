@@ -15,11 +15,11 @@ export class TomeTopicsAPI {
                 },
                 body: JSON.stringify({
                     blogURL: blogUrl,
-                    blogType: 'craft', 
+                    blogType: 'craft',
                     name: topicName
                 })
             }, false);
-    
+
             if (!response.ok) {
                 // Handle non-OK responses
                 if (response.status === 504) {
@@ -28,7 +28,7 @@ export class TomeTopicsAPI {
                     throw new Error(`Error: ${response.status} ${response.statusText}`);
                 }
             }
-    
+
             return await response.json();
         } catch (error) {
             console.error('Error posting topic:', error);
@@ -60,7 +60,7 @@ export class TomeTopicsAPI {
      * @param topicId the id of the topic to refresh
      */
     async refreshTopic(topicId: string): Promise<void> {
-        await new TotoAPI().fetch('tome-ms-topics', `/topics/${topicId}/refresh`, {method: 'POST'}, false);
+        await new TotoAPI().fetch('tome-ms-topics', `/topics/${topicId}/refresh`, { method: 'POST' }, false);
     }
 
     /**
@@ -69,9 +69,9 @@ export class TomeTopicsAPI {
     async getTopics(): Promise<GetTopicsResponse> {
 
         return (await new TotoAPI().fetch('tome-ms-topics', '/topics', null)).json()
-        
+
     }
-    
+
     /**
      * Finds the topic with the given id
      * 
@@ -79,7 +79,7 @@ export class TomeTopicsAPI {
      * @returns the Topic
      */
     async getTopic(id: string): Promise<Topic> {
-        
+
         return (await new TotoAPI().fetch('tome-ms-topics', `/topics/${id}`, null)).json()
     }
 
@@ -107,13 +107,27 @@ export interface Topic {
     user: string; // User email
     lastScore?: number;
     lastPracticed?: string;
-    generation?: string; 
-    flashcardsCount?: number; 
+    generation?: string;
+    flashcardsCount?: number;
     numSections?: number;
     flashcardsGenerationComplete?: boolean;
     icon?: string;
+    geoArea?: GeoAreaMetadata;
+    timePeriod?: TimePeriodMetadata;
 }
 
 export interface GetTopicsResponse {
     topics: Topic[]
+}
+
+export interface GeoAreaMetadata {
+    mainArea: GeoArea;
+    allAreas: GeoArea[];
+}
+
+export type GeoArea = "Europe" | "North America" | "South America" | "Africa" | "Middle East" | "Russia" | "Asia" | "Oceania" | "Polar";
+
+export interface TimePeriodMetadata {
+    startYear: number;
+    endYear: number;
 }
