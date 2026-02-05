@@ -209,7 +209,7 @@ export default function TopicDetailPage() {
             <div className="flex justify-center mt-1 space-x-2 text-sm">
                 <Tag text={`${topic.numSections ?? '-'} sections`} color="bg-cyan-900" />
                 <Tag text={`${topic.geoArea?.mainArea ?? '-'}`} color="bg-sky-800" />
-                <Tag text={`Year ${topic.timePeriod?.startYear ?? '-'} - ${topic.timePeriod?.endYear ?? '-'}`} color="bg-lime-900" />
+                <Tag text={`Year ${topic.timePeriod?.startYear ?? '-'} ${topic.timePeriod?.endYear != topic.timePeriod?.startYear ? `- ${topic.timePeriod?.endYear ?? '-'}` : ''}`} color="bg-lime-900" />
             </div>
             {/* {ongoingPracticeProgress != null &&
                 <div className="mt-4">
