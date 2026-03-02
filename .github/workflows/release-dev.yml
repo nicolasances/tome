@@ -46,6 +46,7 @@ jobs:
         --build-arg GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
         --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
         --build-arg WHISPERING_API_ENDPOINT=${{ vars.WHISPERING_API_ENDPOINT }} \
+        --build-arg GALE_BROKER_API_ENDPOINT=${{ vars.GALE_BROKER_API_ENDPOINT }} \
         . -t europe-west1-docker.pkg.dev/${{ secrets.GCP_PID }}/${{env.PACKAGE_NAME}}/${{env.PACKAGE_NAME}}:${{env.PACKAGE_VERSION}}
  
     - name: Push Docker image to Dockerhub 
