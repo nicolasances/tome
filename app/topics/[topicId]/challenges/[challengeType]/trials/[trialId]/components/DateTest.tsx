@@ -39,8 +39,8 @@ export function DateTestWidget({ question, correctYear, onAnswer }: { question: 
         // Remove anything that is not a number
         const numericOnly = cleaned.replace(/[^0-9]/g, '');
 
-        // Determine the number of digits in correctYear
-        const digitCount = correctYear.toString().length;
+        // Determine the number of digits in correctYear (use absolute value to ignore BC minus sign)
+        const digitCount = Math.abs(correctYear).toString().length;
 
         // Try to extract a number with the same digit count as correctYear
         const regexPattern = new RegExp(`\\b(\\d{${digitCount}})\\b`);
@@ -134,7 +134,7 @@ const YearInput = React.forwardRef(function YearInputInner(
 ) {
     const { carMode } = useCarMode();
 
-    const getDigits = (year: number) => year.toString().split("");
+    const getDigits = (year: number) => Math.abs(year).toString().split("");
 
     const digits = getDigits(correctYear);
     const numDigits = digits.length;
@@ -168,7 +168,7 @@ const YearInput = React.forwardRef(function YearInputInner(
 
             const inputYear = newValues.join("");
 
-            const isAnswerCorrect = inputYear === correctYear.toString();
+            const isAnswerCorrect = parseInt(inputYear, 10) === Math.abs(correctYear);
 
             setCorrect(isAnswerCorrect);
 
@@ -214,7 +214,7 @@ const YearInput = React.forwardRef(function YearInputInner(
 
         // Simulate the user filling in the year programmatically
         const inputYear = newValues.join("");
-        const isAnswerCorrect = inputYear === correctYear.toString();
+        const isAnswerCorrect = parseInt(inputYear, 10) === Math.abs(correctYear);
 
         setCorrect(isAnswerCorrect);
 
@@ -276,7 +276,7 @@ const YearInput = React.forwardRef(function YearInputInner(
                                 className={`
                                     ${carMode ? "w-16 h-20 text-4xl" : "w-10 h-12 text-xl"}
                                     text-grey-600 bg.white text-center border rounded focus:outline-none`}
-                                defaultValue={correctYear.toString().split("")[idx] || ""}
+                                defaultValue={Math.abs(correctYear).toString().split("")[idx] || ""}
                             />
                         ))}
                     </div>

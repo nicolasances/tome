@@ -24,7 +24,7 @@ export function DateFlashcardWidget({ question, correctYear, onAnswer }: { quest
  */
 function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number, flashcardId: number, onAnswer: (date: { year?: number, day?: number, month?: number }) => void }) {
 
-    const getDigits = (year: number) => year.toString().split("");
+    const getDigits = (year: number) => Math.abs(year).toString().split("");
 
     const digits = getDigits(correctYear);
     const numDigits = digits.length;
@@ -56,7 +56,7 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
 
             const inputYear = newValues.join("");
 
-            const isAnswerCorrect = inputYear === correctYear.toString();
+            const isAnswerCorrect = parseInt(inputYear, 10) === Math.abs(correctYear);
 
             setCorrect(isAnswerCorrect);
 
@@ -112,7 +112,7 @@ function YearInput({ correctYear, flashcardId, onAnswer }: { correctYear: number
                                 maxLength={1}
                                 disabled={true}
                                 className={`w-10 h-12 text-grey-600 bg.white text-center text-xl border rounded focus:outline-none`}
-                                defaultValue={correctYear.toString().split("")[idx] || ""}
+                                defaultValue={Math.abs(correctYear).toString().split("")[idx] || ""}
                             />
                         ))}
                     </div>
