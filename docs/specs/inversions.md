@@ -2,9 +2,11 @@
 
 ## Overview
 
-Inversions is a language-learning feature that trains the user to construct grammatically correct sentences in Danish. The user is shown an English sentence prompt and must write the full corresponding Danish sentence from memory.
+Inversions is a Danish-specific language-learning feature that trains the user on **sentence inversion rules** — the grammatical patterns that determine word order in Danish sentences (e.g. SAVO, VSAVO, SVOA). The user is shown an English sentence and must produce the correct Danish translation, applying the appropriate inversion where required.
 
 Inversions are currently available for **Danish only**.
+
+All session content — sentences and expected answers — is **generated and supplied by the backend API**. The app is responsible only for presenting challenges and processing responses. Correctness is evaluated server-side.
 
 ---
 

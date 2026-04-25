@@ -1,80 +1,76 @@
 # Language Learning
 
-Tome supports language-learning features that help the user practise a target language through active recall exercises.
+Tome includes a **Language Learning** module that helps users practise a target language (TL) through active, production-focused exercises. The current supported TL is **Danish**.
 
-The target language currently supported is **Danish**.
-
----
-
-## Features
-
-| Feature | Target Language |
-|---------|----------------|
-| Vocabulary Practice | Danish |
-| Inversions | Danish |
+All exercise content — vocabulary items, sentences, and challenge sets — is generated and supplied by a **backend API**. The app is responsible only for presenting challenges and processing user responses.
 
 ---
 
 ## Vocabulary Practice
 
-Vocabulary Practice tests the user's ability to recall target-language (TL) translations of words they are learning.
+Vocabulary Practice presents the user with words in English and asks them to produce the correct translation in the TL. The goal is active recall and correct production — not recognition.
 
-### Session Structure
+### Session structure
 
-* The session size is **fixed and determined by the app**.
-* Each item in the session is a word the user is learning, presented in the source language (English).
+- A session contains a **fixed number of words**, determined by the app.
+- Words are drawn from a set provided by the backend API for the current session.
+- The user works through each word one at a time.
 
-### User Flow
+### Challenge flow
 
-1. The app displays a word in the source language.
-2. The user types the TL (Danish) translation.
-3. The app evaluates the answer using a **case-insensitive exact match**.
-4. **Correct answer** → the app advances to the next word.
-5. **Wrong answer**:
-   a. The app shows the correct TL word.
-   b. After a **3-second fade**, the word is moved to the **end of the queue**.
-   c. The app advances to the next word in the queue.
-6. Once all words have been answered correctly, the session ends with a **summary / score screen**.
+1. The app displays an English word.
+2. The user types the TL translation into a text box and submits.
+3. **If the answer is correct:** the app advances to the next word.
+4. **If the answer is wrong:** <br>
+   a. The correct TL word is shown to the user. <br>
+   b. After **3 seconds**, the correct word fades out slowly. <br>
+   c. The current word is **moved to the end of the session queue** — the user will encounter it again later in the same session. <br>
+   d. The app advances to the next word in the queue. <br>
 
-### Answer Validation
+### Answer validation
 
-Answers are validated client-side using a **case-insensitive exact string match** against the expected TL word.
+- Matching is **case-insensitive**.
+- The answer must otherwise be an **exact match** to the expected TL word (no tolerance for typos or missing special characters such as æ, ø, å).
+
+### End of session
+
+When all words in the session have been answered correctly, a **summary screen** is shown. It presents the user's performance for the session (e.g. how many words required correction).
 
 ---
 
 ## Inversions
 
-Inversions test the user's ability to construct grammatically correct sentences in Danish. The user is given an English prompt and must write the full corresponding Danish sentence.
+Inversions is a Danish-specific exercise that trains the user on **sentence inversion rules** — the grammatical patterns that determine word order in Danish sentences (e.g. SAVO, VSAVO, SVOA). The user is shown an English sentence and must produce the correct Danish translation, applying the appropriate inversion where required.
 
-> Inversions are currently available for **Danish only**.
+### Session structure
 
-### Session Structure
+- A session contains a **fixed number of sentences**, consistent with Vocabulary Practice.
+- Sentences are drawn from a set provided by the backend API for the current session.
+- The user works through each sentence one at a time.
 
-* The session size is **fixed and determined by the app**.
-* Each item in the session is a sentence challenge generated from the user's vocabulary or grammar topics.
+### Challenge flow
 
-### User Flow
+1. The app displays an English sentence.
+2. The user types the full Danish translation into a text box and submits.
+3. **Correctness is evaluated by the backend API**, which assesses both the translation and the application of inversion rules.
+4. **If the answer is correct:** the app advances to the next sentence.
+5. **If the answer is wrong:** <br>
+   a. The correct Danish sentence is shown to the user. <br>
+   b. After **3 seconds**, the correct sentence fades out slowly.<br>
+   c. The current challenge is **moved to the end of the session queue** — the user will encounter it again later in the same session.<br>
+   d. The app advances to the next sentence in the queue.<br>
 
-1. The app displays an English sentence prompt.
-2. The user writes the full **Danish sentence**.
-3. The app submits the answer to the **backend API** for evaluation.
-4. **Correct answer** → the app advances to the next challenge.
-5. **Wrong answer**:
-   a. The app shows the correct Danish sentence.
-   b. After a **3-second fade**, the challenge is moved to the **end of the queue**.
-   c. The app advances to the next challenge in the queue.
-6. Once all challenges have been answered correctly, the session ends with a **summary / score screen**.
+### End of session
 
-### Answer Validation
-
-Answers are evaluated by the **backend API**, which assesses grammatical correctness and meaning. The frontend submits the user's answer and receives a pass/fail result along with the expected correct sentence.
+When all sentences in the session queue have been answered correctly, a **summary screen** is shown. It presents the user's performance for the session (e.g. how many sentences required deferral, how many attempts were needed).
 
 ---
 
-## End-of-Session Summary Screen
+## Availability
 
-Both features display a summary screen at the end of the session. The summary shows:
+| Feature             | Languages     |
+|---------------------|---------------|
+| Vocabulary Practice | Danish        |
+| Inversions          | Danish only   |
 
-* Total number of items in the session
-* Number of items answered correctly on the first attempt
-* Score / accuracy percentage
+Both features are accessible from the Language Learning section of the app.

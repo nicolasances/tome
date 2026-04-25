@@ -1,61 +1,55 @@
 # Memory & Challenges
 
-Challenges are the core mechanism Tome uses for active recall practice. This document describes how Challenges work, how they are scored, and how accuracy is tracked.
+Tome helps users retain knowledge through a structured recall mechanism built on **Challenges**. For each topic in the knowledge base, a series of challenges is maintained to periodically push the user to retrieve information from memory.
 
 ---
 
 ## Challenges
 
-A **Challenge** is a structured practice session tied to a Topic. Challenges vary in difficulty and test the user's recall through a series of **Tests** (questions).
+A **Challenge** is a practice session scoped to a specific topic (or section of a topic). Its purpose is to test whether the user can still recall key information — not to teach new material.
 
-### Challenge Types
-
-| Challenge | Difficulty | Description |
-|-----------|-----------|-------------|
-| **Juice Challenge** | Easy | Tests core concepts, key dates, and important people from the topic. |
+- Each topic can have multiple challenges, each covering different aspects or sections.
+- Challenges are designed to be short enough to complete in a single sitting.
+- Completing a challenge updates the topic's **accuracy score** (see below).
 
 ---
 
-## Tests
+## Questions
 
-Tests are the individual questions within a Challenge. Each Test is generated from the content of the Topic's Sections.
+Each challenge is made up of a set of **questions**. Questions are generated based on the topic's content and are designed to provoke active recall rather than recognition.
 
-### Test Types
-
-| Type | Description | Answer Format |
-|------|-------------|---------------|
-| **Date Test** | Recall a date or time period for a given event. | Free text |
-| **Free Text Test** | Answer an open question about the topic. | Free text |
-| **Genealogic Tree Test** | Reconstruct a family tree or hierarchical relationship. | Graph interaction |
-| **Timeline Test** | Place events in the correct chronological order. | Drag-and-drop ordering |
+- Questions target specific facts, concepts, or relationships within the topic.
+- Multiple question types are supported (e.g. open answer, multiple choice, date recall, graph-based).
+- The difficulty and framing of questions may vary across challenges to avoid rote memorisation.
 
 ---
 
-## Scoring
+## Scoring & Accuracy
 
-Each Test is scored individually. The overall score for a Trial is the aggregate of all Test scores.
+After answering all questions in a challenge, each answer is **rated** — either automatically or with AI assistance — and a score is produced.
 
-### Practice Points
+### Accuracy Score
+The **accuracy score** expresses how well the user remembers a topic. It is derived from the scores of completed challenges.
 
-Practice Points (PP) are awarded for answering Tests. The rules vary by Test type:
+- Each question answer contributes a partial score based on correctness and completeness.
+- The challenge score is the aggregate of its question scores, normalised to a percentage.
+- The topic's accuracy score reflects performance across recent challenges, giving more weight to recent attempts.
 
-| Test Type | Right Answer | Wrong Answer |
-|-----------|-------------|-------------|
-| Options / Free Text | Earns PP | No PP |
-| Date Test | Earns PP | Earns PP (learning from the correct answer) |
-| Graph / Timeline | No PP per question | PP awarded on completion (proportional to questions) |
-
-> Wrong answers on Date Tests earn PP because the user can only answer once — the app immediately shows the correct answer, and there is clear learning value in seeing the right date.
-
-See also: [Practice Points](../practice-points.md)
+### What the Score Reflects
+| Score range | Interpretation |
+|-------------|----------------|
+| 80–100 %    | Strong recall — the user remembers the topic well |
+| 50–79 %     | Partial recall — some gaps remain |
+| 0–49 %      | Weak recall — the topic needs significant review |
 
 ---
 
-## Accuracy
+## Relationship to the Knowledge Base
 
-Accuracy is tracked at the **Trial level** and represents the percentage of Tests answered correctly on the first attempt.
+Challenges are always linked to a **Topic** (and optionally to a specific **Section**) in the knowledge base. This means:
 
-* A Test is considered **correct** if the user's first answer is accepted.
-* Subsequent attempts (after a wrong answer) do not improve the accuracy score for that Test.
+- A topic that has never been challenged has no accuracy score.
+- As the user completes more challenges on a topic, the score stabilises and reflects long-term retention.
+- Topics with a low accuracy score can be surfaced by Tome as **review recommendations**.
 
-Accuracy is displayed at the end of each Trial on the summary screen.
+→ See [Knowledge Base](../kb.md)

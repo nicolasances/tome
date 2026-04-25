@@ -2,9 +2,11 @@
 
 ## Overview
 
-Vocabulary Practice is a language-learning feature that trains the user to recall the target-language (TL) translation of words they are studying. The user is shown a word in the source language (English) and must type the correct TL word from memory.
+Vocabulary Practice is a language-learning feature that trains the user to recall the target-language (TL) translation of words they are studying. The user is shown a word in the source language (English) and must type the correct TL word from memory. The goal is active recall and correct production — not recognition.
 
 The target language currently supported is **Danish**.
+
+All session content — vocabulary items and expected answers — is **generated and supplied by the backend API**. The app is responsible only for presenting challenges and processing responses.
 
 ---
 
@@ -64,6 +66,7 @@ The app evaluates the answer immediately after submission using a **case-insensi
 | Matching method | Exact string match |
 | Case sensitivity | Case-insensitive |
 | Whitespace | Leading and trailing spaces are trimmed before matching |
+| Special characters | No tolerance for missing special characters (æ, ø, å must match exactly) |
 | Validation location | Client-side (no API call required) |
 
 ---
