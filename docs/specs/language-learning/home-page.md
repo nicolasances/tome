@@ -1,11 +1,10 @@
-# Accessing the Language Learning capability
+# Leaning Language Home Page
 
 In the Tome app, the Language Learning screen is accessed through the side menu. 
 
-## Language Learning Home Page
+<img src="./drawings/language-learning-home.jpg" alt="Home Page Layout Drawing" width="400" height="auto">
 
-The Home Page has the following layout: 
-![Home Page Layout Drawing](./drawings/language-learning-home.jpg)
+Adjust the `width` value (400px, 50%, etc.) to your preference. Standard markdown image syntax doesn't support sizing directly, so one of these approaches is recommended.
 
 The Home Page presents the following sections: 
 1. **Header** - (normal app header, with a title and back button).
