@@ -21,12 +21,11 @@ Vocabulary Practice presents the user with words in English and asks them to pro
 1. The app displays an English word.
 2. The user types the TL translation into a text box and submits.
 3. **If the answer is correct:** the app advances to the next word.
-4. **If the answer is wrong:**
-   a. The correct TL word is shown to the user.
-   b. After **3 seconds**, the correct word fades out slowly.
-   c. The user must now type the correct word again into the text box and submit.
-   d. **If correct:** the app advances to the next word.
-   e. **If wrong again:** steps (a)–(d) repeat until the user types the word correctly.
+4. **If the answer is wrong:** <br>
+   a. The correct TL word is shown to the user. <br>
+   b. After **3 seconds**, the correct word fades out slowly. <br>
+   c. The current word is **moved to the end of the session queue** — the user will encounter it again later in the same session. <br>
+   d. The app advances to the next word in the queue. <br>
 
 ### Answer validation
 
@@ -55,13 +54,11 @@ Inversions is a Danish-specific exercise that trains the user on **sentence inve
 2. The user types the full Danish translation into a text box and submits.
 3. **Correctness is evaluated by the backend API**, which assesses both the translation and the application of inversion rules.
 4. **If the answer is correct:** the app advances to the next sentence.
-5. **If the answer is wrong:**
-   a. The correct Danish sentence is shown to the user.
-   b. After **3 seconds**, the correct sentence fades out slowly.
-   c. The current challenge is **moved to the end of the session queue** — the user will encounter it again later in the same session.
-   d. The app advances to the next sentence in the queue.
-
-> Unlike Vocabulary Practice, a wrong answer in Inversions does not trigger an immediate retry. The sentence is deferred and the user must answer it correctly when it reappears.
+5. **If the answer is wrong:** <br>
+   a. The correct Danish sentence is shown to the user. <br>
+   b. After **3 seconds**, the correct sentence fades out slowly.<br>
+   c. The current challenge is **moved to the end of the session queue** — the user will encounter it again later in the same session.<br>
+   d. The app advances to the next sentence in the queue.<br>
 
 ### End of session
 
