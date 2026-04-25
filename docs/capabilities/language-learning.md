@@ -4,6 +4,11 @@ Tome includes a **Language Learning** module that helps users practise a target 
 
 All exercise content — vocabulary items, sentences, and challenge sets — is generated and supplied by a **backend API**. The app is responsible only for presenting challenges and processing user responses.
 
+Specs related to this capability: 
+* [Vocabulary Practice](../specs/language-learning/vocabulary-practice.md)
+* [Inversions](../specs/language-learning/inversions.md)
+* [Practice Summary](../specs/language-learning/language-learning-summary.md)
+
 ---
 
 ## Vocabulary Practice
