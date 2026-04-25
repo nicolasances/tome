@@ -19,6 +19,11 @@ For each topic, Tome maintains a set of **Challenges** — sessions of questions
 
 → See [Memory & Challenges](./memory-challenges.md)
 
+### Language Learning
+Tome includes a dedicated module for practising a target language through active production exercises.
+
+→ See [Language Learning](./language-learning.md)
+
 ---
 
 ## Design Principles
