@@ -87,6 +87,7 @@ export default function TomeHeader() {
                     <MenuItem onClick={() => {setIsMenuOpen(false); window.location = "/settings" as any}} icon="/images/settings.svg" iconColor="bg-cyan-700" label="Settings" />
                     <div className="pt-4"></div>
                     <MenuItem onClick={() => {router.push('/new-topic'); setIsMenuOpen(false);}} icon="/images/plus.svg" iconColor="bg-cyan-700" label="New Topic" />
+                    <MenuItem onClick={() => {router.push('/language-learning'); setIsMenuOpen(false);}} icon="/images/teacher.svg" iconColor="bg-cyan-700" label="Language Learning" />
                 </div>
             </div>
         </>

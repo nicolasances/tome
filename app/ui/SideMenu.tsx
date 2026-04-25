@@ -2,13 +2,11 @@
 
 import { useState } from 'react';
 import { useCarMode } from '@/context/CarModeContext';
-import { useRouter } from 'next/navigation';
 import RoundButton from './buttons/RoundButton';
 
 export default function SideMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const { carMode, toggleCarMode } = useCarMode();
-    const router = useRouter();
 
     return (
         <>
@@ -43,12 +41,6 @@ export default function SideMenu() {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <div
-                        className="flex items-center p-3 bg-gray-100 rounded cursor-pointer"
-                        onClick={() => { setIsOpen(false); router.push('/language-learning'); }}
-                    >
-                        <span className="text-sm font-medium">Language Learning</span>
-                    </div>
                     <div className="flex items-center justify-between p-3 bg-gray-100 rounded">
                         <span className="text-sm font-medium">Car Mode</span>
                         <button
