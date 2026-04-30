@@ -45,22 +45,7 @@ As the user types, the word list filters in real-time to show only words where e
 
 ### Data Source
 
-The word list is fetched from the backend API on page load:
-
-| Property | Value |
-|----------|-------|
-| **Endpoint** | `GET /tomelang/vocabulary/danish` |
-| **Response** | `{ language: string, words: Word[] }` |
-
-Each `Word` object contains:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | string | Unique identifier |
-| `english` | string | The English word |
-| `translation` | string | The Danish translation |
-| `createdAt` | string | ISO timestamp of when the word was added |
-| `knowledgeSource` | string | Origin of the word (e.g. manual entry, import) |
+The word list is fetched from the **Tome Language API** on page load. The API client class should be implemented in the `/api` folder following the existing pattern (e.g. `TomeLanguageAPI.ts`).
 
 ### Display
 
@@ -81,11 +66,20 @@ The list should be sorted **alphabetically by Danish word** (ascending).
 - Items should have consistent padding and spacing
 - No dividers between items; use vertical spacing instead
 
+### Loading State
+
+While the vocabulary is being fetched, the page displays **skeleton placeholder items**:
+
+- Show 3–5 placeholder list items in the same layout as real vocabulary items
+- Each placeholder contains rectangular shapes where the Danish word and English translation would appear
+- The placeholder text displays "Loading"
+- A **horizontal gradient animation** sweeps across the placeholders from left to right, giving a shimmer effect to indicate loading activity
+- The search bar is visible but disabled during loading
+
 ### Empty States
 
 | State | Display |
 |-------|---------|
-| **Loading** | Show a loading indicator while fetching vocabulary |
 | **No words** | Display a message: "No vocabulary words yet" |
 | **No search results** | Display a message: "No words match your search" |
 
