@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
+import { RoundButton } from "toto-react";
 
 export default function LanguageLearningPage() {
 
@@ -23,16 +24,8 @@ export default function LanguageLearningPage() {
         <div className="flex flex-1 flex-col items-stretch justify-start">
             <div className="flex-1 app-content flex flex-col px-4">
                 {/* Practice Buttons section */}
-                <div className="flex-1">
-                    {/* TODO: Practice Buttons */}
-                </div>
-
-                {/* Navigation Links */}
-                <div className="mb-6">
-                    <NavigationButton
-                        label="Vocabulary"
-                        onClick={() => router.push('/language-learning/vocabulary')}
-                    />
+                <div className="flex justify-center mt-8">
+                    <RoundButton svgIconPath={{src: "/images/tome.svg", alt: "Vocabulary"}} onClick={() => router.push('/language-learning/vocabulary')} />
                 </div>
 
                 {/* Learning Stats section */}
