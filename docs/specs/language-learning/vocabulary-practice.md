@@ -8,6 +8,12 @@ The target language currently supported is **Danish**.
 
 All session content — vocabulary items and expected answers — is **generated and supplied by the backend API**. The app is responsible only for presenting challenges and processing responses.
 
+## Mock interface
+
+![Practice a single word](drawings/vocab-practice.png)
+
+![Result](drawings/vocab-practice-result.png)
+
 ---
 
 ## Entry Point
