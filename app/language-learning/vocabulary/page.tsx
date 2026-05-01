@@ -75,8 +75,12 @@ export default function VocabularyPage() {
                 </div>
 
                 {/* Word List */}
-                <div className="flex-1 overflow-y-auto px-4">
-                    {isLoading && <SkeletonList />}
+                <div className="flex-1 overflow-y-auto px-4 pl-8 mt-4">
+                    {isLoading && (
+                        <div className="flex items-center justify-center py-8">
+                            <p className="text-cyan-900">Loading vocabulary...</p>
+                        </div>
+                    )}
 
                     {error && (
                         <div className="flex flex-col items-center justify-center py-8">
@@ -117,35 +121,12 @@ export default function VocabularyPage() {
 
 function WordItem({ word }: { word: Word }) {
     return (
-        <div className="py-3">
-            <div className="text-primary font-medium text-lg">
+        <div className="">
+            <div className="text-grey-900 font-bold text-lg">
                 {word.translation}
             </div>
-            <div className="text-muted-foreground text-sm">
+            <div className="text-muted-foreground text-sm ">
                 {word.english}
-            </div>
-        </div>
-    );
-}
-
-function SkeletonList() {
-    return (
-        <div className="space-y-3 pb-4">
-            {[1, 2, 3, 4, 5].map((i) => (
-                <SkeletonItem key={i} />
-            ))}
-        </div>
-    );
-}
-
-function SkeletonItem() {
-    return (
-        <div className="py-3 animate-pulse">
-            <div className="h-6 w-32 bg-gradient-to-r from-cyan-200 via-cyan-100 to-cyan-200 rounded mb-2 skeleton-shimmer">
-                <span className="text-cyan-400 text-lg">Loading</span>
-            </div>
-            <div className="h-4 w-24 bg-gradient-to-r from-cyan-200 via-cyan-100 to-cyan-200 rounded skeleton-shimmer">
-                <span className="text-cyan-300 text-sm">Loading</span>
             </div>
         </div>
     );
