@@ -70,7 +70,7 @@ export default function VocabularyPage() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         disabled={isLoading}
-                        className="w-full bg-cyan-100 border-cyan-700 text-cyan-900 placeholder:text-cyan-700/50"
+                        className="w-full bg-cyan-100 border-0 shadow-md text-cyan-900 placeholder:text-cyan-700/50 rounded-full"
                     />
                 </div>
 
