@@ -14,7 +14,7 @@ export function SessionProgressBar({ total, mastered, deferred }: SessionProgres
   const deferredPct = total > 0 ? (deferred / total) * 100 : 0;
 
   return (
-    <div className="flex w-full rounded-full border border-cyan-200 p-1">
+    <div className="flex w-full rounded-full border-2 border-cyan-400 p-1">
       <div className="flex flex-1 h-3 overflow-hidden rounded-full">
         {masteredPct > 0 && (
           <div
