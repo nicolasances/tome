@@ -49,7 +49,7 @@ export default function VocabularyPracticePage() {
         try {
             let s = await api.getActiveSession();
             if (!s) {
-                s = await api.startSession();
+                s = await api.startSession('danish');
             }
             setSession(s);
             setPendingQueue(s.pendingQueue);
@@ -105,60 +105,72 @@ export default function VocabularyPracticePage() {
             userAnswer.toLowerCase() === word.translation.toLowerCase();
 
         setResult({ isCorrect, userAnswer });
-        api.submitAnswer(session.sessionId, word.id, isCorrect).catch(console.error);
+
+        // Compute next queue state eagerly so we can persist to localStorage immediately
+        // (before the UI-delay timeout fires), ensuring resume works even if the user exits
+        // during the result feedback pause.
+        let nextPending: string[];
+        let nextMastered: string[];
+        let nextDeferred: string[];
+        let nextFirstAttempt: string[];
+        let nextFailedAttempts: Record<string, number>;
+
+        const currentFailedAttempts = Object.fromEntries(
+            session.words.map((w) => [w.id, w.failedAttempts])
+        );
+
+        if (isCorrect) {
+            const isFirstAttempt = !deferredIds.includes(word.id);
+            nextMastered = [...masteredIds, word.id];
+            nextFirstAttempt = isFirstAttempt ? [...firstAttemptCorrectIds, word.id] : firstAttemptCorrectIds;
+            nextPending = pendingQueue.slice(1);
+            nextDeferred = deferredIds.filter((id) => id !== word.id);
+            nextFailedAttempts = currentFailedAttempts;
+        } else {
+            nextDeferred = deferredIds.includes(word.id) ? deferredIds : [...deferredIds, word.id];
+            nextPending = [...pendingQueue.slice(1), word.id];
+            nextMastered = masteredIds;
+            nextFirstAttempt = firstAttemptCorrectIds;
+            nextFailedAttempts = { ...currentFailedAttempts, [word.id]: (currentFailedAttempts[word.id] ?? 0) + 1 };
+        }
+
+        // Persist to localStorage immediately (not waiting for the UI timer)
+        const queueState = {
+            sessionId: session.sessionId,
+            pendingQueue: nextPending,
+            masteredIds: nextMastered,
+            deferredIds: nextDeferred,
+            firstAttemptCorrectIds: nextFirstAttempt,
+            wordFailedAttempts: nextFailedAttempts,
+        };
+        localStorage.setItem(`vocab-queue-${session.sessionId}`, JSON.stringify(queueState));
+
+        // Fire-and-forget backend call — errors logged but do not block UX
+        api.submitAnswer(session.sessionId, word.id, isCorrect).catch((e) => {
+            console.error('submitAnswer failed:', e);
+        });
 
         const timer = setTimeout(() => {
-            if (isCorrect) {
-                const isFirstAttempt = !deferredIds.includes(word.id);
-                const newMastered = [...masteredIds, word.id];
-                const newFirstAttempt = isFirstAttempt
-                    ? [...firstAttemptCorrectIds, word.id]
-                    : firstAttemptCorrectIds;
-                const newPending = pendingQueue.slice(1);
-                // Remove from deferred now that the word is mastered
-                const newDeferred = deferredIds.filter((id) => id !== word.id);
+            setMasteredIds(nextMastered);
+            setDeferredIds(nextDeferred);
+            setFirstAttemptCorrectIds(nextFirstAttempt);
+            setPendingQueue(nextPending);
 
-                setMasteredIds(newMastered);
-                setDeferredIds(newDeferred);
-                setFirstAttemptCorrectIds(newFirstAttempt);
-                setPendingQueue(newPending);
+            setSession((prev) => {
+                if (!prev) return prev;
+                return {
+                    ...prev,
+                    words: prev.words.map((w) => ({
+                        ...w,
+                        failedAttempts: nextFailedAttempts[w.id] ?? w.failedAttempts,
+                    })),
+                    masteredIds: nextMastered,
+                    deferredIds: nextDeferred,
+                    firstAttemptCorrectIds: nextFirstAttempt,
+                    pendingQueue: nextPending,
+                };
+            });
 
-                // Update session state for completeSession accuracy
-                setSession((prev) => {
-                    if (!prev) return prev;
-                    return {
-                        ...prev,
-                        masteredIds: newMastered,
-                        deferredIds: newDeferred,
-                        firstAttemptCorrectIds: newFirstAttempt,
-                        pendingQueue: newPending,
-                    };
-                });
-            } else {
-                // Move to end of queue, add to deferred if not already
-                const newDeferred = deferredIds.includes(word.id)
-                    ? deferredIds
-                    : [...deferredIds, word.id];
-                const newPending = [...pendingQueue.slice(1), word.id];
-
-                // Increment failedAttempts in local session state
-                setSession((prev) => {
-                    if (!prev) return prev;
-                    return {
-                        ...prev,
-                        words: prev.words.map((w) =>
-                            w.id === word.id
-                                ? { ...w, failedAttempts: w.failedAttempts + 1 }
-                                : w
-                        ),
-                        deferredIds: newDeferred,
-                        pendingQueue: newPending,
-                    };
-                });
-
-                setDeferredIds(newDeferred);
-                setPendingQueue(newPending);
-            }
             setResult(null);
             setAnswer('');
         }, isCorrect ? 1000 : 3000);
