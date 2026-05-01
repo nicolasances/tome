@@ -20,11 +20,25 @@ All session content — vocabulary items and expected answers — is **generated
 
 The user accesses Vocabulary Practice from the Language Learning section of the app. No setup or configuration is required before starting a session.
 
+A **loading spinner** is displayed while the session data is being fetched from the backend API. Once the data is ready, the first word is shown immediately.
+
+---
+
+## Session Persistence & Resuming
+
+Sessions are **persisted on the backend**. If the user exits a session before completing it (e.g. by tapping the back button), the session remains open on the server and can be resumed later.
+
+The Language Learning home page detects whether an active session exists for the current user and presents a **Resume Practice** button in place of the Start button. See the [Language Learning Home Page spec](./home-page.md) for details.
+
+When resuming, the backend restores the **exact queue state** — including which word was current, which words are still pending, and which are deferred. The app loads this state and resumes from where the user left off. A loading spinner is displayed while the session state is being fetched.
+
+A user with an active session **cannot start a new session** until the active one is completed.
+
 ---
 
 ## Session Structure
 
-* The session consists of a **fixed number of words**, determined by the app.
+* The **number of words** in a session is determined and returned by the backend API; the app does not hard-code this value.
 * Words are drawn from the user's active vocabulary list.
 * Words are presented one at a time.
 
@@ -32,11 +46,16 @@ The user accesses Vocabulary Practice from the Language Learning section of the 
 
 ## User Flow
 
+### 0. Loading
+
+On session start or resume, a loading spinner is displayed while the app fetches session data from the backend. Once ready, the first word prompt is shown.
+
 ### 1. Word Prompt
 
-* The app displays a **source-language word** (English) prominently on screen.
-* An **input field** is shown below the word for the user to type their answer.
-* A **submit button** (or pressing Enter) confirms the answer.
+* The app displays a **"TRANSLATE"** label and the **source-language word** (English) prominently in the centre of the screen.
+* A **text input field** is pinned at the bottom of the screen for the user to type their answer.
+* A **submit button** inside the input field (or pressing Enter) confirms the answer.
+* When a new word is shown, the input field is **cleared and auto-focused** so the user can start typing immediately.
 
 ### 2. Answer Evaluation
 
@@ -44,24 +63,56 @@ The app evaluates the answer immediately after submission using a **case-insensi
 
 * Punctuation and whitespace handling follows the same case-insensitive rule (trim leading/trailing spaces before matching).
 
+The word-prompt area transitions to a **result view** (described below) while the input field remains visible at the bottom of the screen (disabled during the feedback pause).
+
 #### 2a. Correct Answer
 
-* The app provides a **correct feedback indicator** (e.g. green highlight or checkmark).
-* After a brief moment, the app automatically advances to the next word in the queue.
+The result view shows:
+1. The original source-language word (unchanged).
+2. A **"YOU TRANSLATED"** label followed by the user's answer.
+3. A **green checkmark** and the text **"Correct!"**.
+
+After **3 seconds**, the app automatically clears the result view, clears the input field, and advances to the next word in the queue.
 
 #### 2b. Wrong Answer
 
-1. The app provides a **wrong feedback indicator** (e.g. red highlight or cross).
-2. The **correct TL word is revealed** below the input field.
-3. A **3-second fade** plays while the correct word is displayed.
-4. After the fade, the word is **moved to the end of the session queue** (it will be shown again later in the session).
-5. The app advances to the next word in the queue.
+The result view shows:
+1. The original source-language word (unchanged).
+2. A **"YOU TRANSLATED"** label followed by the user's (wrong) answer.
+3. A **red cross** and the text **"Wrong!"**.
+4. The **correct TL word** displayed below the wrong indicator.
+
+After **3 seconds**, the word is **moved to the end of the session queue** (it will be shown again later in the session). The app clears the result view, clears the input field, and advances to the next word in the queue.
 
 ### 3. Session Completion
 
 * A word is considered **mastered for this session** once the user answers it correctly.
 * The session ends when **all words have been answered correctly** (including words that were previously answered incorrectly and deferred).
 * On session completion, the app navigates to the **[Session Summary Screen](./language-learning-summary.md)**.
+
+---
+
+## Progress Bar
+
+A **tri-segment progress bar** is displayed at the top of the screen throughout the session. It gives the user an at-a-glance view of their progress:
+
+| Segment | Colour | Meaning |
+|---------|--------|---------|
+| Left | **Green** | Words answered correctly (mastered) |
+| Middle | **Grey** | Words not yet practiced in this session |
+| Right | **Red** | Words answered incorrectly (deferred — waiting to be retried) |
+
+Each segment's width is proportional to the number of words it represents, relative to the total session size.
+
+When a deferred (red) word is eventually answered correctly, its portion moves from the red segment to the green segment.
+
+---
+
+## Exit Behaviour (Back Button)
+
+Tapping the **back button** in the header during an active session exits the session immediately — no confirmation dialog is shown.
+
+The session state (current word, pending queue, deferred words) is **saved on the backend**. The user can return to it at any time via the **Resume Practice** button on the Language Learning home page. The progress bar state is also preserved.
 
 ---
 
@@ -103,4 +154,4 @@ At any point during the session, the app must track:
 
 * Hints or partial-credit scoring are not supported.
 * Audio pronunciation is not part of this feature.
-* The app does not persist session progress; if the user exits mid-session, the session is lost.
+* Comparing results across sessions is not supported.
