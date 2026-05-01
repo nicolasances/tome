@@ -7,6 +7,7 @@ import { getVocabularyPracticeAPI } from '@/api/VocabularyPracticeAPIFactory';
 import { VocabPracticeSession, VocabPracticeWord } from '@/model/VocabularyPractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
+import { MaskedSvgIcon } from 'toto-react';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -156,7 +157,7 @@ export default function VocabularyPracticePage() {
             }
             setResult(null);
             setAnswer('');
-        }, 3000);
+        }, isCorrect ? 1000 : 3000);
 
         return () => clearTimeout(timer);
     };
@@ -198,7 +199,7 @@ export default function VocabularyPracticePage() {
     return (
         <div className="flex flex-1 flex-col items-stretch">
             {/* Progress bar */}
-            <div className="px-4 pt-4">
+            <div className="px-4 pt-8">
                 <SessionProgressBar
                     total={session.totalWords}
                     mastered={masteredIds.length}
@@ -207,13 +208,13 @@ export default function VocabularyPracticePage() {
             </div>
 
             {/* Word prompt / result area */}
-            <div className="flex-1 flex flex-col items-center justify-center px-6 pb-32">
+            <div className="flex-1 flex flex-col items-stretch justify-start px-6 pb-32 pt-16">
                 {currentWord && (
                     <>
                         {result === null ? (
                             /* Word prompt */
                             <div className="flex flex-col items-center gap-4">
-                                <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                                <span className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
                                     Translate
                                 </span>
                                 <span className="text-4xl font-bold text-foreground">
@@ -222,31 +223,31 @@ export default function VocabularyPracticePage() {
                             </div>
                         ) : (
                             /* Result view */
-                            <div className="flex flex-col items-center gap-3 text-center">
+                            <div className="flex flex-col items-stretch gap-3 text-center">
                                 <span className="text-3xl font-bold text-foreground">
                                     {currentWord.english}
                                 </span>
-                                <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                                    You Translated
-                                </span>
-                                <span className="text-2xl font-semibold">
-                                    {result.userAnswer || <em className="text-muted-foreground">empty</em>}
-                                </span>
-                                {result.isCorrect ? (
-                                    <div className="flex flex-col items-center gap-1">
-                                        <span className="text-4xl">✅</span>
-                                        <span className="text-green-600 font-bold text-lg">Correct!</span>
+                                <div className={`flex rounded-full items-center px-4 py-2 ${result.isCorrect ? 'bg-green-800 text-green-200' : 'bg-red-800 text-red-200'}`}>
+                                    <div className="pr-4">
+                                        <MaskedSvgIcon src={result.isCorrect ? '/images/tick.svg' : '/images/close.svg'} size='w-5 h-5' alt='Result Icon' color={result.isCorrect ? 'bg-green-100' : 'bg-red-200'} />
                                     </div>
-                                ) : (
-                                    <div className="flex flex-col items-center gap-1">
-                                        <span className="text-4xl">❌</span>
-                                        <span className="text-red-600 font-bold text-lg">Wrong!</span>
-                                        <span className="text-muted-foreground text-sm mt-1">
-                                            Correct answer:{' '}
-                                            <span className="font-semibold text-foreground">
-                                                {currentWord.translation}
-                                            </span>
+                                    <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
+                                        <div className="text-2xs uppercase tracking-widest">Your answer:</div>
+                                        <div>{result.userAnswer || <em className="text-muted-foreground">empty</em>}</div>
+                                    </div>
+                                    {/* <div className="flex-1 flex flex-col items-start justify-center border-l-4 border-[var(--background)] self-stretch -my-2 py-2 pl-4">
+                                        <div className="text-2xs uppercase tracking-widest">Correct:</div>
+                                        <div>{currentWord.translation}</div>
+                                    </div> */}
+                                </div>
+                                {!result.isCorrect && (
+                                    <div className="flex flex-col items-center gap-4 mt-4">
+                                        <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                                            Correct translation:
                                         </span>
+                                        <div className="text-4xl font-bold text-foreground">
+                                            {currentWord.translation}
+                                        </div>
                                     </div>
                                 )}
                             </div>

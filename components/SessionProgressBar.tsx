@@ -14,25 +14,27 @@ export function SessionProgressBar({ total, mastered, deferred }: SessionProgres
   const deferredPct = total > 0 ? (deferred / total) * 100 : 0;
 
   return (
-    <div className="flex w-full h-2 overflow-hidden rounded-full">
-      {masteredPct > 0 && (
-        <div
-          style={{ width: `${masteredPct}%`, backgroundColor: '#16a34a' }}
-          className="h-full transition-all duration-300"
-        />
-      )}
-      {remainingPct > 0 && (
-        <div
-          style={{ width: `${remainingPct}%`, backgroundColor: '#9ca3af' }}
-          className="h-full transition-all duration-300"
-        />
-      )}
-      {deferredPct > 0 && (
-        <div
-          style={{ width: `${deferredPct}%`, backgroundColor: '#dc2626' }}
-          className="h-full transition-all duration-300"
-        />
-      )}
+    <div className="flex w-full rounded-full border border-cyan-200 p-1">
+      <div className="flex flex-1 h-3 overflow-hidden rounded-full">
+        {masteredPct > 0 && (
+          <div
+            style={{ width: `${masteredPct}%` }}
+            className="h-full transition-all duration-300 bg-green-700"
+          />
+        )}
+        {remainingPct > 0 && (
+          <div
+            style={{ width: `${remainingPct}%`, backgroundColor: '#9ca3af' }}
+            className="h-full transition-all duration-300"
+          />
+        )}
+        {deferredPct > 0 && (
+          <div
+            style={{ width: `${deferredPct}%` }}
+            className="h-full transition-all duration-300 bg-lime-500"
+          />
+        )}
+      </div>
     </div>
   );
 }
