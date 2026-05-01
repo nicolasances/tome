@@ -58,11 +58,23 @@ export class MockVocabularyPracticeAPI implements IVocabularyPracticeAPI {
     const session: VocabPracticeSession = JSON.parse(raw);
     if (session.sessionId !== sessionId) return;
 
-    if (!isCorrect) {
-      const word = session.words.find((w) => w.id === wordId);
-      if (word) {
-        word.failedAttempts += 1;
+    if (isCorrect) {
+      // Move word from the front of the queue to mastered
+      session.pendingQueue = session.pendingQueue.filter((id) => id !== wordId);
+      session.masteredIds = [...session.masteredIds, wordId];
+      // Count as first-attempt-correct only if it was never deferred
+      if (!session.deferredIds.includes(wordId)) {
+        session.firstAttemptCorrectIds = [...session.firstAttemptCorrectIds, wordId];
       }
+    } else {
+      // Move the word to the end of the queue and track as deferred
+      session.pendingQueue = [...session.pendingQueue.filter((id) => id !== wordId), wordId];
+      if (!session.deferredIds.includes(wordId)) {
+        session.deferredIds = [...session.deferredIds, wordId];
+      }
+      // Increment failedAttempts
+      const word = session.words.find((w) => w.id === wordId);
+      if (word) word.failedAttempts += 1;
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));

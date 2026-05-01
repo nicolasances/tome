@@ -6,7 +6,7 @@ import { useHeader } from '@/context/HeaderContext';
 import { getVocabularyPracticeAPI } from '@/api/VocabularyPracticeAPIFactory';
 import { VocabPracticeSession, VocabPracticeWord } from '@/model/VocabularyPractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
-import { Input } from '@/components/ui/input';
+import { TranslationInput } from '@/components/TranslationInput';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -27,7 +27,7 @@ export default function VocabularyPracticePage() {
     const [answer, setAnswer] = useState('');
     const [result, setResult] = useState<ResultState>(null);
 
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLTextAreaElement>(null);
     const api = getVocabularyPracticeAPI();
 
     // Configure header
@@ -161,13 +161,6 @@ export default function VocabularyPracticePage() {
         return () => clearTimeout(timer);
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            handleSubmit();
-        }
-    };
-
     // ---- Render states ----
 
     if (loading) {
@@ -263,23 +256,15 @@ export default function VocabularyPracticePage() {
             </div>
 
             {/* Input pinned at bottom */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border flex gap-2">
-                <Input
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border">
+                <TranslationInput
                     ref={inputRef}
                     value={answer}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    onKeyDown={handleKeyDown}
+                    onChange={setAnswer}
+                    onSubmit={handleSubmit}
                     disabled={result !== null}
                     placeholder="Type Danish translation…"
-                    className="flex-1"
                 />
-                <button
-                    onClick={handleSubmit}
-                    disabled={result !== null}
-                    className="px-4 py-2 rounded-md bg-primary text-primary-foreground disabled:opacity-50"
-                >
-                    Submit
-                </button>
             </div>
         </div>
     );
