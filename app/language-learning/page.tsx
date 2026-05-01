@@ -37,7 +37,7 @@ export default function LanguageLearningPage() {
         <div className="flex flex-1 flex-col items-stretch justify-start">
             <div className="flex-1 app-content flex flex-col px-4">
                 {/* Practice Buttons section */}
-                <div className="flex flex-col items-center mt-8 gap-6">
+                <div className="flex items-center justify-center mt-8 gap-4">
                     {/* Vocabulary list button */}
                     <RoundButton
                         svgIconPath={{ src: "/images/tome.svg", alt: "Vocabulary" }}
@@ -52,10 +52,8 @@ export default function LanguageLearningPage() {
                             <RoundButton
                                 svgIconPath={{ src: "/images/language.svg", alt: hasActiveSession ? 'Resume Practice' : 'Start Practice' }}
                                 onClick={handlePracticeClick}
+                                type={hasActiveSession ? 'filled' : 'primary'}
                             />
-                            <span className="text-xs text-muted-foreground">
-                                {hasActiveSession ? 'Resume Practice' : 'Start Practice'}
-                            </span>
                         </div>
                     )}
                 </div>
