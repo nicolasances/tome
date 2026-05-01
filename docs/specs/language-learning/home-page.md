@@ -22,9 +22,14 @@ This section contains a **single action button**. Its label and behaviour depend
 
 ### Detecting an ongoing practice
 
-On page load, the app must call the backend to check whether the current user has an active (unfinished) language-learning session.
+On page load, the app calls `GET /tomelang/sessions/active` (via `IVocabularyPracticeAPI.getActiveSession()`) to check whether the current user has an active session.
 
-> **⚠️ Spec gap — API endpoint needed.** The endpoint and response format for checking ongoing language-learning sessions must be defined and added here before this can be implemented.
+| Response | Meaning | Button shown |
+|----------|---------|--------------|
+| `200 OK` (session object) | User has an active session | **Resume Practice** |
+| `404 Not Found` | No active session | **Start Practice** |
+
+While the check is in progress, a loading indicator is shown in place of the button.
 
 ---
 

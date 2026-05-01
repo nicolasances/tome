@@ -6,9 +6,9 @@ Vocabulary Practice is a language-learning feature that trains the user to recal
 
 The target language currently supported is **Danish**.
 
-All session content — vocabulary items and expected answers — is **generated and supplied by the backend API**. The app is responsible only for presenting challenges and processing responses.
+All session content — vocabulary items and expected answers — is **generated and supplied by the backend API** (`tome-ms-language`). The app is responsible only for presenting challenges, processing responses, and managing session queue state locally.
 
-## Mock interface
+## UI Reference
 
 ![Practice a single word](drawings/vocab-practice.png)
 
@@ -26,11 +26,27 @@ A **loading spinner** is displayed while the session data is being fetched from 
 
 ## Session Persistence & Resuming
 
-Sessions are **persisted on the backend**. If the user exits a session before completing it (e.g. by tapping the back button), the session remains open on the server and can be resumed later.
+Sessions are **persisted on the backend** (`tome-ms-language`). If the user exits a session before completing it (e.g. by tapping the back button), the session remains open on the server and can be resumed later.
 
 The Language Learning home page detects whether an active session exists for the current user and presents a **Resume Practice** button in place of the Start button. See the [Language Learning Home Page spec](./home-page.md) for details.
 
-When resuming, the backend restores the **exact queue state** — including which word was current, which words are still pending, and which are deferred. The app loads this state and resumes from where the user left off. A loading spinner is displayed while the session state is being fetched.
+### What the backend stores vs. what the frontend manages
+
+| Data | Stored by | Notes |
+|------|-----------|-------|
+| Session ID, language, word list, total words | **Backend** | Retrieved via `GET /sessions/active` |
+| Individual submitted answers (per word, correct/incorrect) | **Backend** | Stored on each `submitAnswer` call |
+| Queue state: pending, mastered, deferred, first-attempt-correct, failed-attempt counts | **Frontend** (localStorage) | Persisted in `localStorage` under key `vocab-queue-{sessionId}` |
+
+The backend does **not** store or return queue state. Queue state is managed entirely on the client and persisted to `localStorage` so it survives navigation and page reloads.
+
+### Resume flow
+
+1. The app calls `getActiveSession()`.
+2. If the backend returns an active session, the API class reads queue state from `localStorage` using key `vocab-queue-{sessionId}`.
+3. If `localStorage` has state for that session: the existing queue state is restored and the user resumes exactly where they left off.
+4. If `localStorage` is empty (e.g. cleared by the user): the queue state is initialised fresh — all words placed in the pending queue, mastered/deferred lists empty. The user effectively restarts the word list (but the session ID on the backend is the same).
+5. A loading spinner is displayed while session state is being fetched.
 
 A user with an active session **cannot start a new session** until the active one is completed.
 
@@ -112,7 +128,7 @@ When a deferred (red) word is eventually answered correctly, its portion moves f
 
 Tapping the **back button** in the header during an active session exits the session immediately — no confirmation dialog is shown.
 
-The session state (current word, pending queue, deferred words) is **saved on the backend**. The user can return to it at any time via the **Resume Practice** button on the Language Learning home page. The progress bar state is also preserved.
+The **session** (word list) remains open on the backend. The **queue state** (pending, deferred, mastered words) is persisted to `localStorage` by the page component on every answer, so it is available when the user returns. The user can resume at any time via the **Resume Practice** button on the Language Learning home page.
 
 ---
 
@@ -130,16 +146,118 @@ The session state (current word, pending queue, deferred words) is **saved on th
 
 ## State Management
 
-| State | Description |
-|-------|-------------|
-| **Pending queue** | Words not yet answered correctly in this session |
-| **Mastered** | Words answered correctly; removed from the queue |
-| **Deferred** | Words answered incorrectly; appended to the end of the pending queue |
+| State | Description | Stored in |
+|-------|-------------|-----------|
+| **Pending queue** | Words not yet answered correctly in this session | React state + localStorage |
+| **Mastered** | Words answered correctly; removed from the queue | React state + localStorage |
+| **Deferred** | Words answered incorrectly; appended to the end of the pending queue | React state + localStorage |
+| **First-attempt correct IDs** | Words answered correctly on the first attempt | React state + localStorage |
+| **Failed attempts per word** | Count of wrong answers per word (used in the summary) | React state + localStorage |
 
-At any point during the session, the app must track:
-* The ordered pending queue
-* The number of items originally in the session
-* The number of items answered correctly on the first attempt (used on the summary screen)
+At any point during the session, the app must track all of the above. After each answer, the page component must **persist the current queue state to `localStorage`** under the key `vocab-queue-{sessionId}`, so that the session can be accurately resumed if the user navigates away.
+
+The stored object shape:
+
+```json
+{
+  "sessionId": "...",
+  "pendingQueue": ["wordId1", "wordId2"],
+  "masteredIds": ["wordId3"],
+  "deferredIds": [],
+  "firstAttemptCorrectIds": ["wordId3"],
+  "wordFailedAttempts": { "wordId1": 0, "wordId2": 1 }
+}
+```
+
+---
+
+## Backend API Integration
+
+### API interface: `IVocabularyPracticeAPI`
+
+All practice pages interact with the backend through the `IVocabularyPracticeAPI` interface, which has the following methods:
+
+```ts
+interface IVocabularyPracticeAPI {
+  startSession(language: string): Promise<VocabPracticeSession>;
+  getActiveSession(): Promise<VocabPracticeSession | null>;
+  submitAnswer(sessionId: string, wordId: string, isCorrect: boolean): Promise<void>;
+  completeSession(sessionId: string): Promise<SessionSummary>;
+}
+```
+
+Note: `startSession` takes a `language` parameter (e.g. `"danish"`). Currently only `"danish"` is supported.
+
+### Switching between mock and real backend
+
+The factory `VocabularyPracticeAPIFactory.getVocabularyPracticeAPI()` returns either:
+- **`MockVocabularyPracticeAPI`** when `NEXT_PUBLIC_VOCAB_PRACTICE_MOCK=true` (for development/testing without the backend)
+- **`TomeVocabularyPracticeAPI`** otherwise (production, using `tome-ms-language`)
+
+### `TomeVocabularyPracticeAPI` — method contracts
+
+All calls go to the `tome-ms-language` microservice via the `TotoAPI` wrapper (adds auth header, correlation ID, etc.).
+
+#### `startSession(language: string): Promise<VocabPracticeSession>`
+
+1. Call `POST /tomelang/languages/{language}/sessions` with body `{ "practiceType": "vocabulary" }`.
+2. On `409 Conflict`: the user already has an active session — surface an error to the user.
+3. Map the backend response to `VocabPracticeSession`:
+
+| Backend field | `VocabPracticeSession` field |
+|---------------|------------------------------|
+| `sessionId` | `sessionId` |
+| `payload.words[].wordId` | `words[].id` |
+| `payload.words[].english` | `words[].english` |
+| `payload.words[].translation` | `words[].translation` |
+| _(none — initialised to 0)_ | `words[].failedAttempts` |
+| `payload.words` (all, in order) | `pendingQueue` (initial: all word IDs) |
+| _(none — initialised empty)_ | `masteredIds`, `deferredIds`, `firstAttemptCorrectIds` |
+| `payload.totalWords` | `totalWords` |
+
+4. Store the initial queue state in `localStorage` under key `vocab-queue-{sessionId}`.
+5. Return the `VocabPracticeSession`.
+
+#### `getActiveSession(): Promise<VocabPracticeSession | null>`
+
+1. Call `GET /tomelang/sessions/active`.
+2. If `404`: return `null` (no active session).
+3. If `200`: map backend response to `VocabPracticeSession` (same field mapping as above).
+4. Read queue state from `localStorage` under key `vocab-queue-{sessionId}`:
+   - **If found**: restore `pendingQueue`, `masteredIds`, `deferredIds`, `firstAttemptCorrectIds`, and per-word `failedAttempts`.
+   - **If not found** (localStorage cleared): initialise fresh — all words in `pendingQueue`, everything else empty, all `failedAttempts = 0`.
+5. Return the `VocabPracticeSession`.
+
+#### `submitAnswer(sessionId: string, wordId: string, isCorrect: boolean): Promise<void>`
+
+1. Call `POST /tomelang/sessions/{sessionId}/answers` with body `{ "entityId": wordId, "isCorrect": isCorrect }`.
+2. Returns when the call completes (the page handles queue-state updates in React state).
+3. Note: queue state persistence to `localStorage` is the **page component's responsibility** (not this method's).
+
+#### `completeSession(sessionId: string): Promise<SessionSummary>`
+
+1. Call `POST /tomelang/sessions/{sessionId}/completion`.
+2. The backend response maps directly to `SessionSummary` — no transformation needed:
+
+| Backend field | `SessionSummary` field |
+|---------------|------------------------|
+| `totalWords` | `totalWords` |
+| `firstAttemptCorrect` | `firstAttemptCorrect` |
+| `accuracy` | `accuracy` |
+| `wordResults[].wordId` | `wordResults[].wordId` |
+| `wordResults[].english` | `wordResults[].english` |
+| `wordResults[].translation` | `wordResults[].translation` |
+| `wordResults[].failedAttempts` | `wordResults[].failedAttempts` |
+
+3. Remove the queue state entry from `localStorage` (`vocab-queue-{sessionId}`).
+4. Return the `SessionSummary`.
+
+### Queue state persistence responsibility
+
+- **`startSession()`** initialises and writes queue state to localStorage.
+- **`getActiveSession()`** reads queue state from localStorage.
+- **The page component** must write updated queue state to localStorage after each answer (e.g. in a `useEffect` that fires when `pendingQueue`, `masteredIds`, `deferredIds`, `firstAttemptCorrectIds`, or word `failedAttempts` change).
+- **`completeSession()`** clears queue state from localStorage.
 
 ---
 
