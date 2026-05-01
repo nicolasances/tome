@@ -59,11 +59,15 @@ export class MockVocabularyPracticeAPI implements IVocabularyPracticeAPI {
     if (session.sessionId !== sessionId) return;
 
     if (isCorrect) {
+      // Check first-attempt status BEFORE removing from deferredIds
+      const isFirstAttempt = !session.deferredIds.includes(wordId);
       // Move word from the front of the queue to mastered
       session.pendingQueue = session.pendingQueue.filter((id) => id !== wordId);
       session.masteredIds = [...session.masteredIds, wordId];
+      // Remove from deferred now that the word is mastered
+      session.deferredIds = session.deferredIds.filter((id) => id !== wordId);
       // Count as first-attempt-correct only if it was never deferred
-      if (!session.deferredIds.includes(wordId)) {
+      if (isFirstAttempt) {
         session.firstAttemptCorrectIds = [...session.firstAttemptCorrectIds, wordId];
       }
     } else {

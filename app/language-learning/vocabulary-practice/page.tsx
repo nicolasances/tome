@@ -115,8 +115,11 @@ export default function VocabularyPracticePage() {
                     ? [...firstAttemptCorrectIds, word.id]
                     : firstAttemptCorrectIds;
                 const newPending = pendingQueue.slice(1);
+                // Remove from deferred now that the word is mastered
+                const newDeferred = deferredIds.filter((id) => id !== word.id);
 
                 setMasteredIds(newMastered);
+                setDeferredIds(newDeferred);
                 setFirstAttemptCorrectIds(newFirstAttempt);
                 setPendingQueue(newPending);
 
@@ -126,6 +129,7 @@ export default function VocabularyPracticePage() {
                     return {
                         ...prev,
                         masteredIds: newMastered,
+                        deferredIds: newDeferred,
                         firstAttemptCorrectIds: newFirstAttempt,
                         pendingQueue: newPending,
                     };
