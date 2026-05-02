@@ -40,10 +40,49 @@ The Learning Stats section is a **bar graph** (implemented with **d3.js**) showi
 ### Data
 
 - One bar per day, covering **Monday through Sunday** of the current week.
-- Bar height represents the **number of completed language-learning practices** for that day (both Vocabulary Practice and Inversions count).
+- Bar height represents the **number of completed language-learning practices** for that day (all practice types — Vocabulary Practice, Inversions, etc. — count equally).
 - Days with no completed practices render a **zero-height bar**; the day label is still shown.
 
-> **⚠️ Spec gap — API endpoint needed.** The app must call an API endpoint to fetch the count of completed practices per day for the current week. The endpoint and response format must be defined and added here before this can be implemented.
+### API endpoint
+
+The frontend fetches weekly practice counts from `tome-ms-language`:
+
+```
+GET /tomelang/sessions/stats/weekly?from=YYYYMMDD
+```
+
+- `from`: the **Monday** of the current week in `YYYYMMDD` format (ISO week start). The server returns counts for the 7 days starting from this date.
+- The backend **aggregates** session counts per calendar day (using `completedAt` on sessions with `status: "completed"`).
+
+**Response:**
+
+```json
+{
+  "days": [
+    { "date": "20260428", "count": 2 },
+    { "date": "20260429", "count": 0 },
+    { "date": "20260430", "count": 1 },
+    { "date": "20260501", "count": 0 },
+    { "date": "20260502", "count": 0 },
+    { "date": "20260503", "count": 0 },
+    { "date": "20260504", "count": 0 }
+  ]
+}
+```
+
+- The response always contains exactly 7 entries (Mon–Sun), even for days with zero sessions.
+- `date` is `YYYYMMDD` format.
+- The API client call should be added to `api/TomeLanguageAPI.ts`.
+
+**Week start calculation (frontend):**
+
+```ts
+const today = new Date();
+const day = today.getDay(); // 0 = Sunday
+const monday = new Date(today);
+monday.setDate(today.getDate() - ((day + 6) % 7));
+// format as YYYYMMDD for the query param
+```
 
 ### Visual style
 
