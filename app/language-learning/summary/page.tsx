@@ -49,8 +49,8 @@ export default function SessionSummaryPage() {
         <div className="flex flex-1 flex-col items-stretch px-6 py-8 gap-8">
             {/* Score summary */}
             <div className="flex flex-col items-center gap-4">
-                <div className="text-6xl font-bold text-primary">{summary.accuracy}%</div>
-                <div className="text-muted-foreground text-sm">Accuracy</div>
+                <div className="text-muted-foreground text-xs uppercase tracking-widest">You scored</div>
+                <div className="text-4xl font-bold text-primary">{summary.accuracy}%</div>
 
                 <div className="flex gap-8 mt-2">
                     <div className="flex flex-col items-center">
@@ -58,7 +58,7 @@ export default function SessionSummaryPage() {
                         <span className="text-xs text-muted-foreground uppercase tracking-wide">Total Words</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <span className="text-2xl font-semibold text-green-600">{summary.firstAttemptCorrect}</span>
+                        <span className="text-2xl font-semibold text-green-300">{summary.firstAttemptCorrect}</span>
                         <span className="text-xs text-muted-foreground uppercase tracking-wide">First Attempt</span>
                     </div>
                 </div>
@@ -67,26 +67,26 @@ export default function SessionSummaryPage() {
             {/* Words with errors */}
             {failedWords.length > 0 && (
                 <div className="flex flex-col gap-3">
-                    <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+                    <div className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
                         Words to Review
-                    </h2>
-                    <ul className="flex flex-col gap-2">
+                    </div>
+                    <div className="flex flex-col gap-1">
                         {failedWords.map((w) => (
-                            <li
+                            <div
                                 key={w.wordId}
-                                className="flex justify-between items-center bg-muted rounded-lg px-4 py-3"
+                                className="flex justify-between items-center bg-muted rounded-lg"
                             >
-                                <span className="text-sm">
+                                <span className="text-base">
                                     <span className="font-medium">{w.english}</span>
                                     <span className="text-muted-foreground"> → </span>
                                     <span className="font-medium">{w.translation}</span>
                                 </span>
-                                <span className="text-xs text-red-500">
-                                    {w.failedAttempts} {w.failedAttempts === 1 ? 'mistake' : 'mistakes'}
+                                <span className="text-sm text-red-800">
+                                    <span className="font-bold">{w.failedAttempts}</span> {w.failedAttempts === 1 ? 'mistake' : 'mistakes'}
                                 </span>
-                            </li>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             )}
 
@@ -96,7 +96,6 @@ export default function SessionSummaryPage() {
                     svgIconPath={{ src: "/images/home.svg", alt: "Return to Language Learning" }}
                     onClick={() => router.push('/language-learning')}
                 />
-                <span className="text-xs text-muted-foreground">Return to Language Learning</span>
             </div>
         </div>
     );

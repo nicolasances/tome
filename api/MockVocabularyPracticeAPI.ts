@@ -1,7 +1,7 @@
 import { IVocabularyPracticeAPI } from './IVocabularyPracticeAPI';
 import { VocabPracticeSession, VocabPracticeWord, SessionSummary } from '@/model/VocabularyPractice';
 
-const STORAGE_KEY = 'vocab-practice-session';
+const ACTIVE_SESSION_KEY = 'vocab-active-session';
 
 const HARDCODED_WORDS: Omit<VocabPracticeWord, 'failedAttempts'>[] = [
   { id: 'w1',  english: 'dog',      translation: 'hund'     },
@@ -24,88 +24,146 @@ function generateUUID(): string {
   });
 }
 
+interface QueueState {
+  sessionId: string;
+  pendingQueue: string[];
+  masteredIds: string[];
+  deferredIds: string[];
+  firstAttemptCorrectIds: string[];
+  wordFailedAttempts: Record<string, number>;
+}
+
+interface SessionMetadata {
+  sessionId: string;
+  words: VocabPracticeWord[];
+  totalWords: number;
+}
+
+function queueStateKey(sessionId: string): string {
+  return `vocab-queue-${sessionId}`;
+}
+
 export class MockVocabularyPracticeAPI implements IVocabularyPracticeAPI {
 
-  async startSession(): Promise<VocabPracticeSession> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async startSession(_language: string): Promise<VocabPracticeSession> {
     const words: VocabPracticeWord[] = HARDCODED_WORDS.map((w) => ({ ...w, failedAttempts: 0 }));
-    const session: VocabPracticeSession = {
-      sessionId: generateUUID(),
-      words,
+    const sessionId = generateUUID();
+
+    const metadata: SessionMetadata = { sessionId, words, totalWords: words.length };
+    localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify(metadata));
+
+    const initialQueue: QueueState = {
+      sessionId,
       pendingQueue: words.map((w) => w.id),
+      masteredIds: [],
+      deferredIds: [],
+      firstAttemptCorrectIds: [],
+      wordFailedAttempts: Object.fromEntries(words.map((w) => [w.id, 0])),
+    };
+    localStorage.setItem(queueStateKey(sessionId), JSON.stringify(initialQueue));
+
+    return {
+      sessionId,
+      words,
+      pendingQueue: initialQueue.pendingQueue,
       masteredIds: [],
       deferredIds: [],
       firstAttemptCorrectIds: [],
       totalWords: words.length,
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-    return session;
   }
 
   async getActiveSession(): Promise<VocabPracticeSession | null> {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
+    const rawMeta = localStorage.getItem(ACTIVE_SESSION_KEY);
+    if (!rawMeta) return null;
+
+    let metadata: SessionMetadata;
     try {
-      const session: VocabPracticeSession = JSON.parse(raw);
-      return session;
+      metadata = JSON.parse(rawMeta);
     } catch {
       return null;
     }
-  }
 
-  async submitAnswer(sessionId: string, wordId: string, isCorrect: boolean): Promise<void> {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const session: VocabPracticeSession = JSON.parse(raw);
-    if (session.sessionId !== sessionId) return;
+    const { sessionId, words, totalWords } = metadata;
 
-    if (isCorrect) {
-      // Check first-attempt status BEFORE removing from deferredIds
-      const isFirstAttempt = !session.deferredIds.includes(wordId);
-      // Move word from the front of the queue to mastered
-      session.pendingQueue = session.pendingQueue.filter((id) => id !== wordId);
-      session.masteredIds = [...session.masteredIds, wordId];
-      // Remove from deferred now that the word is mastered
-      session.deferredIds = session.deferredIds.filter((id) => id !== wordId);
-      // Count as first-attempt-correct only if it was never deferred
-      if (isFirstAttempt) {
-        session.firstAttemptCorrectIds = [...session.firstAttemptCorrectIds, wordId];
+    // Restore or initialise queue state
+    const rawQueue = localStorage.getItem(queueStateKey(sessionId));
+    let queue: QueueState | null = null;
+    if (rawQueue) {
+      try {
+        queue = JSON.parse(rawQueue);
+      } catch {
+        queue = null;
       }
-    } else {
-      // Move the word to the end of the queue and track as deferred
-      session.pendingQueue = [...session.pendingQueue.filter((id) => id !== wordId), wordId];
-      if (!session.deferredIds.includes(wordId)) {
-        session.deferredIds = [...session.deferredIds, wordId];
-      }
-      // Increment failedAttempts
-      const word = session.words.find((w) => w.id === wordId);
-      if (word) word.failedAttempts += 1;
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    if (!queue) {
+      queue = {
+        sessionId,
+        pendingQueue: words.map((w) => w.id),
+        masteredIds: [],
+        deferredIds: [],
+        firstAttemptCorrectIds: [],
+        wordFailedAttempts: Object.fromEntries(words.map((w) => [w.id, 0])),
+      };
+    }
+
+    const restoredWords = words.map((w) => ({
+      ...w,
+      failedAttempts: queue!.wordFailedAttempts[w.id] ?? 0,
+    }));
+
+    return {
+      sessionId,
+      words: restoredWords,
+      pendingQueue: queue.pendingQueue,
+      masteredIds: queue.masteredIds,
+      deferredIds: queue.deferredIds,
+      firstAttemptCorrectIds: queue.firstAttemptCorrectIds,
+      totalWords,
+    };
+  }
+
+  // Queue state is managed by the page component — this is a no-op.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async submitAnswer(_sessionId: string, _wordId: string, _isCorrect: boolean): Promise<void> {
+    // No-op: the page persists queue state to localStorage after each answer.
   }
 
   async completeSession(sessionId: string): Promise<SessionSummary> {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) throw new Error('No active session found');
-    const session: VocabPracticeSession = JSON.parse(raw);
-    if (session.sessionId !== sessionId) throw new Error('Session ID mismatch');
+    const rawQueue = localStorage.getItem(queueStateKey(sessionId));
+    if (!rawQueue) throw new Error('No queue state found for session');
 
-    const firstAttemptCorrect = session.firstAttemptCorrectIds.length;
-    const accuracy = Math.round((firstAttemptCorrect / session.totalWords) * 100);
+    let queue: QueueState;
+    try {
+      queue = JSON.parse(rawQueue);
+    } catch {
+      throw new Error('Failed to parse queue state');
+    }
+
+    const rawMeta = localStorage.getItem(ACTIVE_SESSION_KEY);
+    if (!rawMeta) throw new Error('No active session found');
+    const metadata: SessionMetadata = JSON.parse(rawMeta);
+
+    const firstAttemptCorrect = queue.firstAttemptCorrectIds.length;
+    const accuracy = Math.round((firstAttemptCorrect / metadata.totalWords) * 100);
 
     const summary: SessionSummary = {
-      totalWords: session.totalWords,
+      totalWords: metadata.totalWords,
       firstAttemptCorrect,
       accuracy,
-      wordResults: session.words.map((w) => ({
+      wordResults: metadata.words.map((w) => ({
         wordId: w.id,
         english: w.english,
         translation: w.translation,
-        failedAttempts: w.failedAttempts,
+        failedAttempts: queue.wordFailedAttempts[w.id] ?? 0,
       })),
     };
 
-    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(ACTIVE_SESSION_KEY);
+    localStorage.removeItem(queueStateKey(sessionId));
+
     return summary;
   }
 }

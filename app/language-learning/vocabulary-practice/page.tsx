@@ -7,7 +7,7 @@ import { getVocabularyPracticeAPI } from '@/api/VocabularyPracticeAPIFactory';
 import { VocabPracticeSession, VocabPracticeWord } from '@/model/VocabularyPractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
-import { MaskedSvgIcon } from 'toto-react';
+import { MaskedSvgIcon, RoundButton } from 'toto-react';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -29,6 +29,8 @@ export default function VocabularyPracticePage() {
     const [result, setResult] = useState<ResultState>(null);
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const nextFnRef = useRef<(() => void) | null>(null);
     const api = getVocabularyPracticeAPI();
 
     // Configure header
@@ -49,7 +51,7 @@ export default function VocabularyPracticePage() {
         try {
             let s = await api.getActiveSession();
             if (!s) {
-                s = await api.startSession();
+                s = await api.startSession('danish');
             }
             setSession(s);
             setPendingQueue(s.pendingQueue);
@@ -105,65 +107,92 @@ export default function VocabularyPracticePage() {
             userAnswer.toLowerCase() === word.translation.toLowerCase();
 
         setResult({ isCorrect, userAnswer });
-        api.submitAnswer(session.sessionId, word.id, isCorrect).catch(console.error);
 
-        const timer = setTimeout(() => {
-            if (isCorrect) {
-                const isFirstAttempt = !deferredIds.includes(word.id);
-                const newMastered = [...masteredIds, word.id];
-                const newFirstAttempt = isFirstAttempt
-                    ? [...firstAttemptCorrectIds, word.id]
-                    : firstAttemptCorrectIds;
-                const newPending = pendingQueue.slice(1);
-                // Remove from deferred now that the word is mastered
-                const newDeferred = deferredIds.filter((id) => id !== word.id);
+        // Compute next queue state eagerly so we can persist to localStorage immediately
+        // (before the UI-delay timeout fires), ensuring resume works even if the user exits
+        // during the result feedback pause.
+        let nextPending: string[];
+        let nextMastered: string[];
+        let nextDeferred: string[];
+        let nextFirstAttempt: string[];
+        let nextFailedAttempts: Record<string, number>;
 
-                setMasteredIds(newMastered);
-                setDeferredIds(newDeferred);
-                setFirstAttemptCorrectIds(newFirstAttempt);
-                setPendingQueue(newPending);
+        const currentFailedAttempts = Object.fromEntries(
+            session.words.map((w) => [w.id, w.failedAttempts])
+        );
 
-                // Update session state for completeSession accuracy
-                setSession((prev) => {
-                    if (!prev) return prev;
-                    return {
-                        ...prev,
-                        masteredIds: newMastered,
-                        deferredIds: newDeferred,
-                        firstAttemptCorrectIds: newFirstAttempt,
-                        pendingQueue: newPending,
-                    };
-                });
-            } else {
-                // Move to end of queue, add to deferred if not already
-                const newDeferred = deferredIds.includes(word.id)
-                    ? deferredIds
-                    : [...deferredIds, word.id];
-                const newPending = [...pendingQueue.slice(1), word.id];
+        if (isCorrect) {
+            const isFirstAttempt = !deferredIds.includes(word.id);
+            nextMastered = [...masteredIds, word.id];
+            nextFirstAttempt = isFirstAttempt ? [...firstAttemptCorrectIds, word.id] : firstAttemptCorrectIds;
+            nextPending = pendingQueue.slice(1);
+            nextDeferred = deferredIds.filter((id) => id !== word.id);
+            nextFailedAttempts = currentFailedAttempts;
+        } else {
+            nextDeferred = deferredIds.includes(word.id) ? deferredIds : [...deferredIds, word.id];
+            nextPending = [...pendingQueue.slice(1), word.id];
+            nextMastered = masteredIds;
+            nextFirstAttempt = firstAttemptCorrectIds;
+            nextFailedAttempts = { ...currentFailedAttempts, [word.id]: (currentFailedAttempts[word.id] ?? 0) + 1 };
+        }
 
-                // Increment failedAttempts in local session state
-                setSession((prev) => {
-                    if (!prev) return prev;
-                    return {
-                        ...prev,
-                        words: prev.words.map((w) =>
-                            w.id === word.id
-                                ? { ...w, failedAttempts: w.failedAttempts + 1 }
-                                : w
-                        ),
-                        deferredIds: newDeferred,
-                        pendingQueue: newPending,
-                    };
-                });
+        // Persist to localStorage immediately (not waiting for the UI timer)
+        const queueState = {
+            sessionId: session.sessionId,
+            pendingQueue: nextPending,
+            masteredIds: nextMastered,
+            deferredIds: nextDeferred,
+            firstAttemptCorrectIds: nextFirstAttempt,
+            wordFailedAttempts: nextFailedAttempts,
+        };
+        localStorage.setItem(`vocab-queue-${session.sessionId}`, JSON.stringify(queueState));
 
-                setDeferredIds(newDeferred);
-                setPendingQueue(newPending);
-            }
+        // Fire-and-forget backend call — errors logged but do not block UX
+        api.submitAnswer(session.sessionId, word.id, isCorrect).catch((e) => {
+            console.error('submitAnswer failed:', e);
+        });
+
+        /**
+         * Move to the next question
+         */
+        const next = () => {
+
+            setMasteredIds(nextMastered);
+            setDeferredIds(nextDeferred);
+            setFirstAttemptCorrectIds(nextFirstAttempt);
+            setPendingQueue(nextPending);
+
+            setSession((prev) => {
+                if (!prev) return prev;
+                return {
+                    ...prev,
+                    words: prev.words.map((w) => ({
+                        ...w,
+                        failedAttempts: nextFailedAttempts[w.id] ?? w.failedAttempts,
+                    })),
+                    masteredIds: nextMastered,
+                    deferredIds: nextDeferred,
+                    firstAttemptCorrectIds: nextFirstAttempt,
+                    pendingQueue: nextPending,
+                };
+            });
+
             setResult(null);
             setAnswer('');
-        }, isCorrect ? 1000 : 3000);
+        }
 
-        return () => clearTimeout(timer);
+        nextFnRef.current = next;
+        if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(next, isCorrect ? 1000 : 10000);
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    };
+
+    const handleNext = () => {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        nextFnRef.current?.();
     };
 
     // ---- Render states ----
@@ -219,7 +248,7 @@ export default function VocabularyPracticePage() {
                             /* Word prompt */
                             <div className="flex flex-col items-center gap-4">
                                 <span className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-                                    Translate
+                                    Translate this word
                                 </span>
                                 <span className="text-4xl font-bold text-foreground">
                                     {currentWord.english}
@@ -228,32 +257,11 @@ export default function VocabularyPracticePage() {
                         ) : (
                             /* Result view */
                             <div className="flex flex-col items-stretch gap-3 text-center">
-                                <span className="text-3xl font-bold text-foreground">
+                                <span className="text-3xl font-bold text-foreground mb-4">
                                     {currentWord.english}
                                 </span>
-                                <div className={`flex rounded-full items-center px-4 py-2 ${result.isCorrect ? 'bg-green-800 text-green-200' : 'bg-red-800 text-red-200'}`}>
-                                    <div className="pr-4">
-                                        <MaskedSvgIcon src={result.isCorrect ? '/images/tick.svg' : '/images/close.svg'} size='w-5 h-5' alt='Result Icon' color={result.isCorrect ? 'bg-green-100' : 'bg-red-200'} />
-                                    </div>
-                                    <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
-                                        <div className="text-2xs uppercase tracking-widest">Your answer:</div>
-                                        <div>{result.userAnswer || <em className="text-muted-foreground">empty</em>}</div>
-                                    </div>
-                                    {/* <div className="flex-1 flex flex-col items-start justify-center border-l-4 border-[var(--background)] self-stretch -my-2 py-2 pl-4">
-                                        <div className="text-2xs uppercase tracking-widest">Correct:</div>
-                                        <div>{currentWord.translation}</div>
-                                    </div> */}
-                                </div>
-                                {!result.isCorrect && (
-                                    <div className="flex flex-col items-center gap-4 mt-4">
-                                        <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                                            Correct translation:
-                                        </span>
-                                        <div className="text-4xl font-bold text-foreground">
-                                            {currentWord.translation}
-                                        </div>
-                                    </div>
-                                )}
+                                <Result type={result.isCorrect ? "correct" : "incorrect"} text={result.userAnswer} />
+                                {!result.isCorrect && (<Result type="reference" text={currentWord.translation} />)}
                             </div>
                         )}
                     </>
@@ -262,15 +270,51 @@ export default function VocabularyPracticePage() {
 
             {/* Input pinned at bottom */}
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border">
-                <TranslationInput
-                    ref={inputRef}
-                    value={answer}
-                    onChange={setAnswer}
-                    onSubmit={handleSubmit}
-                    disabled={result !== null}
-                    placeholder="Type Danish translation…"
-                />
+                <div className="flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                        <TranslationInput
+                            ref={inputRef}
+                            value={answer}
+                            onChange={setAnswer}
+                            onSubmit={handleSubmit}
+                            disabled={result !== null}
+                            placeholder="Type Danish translation…"
+                        />
+                    </div>
+                    <div className={`transition-all duration-300 overflow-hidden flex items-center justify-center pb-1 ${result !== null && !result.isCorrect ? 'w-12 opacity-100' : 'w-0 opacity-0'}`}>
+                        <RoundButton
+                            svgIconPath={{ src: '/images/point-right.svg', alt: 'Next', color: 'bg-lime-200' }}
+                            onClick={handleNext}
+                            type="primary"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );
+}
+
+function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; text: string}) {
+
+    let imageUrl = '/images/close.svg';
+    let iconSize = 'w-5 h-5';
+    if (type === 'correct') {
+        imageUrl = '/images/tick.svg';
+        iconSize = 'w-8 h-8';
+    }
+    else if (type === 'reference') imageUrl = '/images/point-right.svg';
+
+    return (
+        <div className='flex flex-col items-stretch'>
+            {/* <div className="text-2xs uppercase tracking-widest text-left pl-2 mb-1">{title}</div> */}
+            <div className={`flex rounded-md items-center px-4 py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
+                <div className="pr-4">
+                    <MaskedSvgIcon src={imageUrl} size={iconSize} alt='Result Icon' color={type === 'correct' ? 'bg-green-800' : type === 'incorrect' ? 'bg-red-800' : 'bg-cyan-300'} />
+                </div>
+                <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
+                    <div>{text || <em className="text-muted-foreground">empty</em>}</div>
+                </div>
+            </div>
+        </div>
+    )
 }
