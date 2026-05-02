@@ -7,7 +7,7 @@ import { getVocabularyPracticeAPI } from '@/api/VocabularyPracticeAPIFactory';
 import { VocabPracticeSession, VocabPracticeWord } from '@/model/VocabularyPractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
-import { MaskedSvgIcon } from 'toto-react';
+import { MaskedSvgIcon, RoundButton } from 'toto-react';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -29,6 +29,8 @@ export default function VocabularyPracticePage() {
     const [result, setResult] = useState<ResultState>(null);
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const nextFnRef = useRef<(() => void) | null>(null);
     const api = getVocabularyPracticeAPI();
 
     // Configure header
@@ -179,9 +181,18 @@ export default function VocabularyPracticePage() {
             setAnswer('');
         }
 
-        const timer = setTimeout(next, isCorrect ? 1000 : 3000);
+        nextFnRef.current = next;
+        if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(next, isCorrect ? 1000 : 10000);
 
-        return () => clearTimeout(timer);
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    };
+
+    const handleNext = () => {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        nextFnRef.current?.();
     };
 
     // ---- Render states ----
@@ -259,14 +270,25 @@ export default function VocabularyPracticePage() {
 
             {/* Input pinned at bottom */}
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border">
-                <TranslationInput
-                    ref={inputRef}
-                    value={answer}
-                    onChange={setAnswer}
-                    onSubmit={handleSubmit}
-                    disabled={result !== null}
-                    placeholder="Type Danish translation…"
-                />
+                <div className="flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                        <TranslationInput
+                            ref={inputRef}
+                            value={answer}
+                            onChange={setAnswer}
+                            onSubmit={handleSubmit}
+                            disabled={result !== null}
+                            placeholder="Type Danish translation…"
+                        />
+                    </div>
+                    <div className={`transition-all duration-300 overflow-hidden flex items-center justify-center pb-1 ${result !== null && !result.isCorrect ? 'w-12 opacity-100' : 'w-0 opacity-0'}`}>
+                        <RoundButton
+                            svgIconPath={{ src: '/images/point-right.svg', alt: 'Next', color: 'bg-lime-200' }}
+                            onClick={handleNext}
+                            type="primary"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );
