@@ -260,8 +260,8 @@ export default function VocabularyPracticePage() {
                                 <span className="text-3xl font-bold text-foreground mb-4">
                                     {currentWord.english}
                                 </span>
-                                <Result type={result.isCorrect ? "correct" : "incorrect"} text={result.userAnswer} title="Your answer" />
-                                {!result.isCorrect && (<Result type="reference" text={currentWord.translation} title="Correct translation" />)}
+                                <Result type={result.isCorrect ? "correct" : "incorrect"} text={result.userAnswer} />
+                                {!result.isCorrect && (<Result type="reference" text={currentWord.translation} />)}
                             </div>
                         )}
                     </>
@@ -294,7 +294,7 @@ export default function VocabularyPracticePage() {
     );
 }
 
-function Result({ type, text, title }: { type: "correct" | "incorrect" | "reference"; text: string, title: string }) {
+function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; text: string}) {
 
     let imageUrl = '/images/close.svg';
     let iconSize = 'w-5 h-5';
