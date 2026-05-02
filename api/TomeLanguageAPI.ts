@@ -9,6 +9,14 @@ export class TomeLanguageAPI {
         return (await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}`)).json();
     }
 
+    /**
+     * Fetches per-day completed session counts for the last N calendar days, inclusive today.
+     * Days with no completed sessions have count: 0.
+     */
+    async getRollingStats(days = 7): Promise<{ days: Array<{ date: string; count: number }> }> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/tomelang/sessions/stats/rolling?days=${days}`)).json();
+    }
+
 }
 
 export interface Word {
