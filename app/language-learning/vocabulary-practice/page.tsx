@@ -154,7 +154,7 @@ export default function VocabularyPracticePage() {
          * Move to the next question
          */
         const next = () => {
-            
+
             setMasteredIds(nextMastered);
             setDeferredIds(nextDeferred);
             setFirstAttemptCorrectIds(nextFirstAttempt);
@@ -246,7 +246,7 @@ export default function VocabularyPracticePage() {
                         ) : (
                             /* Result view */
                             <div className="flex flex-col items-stretch gap-3 text-center">
-                                <span className="text-3xl font-bold text-foreground">
+                                <span className="text-3xl font-bold text-foreground mb-4">
                                     {currentWord.english}
                                 </span>
                                 <Result type={result.isCorrect ? "correct" : "incorrect"} text={result.userAnswer} title="Your answer" />
@@ -283,7 +283,7 @@ function Result({ type, text, title }: { type: "correct" | "incorrect" | "refere
     else if (type === 'reference') imageUrl = '/images/point-right.svg';
 
     return (
-        <div className='flex flex-col items-stretch my-1'>
+        <div className='flex flex-col items-stretch'>
             {/* <div className="text-2xs uppercase tracking-widest text-left pl-2 mb-1">{title}</div> */}
             <div className={`flex rounded-md items-center px-4 py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
                 <div className="pr-4">
