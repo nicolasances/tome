@@ -150,7 +150,11 @@ export default function VocabularyPracticePage() {
             console.error('submitAnswer failed:', e);
         });
 
-        const timer = setTimeout(() => {
+        /**
+         * Move to the next question
+         */
+        const next = () => {
+            
             setMasteredIds(nextMastered);
             setDeferredIds(nextDeferred);
             setFirstAttemptCorrectIds(nextFirstAttempt);
@@ -173,7 +177,9 @@ export default function VocabularyPracticePage() {
 
             setResult(null);
             setAnswer('');
-        }, isCorrect ? 1000 : 300000);
+        }
+
+        const timer = setTimeout(next, isCorrect ? 1000 : 3000);
 
         return () => clearTimeout(timer);
     };
@@ -243,29 +249,8 @@ export default function VocabularyPracticePage() {
                                 <span className="text-3xl font-bold text-foreground">
                                     {currentWord.english}
                                 </span>
-                                <div className={`flex rounded-full items-center px-4 py-2 ${result.isCorrect ? 'bg-green-800 text-green-200' : 'bg-red-800 text-red-200'}`}>
-                                    <div className="pr-4">
-                                        <MaskedSvgIcon src={result.isCorrect ? '/images/tick.svg' : '/images/close.svg'} size='w-5 h-5' alt='Result Icon' color={result.isCorrect ? 'bg-green-100' : 'bg-red-200'} />
-                                    </div>
-                                    <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
-                                        <div className="text-2xs uppercase tracking-widest">Your answer:</div>
-                                        <div>{result.userAnswer || <em className="text-muted-foreground">empty</em>}</div>
-                                    </div>
-                                    {/* <div className="flex-1 flex flex-col items-start justify-center border-l-4 border-[var(--background)] self-stretch -my-2 py-2 pl-4">
-                                        <div className="text-2xs uppercase tracking-widest">Correct:</div>
-                                        <div>{currentWord.translation}</div>
-                                    </div> */}
-                                </div>
-                                {!result.isCorrect && (
-                                    <div className="flex flex-col items-center gap-4 mt-4">
-                                        <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                                            Correct translation:
-                                        </span>
-                                        <div className="text-4xl font-bold text-foreground">
-                                            {currentWord.translation}
-                                        </div>
-                                    </div>
-                                )}
+                                <Result type={result.isCorrect ? "correct" : "incorrect"} text={result.userAnswer} title="Your answer" />
+                                {!result.isCorrect && (<Result type="reference" text={currentWord.translation} title="Correct translation" />)}
                             </div>
                         )}
                     </>
@@ -285,4 +270,29 @@ export default function VocabularyPracticePage() {
             </div>
         </div>
     );
+}
+
+function Result({ type, text, title }: { type: "correct" | "incorrect" | "reference"; text: string, title: string }) {
+
+    let imageUrl = '/images/close.svg';
+    let iconSize = 'w-5 h-5';
+    if (type === 'correct') {
+        imageUrl = '/images/tick.svg';
+        iconSize = 'w-8 h-8';
+    }
+    else if (type === 'reference') imageUrl = '/images/point-right.svg';
+
+    return (
+        <div className='flex flex-col items-stretch my-1'>
+            {/* <div className="text-2xs uppercase tracking-widest text-left pl-2 mb-1">{title}</div> */}
+            <div className={`flex rounded-md items-center px-4 py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
+                <div className="pr-4">
+                    <MaskedSvgIcon src={imageUrl} size={iconSize} alt='Result Icon' color={type === 'correct' ? 'bg-green-800' : type === 'incorrect' ? 'bg-red-800' : 'bg-cyan-300'} />
+                </div>
+                <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
+                    <div>{text || <em className="text-muted-foreground">empty</em>}</div>
+                </div>
+            </div>
+        </div>
+    )
 }
