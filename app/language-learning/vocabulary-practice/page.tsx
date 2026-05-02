@@ -173,7 +173,7 @@ export default function VocabularyPracticePage() {
 
             setResult(null);
             setAnswer('');
-        }, isCorrect ? 1000 : 3000);
+        }, isCorrect ? 1000 : 300000);
 
         return () => clearTimeout(timer);
     };
@@ -231,7 +231,7 @@ export default function VocabularyPracticePage() {
                             /* Word prompt */
                             <div className="flex flex-col items-center gap-4">
                                 <span className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-                                    Translate
+                                    Translate this word
                                 </span>
                                 <span className="text-4xl font-bold text-foreground">
                                     {currentWord.english}
