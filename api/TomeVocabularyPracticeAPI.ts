@@ -75,7 +75,7 @@ export class TomeVocabularyPracticeAPI implements IVocabularyPracticeAPI {
   async startSession(language: string): Promise<VocabPracticeSession> {
     const response = await api.fetch(
       'tome-ms-language',
-      `/tomelang/languages/${language}/sessions`,
+      `/languages/${language}/sessions`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -100,7 +100,7 @@ export class TomeVocabularyPracticeAPI implements IVocabularyPracticeAPI {
   }
 
   async getActiveSession(): Promise<VocabPracticeSession | null> {
-    const response = await api.fetch('tome-ms-language', '/tomelang/sessions/active');
+    const response = await api.fetch('tome-ms-language', '/sessions/active');
 
     if (response.status === 404) return null;
     if (!response.ok) {
@@ -131,7 +131,7 @@ export class TomeVocabularyPracticeAPI implements IVocabularyPracticeAPI {
   async submitAnswer(sessionId: string, wordId: string, isCorrect: boolean): Promise<void> {
     const response = await api.fetch(
       'tome-ms-language',
-      `/tomelang/sessions/${sessionId}/answers`,
+      `/sessions/${sessionId}/answers`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,7 +147,7 @@ export class TomeVocabularyPracticeAPI implements IVocabularyPracticeAPI {
   async completeSession(sessionId: string): Promise<SessionSummary> {
     const response = await api.fetch(
       'tome-ms-language',
-      `/tomelang/sessions/${sessionId}/completion`,
+      `/sessions/${sessionId}/completion`,
       { method: 'POST', headers: { 'Content-Type': 'application/json' } }
     );
 
