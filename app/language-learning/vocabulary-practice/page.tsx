@@ -315,7 +315,7 @@ function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; t
         <div className='flex flex-col items-stretch'>
             {/* <div className="text-2xs uppercase tracking-widest text-left pl-2 mb-1">{title}</div> */}
             <div className={`flex rounded-md items-center px-4 py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
-                <div className="pr-4">
+                <div className="">
                     <MaskedSvgIcon src={imageUrl} size={iconSize} alt='Result Icon' color={type === 'correct' ? 'bg-green-800' : type === 'incorrect' ? 'bg-red-800' : 'bg-cyan-300'} />
                 </div>
                 <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
