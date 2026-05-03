@@ -62,12 +62,14 @@ export function sourceTypeLabel(type: string): string {
 /** Maps a source type value to an SVG icon path in /public/images/. */
 export function sourceTypeIcon(type: string): string {
     switch (type) {
-        case 'google_doc': return '/images/edit.svg';
+        case 'google_doc': return '/images/sourceTypes/google-doc.svg';
+        case 'audio': return '/images/sourceTypes/audio.svg';
         default: return '/images/metadata-missing.svg';
     }
 }
 
 /** All source types currently supported for creation. */
-export const SUPPORTED_SOURCE_TYPES: Array<{ type: string; label: string; icon: string }> = [
-    { type: 'google_doc', label: 'Google Doc', icon: '/images/edit.svg' },
+export const SUPPORTED_SOURCE_TYPES: Array<{ type: string; label: string; icon: string; disabled?: boolean }> = [
+    { type: 'google_doc', label: 'Google Doc', icon: '/images/sourceTypes/google-doc.svg' },
+    { type: 'audio', label: 'Audio', icon: '/images/sourceTypes/audio.svg', disabled: true },
 ];

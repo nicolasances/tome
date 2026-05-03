@@ -6,13 +6,15 @@ import { useHeader } from "@/context/HeaderContext";
 import { RoundButton, MaskedSvgIcon } from "toto-react";
 import { TomeSourcesAPI, SUPPORTED_SOURCE_TYPES } from "@/api/TomeSourcesAPI";
 
+type SourceType = typeof SUPPORTED_SOURCE_TYPES[number];
+
 export default function NewSourcePage() {
 
     const router = useRouter();
     const { setConfig } = useHeader();
 
-    const [showTypeSheet, setShowTypeSheet] = useState(false);
-    const [selectedType, setSelectedType] = useState(SUPPORTED_SOURCE_TYPES[0]);
+    const [showTypePopup, setShowTypePopup] = useState(false);
+    const [selectedType, setSelectedType] = useState<SourceType>(SUPPORTED_SOURCE_TYPES[0]);
     const [name, setName] = useState('');
     const [resourceId, setResourceId] = useState('');
     const [saving, setSaving] = useState(false);
@@ -50,31 +52,16 @@ export default function NewSourcePage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch">
-            <div className="flex flex-col px-4 pt-6 gap-6 flex-1">
+            <div className="flex flex-col px-4 pt-8 gap-8 flex-1">
 
-                {/* Type selector */}
-                <div className="flex flex-col gap-2">
-                    <label className="text-xs text-muted-foreground uppercase tracking-wide">
-                        Source Type
-                    </label>
-                    <button
-                        className="flex items-center gap-3 rounded-2xl border border-border p-4 text-left"
-                        onClick={() => setShowTypeSheet(true)}
-                    >
-                        <MaskedSvgIcon
-                            src={selectedType.icon}
-                            alt={selectedType.label}
-                            size="24px"
-                            color="var(--foreground)"
-                        />
-                        <span className="flex-1 text-sm">{selectedType.label}</span>
-                        <MaskedSvgIcon
-                            src="/images/point-right.svg"
-                            alt="Change"
-                            size="16px"
-                            color="var(--muted-foreground)"
-                        />
-                    </button>
+                {/* Source type — centered icon + label */}
+                <div className="flex flex-col items-center gap-2">
+                    <RoundButton
+                        svgIconPath={{ src: selectedType.icon, alt: selectedType.label }}
+                        onClick={() => setShowTypePopup(true)}
+                        type="primary"
+                    />
+                    <span className="text-xs text-muted-foreground">{selectedType.label}</span>
                 </div>
 
                 {/* Name input */}
@@ -127,72 +114,79 @@ export default function NewSourcePage() {
                 />
             </div>
 
-            {/* Type selector bottom sheet */}
-            {showTypeSheet && (
-                <BottomSheet
-                    title="Select Source Type"
-                    onClose={() => setShowTypeSheet(false)}
-                >
-                    {SUPPORTED_SOURCE_TYPES.map((t) => (
-                        <button
-                            key={t.type}
-                            className="flex items-center gap-3 p-4 rounded-xl hover:bg-accent transition-colors text-left w-full"
-                            onClick={() => {
-                                setSelectedType(t);
-                                setShowTypeSheet(false);
-                            }}
-                        >
-                            <MaskedSvgIcon
-                                src={t.icon}
-                                alt={t.label}
-                                size="24px"
-                                color="var(--foreground)"
-                            />
-                            <span className="text-sm">{t.label}</span>
-                            {selectedType.type === t.type && (
-                                <MaskedSvgIcon
-                                    src="/images/tick.svg"
-                                    alt="Selected"
-                                    size="16px"
-                                    color="var(--primary)"
-                                />
-                            )}
-                        </button>
-                    ))}
-                </BottomSheet>
+            {/* Full-page source type popup */}
+            {showTypePopup && (
+                <SourceTypePopup
+                    selected={selectedType}
+                    onSelect={(t) => {
+                        setSelectedType(t);
+                        setShowTypePopup(false);
+                    }}
+                    onClose={() => setShowTypePopup(false)}
+                />
             )}
         </div>
     );
 }
 
-function BottomSheet({ title, onClose, children }: {
-    title: string;
+function SourceTypePopup({
+    selected,
+    onSelect,
+    onClose,
+}: {
+    selected: SourceType;
+    onSelect: (t: SourceType) => void;
     onClose: () => void;
-    children: React.ReactNode;
+}) {
+    return (
+        <div className="fixed inset-0 z-50 flex flex-col bg-background">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-4 border-b border-border">
+                <span className="text-sm font-semibold">Select source type</span>
+                <button onClick={onClose}>
+                    <MaskedSvgIcon
+                        src="/images/close.svg"
+                        alt="Close"
+                        size="20px"
+                        color="var(--muted-foreground)"
+                    />
+                </button>
+            </div>
+
+            {/* Type grid */}
+            <div className="flex flex-wrap justify-center gap-8 p-8">
+                {SUPPORTED_SOURCE_TYPES.map((t) => (
+                    <SourceTypeItem
+                        key={t.type}
+                        sourceType={t}
+                        selected={selected.type === t.type}
+                        onSelect={() => !t.disabled && onSelect(t)}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function SourceTypeItem({
+    sourceType,
+    selected,
+    onSelect,
+}: {
+    sourceType: SourceType;
+    selected: boolean;
+    onSelect: () => void;
 }) {
     return (
         <div
-            className="fixed inset-0 z-50 flex flex-col justify-end"
-            style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
-            onClick={onClose}
+            className={`flex flex-col items-center gap-2 ${sourceType.disabled ? 'opacity-30 pointer-events-none' : ''}`}
         >
-            <div
-                className="bg-background rounded-t-3xl px-4 pt-4 pb-8 flex flex-col gap-2"
-                onClick={(e) => e.stopPropagation()}
-            >
-                <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-semibold">{title}</span>
-                    <button onClick={onClose}>
-                        <MaskedSvgIcon
-                            src="/images/close.svg"
-                            alt="Close"
-                            size="20px"
-                            color="var(--muted-foreground)"
-                        />
-                    </button>
-                </div>
-                {children}
-            </div>
+            <RoundButton
+                svgIconPath={{ src: sourceType.icon, alt: sourceType.label }}
+                onClick={onSelect}
+                type={selected ? 'filled' : 'primary'}
+            />
+            <span className="text-xs text-muted-foreground">{sourceType.label}</span>
         </div>
     );
 }
