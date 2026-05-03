@@ -37,6 +37,10 @@ export default function VocabularyPracticePage() {
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const nextFnRef = useRef<(() => void) | null>(null);
+    // Tracks the "generation" of the current loadSession call so stale concurrent
+    // invocations (e.g. React StrictMode double-fire) are discarded before they
+    // can call startSession and accidentally create a duplicate backend session.
+    const sessionLoadGenRef = useRef(0);
     const api = getVocabularyPracticeAPI();
 
     // Configure header
@@ -52,12 +56,15 @@ export default function VocabularyPracticePage() {
 
     // Load or start session on mount
     const loadSession = useCallback(async () => {
+        const gen = ++sessionLoadGenRef.current;
         setLoading(true);
         setError(null);
         try {
             let s = await api.getActiveSession();
+            if (sessionLoadGenRef.current !== gen) return; // superseded — discard
             if (!s) {
                 s = await api.startSession('danish');
+                if (sessionLoadGenRef.current !== gen) return; // superseded — discard
             }
             setSession(s);
             setPendingQueue(s.pendingQueue);
@@ -65,14 +72,18 @@ export default function VocabularyPracticePage() {
             setDeferredIds(s.deferredIds);
             setFirstAttemptCorrectIds(s.firstAttemptCorrectIds);
         } catch (e) {
+            if (sessionLoadGenRef.current !== gen) return;
             setError((e as Error).message ?? 'Failed to load session');
         } finally {
-            setLoading(false);
+            if (sessionLoadGenRef.current === gen) setLoading(false);
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         loadSession();
+        // Increment the generation counter on cleanup so any in-flight loadSession
+        // call from this invocation is treated as stale and will not call startSession.
+        return () => { sessionLoadGenRef.current++; };
     }, [loadSession]);
 
     // Auto-clear and auto-focus when current word changes
