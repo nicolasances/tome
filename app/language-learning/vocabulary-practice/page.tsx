@@ -250,7 +250,7 @@ export default function VocabularyPracticePage() {
                                 <span className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
                                     Translate this word
                                 </span>
-                                <span className="text-4xl font-bold text-foreground">
+                                <span className="text-4xl font-bold text-foreground text-center">
                                     {currentWord.english}
                                 </span>
                             </div>
