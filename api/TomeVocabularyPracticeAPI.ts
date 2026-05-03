@@ -84,7 +84,9 @@ export class TomeVocabularyPracticeAPI implements IVocabularyPracticeAPI {
     );
 
     if (response.status === 409) {
-      throw new Error('You already have an active session. Please complete or resume it before starting a new one.');
+      const existing = await this.getActiveSession();
+      if (existing) return existing;
+      throw new Error('An active session already exists but could not be retrieved.');
     }
     if (!response.ok) {
       throw new Error(`Failed to start session (${response.status})`);

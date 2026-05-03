@@ -11,6 +11,12 @@ import { MaskedSvgIcon, RoundButton } from 'toto-react';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
+function normalizeTranslationForComparison(value: string): string {
+    return value
+        .toLowerCase()
+        .replace(/[\.\s'’]/g, '');
+}
+
 export default function VocabularyPracticePage() {
     const router = useRouter();
     const { setConfig } = useHeader();
@@ -31,6 +37,10 @@ export default function VocabularyPracticePage() {
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const nextFnRef = useRef<(() => void) | null>(null);
+    // Tracks the "generation" of the current loadSession call so stale concurrent
+    // invocations (e.g. React StrictMode double-fire) are discarded before they
+    // can call startSession and accidentally create a duplicate backend session.
+    const sessionLoadGenRef = useRef(0);
     const api = getVocabularyPracticeAPI();
 
     // Configure header
@@ -46,12 +56,15 @@ export default function VocabularyPracticePage() {
 
     // Load or start session on mount
     const loadSession = useCallback(async () => {
+        const gen = ++sessionLoadGenRef.current;
         setLoading(true);
         setError(null);
         try {
             let s = await api.getActiveSession();
+            if (sessionLoadGenRef.current !== gen) return; // superseded — discard
             if (!s) {
                 s = await api.startSession('danish');
+                if (sessionLoadGenRef.current !== gen) return; // superseded — discard
             }
             setSession(s);
             setPendingQueue(s.pendingQueue);
@@ -59,14 +72,18 @@ export default function VocabularyPracticePage() {
             setDeferredIds(s.deferredIds);
             setFirstAttemptCorrectIds(s.firstAttemptCorrectIds);
         } catch (e) {
+            if (sessionLoadGenRef.current !== gen) return;
             setError((e as Error).message ?? 'Failed to load session');
         } finally {
-            setLoading(false);
+            if (sessionLoadGenRef.current === gen) setLoading(false);
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         loadSession();
+        // Increment the generation counter on cleanup so any in-flight loadSession
+        // call from this invocation is treated as stale and will not call startSession.
+        return () => { sessionLoadGenRef.current++; };
     }, [loadSession]);
 
     // Auto-clear and auto-focus when current word changes
@@ -99,12 +116,13 @@ export default function VocabularyPracticePage() {
 
     const handleSubmit = () => {
         if (result !== null) return; // already showing result
+        if (!answer.trim()) return;
         const word = getCurrentWord();
         if (!word || !session) return;
 
         const userAnswer = answer.trim();
         const isCorrect =
-            userAnswer.toLowerCase() === word.translation.toLowerCase();
+            normalizeTranslationForComparison(userAnswer) === normalizeTranslationForComparison(word.translation);
 
         setResult({ isCorrect, userAnswer });
 
@@ -250,7 +268,7 @@ export default function VocabularyPracticePage() {
                                 <span className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
                                     Translate this word
                                 </span>
-                                <span className="text-4xl font-bold text-foreground">
+                                <span className="text-4xl font-bold text-foreground text-center">
                                     {currentWord.english}
                                 </span>
                             </div>
@@ -308,7 +326,7 @@ function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; t
         <div className='flex flex-col items-stretch'>
             {/* <div className="text-2xs uppercase tracking-widest text-left pl-2 mb-1">{title}</div> */}
             <div className={`flex rounded-md items-center px-4 py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
-                <div className="pr-4">
+                <div className="">
                     <MaskedSvgIcon src={imageUrl} size={iconSize} alt='Result Icon' color={type === 'correct' ? 'bg-green-800' : type === 'incorrect' ? 'bg-red-800' : 'bg-cyan-300'} />
                 </div>
                 <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">

@@ -27,7 +27,7 @@ export const TranslationInput = forwardRef<HTMLTextAreaElement, TranslationInput
         const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
-                if (!disabled) onSubmit();
+                if (!disabled && value.trim()) onSubmit();
             }
         };
 
