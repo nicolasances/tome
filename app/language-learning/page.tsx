@@ -55,6 +55,12 @@ export default function LanguageLearningPage() {
                         onClick={() => router.push('/language-learning/vocabulary')}
                     />
 
+                    {/* Manage Sources button */}
+                    <RoundButton
+                        svgIconPath={{ src: "/images/topics.svg", alt: "Manage Sources" }}
+                        onClick={() => router.push('/language-learning/sources')}
+                    />
+
                     {/* Start / Resume Practice button */}
                     {hasActiveSession === null ? (
                         <div className="text-sm text-muted-foreground">Loading…</div>

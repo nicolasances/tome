@@ -1,4 +1,4 @@
-export type ApiName = 'toto-ms-tome-scraper' | 'auth' | 'tome-ms-flashcards' | 'tome-ms-topics' | 'tome-ms-practice' | 'tome-ms-points' | 'tome-ms-challenges' | 'tome-ms-language' | 'whispering' | 'gale-broker';
+export type ApiName = 'toto-ms-tome-scraper' | 'auth' | 'tome-ms-flashcards' | 'tome-ms-topics' | 'tome-ms-practice' | 'tome-ms-points' | 'tome-ms-challenges' | 'tome-ms-language' | 'tome-ms-sources' | 'whispering' | 'gale-broker';
 export interface ApiEndpoint { name: ApiName, endpoint: string }
  
 const ApiEndpoints = new Map<ApiName, string>();
@@ -10,6 +10,7 @@ ApiEndpoints.set("tome-ms-points", String(process.env.NEXT_PUBLIC_TOME_POINTS_AP
 ApiEndpoints.set("tome-ms-flashcards", String(process.env.NEXT_PUBLIC_TOME_FLASHCARDS_API_ENDPOINT))
 ApiEndpoints.set("tome-ms-challenges", String(process.env.NEXT_PUBLIC_TOME_CHALLENGES_API_ENDPOINT))
 ApiEndpoints.set("tome-ms-language", String(process.env.NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT))
+ApiEndpoints.set("tome-ms-sources", String(process.env.NEXT_PUBLIC_TOME_SOURCES_API_ENDPOINT))
 ApiEndpoints.set("whispering", String(process.env.NEXT_PUBLIC_WHISPERING_API_ENDPOINT))
 ApiEndpoints.set("gale-broker", String(process.env.NEXT_PUBLIC_GALE_BROKER_API_ENDPOINT))
 
