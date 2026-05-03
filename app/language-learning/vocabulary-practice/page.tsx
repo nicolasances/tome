@@ -11,6 +11,12 @@ import { MaskedSvgIcon, RoundButton } from 'toto-react';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
+function normalizeTranslationForComparison(value: string): string {
+    return value
+        .toLowerCase()
+        .replace(/[\.\s'’]/g, '');
+}
+
 export default function VocabularyPracticePage() {
     const router = useRouter();
     const { setConfig } = useHeader();
@@ -99,12 +105,13 @@ export default function VocabularyPracticePage() {
 
     const handleSubmit = () => {
         if (result !== null) return; // already showing result
+        if (!answer.trim()) return;
         const word = getCurrentWord();
         if (!word || !session) return;
 
         const userAnswer = answer.trim();
         const isCorrect =
-            userAnswer.toLowerCase() === word.translation.toLowerCase();
+            normalizeTranslationForComparison(userAnswer) === normalizeTranslationForComparison(word.translation);
 
         setResult({ isCorrect, userAnswer });
 
