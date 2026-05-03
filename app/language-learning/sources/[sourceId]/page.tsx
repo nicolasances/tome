@@ -95,15 +95,17 @@ export default function SourceDetailPage() {
 
                 {/* Source header */}
                 <div className="flex items-center gap-3">
-                    <MaskedSvgIcon
-                        src={sourceTypeIcon(source!.type)}
-                        alt={source!.type}
-                        size="w-8 h-8"
-                        color="bg-cyan-800"
-                    />
+                    <div className="border-2 border-cyan-700 rounded-full p-2 flex items-center justify-center">
+                        <MaskedSvgIcon
+                            src={sourceTypeIcon(source!.type)}
+                            alt={source!.type}
+                            size="w-6 h-6"
+                            color="bg-cyan-800"
+                        />
+                    </div>
                     <div className="flex flex-col">
-                        <span className="text-base font-semibold">{source!.name}</span>
-                        <span className="text-xs text-muted-foreground">{sourceTypeLabel(source!.type)}</span>
+                        <span className="text-lg font-semibold">{source!.name}</span>
+                        <span className="text-sm text-muted-foreground">{sourceTypeLabel(source!.type)}</span>
                     </div>
                 </div>
 
@@ -169,7 +171,7 @@ export default function SourceDetailPage() {
 function DetailRow({ label, value }: { label: string; value: string }) {
     return (
         <div className="flex flex-col items-start justify-between">
-            <span className="text-xs text-muted-foreground flex-shrink-0">{label}</span>
+            <span className="text-sm text-muted-foreground flex-shrink-0">{label}</span>
             <span className="text-base text-right break-all">{value}</span>
         </div>
     );
@@ -179,7 +181,7 @@ function ExtractionStat({ label, value, danger }: { label: string; value: number
     return (
         <div className="flex items-center justify-between">
             <span className="text-base text-muted-foreground">{label}</span>
-            <div className={`bg-cyan-300 rounded-full w-6 h-6 flex items-center justify-center text-base font-semibold ${danger ? 'text-destructive' : ''}`}>{value}</div>
+            <div className={`bg-cyan-300 rounded-full px-3 flex items-center justify-center text-base font-semibold ${danger ? 'text-destructive' : ''}`}>{value}</div>
         </div>
     );
 }
