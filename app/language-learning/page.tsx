@@ -46,33 +46,39 @@ export default function LanguageLearningPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
-            <div className="flex-1 flex flex-col px-4">
+            <div className="flex-1 flex flex-col items-center px-4">
                 {/* Practice Buttons section */}
                 <div className="flex items-center justify-center mt-8 gap-4">
                     {/* Vocabulary list button */}
                     <RoundButton
-                        svgIconPath={{ src: "/images/tome.svg", alt: "Vocabulary" }}
+                        svgIconPath={{ src: "/images/book.svg", alt: "Vocabulary" }}
                         onClick={() => router.push('/language-learning/vocabulary')}
                     />
 
+                    {/* Manage Sources button */}
+                    <RoundButton
+                        svgIconPath={{ src: "/images/sources.svg", alt: "Manage Sources" }}
+                        onClick={() => router.push('/language-learning/sources')}
+                    />
+                </div>
+                <div className="text-sm text-center tracking-widest uppercase mt-6 mb-1">Practice</div>
+                <div className="bg-cyan-700/60 rounded-full py-2 px-8">
                     {/* Start / Resume Practice button */}
-                    {hasActiveSession === null ? (
-                        <div className="text-sm text-muted-foreground">Loading…</div>
-                    ) : (
-                        <div className="flex flex-col items-center gap-2">
-                            <RoundButton
-                                svgIconPath={{ src: "/images/language.svg", alt: hasActiveSession ? 'Resume Practice' : 'Start Practice' }}
-                                onClick={handlePracticeClick}
-                                type={hasActiveSession ? 'filled' : 'primary'}
-                            />
-                        </div>
-                    )}
+                    <div className="flex flex-col items-center gap-2">
+                        <RoundButton
+                            loading={hasActiveSession === null}
+                            disabled={hasActiveSession === null}
+                            svgIconPath={{ src: "/images/language.svg", alt: hasActiveSession ? 'Resume Vocabulary Practice' : 'Vocabulary Practice' }}
+                            onClick={handlePracticeClick}
+                            type={hasActiveSession ? 'filled' : 'primary'}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex-1"></div>
 
                 {/* Learning Stats section */}
-                <div className="mt-8 mb-6">
+                <div className="mt-8 mb-6 w-full">
                     {rollingStats === null ? (
                         <div className="flex items-center justify-center text-sm text-muted-foreground" style={{ height: 160 }}>
                             Loading stats…

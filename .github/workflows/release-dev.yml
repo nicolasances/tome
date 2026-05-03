@@ -43,6 +43,8 @@ jobs:
         --build-arg TOME_PRACTICE_API_ENDPOINT=${{ vars.TOME_PRACTICE_API_ENDPOINT }} \
         --build-arg TOME_POINTS_API_ENDPOINT=${{ vars.TOME_POINTS_API_ENDPOINT }} \
         --build-arg TOME_CHALLENGES_API_ENDPOINT=${{ vars.TOME_CHALLENGES_API_ENDPOINT }} \
+        --build-arg TOME_SOURCES_API_ENDPOINT=${{ vars.TOME_SOURCES_API_ENDPOINT }} \
+        --build-arg TOME_LANGUAGE_API_ENDPOINT=${{ vars.TOME_LANGUAGE_API_ENDPOINT }} \
         --build-arg GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
         --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} \
         --build-arg WHISPERING_API_ENDPOINT=${{ vars.WHISPERING_API_ENDPOINT }} \

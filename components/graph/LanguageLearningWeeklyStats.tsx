@@ -15,7 +15,7 @@ export function LanguageLearningWeeklyStats({ days }: { days: DayStat[] }) {
     const svgRef = useRef<SVGSVGElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
     const [width, setWidth] = useState(0);
-    const height = 160;
+    const height = 250;
     const margin = { top: 20, right: 10, bottom: 30, left: 10 };
 
     useEffect(() => {
