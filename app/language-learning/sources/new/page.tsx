@@ -60,17 +60,18 @@ export default function NewSourcePage() {
                         svgIconPath={{ src: selectedType.icon, alt: selectedType.label }}
                         onClick={() => setShowTypePopup(true)}
                         type="primary"
+                        size="car"
                     />
-                    <span className="text-xs text-muted-foreground">{selectedType.label}</span>
+                    <span className="text-base text-muted-foreground">{selectedType.label}</span>
                 </div>
 
                 {/* Name input */}
                 <div className="flex flex-col gap-2">
-                    <label className="text-xs text-muted-foreground uppercase tracking-wide">
+                    <label className="text-xs pl-2 text-muted-foreground uppercase tracking-wide">
                         Name
                     </label>
                     <input
-                        className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-primary"
+                        className="rounded-xl border border-cyan-400 bg-background px-4 py-3 text-base text-cyan-900 placeholder:text-cyan-300 outline-none focus:border-lime-300"
                         placeholder="e.g. Danish News Article"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -80,17 +81,17 @@ export default function NewSourcePage() {
 
                 {/* Resource ID input */}
                 <div className="flex flex-col gap-2">
-                    <label className="text-xs text-muted-foreground uppercase tracking-wide">
+                    <label className="text-xs pl-2 text-muted-foreground uppercase tracking-wide">
                         Document ID
                     </label>
                     <input
-                        className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-primary"
+                        className="rounded-xl border border-cyan-400 bg-background px-4 py-3 text-base text-cyan-900 placeholder:text-cyan-300 outline-none focus:border-lime-300"
                         placeholder="Google Doc ID (no slashes)"
                         value={resourceId}
                         onChange={(e) => setResourceId(e.target.value)}
                         disabled={saving}
                     />
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm pl-2 text-muted-foreground">
                         The bare document ID from the Google Docs URL (no slashes).
                     </p>
                 </div>
@@ -104,7 +105,7 @@ export default function NewSourcePage() {
             </div>
 
             {/* Save button */}
-            <div className="fixed bottom-6 right-6">
+            <div className="flex items-center justify-center mb-8">
                 <RoundButton
                     svgIconPath={{ src: "/images/tick.svg", alt: "Save" }}
                     onClick={handleSave}

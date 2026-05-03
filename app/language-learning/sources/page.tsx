@@ -41,6 +41,16 @@ export default function SourcesPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
+
+            {/* Add source FAB */}
+            <div className="flex items-center justify-center mt-8 gap-4">
+                <RoundButton
+                    svgIconPath={{ src: "/images/plus.svg", alt: "Add Source" }}
+                    onClick={() => router.push('/language-learning/sources/new')}
+                    type="primary"
+                />
+            </div>
+
             <div className="flex flex-col px-4 pt-4 gap-4 flex-1">
 
                 {/* Error state */}
@@ -86,15 +96,6 @@ export default function SourcesPage() {
                 )}
 
                 <div className="flex-1" />
-            </div>
-
-            {/* Add source FAB */}
-            <div className="fixed bottom-6 right-6">
-                <RoundButton
-                    svgIconPath={{ src: "/images/plus.svg", alt: "Add Source" }}
-                    onClick={() => router.push('/language-learning/sources/new')}
-                    type="primary"
-                />
             </div>
         </div>
     );
