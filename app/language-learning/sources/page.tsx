@@ -85,7 +85,7 @@ export default function SourcesPage() {
 
                 {/* Sources list */}
                 {sources !== null && sources.length > 0 && (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 mt-4">
                         {sources.map((source) => (
                             <SourceRow
                                 key={source.id}
@@ -123,12 +123,6 @@ function SourceRow({ source, onClick }: { source: Source; onClick: () => void })
                 <span className="text-sm font-medium truncate">{source.name}</span>
                 <span className="text-xs text-muted-foreground">Last ingested: {lastIngested}</span>
             </div>
-            <MaskedSvgIcon
-                src="/images/point-right.svg"
-                alt="Open"
-                size="w-4 h-4"
-                color="bg-cyan-800"
-            />
         </button>
     );
 }
