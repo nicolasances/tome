@@ -14,7 +14,7 @@ export class TomeLanguageAPI {
      * Days with no completed sessions have count: 0.
      */
     async getRollingStats(days = 7): Promise<{ days: Array<{ date: string; count: number }> }> {
-        return (await new TotoAPI().fetch('tome-ms-language', `/tomelang/sessions/stats/rolling?days=${days}`)).json();
+        return (await new TotoAPI().fetch('tome-ms-language', `/sessions/stats/rolling?days=${days}`)).json();
     }
 
 }
