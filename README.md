@@ -21,3 +21,4 @@ Tome is a web app to help memorise information you have read. It is built around
 - [Vocabulary Management](./docs/specs/language-learning/vocabulary-management.md) — adding and managing vocabulary
 - [Vocabulary Practice](./docs/specs/language-learning/vocabulary-practice.md) — vocabulary practice session flow and API integration
 - [Inversions](./docs/specs/language-learning/inversions.md) — inversion practice
+- [Source Management](./docs/specs/language-learning/source-management.md) — managing language knowledge sources (data ingestion)
