@@ -46,7 +46,7 @@ export default function LanguageLearningPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
-            <div className="flex-1 app-content flex flex-col px-4">
+            <div className="flex-1 flex flex-col px-4">
                 {/* Practice Buttons section */}
                 <div className="flex items-center justify-center mt-8 gap-4">
                     {/* Vocabulary list button */}
@@ -69,8 +69,10 @@ export default function LanguageLearningPage() {
                     )}
                 </div>
 
+                <div className="flex-1"></div>
+
                 {/* Learning Stats section */}
-                <div className="mt-8">
+                <div className="mt-8 mb-6">
                     {rollingStats === null ? (
                         <div className="flex items-center justify-center text-sm text-muted-foreground" style={{ height: 160 }}>
                             Loading stats…

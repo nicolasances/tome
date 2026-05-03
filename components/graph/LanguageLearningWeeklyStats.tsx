@@ -70,6 +70,30 @@ export function LanguageLearningWeeklyStats({ days }: { days: DayStat[] }) {
             .attr("y", d => y(d.count))
             .attr("height", d => baseline - y(d.count));
 
+        // Session count labels inside bars (near the top)
+        const sessionCountLabels = g.selectAll<SVGTextElement, DayStat>("text.session-count")
+            .data(days)
+            .enter()
+            .append("text")
+            .attr("class", "session-count")
+            .attr("x", d => x(d.date)! + x.bandwidth() / 2)
+            .attr("y", baseline)
+            .attr("text-anchor", "middle")
+            .attr("fill", "#a5f3fc")
+            .attr("font-size", 11)
+            .attr("font-weight", 600)
+            .text(d => d.count.toString());
+
+        sessionCountLabels.transition()
+            .duration(600)
+            .ease(d3.easeCubicOut)
+            .attr("y", d => {
+                const barTop = y(d.count);
+                const offset = 18;
+                // Keep labels inside short bars while preserving top-inside placement.
+                return Math.min(barTop + offset, baseline - 4);
+            });
+
         // X-axis day labels
         g.selectAll<SVGTextElement, DayStat>("text.day-label")
             .data(days)
@@ -79,9 +103,12 @@ export function LanguageLearningWeeklyStats({ days }: { days: DayStat[] }) {
             .attr("x", d => x(d.date)! + x.bandwidth() / 2)
             .attr("y", innerHeight + 20)
             .attr("text-anchor", "middle")
-            .attr("fill", "#94a3b8")
+            .attr("fill", "white")
             .attr("font-size", 11)
-            .text(d => moment(d.date, 'YYYYMMDD').format('ddd'));
+            .text(d => {
+                const day = moment(d.date, "YYYYMMDD").format("ddd");
+                return day.charAt(0).toUpperCase() + day.slice(1, 3).toLowerCase();
+            });
 
     }, [days, width]);
 
