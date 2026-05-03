@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
-import { RoundButton, MaskedSvgIcon } from "toto-react";
+import { RoundButton } from "toto-react";
+import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { TomeSourcesAPI, Source, ExtractionResult, sourceTypeIcon, sourceTypeLabel } from "@/api/TomeSourcesAPI";
 
 export default function SourceDetailPage() {
@@ -97,8 +98,8 @@ export default function SourceDetailPage() {
                     <MaskedSvgIcon
                         src={sourceTypeIcon(source!.type)}
                         alt={source!.type}
-                        size="32px"
-                        color="var(--foreground)"
+                        size="w-8 h-8"
+                        color="bg-cyan-800"
                     />
                     <div className="flex flex-col">
                         <span className="text-base font-semibold">{source!.name}</span>

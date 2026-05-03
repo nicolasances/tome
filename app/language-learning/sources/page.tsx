@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
-import { RoundButton, MaskedSvgIcon } from "toto-react";
+import { RoundButton } from "toto-react";
+import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { TomeSourcesAPI, Source, sourceTypeIcon } from "@/api/TomeSourcesAPI";
 
 export default function SourcesPage() {
@@ -109,14 +110,14 @@ function SourceRow({ source, onClick }: { source: Source; onClick: () => void })
 
     return (
         <button
-            className="flex items-center gap-3 rounded-2xl border border-border p-4 text-left hover:bg-accent transition-colors"
+            className="flex items-center gap-3 rounded-2xl border border-cyan-700 p-2 text-left hover:bg-accent transition-colors"
             onClick={onClick}
         >
             <MaskedSvgIcon
                 src={sourceTypeIcon(source.type)}
                 alt={source.type}
-                size="24px"
-                color="var(--foreground)"
+                size="w-8 h-8"
+                color="bg-cyan-800"
             />
             <div className="flex flex-col flex-1 min-w-0">
                 <span className="text-sm font-medium truncate">{source.name}</span>
@@ -125,8 +126,8 @@ function SourceRow({ source, onClick }: { source: Source; onClick: () => void })
             <MaskedSvgIcon
                 src="/images/point-right.svg"
                 alt="Open"
-                size="16px"
-                color="var(--muted-foreground)"
+                size="w-4 h-4"
+                color="bg-cyan-800"
             />
         </button>
     );

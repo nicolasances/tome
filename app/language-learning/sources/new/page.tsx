@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
-import { RoundButton, MaskedSvgIcon } from "toto-react";
+import { RoundButton } from "toto-react";
+import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { TomeSourcesAPI, SUPPORTED_SOURCE_TYPES } from "@/api/TomeSourcesAPI";
 
 type SourceType = typeof SUPPORTED_SOURCE_TYPES[number];
@@ -148,8 +149,8 @@ function SourceTypePopup({
                     <MaskedSvgIcon
                         src="/images/close.svg"
                         alt="Close"
-                        size="20px"
-                        color="var(--muted-foreground)"
+                        size="w-5 h-5"
+                        color="bg-cyan-800"
                     />
                 </button>
             </div>
