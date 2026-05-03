@@ -108,7 +108,7 @@ export default function SourceDetailPage() {
                 </div>
 
                 {/* Details */}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 pl-2">
                     <DetailRow label="Document ID" value={source!.resourceId} />
                     <DetailRow label="Language" value={source!.language} />
                     <DetailRow label="Last Ingested" value={lastIngested} />
@@ -131,7 +131,7 @@ export default function SourceDetailPage() {
                 {/* Extraction result */}
                 {extractionResult && !extracting && (
                     <div className="flex flex-col gap-2 rounded-2xl border border-border p-4">
-                        <p className="text-sm font-semibold">Extraction complete</p>
+                        <p className="text-xl text-center">Extraction complete</p>
                         <ExtractionStat label="Words extracted" value={extractionResult.wordsExtracted} />
                         <ExtractionStat label="New words created" value={extractionResult.wordsCreated} />
                         {extractionResult.wordsErrored > 0 && (
@@ -154,7 +154,7 @@ export default function SourceDetailPage() {
 
             {/* Ingest button */}
             {!extracting && (
-                <div className="fixed bottom-6 right-6">
+                <div className="flex items-center justify-center mb-8">
                     <RoundButton
                         svgIconPath={{ src: "/images/magic.svg", alt: "Ingest" }}
                         onClick={handleIngest}
@@ -168,9 +168,9 @@ export default function SourceDetailPage() {
 
 function DetailRow({ label, value }: { label: string; value: string }) {
     return (
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col items-start justify-between">
             <span className="text-xs text-muted-foreground flex-shrink-0">{label}</span>
-            <span className="text-sm text-right break-all">{value}</span>
+            <span className="text-base text-right break-all">{value}</span>
         </div>
     );
 }
@@ -178,8 +178,8 @@ function DetailRow({ label, value }: { label: string; value: string }) {
 function ExtractionStat({ label, value, danger }: { label: string; value: number; danger?: boolean }) {
     return (
         <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">{label}</span>
-            <span className={`text-sm font-semibold ${danger ? 'text-destructive' : ''}`}>{value}</span>
+            <span className="text-base text-muted-foreground">{label}</span>
+            <div className={`bg-cyan-300 rounded-full w-6 h-6 flex items-center justify-center text-base font-semibold ${danger ? 'text-destructive' : ''}`}>{value}</div>
         </div>
     );
 }
