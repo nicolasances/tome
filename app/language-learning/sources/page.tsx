@@ -19,7 +19,7 @@ export default function SourcesPage() {
             title: 'Sources',
             backButton: {
                 enabled: true,
-                onClick: () => router.back(),
+                onClick: () => router.push('/language-learning'),
             },
         });
     }, [setConfig, router]);
