@@ -21,6 +21,14 @@ export class TomeSourcesAPI {
         })).json();
     }
 
+    async generateSentences(language: string, count: number): Promise<GenerateSentencesResult> {
+        return (await new TotoAPI().fetch('tome-ms-sources', '/sentences/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ language, count }),
+        })).json();
+    }
+
 }
 
 export interface Source {
@@ -49,6 +57,16 @@ export interface ExtractionResult {
     wordsExtracted: number;
     wordsCreated: number;
     wordsErrored: number;
+    sentencesExtracted: number;
+    sentencesCreated: number;
+    sentencesErrored: number;
+}
+
+export interface GenerateSentencesResult {
+    language: string;
+    sentencesGenerated: number;
+    sentencesCreated: number;
+    sentencesErrored: number;
 }
 
 /** Maps a source type value to a display label. */

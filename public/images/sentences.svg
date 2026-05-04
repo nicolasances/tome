@@ -1,0 +1,7 @@
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chat bubble / sentences icon -->
+  <path d="M4 3h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H7l-4 4V4a1 1 0 0 1 1-1Z" fill="#000000"/>
+  <!-- Lines representing text -->
+  <rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#ffffff"/>
+  <rect x="7" y="10.5" width="7" height="1.5" rx="0.75" fill="#ffffff"/>
+</svg>
