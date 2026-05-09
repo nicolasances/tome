@@ -43,20 +43,22 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body
         style={{ fontFamily: "'Comfortaa', sans-serif" }}
-        className="antialiased min-h-screen flex flex-row"
+        className="antialiased h-screen flex flex-row"
       >
         <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
         </div>
-        <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8 flex flex-col">
+        <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8 flex flex-col h-screen">
 
           <SettingsProvider>
             <AudioProvider>
               <CarModeContextProvider>
                 <HeaderProvider>
                   <TomeHeader />
-                  <TomeContextProvider>
-                    {children}
-                  </TomeContextProvider>
+                  <div className="flex-1 overflow-y-auto">
+                    <TomeContextProvider>
+                      {children}
+                    </TomeContextProvider>
+                  </div>
                 </HeaderProvider>
               </CarModeContextProvider>
             </AudioProvider>

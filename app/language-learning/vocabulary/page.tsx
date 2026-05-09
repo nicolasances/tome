@@ -21,7 +21,7 @@ export default function VocabularyPage() {
             title: 'Vocabulary',
             backButton: {
                 enabled: true,
-                onClick: () => router.push('/language-learning'),
+                onClick: () => router.push('/language-learning/knowledge-base'),
             },
         });
     }, [setConfig, router]);

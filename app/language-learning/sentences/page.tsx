@@ -41,7 +41,7 @@ export default function SentencesPage() {
     }, []);
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start">
+        <div className="flex flex-1 flex-col items-stretch">
 
             {/* Generate FAB */}
             <div className="flex items-center justify-center mt-8 gap-4">
@@ -52,7 +52,7 @@ export default function SentencesPage() {
                 />
             </div>
 
-            <div className="flex flex-col px-4 pt-4 gap-4 flex-1">
+            <div className="flex flex-col px-4 pt-4 gap-4 flex-1 items-stretch overflow-y-auto min-h-0">
 
                 {/* Error state */}
                 {error && (
@@ -91,8 +91,6 @@ export default function SentencesPage() {
                         ))}
                     </div>
                 )}
-
-                <div className="flex-1" />
             </div>
         </div>
     );
