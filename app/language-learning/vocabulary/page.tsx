@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
 import { TomeLanguageAPI, Word } from "@/api/TomeLanguageAPI";
 import { Input } from "@/components/ui/input";
+import { VocabularyListSkeleton } from "@/app/components/LanguageLearningListSkeletons";
 
 export default function VocabularyPage() {
 
@@ -77,9 +78,7 @@ export default function VocabularyPage() {
                 {/* Word List */}
                 <div className="flex-1 overflow-y-auto px-4 pl-8 mt-4">
                     {isLoading && (
-                        <div className="flex items-center justify-center py-8">
-                            <p className="text-cyan-900">Loading vocabulary...</p>
-                        </div>
+                        <VocabularyListSkeleton rows={10} />
                     )}
 
                     {error && (

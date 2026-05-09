@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
 import { MaskedSvgIcon, RoundButton } from "toto-react";
 import { TomeLanguageAPI, Sentence } from "@/api/TomeLanguageAPI";
+import { SentencesListSkeleton } from "@/app/components/LanguageLearningListSkeletons";
 
 export default function SentencesPage() {
 
@@ -69,9 +70,7 @@ export default function SentencesPage() {
 
                 {/* Loading state */}
                 {sentences === null && !error && (
-                    <div className="flex flex-col items-center justify-center flex-1">
-                        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary" />
-                    </div>
+                    <SentencesListSkeleton rows={7} />
                 )}
 
                 {/* Empty state */}

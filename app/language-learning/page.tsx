@@ -51,7 +51,7 @@ export default function LanguageLearningPage() {
                 <div className="flex items-center justify-center mt-8 gap-4">
                     {/* Knowledge Base button */}
                     <RoundButton
-                        svgIconPath={{ src: "/images/knowledge-base.svg", alt: "Knowledge Base" }}
+                        svgIconPath={{ src: "/images/book.svg", alt: "Knowledge Base" }}
                         onClick={() => router.push('/language-learning/knowledge-base')}
                     />
 

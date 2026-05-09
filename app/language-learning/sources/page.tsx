@@ -6,6 +6,7 @@ import { useHeader } from "@/context/HeaderContext";
 import { RoundButton } from "toto-react";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
 import { TomeSourcesAPI, Source, sourceTypeIcon } from "@/api/TomeSourcesAPI";
+import { SourcesListSkeleton } from "@/app/components/LanguageLearningListSkeletons";
 
 export default function SourcesPage() {
 
@@ -69,9 +70,7 @@ export default function SourcesPage() {
 
                 {/* Loading state */}
                 {sources === null && !error && (
-                    <div className="flex flex-col items-center justify-center flex-1">
-                        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary" />
-                    </div>
+                    <SourcesListSkeleton rows={6} />
                 )}
 
                 {/* Empty state */}
