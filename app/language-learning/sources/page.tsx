@@ -103,6 +103,7 @@ export default function SourcesPage() {
 }
 
 function SourceRow({ source, onClick }: { source: Source; onClick: () => void }) {
+    const [pressed, setPressed] = useState(false);
 
     const lastIngested = source.lastExtractedAt
         ? new Date(source.lastExtractedAt).toLocaleDateString()
@@ -110,8 +111,14 @@ function SourceRow({ source, onClick }: { source: Source; onClick: () => void })
 
     return (
         <button
-            className="flex items-center gap-3 rounded-2xl border border-cyan-700 p-2 text-left hover:bg-accent transition-colors"
+            className="flex items-center gap-3 rounded-lg border border-cyan-700 p-2 text-left hover:bg-accent transition-colors transition-transform duration-100"
+            style={{ transform: pressed ? "scale(0.95)" : "scale(1)" }}
             onClick={onClick}
+            onMouseDown={() => setPressed(true)}
+            onMouseUp={() => setPressed(false)}
+            onMouseLeave={() => setPressed(false)}
+            onTouchStart={() => setPressed(true)}
+            onTouchEnd={() => setPressed(false)}
         >
             <MaskedSvgIcon
                 src={sourceTypeIcon(source.type)}
