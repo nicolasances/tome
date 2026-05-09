@@ -91,12 +91,6 @@ export default function GenerateSentencesPage() {
                             {result.sentencesGenerated} generated · {result.sentencesErrored} failed to save
                         </p>
                     )}
-                    <button
-                        className="mt-4 text-sm text-cyan-300 underline"
-                        onClick={() => router.push('/language-learning/sentences')}
-                    >
-                        View sentences
-                    </button>
                 </div>
             )}
 
