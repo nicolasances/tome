@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
 import { MaskedSvgIcon } from "@/app/components/MaskedSvgIcon";
@@ -51,10 +51,18 @@ function KnowledgeBaseRow({
     description: string;
     onClick: () => void;
 }) {
+    const [pressed, setPressed] = useState(false);
+
     return (
         <button
-            className="flex items-center gap-3 rounded-2xl border border-cyan-700 p-3 text-left hover:bg-accent transition-colors"
+            className="flex items-center gap-3 rounded-lg border border-cyan-700 p-3 text-left hover:bg-accent transition-colors transition-transform duration-100"
+            style={{ transform: pressed ? "scale(0.95)" : "scale(1)" }}
             onClick={onClick}
+            onMouseDown={() => setPressed(true)}
+            onMouseUp={() => setPressed(false)}
+            onMouseLeave={() => setPressed(false)}
+            onTouchStart={() => setPressed(true)}
+            onTouchEnd={() => setPressed(false)}
         >
             <MaskedSvgIcon
                 src={icon}
