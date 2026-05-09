@@ -109,7 +109,7 @@ export default function SentencePracticePage() {
 
         const userAnswer = answer.trim();
         const isCorrect =
-            normalizeForComparison(userAnswer) === normalizeForComparison(sentence.translation);
+            normalizeForComparison(userAnswer) === normalizeForComparison(sentence.sentence);
 
         setResult({ isCorrect, userAnswer });
 
@@ -239,19 +239,19 @@ export default function SentencePracticePage() {
                         {result === null ? (
                             <div className="flex flex-col items-center gap-4">
                                 <span className="text-sm font-semibold tracking-widest text-muted-foreground uppercase">
-                                    Translate this sentence
+                                    Translate to Danish
                                 </span>
                                 <span className="text-2xl font-bold text-foreground text-center">
-                                    {currentSentence.sentence}
+                                    {currentSentence.translation}
                                 </span>
                             </div>
                         ) : (
                             <div className="flex flex-col items-stretch gap-3 text-center">
                                 <span className="text-xl font-bold text-foreground mb-4">
-                                    {currentSentence.sentence}
+                                    {currentSentence.translation}
                                 </span>
                                 <Result type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
-                                {!result.isCorrect && (<Result type="reference" text={currentSentence.translation} />)}
+                                {!result.isCorrect && (<Result type="reference" text={currentSentence.sentence} />)}
                             </div>
                         )}
                     </>
@@ -267,7 +267,7 @@ export default function SentencePracticePage() {
                             onChange={setAnswer}
                             onSubmit={handleSubmit}
                             disabled={result !== null}
-                            placeholder="Type English translation…"
+                            placeholder="Type Danish sentence…"
                         />
                     </div>
                     <div className={`transition-all duration-300 overflow-hidden flex items-center justify-center pb-1 ${result !== null && !result.isCorrect ? 'w-12 opacity-100' : 'w-0 opacity-0'}`}>
