@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
-import { RoundButton } from "toto-react";
+import { MaskedSvgIcon, RoundButton } from "toto-react";
 import { TomeLanguageAPI, Sentence } from "@/api/TomeLanguageAPI";
 
 export default function SentencesPage() {
@@ -100,9 +100,15 @@ export default function SentencesPage() {
 
 function SentenceRow({ sentence }: { sentence: Sentence }) {
     return (
-        <div className="border-b border-cyan-600 py-2">
-            <div className="text-sm font-medium text-grey-900">{sentence.sentence}</div>
-            <div className="text-xs text-muted-foreground mt-1">{sentence.translation}</div>
+        <div className="border-b border-cyan-600 py-2 flex flex-row">
+            <div className="mr-2">
+                {sentence.knowledgeSource == 'tome-agent' && <MaskedSvgIcon src="/images/agent.svg" alt="Tome Agent" />}
+                {sentence.knowledgeSource != 'tome-agent' && <MaskedSvgIcon src="/images/book.svg" alt="Golden Source"/>}
+            </div>
+            <div>
+                <div className="text-sm font-medium text-grey-900">{sentence.sentence}</div>
+                <div className="text-xs text-muted-foreground mt-1">{sentence.translation}</div>
+            </div>
         </div>
     );
 }
