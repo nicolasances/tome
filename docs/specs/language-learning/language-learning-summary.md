@@ -12,6 +12,7 @@ The Summary Screen is shown automatically when the session queue is empty — i.
 
 It is shared between:
 * [Vocabulary Practice](./vocabulary-practice.md)
+* [Sentence Practice](./sentence-practice.md)
 * [Inversions](./inversions.md)
 
 ---

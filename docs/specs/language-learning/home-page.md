@@ -24,7 +24,7 @@ This section contains a **single action button**. Its label and behaviour depend
 
 ### Detecting an ongoing practice
 
-On page load, the app calls `GET /tomelang/sessions/active` (via `IVocabularyPracticeAPI.getActiveSession()`) to check whether the current user has an active session.
+On page load, the app calls `GET /tomelang/sessions/active` to check whether the current user has an active session.
 
 | Response | Meaning | Button shown |
 |----------|---------|--------------|
@@ -32,6 +32,15 @@ On page load, the app calls `GET /tomelang/sessions/active` (via `IVocabularyPra
 | `404 Not Found` | No active session | **Start Practice** |
 
 While the check is in progress, a loading indicator is shown in place of the button.
+
+### Resume routing
+
+When the user taps **Resume Practice**, the app uses the `practiceType` field of the active session to determine the target route:
+
+| `practiceType` | Route |
+|----------------|-------|
+| `"vocabulary"` | `/language-learning/vocabulary-practice` |
+| `"sentences"` | `/language-learning/sentence-practice` |
 
 ---
 

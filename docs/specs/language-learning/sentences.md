@@ -142,5 +142,4 @@ After a successful generation, a **"Back to Sentences" link or button** may be s
 - Filtering sentences by source type (extracted vs. generated)
 - Deleting individual sentences
 - Server-side search
-- Sentence practice / flashcard sessions
 - Sentence detail page
