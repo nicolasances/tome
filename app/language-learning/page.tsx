@@ -62,7 +62,7 @@ export default function LanguageLearningPage() {
                 <div className="text-sm text-center tracking-widest uppercase mt-6 mb-1">Practice</div>
                 <div className="bg-cyan-700/60 rounded-full py-2 px-8">
                     {/* Vocabulary + Sentence practice buttons */}
-                    <div className="flex flex-row items-center gap-6">
+                    <div className="flex flex-row items-center gap-4">
                         <RoundButton
                             loading={isLoading}
                             disabled={isLoading}
