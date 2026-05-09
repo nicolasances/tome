@@ -49,10 +49,10 @@ export default function LanguageLearningPage() {
             <div className="flex-1 flex flex-col items-center px-4">
                 {/* Practice Buttons section */}
                 <div className="flex items-center justify-center mt-8 gap-4">
-                    {/* Vocabulary list button */}
+                    {/* Knowledge Base button */}
                     <RoundButton
-                        svgIconPath={{ src: "/images/book.svg", alt: "Vocabulary" }}
-                        onClick={() => router.push('/language-learning/vocabulary')}
+                        svgIconPath={{ src: "/images/book.svg", alt: "Knowledge Base" }}
+                        onClick={() => router.push('/language-learning/knowledge-base')}
                     />
 
                     {/* Manage Sources button */}

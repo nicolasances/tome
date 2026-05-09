@@ -7,8 +7,9 @@ In the Tome app, the Language Learning home page is accessed from the side menu.
 The Home Page presents the following sections:
 1. **Header** — the standard app header, with the title "Language Learning" and a back button.
 2. **Practice Buttons** — a single action button to either start a new practice or resume an ongoing one. See below.
-3. **Manage Sources Button** — a `RoundButton` that navigates to the Source Management page. See below.
-4. **Learning Stats** — displayed at the bottom of the home page; shows weekly learning stats as a bar graph. See below.
+3. **Knowledge Base Button** — a `RoundButton` that navigates to the Knowledge Base page (`/language-learning/knowledge-base`). This replaces the former direct vocabulary shortcut. See below.
+4. **Manage Sources Button** — a `RoundButton` that navigates to the Source Management page. See below.
+5. **Learning Stats** — displayed at the bottom of the home page; shows weekly learning stats as a bar graph. See below.
 
 ---
 
@@ -31,6 +32,18 @@ On page load, the app calls `GET /tomelang/sessions/active` (via `IVocabularyPra
 | `404 Not Found` | No active session | **Start Practice** |
 
 While the check is in progress, a loading indicator is shown in place of the button.
+
+---
+
+## Knowledge Base Button
+
+A `RoundButton` labelled **"Knowledge Base"** is shown alongside the Practice button. Pressing it navigates to `/language-learning/knowledge-base`.
+
+This button replaces the former direct vocabulary shortcut. Vocabulary (and the new Sentences section) are now accessed exclusively through the Knowledge Base hub.
+
+This button is always visible and enabled — it does not depend on the active session state.
+
+For the full Knowledge Base feature specification, see [Knowledge Base](./knowledge-base.md).
 
 ---
 

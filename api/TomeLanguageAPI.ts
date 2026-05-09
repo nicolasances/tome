@@ -10,6 +10,13 @@ export class TomeLanguageAPI {
     }
 
     /**
+     * Fetches the sentences for the specified language
+     */
+    async getSentences(language: string): Promise<GetSentencesResponse> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/sentences/${language}`)).json();
+    }
+
+    /**
      * Fetches per-day completed session counts for the last N calendar days, inclusive today.
      * Days with no completed sessions have count: 0.
      */
@@ -30,4 +37,17 @@ export interface Word {
 export interface GetVocabularyResponse {
     language: string;
     words: Word[];
+}
+
+export interface Sentence {
+    id: string;
+    sentence: string;
+    translation: string;
+    createdAt: string;
+    knowledgeSource: string;
+}
+
+export interface GetSentencesResponse {
+    language: string;
+    sentences: Sentence[];
 }

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
 import { TomeLanguageAPI, Word } from "@/api/TomeLanguageAPI";
 import { Input } from "@/components/ui/input";
+import { VocabularyListSkeleton } from "@/app/components/LanguageLearningListSkeletons";
 
 export default function VocabularyPage() {
 
@@ -21,7 +22,7 @@ export default function VocabularyPage() {
             title: 'Vocabulary',
             backButton: {
                 enabled: true,
-                onClick: () => router.push('/language-learning'),
+                onClick: () => router.push('/language-learning/knowledge-base'),
             },
         });
     }, [setConfig, router]);
@@ -61,7 +62,7 @@ export default function VocabularyPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
-            <div className="flex-1 app-content flex flex-col !overflow-hidden">
+            <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
                 {/* Fixed Search Bar */}
                 <div className="px-4 py-3 bg-background sticky top-0 z-10">
                     <Input
@@ -77,9 +78,7 @@ export default function VocabularyPage() {
                 {/* Word List */}
                 <div className="flex-1 overflow-y-auto px-4 pl-8 mt-4">
                     {isLoading && (
-                        <div className="flex items-center justify-center py-8">
-                            <p className="text-cyan-900">Loading vocabulary...</p>
-                        </div>
+                        <VocabularyListSkeleton rows={10} />
                     )}
 
                     {error && (
