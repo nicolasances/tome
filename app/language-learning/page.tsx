@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "@/context/HeaderContext";
 import { RoundButton } from "toto-react";
-import { getVocabularyPracticeAPI } from "@/api/VocabularyPracticeAPIFactory";
+import { getAnyActiveSession, ActiveSessionInfo } from "@/api/PracticeSessionHelper";
 import { TomeLanguageAPI } from "@/api/TomeLanguageAPI";
 import { DayStat, LanguageLearningWeeklyStats } from "@/components/graph/LanguageLearningWeeklyStats";
 
@@ -12,8 +12,8 @@ export default function LanguageLearningPage() {
 
     const router = useRouter();
     const { setConfig } = useHeader();
-    const [hasActiveSession, setHasActiveSession] = useState<boolean | null>(null);
-    // null = loading, [] = error/empty, populated = data ready
+    const [activeSession, setActiveSession] = useState<ActiveSessionInfo | null | undefined>(undefined);
+    // undefined = loading, null = no active session, ActiveSessionInfo = session found
     const [rollingStats, setRollingStats] = useState<DayStat[] | null>(null);
 
     useEffect(() => {
@@ -27,10 +27,9 @@ export default function LanguageLearningPage() {
     }, [setConfig, router]);
 
     useEffect(() => {
-        getVocabularyPracticeAPI()
-            .getActiveSession()
-            .then((session) => setHasActiveSession(session !== null))
-            .catch(() => setHasActiveSession(false));
+        getAnyActiveSession()
+            .then((session) => setActiveSession(session))
+            .catch(() => setActiveSession(null));
     }, []);
 
     useEffect(() => {
@@ -41,8 +40,20 @@ export default function LanguageLearningPage() {
     }, []);
 
     const handlePracticeClick = () => {
-        router.push('/language-learning/vocabulary-practice');
+        if (activeSession) {
+            // Resume the existing session
+            if (activeSession.practiceType === 'sentences') {
+                router.push('/language-learning/sentence-practice');
+            } else {
+                router.push('/language-learning/vocabulary-practice');
+            }
+        } else {
+            router.push('/language-learning/select');
+        }
     };
+
+    const hasActiveSession = activeSession !== null && activeSession !== undefined;
+    const isLoading = activeSession === undefined;
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
@@ -66,9 +77,9 @@ export default function LanguageLearningPage() {
                     {/* Start / Resume Practice button */}
                     <div className="flex flex-col items-center gap-2">
                         <RoundButton
-                            loading={hasActiveSession === null}
-                            disabled={hasActiveSession === null}
-                            svgIconPath={{ src: "/images/language.svg", alt: hasActiveSession ? 'Resume Vocabulary Practice' : 'Vocabulary Practice' }}
+                            loading={isLoading}
+                            disabled={isLoading}
+                            svgIconPath={{ src: "/images/language.svg", alt: hasActiveSession ? 'Resume Practice' : 'Start Practice' }}
                             onClick={handlePracticeClick}
                             type={hasActiveSession ? 'filled' : 'primary'}
                         />
