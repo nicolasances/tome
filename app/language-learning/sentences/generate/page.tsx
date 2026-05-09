@@ -61,7 +61,7 @@ export default function GenerateSentencesPage() {
                     Number of sentences
                 </label>
                 <input
-                    type="number"
+                    type="text"
                     min={MIN_COUNT}
                     max={MAX_COUNT}
                     value={count}
@@ -69,7 +69,6 @@ export default function GenerateSentencesPage() {
                     disabled={isGenerating}
                     className="w-full text-center text-3xl font-bold bg-transparent border-b-2 border-cyan-400 text-cyan-100 focus:outline-none focus:border-cyan-300 py-2"
                 />
-                <span className="text-xs text-muted-foreground">{MIN_COUNT}–{MAX_COUNT} sentences</span>
             </div>
 
             {/* Generate button */}
