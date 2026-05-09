@@ -24,3 +24,4 @@ Tome is a web app to help memorise information you have read. It is built around
 - [Source Management](./docs/specs/language-learning/source-management.md) — managing language knowledge sources (data ingestion)
 - [Knowledge Base](./docs/specs/language-learning/knowledge-base.md) — knowledge base hub page (vocabulary + sentences navigation)
 - [Sentences](./docs/specs/language-learning/sentences.md) — sentences list and on-demand sentence generation
+- [Sentence Practice](./docs/specs/language-learning/sentence-practice.md) — sentence practice session flow and API integration

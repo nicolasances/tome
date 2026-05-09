@@ -15,23 +15,25 @@ The Home Page presents the following sections:
 
 ## Practice Buttons
 
-This section contains a **single action button**. Its label and behaviour depend on whether there is an ongoing (unfinished) language-learning session for the current user:
+This section contains **two practice buttons**, one for each practice type:
 
-| State | Button label | Action |
-|-------|-------------|--------|
-| No ongoing practice | **Start Practice** | Navigates to `/language-learning/select` (practice type selection screen) |
-| Ongoing practice | **Resume Practice** | Navigates directly to the in-progress practice screen |
+| Button | Icon | Route |
+|--------|------|-------|
+| **Vocabulary** | `language.svg` | `/language-learning/vocabulary-practice` |
+| **Sentences** | `sentences.svg` | `/language-learning/sentence-practice` |
 
-### Detecting an ongoing practice
+Both buttons are always visible. Tapping either button navigates directly to the corresponding practice page, which handles session resumption internally (starting a new session or resuming an existing one of that type).
 
-On page load, the app calls `GET /tomelang/sessions/active` (via `IVocabularyPracticeAPI.getActiveSession()`) to check whether the current user has an active session.
+### Active session highlighting
 
-| Response | Meaning | Button shown |
-|----------|---------|--------------|
-| `200 OK` (session object) | User has an active session | **Resume Practice** |
-| `404 Not Found` | No active session | **Start Practice** |
+On page load, the app calls `GET /tomelang/sessions/active` to check whether the current user has an active session.
 
-While the check is in progress, a loading indicator is shown in place of the button.
+| Response | Meaning | Visual effect |
+|----------|---------|---------------|
+| `200 OK` (session object) | User has an active session | The button for the active `practiceType` renders as **filled** (`type="filled"`); the other renders as **primary** |
+| `404 Not Found` | No active session | Both buttons render as **primary** |
+
+While the check is in progress, both buttons show a loading indicator and are disabled.
 
 ---
 
