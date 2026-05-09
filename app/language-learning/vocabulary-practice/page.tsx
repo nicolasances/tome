@@ -248,7 +248,7 @@ export default function VocabularyPracticePage() {
     const currentWord = getCurrentWord();
 
     return (
-        <div className="flex flex-1 flex-col items-stretch">
+        <div className="flex flex-col items-stretch h-full">
             {/* Progress bar */}
             <div className="px-4 pt-8">
                 <SessionProgressBar
@@ -259,7 +259,7 @@ export default function VocabularyPracticePage() {
             </div>
 
             {/* Word prompt / result area */}
-            <div className="flex-1 flex flex-col items-stretch justify-start px-6 pb-32 pt-16">
+            <div className="flex-1 flex flex-col items-stretch justify-start px-6 pt-16 overflow-y-auto min-h-0">
                 {currentWord && (
                     <>
                         {result === null ? (

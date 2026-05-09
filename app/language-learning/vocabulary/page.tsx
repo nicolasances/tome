@@ -61,7 +61,7 @@ export default function VocabularyPage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch justify-start">
-            <div className="flex-1 app-content flex flex-col !overflow-hidden">
+            <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
                 {/* Fixed Search Bar */}
                 <div className="px-4 py-3 bg-background sticky top-0 z-10">
                     <Input
