@@ -102,6 +102,7 @@ export default function SourcesPage() {
 }
 
 function SourceRow({ source, onClick }: { source: Source; onClick: () => void }) {
+
     const [pressed, setPressed] = useState(false);
 
     const lastIngested = source.lastExtractedAt
@@ -109,9 +110,9 @@ function SourceRow({ source, onClick }: { source: Source; onClick: () => void })
         : 'Never';
 
     return (
-        <button
-            className="flex items-center gap-3 rounded-lg border border-cyan-700 p-2 text-left hover:bg-accent transition-colors transition-transform duration-100"
-            style={{ transform: pressed ? "scale(0.95)" : "scale(1)" }}
+        <div
+            className="flex items-center gap-3 text-left hover:bg-accent transition-colors transition-transform duration-100"
+            style={{ transform: pressed ? "scale(0.98)" : "scale(1)" }}
             onClick={onClick}
             onMouseDown={() => setPressed(true)}
             onMouseUp={() => setPressed(false)}
@@ -119,16 +120,18 @@ function SourceRow({ source, onClick }: { source: Source; onClick: () => void })
             onTouchStart={() => setPressed(true)}
             onTouchEnd={() => setPressed(false)}
         >
-            <MaskedSvgIcon
-                src={sourceTypeIcon(source.type)}
-                alt={source.type}
-                size="w-8 h-8"
-                color="bg-cyan-800"
-            />
+            <div className="rounded-full border border-cyan-800 p-2 flex items-center justify-center">
+                <MaskedSvgIcon
+                    src={sourceTypeIcon(source.type)}
+                    alt={source.type}
+                    size="w-5 h-5"
+                    color="bg-cyan-800"
+                />
+            </div>
             <div className="flex flex-col flex-1 min-w-0">
                 <span className="text-sm font-medium truncate">{source.name}</span>
                 <span className="text-xs text-muted-foreground">Last ingested: {lastIngested}</span>
             </div>
-        </button>
+        </div>
     );
 }
