@@ -67,7 +67,7 @@ export default function GenerateSentencesPage() {
                     value={count}
                     onChange={handleCountChange}
                     disabled={isGenerating}
-                    className="w-full text-center text-3xl font-bold bg-transparent border-b-2 border-cyan-400 text-cyan-100 focus:outline-none focus:border-cyan-300 py-2"
+                    className="w-full text-center text-3xl font-bold bg-transparent border-b-2 border-cyan-400 text-cyan-100 focus:outline-none focus:border-lime-200 py-2"
                 />
             </div>
 
