@@ -341,17 +341,10 @@ export default function SentencePracticePage() {
                                 <Result type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
                                 {!result.isCorrect && (<Result type="reference" text={currentSentence.sentence} />)}
 
-                                {showAskAI && (
+                                {(showAskAI || llmVerifying) && (
                                     <div className='flex flex-col items-center gap-2 mt-4'>
-                                        <RoundButton svgIconPath={{src: "/images/magic.svg", alt: "Ask AI"}} onClick={handleAskAI}  />
-                                        <span className="text-sm text-muted-foreground ml-2">Ask AI for help</span>
-                                    </div>
-                                )}
-
-                                {llmVerifying && (
-                                    <div className="flex items-center justify-center gap-2 mt-2">
-                                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-lime-200" />
-                                        <span className="text-sm text-lime-200">Checking with AI…</span>
+                                        <RoundButton svgIconPath={{src: "/images/magic.svg", alt: "Ask AI"}} onClick={handleAskAI} loading={llmVerifying} />
+                                        <span className="text-sm text-muted-foreground ml-2">{llmVerifying ? 'Checking with AI…' : 'Ask AI for help'}</span>
                                     </div>
                                 )}
 
