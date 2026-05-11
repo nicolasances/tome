@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { VertexAI } from '@google-cloud/vertexai';
 
-const PROJECT_ID = process.env.GOOGLE_CLOUD_PROJECT ?? process.env.GCLOUD_PROJECT ?? '';
+const PROJECT_ID = process.env.GCP_PID ?? '';
 const LOCATION = process.env.VERTEX_AI_LOCATION ?? 'europe-west1';
 
 const FLASH_MODEL = 'gemini-2.0-flash';
