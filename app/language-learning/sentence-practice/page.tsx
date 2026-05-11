@@ -342,18 +342,16 @@ export default function SentencePracticePage() {
                                 {!result.isCorrect && (<Result type="reference" text={currentSentence.sentence} />)}
 
                                 {showAskAI && (
-                                    <button
-                                        onClick={handleAskAI}
-                                        className="mt-2 text-sm font-medium text-violet-400 underline underline-offset-2 self-center"
-                                    >
-                                        Was my answer acceptable?
-                                    </button>
+                                    <div className='flex flex-col items-center gap-2 mt-4'>
+                                        <RoundButton svgIconPath={{src: "/images/magic.svg", alt: "Ask AI"}} onClick={handleAskAI}  />
+                                        <span className="text-sm text-muted-foreground ml-2">Ask AI for help</span>
+                                    </div>
                                 )}
 
                                 {llmVerifying && (
                                     <div className="flex items-center justify-center gap-2 mt-2">
-                                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-violet-400" />
-                                        <span className="text-sm text-violet-400">Checking with AI…</span>
+                                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-lime-200" />
+                                        <span className="text-sm text-lime-200">Checking with AI…</span>
                                     </div>
                                 )}
 
@@ -393,11 +391,11 @@ export default function SentencePracticePage() {
 
 function LLMResultCard({ acceptable, explanation }: { acceptable: boolean; explanation: string }) {
     return (
-        <div className={`flex flex-col rounded-md px-4 py-3 border-2 mt-1 ${acceptable ? 'border-violet-600 text-violet-300' : 'border-violet-900 text-violet-400'}`}>
-            <span className="text-xs font-semibold tracking-widest uppercase mb-1 text-violet-500">
+        <div className={`flex flex-col rounded-md px-4 py-3 border-2 mt-1 ${acceptable ? 'border-violet-600 text-violet-300' : 'border-lime-200 text-lime-200'}`}>
+            <span className="text-xs font-semibold tracking-widest uppercase mb-1 text-lime-200">
                 AI Verdict
             </span>
-            <span className={`text-sm font-bold mb-1 ${acceptable ? 'text-violet-300' : 'text-violet-500'}`}>
+            <span className={`text-sm font-bold mb-1 ${acceptable ? 'text-violet-300' : 'text-lime-200'}`}>
                 {acceptable ? '✓ Acceptable' : '✗ Not acceptable'}
             </span>
             <span className="text-sm text-left">{explanation}</span>
