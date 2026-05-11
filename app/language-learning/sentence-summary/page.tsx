@@ -72,15 +72,11 @@ export default function SentenceSummaryPage() {
                     </div>
                     <div className="flex flex-col gap-2">
                         {failedSentences.map((s) => (
-                            <div
-                                key={s.sentenceId}
-                                className="flex flex-col gap-1 bg-muted rounded-lg px-4 py-3"
-                            >
+                            <div key={s.sentenceId} className="flex flex-col items-start gap-1 bg-muted rounded-lg" >
                                 <div className="text-base font-medium">{s.sentence}</div>
                                 <div className="text-sm text-muted-foreground">{s.translation}</div>
-                                <div className="text-sm text-red-800 mt-1">
-                                    <span className="font-bold">{s.failedAttempts}</span>{' '}
-                                    {s.failedAttempts === 1 ? 'mistake' : 'mistakes'}
+                                <div className="text-sm text-red-800 rounded-full text-center mt-1 bg-cyan-300 flex px-4">
+                                    <span className="font-bold">{s.failedAttempts} </span><span className="mx-1">{s.failedAttempts === 1 ? ' mistake' : ' mistakes'}</span>
                                 </div>
                             </div>
                         ))}
