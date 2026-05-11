@@ -7,9 +7,19 @@ import { getSentencePracticeAPI } from '@/api/SentencePracticeAPIFactory';
 import { SentencePracticeSession, SentencePracticeSentence } from '@/model/SentencePractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
-import { MaskedSvgIcon, RoundButton } from 'toto-react';
+import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { RoundButton } from 'toto-react';
+import { TomeLLMVerifyAPI, LLMVerifyResult } from '@/api/TomeLLMVerifyAPI';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
+
+type QueueDelta = {
+    nextPending: string[];
+    nextMastered: string[];
+    nextDeferred: string[];
+    nextFirstAttempt: string[];
+    nextFailedAttempts: Record<string, number>;
+};
 
 function normalizeForComparison(value: string): string {
     return value
@@ -17,6 +27,20 @@ function normalizeForComparison(value: string): string {
         .replace(/[^\p{L}\p{N}\s]/gu, '')
         .replace(/\s+/g, ' ')
         .trim();
+}
+
+function levenshteinDistance(a: string, b: string): number {
+    const m = a.length, n = b.length;
+    const dp: number[][] = Array.from({ length: m + 1 }, (_, i) =>
+        Array.from({ length: n + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+    );
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (a[i - 1] === b[j - 1]) dp[i][j] = dp[i - 1][j - 1];
+            else dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+        }
+    }
+    return dp[m][n];
 }
 
 export default function SentencePracticePage() {
@@ -33,12 +57,18 @@ export default function SentencePracticePage() {
     const [error, setError] = useState<string | null>(null);
     const [answer, setAnswer] = useState('');
     const [result, setResult] = useState<ResultState>(null);
+    const [llmVerifying, setLlmVerifying] = useState(false);
+    const [llmResult, setLlmResult] = useState<LLMVerifyResult | null>(null);
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
-    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const nextFnRef = useRef<(() => void) | null>(null);
     const sessionLoadGenRef = useRef(0);
+    // Stores the pre-computed queue delta for the current result.
+    // For Tier 1/2 correct: correct delta. For wrong: wrong delta.
+    // handleAskAI may replace it with a correct delta if LLM accepts.
+    const pendingDeltaRef = useRef<QueueDelta | null>(null);
+
     const api = getSentencePracticeAPI();
+    const llmApi = new TomeLLMVerifyAPI();
 
     useEffect(() => {
         setConfig({
@@ -84,6 +114,7 @@ export default function SentencePracticePage() {
         if (!currentSentenceId) return;
         setAnswer('');
         setResult(null);
+        setLlmResult(null);
         setTimeout(() => inputRef.current?.focus(), 50);
     }, [currentSentenceId]);
 
@@ -105,6 +136,36 @@ export default function SentencePracticePage() {
         return session.sentences.find((s) => s.id === currentSentenceId) ?? null;
     };
 
+    const applyDelta = (delta: QueueDelta, sessionId: string) => {
+        const { nextPending, nextMastered, nextDeferred, nextFirstAttempt, nextFailedAttempts } = delta;
+        localStorage.setItem(`sentence-queue-${sessionId}`, JSON.stringify({
+            sessionId,
+            pendingQueue: nextPending,
+            masteredIds: nextMastered,
+            deferredIds: nextDeferred,
+            firstAttemptCorrectIds: nextFirstAttempt,
+            sentenceFailedAttempts: nextFailedAttempts,
+        }));
+        setMasteredIds(nextMastered);
+        setDeferredIds(nextDeferred);
+        setFirstAttemptCorrectIds(nextFirstAttempt);
+        setPendingQueue(nextPending);
+        setSession((prev) => {
+            if (!prev) return prev;
+            return {
+                ...prev,
+                sentences: prev.sentences.map((s) => ({
+                    ...s,
+                    failedAttempts: nextFailedAttempts[s.id] ?? s.failedAttempts,
+                })),
+                masteredIds: nextMastered,
+                deferredIds: nextDeferred,
+                firstAttemptCorrectIds: nextFirstAttempt,
+                pendingQueue: nextPending,
+            };
+        });
+    };
+
     const handleSubmit = () => {
         if (result !== null) return;
         if (!answer.trim()) return;
@@ -112,16 +173,14 @@ export default function SentencePracticePage() {
         if (!sentence || !session) return;
 
         const userAnswer = answer.trim();
-        const isCorrect =
-            normalizeForComparison(userAnswer) === normalizeForComparison(sentence.sentence);
+        const normalizedUser = normalizeForComparison(userAnswer);
+        const normalizedExpected = normalizeForComparison(sentence.sentence);
+
+        const tier1 = normalizedUser === normalizedExpected;
+        const tier2 = !tier1 && levenshteinDistance(normalizedUser, normalizedExpected) <= 2;
+        const isCorrect = tier1 || tier2;
 
         setResult({ isCorrect, userAnswer });
-
-        let nextPending: string[];
-        let nextMastered: string[];
-        let nextDeferred: string[];
-        let nextFirstAttempt: string[];
-        let nextFailedAttempts: Record<string, number>;
 
         const currentFailedAttempts = Object.fromEntries(
             session.sentences.map((s) => [s.id, s.failedAttempts])
@@ -129,70 +188,93 @@ export default function SentencePracticePage() {
 
         if (isCorrect) {
             const isFirstAttempt = !deferredIds.includes(sentence.id);
-            nextMastered = [...masteredIds, sentence.id];
-            nextFirstAttempt = isFirstAttempt ? [...firstAttemptCorrectIds, sentence.id] : firstAttemptCorrectIds;
-            nextPending = pendingQueue.slice(1);
-            nextDeferred = deferredIds.filter((id) => id !== sentence.id);
-            nextFailedAttempts = currentFailedAttempts;
+            pendingDeltaRef.current = {
+                nextPending: pendingQueue.slice(1),
+                nextMastered: [...masteredIds, sentence.id],
+                nextDeferred: deferredIds.filter((id) => id !== sentence.id),
+                nextFirstAttempt: isFirstAttempt
+                    ? [...firstAttemptCorrectIds, sentence.id]
+                    : firstAttemptCorrectIds,
+                nextFailedAttempts: currentFailedAttempts,
+            };
         } else {
-            nextDeferred = deferredIds.includes(sentence.id) ? deferredIds : [...deferredIds, sentence.id];
-            nextPending = [...pendingQueue.slice(1), sentence.id];
-            nextMastered = masteredIds;
-            nextFirstAttempt = firstAttemptCorrectIds;
-            nextFailedAttempts = { ...currentFailedAttempts, [sentence.id]: (currentFailedAttempts[sentence.id] ?? 0) + 1 };
+            const nextDeferred = deferredIds.includes(sentence.id)
+                ? deferredIds
+                : [...deferredIds, sentence.id];
+            pendingDeltaRef.current = {
+                nextPending: [...pendingQueue.slice(1), sentence.id],
+                nextMastered: masteredIds,
+                nextDeferred,
+                nextFirstAttempt: firstAttemptCorrectIds,
+                nextFailedAttempts: {
+                    ...currentFailedAttempts,
+                    [sentence.id]: (currentFailedAttempts[sentence.id] ?? 0) + 1,
+                },
+            };
         }
+    };
 
-        const queueState = {
-            sessionId: session.sessionId,
-            pendingQueue: nextPending,
-            masteredIds: nextMastered,
-            deferredIds: nextDeferred,
-            firstAttemptCorrectIds: nextFirstAttempt,
-            sentenceFailedAttempts: nextFailedAttempts,
-        };
-        localStorage.setItem(`sentence-queue-${session.sessionId}`, JSON.stringify(queueState));
+    // submitAnswer is always deferred to handleContinue so the correct isCorrect
+    // value (including any LLM upgrade) is always what gets recorded.
+    const handleContinue = () => {
+        const sentence = getCurrentSentence();
+        if (!sentence || !session || result === null) return;
 
-        api.submitAnswer(session.sessionId, sentence.id, isCorrect).catch((e) => {
+        const finalIsCorrect = llmResult !== null ? llmResult.acceptable : result.isCorrect;
+        const delta = pendingDeltaRef.current!;
+
+        applyDelta(delta, session.sessionId);
+        api.submitAnswer(session.sessionId, sentence.id, finalIsCorrect).catch((e) => {
             console.error('submitAnswer failed:', e);
         });
 
-        const next = () => {
-            setMasteredIds(nextMastered);
-            setDeferredIds(nextDeferred);
-            setFirstAttemptCorrectIds(nextFirstAttempt);
-            setPendingQueue(nextPending);
-
-            setSession((prev) => {
-                if (!prev) return prev;
-                return {
-                    ...prev,
-                    sentences: prev.sentences.map((s) => ({
-                        ...s,
-                        failedAttempts: nextFailedAttempts[s.id] ?? s.failedAttempts,
-                    })),
-                    masteredIds: nextMastered,
-                    deferredIds: nextDeferred,
-                    firstAttemptCorrectIds: nextFirstAttempt,
-                    pendingQueue: nextPending,
-                };
-            });
-
-            setResult(null);
-            setAnswer('');
-        };
-
-        nextFnRef.current = next;
-        if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(next, isCorrect ? 1000 : 10000);
-
-        return () => {
-            if (timerRef.current) clearTimeout(timerRef.current);
-        };
+        setResult(null);
+        setAnswer('');
+        setLlmResult(null);
+        pendingDeltaRef.current = null;
     };
 
-    const handleNext = () => {
-        if (timerRef.current) clearTimeout(timerRef.current);
-        nextFnRef.current?.();
+    const handleAskAI = async () => {
+        const sentence = getCurrentSentence();
+        if (!sentence || !session || !result) return;
+
+        setLlmVerifying(true);
+        try {
+            const verdict = await llmApi.verifyAnswer(
+                sentence.translation,
+                result.userAnswer,
+                sentence.sentence,
+                'danish'
+            );
+
+            if (verdict.acceptable) {
+                // Replace the wrong delta with a correct delta (no failed-attempt increment)
+                const currentFailedAttempts = Object.fromEntries(
+                    session.sentences.map((s) => [s.id, s.failedAttempts])
+                );
+                const isFirstAttempt = !deferredIds.includes(sentence.id);
+                pendingDeltaRef.current = {
+                    nextPending: pendingQueue.slice(1),
+                    nextMastered: [...masteredIds, sentence.id],
+                    nextDeferred: deferredIds.filter((id) => id !== sentence.id),
+                    nextFirstAttempt: isFirstAttempt
+                        ? [...firstAttemptCorrectIds, sentence.id]
+                        : firstAttemptCorrectIds,
+                    nextFailedAttempts: currentFailedAttempts,
+                };
+                setResult((prev) => prev ? { ...prev, isCorrect: true } : prev);
+            }
+
+            setLlmResult(verdict);
+        } catch (e) {
+            console.error('LLM verify failed:', e);
+            setLlmResult({
+                acceptable: false,
+                explanation: 'AI verification is temporarily unavailable. Please continue.',
+            });
+        } finally {
+            setLlmVerifying(false);
+        }
     };
 
     if (loading) {
@@ -226,6 +308,8 @@ export default function SentencePracticePage() {
     }
 
     const currentSentence = getCurrentSentence();
+    const showAskAI = result !== null && !result.isCorrect && llmResult === null && !llmVerifying;
+    const showContinue = result !== null && !llmVerifying;
 
     return (
         <div className="flex flex-col items-stretch h-full">
@@ -256,6 +340,17 @@ export default function SentencePracticePage() {
                                 </span>
                                 <Result type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
                                 {!result.isCorrect && (<Result type="reference" text={currentSentence.sentence} />)}
+
+                                {(showAskAI || llmVerifying) && (
+                                    <div className='flex flex-col items-center gap-2 mt-4'>
+                                        <RoundButton svgIconPath={{src: "/images/magic.svg", alt: "Ask AI"}} onClick={handleAskAI} loading={llmVerifying} />
+                                        <span className="text-sm text-muted-foreground ml-2">{llmVerifying ? 'Checking with AI…' : 'Ask AI for help'}</span>
+                                    </div>
+                                )}
+
+                                {llmResult !== null && (
+                                    <LLMResultCard acceptable={llmResult.acceptable} explanation={llmResult.explanation} />
+                                )}
                             </div>
                         )}
                     </>
@@ -274,15 +369,29 @@ export default function SentencePracticePage() {
                             placeholder="Type Danish sentence…"
                         />
                     </div>
-                    <div className={`transition-all duration-300 overflow-hidden flex items-center justify-center pb-1 ${result !== null && !result.isCorrect ? 'w-12 opacity-100' : 'w-0 opacity-0'}`}>
+                    <div className={`transition-all duration-300 overflow-hidden flex items-center justify-center pb-1 ${showContinue ? 'w-12 opacity-100' : 'w-0 opacity-0'}`}>
                         <RoundButton
-                            svgIconPath={{ src: '/images/point-right.svg', alt: 'Next', color: 'bg-lime-200' }}
-                            onClick={handleNext}
+                            svgIconPath={{ src: '/images/point-right.svg', alt: 'Continue', color: 'bg-lime-200' }}
+                            onClick={handleContinue}
                             type="primary"
                         />
                     </div>
                 </div>
             </div>
+        </div>
+    );
+}
+
+function LLMResultCard({ acceptable, explanation }: { acceptable: boolean; explanation: string }) {
+    return (
+        <div className={`flex flex-col rounded-md px-4 py-3 border-2 mt-1 ${acceptable ? 'border-lime-200 text-lime-200' : 'border-lime-200 text-lime-200'}`}>
+            <span className="text-xs font-semibold tracking-widest uppercase mb-1 text-lime-200">
+                AI Verdict
+            </span>
+            <span className={`text-sm font-bold mb-1 ${acceptable ? 'text-lime-200' : 'text-lime-200'}`}>
+                {acceptable ? '✓ Acceptable' : '✗ Not acceptable'}
+            </span>
+            <span className="text–sm text-left text-cyan-900">{explanation}</span>
         </div>
     );
 }

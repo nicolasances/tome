@@ -69,31 +69,81 @@ On session start or resume, a loading spinner is displayed while the app fetches
 
 ### 2. Answer Evaluation
 
-The app evaluates the answer immediately after submission using a **case-insensitive exact string match** against the expected Danish sentence.
+The app evaluates the answer immediately after submission using a **three-tier cascade**. Each tier is tried in order; if a tier passes, subsequent tiers are not run.
 
-* Leading and trailing spaces are trimmed before matching.
-* Special characters (æ, ø, å) must match exactly.
+#### Tier 1 — Exact match (normalised)
 
-The sentence-prompt area transitions to a **result view** (described below) while the input field remains visible at the bottom of the screen (disabled during the feedback pause).
+The answer is compared using a **case-insensitive exact string match** after normalisation:
+* Leading and trailing spaces are trimmed.
+* Punctuation is stripped.
+* Consecutive spaces are collapsed to one.
+* Special characters (æ, ø, å) are **preserved as-is** — they are not folded to ASCII equivalents.
 
-#### 2a. Correct Answer
+If Tier 1 passes → **correct answer** (see §2a).
+
+#### Tier 2 — Fuzzy match (Levenshtein distance)
+
+If Tier 1 fails, the app computes the Levenshtein distance between the two normalised strings. A distance of **≤ 2** (at most 2 insertions, deletions, or substitutions) is treated as a trivial typo and silently passed as correct.
+
+* Danish special characters are **not** folded: ø ≠ o, å ≠ a, æ ≠ ae. Substituting ø→o costs 1 edit like any other substitution.
+* No UI difference from Tier 1 — the user sees the same correct-answer result.
+
+If Tier 2 passes → **correct answer** (see §2a).
+
+#### Tier 3 — LLM verification ("Ask AI")
+
+If both Tier 1 and Tier 2 fail, the result screen shows the wrong-answer view (see §2b) plus a **"Was my answer acceptable?"** button. The user may optionally tap this to request an LLM review.
+
+Tapping the button:
+1. Disables the button and shows a loading indicator.
+2. Calls the internal `/api/llm-verify` route, which runs a **Gemini Flash → Gemini Pro cascade** on Vertex AI.
+3. Displays the LLM's verdict and explanation (see §2c and §2d below).
+
+**Important:** `submitAnswer` is **not** called for wrong answers until the user explicitly advances (see §2b and §2c/§2d). This prevents false failed-attempt counts when the LLM later upgrades the result.
+
+The sentence-prompt area transitions to a **result view** (described below) while the input field remains visible at the bottom of the screen (disabled until the user advances).
+
+#### 2a. Correct Answer (Tier 1 or Tier 2)
 
 The result view shows:
 1. The original English translation (unchanged).
-2. A **"YOU TYPED"** label followed by the user's answer.
-3. A **green checkmark** and the text **"Correct!"**.
+2. A **green checkmark** and the user's answer.
 
-After **3 seconds**, the app automatically clears the result view, clears the input field, and advances to the next sentence in the queue.
+`submitAnswer(isCorrect: true)` is called immediately. The user taps a **Continue** button to advance to the next sentence. There is no auto-advance timer.
 
-#### 2b. Wrong Answer
+#### 2b. Wrong Answer (Tier 1 and Tier 2 both fail)
 
 The result view shows:
 1. The original English translation (unchanged).
-2. A **"YOU TYPED"** label followed by the user's (wrong) answer.
-3. A **red cross** and the text **"Wrong!"**.
-4. The **correct Danish sentence** displayed below the wrong indicator.
+2. A **red cross** and the user's (wrong) answer.
+3. The **correct Danish sentence** displayed below.
+4. A **"Was my answer acceptable?"** button for LLM review.
+5. A **Continue** button.
 
-After **3 seconds**, the sentence is **moved to the end of the session queue** (it will be shown again later in the session). The app clears the result view, clears the input field, and advances to the next sentence in the queue.
+`submitAnswer` is **deferred** — it is called only when the user explicitly advances:
+* If the user taps **Continue** (without asking AI): `submitAnswer(isCorrect: false)` fires, the sentence is moved to the end of the queue, and the next sentence is shown.
+* If the user taps **"Was my answer acceptable?"**: see §2c / §2d.
+
+#### 2c. LLM says the answer is acceptable
+
+The result view updates to show:
+1. The original English translation (unchanged).
+2. The user's answer, now styled as **correct** (green).
+3. The LLM's explanation (e.g. *"Your answer is an acceptable paraphrase…"*), displayed in a distinct AI-labelled card.
+4. A **Continue** button.
+
+`submitAnswer(isCorrect: true)` is called when the verdict is received. Queue state is updated to treat the sentence as **mastered** (same as a correct answer). The user taps Continue to advance.
+
+#### 2d. LLM says the answer is not acceptable
+
+The result view updates to show:
+1. The original English translation (unchanged).
+2. The user's answer, styled as **incorrect** (red).
+3. The correct Danish sentence.
+4. The LLM's explanation from Gemini Pro (a short grammatical note), displayed in a distinct AI-labelled card.
+5. A **Continue** button.
+
+`submitAnswer(isCorrect: false)` is called when the verdict is received. The sentence remains in the deferred queue. The user taps Continue to advance.
 
 ### 3. Session Completion
 
@@ -129,13 +179,25 @@ The **session** (sentence list) remains open on the backend. The **queue state**
 
 ## Answer Validation Rules
 
-| Rule | Detail |
-|------|--------|
-| Matching method | Exact string match |
-| Case sensitivity | Case-insensitive |
-| Whitespace | Leading and trailing spaces are trimmed before matching |
-| Special characters | No tolerance for missing special characters (æ, ø, å must match exactly) |
-| Validation location | Client-side (no API call required) |
+| Tier | Rule | Detail |
+|------|------|--------|
+| 1 | Matching method | Normalised case-insensitive exact string match |
+| 1 | Punctuation | Stripped before comparison — punctuation differences are **not errors** |
+| 1 | Whitespace | Leading/trailing trimmed; internal runs collapsed |
+| 1 | Special characters | æ, ø, å preserved; not folded to ASCII |
+| 2 | Fuzzy match | Levenshtein distance ≤ 2 on normalised strings |
+| 2 | Special chars in fuzzy | ø, å, æ are distinct characters (not aliased); substituting ø→o costs 1 edit |
+| 3 | LLM | Gemini Flash → Pro cascade via `/api/llm-verify`; user-initiated only |
+| — | Validation location | Tiers 1 & 2 are client-side; Tier 3 calls an internal Next.js API route |
+
+### `submitAnswer` timing
+
+| Answer outcome | When `submitAnswer` is called | `isCorrect` value |
+|---|---|---|
+| Tier 1 or 2 correct | Immediately after evaluation | `true` |
+| Wrong (no AI asked) | When user taps Continue | `false` |
+| LLM says acceptable | When LLM verdict is received | `true` |
+| LLM says not acceptable | When LLM verdict is received | `false` |
 
 ---
 
@@ -257,7 +319,77 @@ All calls go to the `tome-ms-language` microservice via the `TotoAPI` wrapper (a
 
 ---
 
-## Edge Cases
+## LLM Verification API
+
+### Route: `POST /api/llm-verify`
+
+An internal Next.js API route (not an external microservice). Follows the same pattern as `app/api/tts/synthesize/route.ts`.
+
+**Request body:**
+```json
+{
+  "originalSentence": "string",
+  "userAnswer": "string",
+  "expectedAnswer": "string",
+  "language": "danish"
+}
+```
+
+* `originalSentence`: the English sentence the learner was asked to translate
+* `userAnswer`: the learner's Danish answer
+* `expectedAnswer`: the reference correct Danish answer
+* `language`: the target language (currently always `"danish"`)
+
+**Response (success):**
+```json
+{ "acceptable": true, "explanation": "Your phrasing is a valid paraphrase." }
+```
+
+**Response (error):**
+```json
+{ "message": "..." }
+```
+with an appropriate HTTP error status.
+
+#### Cascade logic
+
+1. Call **Gemini Flash** (`gemini-2.0-flash`) via Vertex AI with a prompt asking whether `userAnswer` is an acceptable translation. Request structured JSON output `{ "acceptable": boolean, "explanation": string }`.
+2. If Flash returns `acceptable: true` → return immediately.
+3. If Flash returns `acceptable: false` → call **Gemini Pro** (`gemini-2.5-pro`) for a final, thoughtful verdict with a short grammatical explanation.
+4. Return Gemini Pro's response.
+
+#### Prompt design
+
+```
+You are evaluating a language learner's Danish translation.
+English sentence to translate: "<originalSentence>"
+Reference Danish answer: "<expectedAnswer>"
+Learner's answer: "<userAnswer>"
+Is the learner's answer an acceptable Danish translation of the English sentence?
+A translation is acceptable if it conveys the same meaning correctly, even if phrased slightly differently. Minor word-order differences or synonyms are acceptable; wrong grammar or wrong meaning is not.
+Respond with JSON only: {"acceptable": true/false, "explanation": "<one sentence>"}
+```
+
+### API Wrapper: `TomeLLMVerifyAPI`
+
+File: `api/TomeLLMVerifyAPI.ts`
+
+```ts
+export class TomeLLMVerifyAPI {
+  async verifyAnswer(
+    originalSentence: string,
+    userAnswer: string,
+    expectedAnswer: string,
+    language: string
+  ): Promise<{ acceptable: boolean; explanation: string }> { ... }
+}
+```
+
+Calls `/api/llm-verify` via plain `fetch` (not `TotoAPI`, since this is an internal Next.js route).
+
+---
+
+
 
 * If the user submits an empty answer, the app treats it as a wrong answer and follows the wrong-answer flow.
 * The session cannot be completed until every sentence has been answered correctly at least once; there is no skip option.
@@ -266,6 +398,8 @@ All calls go to the `tome-ms-language` microservice via the `TotoAPI` wrapper (a
 
 ## Out of Scope
 
-* Hints, partial-credit scoring, or "close enough" fuzzy matching are not supported.
 * Audio pronunciation is not part of this feature.
 * Comparing results across sessions is not supported.
+* LLM verification for vocabulary practice is out of scope.
+* Auto-firing the LLM on every wrong answer (the user must opt in via the "Ask AI" button).
+* Caching or rate-limiting LLM calls.
