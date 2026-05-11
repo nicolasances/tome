@@ -391,14 +391,14 @@ export default function SentencePracticePage() {
 
 function LLMResultCard({ acceptable, explanation }: { acceptable: boolean; explanation: string }) {
     return (
-        <div className={`flex flex-col rounded-md px-4 py-3 border-2 mt-1 ${acceptable ? 'border-violet-600 text-violet-300' : 'border-lime-200 text-lime-200'}`}>
+        <div className={`flex flex-col rounded-md px-4 py-3 border-2 mt-1 ${acceptable ? 'border-lime-200 text-lime-200' : 'border-lime-200 text-lime-200'}`}>
             <span className="text-xs font-semibold tracking-widest uppercase mb-1 text-lime-200">
                 AI Verdict
             </span>
-            <span className={`text-sm font-bold mb-1 ${acceptable ? 'text-violet-300' : 'text-lime-200'}`}>
+            <span className={`text-sm font-bold mb-1 ${acceptable ? 'text-lime-200' : 'text-lime-200'}`}>
                 {acceptable ? '✓ Acceptable' : '✗ Not acceptable'}
             </span>
-            <span className="text-sm text-left">{explanation}</span>
+            <span className="text–sm text-left text-cyan-900">{explanation}</span>
         </div>
     );
 }
