@@ -3,7 +3,7 @@ import { VertexAI } from '@google-cloud/vertexai';
 
 const LOCATION = process.env.VERTEX_AI_LOCATION ?? 'europe-west1';
 
-const FLASH_MODEL = 'gemini-2.0-flash';
+const FLASH_MODEL = 'gemini-2.5-flash-lite';
 const PRO_MODEL = 'gemini-2.5-pro';
 
 function getProjectId(): string {
