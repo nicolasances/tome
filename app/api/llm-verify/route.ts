@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { VertexAI } from '@google-cloud/vertexai';
 
-const PROJECT_ID = process.env.GCP_PID ?? '';
 const LOCATION = process.env.VERTEX_AI_LOCATION ?? 'europe-west1';
 
 const FLASH_MODEL = 'gemini-2.0-flash';
 const PRO_MODEL = 'gemini-2.5-pro';
+
+function getProjectId(): string {
+    return process.env.GCP_PID
+        ?? process.env.GOOGLE_CLOUD_PROJECT
+        ?? process.env.GCLOUD_PROJECT
+        ?? process.env.NEXT_PUBLIC_GCP_PID
+        ?? '';
+}
 
 function buildPrompt(originalSentence: string, expectedAnswer: string, userAnswer: string): string {
     return `You are evaluating a language learner's Danish translation.
@@ -40,6 +47,7 @@ async function callGemini(
 export async function POST(request: NextRequest) {
     try {
         const { originalSentence, userAnswer, expectedAnswer, language } = await request.json();
+        const projectId = getProjectId();
 
         if (!originalSentence || !userAnswer || !expectedAnswer || !language) {
             return NextResponse.json(
@@ -48,14 +56,14 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        if (!PROJECT_ID) {
+        if (!projectId) {
             return NextResponse.json(
                 { message: 'GCP project not configured' },
                 { status: 500 }
             );
         }
 
-        const vertexAI = new VertexAI({ project: PROJECT_ID, location: LOCATION });
+        const vertexAI = new VertexAI({ project: projectId, location: LOCATION });
         const prompt = buildPrompt(originalSentence, expectedAnswer, userAnswer);
 
         const flashResult = await callGemini(vertexAI, FLASH_MODEL, prompt);

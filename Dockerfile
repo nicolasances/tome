@@ -49,6 +49,12 @@ RUN npm run build
 # Use a lighter image for serving the app (e.g., official Node.js Alpine image)
 FROM node:20-alpine AS production
 
+ARG GCP_PID
+
+ENV GCP_PID=${GCP_PID}
+ENV GOOGLE_CLOUD_PROJECT=${GCP_PID}
+ENV GCLOUD_PROJECT=${GCP_PID}
+
 # Set working directory
 WORKDIR /app
 
