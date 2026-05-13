@@ -7,7 +7,8 @@ import { getVocabularyPracticeAPI } from '@/api/VocabularyPracticeAPIFactory';
 import { VocabPracticeSession, VocabPracticeWord } from '@/model/VocabularyPractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
-import { MaskedSvgIcon, RoundButton } from 'toto-react';
+import { PracticeResult } from '@/app/components/PracticeResult';
+import { RoundButton } from 'toto-react';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -312,8 +313,8 @@ export default function VocabularyPracticePage() {
                                 <span className="text-3xl font-bold text-foreground mb-4">
                                     {currentWord.english}
                                 </span>
-                                <Result type={result.isCorrect ? "correct" : "incorrect"} text={result.userAnswer} />
-                                {!result.isCorrect && (<Result type="reference" text={currentWord.translation} />)}
+                                <PracticeResult type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
+                                {!result.isCorrect && (<PracticeResult type='reference' text={currentWord.translation} />)}
                             </div>
                         )}
                     </>
@@ -344,29 +345,4 @@ export default function VocabularyPracticePage() {
             </div>
         </div>
     );
-}
-
-function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; text: string }) {
-
-    let imageUrl = '/images/close.svg';
-    let iconSize = 'w-5 h-5';
-    if (type === 'correct') {
-        imageUrl = '/images/tick.svg';
-        iconSize = 'w-8 h-8';
-    }
-    else if (type === 'reference') imageUrl = '/images/point-right.svg';
-
-    return (
-        <div className='flex flex-col items-stretch'>
-            {/* <div className="text-2xs uppercase tracking-widest text-left pl-2 mb-1">{title}</div> */}
-            <div className={`flex rounded-md items-center ${type != "correct" ? "px-4" : "px-2"} py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
-                <div className="">
-                    <MaskedSvgIcon src={imageUrl} size={iconSize} alt='Result Icon' color={type === 'correct' ? 'bg-green-800' : type === 'incorrect' ? 'bg-red-800' : 'bg-cyan-300'} />
-                </div>
-                <div className={`flex-1 flex flex-col items-start justify-center ${type != "correct" ? "pl-2" : "pl-1"} border-l-4 border-[var(--background)] self-stretch -my-2 py-2`}>
-                    <div>{text || <em className="text-muted-foreground">empty</em>}</div>
-                </div>
-            </div>
-        </div>
-    )
 }

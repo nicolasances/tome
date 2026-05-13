@@ -7,7 +7,7 @@ import { getSentencePracticeAPI } from '@/api/SentencePracticeAPIFactory';
 import { SentencePracticeSession, SentencePracticeSentence } from '@/model/SentencePractice';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
-import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { PracticeResult } from '@/app/components/PracticeResult';
 import { RoundButton } from 'toto-react';
 import { TomeLLMVerifyAPI, LLMVerifyResult } from '@/api/TomeLLMVerifyAPI';
 
@@ -367,8 +367,8 @@ export default function SentencePracticePage() {
                                 <span className="text-xl font-bold text-foreground mb-4">
                                     {currentSentence.translation}
                                 </span>
-                                <Result type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
-                                {!result.isCorrect && (<Result type="reference" text={currentSentence.sentence} />)}
+                                <PracticeResult type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
+                                {!result.isCorrect && (<PracticeResult type='reference' text={currentSentence.sentence} />)}
 
                                 {(showAskAI || llmVerifying) && (
                                     <div className='flex flex-col items-center gap-2 mt-4'>
@@ -421,28 +421,6 @@ function LLMResultCard({ acceptable, explanation }: { acceptable: boolean; expla
                 {acceptable ? '✓ Acceptable' : '✗ Not acceptable'}
             </span>
             <span className="text–sm text-left text-cyan-900">{explanation}</span>
-        </div>
-    );
-}
-
-function Result({ type, text }: { type: 'correct' | 'incorrect' | 'reference'; text: string }) {
-    let imageUrl = '/images/close.svg';
-    let iconSize = 'w-5 h-5';
-    if (type === 'correct') {
-        imageUrl = '/images/tick.svg';
-        iconSize = 'w-8 h-8';
-    } else if (type === 'reference') imageUrl = '/images/point-right.svg';
-
-    return (
-        <div className="flex flex-col items-stretch">
-            <div className={`flex rounded-md items-center px-4 py-2 border-2 ${type === 'correct' ? 'border-green-800 text-green-800' : type === 'incorrect' ? 'border-red-800 text-red-800' : 'border-cyan-400 text-cyan-200'}`}>
-                <div>
-                    <MaskedSvgIcon src={imageUrl} size={iconSize} alt="Result Icon" color={type === 'correct' ? 'bg-green-800' : type === 'incorrect' ? 'bg-red-800' : 'bg-cyan-300'} />
-                </div>
-                <div className="flex-1 flex flex-col items-start justify-center pl-4 border-l-4 border-[var(--background)] self-stretch -my-2 py-2">
-                    <div className="text-left">{text || <em className="text-muted-foreground">empty</em>}</div>
-                </div>
-            </div>
         </div>
     );
 }
