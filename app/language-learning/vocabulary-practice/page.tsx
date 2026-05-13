@@ -208,10 +208,43 @@ export default function VocabularyPracticePage() {
         };
     };
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (timerRef.current) clearTimeout(timerRef.current);
         nextFnRef.current?.();
-    };
+    }, []);
+
+    /**
+     * Handle "Enter" key to skip to next question immediately only: 
+     * - when showing an incorrect result (since the user likely wants to get to the next word without waiting through the full 10-second timer)
+     */
+    useEffect(() => {
+
+        if (result == null || result.isCorrect) return;
+
+        let listenerAttached = false;
+        let activationTimeout: ReturnType<typeof setTimeout> | null = null;
+
+        const onWindowKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== 'Enter') return;
+            if (e.repeat) return;
+            e.preventDefault();
+            handleNext();
+        };
+
+        // Delay activation to avoid consuming the same Enter used to submit the answer.
+        activationTimeout = setTimeout(() => {
+            window.addEventListener('keydown', onWindowKeyDown);
+            listenerAttached = true;
+        }, 250);
+
+        return () => {
+            if (activationTimeout) clearTimeout(activationTimeout);
+            if (listenerAttached) {
+                window.removeEventListener('keydown', onWindowKeyDown);
+            }
+        };
+
+    }, [result, handleNext]);
 
     // ---- Render states ----
 
@@ -248,7 +281,8 @@ export default function VocabularyPracticePage() {
     const currentWord = getCurrentWord();
 
     return (
-        <div className="flex flex-col items-stretch h-full">
+           <div className="flex flex-col items-stretch h-full">
+
             {/* Progress bar */}
             <div className="px-4 pt-8">
                 <SessionProgressBar
@@ -312,7 +346,7 @@ export default function VocabularyPracticePage() {
     );
 }
 
-function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; text: string}) {
+function Result({ type, text }: { type: "correct" | "incorrect" | "reference"; text: string }) {
 
     let imageUrl = '/images/close.svg';
     let iconSize = 'w-5 h-5';
