@@ -277,6 +277,35 @@ export default function SentencePracticePage() {
         }
     };
 
+    useEffect(() => {
+
+        if (result === null || llmVerifying) return;
+
+        let listenerAttached = false;
+        let activationTimeout: ReturnType<typeof setTimeout> | null = null;
+
+        const onWindowKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== 'Enter') return;
+            if (e.repeat) return;
+            e.preventDefault();
+            handleContinue();
+        };
+
+        // Delay activation to avoid consuming the same Enter used to submit the answer.
+        activationTimeout = setTimeout(() => {
+            window.addEventListener('keydown', onWindowKeyDown);
+            listenerAttached = true;
+        }, 250);
+
+        return () => {
+            if (activationTimeout) clearTimeout(activationTimeout);
+            if (listenerAttached) {
+                window.removeEventListener('keydown', onWindowKeyDown);
+            }
+        };
+
+    }, [result, llmVerifying, handleContinue]);
+
     if (loading) {
         return (
             <div className="flex flex-1 items-center justify-center">
