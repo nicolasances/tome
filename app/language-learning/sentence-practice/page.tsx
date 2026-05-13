@@ -61,6 +61,7 @@ export default function SentencePracticePage() {
     const [llmResult, setLlmResult] = useState<LLMVerifyResult | null>(null);
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
+    const continueTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const sessionLoadGenRef = useRef(0);
     // Stores the pre-computed queue delta for the current result.
     // For Tier 1/2 correct: correct delta. For wrong: wrong delta.
@@ -280,6 +281,28 @@ export default function SentencePracticePage() {
     useEffect(() => {
 
         if (result === null || llmVerifying) return;
+        // Auto-continue only when the answer is immediately correct.
+        // If correctness comes from LLM review, keep continue manual.
+        if (!result.isCorrect || llmResult !== null) return;
+
+        continueTimerRef.current = setTimeout(() => {
+            handleContinue();
+        }, 1000);
+
+        return () => {
+            if (continueTimerRef.current) {
+                clearTimeout(continueTimerRef.current);
+                continueTimerRef.current = null;
+            }
+        };
+
+    }, [result, llmResult, llmVerifying, handleContinue]);
+
+    useEffect(() => {
+
+        if (result === null || llmVerifying) return;
+        const shouldAutoContinue = result.isCorrect && llmResult === null;
+        if (shouldAutoContinue) return;
 
         let listenerAttached = false;
         let activationTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -338,7 +361,8 @@ export default function SentencePracticePage() {
 
     const currentSentence = getCurrentSentence();
     const showAskAI = result !== null && !result.isCorrect && llmResult === null && !llmVerifying;
-    const showContinue = result !== null && !llmVerifying;
+    const shouldAutoContinue = result !== null && result.isCorrect && llmResult === null;
+    const showContinue = result !== null && !llmVerifying && !shouldAutoContinue;
 
     return (
         <div className="flex flex-col items-stretch h-full">
