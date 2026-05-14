@@ -120,15 +120,6 @@ export default function SourceDetailPage() {
                     />
                 </div>
 
-                {/* Extraction spinner */}
-                {extracting && (
-                    <div className="flex flex-col items-center gap-3 py-6">
-                        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary" />
-                        <p className="text-sm text-muted-foreground text-center">
-                            Extracting vocabulary… this may take a minute.
-                        </p>
-                    </div>
-                )}
 
                 {/* Extraction result */}
                 {extractionResult && !extracting && (
@@ -136,13 +127,9 @@ export default function SourceDetailPage() {
                         <p className="text-xl text-center">Extraction complete</p>
                         <ExtractionStat label="Words extracted" value={extractionResult.wordsExtracted} />
                         <ExtractionStat label="New words created" value={extractionResult.wordsCreated} />
-                        {extractionResult.wordsErrored > 0 && (
-                            <ExtractionStat
-                                label="Words with errors"
-                                value={extractionResult.wordsErrored}
-                                danger
-                            />
-                        )}
+                        {extractionResult.wordsErrored > 0 && (<ExtractionStat label="Words with errors" value={extractionResult.wordsErrored} danger />)}
+                        <ExtractionStat label="Sentences extracted" value={extractionResult.sentencesExtracted} />
+                        <ExtractionStat label="New sentences created" value={extractionResult.sentencesCreated} />
                     </div>
                 )}
 
@@ -155,15 +142,22 @@ export default function SourceDetailPage() {
             </div>
 
             {/* Ingest button */}
-            {!extracting && (
+            <div className="flex flex-col items-center justify-center mb-8">
+                {/* Extraction spinner */}
+                {extracting && (
+                    <p className="text-sm text-muted-foreground text-center mb-2">
+                        Extracting vocabulary… this may take a minute.
+                    </p>
+                )}
                 <div className="flex items-center justify-center mb-8">
                     <RoundButton
                         svgIconPath={{ src: "/images/magic.svg", alt: "Ingest" }}
                         onClick={handleIngest}
+                        loading={extracting}
                         type="primary"
                     />
                 </div>
-            )}
+            </div>
         </div>
     );
 }
