@@ -243,6 +243,37 @@ The summary replaces any previous ingestion result and persists until the user n
 
 ---
 
+## Sources List Component — TotoList Migration
+
+The sources list page uses the `TotoList` component from `toto-react` instead of an inline `SourceRow` implementation.
+
+### Mapping `Source` → `TotoListItem`
+
+```ts
+{
+  id: source.id,
+  icon: {
+    src: sourceTypeIcon(source.type),
+    alt: source.type,
+    color: 'bg-cyan-800',
+  },
+  title: source.name,
+  subtitle: `Last ingested: ${lastIngested}`,
+  onClick: () => router.push(`/language-learning/sources/${source.id}`),
+}
+```
+
+Where `lastIngested` is derived from `source.lastExtractedAt`:
+- If non-null: `new Date(source.lastExtractedAt).toLocaleDateString()`
+- If null: `'Never'`
+
+### Loading State
+
+`loading` prop is `true` when `sources === null && !error`.  
+The `SourcesListSkeleton` component is no longer used on this page.
+
+---
+
 ## Out of Scope
 
 - Source **deletion** (not supported by the backend API)
@@ -250,3 +281,4 @@ The summary replaces any previous ingestion result and persists until the user n
 - Sources for languages other than the current context
 - Pagination of the source list
 - Scheduling automatic extraction
+- Migrating other list pages (sentences, vocabulary) to `TotoList`
