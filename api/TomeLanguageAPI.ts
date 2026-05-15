@@ -11,11 +11,18 @@ export class TomeLanguageAPI {
 
     /**
      * Fetches a paginated page of vocabulary with per-word practice statistics.
-     * Words are sorted server-side by failure ratio descending (hardest first);
-     * words with no stats appear at the end.
+     * Always sorted by difficulty descending (hardest first); words with no stats appear at the end.
      */
     async getVocabularyWithStats(language: string, page: number, pageSize: number): Promise<GetVocabularyWithStatsResponse> {
-        return (await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}/with-stats?page=${page}&pageSize=${pageSize}`)).json();
+        return (await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}/with-stats?page=${page}&pageSize=${pageSize}&sortBy=difficulty&sortDir=desc`)).json();
+    }
+
+    /**
+     * Fetches a paginated page of sentences with per-sentence practice statistics.
+     * Always sorted by difficulty descending (hardest first); sentences with no stats appear at the end.
+     */
+    async getSentencesWithStats(language: string, page: number, pageSize: number): Promise<GetSentencesWithStatsResponse> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/sentences/${language}/with-stats?page=${page}&pageSize=${pageSize}&sortBy=difficulty&sortDir=desc`)).json();
     }
 
     /**
@@ -76,6 +83,28 @@ export interface Sentence {
     translation: string;
     createdAt: string;
     knowledgeSource: string;
+}
+
+export interface GetSentencesWithStatsResponse {
+    language: string;
+    page: number;
+    pageSize: number;
+    totalCount: number;
+    sentences: SentenceWithStats[];
+}
+
+export interface SentenceWithStats {
+    id: string;
+    sentence: string;
+    translation: string;
+    createdAt: string;
+    knowledgeSource: string;
+    stats: {
+        failureRatio: number;
+        totalAttempts: number;
+        totalFailures: number;
+        lastPracticed: string;
+    } | null;
 }
 
 export interface GetSentencesResponse {

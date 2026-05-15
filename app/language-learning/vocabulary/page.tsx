@@ -6,6 +6,7 @@ import { useHeader } from "@/context/HeaderContext";
 import { TomeLanguageAPI, WordWithStats } from "@/api/TomeLanguageAPI";
 import { Input } from "@/components/ui/input";
 import { VocabularyListSkeleton } from "@/app/components/LanguageLearningListSkeletons";
+import { DifficultySignal } from "@/app/components/DifficultySignal";
 
 const PAGE_SIZE = 100;
 
@@ -163,13 +164,16 @@ export default function VocabularyPage() {
 
 function WordItem({ word }: { word: WordWithStats }) {
     return (
-        <div className="">
-            <div className="text-grey-900 font-bold text-lg">
-                {word.translation}
+        <div className="flex items-center justify-between">
+            <div>
+                <div className="text-grey-900 font-bold text-lg">
+                    {word.translation}
+                </div>
+                <div className="text-muted-foreground text-sm">
+                    {word.english}
+                </div>
             </div>
-            <div className="text-muted-foreground text-sm ">
-                {word.english}
-            </div>
+            <DifficultySignal failureRatio={word.stats?.failureRatio ?? null} />
         </div>
     );
 }
