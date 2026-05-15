@@ -10,6 +10,15 @@ export class TomeLanguageAPI {
     }
 
     /**
+     * Fetches a paginated page of vocabulary with per-word practice statistics.
+     * Words are sorted server-side by failure ratio descending (hardest first);
+     * words with no stats appear at the end.
+     */
+    async getVocabularyWithStats(language: string, page: number, pageSize: number): Promise<GetVocabularyWithStatsResponse> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}/with-stats?page=${page}&pageSize=${pageSize}`)).json();
+    }
+
+    /**
      * Fetches the sentences for the specified language
      */
     async getSentences(language: string): Promise<GetSentencesResponse> {
@@ -34,9 +43,31 @@ export interface Word {
     knowledgeSource: string;
 }
 
+export interface WordWithStats {
+    id: string;
+    english: string;
+    translation: string;
+    createdAt: string;
+    knowledgeSource: string;
+    stats: {
+        failureRatio: number;
+        totalAttempts: number;
+        totalFailures: number;
+        lastPracticed: string;
+    } | null;
+}
+
 export interface GetVocabularyResponse {
     language: string;
     words: Word[];
+}
+
+export interface GetVocabularyWithStatsResponse {
+    language: string;
+    page: number;
+    pageSize: number;
+    totalCount: number;
+    words: WordWithStats[];
 }
 
 export interface Sentence {
