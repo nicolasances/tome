@@ -163,8 +163,12 @@ export default function VocabularyPage() {
 }
 
 function WordItem({ word }: { word: WordWithStats }) {
+    const router = useRouter();
     return (
-        <div className="flex items-center justify-between">
+        <div
+            className="flex items-center justify-between cursor-pointer"
+            onClick={() => router.push(`/language-learning/vocabulary/${word.id}`)}
+        >
             <div>
                 <div className="text-grey-900 font-bold text-lg">
                     {word.translation}

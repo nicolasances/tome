@@ -10,6 +10,7 @@ import { TranslationInput } from '@/components/TranslationInput';
 import { PracticeResult } from '@/app/components/PracticeResult';
 import { RoundButton } from 'toto-react';
 import { TomeLLMVerifyAPI, LLMVerifyResult } from '@/api/TomeLLMVerifyAPI';
+import { TomeLanguageAPI } from '@/api/TomeLanguageAPI';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -266,6 +267,10 @@ export default function SentencePracticePage() {
                     nextFailedAttempts: currentFailedAttempts,
                 };
                 setResult((prev) => prev ? { ...prev, isCorrect: true } : prev);
+
+                // Store AI-corrected alternative — fire-and-forget
+                new TomeLanguageAPI().addSentenceAlternative('danish', sentence.id, verdict.correctedTranslation ?? result.userAnswer)
+                    .catch((e) => console.error('addSentenceAlternative failed:', e));
             }
 
             setLlmResult(verdict);
