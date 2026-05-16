@@ -122,8 +122,10 @@ export default function VocabularyPracticePage() {
         if (!word || !session) return;
 
         const userAnswer = answer.trim();
+        const normalized = normalizeTranslationForComparison(userAnswer);
         const isCorrect =
-            normalizeTranslationForComparison(userAnswer) === normalizeTranslationForComparison(word.translation);
+            normalized === normalizeTranslationForComparison(word.translation) ||
+            word.alternativeTranslations.some((a) => normalized === normalizeTranslationForComparison(a.translation));
 
         setResult({ isCorrect, userAnswer });
 
