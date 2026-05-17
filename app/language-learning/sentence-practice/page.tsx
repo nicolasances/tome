@@ -169,19 +169,22 @@ export default function SentencePracticePage() {
     };
 
     const handleSubmit = () => {
+
         if (result !== null) return;
         if (!answer.trim()) return;
+        
         const sentence = getCurrentSentence();
+        
         if (!sentence || !session) return;
 
         const userAnswer = answer.trim();
-        const normalizedUser = normalizeForComparison(userAnswer);
+        const normalizedUserAnswer = normalizeForComparison(userAnswer);
 
-        const matchesTier1 = (candidate: string) => normalizedUser === normalizeForComparison(candidate);
-        const matchesTier2 = (candidate: string) => levenshteinDistance(normalizedUser, normalizeForComparison(candidate)) <= 2;
+        const matchesTier1 = (candidate: string) => normalizedUserAnswer === normalizeForComparison(candidate);
+        const matchesTier2 = (candidate: string) => levenshteinDistance(normalizedUserAnswer, normalizeForComparison(candidate)) <= 2;
 
-        const tier1 = matchesTier1(sentence.translation) || sentence.alternativeTranslations.some((a) => matchesTier1(a.translation));
-        const tier2 = !tier1 && (matchesTier2(sentence.translation) || sentence.alternativeTranslations.some((a) => matchesTier2(a.translation)));
+        const tier1 = matchesTier1(sentence.sentence) || sentence.alternativeTranslations.some((a) => matchesTier1(a.translation));
+        const tier2 = !tier1 && (matchesTier2(sentence.sentence) || sentence.alternativeTranslations.some((a) => matchesTier2(a.translation)));
         const isCorrect = tier1 || tier2;
 
         setResult({ isCorrect, userAnswer });
