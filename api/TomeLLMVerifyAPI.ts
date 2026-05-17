@@ -1,6 +1,7 @@
 export interface LLMVerifyResult {
     acceptable: boolean;
     explanation: string;
+    correctedTranslation?: string;
 }
 
 export class TomeLLMVerifyAPI {

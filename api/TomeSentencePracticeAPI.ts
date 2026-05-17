@@ -21,6 +21,7 @@ interface BackendSentence {
   sentenceId: string;
   sentence: string;
   translation: string;
+  alternativeTranslations?: Array<{ id: string; translation: string }>;
 }
 
 interface BackendSessionResponse {
@@ -50,6 +51,7 @@ function mapBackendSentences(backendSentences: BackendSentence[]): SentencePract
     sentence: s.sentence,
     translation: s.translation,
     failedAttempts: 0,
+    alternativeTranslations: s.alternativeTranslations ?? [],
   }));
 }
 

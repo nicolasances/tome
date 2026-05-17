@@ -9,6 +9,7 @@ import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { TranslationInput } from '@/components/TranslationInput';
 import { PracticeResult } from '@/app/components/PracticeResult';
 import { RoundButton } from 'toto-react';
+import { TomeLanguageAPI } from '@/api/TomeLanguageAPI';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -34,6 +35,7 @@ export default function VocabularyPracticePage() {
     const [error, setError] = useState<string | null>(null);
     const [answer, setAnswer] = useState('');
     const [result, setResult] = useState<ResultState>(null);
+    const [acceptedThisWord, setAcceptedThisWord] = useState(false);
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -122,8 +124,10 @@ export default function VocabularyPracticePage() {
         if (!word || !session) return;
 
         const userAnswer = answer.trim();
+        const normalized = normalizeTranslationForComparison(userAnswer);
         const isCorrect =
-            normalizeTranslationForComparison(userAnswer) === normalizeTranslationForComparison(word.translation);
+            normalized === normalizeTranslationForComparison(word.translation) ||
+            word.alternativeTranslations.some((a) => normalized === normalizeTranslationForComparison(a.translation));
 
         setResult({ isCorrect, userAnswer });
 
@@ -198,6 +202,7 @@ export default function VocabularyPracticePage() {
 
             setResult(null);
             setAnswer('');
+            setAcceptedThisWord(false);
         }
 
         nextFnRef.current = next;
@@ -213,6 +218,63 @@ export default function VocabularyPracticePage() {
         if (timerRef.current) clearTimeout(timerRef.current);
         nextFnRef.current?.();
     }, []);
+
+    const handleAcceptTranslation = () => {
+        const word = getCurrentWord();
+        if (!word || !session || !result || acceptedThisWord) return;
+
+        setAcceptedThisWord(true);
+
+        // Store the alternative — fire-and-forget
+        new TomeLanguageAPI().addWordAlternative('danish', word.id, result.userAnswer.trim())
+            .catch((e) => console.error('addWordAlternative failed:', e));
+
+        // Record a correct outcome in backend stats — fire-and-forget
+        api.submitAnswer(session.sessionId, word.id, true)
+            .catch((e) => console.error('submitAnswer (accept) failed:', e));
+
+        // Compute correct-answer queue delta
+        const currentFailedAttempts = Object.fromEntries(
+            session.words.map((w) => [w.id, w.failedAttempts])
+        );
+        const isFirstAttempt = !deferredIds.includes(word.id);
+        const nextMastered = [...masteredIds, word.id];
+        const nextFirstAttempt = isFirstAttempt ? [...firstAttemptCorrectIds, word.id] : firstAttemptCorrectIds;
+        const nextPending = pendingQueue.slice(1);
+        const nextDeferred = deferredIds.filter((id) => id !== word.id);
+
+        // Persist to localStorage
+        localStorage.setItem(`vocab-queue-${session.sessionId}`, JSON.stringify({
+            sessionId: session.sessionId,
+            pendingQueue: nextPending,
+            masteredIds: nextMastered,
+            deferredIds: nextDeferred,
+            firstAttemptCorrectIds: nextFirstAttempt,
+            wordFailedAttempts: currentFailedAttempts,
+        }));
+
+        // Update React state
+        setMasteredIds(nextMastered);
+        setDeferredIds(nextDeferred);
+        setFirstAttemptCorrectIds(nextFirstAttempt);
+        setPendingQueue(nextPending);
+        setSession((prev) => {
+            if (!prev) return prev;
+            return {
+                ...prev,
+                masteredIds: nextMastered,
+                deferredIds: nextDeferred,
+                firstAttemptCorrectIds: nextFirstAttempt,
+                pendingQueue: nextPending,
+            };
+        });
+
+        // Clear result and advance
+        if (timerRef.current) clearTimeout(timerRef.current);
+        setResult(null);
+        setAnswer('');
+        setAcceptedThisWord(false);
+    };
 
     /**
      * Handle "Enter" key to skip to next question immediately only: 
@@ -315,6 +377,16 @@ export default function VocabularyPracticePage() {
                                 </span>
                                 <PracticeResult type={result.isCorrect ? 'correct' : 'incorrect'} text={result.userAnswer} />
                                 {!result.isCorrect && (<PracticeResult type='reference' text={currentWord.translation} />)}
+                                {!result.isCorrect && !acceptedThisWord && (
+                                    <div className="flex flex-col items-center gap-2 mt-4">
+                                        <RoundButton
+                                            svgIconPath={{ src: '/images/point-right.svg', alt: 'Accept', color: 'bg-cyan-300' }}
+                                            onClick={handleAcceptTranslation}
+                                            type="primary"
+                                        />
+                                        <span className="text-sm text-muted-foreground">Accept my translation</span>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </>

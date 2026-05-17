@@ -4,13 +4,13 @@ import { SentencePracticeSession, SentencePracticeSentence, SentenceSessionSumma
 const ACTIVE_SESSION_KEY = 'sentence-active-session';
 
 const HARDCODED_SENTENCES: Omit<SentencePracticeSentence, 'failedAttempts'>[] = [
-  { id: 's1', sentence: 'Jeg spiser morgenmad hver dag.', translation: 'I eat breakfast every day.' },
-  { id: 's2', sentence: 'Hun læser en interessant bog.', translation: 'She is reading an interesting book.' },
-  { id: 's3', sentence: 'Vi går en tur i parken om eftermiddagen.', translation: 'We take a walk in the park in the afternoon.' },
-  { id: 's4', sentence: 'Han arbejder på et stort projekt.', translation: 'He is working on a big project.' },
-  { id: 's5', sentence: 'De bor i en lille by ved havet.', translation: 'They live in a small town by the sea.' },
-  { id: 's6', sentence: 'Jeg kan godt lide at lytte til musik.', translation: 'I like to listen to music.' },
-  { id: 's7', sentence: 'Børnene leger i haven efter skole.', translation: 'The children play in the garden after school.' },
+  { id: 's1', sentence: 'Jeg spiser morgenmad hver dag.', translation: 'I eat breakfast every day.', alternativeTranslations: [] },
+  { id: 's2', sentence: 'Hun læser en interessant bog.', translation: 'She is reading an interesting book.', alternativeTranslations: [] },
+  { id: 's3', sentence: 'Vi går en tur i parken om eftermiddagen.', translation: 'We take a walk in the park in the afternoon.', alternativeTranslations: [] },
+  { id: 's4', sentence: 'Han arbejder på et stort projekt.', translation: 'He is working on a big project.', alternativeTranslations: [] },
+  { id: 's5', sentence: 'De bor i en lille by ved havet.', translation: 'They live in a small town by the sea.', alternativeTranslations: [] },
+  { id: 's6', sentence: 'Jeg kan godt lide at lytte til musik.', translation: 'I like to listen to music.', alternativeTranslations: [] },
+  { id: 's7', sentence: 'Børnene leger i haven efter skole.', translation: 'The children play in the garden after school.', alternativeTranslations: [] },
 ];
 
 function generateUUID(): string {

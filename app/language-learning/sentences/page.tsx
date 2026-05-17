@@ -149,8 +149,12 @@ export default function SentencesPage() {
 }
 
 function SentenceRow({ sentence }: { sentence: SentenceWithStats }) {
+    const router = useRouter();
     return (
-        <div className="border-b border-cyan-600 py-2 flex flex-row items-center justify-between">
+        <div
+            className="border-b border-cyan-600 py-2 flex flex-row items-center justify-between cursor-pointer"
+            onClick={() => router.push(`/language-learning/sentences/${sentence.id}`)}
+        >
             <div className="flex flex-row items-center gap-2 flex-1 min-w-0 mr-3">
                 <div className="shrink-0">
                     {sentence.knowledgeSource == 'tome-agent' && <MaskedSvgIcon src="/images/agent.svg" alt="Tome Agent" />}

@@ -10,6 +10,7 @@ import { TranslationInput } from '@/components/TranslationInput';
 import { PracticeResult } from '@/app/components/PracticeResult';
 import { RoundButton } from 'toto-react';
 import { TomeLLMVerifyAPI, LLMVerifyResult } from '@/api/TomeLLMVerifyAPI';
+import { TomeLanguageAPI } from '@/api/TomeLanguageAPI';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -175,10 +176,12 @@ export default function SentencePracticePage() {
 
         const userAnswer = answer.trim();
         const normalizedUser = normalizeForComparison(userAnswer);
-        const normalizedExpected = normalizeForComparison(sentence.sentence);
 
-        const tier1 = normalizedUser === normalizedExpected;
-        const tier2 = !tier1 && levenshteinDistance(normalizedUser, normalizedExpected) <= 2;
+        const matchesTier1 = (candidate: string) => normalizedUser === normalizeForComparison(candidate);
+        const matchesTier2 = (candidate: string) => levenshteinDistance(normalizedUser, normalizeForComparison(candidate)) <= 2;
+
+        const tier1 = matchesTier1(sentence.translation) || sentence.alternativeTranslations.some((a) => matchesTier1(a.translation));
+        const tier2 = !tier1 && (matchesTier2(sentence.translation) || sentence.alternativeTranslations.some((a) => matchesTier2(a.translation)));
         const isCorrect = tier1 || tier2;
 
         setResult({ isCorrect, userAnswer });
@@ -264,6 +267,10 @@ export default function SentencePracticePage() {
                     nextFailedAttempts: currentFailedAttempts,
                 };
                 setResult((prev) => prev ? { ...prev, isCorrect: true } : prev);
+
+                // Store AI-corrected alternative — fire-and-forget
+                new TomeLanguageAPI().addSentenceAlternative('danish', sentence.id, verdict.correctedTranslation ?? result.userAnswer)
+                    .catch((e) => console.error('addSentenceAlternative failed:', e));
             }
 
             setLlmResult(verdict);

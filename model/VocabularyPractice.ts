@@ -3,6 +3,7 @@ export interface VocabPracticeWord {
   english: string;
   translation: string;
   failedAttempts: number;
+  alternativeTranslations: Array<{ id: string; translation: string }>;
 }
 
 export interface VocabPracticeSession {

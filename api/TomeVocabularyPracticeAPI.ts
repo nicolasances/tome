@@ -21,6 +21,7 @@ interface BackendWord {
   wordId: string;
   english: string;
   translation: string;
+  alternativeTranslations?: Array<{ id: string; translation: string }>;
 }
 
 interface BackendSessionResponse {
@@ -37,6 +38,7 @@ function mapBackendWords(backendWords: BackendWord[]): VocabPracticeWord[] {
     english: w.english,
     translation: w.translation,
     failedAttempts: 0,
+    alternativeTranslations: w.alternativeTranslations ?? [],
   }));
 }
 

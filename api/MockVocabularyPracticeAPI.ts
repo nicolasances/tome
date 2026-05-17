@@ -4,16 +4,16 @@ import { VocabPracticeSession, VocabPracticeWord, SessionSummary } from '@/model
 const ACTIVE_SESSION_KEY = 'vocab-active-session';
 
 const HARDCODED_WORDS: Omit<VocabPracticeWord, 'failedAttempts'>[] = [
-  { id: 'w1',  english: 'dog',      translation: 'hund'     },
-  { id: 'w2',  english: 'cat',      translation: 'kat'      },
-  { id: 'w3',  english: 'house',    translation: 'hus'      },
-  { id: 'w4',  english: 'car',      translation: 'bil'      },
-  { id: 'w5',  english: 'water',    translation: 'vand'     },
-  { id: 'w6',  english: 'book',     translation: 'bog'      },
-  { id: 'w7',  english: 'chair',    translation: 'stol'     },
-  { id: 'w8',  english: 'table',    translation: 'bord'     },
-  { id: 'w9',  english: 'window',   translation: 'vindue'   },
-  { id: 'w10', english: 'door',     translation: 'dør'      },
+  { id: 'w1',  english: 'dog',      translation: 'hund',    alternativeTranslations: [] },
+  { id: 'w2',  english: 'cat',      translation: 'kat',     alternativeTranslations: [] },
+  { id: 'w3',  english: 'house',    translation: 'hus',     alternativeTranslations: [] },
+  { id: 'w4',  english: 'car',      translation: 'bil',     alternativeTranslations: [] },
+  { id: 'w5',  english: 'water',    translation: 'vand',    alternativeTranslations: [] },
+  { id: 'w6',  english: 'book',     translation: 'bog',     alternativeTranslations: [] },
+  { id: 'w7',  english: 'chair',    translation: 'stol',    alternativeTranslations: [] },
+  { id: 'w8',  english: 'table',    translation: 'bord',    alternativeTranslations: [] },
+  { id: 'w9',  english: 'window',   translation: 'vindue',  alternativeTranslations: [] },
+  { id: 'w10', english: 'door',     translation: 'dør',     alternativeTranslations: [] },
 ];
 
 function generateUUID(): string {

@@ -21,14 +21,15 @@ Reference Danish answer: "${expectedAnswer}"
 Learner's answer: "${userAnswer}"
 Is the learner's answer an acceptable Danish translation of the English sentence?
 A translation is acceptable if it conveys the same meaning correctly, even if phrased slightly differently. Minor word-order differences or synonyms are acceptable; wrong grammar or wrong meaning is not.
-Respond with JSON only: {"acceptable": true or false, "explanation": "<one sentence>"}`;
+When acceptable is true, also return correctedTranslation: the learner's answer with any spelling or grammar mistakes fixed, without changing the meaning or phrasing. If no corrections are needed, return the learner's answer unchanged.
+Respond with JSON only: {"acceptable": true or false, "explanation": "<one sentence>", "correctedTranslation": "<string, only when acceptable is true>"}`;
 }
 
 async function callGemini(
     vertexAI: VertexAI,
     modelName: string,
     prompt: string
-): Promise<{ acceptable: boolean; explanation: string }> {
+): Promise<{ acceptable: boolean; explanation: string; correctedTranslation?: string }> {
     const model = vertexAI.getGenerativeModel({
         model: modelName,
         generationConfig: { responseMimeType: 'application/json' },
@@ -41,7 +42,13 @@ async function callGemini(
     if (typeof parsed.acceptable !== 'boolean' || typeof parsed.explanation !== 'string') {
         throw new Error('Unexpected model response shape');
     }
-    return { acceptable: parsed.acceptable, explanation: parsed.explanation };
+    return {
+        acceptable: parsed.acceptable,
+        explanation: parsed.explanation,
+        ...(parsed.acceptable && typeof parsed.correctedTranslation === 'string'
+            ? { correctedTranslation: parsed.correctedTranslation }
+            : {}),
+    };
 }
 
 export async function POST(request: NextRequest) {

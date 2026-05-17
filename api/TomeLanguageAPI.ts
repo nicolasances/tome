@@ -40,6 +40,30 @@ export class TomeLanguageAPI {
         return (await new TotoAPI().fetch('tome-ms-language', `/sessions/stats/rolling?days=${days}`)).json();
     }
 
+    async getWord(language: string, wordId: string): Promise<WordDetail> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}/words/${wordId}`)).json();
+    }
+
+    async getSentence(language: string, sentenceId: string): Promise<SentenceDetail> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/sentences/${language}/${sentenceId}`)).json();
+    }
+
+    async addWordAlternative(language: string, wordId: string, translation: string): Promise<AlternativeTranslation> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}/words/${wordId}/alternatives`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ translation }) })).json();
+    }
+
+    async removeWordAlternative(language: string, wordId: string, id: string): Promise<void> {
+        await new TotoAPI().fetch('tome-ms-language', `/vocabulary/${language}/words/${wordId}/alternatives/${id}`, { method: 'DELETE' });
+    }
+
+    async addSentenceAlternative(language: string, sentenceId: string, translation: string): Promise<AlternativeTranslation> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/sentences/${language}/${sentenceId}/alternatives`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ translation }) })).json();
+    }
+
+    async removeSentenceAlternative(language: string, sentenceId: string, id: string): Promise<void> {
+        await new TotoAPI().fetch('tome-ms-language', `/sentences/${language}/${sentenceId}/alternatives/${id}`, { method: 'DELETE' });
+    }
+
 }
 
 export interface Word {
@@ -56,6 +80,7 @@ export interface WordWithStats {
     translation: string;
     createdAt: string;
     knowledgeSource: string;
+    alternativeTranslations: Array<{ id: string; translation: string }>;
     stats: {
         failureRatio: number;
         totalAttempts: number;
@@ -99,6 +124,7 @@ export interface SentenceWithStats {
     translation: string;
     createdAt: string;
     knowledgeSource: string;
+    alternativeTranslations: Array<{ id: string; translation: string }>;
     stats: {
         failureRatio: number;
         totalAttempts: number;
@@ -110,4 +136,29 @@ export interface SentenceWithStats {
 export interface GetSentencesResponse {
     language: string;
     sentences: Sentence[];
+}
+
+export interface AlternativeTranslation {
+    id: string;
+    translation: string;
+}
+
+export interface WordDetail {
+    id: string;
+    language: string;
+    english: string;
+    translation: string;
+    createdAt: string;
+    knowledgeSource: string;
+    alternativeTranslations: AlternativeTranslation[];
+}
+
+export interface SentenceDetail {
+    id: string;
+    language: string;
+    sentence: string;
+    translation: string;
+    createdAt: string;
+    knowledgeSource: string;
+    alternativeTranslations: AlternativeTranslation[];
 }
