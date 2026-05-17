@@ -380,7 +380,7 @@ export default function VocabularyPracticePage() {
                                 {!result.isCorrect && !acceptedThisWord && (
                                     <div className="flex flex-col items-center gap-2 mt-4">
                                         <RoundButton
-                                            svgIconPath={{ src: '/images/point-right.svg', alt: 'Accept', color: 'bg-cyan-300' }}
+                                            svgIconPath={{ src: '/images/teacher.svg', alt: 'Accept', color: 'bg-lime-200' }}
                                             onClick={handleAcceptTranslation}
                                             type="primary"
                                         />
