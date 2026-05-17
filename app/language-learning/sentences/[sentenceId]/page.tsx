@@ -97,17 +97,23 @@ export default function SentenceDetailPage() {
         <div className="flex flex-1 flex-col items-stretch px-6 pt-8 gap-6 overflow-y-auto">
             {/* Sentence header */}
             <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
+                <div className="flex items-start gap-4">
                     <MaskedSvgIcon
                         src={sentence.knowledgeSource === 'tome-agent' ? '/images/agent.svg' : '/images/book.svg'}
                         alt={sentence.knowledgeSource}
                         size="w-5 h-5"
                         color="bg-cyan-800"
                     />
-                    <span className="text-xs text-muted-foreground uppercase tracking-widest">{sentence.knowledgeSource}</span>
+                    <div className='flex flex-col gap-1'>
+                        <span className="text-xl font-bold text-foreground">{sentence.translation}</span>
+                        <span className="text-xs text-muted-foreground tracking-widest">{sentence.knowledgeSource}</span>
+                    </div>
                 </div>
-                <span className="text-2xl font-bold text-foreground">{sentence.sentence}</span>
-                <span className="text-base text-muted-foreground">{sentence.translation}</span>
+            </div>
+
+            <div className="flex flex-col gap-2">
+                <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Main Translation</span>
+                <span className="text-lg font-bold">{sentence.sentence}</span>
             </div>
 
             {/* Alternatives list */}
