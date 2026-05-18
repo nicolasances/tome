@@ -43,7 +43,7 @@ export default function LanguageLearningPage() {
     const activeType = activeSession?.practiceType ?? null;
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start">
+        <div className="flex flex-1 flex-col items-stretch justify-start md:self-center md:max-w-2xl md:w-full">
             <div className="flex-1 flex flex-col items-center px-4">
                 {/* Top icon buttons */}
                 <div className="flex items-center justify-center mt-8 gap-4">

@@ -46,7 +46,7 @@ export default function SentenceSummaryPage() {
     const failedSentences = summary.sentenceResults.filter((s) => s.failedAttempts > 0);
 
     return (
-        <div className="flex flex-1 flex-col items-stretch px-6 py-8 gap-8">
+        <div className="flex flex-1 flex-col items-stretch px-6 py-8 gap-8 md:self-center md:max-w-2xl md:w-full">
             {/* Score summary */}
             <div className="flex flex-col items-center gap-4">
                 <div className="text-muted-foreground text-xs uppercase tracking-widest">You scored</div>
