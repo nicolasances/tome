@@ -21,7 +21,7 @@ export default function KnowledgeBasePage() {
     }, [setConfig, router]);
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start px-4 pt-8">
+        <div className="flex flex-1 flex-col items-stretch justify-start px-4 pt-8 md:self-center md:max-w-2xl md:w-full">
             <div className="flex flex-col gap-3">
                 <KnowledgeBaseRow
                     icon="/images/book.svg"
