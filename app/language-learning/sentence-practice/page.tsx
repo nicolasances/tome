@@ -420,7 +420,7 @@ export default function SentencePracticePage() {
                 )}
             </div>
 
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border">
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background">
                 <div className="flex items-center gap-3">
                     <div className="flex-1 min-w-0">
                         <TranslationInput
