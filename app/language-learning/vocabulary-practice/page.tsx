@@ -344,7 +344,7 @@ export default function VocabularyPracticePage() {
     const currentWord = getCurrentWord();
 
     return (
-           <div className="flex flex-col items-stretch h-full">
+           <div className="flex flex-col items-stretch h-full md:self-center md:max-w-2xl md:w-full">
 
             {/* Progress bar */}
             <div className="px-4 pt-8">
@@ -394,7 +394,7 @@ export default function VocabularyPracticePage() {
             </div>
 
             {/* Input pinned at bottom */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-background">
+            <div className="p-4 bg-background">
                 <div className="flex items-center gap-3">
                     <div className="flex-1 min-w-0">
                         <TranslationInput
