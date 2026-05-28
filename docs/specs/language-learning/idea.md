@@ -64,12 +64,6 @@ Adult learners who want to progress from zero Danish towards conversational and 
 ## 3. User Journey
 
 ```
-Sign up / onboarding
-        │
-        ▼
-  Placement (optional)  ──── skipped ──▶  Start at A1
-        │
-        ▼
   Home Dashboard  (shows current level, active modules, vocabulary stats)
         │
    ┌────┴────────────────────┐
