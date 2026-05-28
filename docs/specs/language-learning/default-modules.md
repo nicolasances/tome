@@ -1,7 +1,7 @@
 # Default Module List — Danish Language Learning
 **Target:** Professional fluency (C2) for director-level work in a Danish company
 **Learner profile:** Native English speaker, starting at A1/A2
-**Total modules:** ~105 across 6 CEFR levels
+**Total modules:** ~106 across 6 CEFR levels
 
 Each module entry includes:
 - **Theme** — broad topic area
@@ -112,7 +112,7 @@ Each module entry includes:
 
 ---
 
-## A2 — Building Blocks (18 modules)
+## A2 — Building Blocks (19 modules)
 *Core grammar expands: past tenses, future, connectors, and first exposure to professional Danish.*
 
 ---
@@ -149,7 +149,19 @@ Each module entry includes:
 
 ---
 
-### A2-05 — Danish Home Life
+### A2-05 — Time, Duration & Temporal Reference
+- **Theme:** Temporal grammar — one of the trickiest areas for English speakers
+- **Communication goal:** Express when things happen, how long they last, since when they started, and how far in the future they are — using the correct Danish temporal construction in each case
+- **Grammar focus:** The four core temporal patterns and when to use each:
+  - *i + duration* → ongoing/completed duration ("jeg har boet her i ti år", "jeg arbejdede der i to år")
+  - *siden + point in time* → starting point of an ongoing state ("jeg har lært dansk siden 2022", "siden jeg kom til Danmark")
+  - *om + duration* → future distance ("om to uger", "om et år")
+  - *for + duration + siden* → completed past distance ("for tre måneder siden", "for to år siden")
+- **Vocabulary focus:** Time-unit nouns (minut, time, dag, uge, måned, år, årti), temporal adverbs (allerede, endnu, stadig, snart, netop), temporal prepositions in context
+
+---
+
+### A2-06 — Danish Home Life
 - **Theme:** Home, household, and domestic life
 - **Communication goal:** Describe your apartment or house, talk about household tasks, discuss rent and living arrangements
 - **Grammar focus:** Double definiteness (det store hus, den røde dør), adjective inflection in definite form
@@ -157,7 +169,7 @@ Each module entry includes:
 
 ---
 
-### A2-06 — Health & the Body
+### A2-07 — Health & the Body
 - **Theme:** Medical and health
 - **Communication goal:** Describe symptoms, make a doctor's appointment, navigate basic Danish healthcare
 - **Grammar focus:** Reflexive expressions (at føle sig, at slå sig), body part vocabulary with definiteness
@@ -165,7 +177,7 @@ Each module entry includes:
 
 ---
 
-### A2-07 — Shopping & Money
+### A2-08 — Shopping & Money
 - **Theme:** Financial transactions and retail
 - **Communication goal:** Compare prices, ask about sizes and availability, exchange or return items
 - **Grammar focus:** Comparative adjectives (større, billigere, bedre), modal "kan jeg..." for requests
@@ -173,7 +185,7 @@ Each module entry includes:
 
 ---
 
-### A2-08 — Danish Traditions & Holidays
+### A2-09 — Danish Traditions & Holidays
 - **Theme:** Cultural calendar
 - **Communication goal:** Discuss Danish holidays, traditions, and seasonal celebrations with colleagues
 - **Grammar focus:** Temporal expressions with definite form (om julen, til påske), verbs of tradition (fejre, give, samles)
@@ -181,7 +193,7 @@ Each module entry includes:
 
 ---
 
-### A2-09 — Connecting Your Thoughts
+### A2-10 — Connecting Your Thoughts
 - **Theme:** Conjunctions and sentence linking
 - **Communication goal:** Express cause, contrast, condition, and time using subordinate connectors
 - **Grammar focus:** Subordinating conjunctions (fordi, selvom, hvis, når, mens, indtil, efter at, før), basic subordinate clause structure
@@ -189,7 +201,7 @@ Each module entry includes:
 
 ---
 
-### A2-10 — Talking About Experiences
+### A2-11 — Talking About Experiences
 - **Theme:** Experiences, recommendations, advice
 - **Communication goal:** Ask about and share experiences, recommend places and activities, give and receive advice
 - **Grammar focus:** "Har du prøvet...?", modal "burde" for advice, "man kan..." for general recommendations
@@ -197,7 +209,7 @@ Each module entry includes:
 
 ---
 
-### A2-11 — Eating Out in Denmark
+### A2-12 — Eating Out in Denmark
 - **Theme:** Restaurants and food culture
 - **Communication goal:** Order a full meal, ask about dishes, handle the bill, make small talk at a business lunch
 - **Grammar focus:** Polite requests ("Jeg vil gerne have...", "Kan jeg få..."), "at smage", past tense for what you enjoyed
@@ -205,7 +217,7 @@ Each module entry includes:
 
 ---
 
-### A2-12 — Travel & Getting There
+### A2-13 — Travel & Getting There
 - **Theme:** Travel and logistics
 - **Communication goal:** Plan a trip, buy tickets, check into accommodation, handle travel disruptions
 - **Grammar focus:** Verbs of movement (rejse, flyve, køre, ankomme, afgå), future tense for planning, conditionals (hvis tog er forsinket...)
@@ -213,7 +225,7 @@ Each module entry includes:
 
 ---
 
-### A2-13 — Small Talk: The Danish Way
+### A2-14 — Small Talk: The Danish Way
 - **Theme:** Social conversation and cultural norms
 - **Communication goal:** Hold a natural 3–5 minute small talk conversation with a Danish colleague on neutral topics
 - **Grammar focus:** Inversion (topic-fronting: I dag har jeg...), question tags and confirmation expressions
@@ -221,7 +233,7 @@ Each module entry includes:
 
 ---
 
-### A2-14 — Describing People
+### A2-15 — Describing People
 - **Theme:** Physical and personality descriptions
 - **Communication goal:** Describe what someone looks like and what they are like as a person
 - **Grammar focus:** Comparative and superlative adjectives, word order with multiple adjectives, "at virke som"
@@ -229,7 +241,7 @@ Each module entry includes:
 
 ---
 
-### A2-15 — The Danish Media (Basics)
+### A2-16 — The Danish Media (Basics)
 - **Theme:** News and media
 - **Communication goal:** Understand simple news headlines, talk about a news story with a colleague
 - **Grammar focus:** Passive voice (basics — "det blev besluttet"), formal register vs. spoken
@@ -237,7 +249,7 @@ Each module entry includes:
 
 ---
 
-### A2-16 — Public Services
+### A2-17 — Public Services
 - **Theme:** Civic and bureaucratic life
 - **Communication goal:** Interact with Danish public institutions: bank, municipality (kommune), post office
 - **Grammar focus:** Formal polite requests, phone and written communication openers
@@ -245,7 +257,7 @@ Each module entry includes:
 
 ---
 
-### A2-17 — Opinions & Preferences
+### A2-18 — Opinions & Preferences
 - **Theme:** Expressing views and preferences
 - **Communication goal:** State opinions, agree and disagree, express preferences with reasons
 - **Grammar focus:** Opinion phrases ("Jeg synes...", "Jeg mener...", "Efter min mening..."), contrast connectors (men, selvom, på den anden side)
@@ -253,7 +265,7 @@ Each module entry includes:
 
 ---
 
-### A2-18 — Basic Business Interactions
+### A2-19 — Basic Business Interactions
 - **Theme:** Professional communication basics
 - **Communication goal:** Book a meeting, confirm an appointment, write a simple professional email in Danish
 - **Grammar focus:** Formal written register (De vs. du), modal phrases for politeness ("Jeg tillader mig at..."), email conventions
