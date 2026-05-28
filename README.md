@@ -16,6 +16,8 @@ Tome is a web app to help memorise information you have read. It is built around
 ### Specs
 
 #### Language Learning
+- [Language Learning Idea](./docs/specs/language-learning/idea.md) — idea document for the language learning feature
+- [Language Learning Data Model](./docs/specs/language-learning/data-model.md) — data model for language learning
 - [Language Learning Summary](./docs/specs/language-learning/language-learning-summary.md) — overview of language learning features
 - [Home Page](./docs/specs/language-learning/home-page.md) — language learning home page behaviour
 - [Vocabulary Management](./docs/specs/language-learning/vocabulary-management.md) — adding and managing vocabulary

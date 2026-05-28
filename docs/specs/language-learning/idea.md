@@ -8,21 +8,19 @@
 
 1. [Purpose & Scope](#1-purpose--scope)
 2. [Core Concepts (Glossary)](#2-core-concepts-glossary)
-3. [User Journey](#3-user-journey)
-4. [Features](#4-features)
-   - 4.1 [Home Dashboard](#41-home-dashboard)
-   - 4.2 [Modules](#42-modules)
-   - 4.3 [Vocabulary System](#43-vocabulary-system)
-   - 4.4 [Grammar Concepts](#44-grammar-concepts)
-   - 4.5 [Exercises](#45-exercises)
-   - 4.6 [CEFR Level Progression](#46-cefr-level-progression)
-   - 4.7 [Dialog Sessions](#47-dialog-sessions)
-   - 4.8 [Analyze Content](#48-analyze-content)
-5. [Data Models](#5-data-models)
-6. [AI Usage](#6-ai-usage)
-7. [Key User Stories](#7-key-user-stories)
-8. [Open Questions](#8-open-questions)
-9. [Constraints & Assumptions](#9-constraints--assumptions)
+3. [Features](#3-features)
+   - 3.1 [Modules](#31-modules)
+   - 3.2 [Vocabulary System](#32-vocabulary-system)
+   - 3.3 [Grammar Concepts](#33-grammar-concepts)
+   - 3.4 [Exercises](#34-exercises)
+   - 3.5 [CEFR Level Progression](#35-cefr-level-progression)
+   - 3.6 [Dialog Sessions](#36-dialog-sessions)
+   - 3.7 [Analyze Content](#37-analyze-content)
+4. [Data Models](./data-model.md)
+5. [AI Usage](#5-ai-usage)
+6. [Key User Stories](#6-key-user-stories)
+7. [Open Questions](#7-open-questions)
+8. [Constraints & Assumptions](#8-constraints--assumptions)
 
 ---
 
@@ -63,30 +61,11 @@ Adult learners who want to progress from zero Danish towards conversational and 
 
 ---
 
-## 3. User Journey
+## 3. Features
 
-TBD
+### 3.1 Modules
 
----
-
-## 4. Features
-
-### 4.1 Home Dashboard
-
-The entry point after login. Shows:
-- Current CEFR level badge (e.g. A1)
-- Overall vocabulary mastery (e.g. "47 words mastered")
-- Active / in-progress modules
-- Quick action: "Continue", "New Module", "Review Vocabulary"
-- Streak or last-active indicator (for motivation)
-
-**Tracking requirement:** The user's CEFR level must always be visible here.
-
----
-
-### 4.2 Modules
-
-#### 4.2.1 Module Attributes
+#### 3.1.1 Module Attributes
 
 | Field | Type | Description |
 |---|---|---|
@@ -96,36 +75,67 @@ The entry point after login. Shows:
 | `communicationGoal` | string | What the user can do after completing it, e.g. "Order food and ask for the bill in Danish" |
 | `cefrLevel` | enum A1–C2 | The level this module belongs to |
 | `vocabularyItemIds` | string[] | References to the vocabulary items taught in this module |
-| `grammarConceptIds` | string[] | References to the grammar concepts covered (see §4.4) |
+| `grammarConceptIds` | string[] | References to the grammar concepts covered (see §3.3) |
 
 *Note: Module status (`locked`, `available`, `in_progress`, `completed`) is tracked per-user in UserModuleProgress, not on the module itself.*
 
-#### 4.2.2 Module Execution Flow
+#### 3.1.2 Module Execution Flow
 
-Each module runs through the following steps in order:
+Each module runs through the following steps in order. **Mastery scores are only updated during the Module Test (Step 4), not during practice (Steps 1 and 3).**
 
 **Step 1 — Vocabulary Introduction**
-The user is shown each vocabulary item in the module's set and asked to translate it (Danish → English or English → Danish). Items are presented in this order:
-1. Nouns
-2. Verbs
-3. Adjectives
-4. Expressions & chunks
-5. Pattern sentences
 
-Each answer updates the Mastery Score for that item.
+1. The user is shown each vocabulary item in English and asked to translate to Danish
+2. Items are presented in this order: Nouns → Verbs → Adjectives → Expressions & chunks → Pattern sentences
+3. If the user is wrong, the correct answer is shown and the user moves to the next word
+4. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
+5. When all words are done, any missed words are retried until the user gets them all correct
+6. Mastery scores are **not** updated during this step
 
 **Step 2 — Grammar Concept Introduction**
+
 For each Grammar Concept in the module, the app presents a short explanation with 1–2 Danish examples. The user does not need to interact; this is purely instructional.
 
 *Open question: Should grammar explanations be AI-generated on demand, or authored content? — Recommend AI-generated for v2, with the user able to ask follow-up questions.*
 
-**Step 3 — Contextual Exercises**
-A sequence of exercises that use the module's vocabulary and grammar concepts in context. See §4.5 for exercise types.
+**Step 3 — Contextual Exercises (Practice)**
 
-**Step 4 — Module Test**
-A short assessment (5–10 questions) testing the vocabulary and grammar of this module. Passing threshold: 80%. The module moves to `completed` when passed. Failing allows the user to retry after reviewing errors.
+1. A sequence of exercises using the module's vocabulary and grammar in context (see §3.4 for exercise types)
+2. If the user is wrong, the correct answer is shown and the user moves to the next exercise
+3. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
+4. When all exercises are done, any missed exercises are retried until the user gets them all correct
+5. Mastery scores are **not** updated during this step
 
-#### 4.2.3 Module Creation
+**Step 4 — Module Test (Locked)**
+
+The test is **locked** until `testUnlockDelayHours` (default: 4 hours) have passed after completing Step 3. This enforces spaced repetition — the user cannot test immediately while memory is fresh.
+
+Once unlocked:
+1. A short assessment (5–10 questions) testing the module's vocabulary and grammar
+2. Uses the same exercise types as Step 3
+3. **50% fresh exercises** (not seen during practice) + **50% may repeat** from practice
+4. Answers are **not shown** during the test — user completes all questions first
+5. At the end, the user sees:
+   - Final score (% correct)
+   - All questions with their answers: for incorrect answers, both the user's answer and the correct answer are shown
+   - "Explain my mistake" available on demand for any incorrect answer (AI-generated)
+6. **Mastery scores are updated** based on test performance
+
+**Passing:**
+- Threshold: **80%**
+- On pass: module status → `completed`
+- On fail: user can retry after `testRetryDelayMinutes` (default: 20 minutes); the test draws a new selection from the exercise bank
+
+#### 3.1.3 Configurable Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `testUnlockDelayHours` | 4 | Hours after completing practice before test unlocks |
+| `testRetryDelayMinutes` | 20 | Minutes after failed test before retry is allowed |
+| `testFreshExercisePercent` | 50 | % of test exercises that must be unseen during practice |
+| `testPassThreshold` | 80 | % correct required to pass the module test |
+
+#### 3.1.4 Module Creation
 
 The user can request a new module by describing a scenario in natural language, e.g.:
 > *"Make a module about discussing the weather with colleagues."*
@@ -134,26 +144,26 @@ The system creates the module with:
 - A generated title, theme, and communication goal
 - A vocabulary set appropriate to the CEFR level
 - Grammar concepts relevant to the theme and level
-- An exercise bank (see §4.5.3) generated upfront at creation time
+- An exercise bank (see §3.4.3) generated upfront at creation time
 
 Modules are created for the user's **current CEFR level**. Once created, they appear in the module list as `available`.
 
-#### 4.2.4 Default Module Generation
+#### 3.1.5 Default Module Generation
 
 The 106 default modules defined in the curriculum are seeded during development, not generated on demand. The process:
 
 1. **Module shell** — human-authored: theme, communication goal, grammar concepts, and vocabulary focus are defined in the curriculum specification.
 2. **Vocabulary set** — AI-generated from the shell: given the module's theme, CEFR level, and grammar focus, the AI produces the vocabulary items (word, translation, type, tags). No human review step; the shell provides sufficient constraint.
-3. **Exercise bank** — AI-generated immediately after the vocabulary set: a bank of ~50 exercises covering the vocabulary and grammar concepts (see §4.5.3 for bank mechanics).
+3. **Exercise bank** — AI-generated immediately after the vocabulary set: a bank of ~50 exercises covering the vocabulary and grammar concepts (see §3.4.3 for bank mechanics).
 4. **Storage** — the vocabulary set and exercise bank are stored in the database and are identical for all users accessing the same default module.
 
 This seeding runs once during development. If a default module's shell is updated, its vocabulary set and exercise bank are regenerated.
 
 ---
 
-### 4.3 Vocabulary System
+### 3.2 Vocabulary System
 
-#### 4.3.1 Vocabulary Item Attributes
+#### 3.2.1 Vocabulary Item Attributes
 
 | Field | Type | Description |
 |---|---|---|
@@ -166,7 +176,7 @@ This seeding runs once during development. If a default module's shell is update
 
 *Note: User-specific tracking (masteryScore, lastReviewed, history) is stored in UserVocabularyProgress, not on the vocabulary item itself. This allows the same word to be referenced by multiple modules while maintaining a single global mastery score per user.*
 
-#### 4.3.2 Vocabulary Type Taxonomy
+#### 3.2.2 Vocabulary Type Taxonomy
 
 | Type | Examples |
 |---|---|
@@ -181,7 +191,7 @@ This seeding runs once during development. If a default module's shell is update
 | `pronoun` | jeg, dig, sin |
 | `number` | en, to, tre |
 
-#### 4.3.3 Mastery Score Computation
+#### 3.2.3 Mastery Score Computation
 
 The Mastery Score for a vocabulary item is derived from the user's exercise history for that item:
 - A correct answer increases it (more weight if the answer was quick / unprompted).
@@ -191,7 +201,7 @@ The Mastery Score for a vocabulary item is derived from the user's exercise hist
 
 *The exact algorithm can be tuned, but the principle is standard SRS (Spaced Repetition System).*
 
-#### 4.3.4 Vocabulary Review Session
+#### 3.2.4 Vocabulary Review Session
 
 A standalone session, accessible from the Home Dashboard at any time.
 
@@ -205,7 +215,7 @@ The session presents items as translation cards (Danish → English or English �
 
 ---
 
-### 4.4 Grammar Concepts
+### 3.3 Grammar Concepts
 
 Each module includes a subset of the grammar concepts below, chosen based on the module's CEFR level. Not all concepts are available at all levels.
 
@@ -280,7 +290,7 @@ Each module includes a subset of the grammar concepts below, chosen based on the
 
 ---
 
-### 4.5 Exercises
+### 3.4 Exercises
 
 Exercises are the interactive tasks presented during module execution and review. All exercises are tied to vocabulary items and/or grammar concepts.
 
@@ -288,7 +298,6 @@ Exercises are the interactive tasks presented during module execution and review
 
 | Type | Description | Tests |
 |---|---|---|
-| **Translation (passive)** | Show Danish word/sentence → user writes English | Vocabulary recognition |
 | **Translation (active)** | Show English word/sentence → user writes Danish | Vocabulary production |
 | **Multiple Choice** | Present a sentence with a blank → choose the correct word from 4 options | Vocabulary or grammar |
 | **Fill in the Blank** | Present a sentence with a blank → user types the correct word/form | Grammar application |
@@ -306,7 +315,7 @@ After any exercise where the user answers **incorrectly**, they can tap "Explain
 
 This explanation is generated dynamically by the AI.
 
-#### 4.5.3 Exercise Generation Strategy
+#### 3.4.3 Exercise Generation Strategy
 
 Exercises are **never generated during a user's live session**. All AI generation runs upfront (at module creation or seeding) or in the background between sessions. This keeps session latency zero and AI costs bounded.
 
@@ -335,7 +344,7 @@ When a user retakes a module after failing the test, the session draws again fro
 
 ---
 
-### 4.6 CEFR Level Progression
+### 3.5 CEFR Level Progression
 
 #### Unlocking a New Level
 
@@ -358,15 +367,15 @@ The user's current CEFR level is always visible on the Home Dashboard. It should
 
 ---
 
-### 4.7 Dialog Sessions
+### 3.6 Dialog Sessions
 
 A Dialog Session is a free-form, AI-driven conversation in Danish. Unlike modules (which are structured and exercise-based), a dialog is an open-ended conversation where the user types in Danish and an AI interlocutor responds — calibrated to the user's current CEFR level while covering any topic the user chooses.
 
-#### 4.7.1 Purpose
+#### 3.6.1 Purpose
 
 Dialog Sessions train production and fluency under realistic communicative pressure. They are complementary to modules: modules teach rules and vocabulary in a controlled environment; dialogs force the user to apply them in real time, under the pressure of a responding interlocutor. A dialog on a topic like "microservices architecture" or "managing a team restructure" puts professional vocabulary to use in an unscripted context.
 
-#### 4.7.2 Session Setup
+#### 3.6.2 Session Setup
 
 Before starting, the user configures:
 
@@ -378,13 +387,13 @@ Before starting, the user configures:
 
 The AI's language complexity is calibrated to the user's current CEFR level. The topic domain is unconstrained.
 
-#### 4.7.3 During the Session
+#### 3.6.3 During the Session
 
 - The user types in Danish; the AI responds in Danish, maintaining the chosen persona throughout.
 - In `Inline` and `Strict` correction modes, corrections are woven briefly into the AI's response — never breaking the conversation to lecture. Example: *"Du sagde 'jeg har gået', men her er det 'jeg gik' — afsluttet handling. Men det er en god pointe om..."*
 - The AI never switches to English during the session.
 
-#### 4.7.4 Post-Session Feedback
+#### 3.6.4 Post-Session Feedback
 
 After the dialog ends, the AI generates a structured session report:
 
@@ -394,7 +403,7 @@ After the dialog ends, the AI generates a structured session report:
 - **Suggested modules** — modules that would address recurring weaknesses
 - **Overall note** — brief qualitative assessment of fluency, register, and confidence
 
-#### 4.7.5 Integration with the Learning System
+#### 3.6.5 Integration with the Learning System
 
 - Words the user produces correctly in a dialog contribute to their mastery score at a lower weight than structured exercise answers.
 - Grammar errors identified during a dialog can flag corresponding modules for review, surfaced on the Home Dashboard.
@@ -402,17 +411,17 @@ After the dialog ends, the AI generates a structured session report:
 
 ---
 
-### 4.8 Analyze Content
+### 3.7 Analyze Content
 
 The "Analyze Content" feature lets the user paste any Danish text — a podcast transcript, article, document, email, or contract clause — and receive a curriculum gap report. The purpose is diagnostic and routing: it shows the user what they would need to master to understand and produce content like this, and maps that to their existing curriculum path.
 
-#### 4.8.1 Input
+#### 3.7.1 Input
 
 The user pastes text directly into the app. Any length and any register is accepted.
 
 *Note: URL ingestion and automatic audio transcript fetching are out of scope for v2.0. The user provides text manually. These are candidates for a future version.*
 
-#### 4.8.2 Analysis Output — the Content Report
+#### 3.7.2 Analysis Output — the Content Report
 
 | Section | Content |
 |---|---|
@@ -422,232 +431,20 @@ The user pastes text directly into the app. Any length and any register is accep
 | **Curriculum routing** | The specific default modules that address the identified gaps, ranked by impact |
 | **Readiness estimate** | "After completing modules X, Y, Z, you will be equipped to read and produce content at this level" |
 
-#### 4.8.3 Actions from the Report
+#### 3.7.3 Actions from the Report
 
 From the Content Report, the user can:
 - **Add unknown vocabulary** to their review pool (word-level quick win, immediate)
 - **Navigate to a suggested module** directly from the report
-- **Generate a custom module** — if a gap is not covered by any existing default module, the user can request a targeted module generated using the pasted content as the context corpus. This follows the same module structure as §4.2.3.
+- **Generate a custom module** — if a gap is not covered by any existing default module, the user can request a targeted module generated using the pasted content as the context corpus. This follows the same module structure as §3.1.4.
 
-#### 4.8.4 Architectural Note
+#### 3.7.4 Architectural Note
 
 The content analysis logic is designed as an isolated, callable component. In a future version, this could be exposed so that an external agent (e.g., a personal assistant that processes documents the user reads) can invoke the analysis and return a gap report without going through the app UI.
 
 ---
 
-## 5. Data Models
-
-### User
-```
-User {
-  id
-  name
-  email
-  cefrLevel          // A1 | A2 | B1 | B2 | C1 | C2
-  createdAt
-  lastActiveAt
-}
-```
-
-### VocabularyItem
-```
-VocabularyItem {
-  id
-  danish
-  english
-  type               // noun | verb | adjective | ... (see §4.3.2)
-  tags               // string[]
-  cefrLevel          // level at which this item is typically introduced
-}
-```
-
-*Note: VocabularyItem is a canonical definition shared across all users and modules. The same word (e.g., "kaffe") is stored once and can be referenced by multiple modules. User-specific progress is tracked separately in UserVocabularyProgress.*
-
-### UserVocabularyProgress
-```
-UserVocabularyProgress {
-  userId
-  vocabularyItemId   // references VocabularyItem.id
-  masteryScore       // float 0.0–1.0
-  lastReviewed       // timestamp | null
-  exerciseHistory    // ExerciseResult[]
-}
-```
-
-*Note: One record per user per vocabulary item. This separation allows a single global mastery score per word while enabling modules to reuse existing vocabulary. Vocabulary review can still be filtered by module by joining on which modules reference which vocabulary items.*
-
-### Exercise
-```
-Exercise {
-  id
-  moduleId           // the module this exercise belongs to
-  type               // translation_passive | translation_active | multiple_choice |
-                     // fill_blank | sentence_reorder | error_correction | conjugation_drill
-  prompt             // the question or sentence shown to the user
-  answer             // the correct answer
-  distractors        // string[] (multiple choice only — the wrong options)
-  vocabularyItemId   // primary vocab item being tested (nullable for grammar-only exercises)
-  grammarConceptId   // grammar concept being tested (nullable for vocab-only exercises)
-  difficulty         // float 0–1 (within the module's CEFR level)
-  timesShown         // int (incremented each time this exercise appears in a session)
-}
-```
-
-### ExerciseBank
-```
-ExerciseBank {
-  id
-  moduleId
-  exercises          // Exercise[]
-  generatedAt        // timestamp (of the most recent generation)
-  totalGenerated     // int (cumulative exercises ever generated for this module)
-}
-```
-
-### ExerciseResult
-```
-ExerciseResult {
-  exerciseId         // references Exercise.id
-  exerciseType
-  isCorrect
-  userAnswer
-  correctAnswer
-  timestamp
-  moduleId           // null if from review session
-}
-```
-
-### Module
-```
-Module {
-  id
-  title
-  theme
-  communicationGoal
-  cefrLevel
-  vocabularyItemIds  // string[] — references to VocabularyItem.id
-  grammarConceptIds  // string[] — references to GrammarConcept.id
-  createdAt
-  isUserGenerated    // boolean
-}
-```
-
-*Note: Modules reference vocabulary items and grammar concepts by ID rather than embedding them. This allows vocabulary reuse across modules while maintaining a single global mastery score per word.*
-
-### UserModuleProgress
-```
-UserModuleProgress {
-  userId
-  moduleId
-  status             // locked | available | in_progress | completed
-  startedAt          // timestamp | null
-  completedAt        // timestamp | null
-}
-```
-
-*Note: Module status is user-specific (one user may have completed a module while another hasn't started it), so it belongs in a separate progress table rather than on the Module entity itself.*
-
-### GrammarConcept
-```
-GrammarConcept {
-  id
-  name               // e.g. "Inversion"
-  category           // tenses | sentence_structure | verbs | nouns | ...
-  cefrLevelIntroduced
-  explanation        // short text (AI-generated or authored)
-  examples           // DanishExample[] — each with danish + english
-}
-```
-
-*Note: Like VocabularyItem, GrammarConcept is a canonical definition referenced by modules via grammarConceptIds. Grammar concepts are shared across modules and users.*
-
-### LevelTest
-```
-LevelTest {
-  id
-  cefrLevel          // the level being tested
-  userId
-  score              // float 0–1
-  passed             // boolean
-  takenAt            // timestamp
-  weakAreas          // GrammarConcept[] | VocabularyItem[]
-}
-```
-
-### DialogSession
-```
-DialogSession {
-  id
-  userId
-  cefrLevel          // user's level at the time of the session
-  topic              // free-text description
-  persona            // peer | challenger | interviewer | expert
-  correctionMode     // silent | inline | strict
-  messages           // DialogMessage[]
-  startedAt          // timestamp
-  endedAt            // timestamp | null
-  feedback           // DialogFeedback | null (generated after session ends)
-}
-```
-
-### DialogMessage
-```
-DialogMessage {
-  role               // user | assistant
-  content            // string (Danish)
-  timestamp
-  corrections        // GrammarCorrection[] (populated when correction mode is inline/strict)
-}
-```
-
-### GrammarCorrection
-```
-GrammarCorrection {
-  errorText          // what the user wrote
-  correctedText      // the correct form
-  rule               // one-line explanation in English
-}
-```
-
-### DialogFeedback
-```
-DialogFeedback {
-  grammarIssues      // GrammarCorrection[] (all issues from the session)
-  vocabularyGaps     // VocabularyItem[] (words the user could have used)
-  vocabularyUsed     // VocabularyItem[] (words the user used correctly)
-  suggestedModules   // Module[] (modules addressing observed weaknesses)
-  overallNote        // string (qualitative assessment)
-}
-```
-
-### ContentReport
-```
-ContentReport {
-  id
-  userId
-  inputText          // the pasted content
-  estimatedCefrLevel // A1 | A2 | B1 | B2 | C1 | C2
-  vocabularyCoverage // float 0–1 (% of content vocab the user knows)
-  newVocabularyItems // VocabularyItem[] (items in text not in user's set)
-  grammarPatterns    // GrammarPatternResult[]
-  suggestedModules   // Module[] (existing modules that address gaps)
-  customModulePrompt // string | null (if a custom module is generated)
-  createdAt          // timestamp
-}
-```
-
-### GrammarPatternResult
-```
-GrammarPatternResult {
-  conceptName        // e.g. "Subordinate clause word order"
-  status             // covered | ahead_in_curriculum | not_in_curriculum
-  coveredByModule    // Module | null
-}
-```
-
----
-
-## 6. AI Usage
+## 5. AI Usage
 
 The app is AI-powered in several places. These are the AI touchpoints:
 
@@ -670,7 +467,7 @@ AI calls should always be aware of the user's current CEFR level so that vocabul
 
 ---
 
-## 7. Key User Stories
+## 6. Key User Stories
 
 | # | As a user, I want to… | So that… |
 |---|---|---|
@@ -692,7 +489,7 @@ AI calls should always be aware of the user's current CEFR level so that vocabul
 
 ---
 
-## 8. Open Questions
+## 7. Open Questions
 
 These are things not yet decided that will need resolution before or during build:
 
@@ -714,11 +511,11 @@ These are things not yet decided that will need resolution before or during buil
 
 ---
 
-## 9. Constraints & Assumptions
+## 8. Constraints & Assumptions
 
 - **Danish only** for v2.0. The data model should be language-agnostic where possible to allow future expansion.
 - **Mobile-first** UI assumed (though not specified). Exercises must work well on a phone screen.
 - **AI backend** is available and can handle module generation, exercise generation, and explanations.
 - **No audio** in v2.0 — listening and speaking exercises are out of scope.
-- The vocabulary taxonomy (§4.3.2) is fixed for v2.0 but can be extended.
+- The vocabulary taxonomy (§3.2.2) is fixed for v2.0 but can be extended.
 - CEFR levels above B2 will have limited pre-built modules at launch; user-generated modules fill the gap.
