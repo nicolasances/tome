@@ -22,7 +22,7 @@ VocabularyItem {
   id
   danish
   english
-  type               // noun | verb | adjective | ... (see idea.md §3.2.2)
+  type               // noun | verb | adjective | ... (see idea.md §3.2.1)
   tags               // string[]
   cefrLevel          // level at which this item is typically introduced
 }

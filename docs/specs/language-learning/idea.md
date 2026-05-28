@@ -65,21 +65,11 @@ Adult learners who want to progress from zero Danish towards conversational and 
 
 ### 3.1 Modules
 
-#### 3.1.1 Module Attributes
-
-| Field | Type | Description |
-|---|---|---|
-| `id` | string | Unique identifier |
-| `title` | string | Human-readable name, e.g. "Ordering at a Café" |
-| `theme` | string | Broad topic: food, work, travel, health, etc. |
-| `communicationGoal` | string | What the user can do after completing it, e.g. "Order food and ask for the bill in Danish" |
-| `cefrLevel` | enum A1–C2 | The level this module belongs to |
-| `vocabularyItemIds` | string[] | References to the vocabulary items taught in this module |
-| `grammarConceptIds` | string[] | References to the grammar concepts covered (see §3.3) |
+A module is a self-contained learning unit. See [Data Model](./data-model.md#module) for the full Module schema.
 
 *Note: Module status (`locked`, `available`, `in_progress`, `completed`) is tracked per-user in UserModuleProgress, not on the module itself.*
 
-#### 3.1.2 Module Execution Flow
+#### 3.1.1 Module Execution Flow
 
 Each module runs through the following steps in order. **Mastery scores are only updated during the Module Test (Step 4), not during practice (Steps 1 and 3).**
 
@@ -126,7 +116,7 @@ Once unlocked:
 - On pass: module status → `completed`
 - On fail: user can retry after `testRetryDelayMinutes` (default: 20 minutes); the test draws a new selection from the exercise bank
 
-#### 3.1.3 Configurable Parameters
+#### 3.1.2 Configurable Parameters
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
@@ -135,26 +125,17 @@ Once unlocked:
 | `testFreshExercisePercent` | 50 | % of test exercises that must be unseen during practice |
 | `testPassThreshold` | 80 | % correct required to pass the module test |
 
-#### 3.1.4 Module Creation
 
-The user can request a new module by describing a scenario in natural language, e.g.:
-> *"Make a module about discussing the weather with colleagues."*
+#### 3.1.3 Default Module Generation
 
-The system creates the module with:
-- A generated title, theme, and communication goal
-- A vocabulary set appropriate to the CEFR level
-- Grammar concepts relevant to the theme and level
-- An exercise bank (see §3.4.3) generated upfront at creation time
+The default modules defined in the curriculum are seeded during development, not generated on demand. The process:
 
-Modules are created for the user's **current CEFR level**. Once created, they appear in the module list as `available`.
+1. **Module shell** — human-authored: theme, communication goal, grammar concepts, and vocabulary focus are defined in the curriculum specification. The modules and their shell are defined in [Default Modules)](./default-modules.md).
 
-#### 3.1.5 Default Module Generation
-
-The 106 default modules defined in the curriculum are seeded during development, not generated on demand. The process:
-
-1. **Module shell** — human-authored: theme, communication goal, grammar concepts, and vocabulary focus are defined in the curriculum specification.
 2. **Vocabulary set** — AI-generated from the shell: given the module's theme, CEFR level, and grammar focus, the AI produces the vocabulary items (word, translation, type, tags). No human review step; the shell provides sufficient constraint.
+
 3. **Exercise bank** — AI-generated immediately after the vocabulary set: a bank of ~50 exercises covering the vocabulary and grammar concepts (see §3.4.3 for bank mechanics).
+
 4. **Storage** — the vocabulary set and exercise bank are stored in the database and are identical for all users accessing the same default module.
 
 This seeding runs once during development. If a default module's shell is updated, its vocabulary set and exercise bank are regenerated.
@@ -163,20 +144,11 @@ This seeding runs once during development. If a default module's shell is update
 
 ### 3.2 Vocabulary System
 
-#### 3.2.1 Vocabulary Item Attributes
-
-| Field | Type | Description |
-|---|---|---|
-| `id` | string | Unique identifier |
-| `danish` | string | The Danish word/phrase |
-| `english` | string | English translation |
-| `type` | enum | See taxonomy below |
-| `tags` | string[] | Additional labels (e.g. theme, topic) |
-| `cefrLevel` | enum | CEFR level at which this item is typically introduced |
+A vocabulary item is a single learnable unit. See [Data Model](./data-model.md#vocabularyitem) for the full VocabularyItem schema.
 
 *Note: User-specific tracking (masteryScore, lastReviewed, history) is stored in UserVocabularyProgress, not on the vocabulary item itself. This allows the same word to be referenced by multiple modules while maintaining a single global mastery score per user.*
 
-#### 3.2.2 Vocabulary Type Taxonomy
+#### 3.2.1 Vocabulary Type Taxonomy
 
 | Type | Examples |
 |---|---|
@@ -191,7 +163,7 @@ This seeding runs once during development. If a default module's shell is update
 | `pronoun` | jeg, dig, sin |
 | `number` | en, to, tre |
 
-#### 3.2.3 Mastery Score Computation
+#### 3.2.2 Mastery Score Computation
 
 The Mastery Score for a vocabulary item is derived from the user's exercise history for that item:
 - A correct answer increases it (more weight if the answer was quick / unprompted).
@@ -201,7 +173,7 @@ The Mastery Score for a vocabulary item is derived from the user's exercise hist
 
 *The exact algorithm can be tuned, but the principle is standard SRS (Spaced Repetition System).*
 
-#### 3.2.4 Vocabulary Review Session
+#### 3.2.3 Vocabulary Review Session
 
 A standalone session, accessible from the Home Dashboard at any time.
 
@@ -436,7 +408,7 @@ The user pastes text directly into the app. Any length and any register is accep
 From the Content Report, the user can:
 - **Add unknown vocabulary** to their review pool (word-level quick win, immediate)
 - **Navigate to a suggested module** directly from the report
-- **Generate a custom module** — if a gap is not covered by any existing default module, the user can request a targeted module generated using the pasted content as the context corpus. This follows the same module structure as §3.1.4.
+- **Generate a custom module** — if a gap is not covered by any existing default module, the user can request a targeted module generated using the pasted content as the context corpus. This follows the same module structure as §3.1.3.
 
 #### 3.7.4 Architectural Note
 
@@ -517,5 +489,5 @@ These are things not yet decided that will need resolution before or during buil
 - **Mobile-first** UI assumed (though not specified). Exercises must work well on a phone screen.
 - **AI backend** is available and can handle module generation, exercise generation, and explanations.
 - **No audio** in v2.0 — listening and speaking exercises are out of scope.
-- The vocabulary taxonomy (§3.2.2) is fixed for v2.0 but can be extended.
+- The vocabulary taxonomy (§3.2.1) is fixed for v2.0 but can be extended.
 - CEFR levels above B2 will have limited pre-built modules at launch; user-generated modules fill the gap.
