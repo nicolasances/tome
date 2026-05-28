@@ -65,28 +65,7 @@ Adult learners who want to progress from zero Danish towards conversational and 
 
 ## 3. User Journey
 
-```
-  Home Dashboard  (shows current level, active modules, vocabulary stats)
-        │
-   ┌────┼────────────────────┬──────────────────────┐
-   ▼    ▼                    ▼                       ▼
-Open Module    Review Vocabulary   Dialog Session   Analyze Content
-   │                │                   │                 │
-   ▼                ▼                   ▼                 ▼
-Step 1: Vocab   Flash-card style   Configure topic    Paste text
-Step 2: Grammar translation drill  & AI persona           │
-Step 3: Exercises (any vocab items, │                 Content Report
-Step 4: Module Test filtered by     ▼                 (CEFR level,
-   │           label)         Free-form              vocab coverage,
-   ▼                          conversation           grammar gaps,
-Module Complete → Vocabulary        │                 module routing)
-   │           updated         Post-session               │
-   ▼                           feedback                   ▼
-  (when all modules             (grammar,            Navigate to
-   at level are done)           vocab gaps,          suggested modules
-Level Test → Pass               module recs)         or generate new
-→ Unlock next CEFR level                             custom module
-```
+TBD
 
 ---
 
@@ -116,9 +95,10 @@ The entry point after login. Shows:
 | `theme` | string | Broad topic: food, work, travel, health, etc. |
 | `communicationGoal` | string | What the user can do after completing it, e.g. "Order food and ask for the bill in Danish" |
 | `cefrLevel` | enum A1–C2 | The level this module belongs to |
-| `vocabularySet` | VocabularyItem[] | The words/verbs/expressions taught in this module |
-| `grammarConcepts` | GrammarConcept[] | The grammar topics covered (see §4.4) |
-| `status` | enum | `locked`, `available`, `in_progress`, `completed` |
+| `vocabularyItemIds` | string[] | References to the vocabulary items taught in this module |
+| `grammarConceptIds` | string[] | References to the grammar concepts covered (see §4.4) |
+
+*Note: Module status (`locked`, `available`, `in_progress`, `completed`) is tracked per-user in UserModuleProgress, not on the module itself.*
 
 #### 4.2.2 Module Execution Flow
 
@@ -181,10 +161,10 @@ This seeding runs once during development. If a default module's shell is update
 | `danish` | string | The Danish word/phrase |
 | `english` | string | English translation |
 | `type` | enum | See taxonomy below |
-| `tags` | string[] | Additional labels (e.g. module theme, topic) |
-| `masteryScore` | float 0–1 | Current mastery level |
-| `lastReviewed` | timestamp | When last seen in an exercise |
-| `history` | ExerciseResult[] | Record of past answers used to compute mastery |
+| `tags` | string[] | Additional labels (e.g. theme, topic) |
+| `cefrLevel` | enum | CEFR level at which this item is typically introduced |
+
+*Note: User-specific tracking (masteryScore, lastReviewed, history) is stored in UserVocabularyProgress, not on the vocabulary item itself. This allows the same word to be referenced by multiple modules while maintaining a single global mastery score per user.*
 
 #### 4.3.2 Vocabulary Type Taxonomy
 
@@ -477,12 +457,24 @@ VocabularyItem {
   english
   type               // noun | verb | adjective | ... (see §4.3.2)
   tags               // string[]
-  cefrLevel          // level at which this item was introduced
+  cefrLevel          // level at which this item is typically introduced
+}
+```
+
+*Note: VocabularyItem is a canonical definition shared across all users and modules. The same word (e.g., "kaffe") is stored once and can be referenced by multiple modules. User-specific progress is tracked separately in UserVocabularyProgress.*
+
+### UserVocabularyProgress
+```
+UserVocabularyProgress {
+  userId
+  vocabularyItemId   // references VocabularyItem.id
   masteryScore       // float 0.0–1.0
   lastReviewed       // timestamp | null
   exerciseHistory    // ExerciseResult[]
 }
 ```
+
+*Note: One record per user per vocabulary item. This separation allows a single global mastery score per word while enabling modules to reuse existing vocabulary. Vocabulary review can still be filtered by module by joining on which modules reference which vocabulary items.*
 
 ### Exercise
 ```
@@ -533,13 +525,27 @@ Module {
   theme
   communicationGoal
   cefrLevel
-  status             // locked | available | in_progress | completed
-  vocabularySet      // VocabularyItem[]
-  grammarConcepts    // GrammarConcept[]
+  vocabularyItemIds  // string[] — references to VocabularyItem.id
+  grammarConceptIds  // string[] — references to GrammarConcept.id
   createdAt
   isUserGenerated    // boolean
 }
 ```
+
+*Note: Modules reference vocabulary items and grammar concepts by ID rather than embedding them. This allows vocabulary reuse across modules while maintaining a single global mastery score per word.*
+
+### UserModuleProgress
+```
+UserModuleProgress {
+  userId
+  moduleId
+  status             // locked | available | in_progress | completed
+  startedAt          // timestamp | null
+  completedAt        // timestamp | null
+}
+```
+
+*Note: Module status is user-specific (one user may have completed a module while another hasn't started it), so it belongs in a separate progress table rather than on the Module entity itself.*
 
 ### GrammarConcept
 ```
@@ -552,6 +558,8 @@ GrammarConcept {
   examples           // DanishExample[] — each with danish + english
 }
 ```
+
+*Note: Like VocabularyItem, GrammarConcept is a canonical definition referenced by modules via grammarConceptIds. Grammar concepts are shared across modules and users.*
 
 ### LevelTest
 ```
