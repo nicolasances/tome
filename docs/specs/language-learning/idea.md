@@ -14,8 +14,7 @@
    - 3.3 [Grammar Concepts](#33-grammar-concepts)
    - 3.4 [Exercises](#34-exercises)
    - 3.5 [CEFR Level Progression](#35-cefr-level-progression)
-   - 3.6 [Dialog Sessions](#36-dialog-sessions)
-   - 3.7 [Analyze Content](#37-analyze-content)
+   - 3.6 [Analyze Content](#36-analyze-content)
 4. [Data Models](./data-model.md)
 5. [AI Usage](#5-ai-usage)
 6. [Key User Stories](#6-key-user-stories)
@@ -374,51 +373,7 @@ The user's module progress, within a CEFR level, should also always be visible i
 
 ---
 
-### 3.6 Dialog Sessions
-
-A Dialog Session is a free-form, AI-driven conversation in Danish. Unlike modules (which are structured and exercise-based), a dialog is an open-ended conversation where the user types in Danish and an AI interlocutor responds — calibrated to the user's current CEFR level while covering any topic the user chooses.
-
-#### 3.6.1 Purpose
-
-Dialog Sessions train production and fluency under realistic communicative pressure. They are complementary to modules: modules teach rules and vocabulary in a controlled environment; dialogs force the user to apply them in real time, under the pressure of a responding interlocutor. A dialog on a topic like "microservices architecture" or "managing a team restructure" puts professional vocabulary to use in an unscripted context.
-
-#### 3.6.2 Session Setup
-
-Before starting, the user configures:
-
-| Setting | Options |
-|---|---|
-| **Topic** | Any free-text description, e.g. "microservices architecture", "climate policy", "negotiating a salary", "discussing a board report" |
-| **AI persona** | `Peer` — natural conversation; `Challenger` — pushes back on the user's positions; `Interviewer` — asks questions as if in a job interview or press call; `Expert` — plays a domain expert the user must engage with at depth |
-| **Correction mode** | `Silent` — no corrections during dialog, feedback only at end; `Inline` — AI briefly notes significant errors in-context then continues; `Strict` — AI pauses on each notable error before proceeding |
-
-The AI's language complexity is calibrated to the user's current CEFR level. The topic domain is unconstrained.
-
-#### 3.6.3 During the Session
-
-- The user types in Danish; the AI responds in Danish, maintaining the chosen persona throughout.
-- In `Inline` and `Strict` correction modes, corrections are woven briefly into the AI's response — never breaking the conversation to lecture. Example: *"Du sagde 'jeg har gået', men her er det 'jeg gik' — afsluttet handling. Men det er en god pointe om..."*
-- The AI never switches to English during the session.
-
-#### 3.6.4 Post-Session Feedback
-
-After the dialog ends, the AI generates a structured session report:
-
-- **Grammar issues** — specific errors from the conversation, with the correct form and a one-line rule
-- **Vocabulary gaps** — words/expressions the user could have used but didn't (missed opportunities)
-- **Vocabulary used correctly** — positive reinforcement
-- **Suggested modules** — modules that would address recurring weaknesses
-- **Overall note** — brief qualitative assessment of fluency, register, and confidence
-
-#### 3.6.5 Integration with the Learning System
-
-- Words the user produces correctly in a dialog contribute to their mastery score at a lower weight than structured exercise answers.
-- Grammar errors identified during a dialog can flag corresponding modules for review, surfaced on the Home Dashboard.
-- Dialog sessions do not count towards the module completion threshold for Level Tests, but may be used as supporting signal.
-
----
-
-### 3.7 Analyze Content
+### 3.6 Analyze Content
 
 The "Analyze Content" feature lets the user paste any Danish text — a podcast transcript, article, document, email, or contract clause — and receive a curriculum gap report. The purpose is diagnostic and routing: it shows the user what they would need to master to understand and produce content like this, and maps that to their existing curriculum path.
 
@@ -465,9 +420,6 @@ The app is AI-powered in several places. These are the AI touchpoints:
 | Answer verification | On explicit user request after a wrong `translation_active` answer: check whether the user's translation is valid; if valid, mark correct and store in `userContributedAnswers`; if invalid, explain why |
 | Grammar concept explanation | Generate a short, friendly explanation of a grammar concept with 1–2 Danish examples |
 | Vocabulary hint | On request, give a hint for a translation exercise without revealing the full answer |
-| Dialog session — response | Generate the AI interlocutor's turn in Danish, maintaining the chosen persona (peer / challenger / interviewer / expert) at the user's CEFR level |
-| Dialog session — inline correction | Detect and briefly correct a grammar or vocabulary error in the user's message, woven into the AI's response, without breaking the conversation flow |
-| Dialog session — post-session feedback | Analyze the full dialog transcript and produce a structured DialogFeedback report: grammar issues, vocabulary gaps, module suggestions |
 | Content analysis — vocabulary | Identify vocabulary items in a pasted text; map against the user's existing vocabulary set to produce coverage and gap lists |
 | Content analysis — grammar | Detect grammar patterns in a pasted text; map against the grammar concept taxonomy and the user's completed modules |
 | Content analysis — report generation | Synthesize vocabulary and grammar findings into a ContentReport with CEFR level estimate, readiness assessment, and curriculum routing |
@@ -490,11 +442,9 @@ AI calls should always be aware of the user's current CEFR level so that vocabul
 | US-08 | Take a Level Test when I feel ready | I can unlock the next CEFR level |
 | US-09 | Retry a module test if I fail | I'm not blocked; I can keep improving |
 | US-10 | See my weaknesses after a Level Test | I know exactly what to study next |
-| US-11 | Start a dialog session on any topic I choose, with an AI that challenges my positions | I can practise producing Danish freely, not just doing exercises |
-| US-12 | Receive a structured feedback report after each dialog session | I know which grammar and vocabulary gaps to address next |
-| US-13 | Paste a Danish text I encountered (podcast transcript, document, article) and see a curriculum gap report | I know which modules will get me to the point where I can understand and produce content like this |
-| US-14 | Add unknown vocabulary from a pasted text directly to my review pool | I can act immediately on gaps without waiting to complete a full module |
-| US-15 | See which existing modules cover the gaps in a pasted text | The app routes me through its curriculum rather than always generating something new |
+| US-11 | Paste a Danish text I encountered (podcast transcript, document, article) and see a curriculum gap report | I know which modules will get me to the point where I can understand and produce content like this |
+| US-12 | Add unknown vocabulary from a pasted text directly to my review pool | I can act immediately on gaps without waiting to complete a full module |
+| US-13 | See which existing modules cover the gaps in a pasted text | The app routes me through its curriculum rather than always generating something new |
 
 ---
 
@@ -512,11 +462,9 @@ These are things not yet decided that will need resolution before or during buil
 | OQ-06 | Can the user add custom vocabulary items outside of modules? | Nice-to-have for v2 |
 | OQ-07 | Should the user be able to generate modules at a level above their current? | Probably not — keep progression gated |
 | OQ-08 | What is the retry cooldown for the Level Test? | Suggest: none for v2 |
-| OQ-09 | Should dialog sessions have a time limit or minimum length? | A minimum (e.g. 5 exchanges) ensures meaningful feedback; no maximum needed |
-| OQ-10 | Should dialog sessions contribute to CEFR level progression? | Probably not for v2 — keep progression gated to module completion + Level Test |
-| OQ-11 | How should the content analysis handle texts that are too far above the user's level? | Show the gap but still route — even C1 content is useful as a destination map for a B1 learner |
-| OQ-12 | Should the content analysis expose an external API for agent-driven invocation? | Recommended for v3; design the function as isolated in v2 to make this straightforward later |
-| OQ-13 | What is the minimum text length for a meaningful content analysis? | Suggest: at least 50 words; shorter inputs produce unreliable CEFR estimates |
+| OQ-09 | How should the content analysis handle texts that are too far above the user's level? | Show the gap but still route — even C1 content is useful as a destination map for a B1 learner |
+| OQ-10 | Should the content analysis expose an external API for agent-driven invocation? | Recommended for v3; design the function as isolated in v2 to make this straightforward later |
+| OQ-11 | What is the minimum text length for a meaningful content analysis? | Suggest: at least 50 words; shorter inputs produce unreliable CEFR estimates |
 
 ---
 

@@ -174,52 +174,6 @@ LevelTestAttempt {
 
 *Note: Every attempt (failed and passing) is recorded. `exerciseResults` enables the post-test review screen and is the source of truth for deriving weak areas at read time — aggregating incorrect results by `grammarConceptId` and `vocabularyItemId`.*
 
-## DialogSession
-```
-DialogSession {
-  id
-  userId
-  cefrLevel          // user's level at the time of the session
-  topic              // free-text description
-  persona            // peer | challenger | interviewer | expert
-  correctionMode     // silent | inline | strict
-  messages           // DialogMessage[]
-  startedAt          // timestamp
-  endedAt            // timestamp | null
-  feedback           // DialogFeedback | null (generated after session ends)
-}
-```
-
-## DialogMessage
-```
-DialogMessage {
-  role               // user | assistant
-  content            // string (Danish)
-  timestamp
-  corrections        // GrammarCorrection[] (populated when correction mode is inline/strict)
-}
-```
-
-## GrammarCorrection
-```
-GrammarCorrection {
-  errorText          // what the user wrote
-  correctedText      // the correct form
-  rule               // one-line explanation in English
-}
-```
-
-## DialogFeedback
-```
-DialogFeedback {
-  grammarIssues      // GrammarCorrection[] (all issues from the session)
-  vocabularyGaps     // VocabularyItem[] (words the user could have used)
-  vocabularyUsed     // VocabularyItem[] (words the user used correctly)
-  suggestedModules   // Module[] (modules addressing observed weaknesses)
-  overallNote        // string (qualitative assessment)
-}
-```
-
 ## ContentReport
 ```
 ContentReport {
