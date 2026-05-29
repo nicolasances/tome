@@ -63,7 +63,6 @@ Exercise {
   distractors             // string[] (multiple choice only — the wrong options)
   vocabularyItemId   // primary vocab item being tested (nullable for grammar-only exercises)
   grammarConceptId   // grammar concept being tested (nullable for vocab-only exercises)
-  difficulty         // float 0–1 (within the module's CEFR level)
   timesShown         // int (incremented each time this exercise appears in a session)
 }
 ```

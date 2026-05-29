@@ -5,11 +5,25 @@ These rules apply to all exercise generation: default module seeding, user-gener
 
 ---
 
+## Required inputs
+
+The exercises-generator skill must receive the following before producing any output. **Do not proceed if any of these are missing — request them explicitly.**
+
+- **Module shell**: theme, communication goal, CEFR level.
+- **Vocabulary list**: the full set of `VocabularyItem` records for the module, including `id`, `danish`, `english`, `type`, and `context`. Every `vocabularyItemId` in generated exercises must reference an `id` from this list.
+- **Grammar concept list**: the full set of `GrammarConcept` records for the module, including `id` and `name`. Every `grammarConceptId` must reference an `id` from this list.
+
+If the vocabulary or grammar concepts for the target module have not yet been generated, the vocabulary-generator skill must run first.
+
+---
+
 ## Cross-cutting rules (all exercise types)
 
-- Every exercise must be tied to at least one vocabulary item or grammar concept from the module.
-- Sentences should reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
-- Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering exists precisely to scaffold this).
+- Always set `type` to the correct string value: `multiple_choice`, `fill_blank`, `sentence_reorder`, `conjugation_drill`, `error_correction`, or `translation_active`.
+- Every exercise must set at least one of `vocabularyItemId` or `grammarConceptId`. Both may be set when an exercise tests a vocabulary item in a specific grammatical context. A grammar-only exercise (no specific vocabulary item) sets `vocabularyItemId: null`; a vocabulary-only exercise sets `grammarConceptId: null`.
+- `timesShown` is always `0` at generation time.
+- Sentences must reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
+- Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering scaffolds this).
 - Do not use proper nouns as the blank or production target — they are either trivially guessable or arbitrarily unguessable.
 - One focus per exercise. Do not introduce two unfamiliar structures in the same sentence.
 
@@ -17,76 +31,180 @@ These rules apply to all exercise generation: default module seeding, user-gener
 
 ## Multiple Choice
 
-- Always populate `promptTranslation` with a natural English rendering of the Danish sentence. This is how the learner understands the full context while choosing an answer. See also: `Exercise.promptTranslation` in the data model — required for this type.
+**Quality rules**
+
+- Always populate `promptTranslation` with a natural English rendering of the full Danish sentence. The translation must include the correct English word in place of the blank — never `___`.
 - The blank must represent a single, coherent lexical or grammatical unit.
-- **Never split a discontinuous verb phrase across the blank boundary.** If the target phrase requires a negation or particle that appears after it in the sentence, the sentence must be restructured so the blank captures the entire meaningful unit, or the context is made positive.
+- **Never split a discontinuous verb phrase across the blank boundary.** If the target phrase requires a negation or particle that appears after it, restructure the sentence so the blank captures the whole unit.
   - ✗ `Jeg ___ ikke kaffe.` → answer: `kan lide` → produces "Jeg kan lide ikke kaffe" (ungrammatical)
   - ✓ `Jeg ___ kaffe meget.` → answer: `kan lide`
-  - ✓ `Jeg kan ___ lide kaffe.` → answer: `ikke` (if testing negation placement, not the phrase itself)
-- All four options must produce syntactically valid sentences when inserted — distractors should be plausible (same word class, similar context), not grammatically broken.
-- The correct answer must be unambiguous. If more than one option produces a valid, natural sentence, the exercise is flawed.
-- Sentence length: at least 5 words. Very short sentences make answers guessable by elimination. Of course respect CEFR level: higher levels will have more complex and longer sentences.
+  - ✓ `Jeg kan ___ lide kaffe.` → answer: `ikke` (if testing negation placement)
+- Always generate exactly 3 distractors. Distractors must be:
+  - The same word class as the answer
+  - Plausible in context (not obviously wrong)
+  - Distinct from each other and from the answer
+- The correct answer must be unambiguous: inserting any distractor must not produce a second valid, natural sentence.
+- Sentence length: at least 5 words.
+
+**JSON output spec**
+```json
+{
+  "type": "multiple_choice",
+  "prompt": "Danish sentence with ___ marking the blank",
+  "promptTranslation": "Full English sentence with the correct word in place of ___",
+  "answer": "The correct Danish word or phrase",
+  "distractors": ["wrong option 1", "wrong option 2", "wrong option 3"],
+  "alternativeAnswers": [],
+  "vocabularyItemId": "<id | null>",
+  "grammarConceptId": "<id | null>",
+  "timesShown": 0
+}
+```
 
 ---
 
 ## Sentence Reorder
 
-- Always populate `promptTranslation` with the English translation of the target sentence. The learner sees the scrambled Danish words and must know what they are trying to build.
-- All words needed to form the correct sentence must be present in the word list — no omissions, no extras.
-- The correct ordering must be unambiguous. If two orderings are both grammatically and semantically valid, both must be listed as accepted answers.
-- The exercise should test a specific structural rule (inversion after fronted adverbials, verb-second, subordinate clause word order, negation placement). A sentence with no structural challenge is not worth a reorder exercise.
-- Ideal sentence length: 5–9 words. Shorter is trivial; longer becomes a working-memory exercise rather than a grammar exercise.
-- Punctuation belongs in the answer, not in the scrambled word list.
+**Quality rules**
+
+- Always populate `promptTranslation` with the English translation of the target sentence. The learner sees scrambled Danish word tiles and must know what sentence they are building.
+- All words needed to form the correct sentence must be present — no omissions, no extras.
+- The target sentence must have exactly one valid ordering. If two orderings are both grammatically and semantically valid, choose a different sentence.
+- The exercise must test a specific structural rule (inversion after fronted adverbials, verb-second, subordinate clause word order, negation placement). A sentence with no structural challenge is not worth a reorder exercise.
+- Ideal length: 5–9 words. Shorter is trivial; longer becomes a working-memory task.
+- Punctuation belongs in the answer, not in the word tile list.
+
+**JSON output spec**
+
+The `prompt` contains the target sentence. The UI splits it into word tiles and scrambles them for display; the learner reassembles them. `answer` holds the same correctly ordered sentence.
+```json
+{
+  "type": "sentence_reorder",
+  "prompt": "The correctly ordered Danish target sentence",
+  "promptTranslation": "English translation of the target sentence",
+  "answer": "The correctly ordered Danish target sentence",
+  "distractors": [],
+  "alternativeAnswers": [],
+  "vocabularyItemId": "<id | null>",
+  "grammarConceptId": "<id | null>",
+  "timesShown": 0
+}
+```
 
 ---
 
 ## Fill in the Blank
 
-- `promptTranslation` must translate the **entire** prompt sentence, not just the clause containing the blank. If the prompt is two clauses, both must appear in the translation — no truncation with `...`.
-- `promptTranslation` must **never contain `___`**. Always replace the blank position with the actual English equivalent of the target word. The full English sentence is how the learner understands what they are being asked to produce — a blank in the translation defeats that.
+**Quality rules**
+
+- `promptTranslation` must translate the **entire** prompt sentence, not just the clause containing the blank. If the prompt is two clauses, both must appear — no truncation with `...`.
+- `promptTranslation` must **never contain `___`**. Replace the blank position with the actual English equivalent of the target word. The full English sentence is how the learner understands what they are being asked to produce.
 - **Same discontinuous-phrase rule as Multiple Choice.** The blank must not split a phrase whose parts require specific relative ordering with negation, reflexive pronouns, or particles.
-- The sentence context must constrain the answer to exactly one correct form. If two different words or inflections are both valid in the blank, the exercise is ambiguous and must be rewritten.
-- When the task is inflection (not lexical choice), include a form hint: the infinitive in parentheses, e.g., *(at spise, present tense)* or just *(spise)*.
+- The sentence context must constrain the answer to exactly one correct form. If two different words or inflections are both valid in the blank, rewrite the exercise.
+- When the task is inflection (not lexical choice), include a form hint in parentheses: the infinitive, e.g., *(spise)*, optionally with the tense, e.g., *(spise, preterite)*.
 - The blank should not be the first word of the sentence — an unconstrained opening provides too little context.
-- Do not place the blank at a position where the learner can answer correctly without understanding the target item (e.g., the only noun in a sentence is always the answer).
+
+**JSON output spec**
+```json
+{
+  "type": "fill_blank",
+  "prompt": "Danish sentence with ___ marking the blank",
+  "promptTranslation": "Full English sentence with the target word included (no ___)",
+  "answer": "The correct Danish word or inflected form",
+  "distractors": [],
+  "alternativeAnswers": [],
+  "vocabularyItemId": "<id | null>",
+  "grammarConceptId": "<id | null>",
+  "timesShown": 0
+}
+```
 
 ---
 
 ## Conjugation Drill
 
-- Always specify all three: **verb (infinitive)**, **tense**, **subject**. Never leave any of these implicit.
-- For reflexive verbs, the expected answer includes the reflexive pronoun (e.g., *at føle sig*, present, *han* → **føler sig**).
+**Quality rules**
+
+- `promptTranslation` is `null` for this type — the prompt is metalinguistic, not a sentence.
+- The `prompt` must follow the exact format: `<infinitive> | <tense> | <subject>`, e.g., `at arbejde | preterite | jeg`.
+- Always specify all three components. Never leave any implicit.
+- For reflexive verbs, the expected answer includes the reflexive pronoun, e.g., *at føle sig*, present, *han* → `føler sig`.
 - Vary the subject across exercises in a bank — do not default to *jeg* for all drills.
-- Irregular verbs are the primary target for this exercise type. Using a fully regular verb for a conjugation drill is low-value unless it is the first introduction of that tense pattern.
+- Irregular verbs are the primary target for this type. A fully regular verb is only worth a conjugation drill when it is the first introduction of a tense pattern.
 - At A1–A2, focus on present and preterite. At B1+, include modal constructions, past perfect, and conditional forms.
+
+**JSON output spec**
+```json
+{
+  "type": "conjugation_drill",
+  "prompt": "at <verb> | <tense> | <subject>",
+  "promptTranslation": null,
+  "answer": "The correctly conjugated Danish form",
+  "distractors": [],
+  "alternativeAnswers": [],
+  "vocabularyItemId": "<id | null>",
+  "grammarConceptId": "<id | null>",
+  "timesShown": 0
+}
+```
 
 ---
 
 ## Error Correction
 
-- **Exactly one error per sentence**. A sentence with two errors forces the learner to guess which one to fix.
-- The error must be a plausible learner mistake at the module's CEFR level — something a learner at this stage would actually produce.
-- The sentence must otherwise be fully correct and natural. Do not introduce additional awkwardness around the error.
-- The intended meaning must be recoverable despite the error — the learner needs to understand what the sentence is trying to say in order to identify the mistake.
-- Always populate `promptTranslation` with the English translation of the **intended** (correct) meaning of the sentence. The learner must understand what the sentence is supposed to say in order to spot what is wrong.
-- Clearly state what the error is and provide the corrected sentence. Format:
-  ```
-  [erroneous Danish sentence] (English translation of the intended meaning)
-  Error: [description of the mistake]
-  ✓ [corrected sentence with the fix bolded]
-  ```
+**Quality rules**
+
+- Always populate `promptTranslation` with the English translation of the **intended** (correct) meaning. The learner must understand what the sentence is supposed to say in order to spot what is wrong.
+- Exactly one error per sentence. A sentence with two errors forces the learner to guess which one to fix.
+- The error must be a plausible learner mistake at the module's CEFR level.
+- The sentence must otherwise be fully correct and natural — do not introduce additional awkwardness around the error.
+- The intended meaning must be recoverable despite the error.
+- `answer` contains the **full corrected sentence**, not just the fixed word.
 - Good error types by level:
   - A1–A2: wrong verb form (infinitive instead of present/preterite), wrong preposition (*af* vs *fra*), adjective not inflected for gender/number
   - B1: inversion missing after fronted adverbial, wrong subordinate clause word order, incorrect negation placement in embedded clause
   - B2–C2: register mismatch, wrong noun (*prioriteringer* vs *prioriteter*), redundant verb form, incorrect adjective agreement on less common gender
 
+**JSON output spec**
+```json
+{
+  "type": "error_correction",
+  "prompt": "The erroneous Danish sentence",
+  "promptTranslation": "English translation of the intended correct meaning",
+  "answer": "The full corrected Danish sentence",
+  "distractors": [],
+  "alternativeAnswers": [],
+  "vocabularyItemId": "<id | null>",
+  "grammarConceptId": "<id | null>",
+  "timesShown": 0
+}
+```
+
 ---
 
 ## Translation (Active)
 
-- The canonical answer should be the most natural, common phrasing — not the most literal word-for-word rendering.
-- The accepted alternatives list must cover all valid paraphrases for the target structure. For single-word targets with no synonyms (e.g., *I* → *jeg*), the list is empty — that is correct and expected.
-- The English prompt must be unambiguous. If the English sentence has two possible readings, constrain it with a context note or rewrite it.
-- At A1–A2, use single-clause sentences. At B1+ the prompt may include two clauses; at C1+ it may include a dependent clause or idiomatic structure.
-- The exercise stores enough context for the AI "explain my mistake" call: the user's answer, the canonical answer, and the alternatives list. Do not generate exercises where the correct answer depends on unstated context.
+**Quality rules**
+
+- `promptTranslation` is `null` for this type — the prompt is already in English.
+- The canonical `answer` should be the most natural, common phrasing — not the most literal rendering.
+- `alternativeAnswers` must cover all valid paraphrases. For single-word targets with no synonyms (e.g., *I* → *jeg*), the list is empty — that is correct and expected.
+- Store `alternativeAnswers` in natural form (not pre-normalized). The matching engine normalizes before comparing.
+- The English prompt must be unambiguous. If the sentence has two possible readings, constrain it with a context note or rewrite it.
+- At A1–A2, use single-clause sentences. At B1+, the prompt may include two clauses; at C1+, it may include a dependent clause or idiomatic structure.
 - If a vocabulary item carries a `context` note in the data model, scope the prompt and alternatives to that sense (e.g., *stor — physical size*).
+
+**JSON output spec**
+```json
+{
+  "type": "translation_active",
+  "prompt": "The English sentence to translate",
+  "promptTranslation": null,
+  "answer": "Canonical Danish translation (most natural phrasing)",
+  "distractors": [],
+  "alternativeAnswers": ["valid paraphrase 1", "valid paraphrase 2"],
+  "vocabularyItemId": "<id | null>",
+  "grammarConceptId": "<id | null>",
+  "timesShown": 0
+}
+```
