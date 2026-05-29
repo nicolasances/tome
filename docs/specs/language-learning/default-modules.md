@@ -1,7 +1,7 @@
 # Default Module List — Danish Language Learning
 **Target:** Professional fluency (C2) for director-level work in a Danish company
 **Learner profile:** Native English speaker, starting at A1/A2
-**Total modules:** ~113 across 6 CEFR levels
+**Total modules:** ~119 across 6 CEFR levels
 
 Each module entry includes:
 - **Theme** — broad topic area
@@ -305,7 +305,7 @@ Each module entry includes:
 
 ---
 
-## B1 — Entering the Workplace (23 modules)
+## B1 — Entering the Workplace (24 modules)
 *The professional pivot. Grammar consolidates around complex sentences; workplace and social Danish are treated as primary domains.*
 
 ---
@@ -494,7 +494,15 @@ Each module entry includes:
 
 ---
 
-## B2 — Professional Fluency (21 modules)
+### B1-24 — IT & Tech Fundamentals in Danish
+- **Theme:** Core technology vocabulary for the workplace
+- **Communication goal:** Discuss your work, systems, and technical issues in everyday Danish — report a bug, describe a system, explain a release, talk to IT support, and understand technical communications from colleagues
+- **Grammar focus:** Compound nouns in tech context (a major Danish challenge — softwareudvikling, brugergrænseflade, sikkerhedsopdatering), verb phrases for tech actions (implementere, konfigurere, fejlfinde, opdatere, rulle ud)
+- **Vocabulary focus:** Core IT lexicon (software, hardware, netværk, server, sky/cloud, sikkerhed, database, brugergrænseflade, fejl, bug, opdatering, release, adgang, rettigheder, kodeord), workplace tech communication (ticket, support, dokumentation, log, miljø, produktion, staging)
+
+---
+
+## B2 — Professional Fluency (24 modules)
 *Leadership language begins here. Writing, persuasion, and advanced grammar for the workplace.*
 
 ---
@@ -667,7 +675,31 @@ Each module entry includes:
 
 ---
 
-## C1 — Executive Danish (20 modules)
+### B2-22 — Software Development & Agile in Danish
+- **Theme:** Software development and agile processes
+- **Communication goal:** Run or participate in agile ceremonies entirely in Danish — sprint planning, daily standups, retrospectives, backlog refinement; discuss code, architecture, and releases with a Danish-speaking team
+- **Grammar focus:** Imperative and directive language for facilitation (Lad os starte med..., Hvem tager det næste punkt?), compound nouns in software context (sprintplanlægning, kodegennemgang, versionsstyring), infinitive constructions for task assignment
+- **Vocabulary focus:** Agile vocabulary (sprint, backlog, standup, retrospektiv, epic, user story, velocity, kanban, scrum master, product owner), development vocabulary (kodegennemgang, pull request, branch, merge, deployment, release, fejlretning, teknisk gæld), collaboration tools in Danish context (opgave, kommentar, tildele, lukke, prioritere)
+
+---
+
+### B2-23 — DevOps, Infrastructure & Operations
+- **Theme:** DevOps and platform engineering
+- **Communication goal:** Discuss CI/CD pipelines, infrastructure, incidents, and on-call responsibilities in Danish; lead or participate in post-mortems and incident reviews; communicate operational status to both technical and non-technical stakeholders
+- **Grammar focus:** Passive for process description (koden bygges, tests køres, containeren deployes), nominalization for incident reporting (en udrulning, en fejl, en hændelse), conditional for runbooks and procedures (hvis X sker, skal du...)
+- **Vocabulary focus:** DevOps vocabulary (pipeline, CI/CD, container, orkestrering, infrastruktur, overvågning, alarm, hændelse, on-call, vagttjeneste), cloud vocabulary (sky, region, klynge, skalering, oppetid, nedetid), post-mortem vocabulary (rodårsag, tidslinje, afhjælpning, forebyggelse, læring)
+
+---
+
+### B2-24 — Data, AI & Machine Learning in Danish
+- **Theme:** Data and AI in professional context
+- **Communication goal:** Discuss data pipelines, machine learning models, and AI products in Danish — both technically with colleagues and at a product/business level with stakeholders; understand Danish regulatory framing of AI
+- **Grammar focus:** Abstraction-level shifting (technical description vs. business framing), nominalization for data concepts (en forudsigelse, en klassificering, en anbefaling), hedged language for model uncertainty (modellen antager, resultaterne indikerer, med en sandsynlighed på...)
+- **Vocabulary focus:** Data vocabulary (datasæt, datakvalitet, pipeline, behandling, rensning, lagring), ML vocabulary (model, træning, inferens, præcision, tilbagekaldelse, overfitting, feature), AI product vocabulary (anbefaling, forudsigelse, klassificering, sprogmodel, kunstig intelligens, algoritme), Danish AI discourse (ansvarlig AI, gennemsigtighed, bias, regulering)
+
+---
+
+## C1 — Executive Danish (22 modules)
 *Precision, rhetoric, and authority. Language for the boardroom and strategic leadership.*
 
 ---
@@ -829,6 +861,22 @@ Each module entry includes:
 - **Communication goal:** Be genuinely funny in Danish — not translating English jokes, but operating from within the Danish comic sensibility
 - **Grammar focus:** Timing and syntactic surprise in Danish (delayed punch constructions), irony through understatement
 - **Vocabulary focus:** Danish humor vocabulary, self-deprecation phrases, playful use of particles (da, jo, altså in comic mode), classic Danish comic references
+
+---
+
+### C1-21 — Tech Leadership & Digital Strategy
+- **Theme:** Technology leadership at executive level
+- **Communication goal:** Lead architecture discussions, present IT strategy to a board, discuss digital transformation roadmaps, handle vendor negotiations, and frame technical trade-offs for non-technical senior stakeholders — all in Danish
+- **Grammar focus:** Nominalization for strategic abstraction (digitalisering, modernisering, skalering, konsolidering), conditional for risk framing (hvis vi vælger X, vil det betyde...), modal authority for technical direction (vi er nødt til at..., den eneste holdbare løsning er...)
+- **Vocabulary focus:** IT strategy vocabulary (it-strategi, digitalisering, teknisk gæld, arkitektur, platform, infrastruktur, modernisering, vendor, udbyder, roadmap, prioritering), investment vocabulary for tech (ROI, totalomkostninger, licens, implementeringsomkostninger), team and org vocabulary (it-afdeling, udviklingsteam, driftsteam, produktteam, CTO, it-chef)
+
+---
+
+### C1-22 — AI Ethics, GDPR & Responsible Technology
+- **Theme:** Technology regulation and responsible AI
+- **Communication goal:** Discuss AI ethics, data protection obligations, and EU regulation fluently in Danish — in board discussions, with legal teams, with regulators, and in public communications; understand and use the Danish and EU regulatory vocabulary precisely
+- **Grammar focus:** Modal precision for legal obligation (virksomheden er forpligtet til, behandlingen kræver, den registrerede har ret til), passive in regulatory context, nominalization for policy concepts
+- **Vocabulary focus:** GDPR vocabulary (personoplysninger, dataansvarlig, databehandler, samtykke, ret til indsigt, databrud, tilsynsmyndighed, Datatilsynet), EU AI Act vocabulary (risikoklassificering, højrisiko-system, gennemsigtighed, menneskelig kontrol, overensstemmelsesvurdering), responsible AI vocabulary (ansvarlig AI, bias, forklarlighed, retfærdighed, privatliv, etisk ramme)
 
 ---
 
