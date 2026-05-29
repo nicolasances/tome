@@ -10,7 +10,7 @@ User {
   id
   name
   email
-  cefrLevel          // A1 | A2 | B1 | B2 | C1 | C2
+  cefrLevel          // A1 | A2 | B1 | B2 | C1 | C2 — defaults to A1 at account creation; can be set to a higher level to support future placement test onboarding
   createdAt
   lastActiveAt
 }

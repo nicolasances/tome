@@ -76,7 +76,7 @@ Each module runs through the following steps in order. **Mastery scores are only
 
 For each Grammar Concept in the module, the app presents a short explanation with 1–2 Danish examples. The user does not need to interact; this is purely instructional.
 
-Grammar explanations are AI-generated on demand.
+Grammar explanations are generated at module seeding time and stored in `GrammarConcept.explanation`. They are not regenerated per session.
 
 **Step 2 — Contextual Exercises (Practice)**
 
@@ -91,7 +91,7 @@ Vocabulary is introduced implicitly through the exercises themselves — no sepa
 | 5 | Error Correction | Analytical — must know the correct form to spot the deviation |
 | 6 | Translation (active) | Free production — no scaffolding |
 
-Only exercise types present in the module's bank appear. Within each type, the mastery-aware selection (§3.4.3) determines which exercises are shown.
+Only exercise types present in the module's bank appear. Within each type, the mastery-aware selection (§3.4.3) determines which exercises are shown. Session length is fixed at `practiceSessionSize` exercises (default: 15).
 
 1. If the user is wrong, the correct answer is shown and the user moves to the next exercise
 2. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
@@ -122,6 +122,7 @@ Once unlocked:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
+| `practiceSessionSize` | 15 | Number of exercises presented in Step 2 (practice) |
 | `testUnlockDelayHours` | 4 | Hours after completing Step 2 (practice) before test unlocks |
 | `testRetryDelayMinutes` | 20 | Minutes after failed test before retry is allowed |
 | `testFreshExercisePercent` | 50 | % of test exercises that must be unseen during practice |
@@ -337,7 +338,7 @@ When a user retakes a module after failing the test, the session draws again fro
 
 #### Unlocking a New Level
 
-The user's CEFR level starts at A1. To progress to A2 (and so on), the user must:
+The user's CEFR level defaults to A1 at account creation. A placement test at onboarding is out of scope for v2.0 but the data model supports setting a higher starting level when that feature is added. To progress to A2 (and so on), the user must:
 1. Complete **all modules** at the current level. 
 2. Pass the **Level Test** for the current level.
 
@@ -418,7 +419,7 @@ The app is AI-powered in several places. These are the AI touchpoints:
 | Exercise bank refresh | Generate additional exercises for a module whose bank has fallen below one session's capacity — runs asynchronously in the background, never during a live session |
 | Error explanation | Explain why a user's answer was wrong, with rule + example |
 | Answer verification | On explicit user request after a wrong `translation_active` answer: check whether the user's translation is valid; if valid, mark correct and store in `userContributedAnswers`; if invalid, explain why |
-| Grammar concept explanation | Generate a short, friendly explanation of a grammar concept with 1–2 Danish examples |
+| Grammar concept explanation | Generate a short explanation of a grammar concept with 1–2 Danish examples — runs at module seeding time, stored in GrammarConcept.explanation, not generated live |
 | Vocabulary hint | On request, give a hint for a translation exercise without revealing the full answer |
 | Content analysis — vocabulary | Identify vocabulary items in a pasted text; map against the user's existing vocabulary set to produce coverage and gap lists |
 | Content analysis — grammar | Detect grammar patterns in a pasted text; map against the grammar concept taxonomy and the user's completed modules |
@@ -455,14 +456,11 @@ These are things not yet decided that will need resolution before or during buil
 | # | Question | Options / Notes |
 |---|---|---|
 | OQ-01 | How many modules are required to unlock a Level Test? | All modules? Min 5? Any count? |
-| OQ-02 | Should grammar concepts be AI-generated per session, or stored as authored content? | AI-generated is more flexible; authored is more controllable |
 | OQ-03 | Does the mastery score decay over time (true SRS)? | Recommended: yes, with gentle decay |
-| OQ-04 | Should there be an optional placement test at onboarding? | Allows non-beginners to skip A1 |
-| OQ-05 | How is the module exercise sequence structured — fixed length or adaptive? | Adaptive (stop when mastery threshold hit) is better UX |
-| OQ-06 | Can the user add custom vocabulary items outside of modules? | Nice-to-have for v2 |
-| OQ-07 | Should the user be able to generate modules at a level above their current? | Probably not — keep progression gated |
-| OQ-08 | What is the retry cooldown for the Level Test? | Suggest: none for v2 |
-| OQ-09 | How should the content analysis handle texts that are too far above the user's level? | Show the gap but still route — even C1 content is useful as a destination map for a B1 learner |
+| OQ-04 | Can the user add custom vocabulary items outside of modules? | Nice-to-have for v2 |
+| OQ-05 | Should the user be able to generate modules at a level above their current? | Probably not — keep progression gated |
+| OQ-06 | What is the retry cooldown for the Level Test? | Suggest: none for v2 |
+| OQ-07 | How should the content analysis handle texts that are too far above the user's level? | Show the gap but still route — even C1 content is useful as a destination map for a B1 learner |
 | OQ-10 | Should the content analysis expose an external API for agent-driven invocation? | Recommended for v3; design the function as isolated in v2 to make this straightforward later |
 | OQ-11 | What is the minimum text length for a meaningful content analysis? | Suggest: at least 50 words; shorter inputs produce unreliable CEFR estimates |
 
