@@ -86,7 +86,7 @@ Each module runs through the following steps in order. **Mastery scores are only
 
 For each Grammar Concept in the module, the app presents a short explanation with 1–2 Danish examples. The user does not need to interact; this is purely instructional.
 
-*Open question: Should grammar explanations be AI-generated on demand, or authored content? — Recommend AI-generated for v2, with the user able to ask follow-up questions.*
+Grammar explanations are AI-generated on demand. 
 
 **Step 3 — Contextual Exercises (Practice)**
 
@@ -101,7 +101,7 @@ For each Grammar Concept in the module, the app presents a short explanation wit
 The test is **locked** until `testUnlockDelayHours` (default: 4 hours) have passed after completing Step 3. This enforces spaced repetition — the user cannot test immediately while memory is fresh.
 
 Once unlocked:
-1. A short assessment (5–10 questions) testing the module's vocabulary and grammar
+1. An assessment (20 questions) testing the module's vocabulary and grammar
 2. Uses the same exercise types as Step 3
 3. **50% fresh exercises** (not seen during practice) + **50% may repeat** from practice
 4. Answers are **not shown** during the test — user completes all questions first
@@ -114,7 +114,7 @@ Once unlocked:
 **Passing:**
 - Threshold: **80%**
 - On pass: module status → `completed`
-- On fail: user can retry after `testRetryDelayMinutes` (default: 20 minutes); the test draws a new selection from the exercise bank
+- On fail: the attempt is recorded (score + timestamp) in the user's test history for this module; user can retry after `testRetryDelayMinutes` (default: 20 minutes); the test draws a new selection from the exercise bank
 
 #### 3.1.2 Configurable Parameters
 

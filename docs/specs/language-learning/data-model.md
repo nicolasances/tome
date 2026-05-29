@@ -109,10 +109,25 @@ UserModuleProgress {
   status             // locked | available | in_progress | completed
   startedAt          // timestamp | null
   completedAt        // timestamp | null
+  testAttempts       // ModuleTestAttempt[] (all test attempts, failed and passed)
 }
 ```
 
 *Note: Module status is user-specific (one user may have completed a module while another hasn't started it), so it belongs in a separate progress table rather than on the Module entity itself.*
+
+## ModuleTestAttempt
+```
+ModuleTestAttempt {
+  id
+  userId
+  moduleId
+  score              // float 0–1
+  passed             // boolean
+  takenAt            // timestamp
+}
+```
+
+*Note: Every test attempt (both failed and the eventual passing attempt) is recorded here. This provides a full history of a user's progression on a given module test and enables future features such as improvement tracking, difficulty analytics, or adaptive retry strategies.*
 
 ## GrammarConcept
 ```
