@@ -53,7 +53,7 @@ Adult learners who want to progress from zero Danish towards conversational and 
 | **CEFR Level** | The user's current proficiency tier: A1, A2, B1, B2, C1, C2. The user has exactly one active level at a time. |
 | **Module** | A self-contained learning unit with a theme, a communication goal, a vocabulary set, and a sequence of exercises. |
 | **Vocabulary Item** | A single learnable unit: a word, verb, phrase, or pattern. |
-| **Mastery Score** | A float [0.0 – 1.0] representing how well the user knows a vocabulary item. Computed from exercise history. |
+| **Mastery Score** | A float [0.0 – 1.0] representing how well the user knows a vocabulary item or has mastered a grammar concept. Computed from exercise history using SRS. Applies to both `UserVocabularyProgress` and `UserGrammarConceptProgress`. |
 | **Grammar Concept** | A named grammatical topic (e.g. "Inversion", "Modal Verbs") that appears inside modules. |
 | **Exercise** | A single interactive task presented to the user (translation, fill-in-the-blank, multiple choice, etc.). |
 | **Level Test** | A cumulative assessment that unlocks the next CEFR level when passed. |
@@ -311,10 +311,17 @@ Where a vocabulary item carries a `context` note (see data model), the AI uses i
 
 At session start, the system draws a session-sized subset from the bank using the following algorithm — no AI involved:
 
-1. Vocabulary items with mastery score > 0.85 are deprioritized (skipped unless the bank is nearly empty).
-2. Remaining items are weighted by `(1 − masteryScore)` — lower mastery → higher probability of appearing.
-3. Items the user answered incorrectly in their most recent session get an additional priority boost.
-4. A random sample is drawn according to the weights, ensuring each vocabulary item appears in at least one exercise per session on first attempt.
+Each exercise in the bank is assigned a weight based on the mastery scores of its linked items:
+- If `vocabularyItemId` is set: look up `UserVocabularyProgress.masteryScore` for that item.
+- If `grammarConceptId` is set: look up `UserGrammarConceptProgress.masteryScore` for that concept.
+- If both are set: use the **lower** of the two mastery scores (if either is weak, the exercise is worth showing).
+
+Selection steps:
+1. Exercises where all linked items have mastery > 0.85 are deprioritized (skipped unless the bank is nearly empty).
+2. Remaining exercises are weighted by `(1 − effectiveMasteryScore)` — lower mastery → higher probability of appearing.
+3. Exercises the user answered incorrectly in their most recent session get an additional priority boost.
+4. When multiple exercises in the bank test the same vocabulary item or grammar concept, one is chosen at random among them.
+5. A weighted random sample is drawn to fill the session.
 
 The exercise *content* is fixed (from the bank). The *selection* is personalized to the user's current mastery state.
 

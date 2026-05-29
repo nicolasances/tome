@@ -48,6 +48,19 @@ UserVocabularyProgress {
 
 *Note: One record per user per vocabulary item. This separation allows a single global mastery score per word while enabling modules to reuse existing vocabulary. Vocabulary review can still be filtered by module by joining on which modules reference which vocabulary items.*
 
+## UserGrammarConceptProgress
+```
+UserGrammarConceptProgress {
+  userId
+  grammarConceptId   // references GrammarConcept.id
+  masteryScore       // float 0.0–1.0
+  lastReviewed       // timestamp | null
+  exerciseHistory    // ExerciseResult[]
+}
+```
+
+*Note: Mirrors UserVocabularyProgress exactly, but for grammar concepts. One record per user per grammar concept. Mastery is computed from the same SRS algorithm: correct answers increase it, incorrect answers decrease it, long gaps cause gentle decay. Score of 0.8 or above = concept considered mastered. This record is created the first time a user encounters an exercise linked to a given grammar concept.*
+
 ## Exercise
 ```
 Exercise {
@@ -61,8 +74,9 @@ Exercise {
   alternativeAnswers      // string[] — other accepted translations, AI-generated at creation time (translation_active only; empty for other types)
   userContributedAnswers  // string[] — translations validated by AI at answer time via on-demand verification (translation_active only)
   distractors             // string[] (multiple choice only — the wrong options)
-  vocabularyItemId   // primary vocab item being tested (nullable for grammar-only exercises)
-  grammarConceptId   // grammar concept being tested (nullable for vocab-only exercises)
+  vocabularyItemId   // primary vocab item being tested; null for grammar-only exercises
+  grammarConceptId   // grammar concept being tested; null for vocab-only exercises
+                     // CONSTRAINT: at least one of vocabularyItemId or grammarConceptId must be non-null
   timesShown         // int (incremented each time this exercise appears in a session)
 }
 ```

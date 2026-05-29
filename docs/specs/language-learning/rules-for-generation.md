@@ -20,7 +20,8 @@ If the vocabulary or grammar concepts for the target module have not yet been ge
 ## Cross-cutting rules (all exercise types)
 
 - Always set `type` to the correct string value: `multiple_choice`, `fill_blank`, `sentence_reorder`, `conjugation_drill`, `error_correction`, or `translation_active`.
-- Every exercise must set at least one of `vocabularyItemId` or `grammarConceptId`. Both may be set when an exercise tests a vocabulary item in a specific grammatical context. A grammar-only exercise (no specific vocabulary item) sets `vocabularyItemId: null`; a vocabulary-only exercise sets `grammarConceptId: null`.
+- **At least one of `vocabularyItemId` or `grammarConceptId` must be non-null.** Both may be set when an exercise tests a vocabulary item in a specific grammatical context (e.g. a conjugation drill tests a verb *and* a tense concept). A grammar-only exercise sets `vocabularyItemId: null`; a vocabulary-only exercise sets `grammarConceptId: null`. An exercise with neither is invalid.
+- For exercises with both set: the selection algorithm uses the lower of the two mastery scores as the effective weight, so the exercise surfaces whenever either the vocabulary item or the grammar concept is weak.
 - `timesShown` is always `0` at generation time.
 - Sentences must reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
 - Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering scaffolds this).
