@@ -1,7 +1,7 @@
 # Default Module List — Danish Language Learning
 **Target:** Professional fluency (C2) for director-level work in a Danish company
 **Learner profile:** Native English speaker, starting at A1/A2
-**Total modules:** ~119 across 6 CEFR levels
+**Total modules:** ~123 across 6 CEFR levels
 
 Each module entry includes:
 - **Theme** — broad topic area
@@ -502,7 +502,7 @@ Each module entry includes:
 
 ---
 
-## B2 — Professional Fluency (24 modules)
+## B2 — Professional Fluency (27 modules)
 *Leadership language begins here. Writing, persuasion, and advanced grammar for the workplace.*
 
 ---
@@ -699,7 +699,31 @@ Each module entry includes:
 
 ---
 
-## C1 — Executive Danish (22 modules)
+### B2-25 — Day-to-day Team Leadership & Coaching in Danish
+- **Theme:** Team leadership and coaching conversations
+- **Communication goal:** Lead your direct reports effectively in Danish — run meaningful 1-on-1s, give developmental feedback, motivate individuals, handle underperformance with care, and build psychological safety within a Danish team context
+- **Grammar focus:** Coaching question constructions (Hvad tænker du om...? Hvad ville hjælpe dig mest? Hvordan oplevede du det?), softened directives for development (Det kunne være værd at overveje..., Jeg vil opfordre dig til...), modal verbs for supportive leadership (kan, vil, burde in developmental register)
+- **Vocabulary focus:** Coaching vocabulary (udvikling, mål, styrker, udfordringer, feedback, trivsel, motivation, engagement), 1-on-1 vocabulary (opfølgning, prioriteter, blokeringer, anerkendelse, næste skridt), Danish team culture vocabulary (psykologisk tryghed, tillid, autonomi, ejerskab, ansvarlighed, selvledelse)
+
+---
+
+### B2-26 — Leading Through Change in Danish
+- **Theme:** Change management communication
+- **Communication goal:** Announce and lead organizational change in Danish — communicate a restructuring, manage resistance, address uncertainty, and bring your team along through a transition
+- **Grammar focus:** Framing language for change (vi er i gang med at..., det kommer til at betyde..., formålet er at...), empathy constructions for addressing concerns (Jeg forstår at det kan føles..., Det er en naturlig reaktion at...), balancing certainty and uncertainty (vi ved endnu ikke..., det vi kan sige med sikkerhed er...)
+- **Vocabulary focus:** Change management vocabulary (forandring, omstrukturering, transition, modstand, usikkerhed, kommunikationsplan, forankring), Danish organizational change norms (consensus expectations, transparency expectations, the role of dialogue in Danish change processes), reassurance vocabulary (stabilitet, retning, støtte, åbenhed, dialog)
+
+---
+
+### B2-27 — Operational Budgeting & Financial Management
+- **Theme:** Department-level financial management
+- **Communication goal:** Navigate the full budget cycle in Danish — plan and present your department budget, discuss headcount and cost centers, defend spending decisions, explain variances, and forecast alongside your CFO or finance business partner
+- **Grammar focus:** Presenting numbers with precision (steget med X%, et underskud på..., vi forventer at...), conditional for budget scenarios (hvis vi ansætter X, vil det koste...), passive for budget processes (budgettet er godkendt, bevillingen er givet, midlerne er allokeret)
+- **Vocabulary focus:** Budget vocabulary (budget, budgetopfølgning, afvigelse, prognose, omkostninger, udgifter, indtægter, overskud, underskud, besparelse), headcount vocabulary (årsværk, fuldtidsstilling, rekruttering, headcount, lønsum), cost center vocabulary (omkostningscenter, forretningsenhed, allokering, overhead, driftsbudget, investeringsbudget)
+
+---
+
+## C1 — Executive Danish (23 modules)
 *Precision, rhetoric, and authority. Language for the boardroom and strategic leadership.*
 
 ---
@@ -877,6 +901,14 @@ Each module entry includes:
 - **Communication goal:** Discuss AI ethics, data protection obligations, and EU regulation fluently in Danish — in board discussions, with legal teams, with regulators, and in public communications; understand and use the Danish and EU regulatory vocabulary precisely
 - **Grammar focus:** Modal precision for legal obligation (virksomheden er forpligtet til, behandlingen kræver, den registrerede har ret til), passive in regulatory context, nominalization for policy concepts
 - **Vocabulary focus:** GDPR vocabulary (personoplysninger, dataansvarlig, databehandler, samtykke, ret til indsigt, databrud, tilsynsmyndighed, Datatilsynet), EU AI Act vocabulary (risikoklassificering, højrisiko-system, gennemsigtighed, menneskelig kontrol, overensstemmelsesvurdering), responsible AI vocabulary (ansvarlig AI, bias, forklarlighed, retfærdighed, privatliv, etisk ramme)
+
+---
+
+### C1-23 — Business Case & Investment Language
+- **Theme:** Investment proposals and financial justification
+- **Communication goal:** Build and present a business case in Danish — articulate the problem, quantify the opportunity, frame the ROI argument, handle objections, and secure investment decisions from senior stakeholders or a board
+- **Grammar focus:** Argumentation structure for investment proposals (problemet er..., løsningen indebærer..., det forventede afkast er...), hedged projections (vi estimerer at..., baseret på vores antagelser..., i et konservativt scenarie...), modal precision for commitment (vi forpligter os til at levere..., vi forventer at kunne...)
+- **Vocabulary focus:** Business case vocabulary (businesscase, investeringsforslag, ROI, tilbagebetalingstid, nytteværdi, risikovurdering, alternativer, anbefaling), financial justification vocabulary (omkostningsbesparelse, effektiviseringsgevinst, vækstpotentiale, strategisk værdi, konkurrencefordel), decision vocabulary (godkendelse, bevilling, sanktionering, prioritering, go/no-go)
 
 ---
 
