@@ -71,38 +71,41 @@ A module is a self-contained learning unit. See [Data Model](./data-model.md#mod
 
 #### 3.1.1 Module Execution Flow
 
-Each module runs through the following steps in order. **Mastery scores are only updated during the Module Test (Step 4), not during practice (Steps 1 and 3).**
+Each module runs through the following steps in order. **Mastery scores are only updated during the Module Test (Step 3), not during practice (Step 2).**
 
-**Step 1 — Vocabulary Introduction**
-
-1. The user is shown each vocabulary item in English and asked to translate to Danish
-2. Items are presented in this order: Nouns → Verbs → Adjectives → Phrases → Patterns
-3. If the user is wrong, the correct answer is shown and the user moves to the next word
-4. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
-5. When all words are done, any missed words are retried until the user gets them all correct
-6. Mastery scores are **not** updated during this step
-
-**Step 2 — Grammar Concept Introduction**
+**Step 1 — Grammar Concept Introduction**
 
 For each Grammar Concept in the module, the app presents a short explanation with 1–2 Danish examples. The user does not need to interact; this is purely instructional.
 
-Grammar explanations are AI-generated on demand. 
+Grammar explanations are AI-generated on demand.
 
-**Step 3 — Contextual Exercises (Practice)**
+**Step 2 — Contextual Exercises (Practice)**
 
-1. A sequence of exercises using the module's vocabulary and grammar in context (see §3.4 for exercise types)
-2. If the user is wrong, the correct answer is shown and the user moves to the next exercise
-3. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
-4. When all exercises are done, any missed exercises are retried until the user gets them all correct
-5. Mastery scores are **not** updated during this step
+Vocabulary is introduced implicitly through the exercises themselves — no separate vocabulary drilling step. Exercises are ordered by type to follow the recognition → production progression, so the user encounters vocabulary in a supported context before being asked to produce it freely:
 
-**Step 4 — Module Test (Locked)**
+| Order | Exercise Type | Role |
+|---|---|---|
+| 1 | Multiple Choice | Receptive — word seen in context, correct answer among 4 options |
+| 2 | Sentence Reorder | Structural — all words provided, user arranges them |
+| 3 | Fill in the Blank | Controlled production — sentence context scaffolds the answer |
+| 4 | Conjugation Drill | Targeted production — specific verb form, no sentence context |
+| 5 | Error Correction | Analytical — must know the correct form to spot the deviation |
+| 6 | Translation (active) | Free production — no scaffolding |
 
-The test is **locked** until `testUnlockDelayHours` (default: 4 hours) have passed after completing Step 3. This enforces spaced repetition — the user cannot test immediately while memory is fresh.
+Only exercise types present in the module's bank appear. Within each type, the mastery-aware selection (§3.4.3) determines which exercises are shown.
+
+1. If the user is wrong, the correct answer is shown and the user moves to the next exercise
+2. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
+3. When all exercises are done, any missed exercises are retried until the user gets them all correct
+4. Mastery scores are **not** updated during this step
+
+**Step 3 — Module Test (Locked)**
+
+The test is **locked** until `testUnlockDelayHours` (default: 4 hours) have passed after completing Step 2. This enforces spaced repetition — the user cannot test immediately while memory is fresh.
 
 Once unlocked:
 1. An assessment (20 questions) testing the module's vocabulary and grammar
-2. Uses the same exercise types as Step 3
+2. Uses the same exercise types as Step 2
 3. **50% fresh exercises** (not seen during practice) + **50% may repeat** from practice
 4. Answers are **not shown** during the test — user completes all questions first
 5. At the end, the user sees:
@@ -120,7 +123,7 @@ Once unlocked:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `testUnlockDelayHours` | 4 | Hours after completing practice before test unlocks |
+| `testUnlockDelayHours` | 4 | Hours after completing Step 2 (practice) before test unlocks |
 | `testRetryDelayMinutes` | 20 | Minutes after failed test before retry is allowed |
 | `testFreshExercisePercent` | 50 | % of test exercises that must be unseen during practice |
 | `testPassThreshold` | 80 | % correct required to pass the module test |
