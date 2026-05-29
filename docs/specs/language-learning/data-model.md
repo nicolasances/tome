@@ -23,6 +23,7 @@ VocabularyItem {
   danish
   english
   type               // noun | verb | adjective | ... (see idea.md §3.2.1)
+  context            // string | null — optional disambiguation note, e.g. "physical size" for stor vs. "importance/greatness"; used to scope exercise prompts and alternative answers
   tags               // string[]
   cefrLevel          // level at which this item is typically introduced
 }
@@ -51,9 +52,10 @@ Exercise {
   type               // translation_active | multiple_choice |
                      // fill_blank | sentence_reorder | error_correction | conjugation_drill
   prompt             // the question or sentence shown to the user
-  answer             // the canonical correct answer (shown in feedback)
-  alternativeAnswers // string[] — other accepted translations (translation_active only; empty for other types)
-  distractors        // string[] (multiple choice only — the wrong options)
+  answer                  // the canonical correct answer (shown in feedback)
+  alternativeAnswers      // string[] — other accepted translations, AI-generated at creation time (translation_active only; empty for other types)
+  userContributedAnswers  // string[] — translations validated by AI at answer time via on-demand verification (translation_active only)
+  distractors             // string[] (multiple choice only — the wrong options)
   vocabularyItemId   // primary vocab item being tested (nullable for grammar-only exercises)
   grammarConceptId   // grammar concept being tested (nullable for vocab-only exercises)
   difficulty         // float 0–1 (within the module's CEFR level)
