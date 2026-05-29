@@ -137,7 +137,7 @@ The default modules defined in the curriculum are seeded during development, not
 
 2. **Vocabulary set** — AI-generated from the shell: given the module's theme, CEFR level, and grammar focus, the AI produces the vocabulary items (word, translation, type, tags). No human review step; the shell provides sufficient constraint.
 
-3. **Exercise bank** — AI-generated immediately after the vocabulary set: a bank of ~50 exercises covering the vocabulary and grammar concepts (see §3.4.3 for bank mechanics).
+3. **Exercise bank** — AI-generated immediately after the vocabulary set: a bank of ~50 exercises covering the vocabulary and grammar concepts (see §3.4.3 for bank mechanics). The bank must include at least one exercise for every vocabulary item in the module and at least one exercise for every grammar concept in the module.
 
 4. **Storage** — the vocabulary set and exercise bank are stored in the database and are identical for all users accessing the same default module.
 
@@ -311,16 +311,15 @@ Where a vocabulary item carries a `context` note (see data model), the AI uses i
 
 At session start, the system draws a session-sized subset from the bank using the following algorithm — no AI involved:
 
-Each exercise in the bank is assigned a weight based on the mastery scores of its linked items:
-- If `vocabularyItemId` is set: look up `UserVocabularyProgress.masteryScore` for that item.
-- If `grammarConceptId` is set: look up `UserGrammarConceptProgress.masteryScore` for that concept.
-- If both are set: use the **lower** of the two mastery scores (if either is weak, the exercise is worth showing).
+Each exercise links to exactly one item — either a vocabulary item or a grammar concept. Its weight is derived from the mastery score of that item:
+- `vocabularyItemId` set → look up `UserVocabularyProgress.masteryScore`
+- `grammarConceptId` set → look up `UserGrammarConceptProgress.masteryScore`
 
 Selection steps:
-1. Exercises where all linked items have mastery > 0.85 are deprioritized (skipped unless the bank is nearly empty).
-2. Remaining exercises are weighted by `(1 − effectiveMasteryScore)` — lower mastery → higher probability of appearing.
+1. Exercises whose linked item has mastery > 0.85 are deprioritized (skipped unless the bank is nearly empty).
+2. Remaining exercises are weighted by `(1 − masteryScore)` — lower mastery → higher probability of appearing.
 3. Exercises the user answered incorrectly in their most recent session get an additional priority boost.
-4. When multiple exercises in the bank test the same vocabulary item or grammar concept, one is chosen at random among them.
+4. When multiple exercises test the same vocabulary item or grammar concept, one is chosen at random among them.
 5. A weighted random sample is drawn to fill the session.
 
 The exercise *content* is fixed (from the bank). The *selection* is personalized to the user's current mastery state.

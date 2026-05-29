@@ -74,9 +74,12 @@ Exercise {
   alternativeAnswers      // string[] — other accepted translations, AI-generated at creation time (translation_active only; empty for other types)
   userContributedAnswers  // string[] — translations validated by AI at answer time via on-demand verification (translation_active only)
   distractors             // string[] (multiple choice only — the wrong options)
-  vocabularyItemId   // primary vocab item being tested; null for grammar-only exercises
-  grammarConceptId   // grammar concept being tested; null for vocab-only exercises
-                     // CONSTRAINT: at least one of vocabularyItemId or grammarConceptId must be non-null
+  vocabularyItemId   // primary vocab item being tested; null for grammar-concept exercises
+  grammarConceptId   // grammar concept being tested; null for vocabulary exercises
+                     // CONSTRAINT: exactly one of vocabularyItemId or grammarConceptId must be set — never both, never neither
+                     // Per-type assignment:
+                     //   vocabularyItemId → multiple_choice, fill_blank, conjugation_drill, translation_active
+                     //   grammarConceptId → sentence_reorder, error_correction
   timesShown         // int (incremented each time this exercise appears in a session)
 }
 ```

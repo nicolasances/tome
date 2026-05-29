@@ -20,8 +20,18 @@ If the vocabulary or grammar concepts for the target module have not yet been ge
 ## Cross-cutting rules (all exercise types)
 
 - Always set `type` to the correct string value: `multiple_choice`, `fill_blank`, `sentence_reorder`, `conjugation_drill`, `error_correction`, or `translation_active`.
-- **At least one of `vocabularyItemId` or `grammarConceptId` must be non-null.** Both may be set when an exercise tests a vocabulary item in a specific grammatical context (e.g. a conjugation drill tests a verb *and* a tense concept). A grammar-only exercise sets `vocabularyItemId: null`; a vocabulary-only exercise sets `grammarConceptId: null`. An exercise with neither is invalid.
-- For exercises with both set: the selection algorithm uses the lower of the two mastery scores as the effective weight, so the exercise surfaces whenever either the vocabulary item or the grammar concept is weak.
+- **Exactly one of `vocabularyItemId` or `grammarConceptId` must be set — never both, never neither.** The assignment is determined by exercise type, not by content:
+
+  | Type | Links to |
+  |---|---|
+  | `multiple_choice` | `vocabularyItemId` |
+  | `fill_blank` | `vocabularyItemId` |
+  | `conjugation_drill` | `vocabularyItemId` (the verb being drilled; its forms are part of knowing the word) |
+  | `translation_active` | `vocabularyItemId` |
+  | `sentence_reorder` | `grammarConceptId` |
+  | `error_correction` | `grammarConceptId` |
+
+- The bank must include at least one exercise for **every vocabulary item** in the module and at least one for **every grammar concept** in the module. Vocabulary items are covered by vocabulary exercise types; grammar concepts are covered by grammar exercise types.
 - `timesShown` is always `0` at generation time.
 - Sentences must reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
 - Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering scaffolds this).
@@ -56,8 +66,8 @@ If the vocabulary or grammar concepts for the target module have not yet been ge
   "answer": "The correct Danish word or phrase",
   "distractors": ["wrong option 1", "wrong option 2", "wrong option 3"],
   "alternativeAnswers": [],
-  "vocabularyItemId": "<id | null>",
-  "grammarConceptId": "<id | null>",
+  "vocabularyItemId": "<id>",
+  "grammarConceptId": null,
   "timesShown": 0
 }
 ```
@@ -86,8 +96,8 @@ The `prompt` contains the target sentence. The UI splits it into word tiles and 
   "answer": "The correctly ordered Danish target sentence",
   "distractors": [],
   "alternativeAnswers": [],
-  "vocabularyItemId": "<id | null>",
-  "grammarConceptId": "<id | null>",
+  "vocabularyItemId": null,
+  "grammarConceptId": "<id>",
   "timesShown": 0
 }
 ```
@@ -114,8 +124,8 @@ The `prompt` contains the target sentence. The UI splits it into word tiles and 
   "answer": "The correct Danish word or inflected form",
   "distractors": [],
   "alternativeAnswers": [],
-  "vocabularyItemId": "<id | null>",
-  "grammarConceptId": "<id | null>",
+  "vocabularyItemId": "<id>",
+  "grammarConceptId": null,
   "timesShown": 0
 }
 ```
@@ -143,8 +153,8 @@ The `prompt` contains the target sentence. The UI splits it into word tiles and 
   "answer": "The correctly conjugated Danish form",
   "distractors": [],
   "alternativeAnswers": [],
-  "vocabularyItemId": "<id | null>",
-  "grammarConceptId": "<id | null>",
+  "vocabularyItemId": "<id>",
+  "grammarConceptId": null,
   "timesShown": 0
 }
 ```
@@ -175,8 +185,8 @@ The `prompt` contains the target sentence. The UI splits it into word tiles and 
   "answer": "The full corrected Danish sentence",
   "distractors": [],
   "alternativeAnswers": [],
-  "vocabularyItemId": "<id | null>",
-  "grammarConceptId": "<id | null>",
+  "vocabularyItemId": null,
+  "grammarConceptId": "<id>",
   "timesShown": 0
 }
 ```
@@ -204,8 +214,8 @@ The `prompt` contains the target sentence. The UI splits it into word tiles and 
   "answer": "Canonical Danish translation (most natural phrasing)",
   "distractors": [],
   "alternativeAnswers": ["valid paraphrase 1", "valid paraphrase 2"],
-  "vocabularyItemId": "<id | null>",
-  "grammarConceptId": "<id | null>",
+  "vocabularyItemId": "<id>",
+  "grammarConceptId": null,
   "timesShown": 0
 }
 ```
