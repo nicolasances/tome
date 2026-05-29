@@ -336,7 +336,7 @@ When a user retakes a module after failing the test, the session draws again fro
 #### Unlocking a New Level
 
 The user's CEFR level starts at A1. To progress to A2 (and so on), the user must:
-1. Complete a minimum number of modules at the current level *(threshold TBD — suggest: all available modules, or at least 5)*.
+1. Complete **all modules** at the current level. 
 2. Pass the **Level Test** for the current level.
 
 #### Level Tests
@@ -351,6 +351,10 @@ Passing threshold: **75%**. If failed, the user receives a summary of weak areas
 #### CEFR Level Visibility
 
 The user's current CEFR level is always visible on the Home Dashboard. It should be prominent — it is one of the key motivational anchors of the app.
+
+#### Module Progress
+
+The user's module progress, within a CEFR level, should also always be visible in the Home Dashboard.
 
 ---
 
