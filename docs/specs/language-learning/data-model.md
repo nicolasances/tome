@@ -51,7 +51,8 @@ Exercise {
   type               // translation_active | multiple_choice |
                      // fill_blank | sentence_reorder | error_correction | conjugation_drill
   prompt             // the question or sentence shown to the user
-  answer             // the correct answer
+  answer             // the canonical correct answer (shown in feedback)
+  alternativeAnswers // string[] — other accepted translations (translation_active only; empty for other types)
   distractors        // string[] (multiple choice only — the wrong options)
   vocabularyItemId   // primary vocab item being tested (nullable for grammar-only exercises)
   grammarConceptId   // grammar concept being tested (nullable for vocab-only exercises)
