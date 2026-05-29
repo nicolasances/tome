@@ -1,7 +1,7 @@
 # Default Module List — Danish Language Learning
 **Target:** Professional fluency (C2) for director-level work in a Danish company
 **Learner profile:** Native English speaker, starting at A1/A2
-**Total modules:** ~106 across 6 CEFR levels
+**Total modules:** ~113 across 6 CEFR levels
 
 Each module entry includes:
 - **Theme** — broad topic area
@@ -112,7 +112,7 @@ Each module entry includes:
 
 ---
 
-## A2 — Building Blocks (19 modules)
+## A2 — Building Blocks (23 modules)
 *Core grammar expands: past tenses, future, connectors, and first exposure to professional Danish.*
 
 ---
@@ -273,7 +273,39 @@ Each module entry includes:
 
 ---
 
-## B1 — Entering the Workplace (20 modules)
+### A2-20 — Hobbies, Sports & Leisure
+- **Theme:** Free time and personal interests
+- **Communication goal:** Talk about your hobbies and the sports you play or follow; understand and join a conversation about how Danes spend their free time
+- **Grammar focus:** Habitual present ("jeg løber", "jeg spiller fodbold"), "at dyrke" + activity, frequency adverbs revisited in leisure context
+- **Vocabulary focus:** Common sports (fodbold, håndbold, cykling, svømning, løb), hobby categories (madlavning, fotografering, musik, håndværk, havebrug), leisure verbs (dyrke, spille, se, følge med i, gå til)
+
+---
+
+### A2-21 — Making Plans & Social Invitations
+- **Theme:** Social arrangements and invitations
+- **Communication goal:** Invite someone to do something, accept or decline an invitation, arrange a time and place to meet, and follow up on social plans
+- **Grammar focus:** Future with "vil" and "skal" for social plans, time prepositions (på lørdag, om fredagen, klokken...), polite decline formulas
+- **Vocabulary focus:** Invitation phrases (Har du lyst til...?, Vil du med...?, Skal vi ikke...?), acceptance and decline phrases (Det lyder skønt!, Desværre kan jeg ikke), social plan vocabulary (aftale, mødes, ses, aflyse, rykke)
+
+---
+
+### A2-22 — Texting & Informal Digital Communication
+- **Theme:** Digital language and informal written Danish
+- **Communication goal:** Write natural, informal Danish messages — texts, WhatsApp, social media comments — without sounding over-formal or stilted
+- **Grammar focus:** Ellipsis in informal writing (pronoun drop, short fragments), spoken-register features in writing, informal punctuation norms
+- **Vocabulary focus:** Common informal written phrases (Hej!, Vi ses!, Skal vi ikke bare...?, Det er fedt!), Danish texting shorthand (ikk', nå, øh, haha), group chat vocabulary (gruppechat, svare, videresende, slette), emoji conventions in Danish digital culture
+
+---
+
+### A2-23 — Danish TV, Music & Entertainment
+- **Theme:** Danish popular culture and media
+- **Communication goal:** Recommend and discuss a Danish TV show, film, or music artist; understand and join small talk about popular culture; navigate the Danish streaming and media landscape
+- **Grammar focus:** Present perfect for recommendations ("Har du set...?", "Har du hørt...?"), opinion phrases with entertainment content, "synes om" vs. "kan lide" revisited
+- **Vocabulary focus:** Danish TV and streaming (DR, TV2, afsnit, sæson, serie, streame), key shows as cultural touchstones (Borgen, Forbrydelsen, Badehotellet), music genres and Danish artists, review vocabulary (anmeldelse, premiere, nomineret, Bodilprisen)
+
+---
+
+## B1 — Entering the Workplace (23 modules)
 *The professional pivot. Grammar consolidates around complex sentences; workplace and social Danish are treated as primary domains.*
 
 ---
@@ -438,7 +470,31 @@ Each module entry includes:
 
 ---
 
-## B2 — Professional Fluency (20 modules)
+### B1-21 — Foreningsliv: Clubs, Associations & Volunteering
+- **Theme:** Danish association culture
+- **Communication goal:** Join a sports club, hobby group, or civic association; participate in a foreningsbestyrelse meeting; discuss volunteering commitments and organizational roles; understand why foreningsliv is structurally important in Danish social life
+- **Grammar focus:** Formal meeting language in the informal register typical of associations (contrast with corporate meeting language), modal verbs for voluntary obligation (vi plejer at..., det er frivilligt, man kan godt...)
+- **Vocabulary focus:** Association vocabulary (forening, idrætsforening, bestyrelse, kontingent, frivillig, generalforsamling, vedtægter, formand, næstformand, kasserer, sekretær), volunteering vocabulary (melde sig ind, melde sig ud, bidrage, engagere sig), common Danish association types (sportsklub, spejder, kor, grundejerforening)
+
+---
+
+### B1-22 — Parenting & Family Life in Denmark
+- **Theme:** Danish childhood institutions and parenting culture
+- **Communication goal:** Navigate daily conversations around children's lives — daycare, school, after-school care — and participate in a forældremøde; understand the Danish approach to childhood and parenting norms
+- **Grammar focus:** Describing institutional routines (temporal clauses, frequency adverbs), polite semi-formal communication with institutions (writing to a teacher, addressing a pædagog)
+- **Vocabulary focus:** Childcare vocabulary (vuggestue, børnehave, dagpleje, SFO, fritidsordning, pædagog), school vocabulary (folkeskole, klasse, klasselærer, skolebestyrelse, forældremøde, karakterer, trivselsmåling), parenting culture words (frihed under ansvar, udeliv, selvstændighed, lekser)
+
+---
+
+### B1-23 — Neighborhood Life & Local Civic Participation
+- **Theme:** Local community and civic engagement
+- **Communication goal:** Participate in a grundejerforening or ejerforening meeting, engage with neighbors about shared concerns, navigate a beboermøde, and understand local democratic structures
+- **Grammar focus:** Formal-informal hybrid register of local meetings, requests and objections in civic context, passive for bylaws and shared rules (det er ikke tilladt at..., det er besluttet at..., fællesarealer må ikke...)
+- **Vocabulary focus:** Housing association vocabulary (grundejerforening, ejerforening, andelsboligforening, bestyrelse, vedligeholdelse, fællesarealer, støjklage, husorden), neighborhood vocabulary (nabo, nabohjælp, hæk, parkeringsplads, renovation), local democracy vocabulary (kommunalbestyrelse, lokalplan, høring, borgermøde, indsigelse)
+
+---
+
+## B2 — Professional Fluency (21 modules)
 *Leadership language begins here. Writing, persuasion, and advanced grammar for the workplace.*
 
 ---
@@ -600,6 +656,14 @@ Each module entry includes:
 - **Communication goal:** Identify and close B2-level grammar and vocabulary gaps before Level Test
 - **Grammar focus:** Targeted review of the grammar concepts introduced at B2, with particular focus on passive, conditionals, and connectors
 - **Vocabulary focus:** Systematic vocabulary review across B2 professional domains
+
+---
+
+### B2-21 — Danish Entertainment & Pop Culture (In Depth)
+- **Theme:** Cultural participation through entertainment
+- **Communication goal:** Discuss Danish film, TV drama, comedy, and music at a level that allows genuine cultural participation — not just recognition but informed opinion, recommendation, and reference; use entertainment as a social bonding tool with Danish colleagues and friends
+- **Grammar focus:** Register shift from casual cultural chat to more analytical opinion (at analysere, at fortolke, at karakterisere), embedded relative clauses for plot and character description, reported speech for paraphrasing reviews or reactions
+- **Vocabulary focus:** Danish film and television vocabulary (instruktør, manuskriptforfatter, tema, fortælling, cliffhanger, biperson), key cultural works as shared references (Dogme-film, Lars von Trier, Thomas Vinterberg, Susanne Bier, dansk noir), music and festival culture (Roskilde Festival, Distortion, SPOT Festival, dansk pop og rock), critical vocabulary (overbevisende, rørende, tankevækkende, overvurderet, sæsonfinale)
 
 ---
 
