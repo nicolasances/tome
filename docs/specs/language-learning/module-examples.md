@@ -52,9 +52,9 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `jeg / fra / Danmark / kommer` → **Jeg kommer fra Danmark.**
+1. `jeg / fra / Danmark / kommer` → **Jeg kommer fra Danmark.** *(I come from Denmark.)*
 
-2. `ingeniør / hun / er` → **Hun er ingeniør.**
+2. `ingeniør / hun / er` → **Hun er ingeniør.** *(She is an engineer.)*
 
 **Fill in the Blank**
 
@@ -72,11 +72,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Hej, jeg hedder Maria og jeg kommer af Danmark.*
+1. *Hej, jeg hedder Maria og jeg kommer af Danmark.* *(Hi, my name is Maria and I come from Denmark.)*
    Error: "af" → should be "**fra**"
    ✓ *Hej, jeg hedder Maria og jeg kommer **fra** Danmark.*
 
-2. *Hvad hedde du?*
+2. *Hvad hedde du?* *(What is your name?)*
    Error: "hedde" → infinitive used instead of present tense
    ✓ *Hvad **hedder** du?*
 
@@ -131,9 +131,9 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `jeg / brød / spiser / morgenmad / til` → **Jeg spiser brød til morgenmad.**
+1. `jeg / brød / spiser / morgenmad / til` → **Jeg spiser brød til morgenmad.** *(I eat bread for breakfast.)*
 
-2. `kaffe / ikke / hun / kan lide` → **Hun kan ikke lide kaffe.**
+2. `kaffe / ikke / hun / kan lide` → **Hun kan ikke lide kaffe.** *(She doesn't like coffee.)*
 
 **Fill in the Blank**
 
@@ -151,11 +151,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Jeg spise ikke brød til morgenmad.*
+1. *Jeg spise ikke brød til morgenmad.* *(I don't eat bread for breakfast.)*
    Error: "spise" → infinitive used instead of present tense
    ✓ *Jeg **spiser** ikke brød til morgenmad.*
 
-2. *Hvad kan du lide at drikker?*
+2. *Hvad kan du lide at drikker?* *(What do you like to drink?)*
    Error: "drikker" → finite form used after "at"; must be infinitive
    ✓ *Hvad kan du lide at **drikke**?*
 
@@ -212,9 +212,9 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `han / i går / i skole / gik` → **Han gik i skole i går.**
+1. `han / i går / i skole / gik` → **Han gik i skole i går.** *(He went to school yesterday.)*
 
-2. `hun / tog / til mødet / for en uge siden` → **Hun tog til mødet for en uge siden.**
+2. `hun / tog / til mødet / for en uge siden` → **Hun tog til mødet for en uge siden.** *(She went to the meeting a week ago.)*
 
 **Fill in the Blank**
 
@@ -232,11 +232,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *I går gåede jeg til arbejde.*
+1. *I går gåede jeg til arbejde.* *(Yesterday I walked to work.)*
    Error: "gåede" → "gå" is irregular; preterite is "gik"
    ✓ *I går **gik** jeg til arbejde.*
 
-2. *Hun sagede ingenting på mødet.*
+2. *Hun sagede ingenting på mødet.* *(She said nothing at the meeting.)*
    Error: "sagede" → "sige" is irregular; preterite is "sagde"
    ✓ *Hun **sagde** ingenting på mødet.*
 
@@ -292,13 +292,13 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `hvad / du / weekenden / i / lavede` → **Hvad lavede du i weekenden?**
+1. `hvad / du / weekenden / i / lavede` → **Hvad lavede du i weekenden?** *(What did you do at the weekend?)*
 
-2. `det / ret dejligt / var / med / solskin` → **Det var ret dejligt med solskin.**
+2. `det / ret dejligt / var / med / solskin` → **Det var ret dejligt med solskin.** *(It was quite nice with the sunshine.)*
 
 **Fill in the Blank**
 
-1. Det var ___ (hyggelig, neuter predicative) at mødes til frokost.
+1. Det var ___ (hyggelig, neuter predicative) at mødes til frokost. *(It was nice to meet for lunch.)*
    → **hyggeligt**
 
 2. Har du nogle ___ til weekenden? *(Do you have any plans for the weekend?)*
@@ -312,11 +312,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Det var ret hyggelig at sidde udenfor i går.*
+1. *Det var ret hyggelig at sidde udenfor i går.* *(It was quite nice to sit outside yesterday.)*
    Error: "hyggelig" → predicate adjective after "det var" takes neuter form
    ✓ *Det var ret **hyggeligt** at sidde udenfor i går.*
 
-2. *I dag er det vejr meget godt.*
+2. *I dag er det vejr meget godt.* *(The weather is very good today.)*
    Error: Missing inversion after fronted adverbial + wrong word order; "vejr" needs definite form
    ✓ *I dag er **vejret** meget godt.*
 
@@ -366,7 +366,7 @@ Correct answers are shown in **bold** or marked with `→`.
    - foreslå
    - tage
 
-2. Kan vi tage en ___ nu? Vi har arbejdet i to timer.
+2. Kan vi tage en ___ nu? Vi har arbejdet i to timer. *(Can we take a break now? We've worked for two hours.)*
    - beslutning
    - afstemning
    - **pause** ✓
@@ -374,13 +374,13 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `jeg / enig / med dig / er / i det` → **Jeg er enig med dig i det.**
+1. `jeg / enig / med dig / er / i det` → **Jeg er enig med dig i det.** *(I agree with you on that.)*
 
-2. `vi / kan / gå til / næste punkt` → **Vi kan gå til næste punkt.**
+2. `vi / kan / gå til / næste punkt` → **Vi kan gå til næste punkt.** *(We can move on to the next item.)*
 
 **Fill in the Blank**
 
-1. Undskyld, kan du ___? Jeg forstod ikke det sidste punkt. *(Excuse me, can you clarify?)*
+1. Undskyld, kan du ___? Jeg forstod ikke det sidste punkt. *(Excuse me, can you clarify? I didn't understand the last point.)*
    → **klarificere**
 
 2. Der er tre ___ på dagsordenen i dag. *(There are three items on the agenda today.)*
@@ -394,11 +394,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Jeg er enig i dig om det.*
+1. *Jeg er enig i dig om det.* *(I agree with you on that.)*
    Error: "enig i dig" → "enig" takes "med" before a person and "i" before a thing
    ✓ *Jeg er enig **med** dig om det.*
 
-2. *Kan jeg tager ordet et øjeblik?*
+2. *Kan jeg tager ordet et øjeblik?* *(Can I take the floor for a moment?)*
    Error: "tager" → must be infinitive after modal "kan"
    ✓ *Kan jeg **tage** ordet et øjeblik?*
 
@@ -454,9 +454,9 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `hvad / ville / du / gøre / hvis / din chef / sagde / det` → **Hvad ville du gøre, hvis din chef sagde det?**
+1. `hvad / ville / du / gøre / hvis / din chef / sagde / det` → **Hvad ville du gøre, hvis din chef sagde det?** *(What would you do if your manager said that?)*
 
-2. `det / ville / i så fald / have / alvorlige konsekvenser` → **Det ville i så fald have alvorlige konsekvenser.**
+2. `det / ville / i så fald / have / alvorlige konsekvenser` → **Det ville i så fald have alvorlige konsekvenser.** *(That would in that case have serious consequences.)*
 
 **Fill in the Blank**
 
@@ -474,11 +474,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Hvis jeg vil have mere tid, ville jeg rejse mere.*
+1. *Hvis jeg vil have mere tid, ville jeg rejse mere.* *(If I had more time, I would travel more.)*
    Error: "vil have" → hypothetical conditional requires preterite in the if-clause
    ✓ *Hvis jeg **havde** mere tid, ville jeg rejse mere.*
 
-2. *Det sandsynligvis vil tage lang tid.*
+2. *Det sandsynligvis vil tage lang tid.* *(It will probably take a long time.)*
    Error: Adverb placement — "sandsynligvis" must follow the finite verb in a main clause
    ✓ *Det vil **sandsynligvis** tage lang tid.*
 
@@ -536,16 +536,16 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `jeg / vil gerne / argumentere / for / forslaget` → **Jeg vil gerne argumentere for forslaget.**
+1. `jeg / vil gerne / argumentere / for / forslaget` → **Jeg vil gerne argumentere for forslaget.** *(I'd like to argue for the proposal.)*
 
-2. `ifølge / undersøgelsen / er / produktiviteten / steget` → **Ifølge undersøgelsen er produktiviteten steget.**
+2. `ifølge / undersøgelsen / er / produktiviteten / steget` → **Ifølge undersøgelsen er produktiviteten steget.** *(According to the study, productivity has increased.)*
 
 **Fill in the Blank**
 
-1. Ganske vist er tallene gamle, men de ___ stadig en tydelig tendens. *(... they still indicate a clear trend.)*
+1. Ganske vist er tallene gamle, men de ___ stadig en tydelig tendens. *(Admittedly the figures are old, but they still indicate a clear trend.)*
    → **indikerer**
 
-2. Lad mig ___: dette forslag sparer os 20% i omkostninger. *(Let me summarize: ...)*
+2. Lad mig ___: dette forslag sparer os 20% i omkostninger. *(Let me summarize: this proposal saves us 20% in costs.)*
    → **sammenfatte**
 
 **Conjugation Drill**
@@ -556,11 +556,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *For det første, er markedet vokset. For det andet, vores konkurrenter er svækkede.*
+1. *For det første, er markedet vokset. For det andet, vores konkurrenter er svækkede.* *(Firstly, the market has grown. Secondly, our competitors are weakened.)*
    Error: Inversion required after fronted adverbials — comma removed, verb moves to second position
    ✓ *For det første **er markedet vokset**. For det andet **er vores konkurrenter svækkede**.*
 
-2. *Ikke desto mindre, vi skal handle nu.*
+2. *Ikke desto mindre, vi skal handle nu.* *(Nonetheless, we must act now.)*
    Error: Inversion required — subject follows verb after fronted connector
    ✓ *Ikke desto mindre **skal vi** handle nu.*
 
@@ -616,13 +616,13 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `vi / skal / næste sprint / planlægge / ud fra backloggen` → **Vi skal planlægge næste sprint ud fra backloggen.**
+1. `vi / skal / næste sprint / planlægge / ud fra backloggen` → **Vi skal planlægge næste sprint ud fra backloggen.** *(We need to plan the next sprint based on the backlog.)*
 
-2. `der er / meget teknisk gæld / i kodebasen` → **Der er meget teknisk gæld i kodebasen.**
+2. `der er / meget teknisk gæld / i kodebasen` → **Der er meget teknisk gæld i kodebasen.** *(There is a lot of technical debt in the codebase.)*
 
 **Fill in the Blank**
 
-1. Vi kan ikke rulle ud til produktion endnu — der er stadig en kritisk ___ vi skal rette. *(... a critical bug we need to fix.)*
+1. Vi kan ikke rulle ud til produktion endnu — der er stadig en kritisk ___ vi skal rette. *(We can't deploy to production yet — there's still a critical bug we need to fix.)*
    → **fejl**
 
 2. Alle ___ fra sprintet er nu lukket og godkendt. *(All user stories from the sprint are now closed and approved.)*
@@ -636,11 +636,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Vi holdt retrospektive i går og identificerede tre forbedringer.*
+1. *Vi holdt retrospektive i går og identificerede tre forbedringer.* *(We held a retrospective yesterday and identified three improvements.)*
    Error: "retrospektive" → borrowed noun takes no inflection; correct form is "retrospektiv"
    ✓ *Vi holdt **retrospektiv** i går og identificerede tre forbedringer.*
 
-2. *Pull requesten er klar til at kodegennemgangen.*
+2. *Pull requesten er klar til at kodegennemgangen.* *(The pull request is ready for code review.)*
    Error: "til at kodegennemgangen" → noun complement takes bare "til", not "til at"; "at" precedes infinitives only
    ✓ *Pull requesten er klar til **kodegennemgang**.*
 
@@ -698,9 +698,9 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `jeg / vil nu / fremlægge / vores strategi / frem mod 2028` → **Jeg vil nu fremlægge vores strategi frem mod 2028.**
+1. `jeg / vil nu / fremlægge / vores strategi / frem mod 2028` → **Jeg vil nu fremlægge vores strategi frem mod 2028.** *(I will now present our strategy towards 2028.)*
 
-2. `dette argument / skal / underbygges / af / vores data` → **Dette argument skal underbygges af vores data.**
+2. `dette argument / skal / underbygges / af / vores data` → **Dette argument skal underbygges af vores data.** *(This argument must be substantiated by our data.)*
 
 **Fill in the Blank**
 
@@ -718,11 +718,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Vi fokuserer på lønsomhed og vækst på den nordiske marked.*
+1. *Vi fokuserer på lønsomhed og vækst på den nordiske marked.* *(We are focusing on profitability and growth in the Nordic market.)*
    Error: "den nordiske marked" → "marked" is neuter (et marked), requires "det"
    ✓ *Vi fokuserer på lønsomhed og vækst på **det** nordiske marked.*
 
-2. *Jeg vil gerne fremlægge tre prioriteringer for jeres opmærksomhed.*
+2. *Jeg vil gerne fremlægge tre prioriteringer for jeres opmærksomhed.* *(I would like to present three priorities for your attention.)*
    Error: "prioriteringer" → means "the act of prioritizing"; the noun for listed priorities is "prioriteter"
    ✓ *Jeg vil gerne fremlægge tre **prioriteter** for jeres opmærksomhed.*
 
@@ -778,13 +778,13 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `vi / beklager dybt / det / der er sket` → **Vi beklager dybt det, der er sket.**
+1. `vi / beklager dybt / det / der er sket` → **Vi beklager dybt det, der er sket.** *(We deeply regret what has happened.)*
 
-2. `vi / har truffet foranstaltninger / for at / det ikke gentager sig` → **Vi har truffet foranstaltninger for at det ikke gentager sig.**
+2. `vi / har truffet foranstaltninger / for at / det ikke gentager sig` → **Vi har truffet foranstaltninger for at det ikke gentager sig.** *(We have taken measures to ensure it does not happen again.)*
 
 **Fill in the Blank**
 
-1. Det er afgørende at vi er ___ (gennemsigtig, plural predicative) over for vores interessenter i denne situation.
+1. Det er afgørende at vi er ___ (gennemsigtig, plural predicative) over for vores interessenter i denne situation. *(It is crucial that we are transparent towards our stakeholders in this situation.)*
    → **gennemsigtige**
 
 2. Som ___ for virksomheden vil jeg besvare jeres spørgsmål. *(As spokesperson for the company, I will answer your questions.)*
@@ -798,11 +798,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Vores kommunikationsplan er designet til sikrer gennemsigtighed.*
+1. *Vores kommunikationsplan er designet til sikrer gennemsigtighed.* *(Our communication plan is designed to ensure transparency.)*
    Error: "sikrer" → must be infinitive after "til at"; also "at" is missing
    ✓ *Vores kommunikationsplan er designet til **at sikre** gennemsigtighed.*
 
-2. *Vi beklager den ulejlighed som hændelsen har forårsagede til vores kunder.*
+2. *Vi beklager den ulejlighed som hændelsen har forårsagede til vores kunder.* *(We regret the inconvenience that the incident has caused our customers.)*
    Error: "forårsagede" → should be past participle "forårsaget" (present perfect); "til" is incorrect here
    ✓ *Vi beklager den ulejlighed, som hændelsen har **forårsaget** vores kunder.*
 
@@ -859,13 +859,13 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `vi / sætter nu / kursen / fremad` → **Vi sætter nu kursen fremad.**
+1. `vi / sætter nu / kursen / fremad` → **Vi sætter nu kursen fremad.** *(We are now setting the course forward.)*
 
-2. `dette er besluttet / det er / ikke til diskussion` → **Dette er besluttet — det er ikke til diskussion.**
+2. `dette er besluttet / det er / ikke til diskussion` → **Dette er besluttet — det er ikke til diskussion.** *(This is decided — it is not up for discussion.)*
 
 **Fill in the Blank**
 
-1. Vores ___ er klart: vi skal vende virksomheden til overskud inden for 18 måneder. *(Our mandate is clear: ...)*
+1. Vores ___ er klart: vi skal vende virksomheden til overskud inden for 18 måneder. *(Our mandate is clear: we must turn the company profitable within 18 months.)*
    → **mandat**
 
 2. God ledelse kræver ___ — ikke tøven. *(Good leadership requires decisiveness — not hesitation.)*
@@ -879,11 +879,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Det er besluttet at vi skal reducerer headcount med 10%.*
+1. *Det er besluttet at vi skal reducerer headcount med 10%.* *(It has been decided that we must reduce headcount by 10%.)*
    Error: "reducerer" → must be infinitive after modal "skal"
    ✓ *Det er besluttet, at vi skal **reducere** headcount med 10%.*
 
-2. *Som leder er klarhed og beslutsomhed er afgørende egenskaber.*
+2. *Som leder er klarhed og beslutsomhed er afgørende egenskaber.* *(As a leader, clarity and decisiveness are essential qualities.)*
    Error: "er" appears twice — the second is redundant after the predicate
    ✓ *Som leder er klarhed og beslutsomhed afgørende egenskaber.*
 
@@ -930,7 +930,7 @@ Correct answers are shown in **bold** or marked with `→`.
    - svært
    - enkelt
 
-2. Lad mig ___ det jeg sagde: jeg mener ikke at vi skal stoppe, men at vi skal sætte tempoet ned. *(Let me reformulate what I said: ...)*
+2. Lad mig ___ det jeg sagde: jeg mener ikke at vi skal stoppe, men at vi skal sætte tempoet ned. *(Let me reformulate what I said: I don't mean that we should stop, but that we should slow the pace down.)*
    - afvise
    - **reformulere** ✓
    - gentage
@@ -938,16 +938,16 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Sentence Reorder**
 
-1. `hvad jeg mener er / at tilgangen / er forkert` → **Hvad jeg mener er, at tilgangen er forkert.**
+1. `hvad jeg mener er / at tilgangen / er forkert` → **Hvad jeg mener er, at tilgangen er forkert.** *(What I mean is that the approach is wrong.)*
 
-2. `med andre ord / behøver vi / et kompromis` → **Med andre ord behøver vi et kompromis.**
+2. `med andre ord / behøver vi / et kompromis` → **Med andre ord behøver vi et kompromis.** *(In other words, we need a compromise.)*
 
 **Fill in the Blank**
 
 1. ___ : jeg støtter forslaget, men ikke tidslinjen. *(To be precise: I support the proposal, but not the timeline.)*
    → **For at præcisere**
 
-2. Lad mig ___ det billede lidt — det er mere komplekst end det lyder. *(Let me add some nuance to that picture...)*
+2. Lad mig ___ det billede lidt — det er mere komplekst end det lyder. *(Let me add some nuance to that picture — it's more complex than it sounds.)*
    → **nuancere**
 
 **Conjugation Drill**
@@ -958,11 +958,11 @@ Correct answers are shown in **bold** or marked with `→`.
 
 **Error Correction**
 
-1. *Pointen er egentlig at vi ikke kan fortsætter på den her måde.*
+1. *Pointen er egentlig at vi ikke kan fortsætter på den her måde.* *(The point is actually that we cannot continue this way.)*
    Error: "fortsætter" → must be infinitive after modal "kan"
    ✓ *Pointen er egentlig, at vi ikke kan **fortsætte** på den her måde.*
 
-2. *Med andre ord, er situationen mere komplekst end vi troede.*
+2. *Med andre ord, er situationen mere komplekst end vi troede.* *(In other words, the situation is more complex than we thought.)*
    Error: "komplekst" → neuter form; "situation" is common gender (en situation), requires "-" form
    ✓ *Med andre ord er situationen mere **kompleks** end vi troede.*
 
@@ -977,20 +977,3 @@ Correct answers are shown in **bold** or marked with `→`.
    *(Alt: For at præcisere: det handler ikke om hvorvidt, men om hvordan.)*
 
 ---
-
-## Observations
-
-A few patterns that emerge from this exercise:
-
-**Grammar errors that recur across levels**
-- Infinitive vs. finite form after modals ("kan gøre" not "kan gør") — appears at A1 through C2
-- Inversion after fronted adverbials ("I dag er vejret godt" not "I dag vejret er godt") — first required at A2, still tested at B2
-- Adjective agreement (neuter predicate forms) — introduced at A1, still trip learners at B1–B2
-
-**Exercise type fit by level**
-- Conjugation Drills are heaviest at A1–A2 (irregular preterites) and B1 (subjunctive-adjacent forms)
-- Error Correction becomes richest at B2–C2 where subtle register and inversion errors dominate
-- Translation (Active) at C1–C2 often has no single correct answer — the alternatives list matters more at higher levels
-
-**Vocabulary density**
-- A1 exercises use 1–2 target words per sentence; C2 exercises naturally use 3–5, which reflects natural sentence complexity at that level

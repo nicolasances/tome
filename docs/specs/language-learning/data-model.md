@@ -55,7 +55,8 @@ Exercise {
   moduleId           // the module this exercise belongs to (null for level test exercises)
   type               // translation_active | multiple_choice |
                      // fill_blank | sentence_reorder | error_correction | conjugation_drill
-  prompt             // the question or sentence shown to the user
+  prompt             // the question or sentence shown to the user (Danish for most types; English for translation_active)
+  promptTranslation  // string | null — English translation of the Danish prompt; required for multiple_choice, fill_blank, sentence_reorder, error_correction; null for translation_active and conjugation_drill
   answer                  // the canonical correct answer (shown in feedback)
   alternativeAnswers      // string[] — other accepted translations, AI-generated at creation time (translation_active only; empty for other types)
   userContributedAnswers  // string[] — translations validated by AI at answer time via on-demand verification (translation_active only)

@@ -17,6 +17,7 @@ These rules apply to all exercise generation: default module seeding, user-gener
 
 ## Multiple Choice
 
+- Always populate `promptTranslation` with a natural English rendering of the Danish sentence. This is how the learner understands the full context while choosing an answer. See also: `Exercise.promptTranslation` in the data model — required for this type.
 - The blank must represent a single, coherent lexical or grammatical unit.
 - **Never split a discontinuous verb phrase across the blank boundary.** If the target phrase requires a negation or particle that appears after it in the sentence, the sentence must be restructured so the blank captures the entire meaningful unit, or the context is made positive.
   - ✗ `Jeg ___ ikke kaffe.` → answer: `kan lide` → produces "Jeg kan lide ikke kaffe" (ungrammatical)
@@ -24,12 +25,13 @@ These rules apply to all exercise generation: default module seeding, user-gener
   - ✓ `Jeg kan ___ lide kaffe.` → answer: `ikke` (if testing negation placement, not the phrase itself)
 - All four options must produce syntactically valid sentences when inserted — distractors should be plausible (same word class, similar context), not grammatically broken.
 - The correct answer must be unambiguous. If more than one option produces a valid, natural sentence, the exercise is flawed.
-- Sentence length: at least 5 words. Very short sentences make answers guessable by elimination.
+- Sentence length: at least 5 words. Very short sentences make answers guessable by elimination. Of course respect CEFR level: higher levels will have more complex and longer sentences.
 
 ---
 
 ## Sentence Reorder
 
+- Always populate `promptTranslation` with the English translation of the target sentence. The learner sees the scrambled Danish words and must know what they are trying to build.
 - All words needed to form the correct sentence must be present in the word list — no omissions, no extras.
 - The correct ordering must be unambiguous. If two orderings are both grammatically and semantically valid, both must be listed as accepted answers.
 - The exercise should test a specific structural rule (inversion after fronted adverbials, verb-second, subordinate clause word order, negation placement). A sentence with no structural challenge is not worth a reorder exercise.
@@ -40,6 +42,8 @@ These rules apply to all exercise generation: default module seeding, user-gener
 
 ## Fill in the Blank
 
+- `promptTranslation` must translate the **entire** prompt sentence, not just the clause containing the blank. If the prompt is two clauses, both must appear in the translation — no truncation with `...`.
+- `promptTranslation` must **never contain `___`**. Always replace the blank position with the actual English equivalent of the target word. The full English sentence is how the learner understands what they are being asked to produce — a blank in the translation defeats that.
 - **Same discontinuous-phrase rule as Multiple Choice.** The blank must not split a phrase whose parts require specific relative ordering with negation, reflexive pronouns, or particles.
 - The sentence context must constrain the answer to exactly one correct form. If two different words or inflections are both valid in the blank, the exercise is ambiguous and must be rewritten.
 - When the task is inflection (not lexical choice), include a form hint: the infinitive in parentheses, e.g., *(at spise, present tense)* or just *(spise)*.
@@ -60,12 +64,14 @@ These rules apply to all exercise generation: default module seeding, user-gener
 
 ## Error Correction
 
-- Exactly one error per sentence. A sentence with two errors forces the learner to guess which one to fix.
+- **Exactly one error per sentence**. A sentence with two errors forces the learner to guess which one to fix.
 - The error must be a plausible learner mistake at the module's CEFR level — something a learner at this stage would actually produce.
 - The sentence must otherwise be fully correct and natural. Do not introduce additional awkwardness around the error.
 - The intended meaning must be recoverable despite the error — the learner needs to understand what the sentence is trying to say in order to identify the mistake.
+- Always populate `promptTranslation` with the English translation of the **intended** (correct) meaning of the sentence. The learner must understand what the sentence is supposed to say in order to spot what is wrong.
 - Clearly state what the error is and provide the corrected sentence. Format:
   ```
+  [erroneous Danish sentence] (English translation of the intended meaning)
   Error: [description of the mistake]
   ✓ [corrected sentence with the fix bolded]
   ```
