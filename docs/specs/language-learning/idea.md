@@ -341,12 +341,25 @@ The user's CEFR level starts at A1. To progress to A2 (and so on), the user must
 
 #### Level Tests
 
-A Level Test is a comprehensive assessment covering:
-- Vocabulary from all modules completed at that level
-- Grammar concepts introduced at that level
-- 20–30 questions, mix of exercise types
+A Level Test is a comprehensive assessment covering the full scope of the current CEFR level: all vocabulary from completed modules at that level and all grammar concepts introduced at that level.
 
-Passing threshold: **75%**. If failed, the user receives a summary of weak areas and can retry after a cooldown period *(suggest: no cooldown for v2, retry freely)*.
+**Level Test Bank**
+
+Each CEFR level has a dedicated exercise bank generated at seeding time — not drawn from individual module banks. Exercises are purpose-built for cross-module breadth: a single exercise may combine vocabulary from different modules or test a grammar concept across several themes. Bank size: ~60 exercises. Generation follows the same upfront pattern as module exercise banks, never live.
+
+**Exercise Selection**
+
+At test start, 20–30 exercises are drawn from the bank using the same mastery-aware algorithm as module sessions (§3.4.3), applied across the full level's vocabulary and grammar scope.
+
+**Results**
+
+After the test, the user sees:
+- Final score (% correct)
+- All questions with correct answers; incorrect answers shown alongside the user's answer
+- "Explain my mistake" available on demand for any incorrect answer
+- Summary of weak areas (grammar concepts and vocabulary items where the user underperformed)
+
+Passing threshold: **75%**. If failed, the weak areas summary is shown and the user can retry freely (no cooldown for v2).
 
 #### CEFR Level Visibility
 
@@ -443,6 +456,7 @@ The app is AI-powered in several places. These are the AI touchpoints:
 |---|---|
 | Module creation (user-generated) | Generate title, communication goal, vocabulary set, grammar concepts, and exercise bank (~50 exercises) given a user prompt and CEFR level — runs once at creation time, not at session time |
 | Module seeding (default modules) | Given a module shell (theme, goal, grammar concepts), generate the vocabulary set and exercise bank — runs once during development per default module |
+| Level test bank seeding | Given all vocabulary items and grammar concepts for a CEFR level, generate a bank of ~60 cross-module exercises — runs once at seeding time per level |
 | Exercise bank refresh | Generate additional exercises for a module whose bank has fallen below one session's capacity — runs asynchronously in the background, never during a live session |
 | Error explanation | Explain why a user's answer was wrong, with rule + example |
 | Answer verification | On explicit user request after a wrong `translation_active` answer: check whether the user's translation is valid; if valid, mark correct and store in `userContributedAnswers`; if invalid, explain why |

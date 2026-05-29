@@ -48,7 +48,7 @@ UserVocabularyProgress {
 ```
 Exercise {
   id
-  moduleId           // the module this exercise belongs to
+  moduleId           // the module this exercise belongs to (null for level test exercises)
   type               // translation_active | multiple_choice |
                      // fill_blank | sentence_reorder | error_correction | conjugation_drill
   prompt             // the question or sentence shown to the user
@@ -74,6 +74,19 @@ ExerciseBank {
 }
 ```
 
+## LevelTestBank
+```
+LevelTestBank {
+  id
+  cefrLevel          // the level this bank covers
+  exercises          // Exercise[]
+  generatedAt        // timestamp (of the most recent generation)
+  totalGenerated     // int (cumulative exercises ever generated for this level)
+}
+```
+
+*Note: One LevelTestBank per CEFR level, generated at seeding time. Exercises cover the full breadth of vocabulary and grammar concepts at that level, across all default modules. Not drawn from individual module ExerciseBanks — purpose-built for cross-module assessment.*
+
 ## ExerciseResult
 ```
 ExerciseResult {
@@ -83,7 +96,7 @@ ExerciseResult {
   userAnswer
   correctAnswer
   timestamp
-  moduleId           // null if from review session
+  moduleId           // null if from a review session or level test
 }
 ```
 
@@ -146,18 +159,20 @@ GrammarConcept {
 
 *Note: Like VocabularyItem, GrammarConcept is a canonical definition referenced by modules via grammarConceptIds. Grammar concepts are shared across modules and users.*
 
-## LevelTest
+## LevelTestAttempt
 ```
-LevelTest {
+LevelTestAttempt {
   id
-  cefrLevel          // the level being tested
   userId
+  cefrLevel          // the level being tested
   score              // float 0–1
   passed             // boolean
   takenAt            // timestamp
-  weakAreas          // GrammarConcept[] | VocabularyItem[]
+  exerciseResults    // ExerciseResult[]
 }
 ```
+
+*Note: Every attempt (failed and passing) is recorded. `exerciseResults` enables the post-test review screen and is the source of truth for deriving weak areas at read time — aggregating incorrect results by `grammarConceptId` and `vocabularyItemId`.*
 
 ## DialogSession
 ```
