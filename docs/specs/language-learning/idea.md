@@ -20,6 +20,7 @@
 6. [Key User Stories](#6-key-user-stories)
 7. [Open Questions](#7-open-questions)
 8. [Constraints & Assumptions](#8-constraints--assumptions)
+9. [Ideas for Future Versions](#9-ideas-for-future-versions)
 
 ---
 
@@ -56,7 +57,6 @@ Adult learners who want to progress from zero Danish towards conversational and 
 | **Grammar Concept** | A named grammatical topic (e.g. "Inversion", "Modal Verbs") that appears inside modules. |
 | **Exercise** | A single interactive task presented to the user (translation, fill-in-the-blank, multiple choice, etc.). |
 | **Level Test** | A cumulative assessment that unlocks the next CEFR level when passed. |
-| **Review Session** | A standalone vocabulary drill session, not tied to any module. |
 
 ---
 
@@ -175,17 +175,11 @@ The Mastery Score for a vocabulary item is derived from the user's exercise hist
 
 *The exact algorithm can be tuned, but the principle is standard SRS (Spaced Repetition System).*
 
-#### 3.2.3 Vocabulary Review Session
+#### 3.2.3 User-Added Vocabulary
 
-A standalone session, accessible from the Home Dashboard at any time.
+A user can manually add a Danish word they have encountered (e.g. while reading an article). The user provides the Danish word and its English translation; the item is stored as a `VocabularyItem` with `source = user_added` (no AI involvement, no generated alternatives or context).
 
-The user can optionally filter by:
-- CEFR level
-- Vocabulary type (noun, verb, etc.)
-- Mastery score range (e.g. "only items I'm struggling with")
-- Module / theme tag
-
-The session presents items as translation cards (Danish → English or English → Danish), updating mastery scores after each answer.
+**In v2.0, user-added words are stored but not used.** They are not referenced by any module and there is no standalone practice surface, so they are never presented in exercises. The capability exists so that the words are captured; how they enter the learning curriculum is deferred to a future version (see §9, "Ideas for Future Versions").
 
 ---
 
@@ -437,15 +431,13 @@ AI calls should always be aware of the user's current CEFR level so that vocabul
 | US-02 | Create a module from a natural language prompt | I can learn vocabulary relevant to my real life |
 | US-03 | Run through a module step by step | I learn both vocabulary and grammar in context |
 | US-04 | Ask for an explanation when I get something wrong | I understand the rule, not just the right answer |
-| US-05 | Do a vocabulary review session at any time | I can practise outside of modules |
-| US-06 | Filter vocabulary review by type or mastery | I can focus on what I'm weak at |
-| US-07 | See my mastery score per vocabulary item | I know which words I've truly learned |
-| US-08 | Take a Level Test when I feel ready | I can unlock the next CEFR level |
-| US-09 | Retry a module test if I fail | I'm not blocked; I can keep improving |
-| US-10 | See my weaknesses after a Level Test | I know exactly what to study next |
-| US-11 | Paste a Danish text I encountered (podcast transcript, document, article) and see a curriculum gap report | I know which modules will get me to the point where I can understand and produce content like this |
-| US-12 | Add unknown vocabulary from a pasted text directly to my review pool | I can act immediately on gaps without waiting to complete a full module |
-| US-13 | See which existing modules cover the gaps in a pasted text | The app routes me through its curriculum rather than always generating something new |
+| US-05 | See my mastery score per vocabulary item | I know which words I've truly learned |
+| US-06 | Take a Level Test when I feel ready | I can unlock the next CEFR level |
+| US-07 | Retry a module test if I fail | I'm not blocked; I can keep improving |
+| US-08 | See my weaknesses after a Level Test | I know exactly what to study next |
+| US-09 | Paste a Danish text I encountered (podcast transcript, document, article) and see a curriculum gap report | I know which modules will get me to the point where I can understand and produce content like this |
+| US-10 | Add unknown vocabulary from a pasted text directly to my review pool | I can act immediately on gaps without waiting to complete a full module |
+| US-11 | See which existing modules cover the gaps in a pasted text | The app routes me through its curriculum rather than always generating something new |
 
 ---
 
@@ -456,13 +448,12 @@ These are things not yet decided that will need resolution before or during buil
 | # | Question | Options / Notes |
 |---|---|---|
 | OQ-01 | How many modules are required to unlock a Level Test? | All modules? Min 5? Any count? |
-| OQ-03 | Does the mastery score decay over time (true SRS)? | Recommended: yes, with gentle decay |
-| OQ-04 | Can the user add custom vocabulary items outside of modules? | Nice-to-have for v2 |
-| OQ-05 | Should the user be able to generate modules at a level above their current? | Probably not — keep progression gated |
-| OQ-06 | What is the retry cooldown for the Level Test? | Suggest: none for v2 |
-| OQ-07 | How should the content analysis handle texts that are too far above the user's level? | Show the gap but still route — even C1 content is useful as a destination map for a B1 learner |
-| OQ-10 | Should the content analysis expose an external API for agent-driven invocation? | Recommended for v3; design the function as isolated in v2 to make this straightforward later |
-| OQ-11 | What is the minimum text length for a meaningful content analysis? | Suggest: at least 50 words; shorter inputs produce unreliable CEFR estimates |
+| OQ-02 | Does the mastery score decay over time (true SRS)? | Recommended: yes, with gentle decay |
+| OQ-03 | Should the user be able to generate modules at a level above their current? | Probably not — keep progression gated |
+| OQ-04 | What is the retry cooldown for the Level Test? | Suggest: none for v2 |
+| OQ-05 | How should the content analysis handle texts that are too far above the user's level? | Show the gap but still route — even C1 content is useful as a destination map for a B1 learner |
+| OQ-06 | Should the content analysis expose an external API for agent-driven invocation? | Recommended for v3; design the function as isolated in v2 to make this straightforward later |
+| OQ-07 | What is the minimum text length for a meaningful content analysis? | Suggest: at least 50 words; shorter inputs produce unreliable CEFR estimates |
 
 ---
 
@@ -474,3 +465,26 @@ These are things not yet decided that will need resolution before or during buil
 - **No audio** in v2.0 — listening and speaking exercises are out of scope.
 - The vocabulary taxonomy (§3.2.1) is fixed for v2.0 but can be extended.
 - CEFR levels above B2 will have limited pre-built modules at launch; user-generated modules fill the gap.
+
+---
+
+## 9. Ideas for Future Versions
+
+Features and directions intentionally deferred beyond v2.0. Captured here so the decisions and their context are not lost.
+
+### 9.1 Bringing User-Added Vocabulary into the Curriculum
+
+In v2.0 a user can add custom words (§3.2.3), but they are stored only — never practiced. A future version should give these words a path into the learning curriculum. The leading direction:
+
+- User-added words accumulate in a per-user "collected words" pool.
+- When the pool reaches a threshold (or on demand), the app generates a custom module from the collected words — **at the user's current CEFR level**, reusing the custom-module generation machinery (§3.1.3 / §3.6). The generated module is the vehicle that brings the words into the curriculum with exercises.
+- The word's own `cefrLevel` is treated as descriptive metadata only — it never gates or filters the word out of the user's practice. The act of adding it is the signal that the user wants to learn it, which overrides the level.
+
+**Open questions to resolve when designing this:**
+
+| # | Question | Notes |
+|---|---|---|
+| FV-01 | How are user-added words brought into practice? | Leading option: batch into a generated custom module at the user's level. Alternatives (per-word exercise generation, a standalone review surface) were considered and set aside. |
+| FV-02 | What triggers module generation from the pool? | A size threshold, an explicit user action, or both? |
+| FV-03 | Thematically unrelated words produce an incoherent module — is that acceptable? | A "my collected words" module may lack a single theme; decide whether that is fine or whether words should be clustered first. |
+| FV-04 | Should added sentences be supported, not just words? | A sentence is closer to a `pattern`/`phrase` or an Analyze Content input than a vocabulary item; decide how (or whether) to handle it. |

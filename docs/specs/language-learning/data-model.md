@@ -26,10 +26,14 @@ VocabularyItem {
   context            // string | null — optional disambiguation note, e.g. "physical size" for stor vs. "importance/greatness"; used to scope exercise prompts and alternative answers
   tags               // string[]
   cefrLevel          // level at which this item is typically introduced
+  source             // curriculum | user_added — how the item entered the system
+  addedByUserId      // string | null — set when source is user_added; the user who added it
 }
 ```
 
 *Note: VocabularyItem is a canonical definition shared across all users and modules. The same word (e.g., "kaffe") is stored once and can be referenced by multiple modules. User-specific progress is tracked separately in UserVocabularyProgress.*
+
+*Note: `source = user_added` marks words a user added manually (see idea.md §3.2.3). In v2.0 these are stored but not referenced by any module, so they are never practiced — see "Ideas for Future Versions" in idea.md for the intended handling.*
 
 ## UserVocabularyProgress
 ```
@@ -96,7 +100,7 @@ ExerciseResult {
   userAnswer
   correctAnswer
   timestamp
-  moduleId           // null if from a review session or level test
+  moduleId           // null if from a level test
 }
 ```
 
