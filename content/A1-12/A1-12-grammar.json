@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A1-12-g-question-formation-7529",
+    "name": "Question formation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish questions are formed by placing a question word (hvad, hvor, hvornår, hvorfor, hvem, hvordan) at the start of the sentence, followed immediately by the verb. The subject comes after the verb. This is the same inversion pattern as English: 'Hvad hedder du?' = 'What are you called?'",
+    "examples": [
+      { "danish": "Hvad hedder du?", "english": "What is your name?" },
+      { "danish": "Hvor bor du?", "english": "Where do you live?" }
+    ]
+  },
+  {
+    "id": "A1-12-g-modal-verbs-kan-skal-vil-7825",
+    "name": "Modal verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Modal verbs like 'kan' (can), 'skal' (must/will), and 'vil' (want to/will) come before the infinitive of the main verb (without 'at'). 'Kan du...?' is a polite way to ask someone to do something — it softens a request and is essential for asking for help.",
+    "examples": [
+      { "danish": "Kan du gentage det?", "english": "Can you repeat that?" },
+      { "danish": "Kan du tale langsommere?", "english": "Can you speak more slowly?" }
+    ]
+  },
+  {
+    "id": "A1-12-g-negation-placement-ikke-5510",
+    "name": "Negation placement (\"ikke\")",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In Danish, 'ikke' (not) comes directly after the verb in a main clause. Unlike English, it never goes before the verb. So 'I don't understand' is 'Jeg forstår ikke' — literally 'I understand not'.",
+    "examples": [
+      { "danish": "Jeg forstår ikke.", "english": "I don't understand." },
+      { "danish": "Jeg ved det ikke.", "english": "I don't know." }
+    ]
+  }
+]

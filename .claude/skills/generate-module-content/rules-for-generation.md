@@ -107,7 +107,7 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
   - Preserve all other surface forms exactly as they appear in `answer` (capitalisation of the first word, hyphens, etc.).
   - The array must be shuffled — do not emit the words in their correct order.
   - No omissions, no extras: the tiles must be exactly sufficient to form `answer` (minus final punctuation).
-- The target sentence must have exactly one valid ordering. If two orderings are both grammatically and semantically valid, choose a different sentence.
+- When multiple word orderings are grammatically and semantically valid (e.g. SVO vs. fronted-object inversion), **do not discard the sentence** — use the most natural spoken Danish form as `answer` and list all other valid orderings in `alternativeAnswers`. The tile set in `words` covers all orderings automatically since they use the same tokens.
 - The exercise must test a specific structural rule (inversion after fronted adverbials, verb-second, subordinate clause word order, negation placement). A sentence with no structural challenge is not worth a reorder exercise.
 - Ideal length: 5–9 words. Shorter is trivial; longer becomes a working-memory task.
 
@@ -195,7 +195,8 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 - The error must be a plausible learner mistake at the module's CEFR level.
 - The sentence must otherwise be fully correct and natural — do not introduce additional awkwardness around the error.
 - The intended meaning must be recoverable despite the error.
-- `answer` contains the **full corrected sentence**, not just the fixed word.
+- `answer` contains the **full corrected sentence**, not just the fixed word. Use the most natural spoken Danish form as the canonical answer.
+- If the corrected sentence admits multiple valid word orderings (e.g. both "Det ved jeg ikke" and "Jeg ved det ikke" are valid corrections of "Jeg ikke ved det"), list all valid forms in `alternativeAnswers`. The error itself is still exactly one; it is the corrected result that can have variants.
 - Good error types by level:
   - A1–A2: wrong verb form (infinitive instead of present/preterite), wrong preposition (*af* vs *fra*), adjective not inflected for gender/number
   - B1: inversion missing after fronted adverbial, wrong subordinate clause word order, incorrect negation placement in embedded clause
@@ -223,8 +224,8 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 **Quality rules**
 
 - `promptTranslation` is `null` for this type — the prompt is already in English.
-- The canonical `answer` should be the most natural, common phrasing — not the most literal rendering.
-- `alternativeAnswers` must cover all valid paraphrases. For single-word targets with no synonyms (e.g., *I* → *jeg*), the list is empty — that is correct and expected.
+- The canonical `answer` should be the most natural spoken Danish form — not the most literal or most SVO rendering.
+- `alternativeAnswers` must cover all valid paraphrases, including word-order variants. In Danish, fronted-object and SVO forms are often both valid (e.g. *Det ved jeg ikke* vs. *Jeg ved det ikke*): the more natural spoken form goes in `answer`, the other in `alternativeAnswers`. For single-word targets with no synonyms (e.g., *I* → *jeg*), the list is empty — that is correct and expected.
 - Store `alternativeAnswers` in natural form (not pre-normalized). The matching engine normalizes before comparing.
 - The English prompt must be unambiguous. If the sentence has two possible readings, constrain it with a context note or rewrite it.
 - At A1–A2, use single-clause sentences. At B1+, the prompt may include two clauses; at C1+, it may include a dependent clause or idiomatic structure.

@@ -71,7 +71,11 @@ Exercise {
   prompt             // the question or sentence shown to the user (Danish for most types; English for translation_active)
   promptTranslation  // string | null — English translation of the Danish prompt; required for multiple_choice, fill_blank, sentence_reorder, error_correction; null for translation_active and conjugation_drill
   answer                  // the canonical correct answer (shown in feedback)
-  alternativeAnswers      // string[] — other accepted translations, AI-generated at creation time (translation_active only; empty for other types)
+  alternativeAnswers      // string[] — other accepted answers, AI-generated at creation time:
+                          //   translation_active: valid paraphrases and word-order variants
+                          //   sentence_reorder: other valid word orderings of the same tiles
+                          //   error_correction: other valid corrections when the corrected sentence admits multiple word orders
+                          //   all other types: always []
   userContributedAnswers  // string[] — translations validated by AI at answer time via on-demand verification (translation_active only)
   words                   // string[] | null — shuffled Danish word tokens (sentence_reorder only); null for all other types
   distractors             // string[] (multiple choice only — the wrong options)

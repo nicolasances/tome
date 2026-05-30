@@ -152,7 +152,11 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 - Exactly one of `vocabularyItemId` / `grammarConceptId` set per exercise, per the type→link table in `rules-for-generation.md`.
 - Every referenced id exists in the Phase 1/2 files.
 - Every vocab item and every grammar concept has ≥1 exercise.
-- `timesShown` is `0` everywhere; `translation_active` items have correct `alternativeAnswers` handling.
+- `timesShown` is `0` everywhere.
+- `translation_active`: `alternativeAnswers` covers word-order variants and paraphrases; canonical `answer` is the most natural spoken form.
+- `sentence_reorder`: if multiple word orderings are valid, canonical `answer` is the most natural spoken form and `alternativeAnswers` lists the others; `words` is unchanged (same tiles).
+- `error_correction`: if the corrected sentence admits multiple word orders, canonical `answer` is the most natural spoken form and `alternativeAnswers` lists the others.
+- `fill_blank`, `multiple_choice`, `conjugation_drill`: `alternativeAnswers` is always `[]`.
 - Every `sentence_reorder` exercise has a `words` array (shuffled tokens, no trailing punctuation) and its `prompt` is the English translation; `promptTranslation` is `null`.
 - Bank composition falls within the CEFR-level distribution targets in `rules-for-generation.md`. If the coverage requirement forces a type over its ceiling, note it explicitly.
 
