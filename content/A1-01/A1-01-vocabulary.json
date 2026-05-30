@@ -1,486 +1,472 @@
 [
   {
-    "id": "A1-01-v-jeg-8906",
+    "id": "A1-01-v-jeg-5325",
     "danish": "jeg",
     "english": "I",
     "type": "pronoun",
     "context": null,
-    "tags": ["pronouns", "identity"],
+    "tags": ["identity", "pronouns"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-du-5247",
+    "id": "A1-01-v-du-5494",
     "danish": "du",
     "english": "you (singular)",
     "type": "pronoun",
     "context": null,
-    "tags": ["pronouns", "identity"],
+    "tags": ["identity", "pronouns"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-han-5440",
+    "id": "A1-01-v-han-5047",
     "danish": "han",
     "english": "he",
     "type": "pronoun",
     "context": null,
-    "tags": ["pronouns", "identity"],
+    "tags": ["identity", "pronouns"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-hun-1641",
+    "id": "A1-01-v-hun-9359",
     "danish": "hun",
     "english": "she",
     "type": "pronoun",
     "context": null,
-    "tags": ["pronouns", "identity"],
+    "tags": ["identity", "pronouns"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-hedder-1562",
-    "danish": "hedder",
-    "english": "is called / am called",
+    "id": "A1-01-v-at-hedde-3560",
+    "danish": "at hedde",
+    "english": "to be called / to be named",
     "type": "verb",
-    "context": "present tense of 'at hedde'; used in 'Jeg hedder...' (My name is...)",
-    "tags": ["identity", "verbs"],
+    "context": null,
+    "tags": ["identity", "introductions"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-er-8299",
-    "danish": "er",
-    "english": "am / is / are",
+    "id": "A1-01-v-at-vaere-6550",
+    "danish": "at være",
+    "english": "to be",
     "type": "verb",
-    "context": "present tense of 'at være' (to be)",
-    "tags": ["identity", "verbs"],
+    "context": null,
+    "tags": ["identity", "introductions"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-arbejder-7903",
-    "danish": "arbejder",
-    "english": "works / work",
+    "id": "A1-01-v-at-komme-fra-9092",
+    "danish": "at komme fra",
+    "english": "to come from",
+    "type": "phrase",
+    "context": null,
+    "tags": ["identity", "introductions", "nationality"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-01-v-at-arbejde-8546",
+    "danish": "at arbejde",
+    "english": "to work",
     "type": "verb",
-    "context": "present tense of 'at arbejde' (to work)",
-    "tags": ["identity", "verbs", "jobs"],
+    "context": null,
+    "tags": ["introductions", "work"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-bor-5590",
-    "danish": "bor",
-    "english": "lives / live",
+    "id": "A1-01-v-at-tale-9021",
+    "danish": "at tale",
+    "english": "to speak",
     "type": "verb",
-    "context": "present tense of 'at bo' (to live/reside)",
-    "tags": ["identity", "verbs"],
+    "context": null,
+    "tags": ["introductions", "language"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-hej-9542",
+    "id": "A1-01-v-at-bo-8090",
+    "danish": "at bo",
+    "english": "to live / to reside",
+    "type": "verb",
+    "context": null,
+    "tags": ["introductions", "home"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-01-v-hej-8451",
     "danish": "hej",
     "english": "hi / hello",
     "type": "phrase",
     "context": null,
-    "tags": ["greetings", "social"],
+    "tags": ["greetings"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-goddag-9221",
+    "id": "A1-01-v-goddag-8450",
     "danish": "goddag",
     "english": "good day",
     "type": "phrase",
-    "context": "more formal greeting than 'hej'",
-    "tags": ["greetings", "social"],
+    "context": "formal daytime greeting",
+    "tags": ["greetings"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-farvel-4461",
+    "id": "A1-01-v-farvel-8147",
     "danish": "farvel",
     "english": "goodbye",
     "type": "phrase",
     "context": null,
-    "tags": ["greetings", "social"],
+    "tags": ["greetings"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-tak-4605",
+    "id": "A1-01-v-tak-6222",
     "danish": "tak",
     "english": "thank you",
     "type": "phrase",
     "context": null,
-    "tags": ["greetings", "social"],
+    "tags": ["greetings", "politeness"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-kommer-fra-9770",
-    "danish": "kommer fra",
-    "english": "comes from / come from",
+    "id": "A1-01-v-undskyld-2509",
+    "danish": "undskyld",
+    "english": "excuse me / sorry",
     "type": "phrase",
-    "context": "used in 'Jeg kommer fra...' (I come from...); expresses origin or nationality",
-    "tags": ["identity", "nationality"],
+    "context": null,
+    "tags": ["greetings", "politeness"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-dansk-5825",
+    "id": "A1-01-v-dansk-1871",
     "danish": "dansk",
     "english": "Danish",
     "type": "adjective",
     "context": null,
-    "tags": ["nationality", "identity"],
+    "tags": ["nationality"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-engelsk-6674",
+    "id": "A1-01-v-engelsk-6827",
     "danish": "engelsk",
     "english": "English",
     "type": "adjective",
     "context": null,
-    "tags": ["nationality", "identity"],
+    "tags": ["nationality", "language"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-amerikansk-8837",
-    "danish": "amerikansk",
-    "english": "American",
-    "type": "adjective",
-    "context": null,
-    "tags": ["nationality", "identity"],
-    "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
-  },
-  {
-    "id": "A1-01-v-tysk-1102",
+    "id": "A1-01-v-tysk-9758",
     "danish": "tysk",
     "english": "German",
     "type": "adjective",
     "context": null,
-    "tags": ["nationality", "identity"],
+    "tags": ["nationality"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-svensk-3018",
+    "id": "A1-01-v-svensk-4677",
     "danish": "svensk",
     "english": "Swedish",
     "type": "adjective",
     "context": null,
-    "tags": ["nationality", "identity"],
+    "tags": ["nationality"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-laerer-5016",
+    "id": "A1-01-v-norsk-5086",
+    "danish": "norsk",
+    "english": "Norwegian",
+    "type": "adjective",
+    "context": null,
+    "tags": ["nationality"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-01-v-laerer-2287",
     "danish": "lærer",
     "english": "teacher",
     "type": "noun",
     "context": null,
-    "tags": ["jobs", "identity"],
+    "tags": ["jobs"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-ingenioer-5355",
+    "id": "A1-01-v-ingenioer-7025",
     "danish": "ingeniør",
     "english": "engineer",
     "type": "noun",
     "context": null,
-    "tags": ["jobs", "identity"],
+    "tags": ["jobs"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-laege-8709",
+    "id": "A1-01-v-laege-6241",
     "danish": "læge",
     "english": "doctor",
     "type": "noun",
     "context": null,
-    "tags": ["jobs", "identity"],
+    "tags": ["jobs"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-direktoer-4199",
+    "id": "A1-01-v-direktoer-8378",
     "danish": "direktør",
     "english": "director / manager",
     "type": "noun",
     "context": null,
-    "tags": ["jobs", "identity"],
+    "tags": ["jobs"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-programmoer-7617",
-    "danish": "programmør",
-    "english": "programmer / developer",
+    "id": "A1-01-v-studerende-2844",
+    "danish": "studerende",
+    "english": "student",
     "type": "noun",
     "context": null,
-    "tags": ["jobs", "identity"],
+    "tags": ["jobs", "education"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-aar-2246",
-    "danish": "år",
-    "english": "year(s) / years old",
+    "id": "A1-01-v-navn-3032",
+    "danish": "navn",
+    "english": "name",
     "type": "noun",
-    "context": "used in age expressions: 'Jeg er 30 år' (I am 30 years old)",
-    "tags": ["numbers", "identity"],
+    "context": null,
+    "tags": ["identity"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-en-et-9656",
-    "danish": "en / et",
+    "id": "A1-01-v-aar-5206",
+    "danish": "år",
+    "english": "year / years old",
+    "type": "noun",
+    "context": "used for age: 'jeg er 25 år'",
+    "tags": ["identity", "numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-01-v-en-8962",
+    "danish": "en",
     "english": "one",
     "type": "number",
-    "context": "'en' for common gender nouns, 'et' for neuter nouns",
+    "context": "the number 1; also used as the indefinite article 'a/an' for common-gender nouns",
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-to-8171",
+    "id": "A1-01-v-to-7983",
     "danish": "to",
     "english": "two",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-tre-2840",
+    "id": "A1-01-v-tre-3715",
     "danish": "tre",
     "english": "three",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-fire-1148",
+    "id": "A1-01-v-fire-8356",
     "danish": "fire",
     "english": "four",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-fem-7737",
+    "id": "A1-01-v-fem-5349",
     "danish": "fem",
     "english": "five",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-seks-6264",
+    "id": "A1-01-v-seks-2450",
     "danish": "seks",
     "english": "six",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-syv-9642",
+    "id": "A1-01-v-syv-5346",
     "danish": "syv",
     "english": "seven",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-otte-5988",
+    "id": "A1-01-v-otte-3002",
     "danish": "otte",
     "english": "eight",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-ni-5098",
+    "id": "A1-01-v-ni-9203",
     "danish": "ni",
     "english": "nine",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-ti-3500",
+    "id": "A1-01-v-ti-2184",
     "danish": "ti",
     "english": "ten",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-elleve-4848",
+    "id": "A1-01-v-elleve-4172",
     "danish": "elleve",
     "english": "eleven",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-tolv-5707",
+    "id": "A1-01-v-tolv-7716",
     "danish": "tolv",
     "english": "twelve",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-tretten-1937",
+    "id": "A1-01-v-tretten-2223",
     "danish": "tretten",
     "english": "thirteen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-fjorten-3276",
+    "id": "A1-01-v-fjorten-3694",
     "danish": "fjorten",
     "english": "fourteen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-femten-6915",
+    "id": "A1-01-v-femten-1346",
     "danish": "femten",
     "english": "fifteen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-seksten-5009",
+    "id": "A1-01-v-seksten-7128",
     "danish": "seksten",
     "english": "sixteen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-sytten-9358",
+    "id": "A1-01-v-sytten-7233",
     "danish": "sytten",
     "english": "seventeen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-atten-4106",
+    "id": "A1-01-v-atten-7168",
     "danish": "atten",
     "english": "eighteen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-nitten-4093",
+    "id": "A1-01-v-nitten-7496",
     "danish": "nitten",
     "english": "nineteen",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   },
   {
-    "id": "A1-01-v-tyve-2624",
+    "id": "A1-01-v-tyve-3177",
     "danish": "tyve",
     "english": "twenty",
     "type": "number",
     "context": null,
     "tags": ["numbers"],
     "cefrLevel": "A1",
-    "source": "curriculum",
-    "addedByUserId": null
+    "source": "curriculum"
   }
 ]

@@ -1,53 +1,35 @@
 [
   {
-    "id": "A1-01-g-present-tense-nutid-8403",
+    "id": "A1-01-g-present-tense-nutid-6604",
     "name": "Present tense (nutid)",
     "category": "tenses",
     "cefrLevelIntroduced": "A1",
-    "explanation": "In Danish, most verbs in the present tense simply add '-er' to the stem. The same form is used for all persons — there is no change for 'I', 'you', 'he', 'she', etc. A few very common verbs are irregular: 'at være' (to be) → 'er', and 'at hedde' (to be called) → 'hedder'.",
+    "explanation": "Most Danish verbs form the present tense by adding -r to the infinitive stem. For example, 'at arbejde' (to work) becomes 'arbejder', and 'at tale' (to speak) becomes 'taler'. A few very common verbs are irregular: 'at være' (to be) → 'er', and 'at hedde' (to be called) → 'hedder'. The present tense is used for things happening now and for general truths.",
     "examples": [
-      {
-        "danish": "Jeg arbejder som læge.",
-        "english": "I work as a doctor."
-      },
-      {
-        "danish": "Hun hedder Anna og er ingeniør.",
-        "english": "Her name is Anna and she is an engineer."
-      }
+      { "danish": "Jeg hedder Maria og jeg er lærer.", "english": "My name is Maria and I am a teacher." },
+      { "danish": "Han arbejder i København.", "english": "He works in Copenhagen." }
     ]
   },
   {
-    "id": "A1-01-g-personal-pronouns-3765",
+    "id": "A1-01-g-personal-pronouns-1656",
     "name": "Personal pronouns",
     "category": "pronouns",
     "cefrLevelIntroduced": "A1",
-    "explanation": "Danish personal pronouns replace a noun as the subject of a sentence. The four core pronouns are: 'jeg' (I), 'du' (you), 'han' (he), and 'hun' (she). They always come before the verb in a basic statement.",
+    "explanation": "Danish subject pronouns are: jeg (I), du (you), han (he), hun (she), vi (we), I (you plural), de (they). In a statement, the subject pronoun comes before the verb. The pronoun must match the person you are talking about.",
     "examples": [
-      {
-        "danish": "Jeg hedder Lars. Hvad hedder du?",
-        "english": "My name is Lars. What is your name?"
-      },
-      {
-        "danish": "Han er dansk og hun er engelsk.",
-        "english": "He is Danish and she is English."
-      }
+      { "danish": "Jeg kommer fra England.", "english": "I come from England." },
+      { "danish": "Hun er ingeniør.", "english": "She is an engineer." }
     ]
   },
   {
-    "id": "A1-01-g-main-clause-word-order-3305",
+    "id": "A1-01-g-main-clause-word-order-5638",
     "name": "Main clause word order (SVO)",
     "category": "sentence_structure",
     "cefrLevelIntroduced": "A1",
-    "explanation": "Danish basic sentences follow Subject–Verb–Object (SVO) order, just like English. The subject comes first, then the verb, then any object or complement. This is the standard pattern for simple statements.",
+    "explanation": "In a standard Danish statement, the word order is Subject–Verb–Object (SVO), just like English. The subject comes first, followed immediately by the verb, then the rest of the sentence. This is the default pattern for introducing yourself and making simple statements.",
     "examples": [
-      {
-        "danish": "Jeg kommer fra England.",
-        "english": "I come from England."
-      },
-      {
-        "danish": "Han bor i Danmark og arbejder som direktør.",
-        "english": "He lives in Denmark and works as a director."
-      }
+      { "danish": "Jeg taler dansk.", "english": "I speak Danish." },
+      { "danish": "Du bor i Danmark.", "english": "You live in Denmark." }
     ]
   }
 ]
