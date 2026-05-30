@@ -135,7 +135,7 @@ The default modules defined in the curriculum are seeded during development, not
 
 1. **Module shell** — human-authored: theme, communication goal, grammar concepts, and vocabulary focus are defined in the curriculum specification. The modules and their shell are defined in [Default Modules)](./default-modules.md).
 
-2. **Vocabulary set** — AI-generated from the shell: given the module's theme, CEFR level, and grammar focus, the AI produces the vocabulary items (word, translation, type, tags). No human review step; the shell provides sufficient constraint.
+2. **Vocabulary set** — AI-generated from the shell: given the module's theme, CEFR level, and grammar focus, the AI produces the vocabulary items (word, translation, type, tags) and grammar concepts for the module. No human review step; the shell provides sufficient constraint.
 
 3. **Exercise bank** — AI-generated immediately after the vocabulary set: a bank of ~50 exercises covering the vocabulary and grammar concepts (see §3.4.3 for bank mechanics). The bank must include at least one exercise for every vocabulary item in the module and at least one exercise for every grammar concept in the module.
 
