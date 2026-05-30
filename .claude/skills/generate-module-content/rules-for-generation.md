@@ -17,6 +17,28 @@ If the vocabulary or grammar concepts for the target module have not yet been ge
 
 ---
 
+## Exercise bank composition by CEFR level
+
+The bank's distribution across exercise types must respect the targets below. These are **bank-level targets**, not per-exercise quotas — hit the range across the full bank, not on every individual exercise.
+
+The progression reflects a deliberate pedagogical shift: at A1 recognition is appropriate while production skills are being bootstrapped; by C2 production should dominate and multiple choice is nearly useless.
+
+| Level | `multiple_choice` | `fill_blank` | `sentence_reorder` | `conjugation_drill` | `error_correction` | `translation_active` |
+|---|---|---|---|---|---|---|
+| A1 | ≤ 45% | 10–15% | 8–12% | 8–12% | 5–10% | ≥ 10% |
+| A2 | ≤ 35% | 12–18% | 8–12% | 8–12% | 8–12% | ≥ 15% |
+| B1 | ≤ 25% | 15–20% | 10–15% | 10–15% | 10–15% | ≥ 20% |
+| B2 | ≤ 20% | 15–20% | 10–15% | 8–12% | 12–18% | ≥ 25% |
+| C1 | ≤ 15% | 15–20% | 10–15% | 5–10% | 15–20% | ≥ 30% |
+| C2 | ≤ 10% | 15–20% | 10–15% | 5–8% | 15–20% | ≥ 35% |
+
+**Notes:**
+- The percentages in a row do not sum to 100 — ranges overlap intentionally. The distribution should land within all stated bounds simultaneously; adjust proportions to fit.
+- At C1–C2, `conjugation_drill` is limited because regular conjugation is already mastered; target irregular or register-specific forms only.
+- The coverage requirement (≥1 exercise per vocabulary item and ≥1 per grammar concept) takes precedence. If a module has many vocabulary items, meeting coverage may push `multiple_choice` above the ceiling — flag this in the self-validation note rather than leaving items uncovered.
+
+---
+
 ## Cross-cutting rules (all exercise types)
 
 - Always set `type` to the correct string value: `multiple_choice`, `fill_blank`, `sentence_reorder`, `conjugation_drill`, `error_correction`, or `translation_active`.
@@ -78,22 +100,25 @@ If the vocabulary or grammar concepts for the target module have not yet been ge
 
 **Quality rules**
 
-- Always populate `promptTranslation` with the English translation of the target sentence. The learner sees scrambled Danish word tiles and must know what sentence they are building.
-- All words needed to form the correct sentence must be present — no omissions, no extras.
+- `prompt` is the **English translation** of the target sentence — the clue that tells the learner what sentence they are building. It is never the Danish sentence.
+- `answer` is the **correctly ordered Danish sentence** (the canonical target).
+- `words` is the **shuffled array of Danish word tokens** the app renders as draggable tiles. Rules:
+  - Strip trailing sentence punctuation (`.`, `!`, `?`) from the last token — punctuation goes in `answer`, not in the tile list.
+  - Preserve all other surface forms exactly as they appear in `answer` (capitalisation of the first word, hyphens, etc.).
+  - The array must be shuffled — do not emit the words in their correct order.
+  - No omissions, no extras: the tiles must be exactly sufficient to form `answer` (minus final punctuation).
 - The target sentence must have exactly one valid ordering. If two orderings are both grammatically and semantically valid, choose a different sentence.
 - The exercise must test a specific structural rule (inversion after fronted adverbials, verb-second, subordinate clause word order, negation placement). A sentence with no structural challenge is not worth a reorder exercise.
 - Ideal length: 5–9 words. Shorter is trivial; longer becomes a working-memory task.
-- Punctuation belongs in the answer, not in the word tile list.
 
 **JSON output spec**
-
-The `prompt` contains the target sentence. The UI splits it into word tiles and scrambles them for display; the learner reassembles them. `answer` holds the same correctly ordered sentence.
 ```json
 {
   "type": "sentence_reorder",
-  "prompt": "The correctly ordered Danish target sentence",
-  "promptTranslation": "English translation of the target sentence",
-  "answer": "The correctly ordered Danish target sentence",
+  "prompt": "English translation of the target sentence",
+  "promptTranslation": null,
+  "answer": "The correctly ordered Danish target sentence.",
+  "words": ["Danish", "word", "Jeg", "tokens", "shuffled"],
   "distractors": [],
   "alternativeAnswers": [],
   "vocabularyItemId": null,

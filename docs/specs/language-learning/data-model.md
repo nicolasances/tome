@@ -73,6 +73,7 @@ Exercise {
   answer                  // the canonical correct answer (shown in feedback)
   alternativeAnswers      // string[] — other accepted translations, AI-generated at creation time (translation_active only; empty for other types)
   userContributedAnswers  // string[] — translations validated by AI at answer time via on-demand verification (translation_active only)
+  words                   // string[] | null — shuffled Danish word tokens (sentence_reorder only); null for all other types
   distractors             // string[] (multiple choice only — the wrong options)
   vocabularyItemId   // primary vocab item being tested; null for grammar-concept exercises
   grammarConceptId   // grammar concept being tested; null for vocabulary exercises

@@ -153,6 +153,8 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 - Every referenced id exists in the Phase 1/2 files.
 - Every vocab item and every grammar concept has ≥1 exercise.
 - `timesShown` is `0` everywhere; `translation_active` items have correct `alternativeAnswers` handling.
+- Every `sentence_reorder` exercise has a `words` array (shuffled tokens, no trailing punctuation) and its `prompt` is the English translation; `promptTranslation` is `null`.
+- Bank composition falls within the CEFR-level distribution targets in `rules-for-generation.md`. If the coverage requirement forces a type over its ceiling, note it explicitly.
 
 ---
 
