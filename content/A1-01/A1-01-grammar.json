@@ -1,0 +1,53 @@
+[
+  {
+    "id": "A1-01-g-present-tense-nutid-8403",
+    "name": "Present tense (nutid)",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In Danish, most verbs in the present tense simply add '-er' to the stem. The same form is used for all persons — there is no change for 'I', 'you', 'he', 'she', etc. A few very common verbs are irregular: 'at være' (to be) → 'er', and 'at hedde' (to be called) → 'hedder'.",
+    "examples": [
+      {
+        "danish": "Jeg arbejder som læge.",
+        "english": "I work as a doctor."
+      },
+      {
+        "danish": "Hun hedder Anna og er ingeniør.",
+        "english": "Her name is Anna and she is an engineer."
+      }
+    ]
+  },
+  {
+    "id": "A1-01-g-personal-pronouns-3765",
+    "name": "Personal pronouns",
+    "category": "pronouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish personal pronouns replace a noun as the subject of a sentence. The four core pronouns are: 'jeg' (I), 'du' (you), 'han' (he), and 'hun' (she). They always come before the verb in a basic statement.",
+    "examples": [
+      {
+        "danish": "Jeg hedder Lars. Hvad hedder du?",
+        "english": "My name is Lars. What is your name?"
+      },
+      {
+        "danish": "Han er dansk og hun er engelsk.",
+        "english": "He is Danish and she is English."
+      }
+    ]
+  },
+  {
+    "id": "A1-01-g-main-clause-word-order-3305",
+    "name": "Main clause word order (SVO)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish basic sentences follow Subject–Verb–Object (SVO) order, just like English. The subject comes first, then the verb, then any object or complement. This is the standard pattern for simple statements.",
+    "examples": [
+      {
+        "danish": "Jeg kommer fra England.",
+        "english": "I come from England."
+      },
+      {
+        "danish": "Han bor i Danmark og arbejder som direktør.",
+        "english": "He lives in Denmark and works as a director."
+      }
+    ]
+  }
+]
