@@ -473,7 +473,7 @@
     "promptTranslation": "I don't understand it.",
     "answer": "Jeg forstår det ikke.",
     "distractors": [],
-    "alternativeAnswers": [],
+    "alternativeAnswers": ["Det forstår jeg ikke."],
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-negation-placement-ikke-5510",
