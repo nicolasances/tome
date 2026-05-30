@@ -1,0 +1,252 @@
+[
+  {
+    "id": "A2-02-v-i-gaar-8459",
+    "danish": "i går",
+    "english": "yesterday",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-i-forgaars-5413",
+    "danish": "i forgårs",
+    "english": "the day before yesterday",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-for-en-uge-siden-9854",
+    "danish": "for en uge siden",
+    "english": "a week ago",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-for-en-maaned-siden-7771",
+    "danish": "for en måned siden",
+    "english": "a month ago",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-sidst-1350",
+    "danish": "sidst",
+    "english": "last time",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-dengang-5409",
+    "danish": "dengang",
+    "english": "back then / at that time",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-i-aftes-5792",
+    "danish": "i aftes",
+    "english": "last night / yesterday evening",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-tidligere-5990",
+    "danish": "tidligere",
+    "english": "earlier / previously",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-var-7746",
+    "danish": "var",
+    "english": "was / were",
+    "type": "verb",
+    "context": "preterite of være",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-gik-2729",
+    "danish": "gik",
+    "english": "went / walked",
+    "type": "verb",
+    "context": "preterite of gå",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-sagde-5575",
+    "danish": "sagde",
+    "english": "said",
+    "type": "verb",
+    "context": "preterite of sige",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-kom-7307",
+    "danish": "kom",
+    "english": "came",
+    "type": "verb",
+    "context": "preterite of komme",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-fik-6870",
+    "danish": "fik",
+    "english": "got / received",
+    "type": "verb",
+    "context": "preterite of få",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-tog-8495",
+    "danish": "tog",
+    "english": "took",
+    "type": "verb",
+    "context": "preterite of tage",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-saa-8043",
+    "danish": "så",
+    "english": "saw",
+    "type": "verb",
+    "context": "preterite of se",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-vidste-4592",
+    "danish": "vidste",
+    "english": "knew",
+    "type": "verb",
+    "context": "preterite of vide",
+    "tags": ["preterite", "irregular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-arbejdede-8061",
+    "danish": "arbejdede",
+    "english": "worked",
+    "type": "verb",
+    "context": "preterite of arbejde (regular -ede)",
+    "tags": ["preterite", "regular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-spiste-1317",
+    "danish": "spiste",
+    "english": "ate",
+    "type": "verb",
+    "context": "preterite of spise (regular -te)",
+    "tags": ["preterite", "regular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-moedte-1037",
+    "danish": "mødte",
+    "english": "met",
+    "type": "verb",
+    "context": "preterite of møde (regular -te)",
+    "tags": ["preterite", "regular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-ringede-2119",
+    "danish": "ringede",
+    "english": "called / rang",
+    "type": "verb",
+    "context": "preterite of ringe (regular -ede)",
+    "tags": ["preterite", "regular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-startede-7599",
+    "danish": "startede",
+    "english": "started",
+    "type": "verb",
+    "context": "preterite of starte (regular -ede)",
+    "tags": ["preterite", "regular", "narrative"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-moede-6465",
+    "danish": "møde",
+    "english": "meeting",
+    "type": "noun",
+    "context": null,
+    "tags": ["work", "narrative"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-bus-2141",
+    "danish": "bus",
+    "english": "bus",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "narrative"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-aften-8416",
+    "danish": "aften",
+    "english": "evening",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "narrative"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-pludselig-5573",
+    "danish": "pludselig",
+    "english": "suddenly",
+    "type": "adverb",
+    "context": null,
+    "tags": ["narrative", "adverbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
