@@ -158,6 +158,41 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 
 ---
 
+### Phase 4: Distribution QA
+
+Run the validation script against the generated exercise bank. This is a hard gate — do not mark the module complete until the script exits 0.
+
+```bash
+python3 .claude/skills/generate-module-content/validate_distribution.py \
+  <module> <cefrLevel> <user-specified-folder>/<module>/<module>-exercises.json
+```
+
+**Reading the output:**
+
+| Result | Meaning | Action |
+|---|---|---|
+| `PASS` | All type percentages within targets | Done |
+| `PASS with WARN` | MC over ceiling but fully explained by coverage-forced exercises | Done — note the warning in your summary to the user |
+| `FAIL` | One or more types outside target range | Fix, then rerun |
+
+**How to fix a FAIL:**
+
+The script prints a "Required corrections" block with exact counts, e.g.:
+
+```
+✗ multiple_choice: 69.1% (target ≤ 45%) — replace ~14 with other types
+✗ translation_active: 7.3% (target ≥ 10%) — add ~2 more exercises of this type
+```
+
+- For surplus types: select exercises of that type that test vocabulary items already covered by other types; replace them with the deficit type(s), keeping the same `vocabularyItemId` or `grammarConceptId`.
+- For deficit types: generate new exercises of that type for vocabulary items or grammar concepts that are under-represented.
+- Do not add exercises without a valid id reference — every `vocabularyItemId` and `grammarConceptId` must still exist in the Phase 1/2 files.
+- After editing the exercises file, rerun the script. Repeat until exit 0.
+
+**Surface to the user:** one line per run — e.g. `Distribution QA: PASS (55 exercises)` or `Distribution QA: FAIL → corrected → PASS (57 exercises)`.
+
+---
+
 ## Red Flags
 
 - Starting anything without having asked the user the folder path for generated files.
@@ -165,6 +200,7 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 - Writing any code other than running `generate_ids.py` to mint ids.
 - Generating exercises before vocabulary items and grammar concepts exist.
 - Generating exercises whose `vocabularyItemId` / `grammarConceptId` do not exist in the Phase 1/2 files.
+- Declaring the module complete without running `validate_distribution.py` (Phase 4).
 - Inventing JSON fields not present in `data-model.md`.
 - Producing grammar concepts without an `explanation` and `examples`.
 - Introducing a grammar concept ahead of the module's CEFR level.
