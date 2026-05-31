@@ -1,0 +1,40 @@
+{
+  "id": "danish-A1-12",
+  "title": "Asking Questions & Getting Help",
+  "theme": "Communication repair and help-seeking",
+  "communicationGoal": "Ask someone to repeat or slow down, say you don't understand, ask how to say something in Danish",
+  "cefrLevel": "A1",
+  "vocabularyItemIds": [
+    "A1-12-v-hvad-6411",
+    "A1-12-v-hvor-7370",
+    "A1-12-v-hvornaar-2525",
+    "A1-12-v-hvorfor-4246",
+    "A1-12-v-hvem-8455",
+    "A1-12-v-hvordan-2156",
+    "A1-12-v-kan-du-gentage-det-4873",
+    "A1-12-v-kan-du-tale-langsommere-9320",
+    "A1-12-v-jeg-forstaar-ikke-2772",
+    "A1-12-v-hvad-hedder-det-paa-3051",
+    "A1-12-v-hvad-betyder-det-2381",
+    "A1-12-v-kan-du-forklare-det-9740",
+    "A1-12-v-kan-du-hjaelpe-mig-5203",
+    "A1-12-v-kan-du-skrive-det-6406",
+    "A1-12-v-jeg-ved-det-ikke-4476",
+    "A1-12-v-gentage-2205",
+    "A1-12-v-forstaa-8908",
+    "A1-12-v-forklare-8963",
+    "A1-12-v-betyde-7830",
+    "A1-12-v-tale-7015",
+    "A1-12-v-hjaelpe-9107",
+    "A1-12-v-langsom-7419",
+    "A1-12-v-undskyld-6422",
+    "A1-12-v-igen-2463"
+  ],
+  "grammarConceptIds": [
+    "A1-12-g-question-formation-7529",
+    "A1-12-g-modal-verbs-kan-skal-vil-7825",
+    "A1-12-g-negation-placement-ikke-5510"
+  ],
+  "createdAt": "2026-05-31T00:00:00Z",
+  "isUserGenerated": false
+}

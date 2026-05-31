@@ -4,240 +4,340 @@
     "prompt": "Hvad hedder ___?",
     "promptTranslation": "What are you called?",
     "answer": "du",
-    "distractors": ["han", "hun", "jeg"],
+    "distractors": [
+      "han",
+      "hun",
+      "jeg"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-du-5494",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ er fra England og hedder Thomas.",
     "promptTranslation": "He is from England and is called Thomas.",
     "answer": "Han",
-    "distractors": ["Hun", "Jeg", "Du"],
+    "distractors": [
+      "Hun",
+      "Jeg",
+      "Du"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-han-5047",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Mia er fra Danmark og ___ er ingeniør.",
     "promptTranslation": "Mia is from Denmark and she is an engineer.",
     "answer": "hun",
-    "distractors": ["han", "jeg", "du"],
+    "distractors": [
+      "han",
+      "jeg",
+      "du"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-hun-9359",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg ___ lidt dansk, men ikke særlig godt.",
     "promptTranslation": "I speak a little Danish, but not very well.",
     "answer": "taler",
-    "distractors": ["bor", "arbejder", "hedder"],
+    "distractors": [
+      "bor",
+      "arbejder",
+      "hedder"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-at-tale-9021",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "___, mit navn er Hansen.",
     "promptTranslation": "Good day, my name is Hansen.",
     "answer": "Goddag",
-    "distractors": ["Hej", "Farvel", "Tak"],
+    "distractors": [
+      "Hej",
+      "Farvel",
+      "Tak"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-goddag-8450",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Mange ___ for din hjælp.",
     "promptTranslation": "Thank you very much for your help.",
     "answer": "tak",
-    "distractors": ["hej", "farvel", "undskyld"],
+    "distractors": [
+      "hej",
+      "farvel",
+      "undskyld"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-tak-6222",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Han er fra London, så han er ___.",
     "promptTranslation": "He is from London, so he is English.",
     "answer": "engelsk",
-    "distractors": ["norsk", "dansk", "tysk"],
+    "distractors": [
+      "norsk",
+      "dansk",
+      "tysk"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-engelsk-6827",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Hun er fra Oslo, så hun er ___.",
     "promptTranslation": "She is from Oslo, so she is Norwegian.",
     "answer": "norsk",
-    "distractors": ["svensk", "dansk", "engelsk"],
+    "distractors": [
+      "svensk",
+      "dansk",
+      "engelsk"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-norsk-5086",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Hun underviser i folkeskolen. Hun er ___.",
     "promptTranslation": "She teaches at primary school. She is a teacher.",
     "answer": "lærer",
-    "distractors": ["læge", "ingeniør", "direktør"],
+    "distractors": [
+      "læge",
+      "ingeniør",
+      "direktør"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-laerer-2287",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Han leder virksomheden. Han er ___.",
     "promptTranslation": "He leads the company. He is a director.",
     "answer": "direktør",
-    "distractors": ["lærer", "studerende", "ingeniør"],
+    "distractors": [
+      "lærer",
+      "studerende",
+      "ingeniør"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-direktoer-8378",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg har kun ___ søster.",
     "promptTranslation": "I have only one sister.",
     "answer": "en",
-    "distractors": ["to", "tre", "fire"],
+    "distractors": [
+      "to",
+      "tre",
+      "fire"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-en-8962",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Vi er ___ i familien: mor, far og jeg.",
     "promptTranslation": "We are three in the family: mum, dad, and me.",
     "answer": "tre",
-    "distractors": ["to", "fire", "fem"],
+    "distractors": [
+      "to",
+      "fire",
+      "fem"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-tre-3715",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Mødet varer ___ minutter.",
     "promptTranslation": "The meeting lasts five minutes.",
     "answer": "fem",
-    "distractors": ["fire", "seks", "syv"],
+    "distractors": [
+      "fire",
+      "seks",
+      "syv"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-fem-5349",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Der er ___ dage i en uge.",
     "promptTranslation": "There are seven days in a week.",
     "answer": "syv",
-    "distractors": ["fem", "seks", "otte"],
+    "distractors": [
+      "fem",
+      "seks",
+      "otte"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-syv-5346",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Klokken er ___.",
     "promptTranslation": "It is nine o'clock.",
     "answer": "ni",
-    "distractors": ["ti", "otte", "syv"],
+    "distractors": [
+      "ti",
+      "otte",
+      "syv"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-ni-9203",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Der er ___ elever i min klasse.",
     "promptTranslation": "There are eleven students in my class.",
     "answer": "elleve",
-    "distractors": ["ti", "tolv", "tretten"],
+    "distractors": [
+      "ti",
+      "tolv",
+      "tretten"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-elleve-4172",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg er ___ år gammel.",
     "promptTranslation": "I am thirteen years old.",
     "answer": "tretten",
-    "distractors": ["tolv", "fjorten", "femten"],
+    "distractors": [
+      "tolv",
+      "fjorten",
+      "femten"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-tretten-2223",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Pigen er ___ år gammel.",
     "promptTranslation": "The girl is fifteen years old.",
     "answer": "femten",
-    "distractors": ["fjorten", "seksten", "tyve"],
+    "distractors": [
+      "fjorten",
+      "seksten",
+      "tyve"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-femten-1346",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Drengen er ___ år gammel.",
     "promptTranslation": "The boy is seventeen years old.",
     "answer": "sytten",
-    "distractors": ["seksten", "atten", "nitten"],
+    "distractors": [
+      "seksten",
+      "atten",
+      "nitten"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-sytten-7233",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "multiple_choice",
     "prompt": "Han er ___ år gammel og er studerende.",
     "promptTranslation": "He is nineteen years old and is a student.",
     "answer": "nitten",
-    "distractors": ["atten", "tyve", "sytten"],
+    "distractors": [
+      "atten",
+      "tyve",
+      "sytten"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-01-v-nitten-7496",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -249,7 +349,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-komme-fra-9092",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -261,7 +362,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-bo-8090",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -273,7 +375,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-dansk-1871",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -285,7 +388,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-svensk-4677",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -297,7 +401,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-laege-6241",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -309,7 +414,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-aar-5206",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "fill_blank",
@@ -321,7 +427,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-navn-3032",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "conjugation_drill",
@@ -333,7 +440,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-hedde-3560",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "conjugation_drill",
@@ -345,7 +453,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-vaere-6550",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "conjugation_drill",
@@ -357,7 +466,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-arbejde-8546",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "conjugation_drill",
@@ -369,7 +479,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-tale-9021",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "conjugation_drill",
@@ -381,7 +492,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-bo-8090",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "conjugation_drill",
@@ -393,7 +505,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-at-komme-fra-9092",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -401,11 +514,14 @@
     "promptTranslation": null,
     "answer": "Jeg er lærer.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg arbejder som lærer."],
+    "alternativeAnswers": [
+      "Jeg arbejder som lærer."
+    ],
     "words": null,
     "vocabularyItemId": "A1-01-v-jeg-5325",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -413,11 +529,14 @@
     "promptTranslation": null,
     "answer": "Hej, jeg hedder Peter.",
     "distractors": [],
-    "alternativeAnswers": ["Hej, mit navn er Peter."],
+    "alternativeAnswers": [
+      "Hej, mit navn er Peter."
+    ],
     "words": null,
     "vocabularyItemId": "A1-01-v-hej-8451",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -429,7 +548,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-farvel-8147",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -441,7 +561,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-undskyld-2509",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -453,7 +574,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-tysk-9758",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -461,11 +583,14 @@
     "promptTranslation": null,
     "answer": "Hun arbejder som ingeniør.",
     "distractors": [],
-    "alternativeAnswers": ["Hun er ingeniør."],
+    "alternativeAnswers": [
+      "Hun er ingeniør."
+    ],
     "words": null,
     "vocabularyItemId": "A1-01-v-ingenioer-7025",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -477,7 +602,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-studerende-2844",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -485,11 +611,14 @@
     "promptTranslation": null,
     "answer": "Jeg har to søstre.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg har to søskende."],
+    "alternativeAnswers": [
+      "Jeg har to søskende."
+    ],
     "words": null,
     "vocabularyItemId": "A1-01-v-to-7983",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -501,7 +630,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-fire-8356",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -513,7 +643,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-seks-2450",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -525,7 +656,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-otte-3002",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -537,7 +669,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-ti-2184",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -549,7 +682,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-tolv-7716",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -561,7 +695,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-fjorten-3694",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -573,7 +708,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-seksten-7128",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -585,7 +721,8 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-atten-7168",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "translation_active",
@@ -597,67 +734,113 @@
     "words": null,
     "vocabularyItemId": "A1-01-v-tyve-3177",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "sentence_reorder",
     "prompt": "She speaks Danish and lives in Copenhagen.",
     "promptTranslation": null,
     "answer": "Hun taler dansk og bor i København.",
-    "words": ["taler", "København", "og", "bor", "Hun", "i", "dansk"],
+    "words": [
+      "taler",
+      "København",
+      "og",
+      "bor",
+      "Hun",
+      "i",
+      "dansk"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-present-tense-nutid-6604",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "sentence_reorder",
     "prompt": "She is from Norway and speaks Norwegian.",
     "promptTranslation": null,
     "answer": "Hun er fra Norge og taler norsk.",
-    "words": ["norsk", "er", "og", "taler", "fra", "Hun", "Norge"],
+    "words": [
+      "norsk",
+      "er",
+      "og",
+      "taler",
+      "fra",
+      "Hun",
+      "Norge"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-personal-pronouns-1656",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "sentence_reorder",
     "prompt": "I am called Thomas and I am a doctor.",
     "promptTranslation": null,
     "answer": "Jeg hedder Thomas og jeg er læge.",
-    "words": ["og", "er", "hedder", "Jeg", "Thomas", "jeg", "læge"],
+    "words": [
+      "og",
+      "er",
+      "hedder",
+      "Jeg",
+      "Thomas",
+      "jeg",
+      "læge"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-personal-pronouns-1656",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "sentence_reorder",
     "prompt": "I speak Danish and work in Copenhagen.",
     "promptTranslation": null,
     "answer": "Jeg taler dansk og arbejder i København.",
-    "words": ["arbejder", "Jeg", "i", "og", "taler", "København", "dansk"],
+    "words": [
+      "arbejder",
+      "Jeg",
+      "i",
+      "og",
+      "taler",
+      "København",
+      "dansk"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-main-clause-word-order-5638",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "sentence_reorder",
     "prompt": "He comes from Germany and is an engineer.",
     "promptTranslation": null,
     "answer": "Han kommer fra Tyskland og er ingeniør.",
-    "words": ["fra", "Han", "og", "er", "ingeniør", "kommer", "Tyskland"],
+    "words": [
+      "fra",
+      "Han",
+      "og",
+      "er",
+      "ingeniør",
+      "kommer",
+      "Tyskland"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-main-clause-word-order-5638",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "error_correction",
@@ -669,7 +852,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-present-tense-nutid-6604",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "error_correction",
@@ -681,7 +865,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-present-tense-nutid-6604",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "error_correction",
@@ -693,7 +878,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-personal-pronouns-1656",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   },
   {
     "type": "error_correction",
@@ -705,6 +891,7 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-01-g-main-clause-word-order-5638",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-01"
   }
 ]

@@ -4,204 +4,289 @@
     "prompt": "Hvad lavede du ___?",
     "promptTranslation": "What did you do yesterday?",
     "answer": "i går",
-    "distractors": ["i forgårs", "sidst", "tidligere"],
+    "distractors": [
+      "i forgårs",
+      "sidst",
+      "tidligere"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-i-gaar-8459",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ var det en dejlig dag.",
     "promptTranslation": "The day before yesterday it was a lovely day.",
     "answer": "I forgårs",
-    "distractors": ["I går", "Sidst", "Dengang"],
+    "distractors": [
+      "I går",
+      "Sidst",
+      "Dengang"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-i-forgaars-5413",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg mødte ham ___ til et møde.",
     "promptTranslation": "I met him at a meeting a week ago.",
     "answer": "for en uge siden",
-    "distractors": ["for en måned siden", "i aftes", "i forgårs"],
+    "distractors": [
+      "for en måned siden",
+      "i aftes",
+      "i forgårs"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-for-en-uge-siden-9854",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "De rejste til Danmark ___.",
     "promptTranslation": "They traveled to Denmark a month ago.",
     "answer": "for en måned siden",
-    "distractors": ["for en uge siden", "i forgårs", "dengang"],
+    "distractors": [
+      "for en uge siden",
+      "i forgårs",
+      "dengang"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-for-en-maaned-siden-7771",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ var mødet meget kort.",
     "promptTranslation": "Last time the meeting was very short.",
     "answer": "Sidst",
-    "distractors": ["Dengang", "Tidligere", "Pludselig"],
+    "distractors": [
+      "Dengang",
+      "Tidligere",
+      "Pludselig"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-sidst-1350",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ var livet meget anderledes.",
     "promptTranslation": "Back then, life was very different.",
     "answer": "Dengang",
-    "distractors": ["Sidst", "Tidligere", "Pludselig"],
+    "distractors": [
+      "Sidst",
+      "Tidligere",
+      "Pludselig"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-dengang-5409",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Vi spiste på restaurant ___.",
     "promptTranslation": "We ate at a restaurant last night.",
     "answer": "i aftes",
-    "distractors": ["i går", "i forgårs", "sidst"],
+    "distractors": [
+      "i går",
+      "i forgårs",
+      "sidst"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-i-aftes-5792",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Han ___ meget træt efter arbejde.",
     "promptTranslation": "He was very tired after work.",
     "answer": "var",
-    "distractors": ["gik", "kom", "sagde"],
+    "distractors": [
+      "gik",
+      "kom",
+      "sagde"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-var-7746",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Han ___ hurtigt ud af mødelokalet.",
     "promptTranslation": "He walked quickly out of the meeting room.",
     "answer": "gik",
-    "distractors": ["kom", "var", "sagde"],
+    "distractors": [
+      "kom",
+      "var",
+      "sagde"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-gik-2729",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "De ___ for sent til mødet i aftes.",
     "promptTranslation": "They came too late to the meeting last night.",
     "answer": "kom",
-    "distractors": ["var", "gik", "sagde"],
+    "distractors": [
+      "var",
+      "gik",
+      "sagde"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-kom-7307",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Han ___ en e-mail fra sin chef i forgårs.",
     "promptTranslation": "He received an email from his manager the day before yesterday.",
     "answer": "fik",
-    "distractors": ["tog", "sagde", "startede"],
+    "distractors": [
+      "tog",
+      "sagde",
+      "startede"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-fik-6870",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Vi ___ en fantastisk film i aftes.",
     "promptTranslation": "We saw a fantastic film last night.",
     "answer": "så",
-    "distractors": ["fik", "mødte", "startede"],
+    "distractors": [
+      "fik",
+      "mødte",
+      "startede"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-saa-8043",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "De ___ frokost sammen for en uge siden.",
     "promptTranslation": "They ate lunch together a week ago.",
     "answer": "spiste",
-    "distractors": ["mødte", "ringede", "startede"],
+    "distractors": [
+      "mødte",
+      "ringede",
+      "startede"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-spiste-1317",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg ___ min kollega på stationen.",
     "promptTranslation": "I met my colleague at the station.",
     "answer": "mødte",
-    "distractors": ["ringede", "spiste", "startede"],
+    "distractors": [
+      "ringede",
+      "spiste",
+      "startede"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-moedte-1037",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Kurset startede med et langt ___.",
     "promptTranslation": "The course started with a long meeting.",
     "answer": "møde",
-    "distractors": ["aften", "bus", "tur"],
+    "distractors": [
+      "aften",
+      "bus",
+      "tur"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-moede-6465",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Det var en hyggelig ___. Vi spiste og talte.",
     "promptTranslation": "It was a cozy evening. We ate and talked.",
     "answer": "aften",
-    "distractors": ["morgen", "dag", "møde"],
+    "distractors": [
+      "morgen",
+      "dag",
+      "møde"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-aften-8416",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "multiple_choice",
     "prompt": "Kom du med ___ til mødet i går?",
     "promptTranslation": "Did you come by bus to the meeting yesterday?",
     "answer": "bus",
-    "distractors": ["metro", "cykel", "taxa"],
+    "distractors": [
+      "metro",
+      "cykel",
+      "taxa"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A2-02-v-bus-2141",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -213,7 +298,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-sagde-5575",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -225,7 +311,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-tog-8495",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -237,7 +324,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-vidste-4592",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -249,7 +337,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-arbejdede-8061",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -261,7 +350,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-ringede-2119",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -273,7 +363,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-startede-7599",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -285,7 +376,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-pludselig-5573",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "fill_blank",
@@ -297,67 +389,119 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-tidligere-5990",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "sentence_reorder",
     "prompt": "Yesterday I went to a meeting.",
     "promptTranslation": null,
     "answer": "I går gik jeg til et møde.",
-    "words": ["går", "et", "til", "gik", "møde", "jeg", "I"],
+    "words": [
+      "går",
+      "et",
+      "til",
+      "gik",
+      "møde",
+      "jeg",
+      "I"
+    ],
     "distractors": [],
-    "alternativeAnswers": ["Jeg gik til et møde i går."],
+    "alternativeAnswers": [
+      "Jeg gik til et møde i går."
+    ],
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-preterite-simple-past-datid-1259",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "sentence_reorder",
     "prompt": "Last night she ate at a restaurant.",
     "promptTranslation": null,
     "answer": "I aftes spiste hun på en restaurant.",
-    "words": ["restaurant", "I", "spiste", "på", "hun", "aftes", "en"],
+    "words": [
+      "restaurant",
+      "I",
+      "spiste",
+      "på",
+      "hun",
+      "aftes",
+      "en"
+    ],
     "distractors": [],
-    "alternativeAnswers": ["Hun spiste på en restaurant i aftes."],
+    "alternativeAnswers": [
+      "Hun spiste på en restaurant i aftes."
+    ],
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-preterite-simple-past-datid-1259",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "sentence_reorder",
     "prompt": "He took the bus home yesterday.",
     "promptTranslation": null,
     "answer": "Han tog bussen hjem i går.",
-    "words": ["bussen", "går", "tog", "i", "Han", "hjem"],
+    "words": [
+      "bussen",
+      "går",
+      "tog",
+      "i",
+      "Han",
+      "hjem"
+    ],
     "distractors": [],
-    "alternativeAnswers": ["I går tog han bussen hjem."],
+    "alternativeAnswers": [
+      "I går tog han bussen hjem."
+    ],
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-preterite-simple-past-datid-1259",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "sentence_reorder",
     "prompt": "She didn't come to the meeting last night.",
     "promptTranslation": null,
     "answer": "Hun kom ikke til mødet i aftes.",
-    "words": ["mødet", "i", "ikke", "Hun", "aftes", "kom", "til"],
+    "words": [
+      "mødet",
+      "i",
+      "ikke",
+      "Hun",
+      "aftes",
+      "kom",
+      "til"
+    ],
     "distractors": [],
-    "alternativeAnswers": ["I aftes kom hun ikke til mødet."],
+    "alternativeAnswers": [
+      "I aftes kom hun ikke til mødet."
+    ],
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-negation-placement-ikke-5939",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "sentence_reorder",
     "prompt": "I didn't know what he said.",
     "promptTranslation": null,
     "answer": "Jeg vidste ikke hvad han sagde.",
-    "words": ["sagde", "Jeg", "hvad", "vidste", "han", "ikke"],
+    "words": [
+      "sagde",
+      "Jeg",
+      "hvad",
+      "vidste",
+      "han",
+      "ikke"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-negation-placement-ikke-5939",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "conjugation_drill",
@@ -369,7 +513,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-var-7746",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "conjugation_drill",
@@ -381,7 +526,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-gik-2729",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "conjugation_drill",
@@ -393,7 +539,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-sagde-5575",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "conjugation_drill",
@@ -405,7 +552,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-kom-7307",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "conjugation_drill",
@@ -417,7 +565,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-fik-6870",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "conjugation_drill",
@@ -429,7 +578,8 @@
     "words": null,
     "vocabularyItemId": "A2-02-v-tog-8495",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "error_correction",
@@ -437,11 +587,14 @@
     "promptTranslation": "Yesterday he walked to the meeting.",
     "answer": "I går gik han til mødet.",
     "distractors": [],
-    "alternativeAnswers": ["Han gik til mødet i går."],
+    "alternativeAnswers": [
+      "Han gik til mødet i går."
+    ],
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-preterite-simple-past-datid-1259",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "error_correction",
@@ -449,11 +602,14 @@
     "promptTranslation": "She said nothing at the meeting last time.",
     "answer": "Hun sagde ingenting på mødet sidst.",
     "distractors": [],
-    "alternativeAnswers": ["Sidst sagde hun ingenting på mødet."],
+    "alternativeAnswers": [
+      "Sidst sagde hun ingenting på mødet."
+    ],
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-preterite-simple-past-datid-1259",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "error_correction",
@@ -461,11 +617,14 @@
     "promptTranslation": "I worked late last night.",
     "answer": "Jeg arbejdede sent i aftes.",
     "distractors": [],
-    "alternativeAnswers": ["I aftes arbejdede jeg sent."],
+    "alternativeAnswers": [
+      "I aftes arbejdede jeg sent."
+    ],
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-preterite-simple-past-datid-1259",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "error_correction",
@@ -473,11 +632,14 @@
     "promptTranslation": "He didn't come to the party last night.",
     "answer": "Han kom ikke til festen i aftes.",
     "distractors": [],
-    "alternativeAnswers": ["I aftes kom han ikke til festen."],
+    "alternativeAnswers": [
+      "I aftes kom han ikke til festen."
+    ],
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-negation-placement-ikke-5939",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "error_correction",
@@ -489,7 +651,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A2-02-g-negation-placement-ikke-5939",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -497,11 +660,14 @@
     "promptTranslation": null,
     "answer": "I går arbejdede jeg sent.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg arbejdede sent i går."],
+    "alternativeAnswers": [
+      "Jeg arbejdede sent i går."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-i-gaar-8459",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -509,11 +675,14 @@
     "promptTranslation": null,
     "answer": "Jeg mødte min kollega for en uge siden.",
     "distractors": [],
-    "alternativeAnswers": ["For en uge siden mødte jeg min kollega."],
+    "alternativeAnswers": [
+      "For en uge siden mødte jeg min kollega."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-for-en-uge-siden-9854",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -521,11 +690,14 @@
     "promptTranslation": null,
     "answer": "Sidst tog jeg bussen.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg tog bussen sidst."],
+    "alternativeAnswers": [
+      "Jeg tog bussen sidst."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-sidst-1350",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -533,11 +705,14 @@
     "promptTranslation": null,
     "answer": "Dengang var alt anderledes.",
     "distractors": [],
-    "alternativeAnswers": ["Alt var anderledes dengang."],
+    "alternativeAnswers": [
+      "Alt var anderledes dengang."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-dengang-5409",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -545,11 +720,14 @@
     "promptTranslation": null,
     "answer": "Han arbejdede tidligere i en bank.",
     "distractors": [],
-    "alternativeAnswers": ["Tidligere arbejdede han i en bank."],
+    "alternativeAnswers": [
+      "Tidligere arbejdede han i en bank."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-tidligere-5990",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -557,11 +735,14 @@
     "promptTranslation": null,
     "answer": "Det vidste hun ikke.",
     "distractors": [],
-    "alternativeAnswers": ["Hun vidste det ikke."],
+    "alternativeAnswers": [
+      "Hun vidste det ikke."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-vidste-4592",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -569,11 +750,14 @@
     "promptTranslation": null,
     "answer": "Mødet startede klokken otte.",
     "distractors": [],
-    "alternativeAnswers": ["Mødet startede kl. otte."],
+    "alternativeAnswers": [
+      "Mødet startede kl. otte."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-startede-7599",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -581,11 +765,14 @@
     "promptTranslation": null,
     "answer": "Hun ringede til mig i aftes.",
     "distractors": [],
-    "alternativeAnswers": ["I aftes ringede hun til mig."],
+    "alternativeAnswers": [
+      "I aftes ringede hun til mig."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-ringede-2119",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -593,11 +780,14 @@
     "promptTranslation": null,
     "answer": "Jeg mødte min chef for en uge siden.",
     "distractors": [],
-    "alternativeAnswers": ["For en uge siden mødte jeg min chef."],
+    "alternativeAnswers": [
+      "For en uge siden mødte jeg min chef."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-moedte-1037",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -605,11 +795,14 @@
     "promptTranslation": null,
     "answer": "Pludselig begyndte det at regne.",
     "distractors": [],
-    "alternativeAnswers": ["Det begyndte pludselig at regne."],
+    "alternativeAnswers": [
+      "Det begyndte pludselig at regne."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-pludselig-5573",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   },
   {
     "type": "translation_active",
@@ -617,10 +810,13 @@
     "promptTranslation": null,
     "answer": "I forgårs var jeg syg.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg var syg i forgårs."],
+    "alternativeAnswers": [
+      "Jeg var syg i forgårs."
+    ],
     "words": null,
     "vocabularyItemId": "A2-02-v-i-forgaars-5413",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A2-02"
   }
 ]

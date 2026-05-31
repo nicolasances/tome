@@ -4,216 +4,306 @@
     "prompt": "___ hedder det på dansk?",
     "promptTranslation": "What is it called in Danish?",
     "answer": "Hvad",
-    "distractors": ["Hvor", "Hvem", "Hvornår"],
+    "distractors": [
+      "Hvor",
+      "Hvem",
+      "Hvornår"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvad-6411",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ bor du?",
     "promptTranslation": "Where do you live?",
     "answer": "Hvor",
-    "distractors": ["Hvad", "Hvornår", "Hvem"],
+    "distractors": [
+      "Hvad",
+      "Hvornår",
+      "Hvem"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvor-7370",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ starter kurset i dag?",
     "promptTranslation": "When does the class start today?",
     "answer": "Hvornår",
-    "distractors": ["Hvad", "Hvem", "Hvordan"],
+    "distractors": [
+      "Hvad",
+      "Hvem",
+      "Hvordan"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvornaar-2525",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ siger du det?",
     "promptTranslation": "Why do you say that?",
     "answer": "Hvorfor",
-    "distractors": ["Hvad", "Hvornår", "Hvem"],
+    "distractors": [
+      "Hvad",
+      "Hvornår",
+      "Hvem"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvorfor-4246",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ kan hjælpe mig med det?",
     "promptTranslation": "Who can help me with that?",
     "answer": "Hvem",
-    "distractors": ["Hvad", "Hvordan", "Hvornår"],
+    "distractors": [
+      "Hvad",
+      "Hvordan",
+      "Hvornår"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvem-8455",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "___ siger man 'hej' på dansk?",
     "promptTranslation": "How do you say 'hej' in Danish?",
     "answer": "Hvordan",
-    "distractors": ["Hvem", "Hvad", "Hvornår"],
+    "distractors": [
+      "Hvem",
+      "Hvad",
+      "Hvornår"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvordan-2156",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Undskyld, du taler for hurtigt. ___",
     "promptTranslation": "Excuse me, you speak too fast. Can you repeat that?",
     "answer": "Kan du gentage det?",
-    "distractors": ["Kan du skrive det ned?", "Hvad hedder det på dansk?", "Kan du hjælpe mig?"],
+    "distractors": [
+      "Kan du skrive det ned?",
+      "Hvad hedder det på dansk?",
+      "Kan du hjælpe mig?"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-gentage-det-4873",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Undskyld, kan du tale ___? Du taler meget hurtigt.",
     "promptTranslation": "Excuse me, can you speak more slowly? You speak very fast.",
     "answer": "langsommere",
-    "distractors": ["hurtigere", "tydeligere", "anderledes"],
+    "distractors": [
+      "hurtigere",
+      "tydeligere",
+      "anderledes"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-tale-langsommere-9320",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Undskyld, hvad siger du? ___",
     "promptTranslation": "Excuse me, what are you saying? I don't understand.",
     "answer": "Jeg forstår ikke.",
-    "distractors": ["Det ved jeg ikke.", "Kan du hjælpe mig?", "Undskyld."],
+    "distractors": [
+      "Det ved jeg ikke.",
+      "Kan du hjælpe mig?",
+      "Undskyld."
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-jeg-forstaar-ikke-2772",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Det er et engelsk ord. ___",
     "promptTranslation": "It's an English word. What is it called in Danish?",
     "answer": "Hvad hedder det på dansk?",
-    "distractors": ["Hvad betyder det?", "Kan du forklare det?", "Kan du hjælpe mig?"],
+    "distractors": [
+      "Hvad betyder det?",
+      "Kan du forklare det?",
+      "Kan du hjælpe mig?"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvad-hedder-det-paa-3051",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Læreren siger 'bestemt form'. ___",
     "promptTranslation": "The teacher says 'bestemt form'. What does that mean?",
     "answer": "Hvad betyder det?",
-    "distractors": ["Hvad hedder det på dansk?", "Kan du gentage det?", "Det ved jeg ikke."],
+    "distractors": [
+      "Hvad hedder det på dansk?",
+      "Kan du gentage det?",
+      "Det ved jeg ikke."
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvad-betyder-det-2381",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Det er en svær regel. ___",
     "promptTranslation": "It's a difficult rule. Can you explain it?",
     "answer": "Kan du forklare det?",
-    "distractors": ["Kan du gentage det?", "Kan du tale langsommere?", "Hvad hedder det?"],
+    "distractors": [
+      "Kan du gentage det?",
+      "Kan du tale langsommere?",
+      "Hvad hedder det?"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-forklare-det-9740",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg er ny her og forstår ikke systemet. ___",
     "promptTranslation": "I'm new here and don't understand the system. Can you help me?",
     "answer": "Kan du hjælpe mig?",
-    "distractors": ["Kan du gentage det?", "Hvad hedder det på dansk?", "Kan du tale langsommere?"],
+    "distractors": [
+      "Kan du gentage det?",
+      "Hvad hedder det på dansk?",
+      "Kan du tale langsommere?"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-hjaelpe-mig-5203",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Jeg er ikke god til at huske ord. ___",
     "promptTranslation": "I'm not good at remembering words. Can you write it down?",
     "answer": "Kan du skrive det ned?",
-    "distractors": ["Kan du gentage det?", "Kan du forklare det?", "Hvad hedder det?"],
+    "distractors": [
+      "Kan du gentage det?",
+      "Kan du forklare det?",
+      "Hvad hedder det?"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-skrive-det-6406",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Hvornår starter kurset i morgen? ___",
     "promptTranslation": "When does the class start tomorrow? I don't know.",
     "answer": "Det ved jeg ikke.",
-    "distractors": ["Jeg forstår ikke.", "Kan du hjælpe mig?", "Hvad hedder det?"],
+    "distractors": [
+      "Jeg forstår ikke.",
+      "Kan du hjælpe mig?",
+      "Hvad hedder det?"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-jeg-ved-det-ikke-4476",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Kan du ___ mere langsomt? Jeg forstår ikke.",
     "promptTranslation": "Can you speak more slowly? I don't understand.",
     "answer": "tale",
-    "distractors": ["sige", "forstå", "skrive"],
+    "distractors": [
+      "sige",
+      "forstå",
+      "skrive"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-tale-7015",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "Læreren er meget ___, og det er let at forstå hende.",
     "promptTranslation": "The teacher is very slow, and she is easy to understand.",
     "answer": "langsom",
-    "distractors": ["hurtig", "god", "stille"],
+    "distractors": [
+      "hurtig",
+      "god",
+      "stille"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-langsom-7419",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "multiple_choice",
     "prompt": "___, hvad hedder det på dansk?",
     "promptTranslation": "Excuse me, what is it called in Danish?",
     "answer": "Undskyld",
-    "distractors": ["Hej", "Tak", "Farvel"],
+    "distractors": [
+      "Hej",
+      "Tak",
+      "Farvel"
+    ],
     "alternativeAnswers": [],
     "words": null,
     "vocabularyItemId": "A1-12-v-undskyld-6422",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -225,7 +315,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-igen-2463",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -237,7 +328,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-forstaa-8908",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -249,7 +341,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-gentage-2205",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -261,7 +354,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-betyde-7830",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -273,7 +367,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-forklare-8963",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -285,7 +380,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-hjaelpe-9107",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "fill_blank",
@@ -297,67 +393,106 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-langsom-7419",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "sentence_reorder",
     "prompt": "What is this called in Danish?",
     "promptTranslation": null,
     "answer": "Hvad hedder det på dansk?",
-    "words": ["på", "hedder", "dansk", "det", "Hvad"],
+    "words": [
+      "på",
+      "hedder",
+      "dansk",
+      "det",
+      "Hvad"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-question-formation-7529",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "sentence_reorder",
     "prompt": "How do you say that in Danish?",
     "promptTranslation": null,
     "answer": "Hvordan siger du det på dansk?",
-    "words": ["du", "på", "Hvordan", "dansk", "det", "siger"],
+    "words": [
+      "du",
+      "på",
+      "Hvordan",
+      "dansk",
+      "det",
+      "siger"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-question-formation-7529",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "sentence_reorder",
     "prompt": "Can you speak a little more slowly?",
     "promptTranslation": null,
     "answer": "Kan du tale lidt langsommere?",
-    "words": ["lidt", "Kan", "langsommere", "du", "tale"],
+    "words": [
+      "lidt",
+      "Kan",
+      "langsommere",
+      "du",
+      "tale"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-modal-verbs-kan-skal-vil-7825",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "sentence_reorder",
     "prompt": "Can you explain that to me?",
     "promptTranslation": null,
     "answer": "Kan du forklare det for mig?",
-    "words": ["forklare", "Kan", "mig", "du", "det", "for"],
+    "words": [
+      "forklare",
+      "Kan",
+      "mig",
+      "du",
+      "det",
+      "for"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-modal-verbs-kan-skal-vil-7825",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "sentence_reorder",
     "prompt": "She doesn't understand the new word.",
     "promptTranslation": null,
     "answer": "Hun forstår ikke det nye ord.",
-    "words": ["ord", "ikke", "forstår", "Hun", "nye", "det"],
+    "words": [
+      "ord",
+      "ikke",
+      "forstår",
+      "Hun",
+      "nye",
+      "det"
+    ],
     "distractors": [],
     "alternativeAnswers": [],
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-negation-placement-ikke-5510",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "conjugation_drill",
@@ -369,7 +504,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-gentage-2205",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "conjugation_drill",
@@ -381,7 +517,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-forstaa-8908",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "conjugation_drill",
@@ -393,7 +530,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-forklare-8963",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "conjugation_drill",
@@ -405,7 +543,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-betyde-7830",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "conjugation_drill",
@@ -417,7 +556,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-hjaelpe-9107",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "conjugation_drill",
@@ -429,7 +569,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-tale-7015",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "error_correction",
@@ -441,7 +582,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-question-formation-7529",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "error_correction",
@@ -453,7 +595,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-question-formation-7529",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "error_correction",
@@ -465,7 +608,8 @@
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-modal-verbs-kan-skal-vil-7825",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "error_correction",
@@ -473,11 +617,14 @@
     "promptTranslation": "I don't understand it.",
     "answer": "Jeg forstår det ikke.",
     "distractors": [],
-    "alternativeAnswers": ["Det forstår jeg ikke."],
+    "alternativeAnswers": [
+      "Det forstår jeg ikke."
+    ],
     "words": null,
     "vocabularyItemId": null,
     "grammarConceptId": "A1-12-g-negation-placement-ikke-5510",
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -489,7 +636,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-hvad-6411",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -497,11 +645,15 @@
     "promptTranslation": null,
     "answer": "Hvor er toilettet?",
     "distractors": [],
-    "alternativeAnswers": ["Hvor er wc?", "Hvor er badeværelset?"],
+    "alternativeAnswers": [
+      "Hvor er wc?",
+      "Hvor er badeværelset?"
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvor-7370",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -509,11 +661,14 @@
     "promptTranslation": null,
     "answer": "Kan du gentage det?",
     "distractors": [],
-    "alternativeAnswers": ["Kan du sige det igen?"],
+    "alternativeAnswers": [
+      "Kan du sige det igen?"
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-gentage-det-4873",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -521,11 +676,14 @@
     "promptTranslation": null,
     "answer": "Jeg forstår ikke.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg forstår det ikke."],
+    "alternativeAnswers": [
+      "Jeg forstår det ikke."
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-jeg-forstaar-ikke-2772",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -537,7 +695,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-hvad-hedder-det-paa-3051",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -545,11 +704,14 @@
     "promptTranslation": null,
     "answer": "Hvad betyder det ord?",
     "distractors": [],
-    "alternativeAnswers": ["Hvad betyder det?"],
+    "alternativeAnswers": [
+      "Hvad betyder det?"
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-hvad-betyder-det-2381",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -561,7 +723,8 @@
     "words": null,
     "vocabularyItemId": "A1-12-v-kan-du-hjaelpe-mig-5203",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -569,11 +732,14 @@
     "promptTranslation": null,
     "answer": "Det ved jeg ikke.",
     "distractors": [],
-    "alternativeAnswers": ["Jeg ved det ikke."],
+    "alternativeAnswers": [
+      "Jeg ved det ikke."
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-jeg-ved-det-ikke-4476",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -581,11 +747,14 @@
     "promptTranslation": null,
     "answer": "Undskyld, kan du hjælpe mig?",
     "distractors": [],
-    "alternativeAnswers": ["Undskyld mig, kan du hjælpe mig?"],
+    "alternativeAnswers": [
+      "Undskyld mig, kan du hjælpe mig?"
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-undskyld-6422",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   },
   {
     "type": "translation_active",
@@ -593,10 +762,13 @@
     "promptTranslation": null,
     "answer": "Kan du sige det igen?",
     "distractors": [],
-    "alternativeAnswers": ["Kan du gentage det?"],
+    "alternativeAnswers": [
+      "Kan du gentage det?"
+    ],
     "words": null,
     "vocabularyItemId": "A1-12-v-igen-2463",
     "grammarConceptId": null,
-    "timesShown": 0
+    "timesShown": 0,
+    "moduleId": "danish-A1-12"
   }
 ]
