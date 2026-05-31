@@ -1,17 +1,18 @@
 ---
 name: generate-module-content
-description: Generates the content of a Tome Language Learning Module, within a CEFR level.
+description: Generates or updates the content of a Tome Language Learning Module, within a CEFR level.
 ---
 
 # Generate Module Content
 
 ## Overview
 
-Starting from a curriculum that provides the list of modules of the language course, generate content for the requested module. "Content" means three artifacts, generated in order: the **vocabulary set**, the **grammar concepts**, and the **exercise bank**.
+Starting from a curriculum that provides the list of modules of the language course, generate or update content for the requested module. "Content" means four artifacts, generated in order: the **vocabulary set**, the **grammar concepts**, the **exercise bank** and the **module** root file.
 
 ## When to Use
 
 - The user requests the creation of content for a **given module** in the curriculum.
+- The user requests changes in the generated content for a **given module**. 
 
 **Trigger Phrases:**
 - "Generate content for module A2-12"
@@ -39,6 +40,8 @@ GENERATE VOCABULARY ITEMS > GENERATE GRAMMAR CONCEPTS > GENERATE EXERCISES > DIS
 ```
 
 First, **locate the target module's shell** in `default-modules.md` (theme, communication goal, grammar focus, vocabulary focus). This shell is your specification for all three phases.
+
+In general, if the user is asking for an **update** of the content or changes in the content, use this workflow but in "edit" mode: don't rewrite everything, understand the delta and update the parts that need to be corrected.
 
 ---
 
