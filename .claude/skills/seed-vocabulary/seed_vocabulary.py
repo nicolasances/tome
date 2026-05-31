@@ -56,7 +56,7 @@ def _load_vocabulary(module_id: str) -> list:
 
 
 def _call_batch_api(items: list, base_url: str, token: str) -> dict:
-    url = f"{base_url}/tomelang/vocabularyItems/batch"
+    url = f"{base_url}/vocabularyItems/batch"
 
     payload = json.dumps({"items": items}).encode("utf-8")
     req = urllib.request.Request(
