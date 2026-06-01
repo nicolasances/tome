@@ -123,7 +123,7 @@ def main():
     print(f"Environment:  {env}")
     print(f"Module:       {module_db_id}")
 
-    if status_code == 201:
+    if status_code in (200, 201):
         print(f"Status:       created")
     elif status_code == 409:
         print(f"Status:       already exists (duplicate id)")
