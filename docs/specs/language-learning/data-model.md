@@ -69,7 +69,7 @@ Exercise {
   type               // translation_active | multiple_choice |
                      // fill_blank | sentence_reorder | error_correction | conjugation_drill
   prompt             // the question or sentence shown to the user (Danish for most types; English for translation_active)
-  promptTranslation  // string | null — English translation of the Danish prompt; required for multiple_choice, fill_blank, sentence_reorder, error_correction; null for translation_active and conjugation_drill
+  promptTranslation  // string | null — English translation of the Danish prompt; required for multiple_choice, fill_blank, error_correction; null for translation_active, sentence_reorder and conjugation_drill
   answer                  // the canonical correct answer (shown in feedback)
   alternativeAnswers      // string[] — other accepted answers, AI-generated at creation time:
                           //   translation_active: valid paraphrases and word-order variants
