@@ -30,7 +30,7 @@ It is written to match the existing Tome conventions:
 Each page notes which backend features it depends on. As of this writing only catalog/seeding and mastery storage exist:
 
 - 🟢 **Implemented:** F01 Vocabulary Catalog, F02 Grammar Concept Catalog, F03 Module Catalog, F04 Exercise Bank, F06 Mastery & Progress Tracking.
-- ⚪ **Pending:** F05 User Profile/CEFR, F07 Module Progress, F08 Selection, F09–F11 Module flow, F12–F14 AI touchpoints, F20–F21 Level tests, F22 User vocab, F23 Content analysis.
+- ⚪ **Pending:** F05 User Profile/CEFR, F07 Module Progress, F08 Selection, F09–F11 Module flow, F12–F13 AI touchpoints, F20–F21 Level tests, F22 User vocab, F23 Content analysis.
 
 The UI is the north star; pages whose backend is pending are marked so build can be sequenced.
 
@@ -44,7 +44,7 @@ The interface is a small set of focused pages. The **Home Dashboard** is the cen
 |---|------|-------|----------------|---------|
 | P1 | **Home Dashboard** | `/language-learning` | The hub. Shows current CEFR level (prominent), the module list for that level with per-module status, the Level Test gate, and entry points to the secondary surfaces. Always the landing page. | F05, F07, F03 |
 | P2 | **Module Run** | `/language-learning/modules/[id]/run` | The continuous guided learning session for a module: grammar intro cards → practice exercises, in one uninterrupted flow. Resumes where the user left off. | F09, F10, F08 |
-| P3 | **Exercise Player** | *(component, used by P2/P4/P7)* | The shared single-exercise UI: renders any of the 6 exercise types, captures the answer, shows feedback, and exposes on-demand AI helpers (hint, explain, verify). Not a standalone route. | F08, F12, F13, F14 |
+| P3 | **Exercise Player** | *(component, used by P2/P4/P7)* | The shared single-exercise UI: renders any of the 6 exercise types, captures the answer, shows feedback, and exposes on-demand AI helpers (explain, verify). Not a standalone route. | F08, F12, F13 |
 | P4 | **Module Test** | `/language-learning/modules/[id]/test` | The locked, graded 20-question assessment. No feedback during the test; mastery is updated on submit. | F11 |
 | P5 | **Test Results & Review** | `/language-learning/modules/[id]/test/result` | Post-test screen: final score, pass/fail, and a per-question review with correct answers and on-demand "explain my mistake". Reused (with a weak-areas section) by the Level Test. | F11, F12 |
 | P6 | **Level Test** | `/language-learning/level-test` (+ `/result`) | The cumulative level assessment that unlocks the next CEFR level. Uses the Exercise Player; results add a weak-areas summary. | F20, F21, F12 |
@@ -258,7 +258,7 @@ When practice (including retries) is complete:
 
 ## 4. P3 — Exercise Player (shared component)
 
-**Used by:** P2 Module Run, P4 Module Test, P6 Level Test · **Backend:** F08, F12, F13, F14 — *pending*
+**Used by:** P2 Module Run, P4 Module Test, P6 Level Test · **Backend:** F08, F12, F13 — *pending*
 **Not a standalone route** — it is the single-exercise UI embedded in the runs above.
 
 ### Responsibility
@@ -321,7 +321,6 @@ After **Check**, in feedback mode:
 
 These are **explicit, opt-in** actions (never automatic), matching the "no live AI in sessions except on request" rule:
 
-- **Vocabulary Hint (F14)** — available *before* answering on `translation_active`: a small `Need a hint?` link. Returns a hint that doesn't reveal the full answer. Shown inline above the input.
 - **Explain my mistake (F12)** — available *after* a wrong answer (any type): expands to show *what the correct answer is, why, the rule in plain English, and a second Danish example* (idea §3.4). Rendered as an expandable panel under the feedback.
 - **Verify my answer (F13)** — `translation_active` only, *after* it's marked wrong: asks the AI whether the typed translation is actually valid.
   - **Valid →** the exercise flips to ✓ correct; the typed answer is appended to `userContributedAnswers` (so it's accepted forever after). A small "Counted as correct" confirmation.
@@ -359,7 +358,7 @@ The test is only reachable when the Dashboard module row shows `🎯 Test ready`
 
 - **20 questions** (idea §3.1.1), drawn from the module bank: **~50% fresh** (unseen in practice) + up to 50% repeats, selected mastery-aware (F08).
 - Same six exercise types as practice, via the Exercise Player in **no-feedback mode**: answers are captured and the user advances; correctness is **not revealed** until the end.
-- The on-demand AI helpers (hint/explain/verify) are **suppressed during** the test — they belong to the review screen afterward.
+- The on-demand AI helpers (explain/verify) are **suppressed during** the test — they belong to the review screen afterward.
 - The user **must complete all questions** before seeing results (idea §3.1.1). A clear final **Submit test** on the last question.
 - No back-out mid-test beyond abandoning (abandon = no attempt recorded; confirm dialog to prevent accidental loss).
 

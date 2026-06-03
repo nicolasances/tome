@@ -420,7 +420,6 @@ The app is AI-powered in several places. These are the AI touchpoints:
 | Error explanation | Explain why a user's answer was wrong, with rule + example |
 | Answer verification | On explicit user request after a wrong `translation_active` answer: check whether the user's translation is valid; if valid, mark correct and store in `userContributedAnswers`; if invalid, explain why |
 | Grammar concept explanation | Generate a short explanation of a grammar concept with 1–2 Danish examples — runs at module seeding time, stored in GrammarConcept.explanation, not generated live |
-| Vocabulary hint | On request, give a hint for a translation exercise without revealing the full answer |
 | Content analysis — vocabulary | Identify vocabulary items in a pasted text; map against the user's existing vocabulary set to produce coverage and gap lists |
 | Content analysis — grammar | Detect grammar patterns in a pasted text; map against the grammar concept taxonomy and the user's completed modules |
 | Content analysis — report generation | Synthesize vocabulary and grammar findings into a ContentReport with CEFR level estimate, readiness assessment, and curriculum routing |
