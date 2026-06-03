@@ -1,5 +1,7 @@
 # Dashboard Quick Actions Row
 
+![TO BE REVIEWED](https://img.shields.io/badge/TO%20BE%20REVIEWED-d73a4a)
+
 ## 1. Purpose & Scope
 
 The Quick Actions row is the **navigation launchpad** of the Language Learning Home Dashboard. It presents three labelled round buttons that route the user to the main areas of the language-learning section: **Modules**, **Analyze**, and **Sources**. It complements the Continue Module CTA (which handles the single "next" action) by giving access to the broader section surfaces.
@@ -13,9 +15,11 @@ This feature owns: rendering the three labelled round buttons in a row, and issu
 
 ## 2. Key User Stories
 
-- As a learner, I want quick access from my home screen to the full list of modules, so that I can browse or jump to a specific module rather than only the suggested one.
-- As a learner, I want to reach the "Analyze content" tool from the home screen, so that I can paste a Danish text and see what I'd need to learn to understand it (idea US-09).
-- As a learner, I want to reach my Sources from the home screen, so that I can manage the content I'm learning from.
+| # | As a User I want to .. | so that .. |
+|---|------------------------|------------|
+| 1 | quickly reach the full module list from the home screen | I can browse or jump to any specific module, not only the one the CTA suggests |
+| 2 | reach the Analyze Content tool from the home screen | I can paste a Danish text and see what I would need to learn to understand it (idea US-09) |
+| 3 | reach my Sources from the home screen | I can manage the content I am learning from without navigating deep into the section |
 
 ## 3. Interfaces
 

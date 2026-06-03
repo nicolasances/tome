@@ -1,5 +1,7 @@
 # CEFR Level Track
 
+![TO BE REVIEWED](https://img.shields.io/badge/TO%20BE%20REVIEWED-d73a4a)
+
 ## 1. Purpose & Scope
 
 The CEFR Level Track is the **motivational anchor** of the Language Learning Home Dashboard. It renders the user's full path to fluency as a horizontal rail of the six CEFR levels (A1 → A2 → B1 → B2 → C1 → C2), highlighting the user's single active level, marking completed levels, and showing module progress within the active level.
@@ -16,10 +18,12 @@ This feature owns the rendering and data binding of the level rail, the active-l
 
 ## 2. Key User Stories
 
-- As a learner, I want to always see my current CEFR level prominently on the home screen, so that I always know where I stand (idea US-01).
-- As a learner, I want to see all six CEFR levels laid out as a path, so that I understand the full journey and where I am on it.
-- As a learner, I want to see which levels I have already completed and which I have yet to reach, so that I feel a sense of progression.
-- As a learner, I want to see how many modules I have completed within my current level, so that I know how close I am to unlocking the next level (idea §3.5).
+| # | As a User I want to .. | so that .. |
+|---|------------------------|------------|
+| 1 | always see my current CEFR level prominently on the home screen | I always know where I stand (idea US-01) |
+| 2 | see all six CEFR levels laid out as a connected path | I understand the full journey to fluency and where I am on it |
+| 3 | see which levels I have already completed and which I have yet to reach | I feel a clear sense of progression |
+| 4 | see how many modules I have completed within my current level | I know how close I am to unlocking the next CEFR level (idea §3.5) |
 
 ## 3. Interfaces
 

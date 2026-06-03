@@ -1,5 +1,7 @@
 # Weekly Activity Stats
 
+![TO BE REVIEWED](https://img.shields.io/badge/TO%20BE%20REVIEWED-d73a4a)
+
 ## 1. Purpose & Scope
 
 The Weekly Activity Stats is the **engagement / habit** zone of the Language Learning Home Dashboard, anchored near the bottom of the screen. It shows the user's learning activity over the last seven days as a small bar chart, reinforcing consistency and giving a sense of momentum.
@@ -15,9 +17,11 @@ This feature owns: rendering the seven-day activity chart, binding it to the use
 
 ## 2. Key User Stories
 
-- As a learner, I want to see how active I've been over the past week on my home screen, so that I'm encouraged to keep a consistent habit.
-- As a learner, I want each day's bar to show how much I did that day, so that I can spot my pattern at a glance.
-- As a learner with no activity yet, I want the chart to still render cleanly (flat/empty), so that the home screen never looks broken on my first days.
+| # | As a User I want to .. | so that .. |
+|---|------------------------|------------|
+| 1 | see how active I have been over the past week directly on the home screen | I am encouraged to maintain a consistent learning habit |
+| 2 | see each day's bar reflect how much I did on that day | I can spot my activity pattern at a glance |
+| 3 | see the chart render cleanly even when I have no activity yet | the home screen never looks broken during my first days |
 
 ## 3. Interfaces
 

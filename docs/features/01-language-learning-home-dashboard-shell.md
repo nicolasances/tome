@@ -1,5 +1,7 @@
 # Language Learning Home Dashboard — Shell & Navigation Entry
 
+![TO BE REVIEWED](https://img.shields.io/badge/TO%20BE%20REVIEWED-d73a4a)
+
 ## 1. Purpose & Scope
 
 This feature establishes the **Home Dashboard of the Language Learning section** (the home of the language-learning area, not the home of the whole Tome app). It is the landing screen the user reaches when entering "Language Learning", and it acts as the motivational anchor and launchpad described in the idea document: CEFR level is always visible, the current module is one tap away, and the main areas of the section are reachable from here.
@@ -17,10 +19,12 @@ This is the **v2.0 rewrite** of the language-learning section. It is module/CEFR
 
 ## 2. Key User Stories
 
-- As a learner, I want to open the Language Learning section and land on a single home screen, so that I immediately see where I stand and what to do next.
-- As a learner, I want the home screen to show me a clear, branded layout (the Tome cyan screen with a centered title), so that the section feels consistent with the rest of the app.
-- As a learner, I want the screen to load my progress quickly and tell me if something went wrong, so that I am never staring at a blank or broken page.
-- As a learner returning to the app, I want a reliable way to get back to this home screen from elsewhere in the section, so that it remains my hub.
+| # | As a User I want to .. | so that .. |
+|---|------------------------|------------|
+| 1 | open the Language Learning section and land on a single home screen | I immediately see where I stand and what to do next |
+| 2 | see a clear, branded layout with a centered title on the home screen | the section feels consistent with the rest of the app |
+| 3 | have the screen load my progress and tell me clearly if something went wrong | I am never staring at a blank or broken page |
+| 4 | have a reliable way to get back to this home screen from anywhere in the section | it remains my hub and I am never lost |
 
 ## 3. Interfaces
 

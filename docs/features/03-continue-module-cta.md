@@ -1,5 +1,7 @@
 # Continue Module CTA
 
+![TO BE REVIEWED](https://img.shields.io/badge/TO%20BE%20REVIEWED-d73a4a)
+
 ## 1. Purpose & Scope
 
 The Continue Module CTA is the **primary call-to-action** of the Language Learning Home Dashboard. It surfaces the single most relevant module for the user to work on next — the one they have in progress, or the next available one if none is in progress — and lets them jump straight into it with one tap. It is the "what do I do next" answer the dashboard gives the user.
@@ -17,9 +19,11 @@ This feature owns: determining which module is the "continue" target, rendering 
 
 ## 2. Key User Stories
 
-- As a learner, I want one obvious button on my home screen that continues my current module, so that I can resume learning without searching (idea US-03).
-- As a learner who just started, I want the CTA to point me at my first available module, so that I have an obvious place to begin.
-- As a learner, I want to see which module the CTA will open (its level tag and title) before I tap, so that I know what I'm getting into.
+| # | As a User I want to .. | so that .. |
+|---|------------------------|------------|
+| 1 | have one obvious action on my home screen that resumes my current module | I can continue learning without having to search for where I left off (idea US-03) |
+| 2 | see the CTA point me at my first available module when I am just starting out | I have an obvious and unambiguous place to begin |
+| 3 | see the level tag and title of the module the CTA will open before I tap | I know exactly what I am about to work on |
 
 ## 3. Interfaces
 
