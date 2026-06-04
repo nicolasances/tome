@@ -1,98 +1,122 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useHeader } from "@/context/HeaderContext";
-import { RoundButton } from "toto-react";
-import { getAnyActiveSession, ActiveSessionInfo } from "@/api/PracticeSessionHelper";
-import { TomeLanguageAPI } from "@/api/TomeLanguageAPI";
-import { DayStat, LanguageLearningWeeklyStats } from "@/components/graph/LanguageLearningWeeklyStats";
+import { useEffect, useState } from 'react';
+import { useHeader } from '@/context/HeaderContext';
+// import { RoundButton } from 'toto-react';
+import {
+    TomeLearningDashboardAPI,
+    MeProgressResponse,
+    WeeklyStatDay,
+    CEFR_LEVEL_NAMES,
+    CefrLevel,
+    deriveCurrentModule,
+} from '@/api/TomeLearningDashboardAPI';
+import { LevelTrack } from './components/LevelTrack';
+import { ContinueCard } from './components/ContinueCard';
+import { WeeklyModuleStats } from './components/WeeklyModuleStats';
 
-export default function LanguageLearningPage() {
+// ─── Page ────────────────────────────────────────────────────────────────────
 
-    const router = useRouter();
+export default function LanguageLearningHomePage() {
     const { setConfig } = useHeader();
-    const [activeSession, setActiveSession] = useState<ActiveSessionInfo | null | undefined>(undefined);
-    // undefined = loading, null = no active session, ActiveSessionInfo = session found
-    const [rollingStats, setRollingStats] = useState<DayStat[] | null>(null);
 
+    // undefined = loading, null = failed
+    const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
+    const [weeklyStats, setWeeklyStats] = useState<WeeklyStatDay[] | null | undefined>(undefined);
+
+    // ── Header ──────────────────────────────────────────────────────────────
     useEffect(() => {
         setConfig({
             title: 'Language Learning',
-            backButton: {
-                enabled: true,
-                onClick: () => router.back(),
-            },
+            backButton: { enabled: false, onClick: () => {} },
         });
-    }, [setConfig, router]);
+    }, [setConfig]);
 
+    // ── Data loading (two parallel calls) ────────────────────────────────────
     useEffect(() => {
-        getAnyActiveSession()
-            .then((session) => setActiveSession(session))
-            .catch(() => setActiveSession(null));
+        const api = new TomeLearningDashboardAPI();
+
+        api.getMeProgress()
+            .then(setProgress)
+            .catch(() => setProgress(null));
+
+        api.getWeeklySessionStats()
+            .then((res) => setWeeklyStats(res.days))
+            .catch(() => setWeeklyStats(null));
     }, []);
 
-    useEffect(() => {
-        new TomeLanguageAPI()
-            .getRollingStats(7)
-            .then((res) => setRollingStats(res.days))
-            .catch(() => setRollingStats([]));
-    }, []);
+    // ── Derived values ───────────────────────────────────────────────────────
+    const isProgressLoading = progress === undefined;
+    const isWeeklyLoading = weeklyStats === undefined;
 
-    const isLoading = activeSession === undefined;
-    const activeType = activeSession?.practiceType ?? null;
+    const cefrLevel = progress?.currentCefrLevel as CefrLevel | undefined;
+    const levelName = cefrLevel ? CEFR_LEVEL_NAMES[cefrLevel] : undefined;
+    const currentLevelSummary = progress?.levels.find((l) => l.status === 'current');
+    const currentModule = progress ? deriveCurrentModule(progress) : undefined;
 
     return (
-        <div className="flex flex-1 flex-col items-stretch justify-start md:self-center md:max-w-2xl md:w-full">
-            <div className="flex-1 flex flex-col items-center px-4">
-                {/* Top icon buttons */}
-                <div className="flex items-center justify-center mt-8 gap-4">
-                    {/* Knowledge Base button */}
-                    <RoundButton
-                        svgIconPath={{ src: "/images/book.svg", alt: "Knowledge Base" }}
-                        onClick={() => router.push('/language-learning/knowledge-base')}
+        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
+            <div className="flex flex-1 flex-col px-[18px] pt-6 pb-4 gap-8 overflow-y-auto">
+
+                {/* ── Level track ─────────────────────────────────────────── */}
+                <LevelTrack
+                    loading={isProgressLoading}
+                    error={!isProgressLoading && (!progress || !cefrLevel || !levelName || !currentLevelSummary)}
+                    cefrLevel={cefrLevel}
+                    levelName={levelName}
+                    totalModules={currentLevelSummary?.modulesTotal}
+                    completedModules={currentLevelSummary?.modulesCompleted}
+                />
+
+                {/* ── Continue CTA ─────────────────────────────────────────── */}
+                <ContinueCard
+                    loading={isProgressLoading}
+                    module={currentModule}
+                />
+
+                {/* ── Primary nav row ──────────────────────────────────────── */}
+                <div className="flex justify-around items-start gap-2">
+                    {/* <NavButton
+                        icon="/images/book.svg"
+                        alt="Modules"
+                        label="Modules"
+                        onClick={() => router.push(`/language-learning/level/${cefrLevel ?? 'A1'}`)}
                     />
+                    <NavButton
+                        icon="/images/magic.svg"
+                        alt="Analyze"
+                        label="Analyze"
+                        onClick={() => {
+                            // Analyze destination — skipped in v2.0 (no wireframe yet)
+                        }}
+                    /> */}
+                </div>
 
-                    {/* Manage Sources button */}
-                    <RoundButton
-                        svgIconPath={{ src: "/images/sources.svg", alt: "Manage Sources" }}
-                        onClick={() => router.push('/language-learning/sources')}
+                {/* ── Spacer ───────────────────────────────────────────────── */}
+                <div className="flex-1" />
+
+                {/* ── Weekly stats ─────────────────────────────────────────── */}
+                <div className="mb-3.5">
+                    <WeeklyModuleStats
+                        loading={isWeeklyLoading}
+                        days={weeklyStats ?? undefined}
                     />
                 </div>
-                <div className="text-sm text-center tracking-widest uppercase mt-6 mb-1">Practice</div>
-                <div className="bg-cyan-700/60 rounded-full py-2 px-8">
-                    {/* Vocabulary + Sentence practice buttons */}
-                    <div className="flex flex-row items-center gap-4">
-                        <RoundButton
-                            loading={isLoading}
-                            disabled={isLoading}
-                            svgIconPath={{ src: "/images/language.svg", alt: "Vocabulary Practice" }}
-                            onClick={() => router.push('/language-learning/vocabulary-practice')}
-                            type={activeType === 'vocabulary' ? 'filled' : 'primary'}
-                        />
-                        <RoundButton
-                            loading={isLoading}
-                            disabled={isLoading}
-                            svgIconPath={{ src: "/images/sentences.svg", alt: "Sentence Practice" }}
-                            onClick={() => router.push('/language-learning/sentence-practice')}
-                            type={activeType === 'sentences' ? 'filled' : 'primary'}
-                        />
-                    </div>
-                </div>
 
-                <div className="flex-1"></div>
-
-                {/* Learning Stats section */}
-                <div className="mt-8 mb-6 w-full">
-                    {rollingStats === null ? (
-                        <div className="flex items-center justify-center text-sm text-muted-foreground" style={{ height: 160 }}>
-                            Loading stats…
-                        </div>
-                    ) : (
-                        <LanguageLearningWeeklyStats days={rollingStats} />
-                    )}
-                </div>
             </div>
         </div>
     );
 }
+
+// ─── Nav button (RoundButton + label below) ───────────────────────────────────
+
+// function NavButton({ icon, alt, label, onClick }: { icon: string; alt: string; label: string; onClick: () => void }) {
+//     return (
+//         <div className="flex flex-col items-center gap-2">
+//             <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
+//             <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-black/70">
+//                 {label}
+//             </span>
+//         </div>
+//     );
+// }

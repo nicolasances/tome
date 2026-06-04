@@ -1,5 +1,7 @@
 # Home Dashboard — the motivational hub
 
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
+
 ## 1. Purpose & Scope
 
 Delivers the **Home dashboard**, the landing screen of Tome Language Learning. It
@@ -62,8 +64,10 @@ browse the level).
 |---|----------|-----------|
 | 1 | Implement as the index route of `/language-learning`. | It is the app's home/landing screen. |
 | 2 | Spec variant **C (Level track)** as the design; treat A/B as discarded alternatives. | User-selected primary design. |
-| 3 | Wrap all backend calls in an API class under `/api` (per AGENTS.md), path without microservice basepath. | Project convention. |
-| 4 | Use `RoundButton` from `toto-react` for the nav row (no custom button). | Project style guide. |
+| 3 | Wrap all backend calls in an `TomeLearningDashboardAPI` class under `/api` (per AGENTS.md), path without microservice basepath. | Project convention. |
+| 4 | Use `RoundButton` from `toto-react` for the nav row (no custom button). The `toto-react` `RoundButton` does **not** have a `label` prop — labels are rendered below each button in a wrapper `div`. | Project style guide. `RoundButton` API constraint. |
+| 5 | Three separate API calls (level-progress, current module, weekly stats) run in parallel on page load; each section shows its own skeleton independently. | Avoids a single combined endpoint that would block all sections if one fails. |
+| 6 | Backend endpoints on `tome-ms-language`: `GET /users/me/level-progress`, `GET /users/me/modules/current` (returns 404 when no module available), `GET /users/me/stats/weekly`. | All language learning logic lives in `tome-ms-language` per architecture doc. |
 
 ## 6. Success Criteria
 
@@ -78,8 +82,4 @@ browse the level).
 
 ## 7. Open Questions
 
-| # | Question | Notes |
-|---|----------|-------|
-| 1 | ~~Are the nav destinations **Modules / Analyze / Sources** (wireframe C) or **Modules / Analyze / Knowledge** (idea)?~~ | **Resolved**: the third button is not rendered in v2.0. |
-| 2 | ~~What exactly does "weekly activity count" measure — exercises answered, sessions, or modules touched?~~ | **Resolved**: modules completed per day. |
-| 3 | ~~Is the level track purely decorative, or tappable to inspect past/future levels?~~ | **Resolved**: purely decorative — no tap interaction. |
+All open questions resolved — see §5 Technical Decisions for context.
