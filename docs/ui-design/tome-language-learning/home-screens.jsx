@@ -38,9 +38,9 @@ function HomeRow({ children }) {
 function HomeA() {
   return (
     <TomeScreen title="Language Learning">
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '8px 18px 0', gap: 18, overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '14px 18px 0', gap: 26, overflow: 'hidden' }}>
         {/* hero badge */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 4 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 8 }}>
           <div style={{
             width: 112, height: 112, borderRadius: '50%', border: `3px solid ${TC.lime}`,
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -76,8 +76,8 @@ function HomeA() {
 function HomeB() {
   return (
     <TomeScreen title="Language Learning">
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '6px 18px 0', gap: 16, overflow: 'hidden' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 6 }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '12px 18px 0', gap: 24, overflow: 'hidden' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 8 }}>
           <Ring size={168} stroke={13} pct={0.08}
             center={<span style={{ fontSize: 46, fontWeight: 700, color: TC.fg1, lineHeight: 1 }}>A1</span>}
             sub={<span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: TC.fg3, marginTop: 4 }}>Foundation</span>}
@@ -112,7 +112,7 @@ function HomeC() {
   const active = 0;
   return (
     <TomeScreen title="Language Learning">
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '10px 18px 0', gap: 18, overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '16px 18px 0', gap: 26, overflow: 'hidden' }}>
         {/* level track */}
         <div>
           <Label style={{ marginBottom: 14 }}>Your path to fluency</Label>
