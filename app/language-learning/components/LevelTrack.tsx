@@ -131,6 +131,7 @@ function LevelNode({ label, isCurrent, isCompleted }: { label: string; isCurrent
             style={{
                 width: size,
                 height: size,
+                lineHeight: size, 
                 fontSize: isCurrent ? 15 : 12,
                 ...(!isCurrent && !isCompleted ? { borderColor: 'rgba(0,0,0,0.22)' } : {}),
             }}
