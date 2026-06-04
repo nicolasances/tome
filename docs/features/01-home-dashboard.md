@@ -38,14 +38,14 @@ browse the level).
 |--------|----------------|-------------|-------------------|
 | Home dashboard | Level track | Horizontal A1→A2→B1→B2→C1→C2 row of nodes with connectors; current level enlarged + lime-filled, completed levels filled, future levels outlined. Below: level name ("Foundation") + a row of module dots for the current level. | Highlights the user's current level; module dots fill as modules complete. Static (not a navigation control in v2.0). |
 | Home dashboard | Continue CTA | Dark rounded card with a lime circular arrow, kicker "Continue · A1·01", and the current module title. | Tapping navigates to the current module (Module overview, or its current step). Hidden/replaced with an empty state when no module is in progress. |
-| Home dashboard | Primary nav row | Three `RoundButton`s (primary variant) with labels: **Modules**, **Analyze**, **Sources**. | Modules → Module map (`02`). Analyze → Analyze Content (**skipped**). Sources/Knowledge → (**skipped**). |
-| Home dashboard | Weekly stats | "This week" label + a 7-day bar chart (M–S) of the user's daily activity counts. | Renders one bar per weekday from weekly activity data; today emphasised. |
+| Home dashboard | Primary nav row | Two `RoundButton`s (primary variant) with labels: **Modules**, **Analyze**. The third button (Sources/Knowledge) is **not rendered** in v2.0. | Modules → Module map (`02`). Analyze → Analyze Content (**skipped**). |
+| Home dashboard | Weekly stats | "This week" label + a 7-day bar chart (M–S) of modules completed per day. | Renders one bar per weekday; height = modules completed that day; today emphasised. |
 | Home dashboard | Screen chrome | `TomeScreen` titled "Language Learning". | Standard app header; layout shell, not a separate feature. |
 
 **Additional Notes:**
 - **Loading**: show a skeleton/placeholder for level track, continue CTA and weekly stats while data loads.
 - **Empty / first-run**: a brand-new A1 user with no module started shows level A1 at 0/12; the Continue CTA points at the first **available** module ("Who Are You?").
-- The wireframe variant C shows the nav labels as **Modules / Analyze / Sources**, whereas the idea references **Analyze** and **Knowledge**. This discrepancy is captured as an open question.
+- The nav row renders only **Modules** and **Analyze** in v2.0; the third button (Sources/Knowledge) is hidden.
 
 ## 4. Business Logic
 
@@ -53,7 +53,7 @@ browse the level).
 - The level track marks levels < current as completed, the current level as active, and levels > current as future.
 - Module-dots / "x / N modules" reflect **UserModuleProgress** for the current level: count of `completed` modules out of the level's total.
 - The **current module** for the Continue CTA = the user's `in_progress` module; if none is in progress, the first `available` (not-yet-completed, unlocked) module at the current level.
-- Weekly stats are derived from the user's exercise/activity history for the current calendar week (Mon–Sun).
+- Weekly stats show **modules completed per day** for the current calendar week (Mon–Sun); each bar height = count of modules with status `completed` on that day.
 - The dashboard is **read-only** with respect to progress — it never mutates mastery or module state.
 
 ## 5. Technical Decisions
@@ -80,6 +80,6 @@ browse the level).
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | Are the nav destinations **Modules / Analyze / Sources** (wireframe C) or **Modules / Analyze / Knowledge** (idea)? | Affects the third button's label + (skipped) destination. |
-| 2 | What exactly does "weekly activity count" measure — exercises answered, sessions, or modules touched? | Defines the weekly-stats data source. |
-| 3 | Is the level track purely decorative, or tappable to inspect past/future levels? | Wireframe shows no interaction. |
+| 1 | ~~Are the nav destinations **Modules / Analyze / Sources** (wireframe C) or **Modules / Analyze / Knowledge** (idea)?~~ | **Resolved**: the third button is not rendered in v2.0. |
+| 2 | ~~What exactly does "weekly activity count" measure — exercises answered, sessions, or modules touched?~~ | **Resolved**: modules completed per day. |
+| 3 | ~~Is the level track purely decorative, or tappable to inspect past/future levels?~~ | **Resolved**: purely decorative — no tap interaction. |
