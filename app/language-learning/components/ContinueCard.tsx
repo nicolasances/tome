@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { CurrentModuleResponse } from '@/api/TomeLearningDashboardAPI';
+import { CurrentModuleInfo } from '@/api/TomeLearningDashboardAPI';
 
 interface ContinueCardProps {
     /** The current module to continue, or null when none is available. */
-    module: CurrentModuleResponse | null;
+    module: CurrentModuleInfo | null;
 }
 
 /**

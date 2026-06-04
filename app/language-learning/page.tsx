@@ -6,9 +6,11 @@ import { useHeader } from '@/context/HeaderContext';
 import { RoundButton } from 'toto-react';
 import {
     TomeLearningDashboardAPI,
-    UserLevelProgressResponse,
-    CurrentModuleResponse,
-    WeekDayStat,
+    MeProgressResponse,
+    WeeklyStatDay,
+    CEFR_LEVEL_NAMES,
+    CefrLevel,
+    deriveCurrentModule,
 } from '@/api/TomeLearningDashboardAPI';
 import { LevelTrack, LevelTrackSkeleton } from './components/LevelTrack';
 import { ContinueCard, ContinueCardSkeleton } from './components/ContinueCard';
@@ -20,10 +22,9 @@ export default function LanguageLearningHomePage() {
     const router = useRouter();
     const { setConfig } = useHeader();
 
-    // Dashboard data — undefined = loading, null = failed/not found
-    const [levelProgress, setLevelProgress] = useState<UserLevelProgressResponse | null | undefined>(undefined);
-    const [currentModule, setCurrentModule] = useState<CurrentModuleResponse | null | undefined>(undefined);
-    const [weeklyStats, setWeeklyStats] = useState<WeekDayStat[] | null | undefined>(undefined);
+    // undefined = loading, null = failed
+    const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
+    const [weeklyStats, setWeeklyStats] = useState<WeeklyStatDay[] | null | undefined>(undefined);
 
     // ── Header ──────────────────────────────────────────────────────────────
     useEffect(() => {
@@ -33,48 +34,48 @@ export default function LanguageLearningHomePage() {
         });
     }, [setConfig]);
 
-    // ── Data loading ─────────────────────────────────────────────────────────
+    // ── Data loading (two parallel calls) ────────────────────────────────────
     useEffect(() => {
         const api = new TomeLearningDashboardAPI();
 
-        api.getUserLevelProgress()
-            .then(setLevelProgress)
-            .catch(() => setLevelProgress(null));
+        api.getMeProgress()
+            .then(setProgress)
+            .catch(() => setProgress(null));
 
-        api.getCurrentModule()
-            .then((mod) => setCurrentModule(mod ?? null))
-            .catch(() => setCurrentModule(null));
-
-        api.getWeeklyModuleStats()
+        api.getWeeklySessionStats()
             .then((res) => setWeeklyStats(res.days))
             .catch(() => setWeeklyStats(null));
     }, []);
 
-    // ── Derived ──────────────────────────────────────────────────────────────
-    const isLevelLoading = levelProgress === undefined;
-    const isModuleLoading = currentModule === undefined;
+    // ── Derived values ───────────────────────────────────────────────────────
+    const isProgressLoading = progress === undefined;
     const isWeeklyLoading = weeklyStats === undefined;
+
+    const cefrLevel = progress?.currentCefrLevel as CefrLevel | undefined;
+    const levelName = cefrLevel ? CEFR_LEVEL_NAMES[cefrLevel] : undefined;
+    const currentLevelSummary = progress?.levels.find((l) => l.status === 'current');
+    const currentModule = progress ? deriveCurrentModule(progress) : undefined;
 
     return (
         <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
             <div className="flex flex-1 flex-col px-[18px] pt-4 pb-4 gap-6 overflow-y-auto">
 
                 {/* ── Level track ─────────────────────────────────────────── */}
-                {isLevelLoading ? (
+                {isProgressLoading ? (
                     <LevelTrackSkeleton />
-                ) : levelProgress ? (
+                ) : progress && cefrLevel && levelName && currentLevelSummary ? (
                     <LevelTrack
-                        cefrLevel={levelProgress.cefrLevel}
-                        levelName={levelProgress.levelName}
-                        totalModules={levelProgress.totalModules}
-                        completedModules={levelProgress.completedModules}
+                        cefrLevel={cefrLevel}
+                        levelName={levelName}
+                        totalModules={currentLevelSummary.modulesTotal}
+                        completedModules={currentLevelSummary.modulesCompleted}
                     />
                 ) : (
                     <LevelTrackError />
                 )}
 
                 {/* ── Continue CTA ─────────────────────────────────────────── */}
-                {isModuleLoading ? (
+                {isProgressLoading ? (
                     <ContinueCardSkeleton />
                 ) : (
                     <ContinueCard module={currentModule ?? null} />
@@ -86,7 +87,9 @@ export default function LanguageLearningHomePage() {
                         icon="/images/book.svg"
                         alt="Modules"
                         label="Modules"
-                        onClick={() => router.push(`/language-learning/level/${levelProgress?.cefrLevel ?? 'A1'}`)}
+                        onClick={() =>
+                            router.push(`/language-learning/level/${cefrLevel ?? 'A1'}`)
+                        }
                     />
                     <NavButton
                         icon="/images/magic.svg"
@@ -162,7 +165,7 @@ function WeeklyStatsSkeleton() {
                     <div key={i} className="flex-1 flex flex-col items-center justify-end gap-1.5" style={{ height: '100%' }}>
                         <div
                             className="skeleton-shimmer w-full rounded-sm"
-                            style={{ height: Math.floor(Math.random() * 50) + 20 }}
+                            style={{ height: 20 + (i % 3) * 15 }}
                         />
                         <div className="skeleton-shimmer h-2.5 w-3 rounded" />
                     </div>
@@ -182,7 +185,7 @@ function WeeklyStatsEmpty() {
                 className="flex items-center justify-center text-sm text-white/50"
                 style={{ height: 110 }}
             >
-                No modules completed yet
+                No activity yet this week
             </div>
         </div>
     );

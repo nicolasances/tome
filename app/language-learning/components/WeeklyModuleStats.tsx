@@ -1,18 +1,18 @@
 'use client';
 
-import { WeekDayStat } from '@/api/TomeLearningDashboardAPI';
 import moment from 'moment';
+import { WeeklyStatDay } from '@/api/TomeLearningDashboardAPI';
 
 interface WeeklyModuleStatsProps {
     /** Seven entries for Mon–Sun; days with no completions have count: 0. */
-    days: WeekDayStat[];
+    days: WeeklyStatDay[];
 }
 
 /**
- * 7-day bar chart (Mon–Sun) showing modules completed per day.
+ * 7-day bar chart (Mon–Sun) showing sessions completed per day.
+ * Day labels are derived from the date field.
  * Today's bar is highlighted with lime-200 accent.
  * Bars scale relative to the day with the highest count.
- * Renders an empty state when all counts are zero.
  */
 export function WeeklyModuleStats({ days }: WeeklyModuleStatsProps) {
     const today = moment().format('YYYYMMDD');
@@ -31,6 +31,8 @@ export function WeeklyModuleStats({ days }: WeeklyModuleStatsProps) {
                         day.count > 0
                             ? Math.max((day.count / maxCount) * 84, 8) // min 8 px for visible bars
                             : 2; // hairline for zero days
+
+                    const dayLabel = moment(day.date, 'YYYYMMDD').format('dd').charAt(0);
 
                     return (
                         <div
@@ -61,7 +63,7 @@ export function WeeklyModuleStats({ days }: WeeklyModuleStatsProps) {
                                 }`}
                                 style={{ height: barHeight }}
                                 role="img"
-                                aria-label={`${day.label}: ${day.count} module${day.count !== 1 ? 's' : ''} completed`}
+                                aria-label={`${dayLabel}: ${day.count} session${day.count !== 1 ? 's' : ''} completed`}
                             />
 
                             {/* Day label */}
@@ -70,7 +72,7 @@ export function WeeklyModuleStats({ days }: WeeklyModuleStatsProps) {
                                     isToday ? 'text-lime-200 font-bold' : 'text-white/85'
                                 }`}
                             >
-                                {day.label}
+                                {dayLabel}
                             </span>
                         </div>
                     );
