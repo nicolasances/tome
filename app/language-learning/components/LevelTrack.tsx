@@ -33,7 +33,7 @@ export function LevelTrack({ cefrLevel, levelName, totalModules, completedModule
 
     return (
         <div>
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-black/50 mb-3.5">
+            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-black/50 mb-3.5 text-center">
                 Your path to fluency
             </p>
 
@@ -103,6 +103,7 @@ function LevelNode({
             style={{
                 width: size,
                 height: size,
+                lineHeight: size,
                 fontSize,
                 ...((!isCurrent && !isCompleted) ? { borderColor: 'rgba(0,0,0,0.22)' } : {}),
             }}
