@@ -25,10 +25,10 @@ export function ContinueCard({ loading, module }: ContinueCardProps) {
                 aria-busy="true"
                 aria-label="Loading current module"
             >
-                <div className="bg-muted animate-pulse flex-none rounded-full w-11 h-11" />
+                <div className="skeleton-shimmer flex-none rounded-full" style={{ width: 44, height: 44 }} />
                 <div className="flex-1 min-w-0 flex flex-col gap-2">
-                    <div className="bg-muted animate-pulse h-3 w-28 rounded" />
-                    <div className="bg-muted animate-pulse h-5 w-40 rounded" />
+                    <div className="skeleton-shimmer h-3 w-28 rounded" />
+                    <div className="skeleton-shimmer h-5 w-40 rounded" />
                 </div>
             </div>
         );

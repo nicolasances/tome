@@ -20,12 +20,12 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
     if (loading) {
         return (
             <div aria-busy="true" aria-label="Loading weekly stats">
-                <div className="bg-muted animate-pulse h-[11px] w-20 rounded mb-3" />
-                <div className="flex items-end gap-2 h-[110px]">
+                <div className="skeleton-shimmer h-[11px] w-20 rounded mb-3" />
+                <div className="flex items-end gap-2" style={{ height: 110 }}>
                     {Array.from({ length: 7 }).map((_, i) => (
-                        <div key={i} className="flex-1 flex flex-col items-center justify-end gap-1.5 h-full">
-                            <div className="bg-muted animate-pulse w-full rounded-sm" style={{ height: 20 + (i % 3) * 15 }} />
-                            <div className="bg-muted animate-pulse h-2.5 w-3 rounded" />
+                        <div key={i} className="flex-1 flex flex-col items-center justify-end gap-1.5" style={{ height: '100%' }}>
+                            <div className="skeleton-shimmer w-full rounded-sm" style={{ height: 20 + (i % 3) * 15 }} />
+                            <div className="skeleton-shimmer h-2.5 w-3 rounded" />
                         </div>
                     ))}
                 </div>

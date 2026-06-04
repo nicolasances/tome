@@ -41,22 +41,22 @@ export function LevelTrack({
     if (loading) {
         return (
             <div aria-busy="true" aria-label="Loading level progress">
-                <div className="bg-muted animate-pulse h-[11px] w-32 rounded mb-3.5" />
+                <div className="skeleton-shimmer h-[11px] w-32 rounded mb-3.5" />
                 <div className="flex items-center">
                     {CEFR_LEVELS.map((level, i) => (
                         <React.Fragment key={level}>
-                            <div className="bg-muted animate-pulse flex-none rounded-full w-[34px] h-[34px]" />
+                            <div className="skeleton-shimmer flex-none rounded-full" style={{ width: 34, height: 34 }} />
                             {i < CEFR_LEVELS.length - 1 && (
-                                <div className="flex-1 bg-muted animate-pulse rounded h-[2px]" />
+                                <div className="flex-1 skeleton-shimmer rounded" style={{ height: 2.5 }} />
                             )}
                         </React.Fragment>
                     ))}
                 </div>
                 <div className="flex items-center justify-between mt-3.5">
-                    <div className="bg-muted animate-pulse h-4 w-24 rounded" />
+                    <div className="skeleton-shimmer h-4 w-24 rounded" />
                     <div className="flex gap-1.5">
                         {Array.from({ length: 8 }).map((_, i) => (
-                            <div key={i} className="bg-muted animate-pulse rounded-full w-[7px] h-[7px]" />
+                            <div key={i} className="skeleton-shimmer rounded-full" style={{ width: 7, height: 7 }} />
                         ))}
                     </div>
                 </div>
