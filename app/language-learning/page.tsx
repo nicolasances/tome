@@ -19,7 +19,6 @@ import { WeeklyModuleStats } from './components/WeeklyModuleStats';
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default function LanguageLearningHomePage() {
-    const router = useRouter();
     const { setConfig } = useHeader();
 
     // undefined = loading, null = failed
@@ -112,13 +111,13 @@ export default function LanguageLearningHomePage() {
 
 // ─── Nav button (RoundButton + label below) ───────────────────────────────────
 
-function NavButton({ icon, alt, label, onClick }: { icon: string; alt: string; label: string; onClick: () => void }) {
-    return (
-        <div className="flex flex-col items-center gap-2">
-            <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
-            <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-black/70">
-                {label}
-            </span>
-        </div>
-    );
-}
+// function NavButton({ icon, alt, label, onClick }: { icon: string; alt: string; label: string; onClick: () => void }) {
+//     return (
+//         <div className="flex flex-col items-center gap-2">
+//             <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
+//             <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-black/70">
+//                 {label}
+//             </span>
+//         </div>
+//     );
+// }
