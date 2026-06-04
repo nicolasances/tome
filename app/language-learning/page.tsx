@@ -78,7 +78,7 @@ export default function LanguageLearningHomePage() {
 
                 {/* ── Primary nav row ──────────────────────────────────────── */}
                 <div className="flex justify-around items-start gap-2">
-                    <NavButton
+                    {/* <NavButton
                         icon="/images/book.svg"
                         alt="Modules"
                         label="Modules"
@@ -91,7 +91,7 @@ export default function LanguageLearningHomePage() {
                         onClick={() => {
                             // Analyze destination — skipped in v2.0 (no wireframe yet)
                         }}
-                    />
+                    /> */}
                 </div>
 
                 {/* ── Spacer ───────────────────────────────────────────────── */}
