@@ -77,7 +77,7 @@ export function LevelTrack({
 
     return (
         <div>
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-black/50 mb-3.5">
+            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-black/50 mb-3.5 text-center">
                 Your path to fluency
             </p>
 

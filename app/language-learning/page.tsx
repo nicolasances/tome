@@ -58,7 +58,7 @@ export default function LanguageLearningHomePage() {
 
     return (
         <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
-            <div className="flex flex-1 flex-col px-[18px] pt-4 pb-4 gap-6 overflow-y-auto">
+            <div className="flex flex-1 flex-col px-[18px] pt-6 pb-4 gap-8 overflow-y-auto">
 
                 {/* ── Level track ─────────────────────────────────────────── */}
                 <LevelTrack
