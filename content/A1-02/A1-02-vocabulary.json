@@ -1,0 +1,452 @@
+[
+  {
+    "id": "A1-02-v-mandag-2555",
+    "danish": "mandag",
+    "english": "Monday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-tirsdag-8129",
+    "danish": "tirsdag",
+    "english": "Tuesday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-onsdag-6834",
+    "danish": "onsdag",
+    "english": "Wednesday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-torsdag-8534",
+    "danish": "torsdag",
+    "english": "Thursday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-fredag-2962",
+    "danish": "fredag",
+    "english": "Friday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-loerdag-6817",
+    "danish": "lørdag",
+    "english": "Saturday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-soendag-1420",
+    "danish": "søndag",
+    "english": "Sunday",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "days"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-januar-5748",
+    "danish": "januar",
+    "english": "January",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-februar-5961",
+    "danish": "februar",
+    "english": "February",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-marts-8240",
+    "danish": "marts",
+    "english": "March",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-april-6541",
+    "danish": "april",
+    "english": "April",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-maj-9130",
+    "danish": "maj",
+    "english": "May",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-juni-5469",
+    "danish": "juni",
+    "english": "June",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-juli-3812",
+    "danish": "juli",
+    "english": "July",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-august-6192",
+    "danish": "august",
+    "english": "August",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-september-6996",
+    "danish": "september",
+    "english": "September",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-oktober-6281",
+    "danish": "oktober",
+    "english": "October",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-november-4931",
+    "danish": "november",
+    "english": "November",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-december-6881",
+    "danish": "december",
+    "english": "December",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "months"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-foraar-7545",
+    "danish": "forår",
+    "english": "spring",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "seasons"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-sommer-5978",
+    "danish": "sommer",
+    "english": "summer",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "seasons"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-efteraar-3389",
+    "danish": "efterår",
+    "english": "autumn",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "seasons"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-vinter-3187",
+    "danish": "vinter",
+    "english": "winter",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "seasons"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-klokken-9597",
+    "danish": "klokken",
+    "english": "o'clock / the clock",
+    "type": "noun",
+    "context": "used in clock expressions: klokken er tre = it is three o'clock",
+    "tags": ["time", "clock"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-time-2776",
+    "danish": "time",
+    "english": "hour",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "clock"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-minut-6933",
+    "danish": "minut",
+    "english": "minute",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "clock"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-halv-9823",
+    "danish": "halv",
+    "english": "half (past the previous hour)",
+    "type": "number",
+    "context": "used in clock expressions: halv tre = 2:30 (half towards three)",
+    "tags": ["time", "clock", "numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-kvart-over-6864",
+    "danish": "kvart over",
+    "english": "quarter past",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "clock"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-kvart-i-6408",
+    "danish": "kvart i",
+    "english": "quarter to",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "clock"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-aar-5921",
+    "danish": "år",
+    "english": "year",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "dates"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-dato-2609",
+    "danish": "dato",
+    "english": "date",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "dates"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-tyve-4455",
+    "danish": "tyve",
+    "english": "twenty",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-tredive-5065",
+    "danish": "tredive",
+    "english": "thirty",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-fyrre-3267",
+    "danish": "fyrre",
+    "english": "forty",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-halvtreds-5363",
+    "danish": "halvtreds",
+    "english": "fifty",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-tres-9179",
+    "danish": "tres",
+    "english": "sixty",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-halvfjerds-8702",
+    "danish": "halvfjerds",
+    "english": "seventy",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-firs-7460",
+    "danish": "firs",
+    "english": "eighty",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-halvfems-8390",
+    "danish": "halvfems",
+    "english": "ninety",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-hundrede-6305",
+    "danish": "hundrede",
+    "english": "a hundred",
+    "type": "number",
+    "context": null,
+    "tags": ["numbers"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-foerste-4155",
+    "danish": "første",
+    "english": "first",
+    "type": "adjective",
+    "context": null,
+    "tags": ["numbers", "ordinals"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-anden-7784",
+    "danish": "anden",
+    "english": "second",
+    "type": "adjective",
+    "context": null,
+    "tags": ["numbers", "ordinals"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-tredje-1535",
+    "danish": "tredje",
+    "english": "third",
+    "type": "adjective",
+    "context": null,
+    "tags": ["numbers", "ordinals"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-at-begynde-6643",
+    "danish": "at begynde",
+    "english": "to begin / to start",
+    "type": "verb",
+    "context": null,
+    "tags": ["time", "events"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-02-v-at-slutte-9570",
+    "danish": "at slutte",
+    "english": "to end / to finish",
+    "type": "verb",
+    "context": null,
+    "tags": ["time", "events"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

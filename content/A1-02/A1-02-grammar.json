@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A1-02-g-question-formation-1684",
+    "name": "Question formation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish questions are formed by placing the verb before the subject. For time and date, the key question words are 'hvad' (what), 'hvornår' (when), and 'hvilken/hvilket' (which). 'Hvad er klokken?' is the standard way to ask the time.",
+    "examples": [
+      { "danish": "Hvad er klokken?", "english": "What time is it?" },
+      { "danish": "Hvornår er din fødselsdag?", "english": "When is your birthday?" }
+    ]
+  },
+  {
+    "id": "A1-02-g-main-clause-word-order-4891",
+    "name": "Main clause word order (SVO)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In a Danish main clause, the verb comes second. For time expressions, this means: subject + verb + time phrase. The phrase 'klokken er' (the clock is) always starts the time statement. Date statements follow the same pattern.",
+    "examples": [
+      { "danish": "Klokken er halv tre.", "english": "It is half past two. (lit. The clock is half three.)" },
+      { "danish": "Min fødselsdag er den femte juni.", "english": "My birthday is the fifth of June." }
+    ]
+  },
+  {
+    "id": "A1-02-g-grammatical-gender-enet-9249",
+    "name": "Grammatical gender (en/et)",
+    "category": "nouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish nouns are either common gender (en) or neuter (et). Days of the week and months are common gender (en), so ordinals in date expressions use the definite form with 'den'. 'Et' nouns use 'det'. For dates, always say 'den + ordinal + month'.",
+    "examples": [
+      { "danish": "Det er mandag den tredje oktober.", "english": "It is Monday the third of October." },
+      { "danish": "Vi mødes den første fredag i måneden.", "english": "We meet on the first Friday of the month." }
+    ]
+  }
+]
