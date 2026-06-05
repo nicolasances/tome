@@ -70,7 +70,3 @@ produced for them. Listed here so the gap is explicit and tracked.
 | §3.2.3 / US-10 | **Add user vocabulary** | No wireframe. |
 | §3.1.3 / US-02 | **Create custom module from a prompt** | No wireframe. |
 
-Additionally, within `05-practice-session`, the **correct/incorrect feedback
-visual states** are not in the wireframe (only input states are). The
-answer-checking *behaviour* is specified in the idea and kept in scope; the
-*visual treatment* of feedback is flagged as an open question in that feature.
