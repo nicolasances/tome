@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A1-03-g-grammatical-gender-en-et-7682",
+    "name": "Grammatical gender (en/et)",
+    "category": "nouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Every Danish noun has a grammatical gender: common gender (en-words) or neuter gender (et-words). The indefinite article — 'a' in English — is 'en' for common-gender nouns and 'et' for neuter nouns. There is no reliable rule; you learn the gender with the word. For example: 'en bil' (a car) but 'et hus' (a house).",
+    "examples": [
+      { "danish": "Det er en rød bil.", "english": "It is a red car." },
+      { "danish": "Det er et stort hus.", "english": "It is a big house." }
+    ]
+  },
+  {
+    "id": "A1-03-g-basic-adjective-agreement-4103",
+    "name": "Basic adjective agreement (en/et/plural)",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish adjectives change form to agree with the noun they describe. With common-gender nouns (en-words), the adjective uses its base form. With neuter nouns (et-words), you add -t to the adjective. In the plural (more than one thing), you add -e regardless of gender. So: en rød stol (a red chair), et rødt bord (a red table), røde stole (red chairs).",
+    "examples": [
+      { "danish": "en grøn taske / et grønt bord / grønne tasker", "english": "a green bag / a green table / green bags" },
+      { "danish": "en stor bold / et stort hus / store bolde", "english": "a big ball / a big house / big balls" }
+    ]
+  },
+  {
+    "id": "A1-03-g-common-descriptive-patterns-8758",
+    "name": "Common descriptive patterns",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In Danish, adjectives placed directly before a noun (attributive use) must agree with the noun in gender and number. When used after a linking verb like 'er' (is), the adjective is predicative and follows the same agreement rules. The pattern is: Det er en [adjective] [noun] (attributive) or [Noun] er [adjective] (predicative).",
+    "examples": [
+      { "danish": "Det er en lille, blå taske.", "english": "It is a small, blue bag." },
+      { "danish": "Bilen er rød og stor.", "english": "The car is red and big." }
+    ]
+  }
+]

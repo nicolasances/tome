@@ -1,0 +1,42 @@
+{
+  "id": "danish-A1-03",
+  "title": "Colors, Shapes & Describing Things",
+  "theme": "Basic description",
+  "communicationGoal": "Describe objects, colors, and basic physical properties",
+  "cefrLevel": "A1",
+  "vocabularyItemIds": [
+    "A1-03-v-roed-6873",
+    "A1-03-v-blaa-3591",
+    "A1-03-v-groen-1986",
+    "A1-03-v-gul-3432",
+    "A1-03-v-hvid-5537",
+    "A1-03-v-sort-5714",
+    "A1-03-v-graa-6167",
+    "A1-03-v-brun-1814",
+    "A1-03-v-orange-5557",
+    "A1-03-v-lilla-6276",
+    "A1-03-v-lyseroed-4303",
+    "A1-03-v-rund-3986",
+    "A1-03-v-firkantet-2014",
+    "A1-03-v-trekant-3161",
+    "A1-03-v-stor-3640",
+    "A1-03-v-lille-8084",
+    "A1-03-v-lang-6295",
+    "A1-03-v-kort-3261",
+    "A1-03-v-bold-8416",
+    "A1-03-v-bil-1425",
+    "A1-03-v-hus-9096",
+    "A1-03-v-stol-7678",
+    "A1-03-v-bord-6909",
+    "A1-03-v-taske-7470",
+    "A1-03-v-bog-4303",
+    "A1-03-v-at-vaere-6129"
+  ],
+  "grammarConceptIds": [
+    "A1-03-g-grammatical-gender-en-et-7682",
+    "A1-03-g-basic-adjective-agreement-4103",
+    "A1-03-g-common-descriptive-patterns-8758"
+  ],
+  "createdAt": "2026-06-05T00:00:00Z",
+  "isUserGenerated": false
+}

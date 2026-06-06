@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A1-03-v-roed-6873",
+    "danish": "rød",
+    "english": "red",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-blaa-3591",
+    "danish": "blå",
+    "english": "blue",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-groen-1986",
+    "danish": "grøn",
+    "english": "green",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-gul-3432",
+    "danish": "gul",
+    "english": "yellow",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-hvid-5537",
+    "danish": "hvid",
+    "english": "white",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-sort-5714",
+    "danish": "sort",
+    "english": "black",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-graa-6167",
+    "danish": "grå",
+    "english": "grey",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-brun-1814",
+    "danish": "brun",
+    "english": "brown",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-orange-5557",
+    "danish": "orange",
+    "english": "orange",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-lilla-6276",
+    "danish": "lilla",
+    "english": "purple / lilac",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-lyseroed-4303",
+    "danish": "lyserød",
+    "english": "pink",
+    "type": "adjective",
+    "context": null,
+    "tags": ["color", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-rund-3986",
+    "danish": "rund",
+    "english": "round",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shape", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-firkantet-2014",
+    "danish": "firkantet",
+    "english": "square / rectangular",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shape", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-trekant-3161",
+    "danish": "trekant",
+    "english": "triangle",
+    "type": "noun",
+    "context": null,
+    "tags": ["shape", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-stor-3640",
+    "danish": "stor",
+    "english": "big / large",
+    "type": "adjective",
+    "context": "physical size",
+    "tags": ["size", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-lille-8084",
+    "danish": "lille",
+    "english": "small / little",
+    "type": "adjective",
+    "context": null,
+    "tags": ["size", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-lang-6295",
+    "danish": "lang",
+    "english": "long / tall",
+    "type": "adjective",
+    "context": "physical length or height",
+    "tags": ["size", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-kort-3261",
+    "danish": "kort",
+    "english": "short",
+    "type": "adjective",
+    "context": "physical length",
+    "tags": ["size", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-bold-8416",
+    "danish": "bold",
+    "english": "ball",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-bil-1425",
+    "danish": "bil",
+    "english": "car",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-hus-9096",
+    "danish": "hus",
+    "english": "house",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-stol-7678",
+    "danish": "stol",
+    "english": "chair",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-bord-6909",
+    "danish": "bord",
+    "english": "table",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-taske-7470",
+    "danish": "taske",
+    "english": "bag",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-bog-4303",
+    "danish": "bog",
+    "english": "book",
+    "type": "noun",
+    "context": null,
+    "tags": ["object", "everyday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-03-v-at-vaere-6129",
+    "danish": "at være",
+    "english": "to be",
+    "type": "verb",
+    "context": null,
+    "tags": ["core verb", "description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]
