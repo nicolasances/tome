@@ -12,7 +12,7 @@ export function ScopeChips({
 }) {
     return (
         <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', marginTop: 14 }}>
-            {grammarConcepts.map((concept) => (
+            {grammarConcepts?.map((concept) => (
                 <span
                     key={concept.id}
                     style={{

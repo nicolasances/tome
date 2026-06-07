@@ -32,7 +32,7 @@ export interface ModuleResponse {
     /** Full communication goal sentence, e.g. "Introduce yourself — …" */
     communicationGoal: string;
     /** Grammar concepts covered by the module, enriched with names */
-    grammarConcepts: GrammarConceptRef[];
+    grammarConceptId: string[];
     /** Total number of vocabulary items in the module */
     vocabularyCount: number;
     /** §3.1.2 configurable parameters */
@@ -44,7 +44,3 @@ export interface ModuleResponse {
     testUnlockDelayHours: number;
 }
 
-export interface GrammarConceptRef {
-    id: string;
-    name: string;
-}

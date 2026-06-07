@@ -94,12 +94,20 @@ export default function ModuleOverviewPage() {
     }, [setConfig, router]);
 
     useEffect(() => {
+
         Promise.all([
             new TomeModuleAPI().getModule(moduleId),
             new TomeLearningDashboardAPI().getMeProgress(),
-        ])
-            .then(([module, progress]) => setData({ module, progress }))
-            .catch(() => setData(null));
+        ]).then(([module, progress]) => {
+
+            console.log(module);
+            console.log(progress);
+            
+            
+            setData({ module, progress })
+
+        }).catch(() => setData(null));
+
     }, [moduleId]);
 
     const moduleProgress = data?.progress.modules.find(m => m.moduleId === moduleId) ?? null;
@@ -117,26 +125,26 @@ export default function ModuleOverviewPage() {
 
     const steps: StepItem[] = data
         ? [
-              {
-                  number: 1,
-                  title: 'Grammar',
-                  subtitle: `${data.module.grammarConcepts.length} concepts · learn the rules`,
-                  state: stepStates.grammar,
-              },
-              {
-                  number: 2,
-                  title: 'Practice',
-                  subtitle: `${data.module.practiceSessionSize} exercises · no pressure`,
-                  state: stepStates.practice,
-              },
-              {
-                  number: 3,
-                  title: 'Module Test',
-                  subtitle: `${data.module.testQuestionCount} questions · ${data.module.testPassThreshold}% to pass`,
-                  state: stepStates.test,
-                  lockLabel: testLockLabel,
-              },
-          ]
+            {
+                number: 1,
+                title: 'Grammar',
+                subtitle: `${data.module.grammarConceptIds?.length} concepts · learn the rules`,
+                state: stepStates.grammar,
+            },
+            {
+                number: 2,
+                title: 'Practice',
+                subtitle: `${data.module.practiceSessionSize} exercises · no pressure`,
+                state: stepStates.practice,
+            },
+            {
+                number: 3,
+                title: 'Module Test',
+                subtitle: `${data.module.testQuestionCount} questions · ${data.module.testPassThreshold}% to pass`,
+                state: stepStates.test,
+                lockLabel: testLockLabel,
+            },
+        ]
         : [];
 
     const ctaStep = moduleProgress?.step ?? null;
