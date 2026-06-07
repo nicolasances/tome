@@ -102,10 +102,6 @@ export default function ModuleOverviewPage() {
             new TomeLearningDashboardAPI().getMeProgress(),
         ]).then(([module, progress]) => {
 
-            console.log(module);
-            console.log(progress);
-            
-            
             setData({ module, progress })
 
         }).catch(() => setData(null));
