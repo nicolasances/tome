@@ -34,11 +34,11 @@ function ModuleNode({ status, num }: { status: ModuleProgressEntry['status']; nu
 }
 
 function RowBody({ module, stepNum }: { module: ModuleProgressEntry; stepNum: number }) {
-    if (module.status === 'in_progress') {
+    if (module.status === 'in_progress' || module.status == 'available') {
         return (
             <div className="flex flex-col flex-1 min-w-0">
                 <span className="text-base font-bold text-black truncate">{module.title}</span>
-                <div className="flex items-center gap-2 mt-1.5">
+                <div className="flex items-center gap-2">
                     <div style={{ width: 96 }}>
                         <ProgressBar
                             size="s"
@@ -48,7 +48,7 @@ function RowBody({ module, stepNum }: { module: ModuleProgressEntry; stepNum: nu
                             id={`step-${module.moduleId}`}
                         />
                     </div>
-                    <span className="text-[10.5px] font-semibold text-black/70">
+                    <span className="text-sm font-semibold text-black/70">
                         Step {stepNum} / 3
                     </span>
                 </div>
