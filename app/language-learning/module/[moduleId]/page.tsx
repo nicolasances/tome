@@ -178,7 +178,7 @@ export default function ModuleOverviewPage() {
                             title={data.module.title}
                             communicationGoal={data.module.communicationGoal}
                         />
-                        <div style={{ marginTop: 18 }}>
+                        <div className="mt-4">
                             <StepList steps={steps} />
                         </div>
                         <div className="flex-1" />
