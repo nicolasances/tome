@@ -7,7 +7,6 @@ import { TomeLearningDashboardAPI, MeProgressResponse, ModuleProgressEntry } fro
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
 import { ModuleOverviewSkeleton } from './components/ModuleOverviewSkeleton';
 import { ModuleHeader } from './components/ModuleHeader';
-import { ScopeChips } from './components/ScopeChips';
 import { StepList, StepItem, StepState } from './components/StepList';
 
 interface PageData {
@@ -93,6 +92,9 @@ export default function ModuleOverviewPage() {
         });
     }, [setConfig, router]);
 
+    /**
+     * Load the data 
+     */
     useEffect(() => {
 
         Promise.all([
@@ -160,7 +162,7 @@ export default function ModuleOverviewPage() {
     };
 
     return (
-        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
+        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full mt-4">
             <div className="flex flex-1 flex-col px-[18px] pt-[6px] pb-0 gap-0 overflow-y-auto">
 
                 {data === undefined && <ModuleOverviewSkeleton />}
@@ -175,10 +177,6 @@ export default function ModuleOverviewPage() {
                             kicker={kicker}
                             title={data.module.title}
                             communicationGoal={data.module.communicationGoal}
-                        />
-                        <ScopeChips
-                            grammarConcepts={data.module.grammarConcepts}
-                            vocabularyCount={data.module.vocabularyCount}
                         />
                         <div style={{ marginTop: 18 }}>
                             <StepList steps={steps} />
