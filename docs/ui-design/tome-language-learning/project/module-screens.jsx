@@ -169,14 +169,7 @@ function ModuleOverview() {
         <div style={{ fontSize: 26, fontWeight: 700, color: TC.fg1, marginTop: 6, lineHeight: 1.1 }}>Who Are You?</div>
         <div style={{ fontSize: 13.5, color: TC.fg2, marginTop: 9, lineHeight: 1.5 }}>Introduce yourself — say your name, where you're from, your age and what you do.</div>
 
-        <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', marginTop: 14 }}>
-          {['Present tense', 'Pronouns', 'Word order'].map((c) => (
-            <span key={c} style={{ fontSize: 11, fontWeight: 600, color: TC.c900, background: 'rgba(255,255,255,0.45)', borderRadius: 9999, padding: '5px 11px' }}>{c}</span>
-          ))}
-          <span style={{ fontSize: 11, fontWeight: 600, color: TC.fg3, padding: '5px 4px' }}>24 words</span>
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 18 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 22 }}>
           {steps.map((s, i) => {
             const locked = s.st === 'locked', avail = s.st === 'available';
             return (
@@ -209,12 +202,15 @@ function ModuleOverview() {
 function GrammarIntro() {
   return (
     <TomeScreen title="Who Are You?">
-      <div style={{ padding: '6px 16px 14px' }}>
-        <StepDots active={0} steps={[{ label: 'Grammar', state: 'current' }, { label: 'Practice', state: 'upcoming' }, { label: 'Test', state: 'locked' }]} />
+      <div style={{ padding: '6px 18px 0' }}>
+        <SessionBar total={3} mastered={1} deferred={0} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
+          <Label>Grammar</Label>
+          <span style={{ fontSize: 11, fontWeight: 700, color: TC.fg2 }}>1 / 3</span>
+        </div>
       </div>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '4px 18px 0', overflow: 'hidden' }}>
-        <Label style={{ textAlign: 'center', marginBottom: 14 }}>Concept 1 of 3</Label>
-        <div style={{ borderRadius: 18, border: `1.5px solid ${TC.spark}`, background: 'rgba(236,254,255,0.22)', padding: '20px 18px' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '16px 18px 0', overflow: 'hidden' }}>
+        <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
             <div style={{ width: 38, height: 38, borderRadius: '50%', background: TC.lime, color: TC.c800, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
               <TIcon name="tome/teacher" size={20} />
@@ -237,9 +233,6 @@ function GrammarIntro() {
           </div>
         </div>
         <div style={{ flex: 1 }} />
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, justifyContent: 'center', marginBottom: 12 }}>
-          {[0, 1, 2].map((i) => <span key={i} style={{ width: i === 0 ? 22 : 7, height: 7, borderRadius: 9999, background: i === 0 ? TC.lime : 'rgba(0,0,0,0.2)' }} />)}
-        </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', paddingBottom: 16 }}>
           <RoundButton name="tome/point-right" size={52} variant="primary" />
         </div>

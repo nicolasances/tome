@@ -7,10 +7,15 @@
 - The `docs/specs` folder contains detailed specifications for capabilities. It gives implementation specifications for the project's capabilities at a granular level. It **does not** document **changes** to the project, only how things should be. It **does not show code** unless strictly necessary to understand a capability. 
 
 ## Style guide for front-end development
-### Buttons
-- For buttons always use `RoundButton` from the `toto-react` library. **Do not** invent your own button style.
 
-### APIs
+- You **must** check the repo `nicolasances/sdlc-agent-specs` for the file called `coding-standards/frontend-coding-standards.md` before you start any UI development. 
+
+## Wireframe
+
+This project contains UI design (wireframes) files: 
+- for **Language Learning**: `docs/ui-design/tome-language-learning` contains all the UI design. You **MUST** check it as a reference (source of truth) for what the Language Learning UI should look like.
+
+## APIs
 All Backend APIs used must be wrapped by an API class in the `/api` folder. <br>
 Example: 
 ```

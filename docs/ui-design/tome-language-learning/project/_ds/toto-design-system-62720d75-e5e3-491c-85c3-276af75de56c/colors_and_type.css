@@ -1,0 +1,201 @@
+/* ============================================================================
+   TOTO — Colors & Type
+   Foundational design tokens for the Toto family of apps (Expenses, Tome, …).
+   Derived from the live codebases:
+     - nicolasances/toto-reactjs-expenses  (Toto Expenses)
+     - nicolasances/tome                   (Tome — language learning & memory)
+   The whole system sits on a single signature cyan. Apps are "screens of cyan"
+   with white/dark-teal type, lime + yellow accent sparks, and zero shadow.
+   ========================================================================== */
+
+/* ----- Brand font: Comfortaa (rounded geometric sans) --------------------- */
+/* Comfortaa is the BRAND face (the Tome codebase imports it the same way) and is
+   delivered from Google Fonts — CDN delivery is fine, no local file needed. */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+/* ----- Poppins (self-hosted) — user-supplied UI / system fallback face ----- */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+:root {
+  /* ====================================================================
+     1. CORE PALETTE — the cyan ramp (Tailwind cyan, used verbatim in code)
+     ==================================================================== */
+  --cyan-50:  #ecfeff;
+  --cyan-100: #cffafe;
+  --cyan-200: #a5f3fc;
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --cyan-700: #0e7490;
+  --cyan-800: #155e75;
+  --cyan-900: #164e63;
+  --cyan-950: #083344;
+
+  /* ====================================================================
+     2. SIGNATURE BRAND COLORS
+     ==================================================================== */
+  --toto-cyan:        #00acc1;  /* THE brand color — every app background      */
+  --toto-card:        #00dffa;  /* bright card / surface cyan                  */
+  --toto-border:      #09a6d1;  /* hairline divider on cyan                    */
+  --toto-deep:        #004450;  /* deep teal — login orb, strong contrast      */
+  --toto-spark:       #5ddef4;  /* light cyan ring / highlight                 */
+
+  /* ====================================================================
+     3. ACCENTS — used sparingly, one "spark" per screen
+     ==================================================================== */
+  --toto-lime:        #d9f99d;  /* lime-200 — progress fills, active borders   */
+  --toto-lime-bright: #bef264;  /* lime-300 — emphasis                          */
+  --toto-yellow:      #ffeb3b;  /* Expenses icon-button border + glyph         */
+  --toto-yellow-deep: #c8b900;  /* selected-month underline                    */
+  --toto-red:         #b91c1c;  /* destructive / car-mode alert                */
+
+  /* ====================================================================
+     4. SEMANTIC TOKENS  (light "on-cyan" context — the default everywhere)
+     ==================================================================== */
+  --background:        var(--toto-cyan);
+  --surface:           var(--toto-card);
+  --surface-muted:     rgba(0, 0, 0, 0.06);
+  --primary:           var(--cyan-800);   /* #155e75 — bars, primary actions   */
+  --primary-strong:    var(--cyan-600);   /* #0891b2 — tracks, secondary text  */
+  --on-primary:        var(--cyan-100);
+  --border:            var(--toto-border);
+  --ring:              var(--toto-spark);
+
+  /* Foreground / text — dark glyphs on cyan (NOT pure black) */
+  --fg1:  rgba(0, 0, 0, 0.80);   /* primary text                              */
+  --fg2:  rgba(0, 0, 0, 0.70);   /* default body text                         */
+  --fg3:  rgba(0, 0, 0, 0.50);   /* muted / captions                          */
+  --fg-on-dark:  #ecfeff;        /* text on a deep-teal surface               */
+  --fg-invert:   #ffffff;
+
+  /* ====================================================================
+     5. RADII  (Tailwind --radius = 0.5rem base; pills everywhere)
+     ==================================================================== */
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   8px;     /* default card radius (--radius)                   */
+  --radius-xl:   16px;
+  --radius-pill: 9999px;  /* the house style — buttons & chips are circles    */
+
+  /* ====================================================================
+     6. SPACING  (4px base grid)
+     ==================================================================== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;   /* the app's workhorse gutter                           */
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* ====================================================================
+     7. MOTION  (snappy; graph/progress reveals are the signature)
+     ==================================================================== */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-anvil:  cubic-bezier(0.38, 0.1, 0.36, 0.9);  /* popup entrance       */
+  --dur-press:   100ms;   /* press scale-down                                 */
+  --dur-ui:      300ms;   /* menus, popups                                    */
+  --dur-graph:   600ms;   /* d3 bar / ring reveal                             */
+  --press-scale: 0.95;    /* every tappable shrinks to 0.95 on press          */
+
+  /* NO SHADOWS. The house style is flat. Elevation = a 2px cyan border or a
+     brighter cyan fill, never a drop shadow. */
+
+  /* ====================================================================
+     8. TYPE SCALE
+     The apps are dense mobile PWAs (Tailwind base = 12px). For web/marketing
+     and these specimens we use a comfortable scale; the --app-* tokens record
+     the in-product compact scale for fidelity.
+     ==================================================================== */
+  --font-brand: 'Comfortaa', 'Poppins', system-ui, sans-serif;  /* Tome + all branding */
+  --font-ui:    'Comfortaa', 'Poppins', Arial, Helvetica, sans-serif;
+  --font-system: 'Poppins', Arial, Helvetica, sans-serif;        /* self-hosted UI / Expenses runtime fallback */
+
+  --text-3xs: 4px;
+  --text-2xs: 6px;
+  --text-xs:  8px;
+  --text-sm:  10px;
+  --text-base: 12px;   /* in-app body                                         */
+  --text-lg:  14px;
+  --text-xl:  16px;    /* in-app titles + min input size (no iOS zoom)        */
+  --text-2xl: 20px;
+  --text-3xl: 24px;
+  --text-4xl: 32px;
+  --text-5xl: 44px;
+}
+
+/* ============================================================================
+   SEMANTIC TYPOGRAPHY — apply directly to elements
+   ========================================================================== */
+.t-display {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: var(--text-5xl);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--fg1);
+}
+.t-h1 {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  line-height: 1.15;
+  color: var(--fg1);
+}
+.t-h2 {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  line-height: 1.2;
+  color: var(--fg1);
+}
+.t-title {
+  /* in-app screen title — centered TitleBar style */
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: var(--text-xl);
+  color: var(--fg2);
+}
+.t-body {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  color: var(--fg2);
+}
+.t-label {
+  /* uppercase micro-label — used above groups & on icon buttons */
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg2);
+}
+.t-amount {
+  /* money figure — the hero number in Expenses bubbles */
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: var(--text-3xl);
+  color: var(--fg1);
+}
+.t-caption {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  color: var(--fg3);
+}
+
+/* Default surface helper — paints the signature cyan screen */
+.toto-screen {
+  background: var(--background);
+  color: var(--fg2);
+  font-family: var(--font-brand);
+}

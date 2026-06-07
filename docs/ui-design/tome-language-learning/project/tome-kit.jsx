@@ -61,7 +61,7 @@ function TomeScreen({ title, children, menu = true, bg = TC.cyan, footer }) {
         <div style={{ flex: 1, display: 'flex' }}>
           <RoundButton name="tome/point-right" size={34} variant="secondary" glyph={17} flip />
         </div>
-        <div style={{ fontSize: 17, color: TC.fg1, fontWeight: 500, letterSpacing: '0.01em' }}>{title}</div>
+        <div style={{ fontSize: 17, color: TC.fg1, fontWeight: 500, letterSpacing: '0.01em', flex: '0 1 auto', minWidth: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', padding: '0 8px' }}>{title}</div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
           {menu && <RoundButton name="tome/menu" size={34} variant="secondary" glyph={18} />}
         </div>

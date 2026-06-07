@@ -1,5 +1,7 @@
 # Module Overview — the module hub
 
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
+
 ## 1. Purpose & Scope
 
 Delivers the **Module overview**: the hub a user lands on when they open a module.
@@ -80,6 +82,14 @@ test is locked).
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | Once the test is unlocked, does the CTA point at the (skipped) Test, or does the step row handle it? | Depends on Module Test feature design. |
-| 2 | Should a countdown to test unlock be shown (vs a static "4h after practice")? | Wireframe shows static text. |
-| 3 | Can the user re-enter Grammar or re-run Practice after completing them? | Affects step row interactivity post-completion. |
+| 1 | Once the test is unlocked, does the CTA point at the (skipped) Test, or does the step row handle it? | Depends on Module Test feature design. CTA currently shows "Start test" (disabled) until that feature is built. |
+| 3 | Can the user re-enter Grammar or re-run Practice after completing them? | Affects step row interactivity post-completion. Currently completed steps render as a muted row with a checkmark medallion; they are not tappable. |
+
+## 8. Technical Decisions
+
+| # | Decision | Rationale |
+|---|----------|-----------|
+| 1 | Fetch `GET /modules/:id` and `GET /me/progress` in parallel with `Promise.all`. | Avoids waterfall; both are needed before any content renders. |
+| 2 | Module number (01, 02 …) derived from the index of `moduleId` in `progress.modules`. | The module document has no numeric position field; the ordered list from the progress endpoint is the authoritative source, matching how ModuleRow computes the number on the module-map screen. |
+| 3 | Lock label: static `${testUnlockDelayHours}h after practice` when step=practice (test not yet reached); live countdown when step=test and testUnlocksAt is in the future. | Static text is accurate and avoids a timer before the user has even completed practice. The countdown is shown only once the timer is actually running. |
+| 4 | CTA "Start test" is rendered but disabled. | The Module Test feature (04) is out of scope; the button placeholder avoids a dead-end UX and will be wired up when that feature ships. |
