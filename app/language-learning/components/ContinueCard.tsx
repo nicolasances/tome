@@ -36,7 +36,7 @@ export function ContinueCard({ loading, module }: ContinueCardProps) {
 
     if (!module) {
         return (
-            <div className="flex items-center gap-3.5 px-4 py-4 rounded-[18px] bg-cyan-800/60">
+            <div className="flex items-center gap-3.5 px-4 py-2 rounded-[18px] bg-cyan-800/60">
                 <div
                     className="flex-none flex items-center justify-center rounded-full bg-cyan-700 text-cyan-200"
                     style={{ width: 44, height: 44 }}
@@ -59,7 +59,7 @@ export function ContinueCard({ loading, module }: ContinueCardProps) {
     return (
         <button
             onClick={() => router.push(`/language-learning/module/${module.id}`)}
-            className="w-full text-left flex items-center gap-3.5 px-4 py-4 rounded-[18px] bg-cyan-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200"
+            className="w-full text-left flex items-center gap-3.5 py-2 px-4 rounded-[18px] bg-cyan-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200"
             aria-label={`Continue module: ${module.title}`}
         >
             <div
@@ -70,7 +70,7 @@ export function ContinueCard({ loading, module }: ContinueCardProps) {
                 <ArrowRightIcon />
             </div>
             <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-cyan-200 mb-0.5">
+                <p className="text-xs font-semibold tracking-[0.16em] uppercase text-cyan-200 mb-0.5">
                     {kicker}
                 </p>
                 <p className="text-lg font-bold text-white truncate">{module.title}</p>
