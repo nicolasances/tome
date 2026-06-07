@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useHeader } from '@/context/HeaderContext';
-// import { RoundButton } from 'toto-react';
+import { useRouter } from 'next/navigation';
+import { RoundButton } from 'toto-react';
 import {
     TomeLearningDashboardAPI,
     MeProgressResponse,
@@ -19,6 +20,7 @@ import { WeeklyModuleStats } from './components/WeeklyModuleStats';
 
 export default function LanguageLearningHomePage() {
     const { setConfig } = useHeader();
+    const router = useRouter();
 
     // undefined = loading, null = failed
     const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
@@ -76,20 +78,12 @@ export default function LanguageLearningHomePage() {
 
                 {/* ── Primary nav row ──────────────────────────────────────── */}
                 <div className="flex justify-around items-start gap-2">
-                    {/* <NavButton
+                    <NavButton
                         icon="/images/book.svg"
                         alt="Modules"
                         label="Modules"
                         onClick={() => router.push(`/language-learning/level/${cefrLevel ?? 'A1'}`)}
                     />
-                    <NavButton
-                        icon="/images/magic.svg"
-                        alt="Analyze"
-                        label="Analyze"
-                        onClick={() => {
-                            // Analyze destination — skipped in v2.0 (no wireframe yet)
-                        }}
-                    /> */}
                 </div>
 
                 {/* ── Spacer ───────────────────────────────────────────────── */}
@@ -110,13 +104,13 @@ export default function LanguageLearningHomePage() {
 
 // ─── Nav button (RoundButton + label below) ───────────────────────────────────
 
-// function NavButton({ icon, alt, label, onClick }: { icon: string; alt: string; label: string; onClick: () => void }) {
-//     return (
-//         <div className="flex flex-col items-center gap-2">
-//             <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
-//             <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-black/70">
-//                 {label}
-//             </span>
-//         </div>
-//     );
-// }
+function NavButton({ icon, alt, label, onClick }: { icon: string; alt: string; label: string; onClick: () => void }) {
+    return (
+        <div className="flex flex-col items-center gap-2">
+            <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
+            <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-black/70">
+                {label}
+            </span>
+        </div>
+    );
+}

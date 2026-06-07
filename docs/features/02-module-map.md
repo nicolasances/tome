@@ -1,5 +1,7 @@
 # Module Map — the level's modules
 
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
+
 ## 1. Purpose & Scope
 
 Delivers the **Module map** for the user's current CEFR level: an ordered list of
@@ -74,6 +76,8 @@ Participates in journey **J2** (browse the level & start a module).
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | Does "+ N more" expand inline, scroll, or page? | Wireframe truncates at 8 rows. |
-| 2 | Can the user open a `completed` module to review it, or only the active one? | Affects which rows are tappable. |
 | 3 | How does the user reach maps for *other* levels (if at all in v2.0)? | Level switching is otherwise skipped. |
+
+**Resolved:**
+- **Overflow (Q1):** All modules are always rendered; the list scrolls naturally — no truncation.
+- **Completed tappability (Q2):** Only `in_progress` and `available` rows are tappable. Completed rows are non-interactive (same as locked).

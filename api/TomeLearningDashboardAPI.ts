@@ -18,8 +18,9 @@ export class TomeLearningDashboardAPI {
      *
      * Endpoint: GET /me/progress
      */
-    async getMeProgress(): Promise<MeProgressResponse> {
-        return (await new TotoAPI().fetch('tome-ms-language', `/me/progress`)).json();
+    async getMeProgress(cefrLevel?: string): Promise<MeProgressResponse> {
+        const query = cefrLevel ? `?cefrLevel=${cefrLevel}` : '';
+        return (await new TotoAPI().fetch('tome-ms-language', `/me/progress${query}`)).json();
     }
 
     /**
