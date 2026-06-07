@@ -32,7 +32,7 @@ export interface ModuleResponse {
     /** Full communication goal sentence, e.g. "Introduce yourself — …" */
     communicationGoal: string;
     /** Grammar concepts covered by the module, enriched with names */
-    grammarConceptId: string[];
+    grammarConceptIds: string[];
     /** Total number of vocabulary items in the module */
     vocabularyCount: number;
     /** §3.1.2 configurable parameters */
