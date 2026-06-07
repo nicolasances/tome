@@ -22,7 +22,7 @@ function StepMedallion({number, state}: {number: number, state: StepState}) {
 
 function LockTag({children}: {children: React.ReactNode}) {
     return (
-        <span className="flex items-center gap-1 rounded-full border border-black/25 px-[9px] py-[3px] text-[11px] font-semibold text-black/50 whitespace-nowrap flex-shrink-0">
+        <span className="flex items-center gap-[5px] text-[11px] font-semibold text-black/50 whitespace-nowrap flex-shrink-0">
             <MaskedSvgIcon src='/images/padlock.svg' alt='Locked' size="w-[10px] h-[10px]" color="bg-black/50" />
             {children}
         </span>
