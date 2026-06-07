@@ -1,0 +1,198 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "assets/**",
+              "preview/**",
+              "ui_kits/expenses/**",
+              "ui_kits/tome/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Poppins|Comfortaa))/i]",
+        "message": "Font not provided by the design system. Available: Poppins, Comfortaa."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--background",
+      "--border",
+      "--cyan-100",
+      "--cyan-200",
+      "--cyan-300",
+      "--cyan-400",
+      "--cyan-50",
+      "--cyan-500",
+      "--cyan-600",
+      "--cyan-700",
+      "--cyan-800",
+      "--cyan-900",
+      "--cyan-950",
+      "--dur-graph",
+      "--dur-press",
+      "--dur-ui",
+      "--ease-anvil",
+      "--ease-out",
+      "--fg-invert",
+      "--fg-on-dark",
+      "--fg1",
+      "--fg2",
+      "--fg3",
+      "--font-brand",
+      "--font-system",
+      "--font-ui",
+      "--on-primary",
+      "--press-scale",
+      "--primary",
+      "--primary-strong",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--radius-xl",
+      "--ring",
+      "--space-1",
+      "--space-12",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-6",
+      "--space-8",
+      "--surface",
+      "--surface-muted",
+      "--text-2xl",
+      "--text-2xs",
+      "--text-3xl",
+      "--text-3xs",
+      "--text-4xl",
+      "--text-5xl",
+      "--text-base",
+      "--text-lg",
+      "--text-sm",
+      "--text-xl",
+      "--text-xs",
+      "--toto-border",
+      "--toto-card",
+      "--toto-cyan",
+      "--toto-deep",
+      "--toto-lime",
+      "--toto-lime-bright",
+      "--toto-red",
+      "--toto-spark",
+      "--toto-yellow",
+      "--toto-yellow-deep"
+    ],
+    "tokenKinds": {
+      "--cyan-50": "color",
+      "--cyan-100": "color",
+      "--cyan-200": "color",
+      "--cyan-300": "color",
+      "--cyan-400": "color",
+      "--cyan-500": "color",
+      "--cyan-600": "color",
+      "--cyan-700": "color",
+      "--cyan-800": "color",
+      "--cyan-900": "color",
+      "--cyan-950": "color",
+      "--toto-cyan": "color",
+      "--toto-card": "color",
+      "--toto-border": "color",
+      "--toto-deep": "color",
+      "--toto-spark": "color",
+      "--toto-lime": "color",
+      "--toto-lime-bright": "color",
+      "--toto-yellow": "color",
+      "--toto-yellow-deep": "color",
+      "--toto-red": "color",
+      "--background": "color",
+      "--surface": "color",
+      "--surface-muted": "color",
+      "--primary": "color",
+      "--primary-strong": "color",
+      "--on-primary": "color",
+      "--border": "color",
+      "--ring": "color",
+      "--fg1": "color",
+      "--fg2": "color",
+      "--fg3": "color",
+      "--fg-on-dark": "color",
+      "--fg-invert": "color",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-xl": "radius",
+      "--radius-pill": "radius",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--space-12": "spacing",
+      "--ease-out": "other",
+      "--ease-anvil": "other",
+      "--dur-press": "other",
+      "--dur-ui": "other",
+      "--dur-graph": "other",
+      "--press-scale": "other",
+      "--font-brand": "font",
+      "--font-ui": "font",
+      "--font-system": "font",
+      "--text-3xs": "font",
+      "--text-2xs": "font",
+      "--text-xs": "font",
+      "--text-sm": "font",
+      "--text-base": "font",
+      "--text-lg": "font",
+      "--text-xl": "font",
+      "--text-2xl": "font",
+      "--text-3xl": "font",
+      "--text-4xl": "font",
+      "--text-5xl": "font"
+    },
+    "fontFamilies": [
+      "Comfortaa",
+      "Poppins"
+    ]
+  }
+}

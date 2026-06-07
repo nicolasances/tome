@@ -7,9 +7,9 @@
    Practice never scores mastery (spec §3.1.1). Requires tome-kit.jsx. */
 
 /* Shared exercise shell: session progress on top, body, optional bottom feedback */
-function ExShell({ instruction, children, session = { total: 15, mastered: 6, deferred: 1 } }) {
+function ExShell({ instruction, children, title = 'Who Are You?', session = { total: 15, mastered: 6, deferred: 1 } }) {
   return (
-    <TomeScreen title="Practice">
+    <TomeScreen title={title}>
       <div style={{ padding: '6px 18px 0' }}>
         <SessionBar total={session.total} mastered={session.mastered} deferred={session.deferred} />
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
