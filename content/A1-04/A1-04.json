@@ -1,0 +1,40 @@
+{
+  "id": "danish-A1-04",
+  "title": "Family & Relationships",
+  "theme": "Family and social circle",
+  "communicationGoal": "Talk about your family members and describe relationships",
+  "cefrLevel": "A1",
+  "vocabularyItemIds": [
+    "A1-04-v-mor-3592",
+    "A1-04-v-far-6594",
+    "A1-04-v-foraeldre-5352",
+    "A1-04-v-soester-4791",
+    "A1-04-v-bror-9031",
+    "A1-04-v-datter-5316",
+    "A1-04-v-soen-7161",
+    "A1-04-v-barn-4403",
+    "A1-04-v-bedstemor-2212",
+    "A1-04-v-bedstefar-4705",
+    "A1-04-v-familie-7903",
+    "A1-04-v-kaereste-1063",
+    "A1-04-v-ven-6717",
+    "A1-04-v-veninde-5575",
+    "A1-04-v-kollega-7100",
+    "A1-04-v-min-3247",
+    "A1-04-v-din-5684",
+    "A1-04-v-hans-8151",
+    "A1-04-v-hendes-4200",
+    "A1-04-v-vores-3144",
+    "A1-04-v-have-4359",
+    "A1-04-v-bo-4024",
+    "A1-04-v-arbejde-8667",
+    "A1-04-v-gift-7028"
+  ],
+  "grammarConceptIds": [
+    "A1-04-g-possessive-pronouns-3646",
+    "A1-04-g-grammatical-gender-7619",
+    "A1-04-g-main-clause-word-order-4197"
+  ],
+  "createdAt": "2026-06-07T00:00:00Z",
+  "isUserGenerated": false
+}

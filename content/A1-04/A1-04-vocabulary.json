@@ -1,0 +1,242 @@
+[
+  {
+    "id": "A1-04-v-mor-3592",
+    "danish": "mor",
+    "english": "mother",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-far-6594",
+    "danish": "far",
+    "english": "father",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-foraeldre-5352",
+    "danish": "forældre",
+    "english": "parents",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-soester-4791",
+    "danish": "søster",
+    "english": "sister",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-bror-9031",
+    "danish": "bror",
+    "english": "brother",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-datter-5316",
+    "danish": "datter",
+    "english": "daughter",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-soen-7161",
+    "danish": "søn",
+    "english": "son",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-barn-4403",
+    "danish": "barn",
+    "english": "child",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-bedstemor-2212",
+    "danish": "bedstemor",
+    "english": "grandmother",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-bedstefar-4705",
+    "danish": "bedstefar",
+    "english": "grandfather",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-familie-7903",
+    "danish": "familie",
+    "english": "family",
+    "type": "noun",
+    "context": null,
+    "tags": ["family"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-kaereste-1063",
+    "danish": "kæreste",
+    "english": "boyfriend / girlfriend / partner",
+    "type": "noun",
+    "context": "romantic partner, gender-neutral",
+    "tags": ["relationships"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-ven-6717",
+    "danish": "ven",
+    "english": "friend",
+    "type": "noun",
+    "context": "male friend, or a friend in general",
+    "tags": ["relationships"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-veninde-5575",
+    "danish": "veninde",
+    "english": "female friend",
+    "type": "noun",
+    "context": null,
+    "tags": ["relationships"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-kollega-7100",
+    "danish": "kollega",
+    "english": "colleague",
+    "type": "noun",
+    "context": null,
+    "tags": ["relationships", "work"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-min-3247",
+    "danish": "min",
+    "english": "my",
+    "type": "pronoun",
+    "context": "possessive, used with en-words and plurals",
+    "tags": ["possessive"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-din-5684",
+    "danish": "din",
+    "english": "your",
+    "type": "pronoun",
+    "context": "possessive, used with en-words and plurals",
+    "tags": ["possessive"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-hans-8151",
+    "danish": "hans",
+    "english": "his",
+    "type": "pronoun",
+    "context": "possessive",
+    "tags": ["possessive"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-hendes-4200",
+    "danish": "hendes",
+    "english": "her",
+    "type": "pronoun",
+    "context": "possessive",
+    "tags": ["possessive"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-vores-3144",
+    "danish": "vores",
+    "english": "our",
+    "type": "pronoun",
+    "context": "possessive",
+    "tags": ["possessive"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-have-4359",
+    "danish": "have",
+    "english": "to have",
+    "type": "verb",
+    "context": null,
+    "tags": ["verb"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-bo-4024",
+    "danish": "bo",
+    "english": "to live",
+    "type": "verb",
+    "context": null,
+    "tags": ["verb"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-arbejde-8667",
+    "danish": "arbejde",
+    "english": "to work",
+    "type": "verb",
+    "context": null,
+    "tags": ["verb", "work"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-04-v-gift-7028",
+    "danish": "gift",
+    "english": "married",
+    "type": "adjective",
+    "context": "marital status, not the word for poison",
+    "tags": ["relationships"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

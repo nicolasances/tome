@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A1-04-g-possessive-pronouns-3646",
+    "name": "Possessive pronouns",
+    "category": "pronouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Possessive pronouns show who something belongs to, like 'my' or 'her' in English. In Danish, words like 'min' (my) and 'din' (your) change form depending on the gender and number of the noun they describe: 'min' before en-words, 'mit' before et-words, and 'mine' before plurals. 'Hans' (his), 'hendes' (her) and 'vores' (our) stay the same in all cases.",
+    "examples": [
+      { "danish": "Det er min bror.", "english": "That is my brother." },
+      { "danish": "Mit barn hedder Anna, og mine forældre bor i Aarhus.", "english": "My child is named Anna, and my parents live in Aarhus." }
+    ]
+  },
+  {
+    "id": "A1-04-g-grammatical-gender-7619",
+    "name": "Grammatical gender (en/et)",
+    "category": "nouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Every Danish noun belongs to one of two genders: common gender ('en' words, the majority) or neuter gender ('et' words). The gender of a noun decides which form of words like possessive pronouns or articles you must use with it — for example 'min' goes with en-words but 'mit' goes with et-words.",
+    "examples": [
+      { "danish": "en søster, men et barn", "english": "a sister, but a child" },
+      { "danish": "Hun er min veninde, og han er mit barnebarn.", "english": "She is my friend, and he is my grandchild." }
+    ]
+  },
+  {
+    "id": "A1-04-g-main-clause-word-order-4197",
+    "name": "Main clause word order (SVO)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "A basic Danish sentence follows the order Subject – Verb – Object, just like in English. When you describe family members and relationships, you will mostly build sentences in this pattern: who (subject), what they do or are (verb), and the rest of the information (object or description).",
+    "examples": [
+      { "danish": "Min søster bor i Odense.", "english": "My sister lives in Odense." },
+      { "danish": "Min bror har en kæreste.", "english": "My brother has a girlfriend." }
+    ]
+  }
+]
