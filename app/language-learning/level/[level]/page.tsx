@@ -58,10 +58,10 @@ export default function ModuleMapPage() {
                 )}
 
                 {progress && (
-                    <>
+                    <div className="flex flex-col gap-2">
                         <LevelProgressHeader completed={completedCount} total={totalCount} />
                         <StatusLegend />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col mt-2">
                             {progress.modules.map((module, index) => (
                                 <ModuleRow
                                     key={module.moduleId}
@@ -72,7 +72,7 @@ export default function ModuleMapPage() {
                                 />
                             ))}
                         </div>
-                    </>
+                    </div>
                 )}
 
             </div>

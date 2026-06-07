@@ -16,8 +16,8 @@ export function ProgressBar({ current, max, size, id, hideNumber = false }: { cu
         let borderRadius = 5; // Border radius for the rectangles
 
         if (size == 's') {
-            height = 10
-            barHeight = 4
+            height = 12
+            barHeight = 6
             borderRadius = 3
         }
 
