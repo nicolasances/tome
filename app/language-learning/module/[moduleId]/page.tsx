@@ -42,16 +42,12 @@ function formatCountdown(testUnlocksAt: string): string {
     return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
 }
 
-function deriveLockLabel(
-    step: ModuleProgressEntry['step'],
-    testUnlocksAt: string | null,
-    testUnlockDelayHours: number
-): string | undefined {
-    if (step === 'practice') return `${testUnlockDelayHours}h after practice`;
+function deriveLockLabel(testState: StepState, step: ModuleProgressEntry['step'], testUnlocksAt: string | null, testUnlockDelayHours: number): string | undefined {
+    if (testState === 'available' || testState === 'completed') return undefined;
     if (step === 'test' && testUnlocksAt && new Date(testUnlocksAt) > new Date()) {
         return formatCountdown(testUnlocksAt);
     }
-    return undefined;
+    return `${testUnlockDelayHours}h after practice`;
 }
 
 function deriveCtaInfo(
@@ -117,8 +113,8 @@ export default function ModuleOverviewPage() {
         ? deriveStepStates(moduleProgress.step, moduleProgress.testUnlocksAt)
         : { grammar: 'available' as StepState, practice: 'upcoming' as StepState, test: 'upcoming' as StepState };
 
-    const testLockLabel = data && moduleProgress
-        ? deriveLockLabel(moduleProgress.step, moduleProgress.testUnlocksAt, data.module.testUnlockDelayHours)
+    const testLockLabel = data
+        ? deriveLockLabel(stepStates.test, moduleProgress?.step ?? null, moduleProgress?.testUnlocksAt ?? null, data.module.testUnlockDelayHours)
         : undefined;
 
     const steps: StepItem[] = data
