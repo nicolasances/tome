@@ -9,36 +9,13 @@ export function ModuleHeader({
 }) {
     return (
         <div className="flex flex-col">
-            <span
-                style={{
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: 'rgba(0,0,0,0.50)',
-                    letterSpacing: '0.10em',
-                    textTransform: 'uppercase',
-                }}
-            >
+            <span className="text-sm font-semibold uppercase tracking-widest text-black/50">
                 {kicker}
             </span>
-            <div
-                style={{
-                    fontSize: 26,
-                    fontWeight: 700,
-                    color: 'rgba(0,0,0,0.80)',
-                    marginTop: 6,
-                    lineHeight: 1.1,
-                }}
-            >
+            <div className="text-2xl font-bold text-black/80 mt-2">
                 {title}
             </div>
-            <div
-                style={{
-                    fontSize: 13.5,
-                    color: 'rgba(0,0,0,0.70)',
-                    marginTop: 9,
-                    lineHeight: 1.5,
-                }}
-            >
+            <div className="text-base text-black/70 mt-2">
                 {communicationGoal}
             </div>
         </div>
