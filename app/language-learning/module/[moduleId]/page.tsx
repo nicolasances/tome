@@ -142,7 +142,7 @@ export default function ModuleOverviewPage() {
             {
                 number: 3,
                 title: 'Module Test',
-                subtitle: `${data.module.testQuestionCount} questions · ${data.module.testPassThreshold}% to pass`,
+                subtitle: `${data.module.testQuestionCount ?? "?"} questions · ${data.module.testPassThreshold}% to pass`,
                 state: stepStates.test,
                 lockLabel: testLockLabel,
             },

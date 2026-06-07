@@ -50,7 +50,7 @@ function StepRow({step}: {step: StepItem}) {
 
 export function StepList({steps}: {steps: StepItem[]}) {
     return (
-        <div className="flex flex-col gap-[10px]">
+        <div className="flex flex-col gap-1">
             {steps.map((step) => (
                 <StepRow key={step.number} step={step} />
             ))}
