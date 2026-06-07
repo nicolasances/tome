@@ -1,12 +1,4 @@
-export function ModuleHeader({
-    kicker,
-    title,
-    communicationGoal,
-}: {
-    kicker: string;
-    title: string;
-    communicationGoal: string;
-}) {
+export function ModuleHeader({kicker, title, communicationGoal}: {kicker: string, title: string, communicationGoal: string}) {
     return (
         <div className="flex flex-col">
             <span className="text-sm font-semibold uppercase tracking-widest text-black/50">

@@ -188,25 +188,11 @@ export default function ModuleOverviewPage() {
             </div>
 
             {data && (
-                <div style={{ padding: '16px 18px' }}>
+                <div className="px-[18px] py-4">
                     <button
                         disabled={cta.disabled}
                         onClick={handleCtaClick}
-                        style={{
-                            width: '100%',
-                            border: 'none',
-                            borderRadius: 9999,
-                            background: '#155e75',
-                            color: '#d9f99d',
-                            fontFamily: 'inherit',
-                            fontWeight: 700,
-                            fontSize: 15,
-                            padding: '15px',
-                            cursor: cta.disabled ? 'default' : 'pointer',
-                            letterSpacing: '0.02em',
-                            opacity: cta.disabled ? 0.5 : 1,
-                            transition: 'opacity 0.15s',
-                        }}
+                        className={`w-full border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-[15px] py-[15px] tracking-[0.02em] transition-opacity duration-150 ${cta.disabled ? 'opacity-50 cursor-default' : 'opacity-100 cursor-pointer'}`}
                     >
                         {cta.label}
                     </button>
