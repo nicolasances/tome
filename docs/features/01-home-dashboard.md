@@ -58,7 +58,7 @@ browse the level).
 - Weekly stats show **modules completed per day** for the current calendar week (Mon–Sun); each bar height = count of modules with status `completed` on that day.
 - The dashboard is **read-only** with respect to progress — it never mutates mastery or module state.
 
-## 5. Technical Decisions
+## 5. Technical Decisions & Integrations
 
 | # | Decision | Rationale |
 |---|----------|-----------|
@@ -66,8 +66,15 @@ browse the level).
 | 2 | Spec variant **C (Level track)** as the design; treat A/B as discarded alternatives. | User-selected primary design. |
 | 3 | Wrap all backend calls in an `TomeLearningDashboardAPI` class under `/api` (per AGENTS.md), path without microservice basepath. | Project convention. |
 | 4 | Use `RoundButton` from `toto-react` for the nav row (no custom button). The `toto-react` `RoundButton` does **not** have a `label` prop — labels are rendered below each button in a wrapper `div`. | Project style guide. `RoundButton` API constraint. |
-| 5 | Three separate API calls (level-progress, current module, weekly stats) run in parallel on page load; each section shows its own skeleton independently. | Avoids a single combined endpoint that would block all sections if one fails. |
-| 6 | Backend endpoints on `tome-ms-language`: `GET /users/me/level-progress`, `GET /users/me/modules/current` (returns 404 when no module available), `GET /users/me/stats/weekly`. | All language learning logic lives in `tome-ms-language` per architecture doc. |
+| 5 | Two API calls (`getMeProgress`, `getWeeklySessionStats`) run in parallel on page load; the **current module** is derived client-side from the progress response (`deriveCurrentModule`) rather than fetched separately. | Avoids a third endpoint; the progress payload already carries everything needed to pick the in-progress/available module. Each section shows its own skeleton independently. |
+| 6 | All language-learning data is served by `tome-ms-language`. | All language learning logic lives in `tome-ms-language` per architecture doc. |
+
+### API Integrations
+
+| Component or Screen | API Integration | Description |
+| ------------------- | --------------- | ----------- |
+| Level track, Continue CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`) | Returns the user's current CEFR level, a status summary for all 6 levels, and the per-module status list for the current level. Drives the level track, the module-dot progress, and (via `deriveCurrentModule`) the Continue CTA's target module. |
+| Weekly stats | `GET /sessions/stats/weekly?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns completed-session counts per day (Mon–Sun) for the current calendar week; `from` is computed client-side as the Monday of the current ISO week. Drives the 7-day bar chart. |
 
 ## 6. Success Criteria
 

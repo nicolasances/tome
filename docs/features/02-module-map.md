@@ -53,14 +53,20 @@ Participates in journey **J2** (browse the level & start a module).
 - Tapping is enabled only for unlocked modules; locked rows give no navigation.
 - Read-only: this screen does not mutate progress or mastery.
 
-## 5. Technical Decisions
+## 5. Technical Decisions & Integrations
 
 | # | Decision | Rationale |
 |---|----------|-----------|
 | 1 | Route `/language-learning/level/[level]`. | Map is scoped to a CEFR level. |
 | 2 | Spec variant **A (Vertical list)**; treat B/C as discarded alternatives. | User-selected primary design. |
 | 3 | Module state is derived per-user from UserModuleProgress, never from the module document. | Per idea §3.1 (status is per-user). |
-| 4 | Wrap backend calls in an `/api` class (per AGENTS.md). | Project convention. |
+| 4 | Reuse `TomeLearningDashboardAPI` (owned by `01-home-dashboard`) rather than a map-specific API class; pass the routed `[level]` as the `cefrLevel` query param. | The same `GET /me/progress` shape (per-level module list + status) serves both the dashboard's current-level view and this screen's arbitrary-level view — no need for a second class or endpoint. |
+
+### API Integrations
+
+| Component or Screen | API Integration | Description |
+| ------------------- | --------------- | ----------- |
+| Module row, Level progress header | `GET /me/progress?cefrLevel={level}` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress(level)`) | Returns the per-module status list (`locked` / `available` / `in_progress` / `completed`, current step, completion %) for the requested CEFR level, plus the level's completed/total counts. Drives every module row's state and the progress header. |
 
 ## 6. Success Criteria
 

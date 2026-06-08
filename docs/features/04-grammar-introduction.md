@@ -52,7 +52,7 @@ titled with the module name (e.g. "Who Are You?").
 - The user does **not** need to interact beyond advancing; **no mastery is updated** in this step.
 - Completing the last concept marks Step 1 as seen, which (per `03-module-overview`) unlocks the Practice step.
 
-## 5. Technical Decisions
+## 5. Technical Decisions & Integrations
 
 | # | Decision | Rationale |
 |---|----------|-----------|
@@ -60,6 +60,13 @@ titled with the module name (e.g. "Who Are You?").
 | 2 | Load all concepts up front and page client-side. | Content is small, pre-generated, and offline of AI. |
 | 3 | Mark grammar-step completion on finishing the last concept. | Drives Practice unlock in the overview. |
 | 4 | `RoundButton` for the Next control (style guide). | Project convention. |
+
+**API Integrations:**
+
+| Component or Screen | API Integration | Description |
+| ------------------- | --------------- | ----------- |
+| Concept card, Concept counter, Pager dots | *Not yet implemented* — `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`), exact route TBD (e.g. an enrichment of `GET /modules/:id` or a dedicated `GET /modules/:id/grammar-concepts`) | Needs the module's grammar concepts **enriched** with their pre-generated content (`name`, gloss/icon, `explanation`, 1–2 Danish examples + translations, §3.1.1) — `GET /modules/:id` today returns only `grammarConceptIds: string[]` (`TomeModuleAPI.ModuleResponse`), not the full concept documents. See Open Question 4. |
+| Next control (last concept) | *Not yet implemented* — likely a step-completion write on `UserModuleProgress` (mirrors how `03-module-overview` reads step state from `GET /me/progress`) | Persists that the user has seen all of the module's grammar concepts, which the overview reads back to unlock Practice. |
 
 ## 6. Success Criteria
 
@@ -78,3 +85,4 @@ titled with the module name (e.g. "Who Are You?").
 | 1 | After the last concept, go straight to Practice or back to the overview? | Affects exit navigation. |
 | 2 | Is backward navigation between concepts required? | Wireframe shows forward-only. |
 | 3 | Can the user revisit Grammar after completing it (from the overview)? | Tied to `03` open question. |
+| 4 | What endpoint serves the module's grammar concepts **with their full pre-generated content** (explanation + examples), and how is grammar-step completion persisted? | `GET /modules/:id` currently returns only `grammarConceptIds`. Needs a contract decision before implementation — see §5 API Integrations. |

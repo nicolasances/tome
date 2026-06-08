@@ -63,14 +63,25 @@ test is locked).
 - The current actionable step drives the primary CTA's label and destination.
 - **Mastery is not updated on this screen** — it is a read-only hub. Mastery is updated inside the Practice (`05`) and Module Test steps, continuously (§3.1.1).
 
-## 5. Technical Decisions
+## 5. Technical Decisions & Integrations
 
 | # | Decision | Rationale |
 |---|----------|-----------|
 | 1 | Route `/language-learning/module/[moduleId]`. | Module-scoped hub. |
 | 2 | Render step states from UserModuleProgress + timing (practice-completed timestamp + unlock delay). | Lock logic is per-user and time-based. |
 | 3 | Step parameters (sizes, thresholds, delays) read from module config, not hard-coded. | §3.1.2 configurable. |
-| 4 | Wrap backend calls in an `/api` class; `RoundButton`/buttons per style guide. | Project conventions. |
+| 4 | Reuse `TomeModuleAPI` (module document) and `TomeLearningDashboardAPI` (per-user progress, owned by `01-home-dashboard`), fetched in parallel with `Promise.all`. | Avoids a waterfall — both are needed before any content renders; reuses the same progress endpoint as `01`/`02` rather than adding a module-specific progress call. |
+| 5 | Module number (01, 02 …) is derived from the index of `moduleId` in `progress.modules`, not from the module document (which has no numeric position field). | The ordered per-level module list from `GET /me/progress` is the authoritative source, matching how `ModuleRow` computes the number on the module-map screen. |
+| 6 | Lock label: static `${testUnlockDelayHours}h after practice` when step = practice (test not yet reached); live countdown when step = test and `testUnlocksAt` is in the future. | Static text is accurate and avoids a timer before the user has even completed practice; the countdown shows only once the timer is actually running. |
+| 7 | CTA "Start test" is rendered but disabled. | The Module Test feature is out of scope; the placeholder avoids a dead-end UX and will be wired up when that feature ships. |
+| 8 | Wrap backend calls in `/api` classes; `RoundButton`/buttons per style guide. | Project conventions. |
+
+### API Integrations
+
+| Component or Screen | API Integration | Description |
+| ------------------- | --------------- | ----------- |
+| Module header, Scope chips, Step list | `GET /modules/:id` (`tome-ms-language`, via `TomeModuleAPI.getModule`) | Returns the module document: theme, communication goal, grammar-concept IDs, vocabulary count, and the configurable step parameters (`practiceSessionSize`, `testQuestionCount`, `testPassThreshold`, `testUnlockDelayHours`). |
+| Step list, Practice coverage bar, Primary CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`, shared with `01`/`02`) | Returns the user's per-module progress entries (status, current step, completion %, `testUnlocksAt`). Drives step lock/available/locked states, the module's numeric index, the coverage-bar inputs, and the primary CTA's target step. |
 
 ## 6. Success Criteria
 
@@ -90,12 +101,3 @@ test is locked).
 |---|----------|-------|
 | 1 | Once the test is unlocked, does the CTA point at the (skipped) Test, or does the step row handle it? | Depends on Module Test feature design. CTA currently shows "Start test" (disabled) until that feature is built. |
 | 3 | Can the user re-enter Grammar or re-run Practice after completing them? | Affects step row interactivity post-completion. Currently completed steps render as a muted row with a checkmark medallion; they are not tappable. |
-
-## 8. Technical Decisions
-
-| # | Decision | Rationale |
-|---|----------|-----------|
-| 1 | Fetch `GET /modules/:id` and `GET /me/progress` in parallel with `Promise.all`. | Avoids waterfall; both are needed before any content renders. |
-| 2 | Module number (01, 02 …) derived from the index of `moduleId` in `progress.modules`. | The module document has no numeric position field; the ordered list from the progress endpoint is the authoritative source, matching how ModuleRow computes the number on the module-map screen. |
-| 3 | Lock label: static `${testUnlockDelayHours}h after practice` when step=practice (test not yet reached); live countdown when step=test and testUnlocksAt is in the future. | Static text is accurate and avoids a timer before the user has even completed practice. The countdown is shown only once the timer is actually running. |
-| 4 | CTA "Start test" is rendered but disabled. | The Module Test feature (04) is out of scope; the button placeholder avoids a dead-end UX and will be wired up when that feature ships. |

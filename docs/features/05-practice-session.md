@@ -98,7 +98,7 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 - **Coverage tracking**: as the user encounters vocabulary items, the set of practised vocabulary items accumulates across sessions (persisted, see `03-module-overview` / data model `UserModuleProgress.vocabularyItemsPracticed`). Step 2 is complete the moment this set covers all of the module's vocabulary items, which stamps the practice-completion timestamp that the test-unlock countdown is measured from.
 - Exercises are **never generated during the live session**; the content is fixed (from the bank), only the *selection* is personalised.
 
-## 5. Technical Decisions
+## 5. Technical Decisions & Integrations
 
 | # | Decision | Rationale |
 |---|----------|-----------|
@@ -110,6 +110,14 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 | 8 | Persist each newly-encountered vocabulary item to `UserModuleProgress.vocabularyItemsPracticed`; when it covers the module's vocabulary, stamp `practiceCompletedAt`. | Drives the coverage gate and the test-unlock countdown owned by `03-module-overview`. |
 | 6 | `RoundButton` for send/next controls; buttons per style guide. | Project convention. |
 | 7 | `ResultSheet` is `position: absolute; bottom: 0` within the screen, max-height `calc(100% - 84px)`. | Overlays the exercise content so the Continue button is always reachable without page scroll, per the wireframe. |
+
+**API Integrations:**
+
+| Component or Screen | API Integration | Description |
+| ------------------- | --------------- | ----------- |
+| Exercise body (all six types), Session bar | *Not yet implemented* — `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`), exact route TBD (e.g. a per-module `GET /modules/:id/exercises` or `.../exercise-bank`) | Needs the module's `ExerciseBank` (the `Exercise[]` with type, prompt, canonical answer + alternatives, and the linked `vocabularyItemId` / `grammarConceptId`, data model §"Exercise"/"ExerciseBank") fetched once up front; the session subset is then drawn client-side (Decision 3). See Open Question 5. |
+| Result sheet, Answer box (every submission) | *Not yet implemented* — a write to `UserVocabularyProgress` / `UserGrammarConceptProgress` mastery + `exerciseHistory` (data model), route TBD | Records each answered exercise's outcome and updates the mastery score of its linked vocabulary item or grammar concept — identically whether the exercise occurs in practice or in the Module Test (Decision 5). See Open Question 5. |
+| End of session / end of Step 2 | *Not yet implemented* — a write to `UserModuleProgress.vocabularyItemsPracticed` (+ `practiceCompletedAt` on full coverage), route TBD | Persists newly-encountered vocabulary items so coverage accumulates across sessions and survives navigation back to the overview (Decision 8); read back by `03-module-overview`'s coverage bar via `GET /me/progress`. |
 
 ## 6. Success Criteria
 
@@ -141,3 +149,4 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 | 2 | How is the session-bar split into mastered / remaining / **deferred** computed mid-session? | Mastery now updates live during practice, so the bar can reflect real-time mastery; "deferred" semantics still need defining (e.g. items skipped as already > 0.85). |
 | 3 | What happens when the user taps **"Explain my mistake"** or **"Check with AI"** in the `ResultSheet`? | The buttons are now in the wireframe; the panels/flows they open are still out of scope (no wireframe). Stub the taps for now. |
 | 4 | Reorder/error-correction interaction details (drag vs tap) on a phone. | Mobile-first input model. |
+| 5 | What endpoints serve the module's exercise bank and persist exercise results / mastery / coverage (`vocabularyItemsPracticed`, `practiceCompletedAt`)? | No exercise-bank or exercise-result API exists yet (`TomeModuleAPI` only returns the module document). Needs a contract decision before implementation — see §5 API Integrations. |
