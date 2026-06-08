@@ -70,7 +70,7 @@ A module is a self-contained learning unit. See [Data Model](./data-model.md#mod
 
 #### 3.1.1 Module Execution Flow
 
-Each module runs through the following steps in order. **Mastery scores are only updated during the Module Test (Step 3), not during practice (Step 2).**
+Each module runs through the following steps in order. **Mastery scores are updated continuously: every exercise the user completes — in practice (Step 2) and in the Module Test (Step 3) — updates the mastery score of its linked vocabulary item or grammar concept.**
 
 **Step 1 — Grammar Concept Introduction**
 
@@ -91,27 +91,35 @@ Vocabulary is introduced implicitly through the exercises themselves — no sepa
 | 5 | Error Correction | Analytical — must know the correct form to spot the deviation |
 | 6 | Translation (active) | Free production — no scaffolding |
 
-Only exercise types present in the module's bank appear. Within each type, the mastery-aware selection (§3.4.3) determines which exercises are shown. Session length is fixed at `practiceSessionSize` exercises (default: 15).
+Only exercise types present in the module's bank appear. Within each type, the mastery-aware selection (§3.4.3) determines which exercises are shown. Each practice session presents `practiceSessionSize` exercises (default: 20).
 
 1. If the user is wrong, the correct answer is shown and the user moves to the next exercise
 2. "Explain my mistake" is available on demand after incorrect answers (AI-generated)
 3. When all exercises are done, any missed exercises are retried until the user gets them all correct
-4. Mastery scores are **not** updated during this step
+4. Mastery scores **are** updated during this step — practice and the Module Test update mastery identically; there is no "practice doesn't count" mode
+
+**Practice continues until full vocabulary coverage**
+
+A single practice session is not the end of Step 2. The user repeats practice sessions until **every vocabulary item in the module has appeared in at least one exercise** (shown to the user, regardless of whether they answered it correctly). Grammar concepts are **not** part of this gate — they are already introduced explicitly in Step 1.
+
+To guarantee this converges within a predictable number of sessions, each practice session reserves a minimum share — `practiceMinUnseenVocabPercent` (default 50%) — of its exercises for vocabulary items the user has not yet encountered in this module. This requirement **overrides** the mastery-based deprioritization in §3.4.3 (an unseen item technically also has the lowest possible mastery, but coverage must win outright, not just statistically). With at least 50% of a 20-exercise session dedicated to unseen items, a module with, say, 30 vocabulary items reaches full coverage within at most 3 sessions — a hard bound, not a probabilistic hope.
+
+Once every vocabulary item has been seen at least once, Step 2 is complete and the Module Test countdown (`testUnlockDelayHours`) begins.
 
 **Step 3 — Module Test (Locked)**
 
-The test is **locked** until `testUnlockDelayHours` (default: 4 hours) have passed after completing Step 2. This enforces spaced repetition — the user cannot test immediately while memory is fresh.
+The test is **locked** until `testUnlockDelayHours` (default: 4 hours) have passed after Step 2 is **complete** — i.e., after the user has reached full vocabulary coverage (see above), not merely after a single practice session. This enforces spaced repetition — the user cannot test immediately while memory is fresh.
 
 Once unlocked:
-1. An assessment (20 questions) testing the module's vocabulary and grammar
-2. Uses the same exercise types as Step 2
-3. **50% fresh exercises** (not seen during practice) + **50% may repeat** from practice
+1. An assessment of **30–40 questions** testing the module's vocabulary and grammar
+2. Uses the same exercise types as Step 2, drawn from the **same exercise bank**, using the **same mastery-aware selection** (§3.4.3) — there is no separate "fresh vs. repeat" split. Because Step 2 already guarantees the user has encountered every vocabulary item at least once, every test exercise necessarily targets known material regardless of whether it was seen during practice or not
+3. Unlike practice, the **test does not need to cover every vocabulary item** — it's a sample-based check of the module's content, not an exhaustive re-walk of it
 4. Answers are **not shown** during the test — user completes all questions first
 5. At the end, the user sees:
    - Final score (% correct)
    - All questions with their answers: for incorrect answers, both the user's answer and the correct answer are shown
    - "Explain my mistake" available on demand for any incorrect answer (AI-generated)
-6. **Mastery scores are updated** based on test performance
+6. **Mastery scores are updated** based on test performance, exactly as in practice
 
 **Passing:**
 - Threshold: **80%**
@@ -122,11 +130,11 @@ Once unlocked:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `practiceSessionSize` | 15 | Number of exercises presented in Step 2 (practice) |
-| `testUnlockDelayHours` | 4 | Hours after completing Step 2 (practice) before test unlocks |
+| `practiceSessionSize` | 20 | Number of exercises presented in each practice session (Step 2) |
+| `practiceMinUnseenVocabPercent` | 50 | Minimum % of each practice session's exercises that must target vocabulary items the user has not yet encountered in this module — guarantees full vocabulary coverage is reached within a bounded number of sessions |
+| `testUnlockDelayHours` | 4 | Hours after Step 2 is complete (every vocabulary item practiced at least once) before the Module Test unlocks |
 | `testRetryDelayMinutes` | 20 | Minutes after failed test before retry is allowed |
-| `testFreshExercisePercent` | 50 | % of test exercises that must be unseen during practice |
-| `testPassThreshold` | 80 | % correct required to pass the module test |
+| `testPassThreshold` | 80 | % correct required to pass the Module Test |
 
 
 #### 3.1.3 Default Module Generation
@@ -323,6 +331,10 @@ Selection steps:
 5. A weighted random sample is drawn to fill the session.
 
 The exercise *content* is fixed (from the bank). The *selection* is personalized to the user's current mastery state.
+
+**Coverage override (practice only)**
+
+During Step 2 (practice) only, the algorithm above is constrained by `practiceMinUnseenVocabPercent` (§3.1.2): at least that fraction of each session is reserved for exercises whose linked vocabulary item the user has not yet encountered in this module — regardless of step 1's mastery-based deprioritization. An unseen item already has the lowest possible mastery, so this override mostly reinforces what the weighting favors anyway; its purpose is to convert that statistical tendency into a hard guarantee, so full-module vocabulary coverage completes within a bounded number of sessions (see §3.1.1, Step 2). The Module Test and Level Test are not subject to this override — they draw purely from the mastery-aware algorithm above.
 
 **Bank refresh**
 

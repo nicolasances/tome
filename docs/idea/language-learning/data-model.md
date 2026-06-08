@@ -148,14 +148,18 @@ Module {
 UserModuleProgress {
   userId
   moduleId
-  status             // locked | available | in_progress | completed
-  startedAt          // timestamp | null
-  completedAt        // timestamp | null
-  testAttempts       // ModuleTestAttempt[] (all test attempts, failed and passed)
+  status                    // locked | available | in_progress | completed
+  startedAt                 // timestamp | null
+  vocabularyItemsPracticed  // string[] — vocabularyItemIds the user has encountered at least once during this module's practice (Step 2). Reaching full coverage of Module.vocabularyItemIds is the gate that completes Step 2.
+  practiceCompletedAt       // timestamp | null — set the moment vocabularyItemsPracticed reaches full coverage; the Module Test unlocks testUnlockDelayHours after this timestamp, not after a single practice session
+  completedAt               // timestamp | null
+  testAttempts              // ModuleTestAttempt[] (all test attempts, failed and passed)
 }
 ```
 
 *Note: Module status is user-specific (one user may have completed a module while another hasn't started it), so it belongs in a separate progress table rather than on the Module entity itself.*
+
+*Note: `vocabularyItemsPracticed` accumulates across however many practice sessions Step 2 takes (it is not reset between sessions), and `practiceCompletedAt` is the timestamp from which Step 3's unlock countdown is measured (see idea.md §3.1.1).*
 
 ## ModuleTestAttempt
 ```
