@@ -29,7 +29,7 @@ treatments (Home A/B, Map B/C) which are not the spec'd design.
 | J1 | Check standing & continue | See my CEFR level + progress and resume my current module | Home dashboard → (Continue) → Module overview |
 | J2 | Browse the level & start a module | See all modules of my level and open the active one | Home dashboard → Module map → Module overview |
 | J3 | Learn a module's grammar | Read the module's grammar concepts before practising | Module overview → Grammar intro |
-| J4 | Practise a module | Work through the practice exercise session | Module overview → Practice session |
+| J4 | Practise a module | Work through practice sessions until every module word is covered | Module overview → Practice session → (repeat until full coverage) → Module overview |
 
 ## Screen Inventory
 
@@ -41,7 +41,7 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Module map | `/language-learning/level/[level]` | `02-module-map` | Variant A (Vertical list). Modules of the current level. |
 | Module overview | `/language-learning/module/[moduleId]` | `03-module-overview` | Module hub: theme, goal, 3-step flow, lock states. |
 | Grammar intro | `/language-learning/module/[moduleId]/grammar` | `04-grammar-introduction` | Step 1 — paged instructional concept cards. |
-| Practice session | `/language-learning/module/[moduleId]/practice` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a fixed-size session. |
+| Practice session | `/language-learning/module/[moduleId]/practice` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a session; sessions repeat until full module vocabulary coverage. |
 
 ## Cross-cutting shared components
 

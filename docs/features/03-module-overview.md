@@ -40,13 +40,15 @@ test is locked).
 |--------|----------------|-------------|-------------------|
 | Module overview | Module header | Kicker (e.g. "A1·01 · Identity & introductions"), large module title, and the communication-goal description. | Renders from the module document. |
 | Module overview | Scope chips | Pill chips for the module's grammar concepts (e.g. "Present tense", "Pronouns", "Word order") + a "N words" count. | Summarises grammar focus and vocabulary set size. |
-| Module overview | Step list | Three step rows — **Grammar** (3 concepts), **Practice** (15 exercises), **Module Test** (20 questions · 80% to pass) — each with a numbered medallion and a state element: available → "Start"; upcoming → muted; locked → "4h after practice" lock tag. | Reflects per-step state; the available step is the entry point. |
-| Module overview | Primary CTA | Full-width dark button, e.g. "Start grammar", reflecting the current actionable step. | Navigates into the current step (Grammar `04` / Practice `05`). |
+| Module overview | Step list | Three step rows — **Grammar** (3 concepts), **Practice** (20 a round · no pressure), **Module Test** (30–40 questions · 80% to pass) — each with a numbered medallion and a state element: available → "Start"; upcoming → muted; locked → "4h after practice" lock tag. | Reflects per-step state; the available step is the entry point. |
+| Module overview | Practice coverage bar | On the **active Practice step row only**: a progress `Bar` + "*seen* / *total* words" count, showing how many of the module's vocabulary items the user has encountered across practice sessions so far (e.g. "18 / 30 words"). | Fills as the user completes practice sessions; reaches full when Step 2 completes and the test-unlock countdown begins. |
+| Module overview | Primary CTA | Full-width dark button, e.g. "Start grammar" / "Continue practice", reflecting the current actionable step. | Navigates into the current step (Grammar `04` / Practice `05`). |
 
 **Additional Notes:**
 - **Loading**: skeleton for header + step list while module + progress load.
 - The Test step is always shown but, in this breakdown, only as a **locked/upcoming** row — tapping it (when unlocked) leads to the skipped Module Test feature.
-- Step CTA label/target adapt to where the user is: "Start grammar" → "Continue practice" → (locked) "Test unlocks in …".
+- Step CTA label/target adapt to where the user is: "Start grammar" → "Continue practice" → (locked) "Test unlocks in …". While practice is active, the CTA reads "Continue practice" and the coverage bar communicates remaining coverage.
+- **Practice is a loop**: because Step 2 runs multiple sessions until full vocabulary coverage (§3.1.1), the overview is the hub the user returns to between practice sessions; its coverage bar is the persistent indicator of how close Step 2 is to completing.
 
 ## 4. Business Logic
 
@@ -54,10 +56,12 @@ test is locked).
 - **Step gating**:
   - Grammar is available immediately.
   - Practice becomes available after Grammar has been seen.
-  - The **Module Test is locked** until `testUnlockDelayHours` (default 4h) have elapsed after Practice completion. The lock tag communicates this delay; once elapsed the step becomes available.
-- Configurable display values come from module parameters (§3.1.2): practice session size (15), test question count (20), pass threshold (80%), unlock delay (4h).
+  - **Practice completes** only when the user has reached **full vocabulary coverage** — every module vocabulary item shown at least once, accumulated across however many sessions Step 2 takes (§3.1.1). The Practice step stays `in_progress` (showing the coverage bar) until then.
+  - The **Module Test is locked** until `testUnlockDelayHours` (default 4h) have elapsed after **Practice completion** — i.e. measured from `practiceCompletedAt` (the moment full coverage is reached), not from the end of any single session. The lock tag communicates this delay; once elapsed the step becomes available.
+- **Coverage bar** on the active Practice step shows `vocabularyItemsPracticed.length / total module vocabulary items` (§3.1.1 / data model `UserModuleProgress`).
+- Configurable display values come from module parameters (§3.1.2): practice session size (20), test question count (30–40), pass threshold (80%), unlock delay (4h).
 - The current actionable step drives the primary CTA's label and destination.
-- **Mastery is not updated** anywhere on this screen (only during the Test, §3.1.1).
+- **Mastery is not updated on this screen** — it is a read-only hub. Mastery is updated inside the Practice (`05`) and Module Test steps, continuously (§3.1.1).
 
 ## 5. Technical Decisions
 
@@ -74,9 +78,11 @@ test is locked).
 |---|-----------|-------|
 | 1 | Theme, goal, grammar chips and word count render correctly. | US-03. |
 | 2 | The three steps show correct available/upcoming/locked states. | §3.1.1. |
-| 3 | The test step shows the unlock-delay lock tag until the delay elapses. | Spaced repetition. |
+| 3 | The test step shows the unlock-delay lock tag; the unlock timer is measured from full-coverage completion (`practiceCompletedAt`), not from a single session. | Spaced repetition. |
 | 4 | Primary CTA launches the correct current step. | J3/J4. |
 | 5 | Returning to the overview after grammar/practice reflects updated step states. | Hub behaviour. |
+| 6 | While Practice is active, the coverage bar shows seen / total words and fills as sessions are completed. | §3.1.1 coverage gate. |
+| 7 | Practice stays `in_progress` until full vocabulary coverage is reached; only then does the test-unlock countdown begin. | §3.1.1. |
 
 ## 7. Open Questions
 
