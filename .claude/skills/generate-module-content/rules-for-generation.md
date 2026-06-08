@@ -35,7 +35,7 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 **Notes:**
 - The percentages in a row do not sum to 100 — ranges overlap intentionally. The distribution should land within all stated bounds simultaneously; adjust proportions to fit.
 - At C1–C2, `conjugation_drill` is limited because regular conjugation is already mastered; target irregular or register-specific forms only.
-- The coverage requirement (≥1 exercise per vocabulary item and ≥1 per grammar concept) takes precedence. If a module has many vocabulary items, meeting coverage may push `multiple_choice` above the ceiling — flag this in the self-validation note rather than leaving items uncovered.
+- The coverage requirement (≥1 exercise per vocabulary item — target 2 — and ≥1 per grammar concept) takes precedence. If a module has many vocabulary items, meeting coverage may push `multiple_choice` above the ceiling — flag this in the self-validation note rather than leaving items uncovered. Coverage is the hard gate; distribution targets yield to it.
 
 ---
 
@@ -53,7 +53,7 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
   | `sentence_reorder` | `grammarConceptId` |
   | `error_correction` | `grammarConceptId` |
 
-- The bank must include at least one exercise for **every vocabulary item** in the module and at least one for **every grammar concept** in the module. Vocabulary items are covered by vocabulary exercise types; grammar concepts are covered by grammar exercise types.
+- **Coverage is a hard MUST.** The bank must include **at least one** exercise for **every vocabulary item** in the module — ideally **two** — and **at least one** for **every grammar concept**. Vocabulary items are covered by vocabulary exercise types; grammar concepts are covered by grammar exercise types. This is enforced by `validate_coverage.py` (Phase 4, Step 1): generation is not done until it exits 0. Aim for two exercises per vocabulary item as you generate, so coverage passes on the first run.
 - `timesShown` is always `0` at generation time.
 - Sentences must reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
 - Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering scaffolds this).
