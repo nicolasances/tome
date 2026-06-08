@@ -2,11 +2,15 @@
 
 Tome is based on a **microservices** architecture. 
 
-## Services 
+## Frontend
 
 - `tome` - The Progressive Web App. That is the front-end of Tome. Tome has currently two main distinct macro-capabilities: 
     1. `Tome Topics` - a part of the app focused on allowing the user to upload topics (typically notes from books read) and generate practices and challenges to increase the memorization of those topics. 
     2. `Language Learning` - a part of the app focused on helping the user getting through language learning modules, similar to apps like Duolingo.
+
+## Backend Microsrevices
+
+> All microservices are stored on Github in the repo `nicolasances/<microserviceName>`. E.g. `tome-ms-language` is stored in the repo called `nicolasances/tome-ms-language`. 
 
 For Language Learning, these are the backend microservices that this app relies on: 
 - `tome-ms-language` - BFF for Tome Language Learning running. Hosted on `nicolasances/tome-ms-language` Contains: 
