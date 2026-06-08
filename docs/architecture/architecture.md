@@ -7,9 +7,14 @@ Tome is based on a **microservices** architecture.
 - `tome` - The Progressive Web App. That is the front-end of Tome. Tome has currently two main distinct macro-capabilities: 
     1. `Tome Topics` - a part of the app focused on allowing the user to upload topics (typically notes from books read) and generate practices and challenges to increase the memorization of those topics. 
     2. `Language Learning` - a part of the app focused on helping the user getting through language learning modules, similar to apps like Duolingo.
-- `tome-ms-language` - BFF for Tome Language Learning running. Contains: 
-    - All logic related to modules (CRUD, practices, tests) and CEFR levels
-    - All logic related to tracking user progress in learning a language
+
+For Language Learning, these are the backend microservices that this app relies on: 
+- `tome-ms-language` - BFF for Tome Language Learning running. Hosted on `nicolasances/tome-ms-language` Contains: 
+    - All logic and endpoints related to the vocabulary (vocabulary items) and grammar concepts
+    - All logic and endpoints related to modules (CRUD, module practices, module and level tests) and CEFR levels
+    - All logic and endpoints related to tracking user progress in learning a language
+
+For the Tome Topics part (remembering topics read in books), these are the backend microservices that this app relies on:
 - `tome-ms-topics` - Topics management for Tome Topics
 - `tome-ms-practice` - Management of user practices for Tome Topics
 - `tome-ms-challenges` - Management of Challenges for Tome Topics
