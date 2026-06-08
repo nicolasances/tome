@@ -68,6 +68,19 @@ function Canvas() {
         {board('fb6-no', '6 · Translation — incorrect', <ExTranslation state="wrong" />)}
         {board('fb6-long', '6 · Translation — long answer (tap / drag to expand)', <ExTranslation state="wrong" long={true} />)}
       </DCSection>
+
+      <DCSection id="test" title="6 · Module test"
+        subtitle="Step 3 — the gated, scored sibling of practice. Locked 4h after full coverage, then 35 questions reusing the same six types with NO per-answer feedback; answers are revealed only at the end. 80% to pass; mastery still updates exactly as in practice.">
+        {board('test-lock', 'Locked · spaced-repetition countdown', <TestLocked />)}
+        {board('test-ready', 'Ready · what\u2019s coming', <TestReady />)}
+        {board('test-mc', 'In-test · multiple choice (no reveal)', <TestMC />)}
+        {board('test-reorder', 'In-test · sentence reorder (no reveal)', <TestReorder />)}
+        {board('test-trans', 'In-test · translation (no reveal)', <TestTranslation />)}
+        {board('test-submit', 'Submit · confirm before scoring', <TestSubmit />)}
+        {board('test-pass', 'Result · passed (\u226580%)', <TestResultPass />)}
+        {board('test-fail', 'Result · not passed (retry in 20m)', <TestResultFail />)}
+        {board('test-review', 'Answer review · your answer vs correct', <TestReview />)}
+      </DCSection>
     </DesignCanvas>
   );
 }

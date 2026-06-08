@@ -222,7 +222,6 @@ function GrammarIntro() {
             </div>
             <div>
               <div style={{ fontSize: 17, fontWeight: 700, color: TC.fg1 }}>Present tense — at være</div>
-              <div style={{ fontSize: 11.5, color: TC.fg2 }}>"to be" in the now</div>
             </div>
           </div>
           <div style={{ fontSize: 14, color: TC.fg1, lineHeight: 1.55 }}>

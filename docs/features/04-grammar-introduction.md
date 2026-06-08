@@ -4,8 +4,13 @@
 
 Delivers **Step 1 of the module flow**: a paged, purely instructional walkthrough
 of the module's grammar concepts. For each concept the user reads a short
-explanation and 1–2 Danish examples, then advances. No interaction is scored.
-Owns this one screen (a self-paced pager) end-to-end.
+explanation and 1–2 Danish examples, then advances. No interaction is scored,
+and paging through the concepts makes no backend write — reading is read-only
+end-to-end, mirroring the confirmed-read-only `GetGrammarIntroduction` on the
+backend (F09). The only backend effect happens at **exit**: completing the last
+concept immediately starts the module's practice session (§4, §5.1) — which is
+what flips `UserModuleProgress` to `in_progress`, not a dedicated "grammar seen"
+write. Owns this one screen (a self-paced pager) end-to-end.
 
 Design: `module-screens.jsx` → `GrammarIntro`.
 
@@ -13,7 +18,7 @@ Participates in journey **J3** (learn a module's grammar).
 
 **Out of scope**:
 - The Module overview that launches this step (owned by `03-module-overview`).
-- The Practice session that follows (owned by `05-practice-session`).
+- The Practice session itself — its screen, lifecycle and exercises (owned by `05-practice-session`/F10). This feature only **triggers** the session start on exit (§4, §5.1); everything from there on is `05`'s.
 - Live AI generation of explanations — they are **pre-generated at seeding time** (§3.1.1), not produced here.
 
 ## 2. Key User Stories
@@ -38,7 +43,7 @@ titled with the module name (e.g. "Who Are You?").
 | Grammar intro | Concept counter | "Concept n of N" label centered above the card. | Tracks position in the concept sequence. |
 | Grammar intro | Concept card | Bordered card: concept icon + concept name + short gloss (e.g. "Present tense — at være / 'to be' in the now"), the explanation paragraph, and 1–2 Danish examples each with an English translation (lime left-border). | Renders the concept's pre-generated `explanation` and examples; read-only. |
 | Grammar intro | Pager dots | Row of dots indicating concept count, with the current one elongated/highlighted. | Reflects current concept index. |
-| Grammar intro | Next control | Forward `RoundButton`. | Advances to the next concept; on the last concept, advances out of the step (to Practice or back to overview). |
+| Grammar intro | Next control | Forward `RoundButton`. | Advances to the next concept. On the **last** concept: immediately starts the module's practice session (`POST /users/:userId/modules/:moduleId/practiceSessions`, owned by `05-practice-session`/F10 — §5.1) and routes the user straight into Practice with that session — no stop at the overview. |
 
 **Additional Notes:**
 - **Single concept module**: pager dots and counter collapse gracefully for N=1.
@@ -47,42 +52,45 @@ titled with the module name (e.g. "Who Are You?").
 
 ## 4. Business Logic
 
-- Iterates the module's grammar concepts in their defined order.
-- Each concept's explanation comes from `GrammarConcept.explanation`, **generated at module seeding time and stored** — never regenerated per session (§3.1.1, §5).
-- The user does **not** need to interact beyond advancing; **no mastery is updated** in this step.
-- Completing the last concept marks Step 1 as seen, which (per `03-module-overview`) unlocks the Practice step.
+- Iterates the module's grammar concepts in the order returned by `GET /modules/:moduleId/grammarIntroduction` — which mirrors the `grammarConceptIds` order on the module document (§5.1; the backend re-sorts its bulk lookup to preserve that order, per F09's technical decisions).
+- Each concept's explanation and examples come from that response — `GrammarConcept.explanation` / `.examples`, **generated at module seeding time and stored**, never regenerated per session (§3.1.1, §5.1; F02/F09).
+- The user does **not** need to interact beyond advancing; **no mastery is updated**, and paging through concepts makes **no progress write** — `GetGrammarIntroduction` (F09) is confirmed read-only.
+- **On the last concept, finishing the step immediately starts a practice session**: the app calls `POST /users/:userId/modules/:moduleId/practiceSessions` (§5.1; owned by `05-practice-session`/F10) and routes the user straight into Practice with the returned session — there is **no intermediate stop at the overview**. This call is also what flips `UserModuleProgress` to `in_progress` (per F10's own business logic: "starting a practice session transitions UserModuleProgress to `in_progress`"), so Grammar Intro needs no completion-marking write or endpoint of its own — the practice-session-start call *is* the mechanism that "completes" Grammar from the backend's point of view (§5, Technical Decision #3).
 
 ## 5. Technical Decisions & Integrations
 
 | # | Decision | Rationale |
 |---|----------|-----------|
 | 1 | Route `/language-learning/module/[moduleId]/grammar`. | Sub-route of the module flow. |
-| 2 | Load all concepts up front and page client-side. | Content is small, pre-generated, and offline of AI. |
-| 3 | Mark grammar-step completion on finishing the last concept. | Drives Practice unlock in the overview. |
+| 2 | Load all concepts up front with a single call to `GET /modules/:moduleId/grammarIntroduction` and page client-side. | Content is small, pre-generated, already enriched and ordered server-side, and offline of AI (§5.1). |
+| 3 | On the last concept, do **not** navigate back to the overview or make a dedicated "grammar step complete" write — instead immediately call the practice-session-start endpoint (`POST /users/:userId/modules/:moduleId/practiceSessions`, owned by `05-practice-session`/F10) and enter Practice directly with the returned session. | Matches the actual backend contract: there is no Step-1-completion endpoint (F09's `GetGrammarIntroduction` is confirmed read-only), while starting a practice session is exactly what flips `UserModuleProgress` to `in_progress` (F10 business logic) — so triggering that start *is* the natural "completion" signal. It also removes the dead stop on the overview between Grammar and Practice. Supersedes the earlier "mark grammar-step completion" decision, which assumed a write the backend does not provide. |
 | 4 | `RoundButton` for the Next control (style guide). | Project convention. |
 
-**API Integrations:**
+### 5.1. API Integrations
 
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
-| Concept card, Concept counter, Pager dots | *Not yet implemented* — `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`), exact route TBD (e.g. an enrichment of `GET /modules/:id` or a dedicated `GET /modules/:id/grammar-concepts`) | Needs the module's grammar concepts **enriched** with their pre-generated content (`name`, gloss/icon, `explanation`, 1–2 Danish examples + translations, §3.1.1) — `GET /modules/:id` today returns only `grammarConceptIds: string[]` (`TomeModuleAPI.ModuleResponse`), not the full concept documents. See Open Question 4. |
-| Next control (last concept) | *Not yet implemented* — likely a step-completion write on `UserModuleProgress` (mirrors how `03-module-overview` reads step state from `GET /me/progress`) | Persists that the user has seen all of the module's grammar concepts, which the overview reads back to unlock Practice. |
+| Concept card, Concept counter, Pager dots | `GET /modules/:moduleId/grammarIntroduction` (`tome-ms-language`, basepath `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`) | Returns the module's grammar concepts already resolved and enriched, in presentation order: `{ concepts: [{ name, explanation, examples }] }`, where each `examples` entry is a `{ danish, english }` pair (1–2 per concept). One call loads everything the pager needs (F09/`GetGrammarIntroduction`); no further requests as the user advances. |
+| Next control (last concept) | `POST /users/:userId/modules/:moduleId/practiceSessions` (`tome-ms-language`, owned by `05-practice-session`/F10) | Triggered immediately when the user finishes the last concept: starts the module's practice session (drawing `practiceSessionSize` exercises, mastery-aware per F08) and the app routes straight into Practice with the returned session — no stop at the overview. This call is also what flips `UserModuleProgress` to `in_progress` (F10 business logic), so Grammar Intro needs no completion endpoint of its own (Technical Decision #3). |
+
+**Missing**
+
+None — every component's backend need is covered by an existing, implemented endpoint (see table above).
 
 ## 6. Success Criteria
 
 | # | Criterion | Notes |
 |---|-----------|-------|
-| 1 | Each concept renders its stored explanation + 1–2 examples. | §3.1.1. |
+| 1 | Each concept renders its stored explanation + 1–2 examples, loaded in one call to `GET /modules/:moduleId/grammarIntroduction`. | §3.1.1; §5.1. |
 | 2 | The pager advances through all concepts and exits cleanly on the last. | — |
-| 3 | Step dots show Grammar as current, Practice upcoming, Test locked. | — |
-| 4 | Finishing the step unlocks Practice on the overview. | Cross-feature with `03`. |
+| 3 | Step dots show Grammar as current, Practice upcoming, Test locked. | Read from `GET /me/progress` (owned by `03-module-overview`); this screen does not write that state directly. |
+| 4 | Completing the last concept immediately starts a practice session and routes the user straight into Practice with it — with no intermediate stop at the overview. | §4; §5.1; resolves Open Question 1. Replaces the earlier "finishing the step unlocks Practice on the overview" framing — see Technical Decision #3. |
 | 5 | No scoring or mastery change occurs in this step. | §3.1.1. |
 
 ## 7. Open Questions
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | After the last concept, go straight to Practice or back to the overview? | Affects exit navigation. |
-| 2 | Is backward navigation between concepts required? | Wireframe shows forward-only. |
-| 3 | Can the user revisit Grammar after completing it (from the overview)? | Tied to `03` open question. |
-| 4 | What endpoint serves the module's grammar concepts **with their full pre-generated content** (explanation + examples), and how is grammar-step completion persisted? | `GET /modules/:id` currently returns only `grammarConceptIds`. Needs a contract decision before implementation — see §5 API Integrations. |
+| 1 | ~~After the last concept, go straight to Practice or back to the overview?~~ | **Resolved** — straight to Practice: finishing the last concept immediately starts a practice session and routes the user directly into it (§4, §5.1, Technical Decision #3). |
+| 2 | Is backward navigation between concepts required? | **Resolved** - forward-only. |
+| 3 | Can the user revisit Grammar after completing it (from the overview)? | **Resolved** - no. |
