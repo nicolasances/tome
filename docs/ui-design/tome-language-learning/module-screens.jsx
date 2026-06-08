@@ -158,9 +158,9 @@ function MapC() {
 /* ───────────────────── MODULE OVERVIEW ───────────────────── */
 function ModuleOverview() {
   const steps = [
-    { icon: 'tome/teacher', t: 'Grammar', sub: '3 concepts · learn the rules', st: 'available' },
-    { icon: 'tome/language', t: 'Practice', sub: '15 exercises · no pressure', st: 'upcoming' },
-    { icon: 'tome/tick', t: 'Module Test', sub: '20 questions · 80% to pass', st: 'locked' },
+    { icon: 'tome/teacher', t: 'Grammar', sub: '3 concepts · learned', st: 'done' },
+    { icon: 'tome/language', t: 'Practice', sub: '20 a round · no pressure', st: 'active', coverage: { seen: 18, total: 30 } },
+    { icon: 'tome/tick', t: 'Module Test', sub: '30–40 questions · 80% to pass', st: 'locked' },
   ];
   return (
     <TomeScreen title="Module">
@@ -171,27 +171,32 @@ function ModuleOverview() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 22 }}>
           {steps.map((s, i) => {
-            const locked = s.st === 'locked', avail = s.st === 'available';
+            const locked = s.st === 'locked', active = s.st === 'active', done = s.st === 'done';
             return (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 13, padding: '13px 14px', borderRadius: 14,
-                background: avail ? 'rgba(14,116,144,0.32)' : 'transparent', border: avail ? 'none' : '1px solid rgba(9,166,209,0.4)', opacity: locked ? 0.85 : 1 }}>
+              <div key={i} style={{ display: 'flex', alignItems: active ? 'flex-start' : 'center', gap: 13, padding: '13px 14px', borderRadius: 14,
+                background: active ? 'rgba(14,116,144,0.32)' : 'transparent', border: active ? 'none' : '1px solid rgba(9,166,209,0.4)', opacity: locked ? 0.85 : 1 }}>
                 <div style={{ width: 40, height: 40, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto',
-                  background: avail ? TC.lime : 'transparent', border: avail ? 'none' : `2px solid ${locked ? 'rgba(0,0,0,0.18)' : TC.c600}`, color: avail ? TC.c800 : locked ? TC.fg3 : TC.c800 }}>
-                  <span style={{ fontSize: 13, fontWeight: 700 }}>{i + 1}</span>
+                  background: done ? TC.limeBright : active ? TC.lime : 'transparent', border: (done || active) ? 'none' : `2px solid ${locked ? 'rgba(0,0,0,0.18)' : TC.c600}`, color: (done || active) ? TC.c800 : TC.fg3 }}>
+                  <span style={{ fontSize: done ? 16 : 13, fontWeight: 700 }}>{done ? '✓' : i + 1}</span>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: TC.fg1 }}>{s.t}</div>
                   <div style={{ fontSize: 11.5, color: TC.fg2, marginTop: 2 }}>{s.sub}</div>
+                  {s.coverage && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 9 }}>
+                      <div style={{ flex: 1 }}><Bar pct={s.coverage.seen / s.coverage.total} h={6} /></div>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: TC.fg1, whiteSpace: 'nowrap' }}>{s.coverage.seen} / {s.coverage.total}<span style={{ color: TC.fg2, fontWeight: 600 }}> words</span></span>
+                    </div>
+                  )}
                 </div>
-                {locked && <LockTag>4h after practice</LockTag>}
-                {avail && <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: TC.c900 }}>Start</span>}
+                {locked && <div style={{ alignSelf: 'center' }}><LockTag>4h after practice</LockTag></div>}
               </div>
             );
           })}
         </div>
         <div style={{ flex: 1 }} />
         <div style={{ padding: '0 0 16px' }}>
-          <button style={{ width: '100%', border: 'none', borderRadius: 9999, background: TC.c800, color: TC.lime, fontFamily: 'inherit', fontWeight: 700, fontSize: 15, padding: '15px', cursor: 'pointer', letterSpacing: '0.02em' }}>Start grammar</button>
+          <button style={{ width: '100%', border: 'none', borderRadius: 9999, background: TC.c800, color: TC.lime, fontFamily: 'inherit', fontWeight: 700, fontSize: 15, padding: '15px', cursor: 'pointer', letterSpacing: '0.02em' }}>Continue practice</button>
         </div>
       </div>
     </TomeScreen>

@@ -4,10 +4,10 @@
      'correct' — solved (confirm + advance)
      'wrong'   — production types: reveal answer + Continue (+ Explain / AI)
      'retry'   — MC & reorder only: mark the bad pick/order red, keep waiting (no reveal)
-   Practice never scores mastery (spec §3.1.1). Requires tome-kit.jsx. */
+   Every exercise updates mastery — in practice and in the test (spec §3.1.1). Requires tome-kit.jsx. */
 
 /* Shared exercise shell: session progress on top, body, optional bottom feedback */
-function ExShell({ instruction, children, title = 'Who Are You?', session = { total: 15, mastered: 6, deferred: 1 } }) {
+function ExShell({ instruction, children, title = 'Who Are You?', session = { total: 20, mastered: 6, deferred: 1 } }) {
   return (
     <TomeScreen title={title}>
       <div style={{ padding: '6px 18px 0' }}>

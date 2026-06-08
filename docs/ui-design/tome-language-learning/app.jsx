@@ -37,13 +37,13 @@ function Canvas() {
       </DCSection>
 
       <DCSection id="flow" title="3 · Module flow"
-        subtitle="Inside a module: overview → grammar intro → practice → test. The test stays locked 4h after practice to force spaced repetition.">
-        {board('overview', 'Module overview', <ModuleOverview />)}
+        subtitle="Inside a module: overview → grammar intro → practice → test. Practice repeats in rounds until every vocabulary word has been seen; the overview's coverage bar tracks that, and the test unlocks 4h after full coverage.">
+        {board('overview', 'Module overview · practice in progress', <ModuleOverview />)}
         {board('grammar', 'Grammar intro · step 1', <GrammarIntro />)}
       </DCSection>
 
       <DCSection id="exercises" title="4 · Practice exercises"
-        subtitle="All six exercise types, ordered recognition → production. Shared session bar (mastered · remaining · deferred) and footer. No answers scored during practice.">
+        subtitle="All six exercise types, ordered recognition → production. Shared session bar (mastered · remaining · deferred) and footer. Every answer nudges mastery — in practice and the test alike.">
         {board('ex1', '1 · Multiple choice', <ExMultipleChoice />)}
         {board('ex2', '2 · Sentence reorder', <ExReorder />)}
         {board('ex3', '3 · Fill in the blank', <ExFillBlank />)}
