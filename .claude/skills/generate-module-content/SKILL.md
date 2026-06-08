@@ -36,7 +36,7 @@ Starting from a curriculum that provides the list of modules of the language cou
 You will follow 5 phases. Each phase ends with a **self-validation** step. Do not advance until the current phase passes its checklist. No human review is required (per idea.md §3.1.3) — you are responsible for validating your own output against the data model and rules. Surface a one-line summary to the user at the end of each phase.
 
 ```
-GENERATE VOCABULARY ITEMS > GENERATE GRAMMAR CONCEPTS > GENERATE EXERCISES > DISTRIBUTION QA > GENERATE MODULE
+GENERATE VOCABULARY ITEMS > GENERATE GRAMMAR CONCEPTS > GENERATE EXERCISES > COVERAGE & DISTRIBUTION QA > GENERATE MODULE
 ```
 
 First, **locate the target module's shell** in `default-modules.md` (theme, communication goal, grammar focus, vocabulary focus). This shell is your specification for all three phases.
@@ -162,7 +162,7 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 - Read the generated grammar concepts in `<user-specified-folder>/<module>/<module>-grammar.json`.
 - Generate the exercise bank. You **MUST** follow every rule in `rules-for-generation.md` (bundled with this skill) — this is **important**. Use `module-examples.md` as the style reference.
 - Every `vocabularyItemId` and `grammarConceptId` in an exercise **must** reference an `id` that exists in the files from Phases 1–2. Never invent ids here.
-- **Coverage requirement:** at least one exercise for **every** vocabulary item and at least one for **every** grammar concept (idea.md §3.1.3). Bank size emerges from coverage, not a fixed target.
+- **Coverage requirement (MUST):** **every** vocabulary item must have **at least one** exercise — ideally **two** — and **every** grammar concept must have at least one (idea.md §3.1.3). This is a hard requirement, enforced by `validate_coverage.py` in Phase 4; the bank is not complete until the script exits 0. Bank size emerges from coverage, not a fixed target — aim for two exercises per vocabulary item from the start so Phase 4 passes cleanly.
 
 **Expected file:** `<user-specified-folder>/<module>/<module>-exercises.json`.
 
