@@ -39,14 +39,13 @@ titled with the module name (e.g. "Who Are You?").
 
 | Screen | Component Name | Description | Expected Behavior |
 |--------|----------------|-------------|-------------------|
-| Grammar intro | Step indicator (`StepDots`) | Top row showing the 3 module steps — Grammar (current) · Practice (upcoming) · Test (locked). | Marks Grammar as the active step. |
-| Grammar intro | Concept counter | "Concept n of N" label centered above the card. | Tracks position in the concept sequence. |
-| Grammar intro | Concept card | Bordered card: concept icon + concept name + short gloss (e.g. "Present tense — at være / 'to be' in the now"), the explanation paragraph, and 1–2 Danish examples each with an English translation (lime left-border). | Renders the concept's pre-generated `explanation` and examples; read-only. |
-| Grammar intro | Pager dots | Row of dots indicating concept count, with the current one elongated/highlighted. | Reflects current concept index. |
-| Grammar intro | Next control | Forward `RoundButton`. | Advances to the next concept. On the **last** concept: immediately starts the module's practice session (`POST /users/:userId/modules/:moduleId/practiceSessions`, owned by `05-practice-session`/F10 — §5.1) and routes the user straight into Practice with that session — no stop at the overview. |
+| Grammar intro | Session progress (`SessionBar`) | Segmented progress pill spanning the full width at the top of the screen body. `total` = number of grammar concepts in the module; `mastered` = count of concepts the user has advanced past (green segment); `deferred` = 0 (not applicable in this step). | Grows the green segment each time the user advances past a concept. |
+| Grammar intro | Concept counter | Split row immediately below `SessionBar`: a `Label` component reading "Grammar" (uppercase, left-aligned) and an "n / N" counter (e.g. "1 / 3") right-aligned. | Reflects the current concept index; updates each time the user advances. |
+| Grammar intro | Concept card | Inline layout — no card border. Header: a lime circle containing the teacher icon alongside the concept name as a heading. Below the header: the explanation paragraph. Below that: 1–2 Danish examples, each with an English translation (lime left-border). | Renders the concept's pre-generated `explanation` and examples; read-only. |
+| Grammar intro | Next control | Forward `RoundButton` (primary variant), right-aligned at the bottom of the screen. | Advances to the next concept. On the **last** concept: immediately starts the module's practice session (`POST /users/:userId/modules/:moduleId/practiceSessions`, owned by `05-practice-session`/F10 — §5.1) and routes the user straight into Practice with that session — no stop at the overview. |
 
 **Additional Notes:**
-- **Single concept module**: pager dots and counter collapse gracefully for N=1.
+- **Single concept module**: `SessionBar` shows total=1 and the counter reads "1 / 1"; both collapse gracefully.
 - Purely instructional — there is no answer input and nothing is scored here.
 - Navigation back to a previous concept (swipe/back) is a nice-to-have; forward via the Next control is the core path.
 
@@ -83,9 +82,8 @@ None — every component's backend need is covered by an existing, implemented e
 |---|-----------|-------|
 | 1 | Each concept renders its stored explanation + 1–2 examples, loaded in one call to `GET /modules/:moduleId/grammarIntroduction`. | §3.1.1; §5.1. |
 | 2 | The pager advances through all concepts and exits cleanly on the last. | — |
-| 3 | Step dots show Grammar as current, Practice upcoming, Test locked. | Read from `GET /me/progress` (owned by `03-module-overview`); this screen does not write that state directly. |
-| 4 | Completing the last concept immediately starts a practice session and routes the user straight into Practice with it — with no intermediate stop at the overview. | §4; §5.1; resolves Open Question 1. Replaces the earlier "finishing the step unlocks Practice on the overview" framing — see Technical Decision #3. |
-| 5 | No scoring or mastery change occurs in this step. | §3.1.1. |
+| 3 | Completing the last concept immediately starts a practice session and routes the user straight into Practice with it — with no intermediate stop at the overview. | §4; §5.1; resolves Open Question 1. Replaces the earlier "finishing the step unlocks Practice on the overview" framing — see Technical Decision #3. |
+| 4 | No scoring or mastery change occurs in this step. | §3.1.1. |
 
 ## 7. Open Questions
 
