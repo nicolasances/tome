@@ -5,7 +5,8 @@ import { TotoAPI } from "./TotoAPI";
  * Wraps the tome-ms-language backend.
  *
  * Endpoint mapping (basepath handled by NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT):
- *   - GET /modules/:id   → full module document for the Module Overview screen
+ *   - GET /modules/:id                        → full module document for the Module Overview screen
+ *   - GET /modules/:moduleId/grammarIntroduction → grammar concepts for Step 1 (F04)
  */
 export class TomeModuleAPI {
 
@@ -19,9 +20,46 @@ export class TomeModuleAPI {
     async getModule(moduleId: string): Promise<ModuleResponse> {
         return (await new TotoAPI().fetch('tome-ms-language', `/modules/${moduleId}`)).json();
     }
+
+    /**
+     * Fetches the module's grammar concepts for the Grammar Introduction screen (Step 1).
+     * Returns concepts in presentation order (mirrors grammarConceptIds order on the module).
+     * Each concept carries a pre-generated explanation and 1–2 Danish/English example pairs.
+     * This endpoint is read-only — no backend write occurs.
+     *
+     * Endpoint: GET /modules/:moduleId/grammarIntroduction
+     */
+    async getGrammarIntroduction(moduleId: string): Promise<GrammarIntroductionResponse> {
+        return (await new TotoAPI().fetch('tome-ms-language', `/modules/${moduleId}/grammarIntroduction`)).json();
+    }
 }
 
 // ─── API response types ────────────────────────────────────────────────────────
+
+// ── Grammar Introduction ──────────────────────────────────────────────────────
+
+export interface GrammarExample {
+    /** Danish sentence illustrating the concept */
+    danish: string;
+    /** English translation of the Danish example */
+    english: string;
+}
+
+export interface GrammarConcept {
+    /** Concept name, e.g. "Present Tense — at være" */
+    name: string;
+    /** Pre-generated explanation stored at seeding time; never regenerated live */
+    explanation: string;
+    /** 1–2 bilingual examples for the concept */
+    examples: GrammarExample[];
+}
+
+export interface GrammarIntroductionResponse {
+    /** Grammar concepts in presentation order (mirrors grammarConceptIds on the module) */
+    concepts: GrammarConcept[];
+}
+
+// ── Module ────────────────────────────────────────────────────────────────────
 
 export interface ModuleResponse {
     id: string;
