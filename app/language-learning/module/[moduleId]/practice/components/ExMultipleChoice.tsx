@@ -39,18 +39,18 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
     const parts = exercise.prompt.split('___');
     const hasParts = parts.length === 2;
 
-    function optionStyle(key: string) {
+    function optionStyle(key: string, word: string) {
         if (!submitted) {
-            const selected = key === selectedOption;
+            const selected = word === selectedOption;
             return {
-                bg: selected ? 'bg-lime-100 border-lime-400' : 'bg-transparent border-cyan-500/40',
+                bg: selected ? 'bg-lime-200 border-lime-200' : 'bg-transparent border-cyan-500/40',
                 badgeBg: selected ? 'bg-cyan-800 text-lime-200' : 'bg-transparent border border-black/25 text-black/50',
                 text: 'text-black',
                 badge: null as string | null,
             };
         }
         const isCorrect = key === correctKey;
-        const isChosen = key === selectedOption;
+        const isChosen = word === selectedOption;
         if (isCorrect) return { bg: 'bg-lime-100/40 border-lime-400', badgeBg: 'bg-cyan-800 text-lime-200', text: 'text-black', badge: '✓' };
         if (isChosen && !isCorrect) return { bg: 'bg-red-600/10 border-red-600', badgeBg: 'text-red-600', text: 'text-black', badge: '✕' };
         return { bg: 'bg-transparent border-cyan-500/20 opacity-50', badgeBg: 'bg-transparent border border-black/20 text-black/40', text: 'text-black/50', badge: null };
@@ -65,7 +65,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
                         <>
                             <span>{parts[0].trim()}</span>
                             <span className={`inline-block min-w-16 border-b-2 ${submitted && submissionState?.isCorrect ? 'border-lime-400 text-lime-600' : 'border-lime-500'} px-1 mx-1 text-center`}>
-                                {submitted ? exercise.answer : ' '}
+                                {submitted ? exercise.answer : (selectedOption ?? ' ')}
                             </span>
                             <span>{parts[1].trim()}</span>
                         </>
@@ -81,7 +81,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
             {/* Options */}
             <div className="flex flex-col gap-2.5 mt-6">
                 {options.map(({ key, word }) => {
-                    const s = optionStyle(key);
+                    const s = optionStyle(key, word);
                     return (
                         <button
                             key={key}
