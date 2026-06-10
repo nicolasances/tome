@@ -4,7 +4,9 @@ export class TomePracticeSessionAPI {
 
     /**
      * Starts a new practice session for the given user and module.
-     * Returns null on 409 (session already active) — navigate to the practice screen anyway.
+     * On 409 (session already active), the backend returns the existing sessionId;
+     * this method resumes that session via getSession and returns it transparently.
+     * Returns null only on unrecoverable errors.
      *
      * Endpoint: POST /users/:userId/modules/:moduleId/practiceSessions
      */
@@ -15,7 +17,11 @@ export class TomePracticeSessionAPI {
             { method: 'POST', headers: { 'Content-Type': 'application/json' } }
         );
 
-        if (response.status === 409) return null;
+        if (response.status === 409) {
+            const body: { sessionId?: string } = await response.json();
+            if (body.sessionId) return this.getSession(userId, body.sessionId);
+            return null;
+        }
         if (!response.ok) throw new Error(`Failed to start practice session (${response.status})`);
 
         return response.json();
