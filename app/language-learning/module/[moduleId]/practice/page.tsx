@@ -8,6 +8,7 @@ import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { ResultSheet } from './components/ResultSheet';
 import { ExMultipleChoice } from './components/ExMultipleChoice';
+import { ExSentenceReorder } from './components/ExSentenceReorder';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -233,8 +234,20 @@ export default function PracticePage() {
                                 isSubmitting={isSubmitting}
                             />
                         )}
-                        {/* Remaining exercise types added in Tasks 4–8 */}
-                        {currentExercise.type !== 'multiple_choice' && (
+                        {currentExercise.type === 'sentence_reorder' && (
+                            <ExSentenceReorder
+                                exercise={currentExercise}
+                                submissionState={submissionState}
+                                builtWords={builtWords}
+                                onToggleWord={w => setBuiltWords(prev =>
+                                    prev.includes(w) ? prev.filter(x => x !== w) : [...prev, w]
+                                )}
+                                onCheck={handleCheck}
+                                isSubmitting={isSubmitting}
+                            />
+                        )}
+                        {/* Remaining exercise types added in Tasks 5–8 */}
+                        {currentExercise.type !== 'multiple_choice' && currentExercise.type !== 'sentence_reorder' && (
                             <div className="flex flex-1 items-center justify-center text-black/40 text-sm">
                                 {currentExercise.type} — coming soon
                             </div>
