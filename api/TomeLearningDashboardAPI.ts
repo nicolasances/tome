@@ -6,10 +6,23 @@ import { TotoAPI } from "./TotoAPI";
  * Wraps the tome-ms-language backend.
  *
  * Endpoint mapping (basepath handled by NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT):
+ *   - GET /me                    → user profile (id, email, cefrLevel)
  *   - GET /me/progress               → level info + modules at current level
  *   - GET /sessions/stats/weekly     → session counts per day for current week
  */
 export class TomeLearningDashboardAPI {
+
+    /**
+     * Fetches the authenticated user's profile.
+     * Returns the user's internal ID, email, and current CEFR level.
+     * The userId is required when calling user-scoped endpoints such as
+     * POST /users/:userId/modules/:moduleId/practiceSessions.
+     *
+     * Endpoint: GET /me
+     */
+    async getMe(): Promise<MeResponse> {
+        return (await new TotoAPI().fetch('tome-ms-language', '/me')).json();
+    }
 
     /**
      * Fetches the user's full progress view.
@@ -37,6 +50,14 @@ export class TomeLearningDashboardAPI {
 }
 
 // ─── Raw API response types (matching tome-ms-language exactly) ────────────
+
+export interface MeResponse {
+    /** The user's internal database ID — required for user-scoped endpoints */
+    id: string;
+    email: string;
+    cefrLevel: string;
+    createdAt: string;
+}
 
 export interface MeProgressResponse {
     /** The user's current CEFR level, e.g. "A1" */

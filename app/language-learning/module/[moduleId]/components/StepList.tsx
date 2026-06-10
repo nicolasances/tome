@@ -15,7 +15,7 @@ function StepMedallion({number, state}: {number: number, state: StepState}) {
 
     return (
         <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-[13px] font-bold ${isLime ? 'bg-lime-200' : 'bg-transparent'} ${isLime ? '' : state === 'locked' ? 'border-2 border-black/20' : 'border-2 border-cyan-600'} ${state === 'locked' ? 'text-black/50' : 'text-cyan-800'}`}>
-            {state === 'completed' ? '✓' : number}
+            {state === 'completed' ? <MaskedSvgIcon src='/images/tick.svg' alt='Completed' /> : number}
         </div>
     );
 }
