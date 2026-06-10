@@ -1,24 +1,10 @@
 import { TotoAPI } from "./TotoAPI";
 
-/**
- * API class for module-scoped practice sessions (F10 / F04 exit).
- * Wraps the tome-ms-language backend.
- *
- * Endpoint mapping (basepath handled by NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT):
- *   - POST /users/:userId/modules/:moduleId/practiceSessions  → start a new session
- */
 export class TomePracticeSessionAPI {
 
     /**
      * Starts a new practice session for the given user and module.
-     *
-     * Called at the end of the Grammar Introduction step (F04) to transition the
-     * module into its practice phase. This call also flips UserModuleProgress to
-     * "in_progress" on the backend (F10 business logic).
-     *
-     * Returns null when a session is already active for this module (HTTP 409) —
-     * the caller should navigate to the practice screen regardless, where the
-     * existing session will be loaded.
+     * Returns null on 409 (session already active) — navigate to the practice screen anyway.
      *
      * Endpoint: POST /users/:userId/modules/:moduleId/practiceSessions
      */
@@ -29,17 +15,100 @@ export class TomePracticeSessionAPI {
             { method: 'POST', headers: { 'Content-Type': 'application/json' } }
         );
 
-        if (response.status === 409) {
-            // An active session already exists — navigate to practice anyway
-            return null;
-        }
-
-        if (!response.ok) {
-            throw new Error(`Failed to start practice session (${response.status})`);
-        }
+        if (response.status === 409) return null;
+        if (!response.ok) throw new Error(`Failed to start practice session (${response.status})`);
 
         return response.json();
     }
+
+    /**
+     * Fetches an in-progress session by ID — used to resume after the app closes.
+     * Returns null on 404 (session not found or already completed).
+     *
+     * Endpoint: GET /users/:userId/practiceSessions/:sessionId
+     */
+    async getSession(userId: string, sessionId: string): Promise<PracticeSession | null> {
+        const response = await new TotoAPI().fetch(
+            'tome-ms-language',
+            `/users/${userId}/practiceSessions/${sessionId}`
+        );
+
+        if (response.status === 404) return null;
+        if (!response.ok) throw new Error(`Failed to fetch practice session (${response.status})`);
+
+        return response.json();
+    }
+
+    /**
+     * Submits the user's raw answer for one exercise.
+     * The server evaluates correctness (including fuzzy matching where applicable)
+     * and returns the verdict plus the canonical answer string for display.
+     *
+     * Endpoint: POST /users/:userId/practiceSessions/:sessionId/answers
+     */
+    async submitAnswer(userId: string, sessionId: string, exerciseId: string, userAnswer: string): Promise<SubmitAnswerResponse> {
+        const response = await new TotoAPI().fetch(
+            'tome-ms-language',
+            `/users/${userId}/practiceSessions/${sessionId}/answers`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ exerciseId, userAnswer }),
+            }
+        );
+
+        if (!response.ok) throw new Error(`Failed to submit answer (${response.status})`);
+
+        return response.json();
+    }
+
+    /**
+     * Marks the session complete. The server runs SRS mastery updates and
+     * vocabulary coverage accumulation atomically, then evaluates the step-2
+     * coverage gate.
+     *
+     * Endpoint: POST /users/:userId/practiceSessions/:sessionId/complete
+     */
+    async completeSession(userId: string, sessionId: string): Promise<CompleteSessionResponse> {
+        const response = await new TotoAPI().fetch(
+            'tome-ms-language',
+            `/users/${userId}/practiceSessions/${sessionId}/complete`,
+            { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+        );
+
+        if (!response.ok) throw new Error(`Failed to complete session (${response.status})`);
+
+        return response.json();
+    }
+}
+
+// ─── Exercise ─────────────────────────────────────────────────────────────────
+
+export type ExerciseType =
+    | 'multiple_choice'
+    | 'sentence_reorder'
+    | 'fill_blank'
+    | 'conjugation_drill'
+    | 'error_correction'
+    | 'translation_active';
+
+export interface Exercise {
+    id: string;
+    moduleId: string;
+    type: ExerciseType;
+    /** The question / sentence shown to the user (Danish for most types; English for translation_active) */
+    prompt: string;
+    /** English translation of the Danish prompt; null for translation_active, sentence_reorder, conjugation_drill */
+    promptTranslation: string | null;
+    /** Canonical correct answer — shown in ResultSheet feedback */
+    answer: string;
+    alternativeAnswers: string[];
+    /** Shuffled Danish word tokens (sentence_reorder only); null for all other types */
+    words: string[] | null;
+    /** Wrong-option strings (multiple_choice only) */
+    distractors: string[];
+    vocabularyItemId: string | null;
+    grammarConceptId: string | null;
 }
 
 // ─── API response types ────────────────────────────────────────────────────────
@@ -47,7 +116,27 @@ export class TomePracticeSessionAPI {
 export interface StartPracticeSessionResponse {
     sessionId: string;
     moduleId: string;
-    /** Ordered list of exercise IDs for this session */
-    exerciseIds: string[];
+    /** Complete ordered exercise list for this session */
+    exercises: Exercise[];
     startedAt: string;
+}
+
+export interface PracticeSession {
+    sessionId: string;
+    moduleId: string;
+    /** Complete ordered exercise list */
+    exercises: Exercise[];
+    startedAt: string;
+}
+
+export interface SubmitAnswerResponse {
+    isCorrect: boolean;
+    /** Canonical correct answer — used to populate ResultSheet and AnswerBox */
+    correctAnswer: string;
+}
+
+export interface CompleteSessionResponse {
+    /** True when every vocabulary item in the module has been seen at least once */
+    step2Complete: boolean;
+    unseenVocabularyCount?: number;
 }
