@@ -1,5 +1,7 @@
 # Grammar Introduction — module step 1
 
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
+
 ## 1. Purpose & Scope
 
 Delivers **Step 1 of the module flow**: a paged, purely instructional walkthrough
@@ -64,6 +66,7 @@ titled with the module name (e.g. "Who Are You?").
 | 2 | Load all concepts up front with a single call to `GET /modules/:moduleId/grammarIntroduction` and page client-side. | Content is small, pre-generated, already enriched and ordered server-side, and offline of AI (§5.1). |
 | 3 | On the last concept, do **not** navigate back to the overview or make a dedicated "grammar step complete" write — instead immediately call the practice-session-start endpoint (`POST /users/:userId/modules/:moduleId/practiceSessions`, owned by `05-practice-session`/F10) and enter Practice directly with the returned session. | Matches the actual backend contract: there is no Step-1-completion endpoint (F09's `GetGrammarIntroduction` is confirmed read-only), while starting a practice session is exactly what flips `UserModuleProgress` to `in_progress` (F10 business logic) — so triggering that start *is* the natural "completion" signal. It also removes the dead stop on the overview between Grammar and Practice. Supersedes the earlier "mark grammar-step completion" decision, which assumed a write the backend does not provide. |
 | 4 | `RoundButton` for the Next control (style guide). | Project convention. |
+| 5 | **`GET /me` is called in parallel with grammar data to obtain the `userId`** needed for `POST /users/:userId/modules/:moduleId/practiceSessions`. | The practice-session-start endpoint requires a userId in the URL path. The frontend derives this via `GET /me` (returns `{ id, email, cefrLevel, createdAt }`), fetched in parallel with the grammar intro data so there is no added latency. A 409 response from the practice-session-start call is handled gracefully — the user is routed to Practice regardless, where the existing session will be loaded. |
 
 ### 5.1. API Integrations
 
