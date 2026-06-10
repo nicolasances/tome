@@ -9,6 +9,10 @@ import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { ResultSheet } from './components/ResultSheet';
 import { ExMultipleChoice } from './components/ExMultipleChoice';
 import { ExSentenceReorder } from './components/ExSentenceReorder';
+import { ExFillBlank } from './components/ExFillBlank';
+import { ExConjugation } from './components/ExConjugation';
+import { ExErrorCorrection } from './components/ExErrorCorrection';
+import { ExTranslation } from './components/ExTranslation';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -124,7 +128,6 @@ export default function PracticePage() {
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleSend() { handleSubmit(inputValue); }
 
     // ── Continue (advance to next exercise) ───────────────────────────────────
@@ -246,11 +249,45 @@ export default function PracticePage() {
                                 isSubmitting={isSubmitting}
                             />
                         )}
-                        {/* Remaining exercise types added in Tasks 5–8 */}
-                        {currentExercise.type !== 'multiple_choice' && currentExercise.type !== 'sentence_reorder' && (
-                            <div className="flex flex-1 items-center justify-center text-black/40 text-sm">
-                                {currentExercise.type} — coming soon
-                            </div>
+                        {currentExercise.type === 'fill_blank' && (
+                            <ExFillBlank
+                                exercise={currentExercise}
+                                submissionState={submissionState}
+                                inputValue={inputValue}
+                                onInputChange={setInputValue}
+                                onSend={handleSend}
+                                isSubmitting={isSubmitting}
+                            />
+                        )}
+                        {currentExercise.type === 'conjugation_drill' && (
+                            <ExConjugation
+                                exercise={currentExercise}
+                                submissionState={submissionState}
+                                inputValue={inputValue}
+                                onInputChange={setInputValue}
+                                onSend={handleSend}
+                                isSubmitting={isSubmitting}
+                            />
+                        )}
+                        {currentExercise.type === 'error_correction' && (
+                            <ExErrorCorrection
+                                exercise={currentExercise}
+                                submissionState={submissionState}
+                                inputValue={inputValue}
+                                onInputChange={setInputValue}
+                                onCheck={handleCheck}
+                                isSubmitting={isSubmitting}
+                            />
+                        )}
+                        {currentExercise.type === 'translation_active' && (
+                            <ExTranslation
+                                exercise={currentExercise}
+                                submissionState={submissionState}
+                                inputValue={inputValue}
+                                onInputChange={setInputValue}
+                                onSend={handleSend}
+                                isSubmitting={isSubmitting}
+                            />
                         )}
                     </div>
 
