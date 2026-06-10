@@ -22,6 +22,12 @@ export type SubmissionState = { isCorrect: boolean; correctAnswer: string };
 
 function storageKey(moduleId: string) { return `practice-session-${moduleId}`; }
 
+async function fetchExercises(exerciseIds: string[]): Promise<Exercise[]> {
+    const api = new TomePracticeSessionAPI();
+    const results = await Promise.all(exerciseIds.map(id => api.getExercise(id)));
+    return results.filter((e): e is Exercise => e !== null);
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function PracticePage() {
@@ -72,13 +78,18 @@ export default function PracticePage() {
             const stored = localStorage.getItem(storageKey(moduleId));
             if (stored) {
                 const session = await new TomePracticeSessionAPI().getSession(me.id, stored);
-                if (session) { initSession(me.id, session.sessionId, session.exercises); return; }
+                if (session) {
+                    const exs = await fetchExercises(session.exerciseIds);
+                    initSession(me.id, session.sessionId, exs);
+                    return;
+                }
                 localStorage.removeItem(storageKey(moduleId));
             }
 
             const started = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
             if (!started) { setLoadState('error'); return; }
-            initSession(me.id, started.sessionId, started.exercises);
+            const exs = await fetchExercises(started.exerciseIds);
+            initSession(me.id, started.sessionId, exs);
         }
         load().catch(() => setLoadState('error'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -177,8 +188,10 @@ export default function PracticePage() {
                 router.push(`/language-learning/module/${moduleId}`);
             } else {
                 const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
-                if (started) { initSession(userId, started.sessionId, started.exercises); }
-                else { setLoadState('error'); }
+                if (started) {
+                    const exs = await fetchExercises(started.exerciseIds);
+                    initSession(userId, started.sessionId, exs);
+                } else { setLoadState('error'); }
             }
         } catch {
             setLoadState('error');
