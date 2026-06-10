@@ -1,5 +1,7 @@
 # Practice Session — module step 2
 
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
+
 ## 1. Purpose & Scope
 
 Delivers **Step 2 of the module flow**: a **repeating practice loop** that
@@ -133,8 +135,8 @@ All endpoints are on `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | What does the **"Hint"** chip do (and where does its content come from)? | Shown on Fill in the Blank and Translation `SendFooter`s (not on Conjugation Drill or Error Correction); behaviour and content source unspecified. |
-| 2 | How is the session-bar split into mastered / remaining / **deferred** computed mid-session? | Mastery now updates live during practice, so the bar can reflect real-time mastery; "deferred" semantics still need defining (e.g. items skipped as already > 0.85). |
-| 3 | What happens when the user taps **"Explain my mistake"** or **"Check with AI"** in the `ResultSheet`? | The buttons are now in the wireframe; the panels/flows they open are still out of scope (no wireframe). Stub the taps for now. |
-| 4 | Reorder/error-correction interaction details (drag vs tap) on a phone. | Mobile-first input model. |
+| ~~1~~ | ~~What does the **"Hint"** chip do?~~ | **Resolved** — Hint chip removed entirely from `SendFooter`; not rendered on any exercise type. |
+| ~~2~~ | ~~How is "deferred" in the session bar computed?~~ | **Resolved** — `deferred` = retry-queue count: exercises answered wrong in the current pass that are pending re-presentation. |
+| 3 | What happens when the user taps **"Explain my mistake"** or **"Check with AI"** in the `ResultSheet`? | **Stub no-op** — buttons render but tap does nothing. Tracked in GitHub issue #275; requires a backend API not yet available. |
+| ~~4~~ | ~~Reorder/error-correction interaction details (drag vs tap) on a phone.~~ | **Resolved** — Sentence Reorder: tap-to-place (tap bank word to add, tap build-area word to return). Error Correction: user rewrites the full corrected sentence in a text input; `CheckFooter` enabled when non-empty. |
 | ~~5~~ | ~~What endpoints serve the module's exercise bank and persist exercise results / mastery / coverage?~~ | **Resolved** — see §5.1 API Integrations for the implemented endpoints (`POST /practiceSessions`, `POST .../answers`, `POST .../complete`). |
