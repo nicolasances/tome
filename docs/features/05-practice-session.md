@@ -53,8 +53,8 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 | Practice | Exercise body — Conjugation Drill | Verb chip (infinitive + gloss), subject → present-tense input box. | Targeted production of a verb form; submitted via Send. |
 | Practice | Exercise body — Error Correction | A sentence with tappable words (tap the wrong one) + a correction input. | User identifies the wrong word and types the fix; Check. |
 | Practice | Exercise body — Translation (active) | English prompt + a text input for the Danish translation; optional "Hint" chip. | Free production; submitted via Send. |
-| Practice | Check footer (`CheckFooter`) | Full-width "Check" button with enabled/disabled state. | Used by selection/arrangement exercises; disabled until answerable. |
-| Practice | Send footer (`SendFooter`) | Text input + send `RoundButton`, with an optional "Hint" chip. | Used by typed-answer exercises. |
+| Practice | Check footer (`CheckFooter`) | Full-width "Check" button with enabled/disabled state. | Used by Multiple Choice, Sentence Reorder, and Error Correction; disabled until answerable. |
+| Practice | Send footer (`SendFooter`) | Text input + send `RoundButton`, with a "Hint" chip. | Used by Fill in the Blank and Translation only. Conjugation Drill uses a standalone `RoundButton` (right-aligned, no hint chip). |
 | Practice | Result sheet (`ResultSheet`) | Bottom sheet pinned to the bottom of the screen; appears after every answer submission, overlaying the exercise body. | **Correct**: dark teal sheet, green `Verdict` badge + "Correct!", `ContinueBtn`. **Wrong**: dark teal sheet, red `Verdict` badge + "Not quite", correct answer revealed in lime text (truncated to 2 lines; tap or drag-up to expand; "Show more / Show less" toggle for long answers), action buttons (`SheetBtn`), `ContinueBtn`. |
 | Practice | Answer box (`AnswerBox`) | Inline display of the submitted answer inside the exercise body, shown after submission for typed-answer exercises (Fill in the Blank, Conjugation Drill, Error Correction, Translation). | Green border + ✓ if correct; red border + strikethrough + ✕ if wrong. |
 | Practice | Verdict badge (`Verdict`) | Circular icon badge rendered inside `ResultSheet`. | Green (lime) + ✓ for correct; red + ✕ for wrong. |
@@ -63,40 +63,27 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 
 **Additional Notes:**
 - **Order of types**: exercises are presented recognition → production — Multiple Choice → Sentence Reorder → Fill in the Blank → Conjugation Drill → Error Correction → Translation (§3.1.1). Only types present in the module's exercise bank appear.
-- **Loading**: the session subset is drawn before the screen starts (no per-exercise spinner; selection is local, not AI).
-- **Coverage override in selection**: at least `practiceMinUnseenVocabPercent` (default 50%) of each session is reserved for exercises whose linked vocabulary item the user has **not yet encountered** in this module, so full coverage is reached within a bounded number of sessions (§3.1.1, §3.4.3).
+- **Loading**: the session is created server-side on screen entry (`POST /practiceSessions`); the response contains the full ordered exercise list. No per-exercise spinner; no AI involved in selection.
 - **Answer feedback — `ResultSheet`**: After every submission (Check or Send), a `ResultSheet` bottom sheet slides up and overlays the exercise content. The Continue button in the sheet is always reachable without scrolling. Tapping Continue advances to the next exercise.
 - **Per-exercise inline feedback** (in the exercise body, alongside the `ResultSheet`):
   - *Multiple Choice*: The chosen wrong option turns red (✕ badge); the correct option turns green (✓ badge). Both inline changes appear with the `ResultSheet`.
   - *Sentence Reorder*: All word tiles in the build area turn green (correct) or red (wrong).
   - *Fill in the Blank, Conjugation Drill, Error Correction, Translation*: The user's typed answer is replaced by an `AnswerBox` — green + ✓ if correct, red + strikethrough + ✕ if wrong.
-- **End of session**: after `practiceSessionSize` exercises, missed ones are retried until all are answered correctly, then the session ends and returns to the overview.
-- **End of Step 2 (full coverage)**: a single session is **not** the end of practice. If, after a session, some module vocabulary items have still never been shown, the user runs another session. Step 2 completes only once **every** module vocabulary item has appeared in at least one exercise; at that point control returns to the overview, which starts the test-unlock countdown (§3.1.1). The overview is where between-session coverage progress is shown (owned by `03-module-overview`).
+- **End of session**: after the full exercise list is completed, missed exercises are retried until all are answered correctly, then `POST .../complete` is called and the session ends.
+- **End of Step 2 (full coverage)**: after calling `POST .../complete`, the client checks `step2Complete` in the response. When `true`, control returns to the overview (which starts the test-unlock countdown). When `false`, the client starts a new session. Between-session coverage progress is shown on the overview (owned by `03-module-overview`).
 
 ## 4. Business Logic
 
-- **Session length** is fixed at `practiceSessionSize` (default **20**) exercises (§3.1.1 / §3.1.2).
-- **Step 2 spans multiple sessions**: the user repeats `practiceSessionSize`-sized sessions until **every vocabulary item in the module has appeared in at least one exercise** (shown to the user, regardless of whether they answered correctly). Grammar concepts are **not** part of this gate — they are already introduced in Step 1 (§3.1.1).
+- **Session exercises** are the ordered list returned by `POST /practiceSessions`. The frontend presents them in the order received, with no client-side selection or filtering. The SessionBar derives completed / remaining counts from this list.
+- **Multi-session loop**: after calling `POST .../complete`, the client checks `step2Complete` in the response. If `false`, start a new session (call `POST /practiceSessions` again). If `true`, navigate to the module overview.
 - **Vocabulary is introduced implicitly** through exercises — there is no separate vocabulary-drilling step.
-- **Mastery-aware selection** at session start (no AI, §3.4.3): draw a session-sized subset from the module's exercise bank — deprioritise items with mastery > 0.85; weight remaining by `(1 − masteryScore)`; boost exercises missed in the most recent session; when several exercises test the same item, pick one at random; weighted-random sample to fill the session.
-- **Coverage override (practice only, §3.4.3)**: at least `practiceMinUnseenVocabPercent` (default **50%**) of each session is reserved for exercises whose linked vocabulary item the user has not yet encountered in this module. This **overrides** the mastery-based deprioritisation above for unseen items — coverage must win outright, not just statistically. It guarantees full-module coverage within a bounded number of sessions (e.g. a 30-item module in at most 3 sessions of 20 at 50%).
-- Each exercise links to **exactly one** item — a vocabulary item or a grammar concept — whose mastery score drives its weight.
 - **Answer submission triggers a feedback state**: after Check or Send, the exercise transitions from `idle` to `correct` or `wrong`. For Multiple Choice and Sentence Reorder a wrong submission enters `retry` (same visual treatment as `wrong`).
 - **`ResultSheet` appears for every outcome**:
   - **Correct**: dark teal bottom sheet; green verdict badge + "Correct!"; `ContinueBtn` (lime). No separate answer text — the correct answer is already visually confirmed in the exercise body.
   - **Wrong / retry**: dark teal bottom sheet; red verdict badge + "Not quite"; correct answer revealed in lime text, clamped to 2 lines, expandable by tapping or dragging the sheet up ("Show more / Show less" for long answers); "Explain my mistake" button (all wrong states); "Check with AI" button (Translation only); `ContinueBtn` (lime).
 - **Tapping Continue always advances** to the next exercise (or the retry queue / end-of-session).
-- **Answer matching is local; no AI call at answer time.** All typed comparisons apply the same base normalisation first (lowercase, trim whitespace, strip punctuation), then apply the per-type rule:
-  - *Multiple Choice*: no text comparison — the selected option key is matched against the correct key. Inherently exact.
-  - *Sentence Reorder*: no text comparison — the tile sequence is compared positionally against the canonical order. Inherently exact.
-  - *Fill in the Blank*: exact match against the canonical answer and any pre-generated alternatives. No fuzzy tolerance — a spelling variant fails.
-  - *Conjugation Drill*: exact match against the canonical conjugated form and any pre-generated alternatives. No fuzzy — the target form is unambiguous.
-  - *Error Correction*: exact match of the typed correction against the canonical correction and any pre-generated alternatives. No fuzzy.
-  - *Translation (active)*: match against the canonical answer and pre-generated alternatives; **fuzzy slack is allowed** (e.g. minor accent or word-order variation). This is the only exercise type that uses fuzzy comparison.
-- After the fixed set, **all missed exercises are retried until answered correctly** (§3.1.1).
-- **Mastery scores ARE updated during practice** (§3.1.1): every completed exercise — in practice and in the Module Test — updates the mastery score of its linked vocabulary item or grammar concept, identically. There is no "practice doesn't count" mode.
-- **Coverage tracking**: as the user encounters vocabulary items, the set of practised vocabulary items accumulates across sessions (persisted, see `03-module-overview` / data model `UserModuleProgress.vocabularyItemsPracticed`). Step 2 is complete the moment this set covers all of the module's vocabulary items, which stamps the practice-completion timestamp that the test-unlock countdown is measured from.
-- Exercises are **never generated during the live session**; the content is fixed (from the bank), only the *selection* is personalised.
+- **Answer submission is server-side; no AI call at answer time.** The client submits the raw user answer via `POST .../answers` with no client-side normalisation or comparison. The response `{ isCorrect, correctAnswer }` drives `ResultSheet` and `AnswerBox` rendering.
+- After the fixed set, **all missed exercises are retried until answered correctly** (§3.1.1). The client tracks wrong answers locally and re-presents them in sequence until all are correct, then calls `POST .../complete`.
 
 ## 5. Technical Decisions & Integrations
 
@@ -104,35 +91,36 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 |---|----------|-----------|
 | 1 | Route `/language-learning/module/[moduleId]/practice`. | Sub-route of the module flow. |
 | 2 | One screen renders all six exercise types via a shared shell; the type switches the body. | Mirrors `ExShell` in the wireframe; one continuous session. |
-| 3 | Draw the session subset client-side from the fetched bank using the §3.4.3 weights, with the unseen-vocab coverage override applied before the weighted sample. | Selection is deterministic local logic, zero AI latency; the override turns the convergence guarantee into a hard bound. |
-| 4 | Answer checking (incl. translation normalization/fuzzy) is local; no live AI. | §3.4.3 zero-latency / bounded-cost rule. |
-| 5 | Write mastery on every answered exercise during practice (same path as the Test). | §3.1.1 — mastery updates are continuous across practice and test. |
-| 8 | Persist each newly-encountered vocabulary item to `UserModuleProgress.vocabularyItemsPracticed`; when it covers the module's vocabulary, stamp `practiceCompletedAt`. | Drives the coverage gate and the test-unlock countdown owned by `03-module-overview`. |
+| 3 | Session exercise selection is server-side: the client calls `POST /users/:userId/modules/:moduleId/practiceSessions`, which runs the §3.4.3 mastery-aware algorithm with the coverage override on the server and returns the full ordered exercise list. | Selection logic (including the coverage override) lives entirely in the backend (F08 + F10); the client receives a ready-to-use list with no local computation. |
+| 4 | Answer checking (incl. normalisation and fuzzy comparison) is server-side: the client calls `POST .../answers` with the raw user answer and receives a correct/wrong verdict plus the canonical answer string. No AI call at answer time. | §3.4.3 bounded-cost rule — comparison runs against pre-generated canonical answers and alternatives in the backend; the client only renders the result. |
+| 5 | Mastery updates and vocabulary coverage persistence are triggered by `POST .../complete`; no separate client calls. The backend runs SRS updates and appends encountered vocabulary atomically on session completion. | §3.1.1 — mastery updates are continuous across practice and test; keeping them inside `/complete` avoids partial-write race conditions on the coverage gate. |
+| 8 | `POST .../complete` response includes `step2Complete: boolean` and the remaining unseen vocabulary count. The client uses this to decide whether to start another practice session or navigate back to the module overview. | Drives the multi-session loop: the client never has to derive coverage state itself. |
 | 6 | `RoundButton` for send/next controls; buttons per style guide. | Project convention. |
 | 7 | `ResultSheet` is `position: absolute; bottom: 0` within the screen, max-height `calc(100% - 84px)`. | Overlays the exercise content so the Continue button is always reachable without page scroll, per the wireframe. |
 
-**API Integrations:**
+### 5.1 API Integrations
+
+All endpoints are on `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`).
 
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
-| Exercise body (all six types), Session bar | *Not yet implemented* — `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`), exact route TBD (e.g. a per-module `GET /modules/:id/exercises` or `.../exercise-bank`) | Needs the module's `ExerciseBank` (the `Exercise[]` with type, prompt, canonical answer + alternatives, and the linked `vocabularyItemId` / `grammarConceptId`, data model §"Exercise"/"ExerciseBank") fetched once up front; the session subset is then drawn client-side (Decision 3). See Open Question 5. |
-| Result sheet, Answer box (every submission) | *Not yet implemented* — a write to `UserVocabularyProgress` / `UserGrammarConceptProgress` mastery + `exerciseHistory` (data model), route TBD | Records each answered exercise's outcome and updates the mastery score of its linked vocabulary item or grammar concept — identically whether the exercise occurs in practice or in the Module Test (Decision 5). See Open Question 5. |
-| End of session / end of Step 2 | *Not yet implemented* — a write to `UserModuleProgress.vocabularyItemsPracticed` (+ `practiceCompletedAt` on full coverage), route TBD | Persists newly-encountered vocabulary items so coverage accumulates across sessions and survives navigation back to the overview (Decision 8); read back by `03-module-overview`'s coverage bar via `GET /me/progress`. |
+| Practice session screen (on entry) | `POST /users/:userId/modules/:moduleId/practiceSessions` | Starts a new practice session. The server runs mastery-aware selection with the coverage override and returns the complete ordered exercise list (type, prompt, distractors/words where applicable). The client stores this list for the session's duration. |
+| Practice session screen (on app re-open) | `GET /users/:userId/practiceSessions/:sessionId` | Fetches the current session state so the app can resume where the user left off after closing. |
+| Check/Send footer (every submission) | `POST /users/:userId/practiceSessions/:sessionId/answers` — body: `{ exerciseId, userAnswer }` | Submits one answer. Returns `{ isCorrect, correctAnswer }`. The client renders `ResultSheet` and `AnswerBox` from this response. The backend also appends the exercise to the retry queue on wrong answers. |
+| Continue button (end of session) | `POST /users/:userId/practiceSessions/:sessionId/complete` | Marks the session complete. The server updates mastery (SRS) for all answered exercises, appends encountered vocabulary to `vocabularyItemsPracticed`, and evaluates the coverage gate. Returns `{ step2Complete: boolean, unseenVocabularyCount?: number }`. The client routes to a new session or back to the module overview based on `step2Complete`. |
+| Module overview navigation / session bar | `GET /me/progress` (owned by `03-module-overview`) | Read-back of `practiceCompletedAt`, `testUnlocksAt`, and the per-module step/status used to render the coverage progress bar on the overview. Not called from within the practice session screen itself. |
 
 ## 6. Success Criteria
 
 | # | Criterion | Notes |
 |---|-----------|-------|
-| 1 | A session presents exactly `practiceSessionSize` exercises (default 20). | §3.1.2. |
+| 1 | The SessionBar shows N / total where total matches the exercise count returned by `POST /practiceSessions` (expected ~20 per session). | §3.1.2. |
 | 2 | Exercise types appear in recognition→production order; absent types are skipped. | §3.1.1. |
 | 3 | Each of the six exercise types renders and accepts input per its design. | Wireframe. |
 | 4 | Wrong answers reveal the correct answer and advance. | §3.1.1. |
 | 5 | Missed exercises are retried at the end until all are correct. | §3.1.1. |
-| 6 | Every answered exercise updates the mastery score of its linked item, in practice as in the test. | §3.1.1. |
-| 7 | Session selection favours low-mastery items and recently-missed exercises. | §3.4.3. |
-| 16 | At least `practiceMinUnseenVocabPercent` of a session targets vocabulary items not yet seen in the module (override applied over the mastery weighting). | §3.1.1 / §3.4.3. |
-| 17 | Sessions repeat until every module vocabulary item has been shown at least once; reaching full coverage ends Step 2 and stamps the practice-completion time. | §3.1.1. |
-| 8 | Answer matching uses no AI call at answer time. Fill in the Blank, Conjugation Drill, and Error Correction use exact match (post-normalization) against canonical + alternatives; Translation uses fuzzy-slack match; MC and Reorder compare by key/position. | §3.4.3. |
+| 17 | When `POST .../complete` returns `step2Complete: true`, the client navigates to the module overview instead of starting a new session. | §3.1.1. |
+| 8 | The frontend submits raw user answers without client-side normalisation or comparison; the backend returns `{ isCorrect, correctAnswer }`. No AI call at answer time. | §3.4.3 / backend F10 OQ-01. |
 | 9 | A `ResultSheet` appears for every answer submission (correct or wrong, all six exercise types). | Wireframe. |
 | 10 | Correct sheet shows green verdict + "Correct!" + Continue; no answer text is shown. | Wireframe. |
 | 11 | Wrong sheet shows red verdict + "Not quite" + correct answer text + "Explain my mistake" + Continue. | Wireframe. |
@@ -145,8 +133,8 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | What does the **"Hint"** chip do (and where does its content come from)? | Shown on typed-answer footers; behaviour/source unspecified. |
+| 1 | What does the **"Hint"** chip do (and where does its content come from)? | Shown on Fill in the Blank and Translation `SendFooter`s (not on Conjugation Drill or Error Correction); behaviour and content source unspecified. |
 | 2 | How is the session-bar split into mastered / remaining / **deferred** computed mid-session? | Mastery now updates live during practice, so the bar can reflect real-time mastery; "deferred" semantics still need defining (e.g. items skipped as already > 0.85). |
 | 3 | What happens when the user taps **"Explain my mistake"** or **"Check with AI"** in the `ResultSheet`? | The buttons are now in the wireframe; the panels/flows they open are still out of scope (no wireframe). Stub the taps for now. |
 | 4 | Reorder/error-correction interaction details (drag vs tap) on a phone. | Mobile-first input model. |
-| 5 | What endpoints serve the module's exercise bank and persist exercise results / mastery / coverage (`vocabularyItemsPracticed`, `practiceCompletedAt`)? | No exercise-bank or exercise-result API exists yet (`TomeModuleAPI` only returns the module document). Needs a contract decision before implementation — see §5 API Integrations. |
+| ~~5~~ | ~~What endpoints serve the module's exercise bank and persist exercise results / mastery / coverage?~~ | **Resolved** — see §5.1 API Integrations for the implemented endpoints (`POST /practiceSessions`, `POST .../answers`, `POST .../complete`). |
