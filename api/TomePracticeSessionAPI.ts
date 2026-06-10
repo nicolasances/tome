@@ -10,7 +10,7 @@ export class TomePracticeSessionAPI {
      *
      * Endpoint: POST /users/:userId/modules/:moduleId/practiceSessions
      */
-    async startPracticeSession(userId: string, moduleId: string): Promise<StartPracticeSessionResponse | null> {
+    async startPracticeSession(userId: string, moduleId: string): Promise<StartPracticeSessionResponse | PracticeSession | null> {
         const response = await new TotoAPI().fetch(
             'tome-ms-language',
             `/users/${userId}/modules/${moduleId}/practiceSessions`,
@@ -19,35 +19,12 @@ export class TomePracticeSessionAPI {
 
         if (response.status === 409) {
             const body: { sessionId?: string } = await response.json();
-            if (body.sessionId) {
-                const session = await this.getSession(userId, body.sessionId);
-                if (!session) return null;
-                return { sessionId: session.sessionId, moduleId: session.moduleId, exerciseIds: session.exerciseIds, startedAt: session.startedAt };
-            }
+            if (body.sessionId) return this.getSession(userId, body.sessionId);
             return null;
         }
         if (!response.ok) throw new Error(`Failed to start practice session (${response.status})`);
 
         return response.json();
-    }
-
-    /**
-     * Fetches a single exercise by ID.
-     * Returns null on 404.
-     *
-     * Endpoint: GET /exercises/:exerciseId
-     */
-    async getExercise(exerciseId: string): Promise<Exercise | null> {
-        const response = await new TotoAPI().fetch(
-            'tome-ms-language',
-            `/exercises/${exerciseId}`
-        );
-
-        if (response.status === 404) return null;
-        if (!response.ok) throw new Error(`Failed to fetch exercise (${response.status})`);
-
-        const body: { exercise: Exercise } = await response.json();
-        return body.exercise;
     }
 
     /**
@@ -145,16 +122,16 @@ export interface Exercise {
 export interface StartPracticeSessionResponse {
     sessionId: string;
     moduleId: string;
-    /** Ordered exercise IDs for this session — fetch each via GET /exercises/:id */
-    exerciseIds: string[];
+    /** Complete ordered exercise list for this session */
+    exercises: Exercise[];
     startedAt: string;
 }
 
 export interface PracticeSession {
     sessionId: string;
     moduleId: string;
-    /** Ordered exercise IDs — fetch each via GET /exercises/:id */
-    exerciseIds: string[];
+    /** Complete ordered exercise list */
+    exercises: Exercise[];
     startedAt: string;
 }
 

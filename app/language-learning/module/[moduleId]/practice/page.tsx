@@ -18,15 +18,18 @@ import { ExTranslation } from './components/ExTranslation';
 
 type LoadState = 'loading' | 'error' | 'loaded';
 
+const EXERCISE_LABELS: Record<string, string> = {
+    multiple_choice:    'Choose the correct word',
+    sentence_reorder:   'Arrange the words',
+    fill_blank:         'Complete the sentence',
+    conjugation_drill:  'Give the right form',
+    error_correction:   'Spot & fix the mistake',
+    translation_active: 'Translate to Danish',
+};
+
 export type SubmissionState = { isCorrect: boolean; correctAnswer: string };
 
 function storageKey(moduleId: string) { return `practice-session-${moduleId}`; }
-
-async function fetchExercises(exerciseIds: string[]): Promise<Exercise[]> {
-    const api = new TomePracticeSessionAPI();
-    const results = await Promise.all(exerciseIds.map(id => api.getExercise(id)));
-    return results.filter((e): e is Exercise => e !== null);
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -78,18 +81,13 @@ export default function PracticePage() {
             const stored = localStorage.getItem(storageKey(moduleId));
             if (stored) {
                 const session = await new TomePracticeSessionAPI().getSession(me.id, stored);
-                if (session) {
-                    const exs = await fetchExercises(session.exerciseIds);
-                    initSession(me.id, session.sessionId, exs);
-                    return;
-                }
+                if (session) { initSession(me.id, session.sessionId, session.exercises); return; }
                 localStorage.removeItem(storageKey(moduleId));
             }
 
             const started = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
             if (!started) { setLoadState('error'); return; }
-            const exs = await fetchExercises(started.exerciseIds);
-            initSession(me.id, started.sessionId, exs);
+            initSession(me.id, started.sessionId, started.exercises);
         }
         load().catch(() => setLoadState('error'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -188,10 +186,8 @@ export default function PracticePage() {
                 router.push(`/language-learning/module/${moduleId}`);
             } else {
                 const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
-                if (started) {
-                    const exs = await fetchExercises(started.exerciseIds);
-                    initSession(userId, started.sessionId, exs);
-                } else { setLoadState('error'); }
+                if (started) { initSession(userId, started.sessionId, started.exercises); }
+                else { setLoadState('error'); }
             }
         } catch {
             setLoadState('error');
@@ -233,7 +229,7 @@ export default function PracticePage() {
                     <div className="px-5 pt-2">
                         <SessionProgressBar total={totalExercises} mastered={masteredCount} deferred={deferredCount} />
                         <div className="flex justify-between items-center mt-2">
-                            <span className="text-xs font-semibold uppercase tracking-widest text-black/50">Practice</span>
+                            <span className="text-xs font-semibold uppercase tracking-widest text-black/50">{EXERCISE_LABELS[currentExercise.type] ?? 'Practice'}</span>
                             <span className="text-xs font-bold text-black/60">{exerciseNumber} / {totalExercises}</span>
                         </div>
                     </div>
