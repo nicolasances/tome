@@ -6,6 +6,8 @@ import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
+import { ResultSheet } from './components/ResultSheet';
+import { ExMultipleChoice } from './components/ExMultipleChoice';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -112,7 +114,6 @@ export default function PracticePage() {
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     function handleCheck() {
         if (!currentExercise) return;
         switch (currentExercise.type) {
@@ -126,7 +127,6 @@ export default function PracticePage() {
     function handleSend() { handleSubmit(inputValue); }
 
     // ── Continue (advance to next exercise) ───────────────────────────────────
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async function handleContinue() {
         if (!submissionState) return;
 
@@ -221,12 +221,35 @@ export default function PracticePage() {
                         </div>
                     </div>
 
-                    {/* Exercise body — placeholder until Tasks 3-8 wire in components */}
+                    {/* Exercise body */}
                     <div className="flex flex-1 flex-col px-5 pt-4 pb-0 overflow-y-auto">
-                        <div className="flex flex-1 items-center justify-center text-black/40 text-sm">
-                            {currentExercise.type}
-                        </div>
+                        {currentExercise.type === 'multiple_choice' && (
+                            <ExMultipleChoice
+                                exercise={currentExercise}
+                                submissionState={submissionState}
+                                selectedOption={selectedOption}
+                                onSelect={setSelectedOption}
+                                onCheck={handleCheck}
+                                isSubmitting={isSubmitting}
+                            />
+                        )}
+                        {/* Remaining exercise types added in Tasks 4–8 */}
+                        {currentExercise.type !== 'multiple_choice' && (
+                            <div className="flex flex-1 items-center justify-center text-black/40 text-sm">
+                                {currentExercise.type} — coming soon
+                            </div>
+                        )}
                     </div>
+
+                    {/* Result sheet overlay */}
+                    {submissionState && (
+                        <ResultSheet
+                            ok={submissionState.isCorrect}
+                            answer={submissionState.isCorrect ? undefined : submissionState.correctAnswer}
+                            aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
+                            onContinue={handleContinue}
+                        />
+                    )}
                 </div>
             )}
 
