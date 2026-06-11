@@ -18,10 +18,14 @@ export class TomePracticeSessionAPI {
         );
 
         if (response.status === 409) {
+
             const body: { sessionId?: string } = await response.json();
+            
             if (body.sessionId) return this.getSession(userId, body.sessionId);
-            return null;
+            
+            throw new Error(`Failed to start practice session. Server answered  ${response.status} but did not include sessionId in the response body.`);
         }
+        
         if (!response.ok) throw new Error(`Failed to start practice session (${response.status})`);
 
         return response.json();
