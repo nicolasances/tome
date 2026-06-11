@@ -5,12 +5,14 @@ export class TomePracticeSessionAPI {
     /**
      * Starts a new practice session for the given user and module.
      * On 409 (session already active), the backend returns the existing sessionId;
-     * this method resumes that session via getSession and returns it transparently.
+     * this method resumes that session via getSession and returns a tagged
+     * { resumed: true, session } so the caller can distinguish a fresh start
+     * from a resume.
      * Returns null only on unrecoverable errors.
      *
      * Endpoint: POST /users/:userId/modules/:moduleId/practiceSessions
      */
-    async startPracticeSession(userId: string, moduleId: string): Promise<StartPracticeSessionResponse | PracticeSession | null> {
+    async startPracticeSession(userId: string, moduleId: string): Promise<StartPracticeSessionResult | null> {
         
         const response = await new TotoAPI().fetch(
             'tome-ms-language',
@@ -22,14 +24,19 @@ export class TomePracticeSessionAPI {
 
             const body: { sessionId?: string } = await response.json();
             
-            if (body.sessionId) return this.getSession(userId, body.sessionId);
+            if (body.sessionId) {
+                const session = await this.getSession(userId, body.sessionId);
+                if (!session) return null;
+                return { resumed: true, session };
+            }
             
             throw new Error(`Failed to start practice session. Server answered  ${response.status} but did not include sessionId in the response body.`);
         }
 
         if (!response.ok) throw new Error(`Failed to start practice session (${response.status})`);
 
-        return response.json();
+        const session: StartPracticeSessionResponse = await response.json();
+        return { resumed: false, session };
     }
 
     /**
@@ -124,6 +131,7 @@ export interface Exercise {
 
 // ─── API response types ────────────────────────────────────────────────────────
 
+/** Response from POST /practiceSessions (fresh start only). */
 export interface StartPracticeSessionResponse {
     sessionId: string;
     moduleId: string;
@@ -132,12 +140,47 @@ export interface StartPracticeSessionResponse {
     startedAt: string;
 }
 
+/**
+ * Tagged result returned by startPracticeSession.
+ * resumed = false  →  fresh session (StartPracticeSessionResponse shape)
+ * resumed = true   →  existing in-progress session (PracticeSession shape, with answers/position/retryQueue)
+ */
+export type StartPracticeSessionResult =
+    | { resumed: false; session: StartPracticeSessionResponse }
+    | { resumed: true;  session: PracticeSession };
+
+/**
+ * One submitted answer record, as stored and returned by the backend.
+ * Returned inside PracticeSession.answers on resume.
+ */
+export interface PracticeAnswer {
+    exerciseId: string;
+    isCorrect: boolean;
+    userAnswer: string;
+    answeredAt: string;
+}
+
+/**
+ * Full session state returned by GET /users/:userId/practiceSessions/:sessionId.
+ * Used to reconstruct client-side presentation state on resume.
+ */
 export interface PracticeSession {
     sessionId: string;
+    userId: string;
     moduleId: string;
-    /** Complete ordered exercise list */
+    /** Complete ordered exercise list (primary pass order) */
     exercises: Exercise[];
+    /** All answers submitted so far (primary pass + any retry-pass answers) */
+    answers: PracticeAnswer[];
+    /**
+     * Zero-based flat index into the combined sequence [primaryPass..., retryQueue...].
+     * Advances by 1 on every submitted answer.
+     */
+    currentPosition: number;
+    /** Exercise ids queued for retry (wrong answers from the primary pass). */
+    retryQueue: string[];
     startedAt: string;
+    completedAt: string | null;
 }
 
 export interface SubmitAnswerResponse {
