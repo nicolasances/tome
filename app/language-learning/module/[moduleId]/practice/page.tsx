@@ -4,7 +4,8 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
-import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
+import { TomePracticeSessionAPI, Exercise, PracticeSession } from '@/api/TomePracticeSessionAPI';
+import { reconstructSessionState } from '@/utils/reconstructSessionState';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { ResultSheet } from './components/ResultSheet';
 import { ExMultipleChoice } from './components/ExMultipleChoice';
@@ -79,19 +80,21 @@ export default function PracticePage() {
             const me = await new TomeLearningDashboardAPI().getMe();
             setUserId(me.id);
 
-            const started = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
-            if (!started) { setLoadState('error'); return; }
+            const result = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
+            if (!result) { setLoadState('error'); return; }
 
-            console.log(started);
-            
-
-            initSession(me.id, started.sessionId, started.exercises);
+            if (result.resumed) {
+                resumeSession(me.id, result.session);
+            } else {
+                initFreshSession(me.id, result.session.sessionId, result.session.exercises);
+            }
         }
         load().catch(() => setLoadState('error'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [moduleId]);
 
-    function initSession(uid: string, sid: string, exs: Exercise[]) {
+    /** Initialises state for a brand-new session (no prior answers). */
+    function initFreshSession(uid: string, sid: string, exs: Exercise[]) {
         setUserId(uid);
         setSessionId(sid);
         setExercises(exs);
@@ -105,6 +108,48 @@ export default function PracticePage() {
         setSelectedOption(null);
         setBuiltWords([]);
         localStorage.setItem(storageKey(moduleId), sid);
+        setLoadState('loaded');
+    }
+
+    /**
+     * Restores client-side presentation state from a resumed PracticeSession.
+     * If the session is already fully answered (queue empty after reconstruction),
+     * completes it immediately rather than showing an empty exercise body.
+     */
+    function resumeSession(uid: string, session: PracticeSession) {
+        // Guard: already completed server-side
+        if (session.completedAt !== null) {
+            // Treat as a fresh session needing completion — let doCompleteSession handle it.
+            // We still need sessionId set so the complete call works.
+            setUserId(uid);
+            setSessionId(session.sessionId);
+            localStorage.setItem(storageKey(moduleId), session.sessionId);
+            doCompleteSessionWith(uid, session.sessionId);
+            return;
+        }
+
+        const state = reconstructSessionState(session);
+
+        setUserId(uid);
+        setSessionId(session.sessionId);
+        setExercises(session.exercises);
+        setQueue(state.queue);
+        setPendingRetry(state.pendingRetry);
+        setIsRetryPhase(state.isRetryPhase);
+        setMasteredCount(state.masteredCount);
+        setExerciseNumber(state.exerciseNumber);
+        setSubmissionState(null);
+        setInputValue('');
+        setSelectedOption(null);
+        setBuiltWords([]);
+        localStorage.setItem(storageKey(moduleId), session.sessionId);
+
+        // If all exercises are already answered (queue empty), complete immediately.
+        if (state.queue.length === 0) {
+            doCompleteSessionWith(uid, session.sessionId);
+            return;
+        }
+
         setLoadState('loaded');
     }
 
@@ -176,15 +221,19 @@ export default function PracticePage() {
     }
 
     async function doCompleteSession() {
+        await doCompleteSessionWith(userId, sessionId);
+    }
+
+    async function doCompleteSessionWith(uid: string, sid: string) {
         setIsCompleting(true);
         try {
-            const result = await new TomePracticeSessionAPI().completeSession(userId, sessionId);
+            const result = await new TomePracticeSessionAPI().completeSession(uid, sid);
             localStorage.removeItem(storageKey(moduleId));
             if (result.step2Complete) {
                 router.push(`/language-learning/module/${moduleId}`);
             } else {
-                const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
-                if (started) { initSession(userId, started.sessionId, started.exercises); }
+                const started = await new TomePracticeSessionAPI().startPracticeSession(uid, moduleId);
+                if (started) { initFreshSession(uid, started.session.sessionId, started.session.exercises); }
                 else { setLoadState('error'); }
             }
         } catch {
