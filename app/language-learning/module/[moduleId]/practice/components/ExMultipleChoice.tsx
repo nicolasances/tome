@@ -52,7 +52,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
         const isCorrect = key === correctKey;
         const isChosen = word === selectedOption;
         if (isCorrect) return { bg: 'border-lime-400', badgeBg: 'bg-cyan-800 text-lime-200', text: 'text-black', badge: '✓' };
-        if (isChosen && !isCorrect) return { bg: 'bg-red-600/10 border-red-600', badgeBg: 'text-red-600', text: 'text-black', badge: '✕' };
+        if (isChosen && !isCorrect) return { bg: 'border-red-600', badgeBg: 'text-red-600', text: 'text-black', badge: '✕' };
         return { bg: 'bg-transparent border-cyan-500/20 opacity-50', badgeBg: 'bg-transparent border border-black/20 text-black/40', text: 'text-black/50', badge: null };
     }
 
@@ -64,7 +64,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
                     {hasParts ? (
                         <>
                             <span>{parts[0].trim()}</span>
-                            <span className={`inline-block min-w-16 border-b-2 ${submitted && submissionState?.isCorrect ? 'border-lime-400' : 'border-lime-500'} px-1 mx-1 text-center`}>
+                            <span className={`inline-block min-w-16 border-b-2 ${submitted && submissionState?.isCorrect ? 'border-lime-200' : 'border-lime-200'} px-1 mx-1 text-center`}>
                                 {submitted ? exercise.answer : (selectedOption ?? ' ')}
                             </span>
                             <span>{parts[1].trim()}</span>
