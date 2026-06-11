@@ -26,7 +26,7 @@ export function ExTranslation({exercise, submissionState, inputValue, onInputCha
             {/* Answer box after submission */}
             {submitted && (
                 <div className="flex justify-center mt-6 px-1">
-                    <AnswerBox text={inputValue} ok={submissionState.isCorrect} block big />
+                    <AnswerBox text={inputValue} ok={submissionState.isCorrect} big />
                 </div>
             )}
 

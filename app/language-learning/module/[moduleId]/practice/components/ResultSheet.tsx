@@ -78,12 +78,12 @@ export function ResultSheet({ok, answer, aiVerify, exercise, onContinue}: Result
             {!ok && (
                 <div className="flex gap-2 flex-wrap flex-shrink-0">
                     <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-sm">
-                        <MaskedSvgIcon src="/images/magic.svg" alt="Explain" size="w-4 h-4" color="bg-white" />
+                        <MaskedSvgIcon src="/images/teacher.svg" alt="Explain" size="w-4 h-4" color="bg-white" />
                         Explain my mistake
                     </button>
                     {aiVerify && (
                         <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-xs font-semibold">
-                            <MaskedSvgIcon src="/images/teacher.svg" alt="Check with AI" size="w-4 h-4" color="text-white" />
+                            <MaskedSvgIcon src="/images/magic.svg" alt="Check with AI" size="w-4 h-4" color="bg-white" />
                             Check with AI
                         </button>
                     )}
