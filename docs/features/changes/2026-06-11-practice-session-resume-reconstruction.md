@@ -39,6 +39,31 @@ though the backend sent it.
 - *Add:* Success Criterion — reopening an in-progress session resumes at the next unanswered
   exercise (primary pass) or the next pending retry (retry pass), not at exercise 1.
 
+## Correction (same day) — replay model & no inferred completion
+
+The first implementation derived the resume queue from the backend's `currentPosition` (treated as a
+flat index into `[exercises..., retryQueue...]`) and called `POST .../complete` whenever the
+reconstructed queue came out empty. Inspecting the backend (`SubmitPracticeAnswer.do`) revealed two
+facts that break that model:
+
+1. `appendAnswer`, `addToRetryQueue`, and `advancePosition` are **three separate, non-atomic**
+   `updateOne` calls. `currentPosition` (a monotonic answer counter) and `retryQueue` (grow-only,
+   never compacted when a retry is answered correctly, and containing duplicates) can be transiently
+   inconsistent and are not a reliable index of remaining work.
+2. Because the reconstructed queue could come out empty from those inconsistent counters, the
+   resume path would call `POST .../complete`, which **marked the active session complete** — so the
+   next `POST /practiceSessions` created a brand-new (different) session. This was the user-reported
+   "refresh mid-retry → new session" bug.
+
+**Fix:**
+- *Modify:* `reconstructSessionState` now **replays the authoritative `answers` log** through the
+  same state machine as live play (`handleContinue`), ignoring `currentPosition`/`retryQueue`.
+- *Modify:* `resumeSession` **never calls `/complete`**. A resumed session is finished only when the
+  backend has already set `completedAt`; otherwise the client just restores the queue and waits for
+  the live flow to reach the end.
+- *Modify:* spec "Session resume reconstruction" note rewritten to describe the replay model and the
+  no-inferred-completion rule.
+
 ## Behavior to verify
 
 - Reopening the practice screen mid-primary-pass resumes at the next unanswered exercise, with the
@@ -48,8 +73,10 @@ though the backend sent it.
 - A fresh session (no prior answers) still starts at exercise 1.
 - The multi-session loop (after `POST .../complete` returns `step2Complete: false`) starts the next
   session fresh, at exercise 1.
-- A resumed session that is already fully answered (primary done, retry queue empty/exhausted)
-  completes immediately rather than rendering an empty exercise body.
+- Refreshing mid-retry (while still answering a wrong exercise) resumes that same session at the
+  pending retry exercise — it does **not** create a new session or call `/complete`.
+- A resumed session whose `completedAt` is already set (genuinely finished server-side) starts the
+  next session fresh; the client never marks an active session complete on resume.
 
 ## Affected feature files
 
