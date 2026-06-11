@@ -19,7 +19,7 @@ export function ExTranslation({exercise, submissionState, inputValue, onInputCha
         <div className="flex flex-1 flex-col">
             {/* English prompt */}
             <div className="text-center mt-8 px-1">
-                <p className="text-xs font-semibold uppercase tracking-widest text-black/50 mb-3">In Danish, say</p>
+                <p className="text-sm font-semibold uppercase tracking-widest text-black/50 mb-3">In Danish, say</p>
                 <p className="text-2xl font-bold text-black leading-snug">{exercise.prompt}</p>
             </div>
 
