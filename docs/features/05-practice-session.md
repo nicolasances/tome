@@ -73,6 +73,13 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
   - *Fill in the Blank, Conjugation Drill, Error Correction, Translation*: The user's typed answer is replaced by an `AnswerBox` — green + ✓ if correct, red + strikethrough + ✕ if wrong.
 - **End of session**: after the full exercise list is completed, missed exercises are retried until all are answered correctly, then `POST .../complete` is called and the session ends.
 - **End of Step 2 (full coverage)**: after calling `POST .../complete`, the client checks `step2Complete` in the response. When `true`, control returns to the overview (which starts the test-unlock countdown). When `false`, the client starts a new session. Between-session coverage progress is shown on the overview (owned by `03-module-overview`).
+- **Session resume reconstruction**: when the app reopens and the backend returns a 409 for `POST /practiceSessions`, the client calls `GET .../practiceSessions/:sessionId` and reconstructs its presentation state from the response. The backend's `currentPosition` is a flat index across the combined sequence `[primaryExercises..., retryQueue...]`. Client state is reconstructed as follows:
+  - `primaryLength` = `exercises.length`
+  - **Primary pass** (`currentPosition < primaryLength`): `queue = exercises[currentPosition..]`, `pendingRetry = retryQueue`, `isRetryPhase = false`
+  - **Retry phase** (`currentPosition ≥ primaryLength`): `retryIndex = currentPosition − primaryLength`, `queue = retryQueue[retryIndex..]`, `pendingRetry = []`, `isRetryPhase = true`
+  - `masteredCount = answers.filter(isCorrect).length` (all correct answers, including retry-pass corrections)
+  - `exerciseNumber = Math.min(answers.length + 1, primaryLength)`
+  - If the reconstructed `queue` is empty (all exercises answered), the client calls `POST .../complete` immediately.
 
 ## 4. Business Logic
 
@@ -107,7 +114,7 @@ All endpoints are on `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
 | Practice session screen (on entry) | `POST /users/:userId/modules/:moduleId/practiceSessions` | Starts a new practice session. The server runs mastery-aware selection with the coverage override and returns the complete ordered exercise list (type, prompt, distractors/words where applicable). The client stores this list for the session's duration. |
-| Practice session screen (on app re-open) | `GET /users/:userId/practiceSessions/:sessionId` | Fetches the current session state so the app can resume where the user left off after closing. |
+| Practice session screen (on app re-open) | `GET /users/:userId/practiceSessions/:sessionId` | Fetches the full session state for resume. Response: `{ sessionId, userId, moduleId, exercises: Exercise[], answers: PracticeAnswer[], currentPosition: number, retryQueue: string[], startedAt, completedAt }`. The client reconstructs its presentation state from these fields (see "Session resume reconstruction" in §4). |
 | Check/Send footer (every submission) | `POST /users/:userId/practiceSessions/:sessionId/answers` — body: `{ exerciseId, userAnswer }` | Submits one answer. Returns `{ isCorrect, correctAnswer }`. The client renders `ResultSheet` and `AnswerBox` from this response. The backend also appends the exercise to the retry queue on wrong answers. |
 | Continue button (end of session) | `POST /users/:userId/practiceSessions/:sessionId/complete` | Marks the session complete. The server updates mastery (SRS) for all answered exercises, appends encountered vocabulary to `vocabularyItemsPracticed`, and evaluates the coverage gate. Returns `{ step2Complete: boolean, unseenVocabularyCount?: number }`. The client routes to a new session or back to the module overview based on `step2Complete`. |
 | Module overview navigation / session bar | `GET /me/progress` (owned by `03-module-overview`) | Read-back of `practiceCompletedAt`, `testUnlocksAt`, and the per-module step/status used to render the coverage progress bar on the overview. Not called from within the practice session screen itself. |
@@ -130,6 +137,7 @@ All endpoints are on `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API
 | 13 | Long correct-answer text in the wrong sheet is clamped to 2 lines and expandable via tap or drag. | Wireframe. |
 | 14 | Typed-answer exercises (Fill in the Blank, Conjugation, Error Correction, Translation) show an `AnswerBox` inline: green if correct, red + strikethrough if wrong. | Wireframe. |
 | 15 | MC and Reorder show correct/wrong coloring on options/tiles inline alongside the `ResultSheet`. | Wireframe. |
+| 16 | Reopening the practice screen mid-primary-pass resumes at the next unanswered exercise, with the progress bar and N/total counter reflecting already-submitted answers. Reopening mid-retry-pass resumes inside the retry queue at the correct position. | §5.1 / session resume reconstruction. |
 
 ## 7. Open Questions
 
