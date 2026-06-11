@@ -23,7 +23,7 @@ export function ExConjugation({exercise, submissionState, inputValue, onInputCha
         <div className="flex flex-1 flex-col items-stretch">
             {/* Verb chip */}
             <div className="flex justify-center mt-8">
-                <div className="inline-flex items-center gap-2 border border-cyan-500/60 rounded-full px-4 py-2">
+                <div className="inline-flex items-center gap-2 border border-cyan-300 rounded-full px-4 py-2">
                     <span className="text-base font-bold text-black">{exercise.prompt}</span>
                     {exercise.promptTranslation && (
                         <span className="text-sm text-black/50">{exercise.promptTranslation}</span>
@@ -34,12 +34,11 @@ export function ExConjugation({exercise, submissionState, inputValue, onInputCha
             {/* Subject → form layout */}
             <div className="flex items-center justify-center gap-4 mt-8">
                 <div className="text-center">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-black/50 mb-1">Subject</p>
+                    <p className="text-sm font-semibold uppercase tracking-widest text-black/50 mb-1">Subject</p>
                     <p className="text-2xl font-bold text-black">jeg</p>
                 </div>
-                <span className="text-xl text-black/30 font-light">→</span>
                 <div className="text-center">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-black/50 mb-1">Present</p>
+                    <p className="text-sm font-semibold uppercase tracking-widest text-black/50 mb-1">Conjugation</p>
                     {submitted ? (
                         <AnswerBox text={inputValue} ok={submissionState.isCorrect} big />
                     ) : (
@@ -50,7 +49,7 @@ export function ExConjugation({exercise, submissionState, inputValue, onInputCha
                             onKeyDown={e => e.key === 'Enter' && canSend && onSend()}
                             placeholder="…"
                             disabled={isSubmitting}
-                            className="bg-black/6 border-2 border-cyan-600/50 focus:border-cyan-600 rounded-xl px-4 py-2.5 text-xl font-bold text-black text-center min-w-32 outline-none transition-colors disabled:opacity-50"
+                            className="bg-transparent border-2 border-cyan-300 focus:border-lime-200 rounded-xl px-4 py-2.5 text-xl font-bold text-black text-center min-w-32 outline-none transition-colors disabled:opacity-50"
                         />
                     )}
                 </div>

@@ -55,10 +55,10 @@ export function ResultSheet({ok, answer, aiVerify, exercise, onContinue}: Result
             {/* Wrong-answer reveal */}
             {shouldDisplayAnswer() && (
                 <div className="flex-shrink-0 flex flex-col cursor-pointer min-h-0" onClick={toggle}>
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-200 mb-1">Answer</span>
+                    <span className="text-sm uppercase tracking-widest text-cyan-200 mb-1">Answer</span>
                     <div
                         ref={ansRef}
-                        className="text-sm font-bold text-lime-300 leading-snug break-words"
+                        className="text-base font-bold text-lime-200 leading-snug break-words"
                         style={expanded ? { overflowY: 'auto' } : { display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>
                         {answer}
                     </div>
