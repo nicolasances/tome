@@ -35,10 +35,10 @@ export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps
 
             {/* Verdict row */}
             <div className="flex items-center gap-3 flex-shrink-0">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${ok ? 'bg-lime-300 text-cyan-800' : 'bg-red-600 text-white'}`}>
-                    {ok ? '✓' : '✕'}
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${ok ? 'bg-lime-300 text-cyan-800' : 'bg-red-800 text-white'}`}>
+                    {ok ? <MaskedSvgIcon src="/images/tick.svg" alt="Correct" size="w-6 h-6" color="bg-cyan-800" /> : <MaskedSvgIcon src="/images/close.svg" alt="Incorrect" size="w-3 h-3" color="bg-white" />}
                 </div>
-                <span className="text-base font-bold text-white">{ok ? 'Correct!' : 'Not quite'}</span>
+                <span className="text-lg text-white">{ok ? 'Correct!' : 'Not quite'}</span>
             </div>
 
             {/* Wrong-answer reveal */}
@@ -66,8 +66,8 @@ export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps
             {/* Stub action buttons */}
             {!ok && (
                 <div className="flex gap-2 flex-wrap flex-shrink-0">
-                    <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-xs font-semibold">
-                        <MaskedSvgIcon src="/images/magic.svg" alt="Explain" size="w-4 h-4" color="text-white" />
+                    <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-sm">
+                        <MaskedSvgIcon src="/images/magic.svg" alt="Explain" size="w-4 h-4" color="bg-white" />
                         Explain my mistake
                     </button>
                     {aiVerify && (
@@ -82,7 +82,7 @@ export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps
             {/* Continue */}
             <button
                 onClick={onContinue}
-                className="w-full border-0 rounded-full bg-lime-300 text-cyan-900 font-bold text-sm py-3.5 cursor-pointer tracking-wide flex-shrink-0">
+                className="w-full border-0 rounded-full bg-lime-300 text-cyan-900 font-bold text-base py-3.5 cursor-pointer tracking-wide flex-shrink-0">
                 Continue
             </button>
         </div>
