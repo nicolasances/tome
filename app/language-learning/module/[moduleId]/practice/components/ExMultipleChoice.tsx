@@ -64,7 +64,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
                     {hasParts ? (
                         <>
                             <span>{parts[0].trim()}</span>
-                            <span className={`inline-block min-w-16 border-b-2 ${submitted && submissionState?.isCorrect ? 'border-lime-400 text-lime-600' : 'border-lime-500'} px-1 mx-1 text-center`}>
+                            <span className={`inline-block min-w-16 border-b-2 ${submitted && submissionState?.isCorrect ? 'border-lime-400' : 'border-lime-500'} px-1 mx-1 text-center`}>
                                 {submitted ? exercise.answer : (selectedOption ?? ' ')}
                             </span>
                             <span>{parts[1].trim()}</span>
