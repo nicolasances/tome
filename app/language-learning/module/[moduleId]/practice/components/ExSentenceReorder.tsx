@@ -59,7 +59,7 @@ export function ExSentenceReorder({exercise, submissionState, builtWords, onTogg
 
             {/* Build area */}
             <div className={`mt-6 min-h-14 border-b-2 pb-3 flex flex-wrap gap-2 items-center transition-colors ${
-                submitted && !submissionState?.isCorrect ? 'border-red-500' : 'border-cyan-500/60'
+                submitted && !submissionState?.isCorrect ? 'border-red-800' : 'border-cyan-400'
             }`}>
                 {builtWords.length === 0 && !submitted && (
                     <span className="text-sm text-black/30">Tap words below to build the sentence</span>

@@ -24,7 +24,7 @@ export function SendFooter({value, onChange, onSend, placeholder = 'Type your an
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 disabled={disabled}
-                className="flex-1 min-w-0 bg-transparent border-2 border-cyan-400 focus:border-lime-200 rounded-xl px-4 py-3 text-base text-black placeholder-cyan-300 outline-none transition-colors disabled:opacity-50"
+                className="flex-1 min-w-0 bg-transparent border-2 border-cyan-400 focus:border-lime-200 rounded-xl px-4 py-3 text-xl text-black placeholder-cyan-300 outline-none transition-colors disabled:opacity-50"
             />
             <RoundButton
                 svgIconPath={{ src: '/images/send.svg', alt: 'Send' }}
