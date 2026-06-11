@@ -62,7 +62,7 @@ export function ExSentenceReorder({exercise, submissionState, builtWords, onTogg
                 submitted && !submissionState?.isCorrect ? 'border-red-500' : 'border-cyan-500/60'
             }`}>
                 {builtWords.length === 0 && !submitted && (
-                    <span className="text-sm text-black/30 italic">Tap words below to build the sentence</span>
+                    <span className="text-sm text-black/30">Tap words below to build the sentence</span>
                 )}
                 {builtWords.map((word, i) => (
                     <WordTile
