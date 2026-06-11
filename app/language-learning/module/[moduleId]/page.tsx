@@ -84,7 +84,7 @@ export default function ModuleOverviewPage() {
     useEffect(() => {
         setConfig({
             title: 'Module',
-            backButton: { enabled: true, onClick: () => router.back() },
+            backButton: { enabled: true, onClick: () => {router.push("/language-learning")} },
         });
     }, [setConfig, router]);
 
