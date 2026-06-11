@@ -1,5 +1,7 @@
 # Practice Session — module step 2
 
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
+
 ## 1. Purpose & Scope
 
 Delivers **Step 2 of the module flow**: a **repeating practice loop** that
@@ -71,6 +73,11 @@ per `exercise-screens.jsx`. `TomeScreen` titled "Practice".
   - *Fill in the Blank, Conjugation Drill, Error Correction, Translation*: The user's typed answer is replaced by an `AnswerBox` — green + ✓ if correct, red + strikethrough + ✕ if wrong.
 - **End of session**: after the full exercise list is completed, missed exercises are retried until all are answered correctly, then `POST .../complete` is called and the session ends.
 - **End of Step 2 (full coverage)**: after calling `POST .../complete`, the client checks `step2Complete` in the response. When `true`, control returns to the overview (which starts the test-unlock countdown). When `false`, the client starts a new session. Between-session coverage progress is shown on the overview (owned by `03-module-overview`).
+- **Session resume reconstruction**: when the app reopens and the backend returns a 409 for `POST /practiceSessions`, the client calls `GET .../practiceSessions/:sessionId` and reconstructs its presentation state by **replaying the `answers` log** through the same state machine as live play (`handleContinue`). The `answers` array is the single append-only source of truth; `currentPosition` (a monotonic answer counter) and `retryQueue` (grow-only, never compacted when a retry is answered correctly) are **not** used to derive the queue, because the backend writes them in three separate non-atomic updates and they can be transiently inconsistent. Replay:
+  - Primary phase: present `exercises` in order. A wrong answer records the id into `pendingRetry`; the head is consumed. When the primary queue empties and `pendingRetry` is non-empty, switch to the retry phase (`queue = pendingRetry`).
+  - Retry phase: a correct answer consumes the head; a wrong answer moves the head to the tail.
+  - `masteredCount = answers.filter(isCorrect).length`; `exerciseNumber = min(answers.length + 1, primaryLength)`.
+  - **The client never infers completion from the reconstructed queue.** A session is finished only when the backend has set `completedAt`, or when the live flow reaches the end and calls `POST .../complete`. Resuming must never call `/complete` based on an empty reconstructed queue — doing so would destroy an active session and spawn a new one on the next start.
 
 ## 4. Business Logic
 
@@ -105,7 +112,7 @@ All endpoints are on `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
 | Practice session screen (on entry) | `POST /users/:userId/modules/:moduleId/practiceSessions` | Starts a new practice session. The server runs mastery-aware selection with the coverage override and returns the complete ordered exercise list (type, prompt, distractors/words where applicable). The client stores this list for the session's duration. |
-| Practice session screen (on app re-open) | `GET /users/:userId/practiceSessions/:sessionId` | Fetches the current session state so the app can resume where the user left off after closing. |
+| Practice session screen (on app re-open) | `GET /users/:userId/practiceSessions/:sessionId` | Fetches the full session state for resume. Response: `{ sessionId, userId, moduleId, exercises: Exercise[], answers: PracticeAnswer[], currentPosition: number, retryQueue: string[], startedAt, completedAt }`. The client reconstructs its presentation state by replaying the authoritative `answers` log (see "Session resume reconstruction" in §4); `currentPosition` and `retryQueue` are not relied upon. |
 | Check/Send footer (every submission) | `POST /users/:userId/practiceSessions/:sessionId/answers` — body: `{ exerciseId, userAnswer }` | Submits one answer. Returns `{ isCorrect, correctAnswer }`. The client renders `ResultSheet` and `AnswerBox` from this response. The backend also appends the exercise to the retry queue on wrong answers. |
 | Continue button (end of session) | `POST /users/:userId/practiceSessions/:sessionId/complete` | Marks the session complete. The server updates mastery (SRS) for all answered exercises, appends encountered vocabulary to `vocabularyItemsPracticed`, and evaluates the coverage gate. Returns `{ step2Complete: boolean, unseenVocabularyCount?: number }`. The client routes to a new session or back to the module overview based on `step2Complete`. |
 | Module overview navigation / session bar | `GET /me/progress` (owned by `03-module-overview`) | Read-back of `practiceCompletedAt`, `testUnlocksAt`, and the per-module step/status used to render the coverage progress bar on the overview. Not called from within the practice session screen itself. |
@@ -128,13 +135,14 @@ All endpoints are on `tome-ms-language` (basepath `NEXT_PUBLIC_TOME_LANGUAGE_API
 | 13 | Long correct-answer text in the wrong sheet is clamped to 2 lines and expandable via tap or drag. | Wireframe. |
 | 14 | Typed-answer exercises (Fill in the Blank, Conjugation, Error Correction, Translation) show an `AnswerBox` inline: green if correct, red + strikethrough if wrong. | Wireframe. |
 | 15 | MC and Reorder show correct/wrong coloring on options/tiles inline alongside the `ResultSheet`. | Wireframe. |
+| 16 | Reopening the practice screen mid-primary-pass resumes at the next unanswered exercise, with the progress bar and N/total counter reflecting already-submitted answers. Reopening mid-retry-pass resumes inside the retry queue at the correct position. | §5.1 / session resume reconstruction. |
 
 ## 7. Open Questions
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | What does the **"Hint"** chip do (and where does its content come from)? | Shown on Fill in the Blank and Translation `SendFooter`s (not on Conjugation Drill or Error Correction); behaviour and content source unspecified. |
-| 2 | How is the session-bar split into mastered / remaining / **deferred** computed mid-session? | Mastery now updates live during practice, so the bar can reflect real-time mastery; "deferred" semantics still need defining (e.g. items skipped as already > 0.85). |
-| 3 | What happens when the user taps **"Explain my mistake"** or **"Check with AI"** in the `ResultSheet`? | The buttons are now in the wireframe; the panels/flows they open are still out of scope (no wireframe). Stub the taps for now. |
-| 4 | Reorder/error-correction interaction details (drag vs tap) on a phone. | Mobile-first input model. |
+| ~~1~~ | ~~What does the **"Hint"** chip do?~~ | **Resolved** — Hint chip removed entirely from `SendFooter`; not rendered on any exercise type. |
+| ~~2~~ | ~~How is "deferred" in the session bar computed?~~ | **Resolved** — `deferred` = retry-queue count: exercises answered wrong in the current pass that are pending re-presentation. |
+| 3 | What happens when the user taps **"Explain my mistake"** or **"Check with AI"** in the `ResultSheet`? | **Stub no-op** — buttons render but tap does nothing. Tracked in GitHub issue #275; requires a backend API not yet available. |
+| ~~4~~ | ~~Reorder/error-correction interaction details (drag vs tap) on a phone.~~ | **Resolved** — Sentence Reorder: tap-to-place (tap bank word to add, tap build-area word to return). Error Correction: user rewrites the full corrected sentence in a text input; `CheckFooter` enabled when non-empty. |
 | ~~5~~ | ~~What endpoints serve the module's exercise bank and persist exercise results / mastery / coverage?~~ | **Resolved** — see §5.1 API Integrations for the implemented endpoints (`POST /practiceSessions`, `POST .../answers`, `POST .../complete`). |
