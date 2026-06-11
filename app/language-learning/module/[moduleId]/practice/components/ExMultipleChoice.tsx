@@ -51,7 +51,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
         }
         const isCorrect = key === correctKey;
         const isChosen = word === selectedOption;
-        if (isCorrect) return { bg: 'bg-lime-100/40 border-lime-400', badgeBg: 'bg-cyan-800 text-lime-200', text: 'text-black', badge: '✓' };
+        if (isCorrect) return { bg: 'border-lime-400', badgeBg: 'bg-cyan-800 text-lime-200', text: 'text-black', badge: '✓' };
         if (isChosen && !isCorrect) return { bg: 'bg-red-600/10 border-red-600', badgeBg: 'text-red-600', text: 'text-black', badge: '✕' };
         return { bg: 'bg-transparent border-cyan-500/20 opacity-50', badgeBg: 'bg-transparent border border-black/20 text-black/40', text: 'text-black/50', badge: null };
     }

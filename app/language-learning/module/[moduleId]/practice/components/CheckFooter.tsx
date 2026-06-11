@@ -9,7 +9,7 @@ export function CheckFooter({enabled, onCheck}: CheckFooterProps) {
             <button
                 disabled={!enabled}
                 onClick={onCheck}
-                className={`w-full border-0 rounded-full font-bold text-sm py-3.5 tracking-wide transition-colors ${enabled ? 'bg-lime-300 text-cyan-900 cursor-pointer' : 'bg-black/8 text-black/30 cursor-default'}`}>
+                className={`w-full border-0 rounded-full font-bold text-base py-3.5 tracking-wide transition-colors ${enabled ? 'bg-lime-200 text-cyan-900 cursor-pointer' : 'bg-black/8 text-black/30 cursor-default'}`}>
                 Check
             </button>
         </div>
