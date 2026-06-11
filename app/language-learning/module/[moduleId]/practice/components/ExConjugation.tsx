@@ -18,6 +18,17 @@ export function ExConjugation({exercise, submissionState, inputValue, onInputCha
 
     // The prompt format for conjugation_drill is expected to be the infinitive form.
     // promptTranslation is the English gloss.
+    const extractComponents = () => {
+        const components = exercise.prompt.split("|");
+
+        if (components.length !== 3) throw new Error(`Unexpected prompt format for conjugation_drill exercise (expected "verb|tense|subject"): ${exercise.prompt}`);
+
+        return {
+            verb: components[0].trim() || "ERROR", 
+            tense: components[1].trim() || "ERROR",
+            subject: components[2].trim() || "ERROR"
+        }
+    }
 
     return (
         <div className="flex flex-1 flex-col items-stretch">
@@ -35,10 +46,10 @@ export function ExConjugation({exercise, submissionState, inputValue, onInputCha
             <div className="flex items-center justify-center gap-4 mt-8">
                 <div className="text-center">
                     <p className="text-sm font-semibold uppercase tracking-widest text-black/50 mb-1">Subject</p>
-                    <p className="text-2xl font-bold text-black">jeg</p>
+                    <p className="text-2xl font-bold text-black">{extractComponents().subject}</p>
                 </div>
                 <div className="text-center">
-                    <p className="text-sm font-semibold uppercase tracking-widest text-black/50 mb-1">Conjugation</p>
+                    <p className="text-sm font-semibold uppercase tracking-widest text-black/50 mb-1">{extractComponents().tense}</p>
                     {submitted ? (
                         <AnswerBox text={inputValue} ok={submissionState.isCorrect} big />
                     ) : (
