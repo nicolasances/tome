@@ -52,7 +52,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
         }
         const isCorrect = key === correctKey;
         const isChosen = word === selectedOption;
-        if (isCorrect) return { bg: 'border-lime-400', badgeBg: 'bg-cyan-800 text-lime-200', text: 'text-black', badge: <MaskedSvgIcon src="/images/tick.svg" alt="Correct" size="w-6 h-6" color="bg-lime-400" /> };
+        if (isCorrect) return { bg: 'border-lime-200', badgeBg: 'bg-cyan-800 text-lime-200', text: 'text-black', badge: <MaskedSvgIcon src="/images/tick.svg" alt="Correct" size="w-6 h-6" color="bg-lime-200" /> };
         if (isChosen && !isCorrect) return { bg: 'border-red-800', badgeBg: 'bg-red-800 text-white', text: 'text-black', badge: <MaskedSvgIcon src="/images/close.svg" alt="Incorrect" size="w-3 h-3" color="bg-white" /> };
         return { bg: 'bg-transparent border-cyan-500/20 opacity-50', badgeBg: 'bg-transparent border border-black/20 text-black/40', text: 'text-black/50', badge: null };
     }

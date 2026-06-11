@@ -2,15 +2,17 @@
 
 import { useState, useRef, useLayoutEffect } from 'react';
 import { MaskedSvgIcon } from 'toto-react';
+import { Exercise } from '@/api/TomePracticeSessionAPI';
 
 interface ResultSheetProps {
     ok: boolean;
     answer?: string;
     aiVerify?: boolean;
+    exercise: Exercise;
     onContinue: () => void;
 }
 
-export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps) {
+export function ResultSheet({ok, answer, aiVerify, exercise, onContinue}: ResultSheetProps) {
     const [expanded, setExpanded] = useState(false);
     const [canExpand, setCanExpand] = useState(false);
     const ansRef = useRef<HTMLDivElement>(null);
@@ -24,6 +26,15 @@ export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps
 
     const toggle = () => { if (!ok && canExpand) setExpanded(v => !v); };
 
+    /**
+     * Display logic:
+     * - Do not display the answer for exercises of type Multiple Choice
+     */
+    const shouldDisplayAnswer = () => {
+        if (exercise.type === 'multiple_choice') return false;
+        return !ok && !!answer;
+    };
+
     return (
         <div className="absolute left-0 right-0 bottom-0 bg-cyan-900 rounded-t-3xl px-5 pb-6 pt-2 flex flex-col gap-3 text-white box-border"
             style={{ maxHeight: 'calc(100% - 84px)' }}>
@@ -35,14 +46,14 @@ export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps
 
             {/* Verdict row */}
             <div className="flex items-center gap-3 flex-shrink-0">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${ok ? 'bg-lime-300 text-cyan-800' : 'bg-red-800 text-white'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${ok ? 'bg-lime-200 text-cyan-800' : 'bg-red-800 text-white'}`}>
                     {ok ? <MaskedSvgIcon src="/images/tick.svg" alt="Correct" size="w-6 h-6" color="bg-cyan-800" /> : <MaskedSvgIcon src="/images/close.svg" alt="Incorrect" size="w-3 h-3" color="bg-white" />}
                 </div>
                 <span className="text-lg text-white">{ok ? 'Correct!' : 'Not quite'}</span>
             </div>
 
             {/* Wrong-answer reveal */}
-            {!ok && answer && (
+            {shouldDisplayAnswer() && (
                 <div className="flex-shrink-0 flex flex-col cursor-pointer min-h-0" onClick={toggle}>
                     <span className="text-xs font-bold uppercase tracking-widest text-cyan-200 mb-1">Answer</span>
                     <div
@@ -82,7 +93,7 @@ export function ResultSheet({ok, answer, aiVerify, onContinue}: ResultSheetProps
             {/* Continue */}
             <button
                 onClick={onContinue}
-                className="w-full border-0 rounded-full bg-lime-300 text-cyan-900 font-bold text-base py-3.5 cursor-pointer tracking-wide flex-shrink-0">
+                className="w-full border-0 rounded-full bg-lime-200 text-cyan-900 font-bold text-base py-3.5 cursor-pointer tracking-wide flex-shrink-0">
                 Continue
             </button>
         </div>

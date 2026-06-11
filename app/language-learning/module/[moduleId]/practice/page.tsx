@@ -361,6 +361,7 @@ export default function PracticePage() {
                         <ResultSheet
                             ok={submissionState.isCorrect}
                             answer={submissionState.isCorrect ? undefined : submissionState.correctAnswer}
+                            exercise={currentExercise}
                             aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
                             onContinue={handleContinue}
                         />
