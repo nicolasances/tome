@@ -75,18 +75,16 @@ export default function PracticePage() {
     // ── Session load / resume ─────────────────────────────────────────────────
     useEffect(() => {
         async function load() {
+
             const me = await new TomeLearningDashboardAPI().getMe();
             setUserId(me.id);
 
-            const stored = localStorage.getItem(storageKey(moduleId));
-            if (stored) {
-                const session = await new TomePracticeSessionAPI().getSession(me.id, stored);
-                if (session) { initSession(me.id, session.sessionId, session.exercises); return; }
-                localStorage.removeItem(storageKey(moduleId));
-            }
-
             const started = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
             if (!started) { setLoadState('error'); return; }
+
+            console.log(started);
+            
+
             initSession(me.id, started.sessionId, started.exercises);
         }
         load().catch(() => setLoadState('error'));

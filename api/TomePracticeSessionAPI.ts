@@ -11,6 +11,7 @@ export class TomePracticeSessionAPI {
      * Endpoint: POST /users/:userId/modules/:moduleId/practiceSessions
      */
     async startPracticeSession(userId: string, moduleId: string): Promise<StartPracticeSessionResponse | PracticeSession | null> {
+        
         const response = await new TotoAPI().fetch(
             'tome-ms-language',
             `/users/${userId}/modules/${moduleId}/practiceSessions`,
@@ -25,7 +26,7 @@ export class TomePracticeSessionAPI {
             
             throw new Error(`Failed to start practice session. Server answered  ${response.status} but did not include sessionId in the response body.`);
         }
-        
+
         if (!response.ok) throw new Error(`Failed to start practice session (${response.status})`);
 
         return response.json();
