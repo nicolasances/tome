@@ -113,18 +113,16 @@ export default function PracticePage() {
 
     /**
      * Restores client-side presentation state from a resumed PracticeSession.
-     * If the session is already fully answered (queue empty after reconstruction),
-     * completes it immediately rather than showing an empty exercise body.
+     *
+     * IMPORTANT: never infers session completion from the reconstructed state. A resumed
+     * session is only "finished" when the backend has already set `completedAt`. Calling
+     * `/complete` here based on an empty reconstructed queue would destroy an active session
+     * (the backend would mark it complete and the next start would create a brand-new one).
      */
     function resumeSession(uid: string, session: PracticeSession) {
-        // Guard: already completed server-side
+        // The backend already marked this session complete — start the next one fresh.
         if (session.completedAt !== null) {
-            // Treat as a fresh session needing completion — let doCompleteSession handle it.
-            // We still need sessionId set so the complete call works.
-            setUserId(uid);
-            setSessionId(session.sessionId);
-            localStorage.setItem(storageKey(moduleId), session.sessionId);
-            doCompleteSessionWith(uid, session.sessionId);
+            initFreshSessionAfterComplete(uid);
             return;
         }
 
@@ -143,14 +141,28 @@ export default function PracticePage() {
         setSelectedOption(null);
         setBuiltWords([]);
         localStorage.setItem(storageKey(moduleId), session.sessionId);
-
-        // If all exercises are already answered (queue empty), complete immediately.
-        if (state.queue.length === 0) {
-            doCompleteSessionWith(uid, session.sessionId);
-            return;
-        }
-
         setLoadState('loaded');
+    }
+
+    /**
+     * Starts a fresh session for the module — used when a resumed session turns out to be
+     * already completed on the backend (the normal multi-session loop continues on the overview
+     * if coverage is met, otherwise a new session is the right next step).
+     */
+    async function initFreshSessionAfterComplete(uid: string) {
+        localStorage.removeItem(storageKey(moduleId));
+        try {
+            const started = await new TomePracticeSessionAPI().startPracticeSession(uid, moduleId);
+            if (started && !started.resumed) {
+                initFreshSession(uid, started.session.sessionId, started.session.exercises);
+            } else {
+                // Either an error, or another active session surfaced — surface as error rather
+                // than risk an unexpected state.
+                setLoadState('error');
+            }
+        } catch {
+            setLoadState('error');
+        }
     }
 
     // ── Derived ───────────────────────────────────────────────────────────────
@@ -221,20 +233,17 @@ export default function PracticePage() {
     }
 
     async function doCompleteSession() {
-        await doCompleteSessionWith(userId, sessionId);
-    }
-
-    async function doCompleteSessionWith(uid: string, sid: string) {
         setIsCompleting(true);
         try {
-            const result = await new TomePracticeSessionAPI().completeSession(uid, sid);
+            const result = await new TomePracticeSessionAPI().completeSession(userId, sessionId);
             localStorage.removeItem(storageKey(moduleId));
             if (result.step2Complete) {
                 router.push(`/language-learning/module/${moduleId}`);
             } else {
-                const started = await new TomePracticeSessionAPI().startPracticeSession(uid, moduleId);
-                if (started) { initFreshSession(uid, started.session.sessionId, started.session.exercises); }
-                else { setLoadState('error'); }
+                const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
+                if (!started) { setLoadState('error'); }
+                else if (started.resumed) { resumeSession(userId, started.session); }
+                else { initFreshSession(userId, started.session.sessionId, started.session.exercises); }
             }
         } catch {
             setLoadState('error');
