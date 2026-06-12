@@ -8,6 +8,7 @@ export interface StepItem {
     subtitle: string;
     state: StepState;
     lockLabel?: string;
+    coverage?: { seen: number; total: number };
 }
 
 function StepMedallion({number, state}: {number: number, state: StepState}) {
