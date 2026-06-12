@@ -71,6 +71,8 @@ export interface ModuleResponse {
     communicationGoal: string;
     /** Grammar concepts covered by the module, enriched with names */
     grammarConceptIds: string[];
+    /** List of all vocabulary items in the module */
+    vocabularyItemIds: string[]; 
     /** Total number of vocabulary items in the module */
     vocabularyCount: number;
     /** §3.1.2 configurable parameters */

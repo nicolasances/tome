@@ -130,6 +130,9 @@ export default function ModuleOverviewPage() {
                 title: 'Practice',
                 subtitle: `${data.module.practiceSessionSize} exercises · no pressure`,
                 state: stepStates.practice,
+                coverage: stepStates.practice === 'available'
+                    ? { seen: moduleProgress?.vocabularyItemsPracticedCount ?? 0, total: data.module.vocabularyItemIds.length }
+                    : undefined,
             },
             {
                 number: 3,

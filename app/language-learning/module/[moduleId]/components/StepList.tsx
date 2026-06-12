@@ -8,6 +8,7 @@ export interface StepItem {
     subtitle: string;
     state: StepState;
     lockLabel?: string;
+    coverage?: { seen: number; total: number };
 }
 
 function StepMedallion({number, state}: {number: number, state: StepState}) {
@@ -29,17 +30,33 @@ function LockTag({children}: {children: React.ReactNode}) {
     );
 }
 
+function CoverageBar({seen, total}: {seen: number; total: number}) {
+    const pct = total > 0 ? (seen / total) * 100 : 0;
+
+    return (
+        <div className="flex items-center gap-2 mt-2">
+            <div className="flex-1 h-1.5 rounded-full bg-black/10">
+                <div className="h-full rounded-full bg-lime-200" style={{ width: `${pct}%` }} />
+            </div>
+            <span className="text-xs font-bold text-black/80 whitespace-nowrap">
+                {seen} / {total} <span className="font-semibold text-black/60">words</span>
+            </span>
+        </div>
+    );
+}
+
 function StepRow({step}: {step: StepItem}) {
-    const { state, number, title, subtitle, lockLabel } = step;
+    const { state, number, title, subtitle, lockLabel, coverage } = step;
     const isAvailable = state === 'available';
     const isLocked = state === 'locked';
 
     return (
-        <div className={`flex items-center gap-[13px] px-[14px] py-[13px] rounded-[14px] ${isAvailable ? 'bg-cyan-700/30' : 'bg-transparent'} ${isAvailable ? '' : 'border border-[rgba(9,166,209,0.4)]'} ${isLocked ? 'opacity-[0.85]' : ''}`}>
+        <div className={`flex ${coverage ? 'items-start' : 'items-center'} gap-[13px] px-[14px] py-[13px] rounded-[14px] ${isAvailable ? 'bg-cyan-700/30' : 'bg-transparent'} ${isAvailable ? '' : 'border border-[rgba(9,166,209,0.4)]'} ${isLocked ? 'opacity-[0.85]' : ''}`}>
             <StepMedallion number={number} state={state} />
             <div className="flex flex-col flex-1 min-w-0">
                 <span className="text-[15px] font-bold text-black/80">{title}</span>
                 <span className="text-xs text-black/70 mt-[2px]">{subtitle}</span>
+                {coverage && <CoverageBar seen={coverage.seen} total={coverage.total} />}
             </div>
             {isAvailable && (
                 <span className="text-[11px] font-bold tracking-[0.10em] uppercase text-cyan-900 flex-shrink-0">

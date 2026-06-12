@@ -88,6 +88,7 @@ export interface ModuleProgressEntry {
     completedAt: string | null;
     testUnlocksAt: string | null;
     testRetryAvailableAt: string | null;
+    vocabularyItemsPracticedCount: number;      // Number of unique vocabulary items encountered across all practice sessions for this module
 }
 
 export interface WeeklySessionStatsResponse {
