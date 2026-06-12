@@ -2,6 +2,7 @@ import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../page';
 import { AnswerBox } from './AnswerBox';
 import { CheckFooter } from './CheckFooter';
+import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 
 interface ExErrorCorrectionProps {
     exercise: Exercise;
@@ -20,18 +21,18 @@ export function ExErrorCorrection({exercise, submissionState, inputValue, onInpu
         <div className="flex flex-1 flex-col">
             {/* Erroneous sentence */}
             <div className="mt-8 px-1">
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-2xl px-4 py-3 mb-1">
-                    <span className="text-red-500 font-bold text-base mt-0.5 flex-shrink-0">✕</span>
-                    <p className="text-xl font-bold text-red-800 leading-snug">{exercise.prompt}</p>
+                <div className="flex items-center gap-2 border-2 border-red-800 rounded-2xl px-4 py-2 mb-1">
+                    <span className="text-red-500 font-bold text-base mt-0.5 flex-shrink-0 mr-2"><MaskedSvgIcon src="/images/close.svg" alt="To be corrected" size="w-3 h-3" /></span>
+                    <p className="text-lg font-bold text-red-800 leading-snug">{exercise.prompt}</p>
                 </div>
                 {exercise.promptTranslation && (
-                    <p className="text-sm text-black/50 mt-2 text-center">Meaning: {exercise.promptTranslation}</p>
+                    <p className="text-base text-black/50 mt-2 text-center">Meaning: {exercise.promptTranslation}</p>
                 )}
             </div>
 
             {/* Correction input */}
             <div className="mt-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-black/50 mb-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-black/50 mb-2 pl-2">
                     {submitted ? 'Your correction' : 'Write the corrected sentence'}
                 </p>
                 {submitted ? (
@@ -44,7 +45,7 @@ export function ExErrorCorrection({exercise, submissionState, inputValue, onInpu
                         onKeyDown={e => e.key === 'Enter' && canCheck && onCheck()}
                         placeholder="Type the corrected sentence…"
                         disabled={isSubmitting}
-                        className="w-full bg-black/6 border-2 border-cyan-600/50 focus:border-cyan-600 rounded-xl px-4 py-3 text-base font-semibold text-black outline-none transition-colors disabled:opacity-50"
+                        className="w-full bg-transparent border-2 border-cyan-400 focus:border-lime-200 rounded-xl px-4 py-3 text-lg font-semibold text-black placeholder-cyan-200 outline-none transition-colors disabled:opacity-50"
                     />
                 )}
             </div>
