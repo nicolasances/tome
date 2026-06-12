@@ -30,6 +30,7 @@ treatments (Home A/B, Map B/C) which are not the spec'd design.
 | J2 | Browse the level & start a module | See all modules of my level and open the active one | Home dashboard → Module map → Module overview |
 | J3 | Learn a module's grammar | Read the module's grammar concepts before practising | Module overview → Grammar intro |
 | J4 | Practise a module | Work through practice sessions until every module word is covered | Module overview → Practice session → (repeat until full coverage) → Module overview |
+| J5 | Take the module test | Pass the gated, scored test to complete the module and unlock the next | Module overview → Module test (locked countdown → ready → in-test → submit → result) → (Review) → Home / Module overview |
 
 ## Screen Inventory
 
@@ -42,6 +43,7 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Module overview | `/language-learning/module/[moduleId]` | `03-module-overview` | Module hub: theme, goal, 3-step flow, lock states. |
 | Grammar intro | `/language-learning/module/[moduleId]/grammar` | `04-grammar-introduction` | Step 1 — paged instructional concept cards. |
 | Practice session | `/language-learning/module/[moduleId]/practice` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a session; sessions repeat until full module vocabulary coverage. |
+| Module test | `/language-learning/module/[moduleId]/test` | `06-module-test` | Step 3 — gated, scored flow as internal phases: locked → ready → in-test → submit → result (pass/fail) → review. Reuses the practice exercise interface. |
 
 ## Cross-cutting shared components
 
@@ -61,8 +63,7 @@ produced for them. Listed here so the gap is explicit and tracked.
 
 | Idea ref | Skipped scope | Why skipped |
 |----------|---------------|-------------|
-| §3.1.1 Step 3 | **Module Test** — test-taking screen + results (score, per-question review, weak spots) | No wireframe; overview shows the locked step only. |
-| §3.4 / §5 | **"Explain my mistake"** AI panel (after wrong answers, practice & test) | No wireframe; not shown on exercise screens. |
+| §3.4 / §5 | **"Explain my mistake"** AI panel (after wrong answers, practice & test) | No wireframe for the panel; the button is rendered (stub) in practice & test. |
 | §3.4 | **AI answer verification** for `translation_active` (on-demand) | No wireframe. |
 | §3.5 | **Level Test** — taking + results + weak-areas summary | No wireframe. |
 | §3.6 | **Analyze Content** — paste text → Content Report → actions (Home "Analyze" button destination) | No wireframe. |

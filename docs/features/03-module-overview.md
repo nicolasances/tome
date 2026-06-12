@@ -19,7 +19,7 @@ test is locked).
 **Out of scope**:
 - The Grammar intro flow (owned by `04-grammar-introduction`).
 - The Practice session (owned by `05-practice-session`).
-- The **Module Test** screen and results — **skipped** (no wireframe); this screen only renders the locked Test step.
+- The **Module Test** screen, scoring, and results (owned by `06-module-test`). This screen owns only the Test **step row** (lock tag / availability) and navigates into the test flow.
 
 ## 2. Key User Stories
 
@@ -46,7 +46,7 @@ test is locked).
 
 **Additional Notes:**
 - **Loading**: skeleton for header + step list while module + progress load.
-- The Test step is always shown but, in this breakdown, only as a **locked/upcoming** row — tapping it (when unlocked) leads to the skipped Module Test feature.
+- The Test step is always shown as a row reflecting its state (locked / available / completed). Tapping it — or the primary CTA once practice is complete — navigates to the Module Test feature (`06-module-test`), which renders the locked countdown, ready, in-test, result and review phases. The overview itself does not render those.
 - Step CTA label/target adapt to where the user is: "Start grammar" → "Continue practice" → (locked) "Test unlocks in …". While practice is active, the CTA reads "Continue practice" and the coverage bar communicates remaining coverage.
 - **Practice is a loop**: because Step 2 runs multiple sessions until full vocabulary coverage (§3.1.1), the overview is the hub the user returns to between practice sessions; its coverage bar is the persistent indicator of how close Step 2 is to completing.
 
@@ -73,7 +73,7 @@ test is locked).
 | 4 | Reuse `TomeModuleAPI` (module document) and `TomeLearningDashboardAPI` (per-user progress, owned by `01-home-dashboard`), fetched in parallel with `Promise.all`. | Avoids a waterfall — both are needed before any content renders; reuses the same progress endpoint as `01`/`02` rather than adding a module-specific progress call. |
 | 5 | Module number (01, 02 …) is derived from the index of `moduleId` in `progress.modules`, not from the module document (which has no numeric position field). | The ordered per-level module list from `GET /me/progress` is the authoritative source, matching how `ModuleRow` computes the number on the module-map screen. |
 | 6 | Lock label: static `${testUnlockDelayHours}h after practice` when step = practice (test not yet reached); live countdown when step = test and `testUnlocksAt` is in the future. | Static text is accurate and avoids a timer before the user has even completed practice; the countdown shows only once the timer is actually running. |
-| 7 | CTA "Start test" is rendered but disabled. | The Module Test feature is out of scope; the placeholder avoids a dead-end UX and will be wired up when that feature ships. |
+| 7 | Once the test is unlocked, the Test step row and the primary CTA ("Start test") navigate to `06-module-test` (`/language-learning/module/[moduleId]/test`). While the test is still locked, the CTA shows the unlock countdown and the step is not actionable. | The Module Test feature now exists (`06-module-test`); the overview hands off to it instead of rendering a disabled placeholder. |
 | 8 | Wrap backend calls in `/api` classes; `RoundButton`/buttons per style guide. | Project conventions. |
 
 ### API Integrations
@@ -99,5 +99,5 @@ test is locked).
 
 | # | Question | Notes |
 |---|----------|-------|
-| 1 | Once the test is unlocked, does the CTA point at the (skipped) Test, or does the step row handle it? | Depends on Module Test feature design. CTA currently shows "Start test" (disabled) until that feature is built. |
+| ~~1~~ | ~~Once the test is unlocked, does the CTA point at the (skipped) Test, or does the step row handle it?~~ | **Resolved** — the Module Test feature now exists (`06-module-test`). Both the unlocked Test step row and the primary CTA navigate to `/language-learning/module/[moduleId]/test`. |
 | 3 | Can the user re-enter Grammar or re-run Practice after completing them? | Affects step row interactivity post-completion. Currently completed steps render as a muted row with a checkmark medallion; they are not tappable. |

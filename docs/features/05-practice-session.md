@@ -23,7 +23,7 @@ Participates in journey **J4** (practise a module).
 
 **Out of scope**:
 - The Module overview that launches practice and tracks coverage progress between sessions (owned by `03-module-overview`). It also owns the test-unlock countdown that begins once Step 2 reaches full coverage.
-- The **Module Test** (§3.1.1 Step 3) — **skipped** (no wireframe). Practice and the test now update mastery identically; the difference is that the test is scored/gated and practice is not.
+- The **Module Test** (§3.1.1 Step 3) — owned by `06-module-test`. Practice and the test update mastery identically and the test **reuses this feature's six exercise renderings and `ResultSheet`/`AnswerBox` components**; the difference is that the test is scored/gated and single-pass (no retry-until-correct), and practice is not.
 - **"Explain my mistake"** AI panel — the *button* is rendered in `ResultSheet` on all wrong-answer states; the panel it opens is **skipped** (no wireframe for the panel itself).
 - **AI answer verification** ("Check with AI") — the *button* is rendered in the Translation wrong-answer `ResultSheet`; the panel/flow it triggers is **skipped** (no wireframe).
 

@@ -114,10 +114,10 @@ Once unlocked:
 1. An assessment of **30–40 questions** testing the module's vocabulary and grammar
 2. Uses the same exercise types as Step 2, drawn from the **same exercise bank**, using the **same mastery-aware selection** (§3.4.3) — there is no separate "fresh vs. repeat" split. Because Step 2 already guarantees the user has encountered every vocabulary item at least once, every test exercise necessarily targets known material regardless of whether it was seen during practice or not
 3. Unlike practice, the **test does not need to cover every vocabulary item** — it's a sample-based check of the module's content, not an exhaustive re-walk of it
-4. Answers are **not shown** during the test — user completes all questions first
-5. At the end, the user sees:
+4. Each answer is **checked and shown immediately** — exactly as in practice (Step 2). After every question the correct answer is revealed and "Explain my mistake" is available on demand; the user then continues to the next question. This keeps the in-test experience coherent with the practice flow. Unlike practice, the test is **single-pass**: a missed question is not re-presented until correct — the first answer is what counts toward the score.
+5. The user answers all questions, then **submits**. After submitting, the user sees:
    - Final score (% correct)
-   - All questions with their answers: for incorrect answers, both the user's answer and the correct answer are shown
+   - A review of all questions with their answers: for incorrect answers, both the user's answer and the correct answer are shown
    - "Explain my mistake" available on demand for any incorrect answer (AI-generated)
 6. **Mastery scores are updated** based on test performance, exactly as in practice
 
