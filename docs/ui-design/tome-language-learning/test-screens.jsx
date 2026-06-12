@@ -1,9 +1,11 @@
 /* Tome Language Learning — Module Test (Step 3) screens.
    The test is the gated, scored sibling of practice (A1·01 "Who Are You?"):
-   locked → ready → in-test (NO per-answer feedback) → submit → result (pass/fail) → review.
-   Distinct chrome: header reads "Module Test", a single clean question-progress bar
-   (not practice's mastered/remaining/deferred segments), and answers stay hidden
-   until the end. Mastery still updates, exactly as in practice (spec §3.1.1 Step 3).
+   locked → ready → in-test → submit → result (pass/fail) → review.
+   The in-test exercises share the EXACT same interface as module practice — every
+   answer is checked the moment it's given and mistakes are shown immediately
+   (same ResultSheet, same retry/reveal). The test's only distinct chrome is the
+   "Module Test" header + one clean linear question-progress bar. 80% to pass;
+   mastery still updates, exactly as in practice (spec §3.1.1 Step 3).
    Requires tome-kit.jsx + exercise-screens.jsx. */
 
 /* Small lock glyph (matches module-screens lock) */
@@ -30,17 +32,6 @@ function TestShell({ q, total, instruction, children, footer }) {
       </div>
       <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', padding: '0 18px' }}>{children}</div>
     </TomeScreen>
-  );
-}
-
-/* Full-width "Next" — submits the answer and advances, no reveal */
-function NextFooter({ label = 'Next', enabled = true }) {
-  return (
-    <div style={{ padding: '10px 16px 16px', flex: '0 0 auto' }}>
-      <button style={{ width: '100%', border: 'none', borderRadius: 9999, background: enabled ? TC.lime : 'rgba(0,0,0,0.08)', color: enabled ? TC.c800 : TC.fg3, fontFamily: 'inherit', fontWeight: 700, fontSize: 15, padding: 15, cursor: 'pointer', letterSpacing: '0.02em', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-        {label}<TIcon name="tome/point-right" size={17} color={enabled ? TC.c800 : TC.fg3} />
-      </button>
-    </div>
   );
 }
 
@@ -73,10 +64,10 @@ function TestLocked() {
 /* ── 1 · READY — what's coming + Start ─────────────────────────────── */
 function TestReady() {
   const rows = [
-    ['tome/sentences', '35 questions', 'sampled from this module'],
+    ['tome/sentences', '20 questions', 'sampled from this module'],
     ['tome/signal-good', '80% to pass', 'unlocks the next module'],
-    ['tome/magic', 'Answers at the end', 'no feedback while you go'],
-    ['tome/language', 'Counts toward mastery', 'just like practice'],
+    ['tome/magic', 'Instant feedback', 'see mistakes as you go'],
+    ['tome/language', 'Counts toward mastery', 'same as practice'],
   ];
   return (
     <TomeScreen title="Module Test">
@@ -107,80 +98,96 @@ function TestReady() {
   );
 }
 
-/* ── 2a · IN-TEST · Multiple choice (no reveal) ────────────────────── */
-function TestMC() {
+/* ── 2a · IN-TEST · Multiple choice — checked immediately (same as practice) ── */
+function TestMC({ state = 'retry' }) {
   const opts = [['A', 'er'], ['B', 'hedder'], ['C', 'kommer'], ['D', 'bor']];
-  const chosen = 'C'; // the user's pick — shown as selected, correctness hidden
+  const correctKey = 'A', chosenWrong = 'B';
+  const solved = state === 'correct', retry = state === 'retry';
   return (
-    <TestShell q={12} total={35} instruction="Choose the correct word" footer={<NextFooter />}>
+    <TestShell q={7} total={20} instruction="Choose the correct word">
       <div style={{ textAlign: 'center', marginTop: 24 }}>
         <div style={{ fontSize: 27, fontWeight: 700, color: TC.fg1 }}>
-          Hun <span style={{ display: 'inline-block', minWidth: 64, borderBottom: `3px solid ${TC.lime}`, margin: '0 4px' }}>&nbsp;</span> læge.
+          Hun <span style={{ display: 'inline-block', minWidth: 64, borderBottom: `3px solid ${solved ? TC.limeBright : TC.lime}`, margin: '0 4px' }}>{solved ? 'er' : '\u00a0'}</span> læge.
         </div>
         <div style={{ fontSize: 13, color: TC.fg2, marginTop: 12 }}>She is a doctor.</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 22 }}>
         {opts.map(([k, w]) => {
-          const sel = k === chosen;
+          const isCorrect = k === correctKey;
+          const isChosenWrong = retry && k === chosenWrong;
+          let bg = 'transparent', bd = '1.5px solid rgba(9,166,209,0.5)', badge = null, fill = false;
+          if ((solved || retry) && isCorrect) { bg = 'rgba(190,242,100,0.30)'; bd = `2px solid ${TC.limeBright}`; badge = <span style={{ color: TC.c800, fontWeight: 800 }}>✓</span>; fill = true; }
+          if (isChosenWrong) { bg = 'rgba(185,28,28,0.10)'; bd = `2px solid ${TC.red}`; badge = <span style={{ color: TC.red, fontWeight: 800 }}>✕</span>; }
           return (
-            <div key={k} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 15px', borderRadius: 14, background: sel ? TC.lime : 'transparent', border: sel ? `2px solid ${TC.lime}` : '1.5px solid rgba(9,166,209,0.5)' }}>
-              <div style={{ width: 26, height: 26, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, background: sel ? TC.c800 : 'transparent', color: sel ? TC.lime : TC.fg2, border: sel ? 'none' : '1.5px solid rgba(0,0,0,0.25)' }}>{k}</div>
+            <div key={k} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 15px', borderRadius: 14, background: bg, border: bd, opacity: isChosenWrong ? 0.92 : 1 }}>
+              <div style={{ width: 26, height: 26, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, background: fill ? TC.c800 : 'transparent', color: fill ? TC.lime : TC.fg2, border: fill ? 'none' : '1.5px solid rgba(0,0,0,0.25)' }}>{k}</div>
               <span style={{ fontSize: 17, fontWeight: 600, color: TC.fg1, flex: 1 }}>{w}</span>
+              {badge}
             </div>
           );
         })}
       </div>
       <div style={{ flex: 1 }} />
+      {solved && <ResultSheet ok answer="er — “is” (at være)" />}
+      {retry && <ResultSheet ok={false} answer="er" />}
     </TestShell>
   );
 }
 
-/* ── 2b · IN-TEST · Sentence reorder (no reveal) ───────────────────── */
-function TestTile({ children, ghost }) {
+/* ── 2b · IN-TEST · Sentence reorder — checked immediately (same as practice) ── */
+function TestReorder({ state = 'retry' }) {
+  const solved = state === 'correct', retry = state === 'retry';
   return (
-    <div style={{ padding: '10px 15px', borderRadius: 11, fontSize: 16, fontWeight: 600,
-      background: ghost ? 'transparent' : 'rgba(255,255,255,0.5)', color: ghost ? 'transparent' : TC.fg1,
-      border: ghost ? '1.5px dashed rgba(0,0,0,0.2)' : 'none' }}>{children}</div>
-  );
-}
-function TestReorder() {
-  return (
-    <TestShell q={18} total={35} instruction="Arrange the words" footer={<NextFooter />}>
+    <TestShell q={12} total={20} instruction="Arrange the words">
       <PromptBlock kicker="Say in Danish" big="My name is Anna." />
-      <div style={{ marginTop: 22, minHeight: 58, borderBottom: `2px solid ${TC.spark}`, display: 'flex', flexWrap: 'wrap', gap: 9, alignItems: 'center', paddingBottom: 12 }}>
-        <TestTile>Jeg</TestTile><TestTile>hedder</TestTile><TestTile>Anna</TestTile>
+      <div style={{ marginTop: 22, minHeight: 58, borderBottom: `2px solid ${retry ? TC.red : TC.spark}`, display: 'flex', flexWrap: 'wrap', gap: 9, alignItems: 'center', paddingBottom: 12 }}>
+        {solved && <React.Fragment>
+          <WordTile tone="correct">Jeg</WordTile><WordTile tone="correct">hedder</WordTile><WordTile tone="correct">Anna</WordTile>
+        </React.Fragment>}
+        {retry && <React.Fragment>
+          <WordTile tone="wrong">Jeg</WordTile><WordTile tone="wrong">Anna</WordTile><WordTile tone="wrong">hedder</WordTile>
+        </React.Fragment>}
       </div>
       <div style={{ flex: 1 }} />
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginBottom: 8 }}>
-        <TestTile ghost>Jeg</TestTile><TestTile ghost>hedder</TestTile><TestTile ghost>Anna</TestTile>
-      </div>
+      {retry && <ResultSheet ok={false} answer="Jeg hedder Anna" />}
+      {solved && <ResultSheet ok answer="Jeg hedder Anna" />}
     </TestShell>
   );
 }
 
-/* ── 2c · IN-TEST · Translation (no reveal) ────────────────────────── */
-function TestTranslation() {
+/* ── 2c · IN-TEST · Translation — checked immediately (same as practice) ── */
+function TestTranslation({ state = 'wrong' }) {
+  const correctAns = 'Hvor kommer du fra?';
+  const typed = state === 'wrong' ? 'Hvor er du fra?' : correctAns;
   return (
-    <TestShell q={31} total={35} instruction="Translate to Danish"
-      footer={<div style={{ padding: '10px 16px 16px', flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: 11 }}>
-        <FauxInput value="Hvor kommer du fra?" placeholder="Type Danish translation…" />
-        <RoundButton name="tome/send" size={48} variant="primary" />
-      </div>}>
+    <TestShell q={18} total={20} instruction="Translate to Danish"
+      footer={state === 'idle'
+        ? <div style={{ padding: '10px 16px 16px', flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: 11 }}>
+            <FauxInput value={correctAns} placeholder="Type Danish translation…" />
+            <RoundButton name="tome/send" size={48} variant="primary" />
+          </div>
+        : undefined}>
       <PromptBlock kicker="In Danish, say" big="Where are you from?" />
+      {state !== 'idle' && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 28 }}>
+          <AnswerBox text={typed} ok={state === 'correct'} big />
+        </div>
+      )}
       <div style={{ flex: 1 }} />
+      {state !== 'idle' && <ResultSheet ok={state === 'correct'} answer={correctAns} aiVerify={state === 'wrong'} />}
     </TestShell>
   );
 }
 
 /* ── 3 · SUBMIT — confirm before scoring ───────────────────────────── */
 function TestSubmit() {
-  const dots = Array.from({ length: 35 });
+  const dots = Array.from({ length: 20 });
   return (
     <TomeScreen title="Module Test">
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '10px 24px 0', textAlign: 'center' }}>
         <div style={{ marginTop: 12 }}>
           <Label color={TC.fg2}>All answered</Label>
-          <div style={{ fontSize: 30, fontWeight: 700, color: TC.fg1, marginTop: 8 }}>35 / 35</div>
+          <div style={{ fontSize: 30, fontWeight: 700, color: TC.fg1, marginTop: 8 }}>20 / 20</div>
           <div style={{ fontSize: 14, color: TC.fg2, marginTop: 11, lineHeight: 1.5 }}>You can't change answers once you submit. Ready to see how you did?</div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: 7, marginTop: 26 }}>
@@ -221,16 +228,16 @@ function TestResultPass() {
           {[18, 70, 128, 250, 312].map((a, i) => (
             <span key={i} style={{ position: 'absolute', left: '50%', top: '50%', width: 7, height: 7, borderRadius: '50%', background: i % 2 ? TC.limeBright : TC.spark, transform: `rotate(${a}deg) translateY(-118px)` }} />
           ))}
-          <Ring size={184} stroke={15} pct={0.86} track="rgba(0,0,0,0.10)" fill={TC.limeBright}
-            center={<div style={{ fontSize: 52, fontWeight: 700, color: TC.fg1, lineHeight: 1 }}>86<span style={{ fontSize: 24 }}>%</span></div>}
-            sub={<div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, fontWeight: 700, color: TC.fg2, marginTop: 6 }}><Verdict ok size={16} /> 30 / 35 correct</div>} />
+          <Ring size={184} stroke={15} pct={0.85} track="rgba(0,0,0,0.10)" fill={TC.limeBright}
+            center={<div style={{ fontSize: 52, fontWeight: 700, color: TC.fg1, lineHeight: 1 }}>85<span style={{ fontSize: 24 }}>%</span></div>}
+            sub={<div style={{ fontSize: 12, fontWeight: 700, color: TC.fg2, marginTop: 6 }}>17 / 20 correct</div>} />
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, color: TC.fg1, marginTop: 20 }}>Module passed!</div>
         <div style={{ fontSize: 14, color: TC.fg2, marginTop: 7, lineHeight: 1.5 }}><b>Who Are You?</b> is complete. Module 02 is now unlocked.</div>
-        <div style={{ width: '100%', marginTop: 22 }}><ThresholdBar score={86} pass /></div>
+        <div style={{ width: '100%', marginTop: 22 }}><ThresholdBar score={85} pass /></div>
         <div style={{ flex: 1 }} />
         <div style={{ width: '100%', paddingBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <button style={{ width: '100%', border: 'none', borderRadius: 9999, background: TC.c800, color: TC.lime, fontFamily: 'inherit', fontWeight: 700, fontSize: 16, padding: 16, cursor: 'pointer' }}>Next module</button>
+          <button style={{ width: '100%', border: 'none', borderRadius: 9999, background: TC.c800, color: TC.lime, fontFamily: 'inherit', fontWeight: 700, fontSize: 16, padding: 16, cursor: 'pointer' }}>Home</button>
           <button style={{ width: '100%', border: `2px solid ${TC.c700}`, borderRadius: 9999, background: 'transparent', color: TC.fg1, fontFamily: 'inherit', fontWeight: 700, fontSize: 14.5, padding: 13, cursor: 'pointer' }}>Review answers</button>
         </div>
       </div>
@@ -244,13 +251,13 @@ function TestResultFail() {
     <TomeScreen title="Module Test">
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '6px 24px 0', textAlign: 'center' }}>
         <div style={{ marginTop: 26 }}>
-          <Ring size={184} stroke={15} pct={0.71} track="rgba(0,0,0,0.10)" fill={TC.c300}
-            center={<div style={{ fontSize: 52, fontWeight: 700, color: TC.fg1, lineHeight: 1 }}>71<span style={{ fontSize: 24 }}>%</span></div>}
-            sub={<div style={{ fontSize: 12, fontWeight: 700, color: TC.fg2, marginTop: 6 }}>25 / 35 correct</div>} />
+          <Ring size={184} stroke={15} pct={0.70} track="rgba(0,0,0,0.10)" fill={TC.c300}
+            center={<div style={{ fontSize: 52, fontWeight: 700, color: TC.fg1, lineHeight: 1 }}>70<span style={{ fontSize: 24 }}>%</span></div>}
+            sub={<div style={{ fontSize: 12, fontWeight: 700, color: TC.fg2, marginTop: 6 }}>14 / 20 correct</div>} />
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, color: TC.fg1, marginTop: 20 }}>So close</div>
-        <div style={{ fontSize: 14, color: TC.fg2, marginTop: 7, lineHeight: 1.5 }}>You need <b>80%</b> to pass — that's just 3 more answers. Review what slipped, then try again.</div>
-        <div style={{ width: '100%', marginTop: 22 }}><ThresholdBar score={71} pass={false} /></div>
+        <div style={{ fontSize: 14, color: TC.fg2, marginTop: 7, lineHeight: 1.5 }}>You need <b>80%</b> to pass — that's just 2 more answers. Review what slipped, then try again.</div>
+        <div style={{ width: '100%', marginTop: 22 }}><ThresholdBar score={70} pass={false} /></div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 22, padding: '10px 16px', borderRadius: 9999, border: `1.5px solid rgba(9,166,209,0.5)`, color: TC.fg2 }}>
           <Lock size={14} color={TC.fg2} /><span style={{ fontSize: 13, fontWeight: 700 }}>Retry in 18:42</span>
         </div>
@@ -306,11 +313,11 @@ function TestReview() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ flex: 1 }}>
             <Label>A1·01 · Who Are You?</Label>
-            <div style={{ fontSize: 18, fontWeight: 700, color: TC.fg1, marginTop: 3 }}>30 / 35 correct</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: TC.fg1, marginTop: 3 }}>17 / 20 correct</div>
           </div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '7px 15px', borderRadius: 9999, background: TC.lime, color: TC.c800, fontSize: 15, fontWeight: 700 }}>86%</div>
+          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '7px 15px', borderRadius: 9999, background: TC.lime, color: TC.c800, fontSize: 15, fontWeight: 700 }}>85%</div>
         </div>
-        <div style={{ marginTop: 11 }}><Bar pct={0.86} h={6} /></div>
+        <div style={{ marginTop: 11 }}><Bar pct={0.85} h={6} /></div>
       </div>
       <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', padding: '16px 18px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <ReviewWrong prompt="Translate: Where are you from?" yours="Hvor er du fra?" correct="Hvor kommer du fra?" ai />

@@ -325,40 +325,30 @@ function ExConjugation({ state = 'idle' }) {
   );
 }
 
-/* 5 ── Error Correction ─────────────────────────── */
+/* 5 ── Error Correction — rewrite the whole sentence to fix the mistake ─── */
 function ExErrorCorrection({ state = 'idle' }) {
-  const typed = state === 'wrong' ? 'hedde' : 'hedder';
+  const prompt = 'Jeg hedde Anna.';                 // the sentence as shown — contains one error
+  const correctAns = 'Jeg hedder Anna.';            // the fixed sentence
+  const typed = state === 'wrong' ? 'Jeg heder Anna.' : correctAns;
   return (
-    <ExShell instruction="Spot &amp; fix the mistake">
-      <div style={{ textAlign: 'center', marginTop: 24 }}>
-        <Label style={{ marginBottom: 16 }}>{state === 'idle' ? 'One word is wrong — tap it' : 'The sentence'}</Label>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 9, justifyContent: 'center' }}>
-          {[['Jeg', false], ['hedde', true], ['Anna', false]].map(([w, bad], i) => {
-            const fixed = state === 'correct' && bad;
-            return (
-              <span key={i} style={{ position: 'relative', fontSize: 23, fontWeight: 700, padding: '6px 12px', borderRadius: 10,
-                color: fixed ? TC.fg1 : bad ? TC.red : TC.fg1,
-                background: fixed ? 'rgba(190,242,100,0.30)' : bad ? 'rgba(185,28,28,0.10)' : 'transparent',
-                border: fixed ? `2px solid ${TC.limeBright}` : bad ? `2px solid ${TC.red}` : '2px solid transparent' }}>
-                {fixed ? 'hedder' : w}
-              </span>
-            );
-          })}
+    <ExShell instruction="Rewrite it correctly">
+      <div style={{ textAlign: 'center', marginTop: 22 }}>
+        <Label style={{ marginBottom: 12 }}>This sentence has one mistake</Label>
+        <div style={{ display: 'inline-block', background: 'rgba(0,0,0,0.05)', border: `1.5px solid rgba(9,166,209,0.4)`, borderRadius: 14, padding: '14px 20px' }}>
+          <span style={{ fontSize: 26, fontWeight: 700, color: TC.fg1, lineHeight: 1.25 }}>{prompt}</span>
         </div>
-        <div style={{ fontSize: 13, color: TC.fg2, marginTop: 16 }}>Meaning: "My name is Anna."</div>
+        <div style={{ fontSize: 13, color: TC.fg2, marginTop: 12 }}>Meaning: "My name is Anna."</div>
       </div>
-      <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-        <Label>{state === 'idle' ? 'Correct it' : 'Your correction'}</Label>
-        {state === 'idle'
-          ? <div style={{ display: 'inline-flex', alignItems: 'center', background: 'rgba(0,0,0,0.06)', border: `2px solid ${TC.c600}`, borderRadius: 12, padding: '10px 18px', minWidth: 150, justifyContent: 'center' }}>
-              <span style={{ fontSize: 20, fontWeight: 700, color: TC.fg1 }}>hedder</span><span style={{ width: 2, height: 22, background: TC.c800, marginLeft: 3, borderRadius: 2 }} />
-            </div>
-          : <AnswerBox text={typed} ok={state === 'correct'} strike={state === 'wrong'} big />}
-      </div>
+      {state !== 'idle' && (
+        <div style={{ marginTop: 26, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+          <Label>Your rewrite</Label>
+          <AnswerBox text={typed} ok={state === 'correct'} strike={state === 'wrong'} big />
+        </div>
+      )}
       <div style={{ flex: 1 }} />
       {state === 'idle'
-        ? <CheckFooter />
-        : <ResultSheet ok={state === 'correct'} answer="hedde → hedder" />}
+        ? <SendFooter value={correctAns} placeholder="Rewrite the full sentence…" />
+        : <ResultSheet ok={state === 'correct'} answer={correctAns} aiVerify={state === 'wrong'} />}
     </ExShell>
   );
 }
@@ -388,6 +378,6 @@ function ExTranslation({ state = 'idle', long }) {
 
 Object.assign(window, {
   ExShell, FauxInput, SendFooter, CheckFooter, PromptBlock,
-  Verdict, SheetBtn, ContinueBtn, AnswerBox, ResultSheet,
+  Verdict, SheetBtn, ContinueBtn, AnswerBox, ResultSheet, WordTile,
   ExMultipleChoice, ExReorder, ExFillBlank, ExConjugation, ExErrorCorrection, ExTranslation,
 });

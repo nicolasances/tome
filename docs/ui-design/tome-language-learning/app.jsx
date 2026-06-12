@@ -70,12 +70,12 @@ function Canvas() {
       </DCSection>
 
       <DCSection id="test" title="6 · Module test"
-        subtitle="Step 3 — the gated, scored sibling of practice. Locked 4h after full coverage, then 35 questions reusing the same six types with NO per-answer feedback; answers are revealed only at the end. 80% to pass; mastery still updates exactly as in practice.">
+        subtitle="Step 3 — the gated, scored sibling of practice. Locked 4h after full coverage, then 20 questions reusing the same six types. The in-test exercises have the exact same interface as practice — every answer is checked immediately and mistakes are shown right away. 80% to pass; mastery still updates exactly as in practice.">
         {board('test-lock', 'Locked · spaced-repetition countdown', <TestLocked />)}
         {board('test-ready', 'Ready · what\u2019s coming', <TestReady />)}
-        {board('test-mc', 'In-test · multiple choice (no reveal)', <TestMC />)}
-        {board('test-reorder', 'In-test · sentence reorder (no reveal)', <TestReorder />)}
-        {board('test-trans', 'In-test · translation (no reveal)', <TestTranslation />)}
+        {board('test-mc', 'In-test · multiple choice (immediate feedback)', <TestMC />)}
+        {board('test-reorder', 'In-test · sentence reorder (immediate feedback)', <TestReorder />)}
+        {board('test-trans', 'In-test · translation (immediate feedback)', <TestTranslation />)}
         {board('test-submit', 'Submit · confirm before scoring', <TestSubmit />)}
         {board('test-pass', 'Result · passed (\u226580%)', <TestResultPass />)}
         {board('test-fail', 'Result · not passed (retry in 20m)', <TestResultFail />)}
