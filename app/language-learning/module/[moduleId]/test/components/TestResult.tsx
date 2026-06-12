@@ -4,33 +4,58 @@ import { useEffect, useState } from 'react';
 import { SubmitTestResponse } from '@/api/TomeModuleTestAPI';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 
-function ScoreRing({score, correctCount, totalCount}: {score: number, correctCount: number, totalCount: number}) {
-    const pct = Math.round(score);
+/* Per the wireframe (tome-kit Ring): restrained celebration spark ticks around the pass ring */
+const SPARK_ANGLES = [18, 70, 128, 250, 312];
+
+function ScoreRing({score, passed, correctCount, totalCount}: {score: number, passed: boolean, correctCount: number, totalCount: number}) {
+    const size = 184;
+    const stroke = 15;
+    const r = (size - stroke) / 2;
+    const circumference = 2 * Math.PI * r;
+    const pct = Math.min(Math.max(score, 0), 100) / 100;
+
     return (
-        <div className="relative w-36 h-36 flex items-center justify-center">
-            <div
-                className="absolute inset-0 rounded-full"
-                style={{ background: `conic-gradient(#155e75 ${pct * 3.6}deg, rgba(0,0,0,0.08) 0deg)` }}
-            />
-            <div className="w-28 h-28 rounded-full bg-white/90 flex flex-col items-center justify-center z-10">
-                <span className="text-2xl font-black text-cyan-800">{pct}%</span>
-                <span className="text-xs font-bold text-black/60">{correctCount} / {totalCount}</span>
+        <div className="relative w-[184px] h-[184px]">
+            {passed && SPARK_ANGLES.map((angle, i) => (
+                <span
+                    key={angle}
+                    className={`absolute left-1/2 top-1/2 w-[7px] h-[7px] rounded-full ${i % 2 ? 'bg-lime-300' : 'bg-[#5ddef4]'}`}
+                    style={{ transform: `rotate(${angle}deg) translateY(-118px)` }}
+                />
+            ))}
+            <svg width={size} height={size} className="-rotate-90">
+                <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(0,0,0,0.10)" strokeWidth={stroke} />
+                <circle
+                    cx={size / 2} cy={size / 2} r={r} fill="none"
+                    className={passed ? 'stroke-lime-300' : 'stroke-cyan-300'}
+                    strokeWidth={stroke}
+                    strokeDasharray={circumference}
+                    strokeDashoffset={circumference * (1 - pct)}
+                    strokeLinecap="round"
+                />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-[52px] font-bold text-black/80 leading-none">
+                    {Math.round(score)}<span className="text-2xl">%</span>
+                </span>
+                <span className="text-xs font-bold text-black/70 mt-1.5">{correctCount} / {totalCount} correct</span>
             </div>
         </div>
     );
 }
 
-function ThresholdBar({score, threshold}: {score: number, threshold: number}) {
+function ThresholdBar({score, threshold, passed}: {score: number, threshold: number, passed: boolean}) {
     return (
-        <div className="w-full">
-            <div className="relative w-full h-3 rounded-full bg-black/10 overflow-visible">
-                <div className="h-full rounded-full bg-cyan-800 transition-all duration-500" style={{ width: `${Math.min(score, 100)}%` }} />
-                <div className="absolute top-[-4px] bottom-[-4px] w-0.5 bg-red-500" style={{ left: `${threshold}%` }} />
+        <div className="relative w-full pt-1 pb-6">
+            <div className="w-full h-[10px] rounded-full bg-black/10 overflow-hidden">
+                <div
+                    className={`h-full rounded-full transition-all duration-500 ${passed ? 'bg-lime-300' : 'bg-cyan-300'}`}
+                    style={{ width: `${Math.min(score, 100)}%` }}
+                />
             </div>
-            <div className="flex justify-between mt-1">
-                <span className="text-xs text-black/40">0%</span>
-                <span className="text-xs font-semibold text-red-500">{threshold}% to pass</span>
-                <span className="text-xs text-black/40">100%</span>
+            <div className="absolute top-0 -translate-x-1/2 flex flex-col items-center" style={{ left: `${threshold}%` }}>
+                <div className="w-0.5 h-[18px] rounded-sm bg-cyan-800" />
+                <span className="text-[10px] font-bold text-black/70 mt-[3px] whitespace-nowrap">pass {threshold}%</span>
             </div>
         </div>
     );
@@ -46,8 +71,8 @@ function RetryCountdown({retryAvailableAt}: {retryAvailableAt: string}) {
     const m = Math.floor(totalSec / 60);
     const s = totalSec % 60;
     return (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-black/10 px-3 py-1.5 text-sm font-semibold text-black/70">
-            <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3 h-3" color="bg-black/60" />
+        <span className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-[rgba(9,166,209,0.5)] px-4 py-2.5 text-[13px] font-bold text-black/70">
+            <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-black/70" />
             Retry in {String(m).padStart(2, '0')}:{String(s).padStart(2, '0')}
         </span>
     );
@@ -68,29 +93,33 @@ export function TestResult({result, passThreshold, moduleNumber, correctCount, t
     const { score, passed } = result;
 
     return (
-        <div className="flex flex-1 flex-col items-center px-5 pt-8 pb-4 gap-5">
-            <ScoreRing score={score} correctCount={correctCount} totalCount={totalCount} />
-
-            <div className="flex flex-col items-center gap-1 text-center">
-                <h1 className="text-2xl font-black text-cyan-800">{passed ? 'Module passed!' : 'So close!'}</h1>
-                {passed ? (
-                    <p className="text-sm text-black/60">Module {moduleNumber} is now unlocked.</p>
-                ) : (
-                    <p className="text-sm text-black/60 max-w-xs">
-                        You need {passThreshold}% to pass. Keep practising and try again.
-                    </p>
-                )}
+        <div className="flex flex-1 flex-col items-center px-6 pt-6 pb-4 text-center">
+            <div className="mt-6">
+                <ScoreRing score={score} passed={passed} correctCount={correctCount} totalCount={totalCount} />
             </div>
 
-            <div className="w-full">
-                <ThresholdBar score={score} threshold={passThreshold} />
+            <h1 className="text-[26px] font-bold text-black/80 mt-5">{passed ? 'Module passed!' : 'So close'}</h1>
+            {passed ? (
+                <p className="text-sm text-black/70 mt-2 leading-relaxed">Module {moduleNumber} is now unlocked.</p>
+            ) : (
+                <p className="text-sm text-black/70 mt-2 leading-relaxed max-w-xs">
+                    You need <b>{passThreshold}%</b> to pass. Review what slipped, then try again.
+                </p>
+            )}
+
+            <div className="w-full mt-6">
+                <ThresholdBar score={score} threshold={passThreshold} passed={passed} />
             </div>
 
-            {!passed && testRetryAvailableAt && <RetryCountdown retryAvailableAt={testRetryAvailableAt} />}
+            {!passed && testRetryAvailableAt && (
+                <div className="mt-3">
+                    <RetryCountdown retryAvailableAt={testRetryAvailableAt} />
+                </div>
+            )}
 
             <div className="flex-1" />
 
-            <div className="w-full flex flex-col gap-3">
+            <div className="w-full flex flex-col gap-2.5">
                 {passed && (
                     <button onClick={onHome} className="w-full rounded-full bg-cyan-800 text-lime-200 font-bold text-base py-4 cursor-pointer">
                         Home
@@ -98,7 +127,7 @@ export function TestResult({result, passThreshold, moduleNumber, correctCount, t
                 )}
                 <button
                     onClick={onReview}
-                    className={`w-full rounded-full font-bold text-base py-4 cursor-pointer ${passed ? 'border-2 border-cyan-800 text-cyan-800 bg-transparent' : 'bg-cyan-800 text-lime-200'}`}>
+                    className={`w-full rounded-full font-bold cursor-pointer ${passed ? 'border-2 border-cyan-700 text-black/80 bg-transparent text-[14.5px] py-[13px]' : 'bg-cyan-800 text-lime-200 text-base py-4'}`}>
                     Review answers
                 </button>
             </div>
