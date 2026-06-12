@@ -1,5 +1,5 @@
 import { TotoAPI } from "./TotoAPI";
-import { Exercise, ExerciseType } from "./TomePracticeSessionAPI";
+import { Exercise } from "./TomePracticeSessionAPI";
 
 export class TomeModuleTestAPI {
 
@@ -26,12 +26,16 @@ export class TomeModuleTestAPI {
      *
      * Endpoint: POST /users/:userId/modules/:moduleId/tests
      */
-    async startTest(userId: string, moduleId: string): Promise<StartTestResponse> {
+    async startTest(userId: string, moduleId: string): Promise<StartTestResponse | TestAttempt> {
         const response = await new TotoAPI().fetch(
             'tome-ms-language',
             `/users/${userId}/modules/${moduleId}/tests`,
             { method: 'POST', headers: { 'Content-Type': 'application/json' } }
         );
+        if (response.status === 409) {
+            const { attemptId } = await response.json();
+            return this.getTestAttempt(userId, attemptId);
+        }
         if (!response.ok) throw new Error(`Failed to start test (${response.status})`);
         return response.json();
     }
@@ -112,14 +116,10 @@ export class TomeModuleTestAPI {
  * Drives phase resolution on route entry: locked → ready → in-progress.
  */
 export interface TestEligibilityResponse {
-    /** True when the user may start or resume a test attempt. */
-    canStart: boolean;
-    /** ISO timestamp of when the test unlocks; null when already unlocked. */
-    testUnlocksAt: string | null;
-    /** ID of an in-progress (not yet submitted) attempt; null when none exists. */
-    inProgressAttemptId: string | null;
-    /** ISO timestamp of when a retry becomes available after a fail; null otherwise. */
-    testRetryAvailableAt: string | null;
+    eligible: boolean;
+    testUnlocksAt?: string;
+    testRetryAvailableAt?: string;
+    remainingMs?: number;
 }
 
 /** Returned by POST /tests (fresh start). */
@@ -145,15 +145,12 @@ export interface TestAnswer {
  */
 export interface TestAttempt {
     attemptId: string;
-    userId: string;
     moduleId: string;
-    /** Complete ordered exercise list (same order as the original start response). */
     exercises: Exercise[];
-    /** All answers submitted so far. Length = number of answered questions. */
     answers: TestAnswer[];
-    status: 'in_progress' | 'submitted';
+    currentPosition: number;
     startedAt: string;
-    submittedAt: string | null;
+    takenAt: string | null;
 }
 
 /** Returned by POST /answers for immediate per-question feedback. */
@@ -169,20 +166,12 @@ export interface SubmitTestResponse {
     score: number;
     /** True when score ≥ testPassThreshold. */
     passed: boolean;
-    correctCount: number;
-    totalCount: number;
-    /** ISO timestamp of when a retry becomes available; null on pass. */
-    testRetryAvailableAt: string | null;
 }
 
 /** One entry in the Review list. */
 export interface TestReviewItem {
     exerciseId: string;
-    type: ExerciseType;
-    /** The question / sentence shown to the user. */
     prompt: string;
-    /** English translation of the prompt; null for production-type exercises. */
-    promptTranslation: string | null;
     userAnswer: string;
     correctAnswer: string;
     isCorrect: boolean;
@@ -190,5 +179,5 @@ export interface TestReviewItem {
 
 /** Returned by GET /review. */
 export interface TestReviewResponse {
-    items: TestReviewItem[];
+    questions: TestReviewItem[];
 }

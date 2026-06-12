@@ -57,12 +57,15 @@ interface TestResultProps {
     result: SubmitTestResponse;
     passThreshold: number;
     moduleNumber: string;
+    correctCount: number;
+    totalCount: number;
+    testRetryAvailableAt?: string;
     onReview: () => void;
     onHome: () => void;
 }
 
-export function TestResult({result, passThreshold, moduleNumber, onReview, onHome}: TestResultProps) {
-    const { score, passed, correctCount, totalCount, testRetryAvailableAt } = result;
+export function TestResult({result, passThreshold, moduleNumber, correctCount, totalCount, testRetryAvailableAt, onReview, onHome}: TestResultProps) {
+    const { score, passed } = result;
 
     return (
         <div className="flex flex-1 flex-col items-center px-5 pt-8 pb-4 gap-5">

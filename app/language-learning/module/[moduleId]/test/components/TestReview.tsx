@@ -4,7 +4,7 @@ import { TestReviewItem } from '@/api/TomeModuleTestAPI';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 
 function ReviewItemRow({item}: {item: TestReviewItem}) {
-    const { isCorrect, prompt, userAnswer, correctAnswer, type } = item;
+    const { isCorrect, prompt, userAnswer, correctAnswer } = item;
 
     if (isCorrect) {
         return (
@@ -36,12 +36,6 @@ function ReviewItemRow({item}: {item: TestReviewItem}) {
                         <MaskedSvgIcon src="/images/teacher.svg" alt="Explain" size="w-3 h-3" color="bg-black/60" />
                         Explain my mistake
                     </button>
-                    {type === 'translation_active' && (
-                        <button className="inline-flex items-center gap-1.5 border border-black/20 rounded-full py-1.5 px-3 text-xs font-semibold text-black/70">
-                            <MaskedSvgIcon src="/images/magic.svg" alt="AI" size="w-3 h-3" color="bg-black/60" />
-                            Check with AI
-                        </button>
-                    )}
                 </div>
             </div>
         </div>

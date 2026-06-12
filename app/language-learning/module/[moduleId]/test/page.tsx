@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
-import { TomeModuleTestAPI, TestEligibilityResponse, SubmitTestResponse, TestReviewItem } from '@/api/TomeModuleTestAPI';
+import { TomeModuleTestAPI, TestEligibilityResponse, SubmitTestResponse, TestReviewItem, TestAttempt } from '@/api/TomeModuleTestAPI';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { TestLocked } from './components/TestLocked';
 import { TestReady } from './components/TestReady';
@@ -65,6 +65,8 @@ export default function ModuleTestPage() {
 
     // Result / review
     const [submitResult, setSubmitResult] = useState<SubmitTestResponse | null>(null);
+    const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
+    const [testRetryAvailableAt, setTestRetryAvailableAt] = useState<string | undefined>(undefined);
     const [reviewItems, setReviewItems] = useState<TestReviewItem[] | null>(null);
     const [isStarting, setIsStarting] = useState(false);
     const [isSubmittingTest, setIsSubmittingTest] = useState(false);
@@ -97,23 +99,13 @@ export default function ModuleTestPage() {
             const elig = await new TomeModuleTestAPI().getTestEligibility(me.id, moduleId);
             setEligibility(elig);
 
-            if (!elig.canStart) {
+            if (!elig.eligible) {
                 const lockTime = elig.testUnlocksAt ?? elig.testRetryAvailableAt;
                 if (lockTime && new Date(lockTime) > new Date()) {
                     setPhase('locked');
                 } else {
                     router.push(`/language-learning/module/${moduleId}`);
                 }
-                return;
-            }
-
-            if (elig.inProgressAttemptId) {
-                const attempt = await new TomeModuleTestAPI().getTestAttempt(me.id, elig.inProgressAttemptId);
-                setAttemptId(attempt.attemptId);
-                setExercises(attempt.exercises);
-                const answered = attempt.answers.length;
-                setAnsweredCount(answered);
-                setPhase(answered >= attempt.exercises.length ? 'submit' : 'in-test');
                 return;
             }
 
@@ -130,12 +122,24 @@ export default function ModuleTestPage() {
             const result = await new TomeModuleTestAPI().startTest(userId, moduleId);
             setAttemptId(result.attemptId);
             setExercises(result.exercises);
-            setAnsweredCount(0);
             setSubmissionState(null);
             setInputValue('');
             setSelectedOption(null);
             setBuiltWords([]);
-            setPhase('in-test');
+
+            if ('answers' in result) {
+                // Resume: 409 path returned full TestAttempt
+                const attempt = result as TestAttempt;
+                const pos = attempt.answers.length;
+                const correctSoFar = attempt.answers.filter(a => a.isCorrect).length;
+                setAnsweredCount(pos);
+                setCorrectAnswerCount(correctSoFar);
+                setPhase(pos >= attempt.exercises.length ? 'submit' : 'in-test');
+            } else {
+                setAnsweredCount(0);
+                setCorrectAnswerCount(0);
+                setPhase('in-test');
+            }
         } catch { setPhase('error'); } finally { setIsStarting(false); }
     }
 
@@ -163,6 +167,7 @@ export default function ModuleTestPage() {
     // ── Continue (single-pass: no retry queue) ────────────────────────────────
     function handleContinue() {
         if (!submissionState) return;
+        if (submissionState.isCorrect) setCorrectAnswerCount(prev => prev + 1);
         const next = answeredCount + 1;
         setAnsweredCount(next);
         setSubmissionState(null);
@@ -178,6 +183,10 @@ export default function ModuleTestPage() {
         try {
             const result = await new TomeModuleTestAPI().submitTest(userId, attemptId);
             setSubmitResult(result);
+            if (!result.passed) {
+                const elig = await new TomeModuleTestAPI().getTestEligibility(userId, moduleId);
+                setTestRetryAvailableAt(elig.testRetryAvailableAt);
+            }
             setPhase('result');
         } catch { setPhase('error'); } finally { setIsSubmittingTest(false); }
     }
@@ -185,8 +194,8 @@ export default function ModuleTestPage() {
     // ── Open review ───────────────────────────────────────────────────────────
     async function handleOpenReview() {
         try {
-            const { items } = await new TomeModuleTestAPI().getReview(userId, attemptId);
-            setReviewItems(items);
+            const { questions } = await new TomeModuleTestAPI().getReview(userId, attemptId);
+            setReviewItems(questions);
             setPhase('review');
         } catch { setPhase('error'); }
     }
@@ -292,6 +301,9 @@ export default function ModuleTestPage() {
                     result={submitResult}
                     passThreshold={moduleData.testPassThreshold}
                     moduleNumber={moduleNumber}
+                    correctCount={correctAnswerCount}
+                    totalCount={exercises.length}
+                    testRetryAvailableAt={testRetryAvailableAt}
                     onReview={handleOpenReview}
                     onHome={() => router.push('/language-learning')}
                 />

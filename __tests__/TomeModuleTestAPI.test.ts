@@ -18,26 +18,19 @@ import { Exercise } from '../api/TomePracticeSessionAPI';
 describe('TomeModuleTestAPI type shapes', () => {
 
     it('TestEligibilityResponse has the required fields', () => {
-        const r: TestEligibilityResponse = {
-            canStart: true,
-            testUnlocksAt: null,
-            inProgressAttemptId: null,
-            testRetryAvailableAt: null,
-        };
-        expect(r.canStart).toBe(true);
-        expect(r.testUnlocksAt).toBeNull();
-        expect(r.inProgressAttemptId).toBeNull();
-        expect(r.testRetryAvailableAt).toBeNull();
+        const r: TestEligibilityResponse = { eligible: true };
+        expect(r.eligible).toBe(true);
+        expect(r.testUnlocksAt).toBeUndefined();
+        expect(r.testRetryAvailableAt).toBeUndefined();
     });
 
     it('TestEligibilityResponse supports lock and retry timestamps', () => {
         const r: TestEligibilityResponse = {
-            canStart: false,
+            eligible: false,
             testUnlocksAt: '2026-06-13T10:00:00Z',
-            inProgressAttemptId: null,
             testRetryAvailableAt: '2026-06-12T12:20:00Z',
         };
-        expect(r.canStart).toBe(false);
+        expect(r.eligible).toBe(false);
         expect(typeof r.testUnlocksAt).toBe('string');
         expect(typeof r.testRetryAvailableAt).toBe('string');
     });
@@ -80,16 +73,15 @@ describe('TomeModuleTestAPI type shapes', () => {
     it('TestAttempt contains exercises and answers for resume', () => {
         const attempt: TestAttempt = {
             attemptId: 'attempt-1',
-            userId: 'user-1',
             moduleId: 'mod-1',
             exercises: [],
             answers: [],
-            status: 'in_progress',
+            currentPosition: 0,
             startedAt: '2026-06-12T09:00:00Z',
-            submittedAt: null,
+            takenAt: null,
         };
-        expect(attempt.status).toBe('in_progress');
-        expect(attempt.submittedAt).toBeNull();
+        expect(attempt.currentPosition).toBe(0);
+        expect(attempt.takenAt).toBeNull();
     });
 
     it('SubmitTestAnswerResponse has isCorrect and correctAnswer', () => {
@@ -101,37 +93,22 @@ describe('TomeModuleTestAPI type shapes', () => {
         expect(r.correctAnswer).toBe('spiser');
     });
 
-    it('SubmitTestResponse pass case has no retry timestamp', () => {
-        const r: SubmitTestResponse = {
-            score: 85,
-            passed: true,
-            correctCount: 17,
-            totalCount: 20,
-            testRetryAvailableAt: null,
-        };
+    it('SubmitTestResponse has score and passed', () => {
+        const r: SubmitTestResponse = { score: 85, passed: true };
         expect(r.passed).toBe(true);
         expect(r.score).toBe(85);
-        expect(r.testRetryAvailableAt).toBeNull();
     });
 
-    it('SubmitTestResponse fail case has a retry timestamp', () => {
-        const r: SubmitTestResponse = {
-            score: 70,
-            passed: false,
-            correctCount: 14,
-            totalCount: 20,
-            testRetryAvailableAt: '2026-06-12T09:20:00Z',
-        };
+    it('SubmitTestResponse fail case only returns score and passed', () => {
+        const r: SubmitTestResponse = { score: 70, passed: false };
         expect(r.passed).toBe(false);
-        expect(typeof r.testRetryAvailableAt).toBe('string');
+        expect(r.score).toBe(70);
     });
 
     it('TestReviewItem has prompt, userAnswer, correctAnswer, and isCorrect', () => {
         const item: TestReviewItem = {
             exerciseId: 'ex-1',
-            type: 'translation_active',
             prompt: 'I eat',
-            promptTranslation: null,
             userAnswer: 'Jeg spise',
             correctAnswer: 'Jeg spiser',
             isCorrect: false,
@@ -140,9 +117,9 @@ describe('TomeModuleTestAPI type shapes', () => {
         expect(item.correctAnswer).toBe('Jeg spiser');
     });
 
-    it('TestReviewResponse wraps an items array', () => {
-        const r: TestReviewResponse = { items: [] };
-        expect(Array.isArray(r.items)).toBe(true);
+    it('TestReviewResponse wraps a questions array', () => {
+        const r: TestReviewResponse = { questions: [] };
+        expect(Array.isArray(r.questions)).toBe(true);
     });
 });
 
