@@ -9,6 +9,7 @@ export interface StepItem {
     state: StepState;
     lockLabel?: string;
     coverage?: { seen: number; total: number };
+    onNavigate?: () => void;
 }
 
 function StepMedallion({number, state}: {number: number, state: StepState}) {
@@ -46,12 +47,15 @@ function CoverageBar({seen, total}: {seen: number; total: number}) {
 }
 
 function StepRow({step}: {step: StepItem}) {
-    const { state, number, title, subtitle, lockLabel, coverage } = step;
+    const { state, number, title, subtitle, lockLabel, coverage, onNavigate } = step;
     const isAvailable = state === 'available';
     const isLocked = state === 'locked';
+    const isClickable = isAvailable && !!onNavigate;
 
     return (
-        <div className={`flex ${coverage ? 'items-start' : 'items-center'} gap-[13px] px-[14px] py-[13px] rounded-[14px] ${isAvailable ? 'bg-cyan-700/30' : 'bg-transparent'} ${isAvailable ? '' : 'border border-[rgba(9,166,209,0.4)]'} ${isLocked ? 'opacity-[0.85]' : ''}`}>
+        <div
+            onClick={isClickable ? onNavigate : undefined}
+            className={`flex ${coverage ? 'items-start' : 'items-center'} gap-[13px] px-[14px] py-[13px] rounded-[14px] ${isAvailable ? 'bg-cyan-700/30' : 'bg-transparent'} ${isAvailable ? '' : 'border border-[rgba(9,166,209,0.4)]'} ${isLocked ? 'opacity-[0.85]' : ''} ${isClickable ? 'cursor-pointer' : ''}`}>
             <StepMedallion number={number} state={state} />
             <div className="flex flex-col flex-1 min-w-0">
                 <span className="text-[15px] font-bold text-black/80">{title}</span>

@@ -63,7 +63,7 @@ function deriveCtaInfo(
                 const countdown = testUnlocksAt ? formatCountdown(testUnlocksAt) : '';
                 return { label: `Test unlocks in ${countdown}`, disabled: true };
             }
-            return { label: 'Start test', disabled: true };
+            return { label: 'Start test', disabled: false };
         }
         case 'done':
             return { label: 'Module complete', disabled: true };
@@ -140,6 +140,7 @@ export default function ModuleOverviewPage() {
                 subtitle: `${data.module.testQuestionCount ?? "?"} questions · ${data.module.testPassThreshold}% to pass`,
                 state: stepStates.test,
                 lockLabel: testLockLabel,
+                onNavigate: stepStates.test === 'available' ? () => router.push(`/language-learning/module/${moduleId}/test`) : undefined,
             },
         ]
         : [];
@@ -151,6 +152,8 @@ export default function ModuleOverviewPage() {
         if (cta.disabled) return;
         if (ctaStep === 'practice') {
             router.push(`/language-learning/module/${moduleId}/practice`);
+        } else if (ctaStep === 'test') {
+            router.push(`/language-learning/module/${moduleId}/test`);
         } else {
             router.push(`/language-learning/module/${moduleId}/grammar`);
         }
