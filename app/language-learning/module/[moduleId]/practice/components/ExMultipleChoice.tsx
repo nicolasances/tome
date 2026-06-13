@@ -44,7 +44,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
         if (!submitted) {
             const selected = word === selectedOption;
             return {
-                bg: selected ? 'bg-lime-200 border-lime-200' : 'bg-transparent border-cyan-500/40',
+                bg: selected ? 'bg-lime-200 border-lime-200' : 'bg-transparent border-cyan-400',
                 badgeBg: selected ? 'bg-cyan-800 text-lime-200' : 'bg-transparent border border-black/25 text-black/50',
                 text: 'text-black',
                 badge: null as string | null,
