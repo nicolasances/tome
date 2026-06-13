@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { CurrentModuleInfo } from '@/api/TomeLearningDashboardAPI';
+import { useState } from 'react';
 
 interface ContinueCardProps {
     loading?: boolean;
@@ -17,6 +18,8 @@ interface ContinueCardProps {
  */
 export function ContinueCard({ loading, module }: ContinueCardProps) {
     const router = useRouter();
+    const [disabled, setDisabled] = useState(false);
+    const [pressed, setPressed] = useState(false);
 
     if (loading) {
         return (
@@ -59,8 +62,16 @@ export function ContinueCard({ loading, module }: ContinueCardProps) {
     return (
         <button
             onClick={() => router.push(`/language-learning/module/${module.id}`)}
+            onMouseDown={() => !disabled && setPressed(true)}
+            onMouseUp={() => setPressed(false)}
+            onMouseLeave={() => setPressed(false)}
+            onTouchStart={() => !disabled && setPressed(true)}
+            onTouchEnd={() => setPressed(false)}
             className="w-full text-left flex items-center gap-3.5 py-2 px-4 rounded-[18px] bg-cyan-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200"
             aria-label={`Continue module: ${module.title}`}
+            style={{
+                transform: pressed ? "scale(0.95)" : "scale(1)",
+            }}
         >
             <div
                 className="flex-none flex items-center justify-center rounded-full bg-lime-200 text-cyan-800"
