@@ -15,8 +15,11 @@ this file (see *Skipped — not yet covered*). Those areas will get features onc
 wireframe exists for them.
 
 **Design variants chosen:** Home dashboard → **variant C (Level track)**; Module
-map → **variant A (Vertical list)**. The wireframe also contains alternative
-treatments (Home A/B, Map B/C) which are not the spec'd design.
+map → **variant A (Vertical list)**; Practice complete → **variant A (Momentum
+ring / Round complete)** + **variant C (Coverage milestone)** as the two states of
+one end-of-round screen. The wireframe also contains alternative treatments (Home
+A/B, Map B/C, Practice-complete B "Recap" / D "Quiet sheet") which are **not** the
+spec'd design — `practice-complete-app.jsx` pins A and C as the chosen designs.
 
 > Legacy note: the repo already contains `app/language-learning/*` from the *old*
 > (pre-v2.0) design (vocabulary-practice, sentence-practice, sources). It is not
@@ -29,7 +32,7 @@ treatments (Home A/B, Map B/C) which are not the spec'd design.
 | J1 | Check standing & continue | See my CEFR level + progress and resume my current module | Home dashboard → (Continue) → Module overview |
 | J2 | Browse the level & start a module | See all modules of my level and open the active one | Home dashboard → Module map → Module overview |
 | J3 | Learn a module's grammar | Read the module's grammar concepts before practising | Module overview → Grammar intro |
-| J4 | Practise a module | Work through practice sessions until every module word is covered | Module overview → Practice session → (repeat until full coverage) → Module overview |
+| J4 | Practise a module | Work through practice rounds until every module word is covered | Module overview → Practice session → Practice complete (round recap → *Practice another round* loops back, or *Back to module*) → … → Practice complete (coverage milestone) → Module overview |
 | J5 | Take the module test | Pass the gated, scored test to complete the module and unlock the next | Module overview → Module test (locked countdown → ready → in-test → submit → result) → (Review) → Home / Module overview |
 
 ## Screen Inventory
@@ -43,6 +46,7 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Module overview | `/language-learning/module/[moduleId]` | `03-module-overview` | Module hub: theme, goal, 3-step flow, lock states. |
 | Grammar intro | `/language-learning/module/[moduleId]/grammar` | `04-grammar-introduction` | Step 1 — paged instructional concept cards. |
 | Practice session | `/language-learning/module/[moduleId]/practice` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a session; sessions repeat until full module vocabulary coverage. |
+| Practice complete | `/language-learning/module/[moduleId]/practice` (end-of-round state) | `05-practice-session` | End-of-round recap that replaces the old blocking "Saving progress…" overlay. Two states: **Round complete** (every round before full coverage) and **Coverage milestone** (only when the round reaches full coverage). User chooses *Practice another round* or *Back to module*. |
 | Module test | `/language-learning/module/[moduleId]/test` | `06-module-test` | Step 3 — gated, scored flow as internal phases: locked → ready → in-test → submit → result (pass/fail) → review. Reuses the practice exercise interface. |
 
 ## Cross-cutting shared components
