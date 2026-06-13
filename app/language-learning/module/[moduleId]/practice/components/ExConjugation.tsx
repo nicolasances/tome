@@ -55,6 +55,7 @@ export function ExConjugation({exercise, submissionState, inputValue, onInputCha
                     ) : (
                         <input
                             type="text"
+                            autoFocus
                             value={inputValue}
                             onChange={e => onInputChange(e.target.value)}
                             onKeyDown={e => e.key === 'Enter' && canSend && onSend()}
