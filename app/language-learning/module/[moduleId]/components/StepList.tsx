@@ -36,10 +36,10 @@ function CoverageBar({seen, total}: {seen: number; total: number}) {
 
     return (
         <div className="flex items-center gap-2 mt-2">
-            <div className="flex-1 h-1.5 rounded-full bg-black/10">
+            <div className="flex-1 h-2 rounded-full bg-black/10">
                 <div className="h-full rounded-full bg-lime-200" style={{ width: `${pct}%` }} />
             </div>
-            <span className="text-xs font-bold text-black/80 whitespace-nowrap">
+            <span className="text-sm font-bold text-black/80 whitespace-nowrap">
                 {seen} / {total} <span className="font-semibold text-black/60">words</span>
             </span>
         </div>
@@ -58,8 +58,8 @@ function StepRow({step}: {step: StepItem}) {
             className={`flex ${coverage ? 'items-start' : 'items-center'} gap-[13px] px-[14px] py-[13px] rounded-[14px] ${isAvailable ? 'bg-cyan-700/30' : 'bg-transparent'} ${isAvailable ? '' : 'border border-[rgba(9,166,209,0.4)]'} ${isLocked ? 'opacity-[0.85]' : ''} ${isClickable ? 'cursor-pointer' : ''}`}>
             <StepMedallion number={number} state={state} />
             <div className="flex flex-col flex-1 min-w-0">
-                <span className="text-[15px] font-bold text-black/80">{title}</span>
-                <span className="text-xs text-black/70 mt-[2px]">{subtitle}</span>
+                <span className="text-xl font-bold text-black/80">{title}</span>
+                <span className="text-sm text-black/70 mt-[2px]">{subtitle}</span>
                 {coverage && <CoverageBar seen={coverage.seen} total={coverage.total} />}
             </div>
             {isAvailable && (
