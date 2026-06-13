@@ -39,6 +39,7 @@ export function ExTranslation({exercise, submissionState, inputValue, onInputCha
                     onSend={onSend}
                     placeholder="Type Danish translation…"
                     disabled={isSubmitting}
+                    autoFocus
                 />
             )}
         </div>

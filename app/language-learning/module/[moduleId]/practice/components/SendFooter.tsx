@@ -6,9 +6,10 @@ interface SendFooterProps {
     onSend: () => void;
     placeholder?: string;
     disabled?: boolean;
+    autoFocus?: boolean;
 }
 
-export function SendFooter({value, onChange, onSend, placeholder = 'Type your answer…', disabled}: SendFooterProps) {
+export function SendFooter({value, onChange, onSend, placeholder = 'Type your answer…', disabled, autoFocus}: SendFooterProps) {
     const canSend = value.trim().length > 0 && !disabled;
 
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -19,6 +20,7 @@ export function SendFooter({value, onChange, onSend, placeholder = 'Type your an
         <div className="px-4 pb-4 pt-2.5 flex items-center gap-3">
             <input
                 type="text"
+                autoFocus={autoFocus}
                 value={value}
                 onChange={e => onChange(e.target.value)}
                 onKeyDown={handleKeyDown}
