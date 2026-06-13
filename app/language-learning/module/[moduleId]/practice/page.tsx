@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
+import { TomeModuleAPI } from '@/api/TomeModuleAPI';
 import { TomePracticeSessionAPI, Exercise, PracticeSession } from '@/api/TomePracticeSessionAPI';
 import { reconstructSessionState } from '@/utils/reconstructSessionState';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
@@ -14,10 +15,18 @@ import { ExFillBlank } from './components/ExFillBlank';
 import { ExConjugation } from './components/ExConjugation';
 import { ExErrorCorrection } from './components/ExErrorCorrection';
 import { ExTranslation } from './components/ExTranslation';
+import { PracticeComplete } from './components/PracticeComplete';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type LoadState = 'loading' | 'error' | 'loaded';
+
+interface PracticeCompleteData {
+    step2Complete: boolean;
+    coverageAfterPct: number;
+    practicedWords: number;
+    testUnlocksAt: string | null;
+}
 
 const EXERCISE_LABELS: Record<string, string> = {
     multiple_choice:    'Choose the correct word',
@@ -45,6 +54,13 @@ export default function PracticePage() {
     const [exercises, setExercises] = useState<Exercise[]>([]);
     const [userId, setUserId] = useState('');
 
+    // ── Module metadata (loaded at session start for the recap) ───────────────
+    const [moduleTitle, setModuleTitle] = useState('');
+    const [moduleNumber, setModuleNumber] = useState('01');
+    const [coverageBeforeCount, setCoverageBeforeCount] = useState(0);
+    const [totalVocabCount, setTotalVocabCount] = useState(0);
+    const [testUnlockDelayHours, setTestUnlockDelayHours] = useState(4);
+
     // ── Queue management ──────────────────────────────────────────────────────
     // queue: ordered exercise IDs still to present in the current pass
     const [queue, setQueue] = useState<string[]>([]);
@@ -52,7 +68,9 @@ export default function PracticePage() {
     const [pendingRetry, setPendingRetry] = useState<string[]>([]);
     const [isRetryPhase, setIsRetryPhase] = useState(false);
     const [masteredCount, setMasteredCount] = useState(0);
+    const [firstTryMasteredCount, setFirstTryMasteredCount] = useState(0);
     const [exerciseNumber, setExerciseNumber] = useState(1);
+    const [roundNumber, setRoundNumber] = useState(1);
 
     // ── Per-exercise state (reset on each new exercise) ───────────────────────
     const [submissionState, setSubmissionState] = useState<SubmissionState | null>(null);
@@ -63,22 +81,34 @@ export default function PracticePage() {
     // ── Page meta state ───────────────────────────────────────────────────────
     const [loadState, setLoadState] = useState<LoadState>('loading');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isCompleting, setIsCompleting] = useState(false);
+    const [practiceCompleteData, setPracticeCompleteData] = useState<PracticeCompleteData | null>(null);
 
     // ── Header ────────────────────────────────────────────────────────────────
     useEffect(() => {
         setConfig({
-            title: 'Practice',
+            title: practiceCompleteData && moduleTitle ? moduleTitle : 'Practice',
             backButton: { enabled: true, onClick: () => router.push(`/language-learning/module/${moduleId}`) },
         });
-    }, [setConfig, router, moduleId]);
+    }, [setConfig, router, moduleId, practiceCompleteData, moduleTitle]);
 
     // ── Session load / resume ─────────────────────────────────────────────────
     useEffect(() => {
         async function load() {
+            const [me, progress, module] = await Promise.all([
+                new TomeLearningDashboardAPI().getMe(),
+                new TomeLearningDashboardAPI().getMeProgress(),
+                new TomeModuleAPI().getModule(moduleId),
+            ]);
 
-            const me = await new TomeLearningDashboardAPI().getMe();
             setUserId(me.id);
+            setModuleTitle(module.title);
+            setTestUnlockDelayHours(module.testUnlockDelayHours);
+            setTotalVocabCount(module.vocabularyCount);
+
+            const moduleEntry = progress.modules.find(m => m.moduleId === moduleId);
+            const moduleIdx = progress.modules.findIndex(m => m.moduleId === moduleId);
+            setModuleNumber(String(moduleIdx >= 0 ? moduleIdx + 1 : 1).padStart(2, '0'));
+            setCoverageBeforeCount(moduleEntry?.vocabularyItemsPracticedCount ?? 0);
 
             const result = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
             if (!result) { setLoadState('error'); return; }
@@ -102,6 +132,7 @@ export default function PracticePage() {
         setPendingRetry([]);
         setIsRetryPhase(false);
         setMasteredCount(0);
+        setFirstTryMasteredCount(0);
         setExerciseNumber(1);
         setSubmissionState(null);
         setInputValue('');
@@ -120,9 +151,11 @@ export default function PracticePage() {
      * (the backend would mark it complete and the next start would create a brand-new one).
      */
     function resumeSession(uid: string, session: PracticeSession) {
-        // The backend already marked this session complete — start the next one fresh.
+        // The backend already marked this session complete — route to the module overview
+        // so the user can decide what to do next (the recap is transient and not reconstructed).
         if (session.completedAt !== null) {
-            initFreshSessionAfterComplete(uid);
+            localStorage.removeItem(storageKey(moduleId));
+            router.push(`/language-learning/module/${moduleId}`);
             return;
         }
 
@@ -135,6 +168,7 @@ export default function PracticePage() {
         setPendingRetry(state.pendingRetry);
         setIsRetryPhase(state.isRetryPhase);
         setMasteredCount(state.masteredCount);
+        setFirstTryMasteredCount(0);
         setExerciseNumber(state.exerciseNumber);
         setSubmissionState(null);
         setInputValue('');
@@ -142,27 +176,6 @@ export default function PracticePage() {
         setBuiltWords([]);
         localStorage.setItem(storageKey(moduleId), session.sessionId);
         setLoadState('loaded');
-    }
-
-    /**
-     * Starts a fresh session for the module — used when a resumed session turns out to be
-     * already completed on the backend (the normal multi-session loop continues on the overview
-     * if coverage is met, otherwise a new session is the right next step).
-     */
-    async function initFreshSessionAfterComplete(uid: string) {
-        localStorage.removeItem(storageKey(moduleId));
-        try {
-            const started = await new TomePracticeSessionAPI().startPracticeSession(uid, moduleId);
-            if (started && !started.resumed) {
-                initFreshSession(uid, started.session.sessionId, started.session.exercises);
-            } else {
-                // Either an error, or another active session surfaced — surface as error rather
-                // than risk an unexpected state.
-                setLoadState('error');
-            }
-        } catch {
-            setLoadState('error');
-        }
     }
 
     // ── Derived ───────────────────────────────────────────────────────────────
@@ -202,6 +215,8 @@ export default function PracticePage() {
         const wasCorrect = submissionState.isCorrect;
 
         if (wasCorrect) setMasteredCount(c => c + 1);
+        // Track first-try mastered separately for the recap stats (retries don't count)
+        if (!isRetryPhase && wasCorrect) setFirstTryMasteredCount(c => c + 1);
         setExerciseNumber(n => Math.min(n + 1, totalExercises));
 
         if (isRetryPhase) {
@@ -232,24 +247,53 @@ export default function PracticePage() {
         setBuiltWords([]);
     }
 
+    /**
+     * Calls POST .../complete, then transitions to the Practice Complete screen.
+     * The save happens in the background — no blocking overlay is shown.
+     * The user chooses the next step from the recap CTAs.
+     */
     async function doCompleteSession() {
-        setIsCompleting(true);
         try {
-            const result = await new TomePracticeSessionAPI().completeSession(userId, sessionId);
+            const [result, progress] = await Promise.all([
+                new TomePracticeSessionAPI().completeSession(userId, sessionId),
+                new TomeLearningDashboardAPI().getMeProgress(),
+            ]);
             localStorage.removeItem(storageKey(moduleId));
-            if (result.step2Complete) {
-                router.push(`/language-learning/module/${moduleId}`);
-            } else {
-                const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
-                if (!started) { setLoadState('error'); }
-                else if (started.resumed) { resumeSession(userId, started.session); }
-                else { initFreshSession(userId, started.session.sessionId, started.session.exercises); }
-            }
+            const moduleEntry = progress.modules.find(m => m.moduleId === moduleId);
+            const afterCount = moduleEntry?.vocabularyItemsPracticedCount ?? 0;
+            setPracticeCompleteData({
+                step2Complete: result.step2Complete,
+                coverageAfterPct: totalVocabCount > 0 ? afterCount / totalVocabCount : 0,
+                practicedWords: afterCount,
+                testUnlocksAt: moduleEntry?.testUnlocksAt ?? null,
+            });
         } catch {
             setLoadState('error');
-        } finally {
-            setIsCompleting(false);
         }
+    }
+
+    // ── Practice Complete CTA handlers ────────────────────────────────────────
+
+    async function handlePracticeAnother() {
+        // The current "after" becomes the "before" for the next round's ring animation
+        if (practiceCompleteData) {
+            setCoverageBeforeCount(practiceCompleteData.practicedWords);
+        }
+        setPracticeCompleteData(null);
+        setRoundNumber(r => r + 1);
+        setLoadState('loading');
+        try {
+            const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
+            if (!started) { setLoadState('error'); return; }
+            if (started.resumed) { resumeSession(userId, started.session); }
+            else { initFreshSession(userId, started.session.sessionId, started.session.exercises); }
+        } catch {
+            setLoadState('error');
+        }
+    }
+
+    function handleBackToModule() {
+        router.push(`/language-learning/module/${moduleId}`);
     }
 
     // ── Render ────────────────────────────────────────────────────────────────
@@ -279,7 +323,26 @@ export default function PracticePage() {
                 </div>
             )}
 
-            {loadState === 'loaded' && currentExercise && (
+            {practiceCompleteData && (
+                <PracticeComplete
+                    step2Complete={practiceCompleteData.step2Complete}
+                    moduleTitle={moduleTitle}
+                    moduleNumber={moduleNumber}
+                    roundNumber={roundNumber}
+                    coverageBeforePct={totalVocabCount > 0 ? coverageBeforeCount / totalVocabCount : 0}
+                    coverageAfterPct={practiceCompleteData.coverageAfterPct}
+                    practicedWords={practiceCompleteData.practicedWords}
+                    totalWords={totalVocabCount}
+                    answered={totalExercises}
+                    firstTryMastered={firstTryMasteredCount}
+                    testUnlocksAt={practiceCompleteData.testUnlocksAt}
+                    testUnlockDelayHours={testUnlockDelayHours}
+                    onPracticeAnother={handlePracticeAnother}
+                    onBackToModule={handleBackToModule}
+                />
+            )}
+
+            {loadState === 'loaded' && currentExercise && !practiceCompleteData && (
                 <div className="relative flex flex-1 flex-col overflow-hidden">
                     {/* Progress bar + counter */}
                     <div className="px-5 pt-2">
@@ -366,12 +429,6 @@ export default function PracticePage() {
                             onContinue={handleContinue}
                         />
                     )}
-                </div>
-            )}
-
-            {isCompleting && (
-                <div className="absolute inset-0 flex items-center justify-center bg-white/80">
-                    <span className="text-sm text-cyan-700">Saving progress…</span>
                 </div>
             )}
         </div>
