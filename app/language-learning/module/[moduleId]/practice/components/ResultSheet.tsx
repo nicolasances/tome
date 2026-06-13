@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { MaskedSvgIcon } from 'toto-react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 
@@ -16,6 +16,12 @@ export function ResultSheet({ok, answer, aiVerify, exercise, onContinue}: Result
     const [expanded, setExpanded] = useState(false);
     const [canExpand, setCanExpand] = useState(false);
     const ansRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => { if (e.key === 'Enter') onContinue(); };
+        window.addEventListener('keydown', handler);
+        return () => window.removeEventListener('keydown', handler);
+    }, [onContinue]);
 
     useLayoutEffect(() => { setExpanded(false); }, [answer, ok]);
     useLayoutEffect(() => {
