@@ -11,6 +11,8 @@ export interface ReconstructedSessionState {
     isRetryPhase: boolean;
     /** Number of correct answers submitted so far (primary + retry passes). */
     masteredCount: number;
+    /** Number of correct answers in the primary pass only (retry corrects excluded). Used for recap accuracy stats. */
+    firstTryMasteredCount: number;
     /**
      * 1-based index of the next exercise to present, capped at the total
      * number of primary-pass exercises. Mirrors the live exerciseNumber state.
@@ -57,6 +59,7 @@ export function reconstructSessionState(session: PracticeSession): Reconstructed
     let queue: string[]        = [...primaryIds];
     let pendingRetry: string[] = [];
     let isRetryPhase           = false;
+    let firstTryMasteredCount  = 0;
 
     for (const answer of session.answers) {
 
@@ -67,7 +70,8 @@ export function reconstructSessionState(session: PracticeSession): Reconstructed
 
         if (!isRetryPhase) {
             // Primary pass
-            if (!answer.isCorrect) pendingRetry.push(headId);
+            if (answer.isCorrect) firstTryMasteredCount++;
+            else pendingRetry.push(headId);
             queue = queue.slice(1);
 
             if (queue.length === 0 && pendingRetry.length > 0) {
@@ -91,6 +95,7 @@ export function reconstructSessionState(session: PracticeSession): Reconstructed
         pendingRetry,
         isRetryPhase,
         masteredCount,
+        firstTryMasteredCount,
         exerciseNumber,
     };
 }
