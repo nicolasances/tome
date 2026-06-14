@@ -101,11 +101,16 @@ export default function GrammarIntroPage() {
         // Last concept — start the practice session and navigate into Practice
         setIsStartingSession(true);
         try {
-            await new TomePracticeSessionAPI().startPracticeSession(data.userId, moduleId);
+            const started = await new TomePracticeSessionAPI().startPracticeSession(data.userId, moduleId);
+            if (started) {
+                router.push(`/language-learning/module/${moduleId}/practice/${started.session.sessionId}`);
+            } else {
+                router.push(`/language-learning/module/${moduleId}`);
+            }
         } catch {
-            // On unexpected failure, still navigate — the practice page handles session load
+            router.push(`/language-learning/module/${moduleId}`);
         } finally {
-            router.push(`/language-learning/module/${moduleId}/practice`);
+            setIsStartingSession(false);
         }
     };
 
