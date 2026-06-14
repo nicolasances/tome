@@ -9,7 +9,6 @@ export interface PracticeCompleteProps {
     step2Complete: boolean;
     moduleTitle: string;
     moduleNumber: string;
-    roundNumber: number;
     coverageBeforePct: number;
     coverageAfterPct: number;
     practicedWords: number;
@@ -124,7 +123,7 @@ function formatUnlockLabel(testUnlocksAt: string | null, testUnlockDelayHours: n
 
 // ── Round complete state ───────────────────────────────────────────────────────
 
-function RoundComplete({moduleNumber, roundNumber, coverageBeforePct, coverageAfterPct, answered, firstTryMastered, onPracticeAnother, onBackToModule}: Pick<PracticeCompleteProps, 'moduleNumber' | 'roundNumber' | 'coverageBeforePct' | 'coverageAfterPct' | 'answered' | 'firstTryMastered' | 'onPracticeAnother' | 'onBackToModule'>) {
+function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, answered, firstTryMastered, onPracticeAnother, onBackToModule}: Pick<PracticeCompleteProps, 'moduleNumber' | 'coverageBeforePct' | 'coverageAfterPct' | 'answered' | 'firstTryMastered' | 'onPracticeAnother' | 'onBackToModule'>) {
     const accuracy = answered > 0 ? firstTryMastered / answered : 0;
     const { headline, subline } = deriveHeadline(accuracy);
     const accuracyPct = `${Math.round(accuracy * 100)}%`;
@@ -132,7 +131,7 @@ function RoundComplete({moduleNumber, roundNumber, coverageBeforePct, coverageAf
     return (
         <div className="flex flex-1 flex-col items-center px-6 pt-1 text-center">
             <span className="text-sm font-semibold uppercase tracking-widest text-black/50 mt-4">
-                Module {moduleNumber} · Round {roundNumber}
+                Module {moduleNumber}
             </span>
 
             <div className="relative mt-4">
