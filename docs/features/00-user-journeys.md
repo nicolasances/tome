@@ -45,8 +45,8 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Module map | `/language-learning/level/[level]` | `02-module-map` | Variant A (Vertical list). Modules of the current level. |
 | Module overview | `/language-learning/module/[moduleId]` | `03-module-overview` | Module hub: theme, goal, 3-step flow, lock states. |
 | Grammar intro | `/language-learning/module/[moduleId]/grammar` | `04-grammar-introduction` | Step 1 — paged instructional concept cards. |
-| Practice session | `/language-learning/module/[moduleId]/practice` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a session; sessions repeat until full module vocabulary coverage. |
-| Practice complete | `/language-learning/module/[moduleId]/practice` (end-of-round state) | `05-practice-session` | End-of-round recap that replaces the old blocking "Saving progress…" overlay. Two states: **Round complete** (every round before full coverage) and **Coverage milestone** (only when the round reaches full coverage). User chooses *Practice another round* or *Back to module*. |
+| Practice session | `/language-learning/module/[moduleId]/practice/[practiceId]` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a session; sessions repeat until full module vocabulary coverage. |
+| Practice complete | `/language-learning/module/[moduleId]/practice/[practiceId]/results` | `05-practice-session` | End-of-round recap. Two states: **Round complete** (every round before full coverage) and **Coverage milestone** (only when the round reaches full coverage). User chooses *Practice another round* or *Back to module*. |
 | Module test | `/language-learning/module/[moduleId]/test` | `06-module-test` | Step 3 — gated, scored flow as internal phases: locked → ready → in-test → submit → result (pass/fail) → review. Reuses the practice exercise interface. |
 
 ## Cross-cutting shared components
