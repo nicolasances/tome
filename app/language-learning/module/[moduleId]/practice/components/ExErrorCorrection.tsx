@@ -1,5 +1,5 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
-import { SubmissionState } from '../page';
+import { SubmissionState } from '../types';
 import { AnswerBox } from './AnswerBox';
 import { CheckFooter } from './CheckFooter';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
