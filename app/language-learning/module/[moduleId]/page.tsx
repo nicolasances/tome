@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI, MeProgressResponse, ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
+import { startPracticeAndGetSessionId } from '@/utils/startPractice';
 import { ModuleOverviewSkeleton } from './components/ModuleOverviewSkeleton';
 import { ModuleHeader } from './components/ModuleHeader';
 import { StepList, StepItem, StepState } from './components/StepList';
@@ -12,6 +13,7 @@ import { StepList, StepItem, StepState } from './components/StepList';
 interface PageData {
     module: ModuleResponse;
     progress: MeProgressResponse;
+    userId: string;
 }
 
 function deriveStepStates(
@@ -80,6 +82,7 @@ export default function ModuleOverviewPage() {
     const moduleId = params.moduleId as string;
 
     const [data, setData] = useState<PageData | null | undefined>(undefined);
+    const [isStartingPractice, setIsStartingPractice] = useState(false);
 
     useEffect(() => {
         setConfig({
@@ -96,9 +99,10 @@ export default function ModuleOverviewPage() {
         Promise.all([
             new TomeModuleAPI().getModule(moduleId),
             new TomeLearningDashboardAPI().getMeProgress(),
-        ]).then(([module, progress]) => {
+            new TomeLearningDashboardAPI().getMe(),
+        ]).then(([module, progress, me]) => {
 
-            setData({ module, progress })
+            setData({ module, progress, userId: me.id })
 
         }).catch(() => setData(null));
 
@@ -148,10 +152,18 @@ export default function ModuleOverviewPage() {
     const ctaStep = moduleProgress?.step ?? null;
     const cta = deriveCtaInfo(ctaStep, moduleProgress?.testUnlocksAt ?? null);
 
-    const handleCtaClick = () => {
-        if (cta.disabled) return;
+    const handleCtaClick = async () => {
+        if (cta.disabled || !data) return;
         if (ctaStep === 'practice') {
-            router.push(`/language-learning/module/${moduleId}/practice`);
+            if (isStartingPractice) return;
+            setIsStartingPractice(true);
+            try {
+                const sid = await startPracticeAndGetSessionId(data.userId, moduleId);
+                if (!sid) { setIsStartingPractice(false); return; }
+                router.push(`/language-learning/module/${moduleId}/practice/${sid}`);
+            } catch {
+                setIsStartingPractice(false);
+            }
         } else if (ctaStep === 'test') {
             router.push(`/language-learning/module/${moduleId}/test`);
         } else {
@@ -188,11 +200,11 @@ export default function ModuleOverviewPage() {
             {data && (
                 <div className="px-[18px] py-4">
                     <button
-                        disabled={cta.disabled}
+                        disabled={cta.disabled || isStartingPractice}
                         onClick={handleCtaClick}
-                        className={`w-full border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-[15px] py-[15px] tracking-[0.02em] transition-opacity duration-150 ${cta.disabled ? 'opacity-50 cursor-default' : 'opacity-100 cursor-pointer'}`}
+                        className={`w-full border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-[15px] py-[15px] tracking-[0.02em] transition-opacity duration-150 ${cta.disabled || isStartingPractice ? 'opacity-50 cursor-default' : 'opacity-100 cursor-pointer'}`}
                     >
-                        {cta.label}
+                        {isStartingPractice ? 'Starting…' : cta.label}
                     </button>
                 </div>
             )}

@@ -1,5 +1,5 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
-import { SubmissionState } from '../page';
+import { SubmissionState } from '../types';
 import { AnswerBox } from './AnswerBox';
 import { SendFooter } from './SendFooter';
 
@@ -45,7 +45,7 @@ export function ExFillBlank({exercise, submissionState, inputValue, onInputChang
                     </div>
                 )}
                 {exercise.promptTranslation && (
-                    <p className="text-sm text-black/50 mt-3 text-center">{exercise.promptTranslation}</p>
+                    <p className="text-base text-black/50 mt-3 text-center">{exercise.promptTranslation}</p>
                 )}
             </div>
 

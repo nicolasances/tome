@@ -415,4 +415,73 @@ describe('reconstructSessionState (answer-log replay)', () => {
         expect(withRealQueue.queue).toEqual(withGarbageQueue.queue);
         expect(withRealQueue.queue).toEqual(['e2', 'e4']);
     });
+
+    // ── firstTryMasteredCount ─────────────────────────────────────────────────
+
+    it('fresh session: firstTryMasteredCount is 0', () => {
+        const state = reconstructSessionState(makeSession());
+        expect(state.firstTryMasteredCount).toBe(0);
+    });
+
+    it('all-correct primary pass: firstTryMasteredCount equals total exercises', () => {
+        const state = reconstructSessionState(makeSession({
+            answers: [
+                makeAnswer('e1', true),
+                makeAnswer('e2', true),
+                makeAnswer('e3', true),
+                makeAnswer('e4', true),
+                makeAnswer('e5', true),
+            ],
+            currentPosition: 5,
+            retryQueue: [],
+        }));
+        expect(state.firstTryMasteredCount).toBe(5);
+    });
+
+    it('mixed primary pass: firstTryMasteredCount counts only correct first-try answers', () => {
+        const state = reconstructSessionState(makeSession({
+            answers: [
+                makeAnswer('e1', true),
+                makeAnswer('e2', false),
+                makeAnswer('e3', true),
+                makeAnswer('e4', false),
+                makeAnswer('e5', true),
+            ],
+            currentPosition: 5,
+            retryQueue: ['e2', 'e4'],
+        }));
+        expect(state.firstTryMasteredCount).toBe(3); // e1, e3, e5
+    });
+
+    it('retry-correct answers do not contribute to firstTryMasteredCount', () => {
+        const state = reconstructSessionState(makeSession({
+            answers: [
+                makeAnswer('e1', true),
+                makeAnswer('e2', false),
+                makeAnswer('e3', true),
+                makeAnswer('e4', false),
+                makeAnswer('e5', true),
+                makeAnswer('e2', true), // retry correct
+                makeAnswer('e4', true), // retry correct
+            ],
+            currentPosition: 7,
+            retryQueue: ['e2', 'e4'],
+        }));
+        expect(state.firstTryMasteredCount).toBe(3); // e1, e3, e5 only
+    });
+
+    it('all-wrong primary pass: firstTryMasteredCount is 0', () => {
+        const state = reconstructSessionState(makeSession({
+            answers: [
+                makeAnswer('e1', false),
+                makeAnswer('e2', false),
+                makeAnswer('e3', false),
+                makeAnswer('e4', false),
+                makeAnswer('e5', false),
+            ],
+            currentPosition: 5,
+            retryQueue: ['e1', 'e2', 'e3', 'e4', 'e5'],
+        }));
+        expect(state.firstTryMasteredCount).toBe(0);
+    });
 });

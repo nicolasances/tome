@@ -1,5 +1,5 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
-import { SubmissionState } from '../page';
+import { SubmissionState } from '../types';
 import { AnswerBox } from './AnswerBox';
 import { SendFooter } from './SendFooter';
 
@@ -26,7 +26,7 @@ export function ExTranslation({exercise, submissionState, inputValue, onInputCha
             {/* Answer box after submission */}
             {submitted && (
                 <div className="flex justify-center mt-6 px-1">
-                    <AnswerBox text={inputValue} ok={submissionState.isCorrect} big />
+                    <AnswerBox text={inputValue} ok={submissionState.isCorrect} block big />
                 </div>
             )}
 

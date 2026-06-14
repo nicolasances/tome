@@ -4,16 +4,17 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
-import { TomePracticeSessionAPI, Exercise, PracticeSession } from '@/api/TomePracticeSessionAPI';
+import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
 import { reconstructSessionState } from '@/utils/reconstructSessionState';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
-import { ResultSheet } from './components/ResultSheet';
-import { ExMultipleChoice } from './components/ExMultipleChoice';
-import { ExSentenceReorder } from './components/ExSentenceReorder';
-import { ExFillBlank } from './components/ExFillBlank';
-import { ExConjugation } from './components/ExConjugation';
-import { ExErrorCorrection } from './components/ExErrorCorrection';
-import { ExTranslation } from './components/ExTranslation';
+import { ResultSheet } from '../components/ResultSheet';
+import { ExMultipleChoice } from '../components/ExMultipleChoice';
+import { ExSentenceReorder } from '../components/ExSentenceReorder';
+import { ExFillBlank } from '../components/ExFillBlank';
+import { ExConjugation } from '../components/ExConjugation';
+import { ExErrorCorrection } from '../components/ExErrorCorrection';
+import { ExTranslation } from '../components/ExTranslation';
+import { SubmissionState } from '../types';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -28,27 +29,22 @@ const EXERCISE_LABELS: Record<string, string> = {
     translation_active: 'Translate to Danish',
 };
 
-export type SubmissionState = { isCorrect: boolean; correctAnswer: string };
-
-function storageKey(moduleId: string) { return `practice-session-${moduleId}`; }
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function PracticePage() {
+export default function PracticeSessionPage() {
     const params = useParams();
     const router = useRouter();
     const { setConfig } = useHeader();
-    const moduleId = params.moduleId as string;
+    const moduleId   = params.moduleId   as string;
+    const practiceId = params.practiceId as string;
 
     // ── Session data ──────────────────────────────────────────────────────────
-    const [sessionId, setSessionId] = useState('');
     const [exercises, setExercises] = useState<Exercise[]>([]);
     const [userId, setUserId] = useState('');
+    const [prevCoveredCount, setPrevCoveredCount] = useState(0);
 
     // ── Queue management ──────────────────────────────────────────────────────
-    // queue: ordered exercise IDs still to present in the current pass
     const [queue, setQueue] = useState<string[]>([]);
-    // pendingRetry: wrong exercise IDs accumulated during the main pass
     const [pendingRetry, setPendingRetry] = useState<string[]>([]);
     const [isRetryPhase, setIsRetryPhase] = useState(false);
     const [masteredCount, setMasteredCount] = useState(0);
@@ -63,7 +59,6 @@ export default function PracticePage() {
     // ── Page meta state ───────────────────────────────────────────────────────
     const [loadState, setLoadState] = useState<LoadState>('loading');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isCompleting, setIsCompleting] = useState(false);
 
     // ── Header ────────────────────────────────────────────────────────────────
     useEffect(() => {
@@ -73,110 +68,59 @@ export default function PracticePage() {
         });
     }, [setConfig, router, moduleId]);
 
-    // ── Session load / resume ─────────────────────────────────────────────────
+    // ── Session load ──────────────────────────────────────────────────────────
     useEffect(() => {
         async function load() {
-
             const me = await new TomeLearningDashboardAPI().getMe();
-            setUserId(me.id);
+            const [session, progress] = await Promise.all([
+                new TomePracticeSessionAPI().getSession(me.id, practiceId),
+                new TomeLearningDashboardAPI().getMeProgress(),
+            ]);
 
-            const result = await new TomePracticeSessionAPI().startPracticeSession(me.id, moduleId);
-            if (!result) { setLoadState('error'); return; }
-
-            if (result.resumed) {
-                resumeSession(me.id, result.session);
-            } else {
-                initFreshSession(me.id, result.session.sessionId, result.session.exercises);
+            if (!session) {
+                router.push(`/language-learning/module/${moduleId}`);
+                return;
             }
+            if (session.completedAt !== null) {
+                router.push(`/language-learning/module/${moduleId}/practice/${practiceId}/results`);
+                return;
+            }
+
+            const moduleEntry = progress.modules.find(m => m.moduleId === moduleId);
+            const coveredCount = moduleEntry?.vocabularyItemsPracticedCount ?? 0;
+
+            const state = reconstructSessionState(session);
+
+            setUserId(me.id);
+            setPrevCoveredCount(coveredCount);
+            setExercises(session.exercises);
+            setQueue(state.queue);
+            setPendingRetry(state.pendingRetry);
+            setIsRetryPhase(state.isRetryPhase);
+            setMasteredCount(state.masteredCount);
+            setExerciseNumber(state.exerciseNumber);
+            setSubmissionState(null);
+            setInputValue('');
+            setSelectedOption(null);
+            setBuiltWords([]);
+            setLoadState('loaded');
         }
         load().catch(() => setLoadState('error'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [moduleId]);
-
-    /** Initialises state for a brand-new session (no prior answers). */
-    function initFreshSession(uid: string, sid: string, exs: Exercise[]) {
-        setUserId(uid);
-        setSessionId(sid);
-        setExercises(exs);
-        setQueue(exs.map(e => e.id));
-        setPendingRetry([]);
-        setIsRetryPhase(false);
-        setMasteredCount(0);
-        setExerciseNumber(1);
-        setSubmissionState(null);
-        setInputValue('');
-        setSelectedOption(null);
-        setBuiltWords([]);
-        localStorage.setItem(storageKey(moduleId), sid);
-        setLoadState('loaded');
-    }
-
-    /**
-     * Restores client-side presentation state from a resumed PracticeSession.
-     *
-     * IMPORTANT: never infers session completion from the reconstructed state. A resumed
-     * session is only "finished" when the backend has already set `completedAt`. Calling
-     * `/complete` here based on an empty reconstructed queue would destroy an active session
-     * (the backend would mark it complete and the next start would create a brand-new one).
-     */
-    function resumeSession(uid: string, session: PracticeSession) {
-        // The backend already marked this session complete — start the next one fresh.
-        if (session.completedAt !== null) {
-            initFreshSessionAfterComplete(uid);
-            return;
-        }
-
-        const state = reconstructSessionState(session);
-
-        setUserId(uid);
-        setSessionId(session.sessionId);
-        setExercises(session.exercises);
-        setQueue(state.queue);
-        setPendingRetry(state.pendingRetry);
-        setIsRetryPhase(state.isRetryPhase);
-        setMasteredCount(state.masteredCount);
-        setExerciseNumber(state.exerciseNumber);
-        setSubmissionState(null);
-        setInputValue('');
-        setSelectedOption(null);
-        setBuiltWords([]);
-        localStorage.setItem(storageKey(moduleId), session.sessionId);
-        setLoadState('loaded');
-    }
-
-    /**
-     * Starts a fresh session for the module — used when a resumed session turns out to be
-     * already completed on the backend (the normal multi-session loop continues on the overview
-     * if coverage is met, otherwise a new session is the right next step).
-     */
-    async function initFreshSessionAfterComplete(uid: string) {
-        localStorage.removeItem(storageKey(moduleId));
-        try {
-            const started = await new TomePracticeSessionAPI().startPracticeSession(uid, moduleId);
-            if (started && !started.resumed) {
-                initFreshSession(uid, started.session.sessionId, started.session.exercises);
-            } else {
-                // Either an error, or another active session surfaced — surface as error rather
-                // than risk an unexpected state.
-                setLoadState('error');
-            }
-        } catch {
-            setLoadState('error');
-        }
-    }
+    }, [moduleId, practiceId]);
 
     // ── Derived ───────────────────────────────────────────────────────────────
-    const exerciseMap = useMemo(() => new Map(exercises.map(e => [e.id, e])), [exercises]);
+    const exerciseMap    = useMemo(() => new Map(exercises.map(e => [e.id, e])), [exercises]);
     const currentExercise = queue.length > 0 ? exerciseMap.get(queue[0]) ?? null : null;
-    const totalExercises = exercises.length;
-    const deferredCount = isRetryPhase ? queue.length : pendingRetry.length;
+    const totalExercises  = exercises.length;
+    const deferredCount   = isRetryPhase ? queue.length : pendingRetry.length;
 
     // ── Answer submission ─────────────────────────────────────────────────────
     async function handleSubmit(userAnswer: string) {
         if (!currentExercise || isSubmitting || submissionState) return;
         setIsSubmitting(true);
         try {
-            const result = await new TomePracticeSessionAPI().submitAnswer(userId, sessionId, currentExercise.id, userAnswer);
+            const result = await new TomePracticeSessionAPI().submitAnswer(userId, practiceId, currentExercise.id, userAnswer);
             setSubmissionState(result);
         } finally {
             setIsSubmitting(false);
@@ -186,9 +130,9 @@ export default function PracticePage() {
     function handleCheck() {
         if (!currentExercise) return;
         switch (currentExercise.type) {
-            case 'multiple_choice': handleSubmit(selectedOption ?? ''); break;
-            case 'sentence_reorder': handleSubmit(builtWords.join(' ')); break;
-            case 'error_correction': handleSubmit(inputValue); break;
+            case 'multiple_choice':   handleSubmit(selectedOption ?? ''); break;
+            case 'sentence_reorder':  handleSubmit(builtWords.join(' ')); break;
+            case 'error_correction':  handleSubmit(inputValue); break;
         }
     }
 
@@ -198,7 +142,7 @@ export default function PracticePage() {
     async function handleContinue() {
         if (!submissionState) return;
 
-        const currentId = queue[0];
+        const currentId  = queue[0];
         const wasCorrect = submissionState.isCorrect;
 
         if (wasCorrect) setMasteredCount(c => c + 1);
@@ -210,7 +154,7 @@ export default function PracticePage() {
             setQueue(newQueue);
         } else {
             const newPending = wasCorrect ? pendingRetry : [...pendingRetry, currentId];
-            const newQueue = queue.slice(1);
+            const newQueue   = queue.slice(1);
             if (newQueue.length === 0) {
                 if (newPending.length > 0) {
                     setQueue(newPending);
@@ -233,22 +177,13 @@ export default function PracticePage() {
     }
 
     async function doCompleteSession() {
-        setIsCompleting(true);
         try {
-            const result = await new TomePracticeSessionAPI().completeSession(userId, sessionId);
-            localStorage.removeItem(storageKey(moduleId));
-            if (result.step2Complete) {
-                router.push(`/language-learning/module/${moduleId}`);
-            } else {
-                const started = await new TomePracticeSessionAPI().startPracticeSession(userId, moduleId);
-                if (!started) { setLoadState('error'); }
-                else if (started.resumed) { resumeSession(userId, started.session); }
-                else { initFreshSession(userId, started.session.sessionId, started.session.exercises); }
-            }
+            await new TomePracticeSessionAPI().completeSession(userId, practiceId);
+            router.push(
+                `/language-learning/module/${moduleId}/practice/${practiceId}/results?prevCovered=${prevCoveredCount}`
+            );
         } catch {
             setLoadState('error');
-        } finally {
-            setIsCompleting(false);
         }
     }
 
@@ -366,12 +301,6 @@ export default function PracticePage() {
                             onContinue={handleContinue}
                         />
                     )}
-                </div>
-            )}
-
-            {isCompleting && (
-                <div className="absolute inset-0 flex items-center justify-center bg-white/80">
-                    <span className="text-sm text-cyan-700">Saving progress…</span>
                 </div>
             )}
         </div>
