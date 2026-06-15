@@ -68,7 +68,7 @@ export default function PracticeResultsPage() {
             const moduleIdx   = progress.modules.findIndex(m => m.moduleId === moduleId);
 
             const practicedWords       = moduleEntry?.vocabularyItemsPracticedCount ?? 0;
-            const totalWords           = module.vocabularyCount;
+            const totalWords           = module.vocabularyItemIds.length;
             const coverageAfterPct     = totalWords > 0 ? practicedWords / totalWords : 0;
             const prevCoveredRaw       = searchParams.get('prevCovered');
             const prevCoveredCount     = prevCoveredRaw !== null ? parseInt(prevCoveredRaw, 10) : practicedWords;
