@@ -54,6 +54,7 @@ export function ExFillBlank({exercise, submissionState, inputValue, onInputChang
             {!submitted && (
                 <SendFooter
                     value={inputValue}
+                    autoFocus={true}
                     onChange={onInputChange}
                     onSend={onSend}
                     placeholder="Type the missing word…"
