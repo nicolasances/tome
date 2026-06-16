@@ -63,7 +63,7 @@ function AnimBar({from, to}: {from: number, to: number}) {
     return (
         <div className="relative w-full h-3.5 rounded-full bg-black/10 overflow-hidden">
             <div className="absolute inset-0 rounded-full bg-white/30" style={{ width: `${from * 100}%` }} />
-            <div className="relative h-full rounded-full bg-lime-300"
+            <div className="relative h-full rounded-full bg-lime-200"
                 style={{ width: `${p * 100}%`, transition: 'width 650ms cubic-bezier(0.22,1,0.36,1)' }} />
         </div>
     );
@@ -87,7 +87,9 @@ function SavedChip() {
     return (
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-400/40 anim-pc-rise"
             style={{ animationDelay: '440ms' }}>
-            <span className="w-4 h-4 rounded-full bg-lime-300 text-cyan-900 flex items-center justify-center text-sm font-black">✓</span>
+            <span className="w-4 h-4 rounded-full bg-lime-200 text-cyan-900 flex items-center justify-center text-sm font-black">
+                <MaskedSvgIcon src="/images/tick.svg" alt="Saved" size="w-3 h-3" />
+            </span>
             <span className="text-base font-semibold text-black/50 whitespace-nowrap">Progress saved</span>
         </div>
     );
@@ -160,7 +162,7 @@ function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, answe
 
             <div className="w-full pb-4 flex flex-col gap-2.5">
                 <button onClick={onPracticeAnother}
-                    className="w-full rounded-full bg-lime-300 text-cyan-900 font-bold text-xl py-4 border-0 cursor-pointer">
+                    className="w-full rounded-full bg-lime-200 text-cyan-900 font-bold text-xl py-4 border-0 cursor-pointer">
                     Practice another round
                 </button>
                 <button onClick={onBackToModule}
