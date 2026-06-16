@@ -6,7 +6,7 @@ import { seededShuffle } from '../utils/seededShuffle';
  * Runs `seededShuffle` over many distinct seeds and returns, for each index,
  * how many times the original first element ([0]) ended up at that index.
  */
-function distributionOfFirstElement(arr: number[], seeds: string[]): number[] {
+function distributionOfFirstElement<T>(arr: T[], seeds: string[]): number[] {
     const counts = new Array(arr.length).fill(0);
 
     for (const seed of seeds) {
