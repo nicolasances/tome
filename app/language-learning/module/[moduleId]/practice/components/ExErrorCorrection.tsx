@@ -1,5 +1,5 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
-import { SubmissionState } from '../page';
+import { SubmissionState } from '../types';
 import { AnswerBox } from './AnswerBox';
 import { CheckFooter } from './CheckFooter';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
@@ -13,7 +13,7 @@ interface ExErrorCorrectionProps {
     isSubmitting: boolean;
 }
 
-export function ExErrorCorrection({exercise, submissionState, inputValue, onInputChange, onCheck, isSubmitting}: ExErrorCorrectionProps) {
+export function ExErrorCorrection({ exercise, submissionState, inputValue, onInputChange, onCheck, isSubmitting }: ExErrorCorrectionProps) {
     const submitted = submissionState !== null;
     const canCheck = inputValue.trim().length > 0 && !isSubmitting;
 
@@ -40,6 +40,7 @@ export function ExErrorCorrection({exercise, submissionState, inputValue, onInpu
                 ) : (
                     <input
                         type="text"
+                        autoFocus={true}
                         value={inputValue}
                         onChange={e => onInputChange(e.target.value)}
                         onKeyDown={e => e.key === 'Enter' && canCheck && onCheck()}

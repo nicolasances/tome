@@ -139,7 +139,7 @@ Participates in journey **J4** (practise a module).
 
 | # | Decision | Rationale |
 |---|----------|-----------|
-| 1 | Route `/language-learning/module/[moduleId]/practice`. | Sub-route of the module flow. |
+| 1 | Routes: **exercise** `…/practice/[practiceId]`; **recap** `…/practice/[practiceId]/results`. The flat `…/practice` entry route is removed — callers (module overview, grammar) start a session and push directly to `…/practice/[sid]`. | Deep-linkable, independently testable routes; the recap is a real page that can be refreshed or shared; the exercise page never needs to load/own the recap. The flat entry page was a redirect-only shell that caused a loading flash. |
 | 2 | One screen renders all six exercise types via a shared shell; the type switches the body. | Mirrors `ExShell` in the wireframe; one continuous session. |
 | 3 | Session exercise selection is server-side: the client calls `POST /users/:userId/modules/:moduleId/practiceSessions`, which runs the §3.4.3 mastery-aware algorithm with the coverage override on the server and returns the full ordered exercise list. | Selection logic (including the coverage override) lives entirely in the backend (F08 + F10); the client receives a ready-to-use list with no local computation. |
 | 4 | Answer checking (incl. normalisation and fuzzy comparison) is server-side: the client calls `POST .../answers` with the raw user answer and receives a correct/wrong verdict plus the canonical answer string. No AI call at answer time. | §3.4.3 bounded-cost rule — comparison runs against pre-generated canonical answers and alternatives in the backend; the client only renders the result. |
