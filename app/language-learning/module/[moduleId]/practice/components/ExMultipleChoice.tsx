@@ -13,7 +13,7 @@ interface ExMultipleChoiceProps {
     submissionState: SubmissionState | null;
     selectedOption: string | null;
     onSelect: (key: string) => void;
-    onCheck: () => void;
+    onCheck: (answer?: string) => void;
     isSubmitting: boolean;
 }
 
@@ -45,8 +45,9 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
         }
 
         if (result.action === 'submit') {
-            onSelect(options[result.newCursorIndex].word);
-            setTimeout(() => onCheck(), 0);
+            const word = options[result.newCursorIndex].word;
+            onSelect(word);   // keep selectedOption in sync for post-submit inline coloring
+            onCheck(word);    // submit the explicit word — avoids the stale selectedOption read
         }
     }, [cursorIndex, options, onSelect, onCheck]);
 

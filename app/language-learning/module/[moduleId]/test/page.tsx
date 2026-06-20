@@ -155,9 +155,9 @@ export default function ModuleTestPage() {
         } finally { setIsSubmitting(false); }
     }
 
-    function handleCheck() {
+    function handleCheck(overrideAnswer?: string) {
         if (!currentExercise) return;
-        if (currentExercise.type === 'multiple_choice') handleSubmitAnswer(selectedOption ?? '');
+        if (currentExercise.type === 'multiple_choice') handleSubmitAnswer(overrideAnswer ?? selectedOption ?? '');
         else if (currentExercise.type === 'sentence_reorder') handleSubmitAnswer(builtWords.join(' '));
         else if (currentExercise.type === 'error_correction') handleSubmitAnswer(inputValue);
     }
