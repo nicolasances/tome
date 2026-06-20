@@ -3,18 +3,9 @@ import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
 import { CheckFooter } from './CheckFooter';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { seededShuffle } from '@/utils/seededShuffle';
 
 const KEYS = ['A', 'B', 'C', 'D'] as const;
-
-function seededShuffle<T>(arr: T[], seed: string): T[] {
-    const hash = seed.split('').reduce((acc, c, i) => acc + c.charCodeAt(0) * (i + 1), 0);
-    const copy = [...arr];
-    for (let i = copy.length - 1; i > 0; i--) {
-        const j = (hash * (i + 1)) % (i + 1);
-        [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-}
 
 interface ExMultipleChoiceProps {
     exercise: Exercise;

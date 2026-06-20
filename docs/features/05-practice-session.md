@@ -71,7 +71,7 @@ Participates in journey **J4** (practise a module).
 |--------|----------------|-------------|-------------------|
 | Practice | Session bar (`SessionBar`) | Top progress bar segmented into mastered / remaining / deferred, with an "n / total" counter. | Advances as the user completes exercises in the session. |
 | Practice | Instruction label | Per-exercise instruction (e.g. "Choose the correct word", "Arrange the words"). | Reflects the current exercise type. |
-| Practice | Exercise body — Multiple Choice | Sentence with a blank + 4 lettered options (A–D); one selectable. | Receptive recognition; select → enables Check. |
+| Practice | Exercise body — Multiple Choice | Sentence with a blank + 4 lettered options (A–D); one selectable. Option order is **shuffled** so the correct answer can appear in any position (seeded deterministically per `exercise.id` via `utils/seededShuffle`, so order is stable across re-renders). | Receptive recognition; select → enables Check. |
 | Practice | Exercise body — Sentence Reorder | A build area + a word bank of draggable/tappable tiles. | User arranges all provided words; Check enabled when filled. |
 | Practice | Exercise body — Fill in the Blank | Sentence with an inline text input for the missing word/form; optional "Hint" chip. | Controlled production; typed answer submitted via Send. |
 | Practice | Exercise body — Conjugation Drill | Verb chip (infinitive + gloss), subject → present-tense input box. | Targeted production of a verb form; submitted via Send. |
