@@ -1,0 +1,312 @@
+[
+  {
+    "id": "A1-05-v-hus-6742",
+    "danish": "hus",
+    "english": "house",
+    "type": "noun",
+    "context": null,
+    "tags": ["housing"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-lejlighed-7252",
+    "danish": "lejlighed",
+    "english": "apartment",
+    "type": "noun",
+    "context": null,
+    "tags": ["housing"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-vaerelse-5494",
+    "danish": "værelse",
+    "english": "room",
+    "type": "noun",
+    "context": null,
+    "tags": ["housing", "rooms"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-stue-4110",
+    "danish": "stue",
+    "english": "living room",
+    "type": "noun",
+    "context": null,
+    "tags": ["rooms"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-koekken-1973",
+    "danish": "køkken",
+    "english": "kitchen",
+    "type": "noun",
+    "context": null,
+    "tags": ["rooms"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-sovevaerelse-8215",
+    "danish": "soveværelse",
+    "english": "bedroom",
+    "type": "noun",
+    "context": null,
+    "tags": ["rooms"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-badevaerelse-6606",
+    "danish": "badeværelse",
+    "english": "bathroom",
+    "type": "noun",
+    "context": null,
+    "tags": ["rooms"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-have-7137",
+    "danish": "have",
+    "english": "garden",
+    "type": "noun",
+    "context": "garden/yard, not the verb 'to have'",
+    "tags": ["housing"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-butik-4700",
+    "danish": "butik",
+    "english": "shop / store",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-station-5681",
+    "danish": "station",
+    "english": "station",
+    "type": "noun",
+    "context": null,
+    "tags": ["city", "transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-park-9387",
+    "danish": "park",
+    "english": "park",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-raadhus-9977",
+    "danish": "rådhus",
+    "english": "city hall",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-skole-9774",
+    "danish": "skole",
+    "english": "school",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-bibliotek-7246",
+    "danish": "bibliotek",
+    "english": "library",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-supermarked-5011",
+    "danish": "supermarked",
+    "english": "supermarket",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-gade-7335",
+    "danish": "gade",
+    "english": "street",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-by-4753",
+    "danish": "by",
+    "english": "city / town",
+    "type": "noun",
+    "context": null,
+    "tags": ["city"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-nabo-8488",
+    "danish": "nabo",
+    "english": "neighbor",
+    "type": "noun",
+    "context": null,
+    "tags": ["housing", "people"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-bo-3745",
+    "danish": "bo",
+    "english": "to live / to reside",
+    "type": "verb",
+    "context": null,
+    "tags": ["housing"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-ligge-7090",
+    "danish": "ligge",
+    "english": "to be located / to lie",
+    "type": "verb",
+    "context": "location of a place or building",
+    "tags": ["city", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-i-4387",
+    "danish": "i",
+    "english": "in",
+    "type": "adverb",
+    "context": "spatial: in/inside a place",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-paa-8656",
+    "danish": "på",
+    "english": "on / at",
+    "type": "adverb",
+    "context": "spatial: on a surface or at a location",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-ved-6795",
+    "danish": "ved",
+    "english": "by / near / at",
+    "type": "adverb",
+    "context": "spatial: next to or near something",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-over-5662",
+    "danish": "over",
+    "english": "over / above",
+    "type": "adverb",
+    "context": "spatial: above something",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-under-3760",
+    "danish": "under",
+    "english": "under / below",
+    "type": "adverb",
+    "context": "spatial: below something",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-foran-7118",
+    "danish": "foran",
+    "english": "in front of",
+    "type": "adverb",
+    "context": "spatial: in front of something",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-bag-2799",
+    "danish": "bag",
+    "english": "behind",
+    "type": "adverb",
+    "context": "spatial: behind something",
+    "tags": ["preposition", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-stor-2274",
+    "danish": "stor",
+    "english": "big / large",
+    "type": "adjective",
+    "context": "physical size",
+    "tags": ["description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-lille-7188",
+    "danish": "lille",
+    "english": "small / little",
+    "type": "adjective",
+    "context": "physical size",
+    "tags": ["description"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-hvor-bor-du-6373",
+    "danish": "Hvor bor du?",
+    "english": "Where do you live?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["housing", "question"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-05-v-jeg-bor-i-8998",
+    "danish": "Jeg bor i...",
+    "english": "I live in...",
+    "type": "pattern",
+    "context": null,
+    "tags": ["housing"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

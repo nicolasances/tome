@@ -1,0 +1,1261 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg bor i en stor ___.",
+    "promptTranslation": "I live in a big apartment.",
+    "answer": "lejlighed",
+    "distractors": [
+      "butik",
+      "station",
+      "gade"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-lejlighed-7252",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vi har tre ___ i vores hus.",
+    "promptTranslation": "We have three bedrooms in our house.",
+    "answer": "soveværelser",
+    "distractors": [
+      "køkkener",
+      "stuer",
+      "badeværelser"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-sovevaerelse-8215",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg laver mad i ___.",
+    "promptTranslation": "I cook in the kitchen.",
+    "answer": "køkkenet",
+    "distractors": [
+      "stuen",
+      "badeværelset",
+      "haven"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-koekken-1973",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vi sidder i ___ og ser fjernsyn.",
+    "promptTranslation": "We sit in the living room and watch TV.",
+    "answer": "stuen",
+    "distractors": [
+      "køkkenet",
+      "soveværelset",
+      "badeværelset"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-stue-4110",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg bor i et ___ med fire værelser.",
+    "promptTranslation": "I live in a house with four rooms.",
+    "answer": "hus",
+    "distractors": [
+      "park",
+      "bibliotek",
+      "supermarked"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-hus-6742",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Børnene leger i ___.",
+    "promptTranslation": "The children play in the park.",
+    "answer": "parken",
+    "distractors": [
+      "stationen",
+      "butikken",
+      "skolen"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-park-9387",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg køber brød i ___.",
+    "promptTranslation": "I buy bread at the supermarket.",
+    "answer": "supermarkedet",
+    "distractors": [
+      "parken",
+      "biblioteket",
+      "rådhuset"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-supermarked-5011",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Toget kører fra ___.",
+    "promptTranslation": "The train departs from the station.",
+    "answer": "stationen",
+    "distractors": [
+      "parken",
+      "skolen",
+      "butikken"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-station-5681",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg låner bøger på ___.",
+    "promptTranslation": "I borrow books at the library.",
+    "answer": "biblioteket",
+    "distractors": [
+      "supermarkedet",
+      "rådhuset",
+      "stationen"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bibliotek-7246",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Hun køber tøj i ___.",
+    "promptTranslation": "She buys clothes in the shop.",
+    "answer": "butikken",
+    "distractors": [
+      "parken",
+      "skolen",
+      "stationen"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-butik-4700",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Børnene går i ___ hver dag.",
+    "promptTranslation": "The children go to school every day.",
+    "answer": "skole",
+    "distractors": [
+      "park",
+      "butik",
+      "station"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-skole-9774",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Bilen er ___ huset.",
+    "promptTranslation": "The car is in front of the house.",
+    "answer": "foran",
+    "distractors": [
+      "bag",
+      "under",
+      "over"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-foran-7118",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Katten sover ___ bordet.",
+    "promptTranslation": "The cat sleeps under the table.",
+    "answer": "under",
+    "distractors": [
+      "over",
+      "foran",
+      "bag"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-under-3760",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Lampen hænger ___ bordet.",
+    "promptTranslation": "The lamp hangs over the table.",
+    "answer": "over",
+    "distractors": [
+      "under",
+      "foran",
+      "bag"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-over-5662",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Haven er ___ huset.",
+    "promptTranslation": "The garden is behind the house.",
+    "answer": "bag",
+    "distractors": [
+      "foran",
+      "over",
+      "ved"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bag-2799",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg bor ___ en stor by.",
+    "promptTranslation": "I live in a big city.",
+    "answer": "i",
+    "distractors": [
+      "på",
+      "ved",
+      "bag"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-i-4387",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Bogen ligger ___ bordet.",
+    "promptTranslation": "The book is on the table.",
+    "answer": "på",
+    "distractors": [
+      "i",
+      "under",
+      "bag"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-paa-8656",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg står ___ døren og venter.",
+    "promptTranslation": "I am standing by the door and waiting.",
+    "answer": "ved",
+    "distractors": [
+      "på",
+      "i",
+      "over"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-ved-6795",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Min ___ er meget venlig.",
+    "promptTranslation": "My neighbor is very friendly.",
+    "answer": "nabo",
+    "distractors": [
+      "gade",
+      "station",
+      "park"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-nabo-8488",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Lejligheden har et stort ___.",
+    "promptTranslation": "The apartment has a big room.",
+    "answer": "værelse",
+    "distractors": [
+      "gade",
+      "park",
+      "nabo"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-vaerelse-5494",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Lejligheden er meget ___.",
+    "promptTranslation": "The apartment is very small.",
+    "answer": "lille",
+    "distractors": [
+      "stor",
+      "bag",
+      "foran"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-lille-7188",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Vi ___ i en lejlighed i København.",
+    "promptTranslation": "We live in an apartment in Copenhagen.",
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bo-3745",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Stationen ___ (ligge) ved parken.",
+    "promptTranslation": "The station is located near the park.",
+    "answer": "ligger",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-ligge-7090",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Min ___ bor i huset ved siden af.",
+    "promptTranslation": "My neighbor lives in the house next door.",
+    "answer": "nabo",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-nabo-8488",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg vasker mig i ___.",
+    "promptTranslation": "I wash myself in the bathroom.",
+    "answer": "badeværelset",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-badevaerelse-6606",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Vi har en ___ med blomster bag huset.",
+    "promptTranslation": "We have a garden with flowers behind the house.",
+    "answer": "have",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-have-7137",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "There is a street with many shops in the center.",
+    "promptTranslation": null,
+    "answer": "Der er en gade med mange butikker i centrum.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-gade-7335",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Huset er meget ___. Det har seks værelser.",
+    "promptTranslation": "The house is very big. It has six rooms.",
+    "answer": "stort",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-stor-2274",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "___ ligger rådhuset?",
+    "promptTranslation": "Where is the city hall located?",
+    "answer": "Hvor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-hvor-bor-du-6373",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg ___ i en lille by i Danmark.",
+    "promptTranslation": "I live in a small town in Denmark.",
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-jeg-bor-i-8998",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg bor i en ___ i centrum.",
+    "promptTranslation": "I live in an apartment in the center.",
+    "answer": "lejlighed",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-lejlighed-7252",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "I live in Copenhagen.",
+    "promptTranslation": null,
+    "answer": "Jeg bor i København.",
+    "words": [
+      "i",
+      "bor",
+      "København",
+      "Jeg"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-main-clause-word-order-7290",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The school is on the street.",
+    "promptTranslation": null,
+    "answer": "Skolen ligger på gaden.",
+    "words": [
+      "gaden",
+      "Skolen",
+      "på",
+      "ligger"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The car is in front of the house.",
+    "promptTranslation": null,
+    "answer": "Bilen er foran huset.",
+    "words": [
+      "huset",
+      "er",
+      "foran",
+      "Bilen"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The library is near the station.",
+    "promptTranslation": null,
+    "answer": "Biblioteket ligger ved stationen.",
+    "words": [
+      "stationen",
+      "ligger",
+      "Biblioteket",
+      "ved"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The kitchen is big.",
+    "promptTranslation": null,
+    "answer": "Køkkenet er stort.",
+    "words": [
+      "er",
+      "stort",
+      "Køkkenet"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-definite-nouns-6934",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The garden is behind the house.",
+    "promptTranslation": null,
+    "answer": "Haven er bag huset.",
+    "words": [
+      "huset",
+      "bag",
+      "er",
+      "Haven"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "We live in a small house.",
+    "promptTranslation": null,
+    "answer": "Vi bor i et lille hus.",
+    "words": [
+      "lille",
+      "Vi",
+      "et",
+      "hus",
+      "i",
+      "bor"
+    ],
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-main-clause-word-order-7290",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at bo | present | jeg",
+    "promptTranslation": null,
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bo-3745",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at bo | present | hun",
+    "promptTranslation": null,
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bo-3745",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at ligge | present | den",
+    "promptTranslation": null,
+    "answer": "ligger",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-ligge-7090",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at ligge | present | vi",
+    "promptTranslation": null,
+    "answer": "ligger",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-ligge-7090",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at bo | present | vi",
+    "promptTranslation": null,
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bo-3745",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg bor på en lejlighed i København.",
+    "promptTranslation": "I live in an apartment in Copenhagen.",
+    "answer": "Jeg bor i en lejlighed i København.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Parken ligger i stationen.",
+    "promptTranslation": "The park is near the station.",
+    "answer": "Parken ligger ved stationen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Køkken er stort.",
+    "promptTranslation": "The kitchen is big.",
+    "answer": "Køkkenet er stort.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-definite-nouns-6934",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Hunden sidder under bord.",
+    "promptTranslation": "The dog is sitting under the table.",
+    "answer": "Hunden sidder under bordet.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-definite-nouns-6934",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Skole ligger på gaden.",
+    "promptTranslation": "The school is on the street.",
+    "answer": "Skolen ligger på gaden.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-definite-nouns-6934",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Where do you live?",
+    "promptTranslation": null,
+    "answer": "Hvor bor du?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-hvor-bor-du-6373",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I live in a big house.",
+    "promptTranslation": null,
+    "answer": "Jeg bor i et stort hus.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-hus-6742",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The kitchen is small.",
+    "promptTranslation": null,
+    "answer": "Køkkenet er lille.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Køkkenet er småt."
+    ],
+    "vocabularyItemId": "A1-05-v-koekken-1973",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The shop is on the street.",
+    "promptTranslation": null,
+    "answer": "Butikken ligger på gaden.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Butikken er på gaden."
+    ],
+    "vocabularyItemId": "A1-05-v-butik-4700",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The park is near the station.",
+    "promptTranslation": null,
+    "answer": "Parken ligger ved stationen.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Parken er ved stationen."
+    ],
+    "vocabularyItemId": "A1-05-v-park-9387",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The bedroom is big.",
+    "promptTranslation": null,
+    "answer": "Soveværelset er stort.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-sovevaerelse-8215",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The library is behind the city hall.",
+    "promptTranslation": null,
+    "answer": "Biblioteket ligger bag rådhuset.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Biblioteket er bag rådhuset."
+    ],
+    "vocabularyItemId": "A1-05-v-bibliotek-7246",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I live in a small town.",
+    "promptTranslation": null,
+    "answer": "Jeg bor i en lille by.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-by-4753",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The room is small.",
+    "promptTranslation": null,
+    "answer": "Værelset er lille.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-vaerelse-5494",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The cat is under the table.",
+    "promptTranslation": null,
+    "answer": "Katten er under bordet.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Katten sidder under bordet.",
+      "Katten ligger under bordet."
+    ],
+    "vocabularyItemId": "A1-05-v-under-3760",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The dog is in front of the door.",
+    "promptTranslation": null,
+    "answer": "Hunden er foran døren.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Hunden sidder foran døren.",
+      "Hunden ligger foran døren."
+    ],
+    "vocabularyItemId": "A1-05-v-foran-7118",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The garden is behind the house.",
+    "promptTranslation": null,
+    "answer": "Haven er bag huset.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Haven ligger bag huset."
+    ],
+    "vocabularyItemId": "A1-05-v-bag-2799",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "We live in an apartment.",
+    "promptTranslation": null,
+    "answer": "Vi bor i en lejlighed.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-jeg-bor-i-8998",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "___ bor du?",
+    "promptTranslation": "Where do you live?",
+    "answer": "Hvor",
+    "distractors": [
+      "Hvad",
+      "Hvem",
+      "Hvorfor"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-hvor-bor-du-6373",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vi bor ___ en lille by.",
+    "promptTranslation": "We live in a small town.",
+    "answer": "i",
+    "distractors": [
+      "på",
+      "ved",
+      "bag"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-by-4753",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Huset har en ___ med træer og blomster.",
+    "promptTranslation": "The house has a garden with trees and flowers.",
+    "answer": "have",
+    "distractors": [
+      "stue",
+      "gade",
+      "park"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-have-7137",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "___ ligger i centrum af byen.",
+    "promptTranslation": "The city hall is in the center of the city.",
+    "answer": "Rådhuset",
+    "distractors": [
+      "Stationen",
+      "Supermarkedet",
+      "Biblioteket"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-raadhus-9977",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Biblioteket ___ (ligge) ved rådhuset.",
+    "promptTranslation": "The library is located near the city hall.",
+    "answer": "ligger",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-raadhus-9977",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The supermarket is on the street.",
+    "promptTranslation": null,
+    "answer": "Supermarkedet ligger på gaden.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Supermarkedet er på gaden."
+    ],
+    "vocabularyItemId": "A1-05-v-supermarked-5011",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The picture hangs over the bed.",
+    "promptTranslation": null,
+    "answer": "Billedet hænger over sengen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-over-5662",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "He lives by the station.",
+    "promptTranslation": null,
+    "answer": "Han bor ved stationen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-ved-6795",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The living room is big.",
+    "promptTranslation": null,
+    "answer": "Stuen er stor.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-stue-4110",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Huset er meget ___. Det har fem soveværelser.",
+    "promptTranslation": "The house is very big. It has five bedrooms.",
+    "answer": "stort",
+    "distractors": [
+      "lille",
+      "kort",
+      "langt"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-stor-2274",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Katten sidder ___ stolen og sover.",
+    "promptTranslation": "The cat is sitting on the chair and sleeping.",
+    "answer": "på",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-paa-8656",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vi går en tur i vores ___.",
+    "promptTranslation": "We take a walk in our street.",
+    "answer": "gade",
+    "distractors": [
+      "køkken",
+      "værelse",
+      "nabo"
+    ],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-gade-7335",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "My neighbor has a small garden.",
+    "promptTranslation": null,
+    "answer": "Min nabo har en lille have.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-have-7137",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Katten sover ___ soveværelset.",
+    "promptTranslation": "The cat sleeps in the bedroom.",
+    "answer": "i",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-i-4387",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The bathroom is small.",
+    "promptTranslation": null,
+    "answer": "Badeværelset er lille.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-badevaerelse-6606",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The school is near the park.",
+    "promptTranslation": null,
+    "answer": "Skolen ligger ved parken.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Skolen er ved parken.",
+      "Skolen ligger tæt på parken."
+    ],
+    "vocabularyItemId": "A1-05-v-skole-9774",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "She lives on a big street.",
+    "promptTranslation": null,
+    "answer": "Hun bor på en stor gade.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-gade-7335",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The city hall is big.",
+    "promptTranslation": null,
+    "answer": "Rådhuset er stort.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-raadhus-9977",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The station is in the city.",
+    "promptTranslation": null,
+    "answer": "Stationen ligger i byen.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Stationen er i byen."
+    ],
+    "vocabularyItemId": "A1-05-v-station-5681",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at bo | present | de",
+    "promptTranslation": null,
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-bo-3745",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at ligge | present | det",
+    "promptTranslation": null,
+    "answer": "ligger",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-ligge-7090",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I live in a small apartment.",
+    "promptTranslation": null,
+    "answer": "Jeg bor i en lille lejlighed.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": "A1-05-v-lille-7188",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg bo i København.",
+    "promptTranslation": "I live in Copenhagen.",
+    "answer": "Jeg bor i København.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-main-clause-word-order-7290",
+    "timesShown": 0,
+    "moduleId": "danish-A1-05",
+    "words": null
+  }
+]
