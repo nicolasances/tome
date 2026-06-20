@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
 import { CheckFooter } from './CheckFooter';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { seededShuffle } from '@/utils/seededShuffle';
+import { multipleChoiceKeyHandler } from '@/utils/multipleChoiceKeyHandler';
 
 const KEYS = ['A', 'B', 'C', 'D'] as const;
 
@@ -12,7 +13,7 @@ interface ExMultipleChoiceProps {
     submissionState: SubmissionState | null;
     selectedOption: string | null;
     onSelect: (key: string) => void;
-    onCheck: () => void;
+    onCheck: (answer?: string) => void;
     isSubmitting: boolean;
 }
 
@@ -27,16 +28,48 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
     const correctKey = options.find(o => o.word === exercise.answer)?.key ?? null;
     const submitted = submissionState !== null;
 
+    const [cursorIndex, setCursorIndex] = useState(0);
+
+    useEffect(() => { setCursorIndex(0); }, [exercise.id]);
+
+    const handleKeyboard = useCallback((e: KeyboardEvent) => {
+
+        const result = multipleChoiceKeyHandler(e.key, cursorIndex, options.length);
+        if (!result) return;
+
+        e.preventDefault();
+        setCursorIndex(result.newCursorIndex);
+
+        if (result.action === 'select') {
+            onSelect(options[result.newCursorIndex].word);
+        }
+
+        if (result.action === 'submit') {
+            const word = options[result.newCursorIndex].word;
+            onSelect(word);   // keep selectedOption in sync for post-submit inline coloring
+            onCheck(word);    // submit the explicit word — avoids the stale selectedOption read
+        }
+    }, [cursorIndex, options, onSelect, onCheck]);
+
+    useEffect(() => {
+
+        if (submitted || isSubmitting) return;
+
+        window.addEventListener('keydown', handleKeyboard);
+
+        return () => window.removeEventListener('keydown', handleKeyboard);
+    }, [submitted, isSubmitting, handleKeyboard]);
+
     // Parse sentence parts around blank (supports ___ marker)
     const parts = exercise.prompt.split('___');
     const hasParts = parts.length === 2;
 
-    function optionStyle(key: string, word: string) {
+    function optionStyle(key: string, word: string, index: number) {
         if (!submitted) {
-            const selected = word === selectedOption;
+            const highlighted = word === selectedOption || index === cursorIndex;
             return {
-                bg: selected ? 'bg-lime-200 border-lime-200' : 'bg-transparent border-cyan-400',
-                badgeBg: selected ? 'bg-cyan-800 text-lime-200' : 'bg-transparent border border-black/25 text-black/50',
+                bg: highlighted ? 'bg-lime-200 border-lime-200' : 'bg-transparent border-cyan-400',
+                badgeBg: highlighted ? 'bg-cyan-800 text-lime-200' : 'bg-transparent border border-black/25 text-black/50',
                 text: 'text-black',
                 badge: null as string | null,
             };
@@ -72,8 +105,8 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
 
             {/* Options */}
             <div className="flex flex-col gap-2.5 mt-6">
-                {options.map(({ key, word }) => {
-                    const s = optionStyle(key, word);
+                {options.map(({ key, word }, index) => {
+                    const s = optionStyle(key, word, index);
                     return (
                         <button
                             key={key}

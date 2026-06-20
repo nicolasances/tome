@@ -127,10 +127,10 @@ export default function PracticeSessionPage() {
         }
     }
 
-    function handleCheck() {
+    function handleCheck(overrideAnswer?: string) {
         if (!currentExercise) return;
         switch (currentExercise.type) {
-            case 'multiple_choice':   handleSubmit(selectedOption ?? ''); break;
+            case 'multiple_choice':   handleSubmit(overrideAnswer ?? selectedOption ?? ''); break;
             case 'sentence_reorder':  handleSubmit(builtWords.join(' ')); break;
             case 'error_correction':  handleSubmit(inputValue); break;
         }
