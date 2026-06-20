@@ -10,9 +10,10 @@ interface ResultSheetProps {
     aiVerify?: boolean;
     exercise: Exercise;
     onContinue: () => void;
+    onAiVerify?: () => void;
 }
 
-export function ResultSheet({ok, answer, aiVerify, exercise, onContinue}: ResultSheetProps) {
+export function ResultSheet({ok, answer, aiVerify, exercise, onContinue, onAiVerify}: ResultSheetProps) {
     const [expanded, setExpanded] = useState(false);
     const [canExpand, setCanExpand] = useState(false);
     const ansRef = useRef<HTMLDivElement>(null);
@@ -80,16 +81,18 @@ export function ResultSheet({ok, answer, aiVerify, exercise, onContinue}: Result
                 </div>
             )}
 
-            {/* Stub action buttons */}
+            {/* Action buttons. "Explain my mistake" is still a stub; "Check with AI" verifies the answer with AI. */}
             {!ok && (
                 <div className="flex gap-2 flex-wrap flex-shrink-0">
                     <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-sm">
-                        <MaskedSvgIcon src="/images/teacher.svg" alt="Explain" size="w-4 h-4" color="bg-white" />
+                        <MaskedSvgIcon src="/images/magic.svg" alt="Explain my mistake" size="w-4 h-4" color="bg-white" />
                         Explain my mistake
                     </button>
                     {aiVerify && (
-                        <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-xs font-semibold">
-                            <MaskedSvgIcon src="/images/magic.svg" alt="Check with AI" size="w-4 h-4" color="bg-white" />
+                        <button
+                            onClick={onAiVerify}
+                            className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-sm">
+                            <MaskedSvgIcon src="/images/teacher.svg" alt="Check with AI" size="w-4 h-4" color="bg-white" />
                             Check with AI
                         </button>
                     )}

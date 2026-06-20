@@ -19,6 +19,8 @@ import { ExConjugation } from '../practice/components/ExConjugation';
 import { ExErrorCorrection } from '../practice/components/ExErrorCorrection';
 import { ExTranslation } from '../practice/components/ExTranslation';
 import { ResultSheet } from '../practice/components/ResultSheet';
+import { AIVerifyTray } from '../practice/components/AIVerifyTray';
+import { useAnswerVerification } from '@/utils/useAnswerVerification';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -46,7 +48,11 @@ export default function ModuleTestPage() {
 
     // Base data
     const [userId, setUserId] = useState('');
+    const [cefrLevel, setCefrLevel] = useState('');
     const [moduleData, setModuleData] = useState<ModuleResponse | null>(null);
+
+    // AI answer verification ("Check with AI")
+    const verification = useAnswerVerification();
     const [kicker, setKicker] = useState('');
     const [moduleNumber, setModuleNumber] = useState('01');
     const [eligibility, setEligibility] = useState<TestEligibilityResponse | null>(null);
@@ -92,6 +98,7 @@ export default function ModuleTestPage() {
             const num = idx >= 0 ? String(idx + 1).padStart(2, '0') : '01';
 
             setUserId(me.id);
+            setCefrLevel(me.cefrLevel);
             setModuleData(mod);
             setKicker(`${mod.cefrLevel}·${num} · ${mod.theme}`);
             setModuleNumber(num);
@@ -164,10 +171,18 @@ export default function ModuleTestPage() {
 
     function handleSend() { handleSubmitAnswer(inputValue); }
 
+    // ── AI answer verification ("Check with AI") ──────────────────────────────
+    function handleAiVerify() {
+        if (!currentExercise || !submissionState) return;
+        verification.verify({ exerciseId: currentExercise.id, userAnswer: inputValue, sessionId: attemptId, cefrLevel });
+    }
+
     // ── Continue (single-pass: no retry queue) ────────────────────────────────
-    function handleContinue() {
+    // overrideCorrect overturns the verdict when AI accepts a wrong answer (valid: true).
+    function handleContinue(overrideCorrect?: boolean) {
         if (!submissionState) return;
-        if (submissionState.isCorrect) setCorrectAnswerCount(prev => prev + 1);
+        verification.reset();
+        if (overrideCorrect ?? submissionState.isCorrect) setCorrectAnswerCount(prev => prev + 1);
         const next = answeredCount + 1;
         setAnsweredCount(next);
         setSubmissionState(null);
@@ -280,13 +295,24 @@ export default function ModuleTestPage() {
                         )}
                     </div>
 
-                    {submissionState && (
+                    {submissionState && verification.phase === null && (
                         <ResultSheet
                             ok={submissionState.isCorrect}
                             answer={submissionState.isCorrect ? undefined : submissionState.correctAnswer}
                             exercise={currentExercise}
                             aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
-                            onContinue={handleContinue}
+                            onContinue={() => handleContinue()}
+                            onAiVerify={handleAiVerify}
+                        />
+                    )}
+                    {submissionState && verification.phase !== null && (
+                        <AIVerifyTray
+                            phase={verification.phase}
+                            userAnswer={inputValue}
+                            correctAnswer={submissionState.correctAnswer}
+                            explanation={verification.explanation}
+                            onCancel={verification.cancel}
+                            onResolve={accepted => handleContinue(accepted)}
                         />
                     )}
                 </div>

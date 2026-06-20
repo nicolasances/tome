@@ -42,9 +42,6 @@ the overview when done.
 - **"Explain my mistake"** AI panel — the *button* is rendered in the in-test
   `ResultSheet` and in the `ReviewWrong` row; the panel it opens is **skipped**
   (no wireframe; tracked with practice's stub, issue #275).
-- **AI answer verification** ("Check with AI") — the *button* is rendered on the
-  Translation wrong-answer `ResultSheet` and `ReviewWrong` row; the panel/flow it
-  triggers is **skipped** (no wireframe).
 - The **Level Test** (§3.5) — a separate cross-module assessment, still skipped
   (no wireframe).
 
@@ -76,11 +73,12 @@ chrome; the in-test phase uses `TestShell` (linear `Bar`, "q / total" counter).
 | Ready | Ready summary (`TestReady`) | Module kicker + title, intro line, and a 4-row feature list (question count "20 questions", "80% to pass", "Instant feedback", "Counts toward mastery") with icon medallions, plus a primary "Start test" button. | Shown when unlocked and no test is in progress. Question count and pass threshold come from module config. "Start test" begins the test. |
 | In-test | Test shell (`TestShell`) | Top chrome: module kicker label, a "q / total" counter, a single **linear** progress `Bar`, and the per-exercise instruction label. Hosts the exercise body + footer. | Distinct test chrome (no mastered/deferred segmentation). The bar advances one step per answered question, monotonically 1 → total. |
 | In-test | Exercise bodies (MC, Reorder, Fill-blank, Conjugation, Error-correction, Translation) | The **same six exercise renderings as `05-practice-session`** (`TestMC`, `TestReorder`, `TestTranslation` shown in the wireframe; the remaining three reuse practice's bodies). | Reused as-is from practice. Input, inline correct/wrong coloring and `AnswerBox` behave identically to practice. |
-| In-test | Result sheet (`ResultSheet`) | The same bottom sheet as practice: after every answer, slides up with **correct** (green `Verdict` + "Correct!") or **wrong** (red `Verdict` + "Not quite", correct answer revealed, `SheetBtn` actions) state. | Immediate per-answer feedback (see §4 and OQ-1). `ContinueBtn` advances to the next question. "Explain my mistake" on all wrong states; "Check with AI" on Translation wrong only — both stubs. |
+| In-test | Result sheet (`ResultSheet`) | The same bottom sheet as practice: after every answer, slides up with **correct** (green `Verdict` + "Correct!") or **wrong** (red `Verdict` + "Not quite", correct answer revealed, `SheetBtn` actions) state. | Immediate per-answer feedback (see §4 and OQ-1). `ContinueBtn` advances to the next question. "Explain my mistake" on all wrong states is a stub; **"Check with AI" on Translation wrong is wired** — it opens the same `AIVerifyTray` as practice (F13), reusing the practice rendering. |
+| In-test | AI verify tray (`AIVerifyTray`) | The same deep-teal tray as practice (loading → accepted/not-accepted), reused as-is from `05-practice-session`. | On `valid: true` the backend flips `isCorrect` on the `ModuleTestAttempt` **at answer time, before scoring on submit** (F13/F11); the client counts the answer correct locally. Cancel returns to the `ResultSheet`. |
 | Submit | Submit confirmation (`TestSubmit`) | "All answered · N / N", a dot grid of the N questions, a finish-and-reveal prompt (e.g. "Ready to see your result?"), and a single primary "Submit test" button. **No "Back to questions" link.** | Shown after the last question. "Submit test" triggers `POST .../submit` (scoring + finalisation). **Not** an answer-locking gate — answers were already recorded per-question (see §4); this is a deliberate finish-and-reveal step, so the obsolete "you can't change answers" copy is dropped. |
 | Result · pass | Pass result (`TestResultPass`) | Score `Ring` (e.g. 85% · 17/20) with restrained celebration ticks, "Module passed!" headline, "Module NN is now unlocked" line, a `ThresholdBar` showing the score against the 80% pass marker, and two buttons: **"Home"** (→ Home dashboard, `01-home-dashboard`) and **"Review answers"** (→ Review phase). | Shown when score ≥ pass threshold. Module is now `completed`; next module unlocked. "Home" navigates to the Home dashboard, which reflects the new progress on its own load. |
 | Result · fail | Fail result (`TestResultFail`) | Score `Ring` (e.g. 70% · 14/20), "So close" headline, encouragement line referencing the 80% threshold, a `ThresholdBar`, a "Retry in mm:ss" lock pill, and a "Review answers" button. | Shown when score < pass threshold. Retry is locked until `testRetryAvailableAt`; the pill counts down. |
-| Review | Review header + list (`TestReview`, `ReviewCorrect`, `ReviewWrong`) | "Review" `TomeScreen`: header with module kicker, "X / N correct", a percentage pill and a `Bar`; then a scrollable list of every question. **Correct** rows: green `Verdict` + prompt + answer. **Wrong** rows: red `Verdict` + prompt + "You" (struck-through wrong) vs. "Answer" (correct) + `SheetBtn` actions. | Reachable from either result screen. Lists all N questions in order; wrong rows expose "Explain my mistake" (+ "Check with AI" for Translation), both stubs. |
+| Review | Review header + list (`TestReview`, `ReviewCorrect`, `ReviewWrong`) | "Review" `TomeScreen`: header with module kicker, "X / N correct", a percentage pill and a `Bar`; then a scrollable list of every question. **Correct** rows: green `Verdict` + prompt + answer. **Wrong** rows: red `Verdict` + prompt + "You" (struck-through wrong) vs. "Answer" (correct) + `SheetBtn` actions. | Reachable from either result screen. Lists all N questions in order; wrong rows expose the "Explain my mistake" stub. **"Check with AI" is not offered in Review** — verification only applies in-test, before the attempt is scored on submit. |
 
 **Additional Notes:**
 - **Phase routing on entry**: opening the test route resolves the phase from
@@ -144,9 +142,18 @@ chrome; the in-test phase uses `TestShell` (linear `Bar`, "q / total" counter).
   submit (server-side), consistent with practice's `/complete`.
 - **The test does not need to cover every vocabulary item** — it is a sample-based
   check (§3.1.1 Step 3 point 3), unlike practice's coverage gate.
+- **AI answer verification ("Check with AI") — in-test Translation only**: on a
+  wrong Translation answer the user may tap "Check with AI", opening the shared
+  `AIVerifyTray` (F13, `POST /exercises/:exerciseId/verifyAnswer` with
+  `sessionId` = the attempt id). On `valid: true` the backend flips `isCorrect`
+  on the `ModuleTestAttempt` **at answer time, before scoring on submit** — so the
+  aggregate score computed on `/submit` already reflects the overturn and there is
+  **no retroactive score change** for the client to handle; the client only mirrors
+  the verdict locally (counts the answer correct). One verification per
+  `(attemptId, exerciseId)` (repeat → 409); non-Translation → 400.
 - **Read-back of results**: the **Review** phase shows every question with the
-  user's answer vs. the correct answer; wrong rows offer the (stubbed)
-  explanation / AI-verify actions.
+  user's answer vs. the correct answer; wrong rows offer the (stubbed) "Explain my
+  mistake" action only — "Check with AI" is in-test only.
 
 ## 5. Technical Decisions & Integrations
 
@@ -161,7 +168,7 @@ chrome; the in-test phase uses `TestShell` (linear `Bar`, "q / total" counter).
 | 7 | On the test route, gating (lock state, unlock time, retry-available time) is read from the authoritative `GET .../testEligibility` (F11); question count / pass threshold from module config. The overview's Test step row still uses the dashboard progress fields it already loads. | A dedicated eligibility endpoint exists for the test flow; the overview avoids an extra call by reusing the progress data it already has. |
 | 8 | Resume reconstructs phase/position from the authoritative answer log, never inferring completion from a derived empty queue. | Consistency with the practice resume model (`05-practice-session` §4) and its hard-won correctness rule. |
 | 9 | `ResultSheet` positioned `absolute; bottom:0` within the screen, as in practice. | Continue is always reachable without page scroll. |
-| 10 | "Explain my mistake" / "Check with AI" render as stubs (no panel), tracked with practice issue #275. | The AI panels have no wireframe and depend on a backend not yet available. |
+| 10 | "Explain my mistake" renders as a stub (no panel), tracked with practice issue #275. **"Check with AI" is wired** in-test for Translation, reusing the practice `AIVerifyTray` + F13 (issue #288). | "Explain my mistake" still has no wireframe; "Check with AI" is now designed and backed by F13. |
 | 11 | **Intentional deviation from the `TestSubmit` wireframe**: drop the "Back to questions" link and the "you can't change answers once you submit" copy; the Submit screen has a single "Submit test" action + a finish-and-reveal prompt. | Immediate feedback + single-pass make those obsolete — answers are recorded per-question, so there is nothing to lock or go back and change (OQ-6). |
 
 ### 5.1 API Integrations
@@ -180,6 +187,7 @@ endpoints below are confirmed in that service's `index.ts`. A frontend wrapper
 | Ready → "Start test" | `POST /users/:userId/modules/:moduleId/tests` (`StartModuleTest`) | Starts a scored test attempt; runs mastery-aware selection (no coverage override) server-side and returns the attempt id + the full ordered question list. |
 | Resume into the correct phase/question | `GET /users/:userId/moduleTests/:attemptId` (`GetModuleTest`) | Full attempt state (ordered exercises + answers so far + status) to resume an interrupted, not-yet-submitted test into the right phase/question. |
 | In-test answer submission | `POST /users/:userId/moduleTests/:attemptId/answers` (`SubmitTestAnswer`) — body `{ exerciseId, userAnswer }` | Returns `{ isCorrect, correctAnswer }` for the immediate `ResultSheet`/`AnswerBox` feedback. Records the answer for scoring; does **not** re-queue wrong answers (single-pass). |
+| AI verify tray (`AIVerifyTray`), via in-test "Check with AI" | `POST /exercises/:exerciseId/verifyAnswer` (F13) — body `{ userAnswer, sessionId, cefrLevel }` (`sessionId` = the attempt id) | Re-verifies a wrong Translation answer with AI → `{ valid, explanation? }`. On `valid: true` the backend flips `isCorrect` on the `ModuleTestAttempt` before scoring on submit; the client mirrors it locally. One verification per `(attemptId, exerciseId)` (repeat → 409); non-Translation → 400. Shared with `05-practice-session`. |
 | Submit confirmation → "Submit test" | `POST /users/:userId/moduleTests/:attemptId/submit` (`SubmitModuleTest`) | Finalises and scores the attempt → score, pass/fail (vs. `testPassThreshold`). Server updates mastery (SRS), sets module status to `completed` on pass, and records the attempt + retry-available time on fail. Drives the Result phase. |
 | Review phase | `GET /users/:userId/moduleTests/:attemptId/review` (`GetTestReview`) | Per-question review for the Review screen: every question with the user's answer vs. the correct answer. |
 | Ready summary (question count, pass threshold), result `ThresholdBar` | `GET /modules/:id` (`TomeModuleAPI.getModule`, shared with `03`) | Reads `testQuestionCount` and `testPassThreshold` for the Ready feature list and the 80% pass marker. **Existing.** |
@@ -204,7 +212,7 @@ request/response shapes (field names) should be read from the F11 delegates
 | 5 | After the last question the Submit screen shows a single "Submit test" action (no "Back to questions"); "Submit test" triggers scoring via `POST .../submit`. | Wireframe + OQ-6. |
 | 6 | Score ≥ 80% → Pass screen, module `completed`, next module unlocked. | §3.1.1. |
 | 7 | Score < 80% → Fail screen with a "Retry in …" countdown to `testRetryAvailableAt`; retry draws a new selection. | §3.1.1 / `testRetryDelayMinutes`. |
-| 8 | Review lists every question in order; correct rows show the answer, wrong rows show user-vs-correct + the (stubbed) explanation/AI actions. | Wireframe. |
+| 8 | Review lists every question in order; correct rows show the answer, wrong rows show user-vs-correct + the (stubbed) "Explain my mistake" action ("Check with AI" is in-test only). | Wireframe. |
 | 9 | Test answers update mastery scores, exactly as practice. | §3.1.1. |
 | 10 | Reopening an in-progress test resumes into the correct phase/question, never restarting or wrongly finalising. | OQ-3 / practice resume parity. |
 
