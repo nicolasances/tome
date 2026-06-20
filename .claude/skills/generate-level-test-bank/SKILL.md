@@ -1,6 +1,6 @@
 ---
 name: generate-level-test-bank
-description: Generates, validates, and posts a Tome Language Learning Level Test Bank — a CEFR level's ~60 cross-module exercises drawn from the vocabulary and grammar of all its modules.
+description: Generates and validates a Tome Language Learning Level Test Bank — a CEFR level's ~60 cross-module exercises drawn from the vocabulary and grammar of all its modules. Does not post it — use the post-level-test-bank skill for that.
 ---
 
 # Generate Level Test Bank
@@ -15,8 +15,9 @@ exercise carries **`moduleId = null`** and references an **existing** vocabulary
 grammar concept that was already generated for one of the level's modules — **no new
 vocabulary or grammar is created here.**
 
-This skill produces three things, in order: the **level pool** (consolidated ids), the
-**exercise bank**, and — on request — **posts** it to the API.
+This skill produces two things, in order: the **level pool** (consolidated ids) and the
+**exercise bank**. It does **not** post the bank — once it is generated and validated, use
+the **`post-level-test-bank`** skill to seed it to dev or prod.
 
 ## When to Use
 
@@ -26,7 +27,11 @@ This skill produces three things, in order: the **level pool** (consolidated ids
 **Trigger Phrases:**
 - "Generate the level test bank for A2"
 - "Generate the A1 level test"
-- "Create the level test bank for B1 and post it to dev"
+- "Create the level test bank for B1"
+
+> Posting is a separate step. If the user asks to *post/seed* a level test bank, use the
+> **`post-level-test-bank`** skill instead. If they ask to "generate and post", run this skill
+> first, then hand off to `post-level-test-bank`.
 
 ## Prerequisites
 
@@ -49,9 +54,11 @@ This skill produces three things, in order: the **level pool** (consolidated ids
 **Scripts bundled with this skill:**
 - `gather_level_pool.py` — Phase 1. Consolidates the level's vocab + grammar into a pool file.
 - `validate_level_coverage.py` — Phase 3 gate 1. References-valid + full grammar coverage.
-- `post_level_test_bank.py` — Phase 4. Posts the bank to the API.
 - Reused from the sibling skill: `.claude/skills/generate-module-content/validate_distribution.py`
   — Phase 3 gate 2 (distribution), invoked as-is.
+
+Posting is **not** part of this skill — the `post-level-test-bank` skill owns
+`post_level_test_bank.py`.
 
 ## How this differs from `generate-module-content`
 
@@ -69,7 +76,7 @@ shared `rules-for-generation.md`.
 ## The Workflow
 
 ```
-GATHER LEVEL POOL  >  GENERATE CROSS-MODULE EXERCISES  >  VALIDATION QA  >  POST (on request)
+GATHER LEVEL POOL  >  GENERATE CROSS-MODULE EXERCISES  >  VALIDATION QA
 ```
 
 Each phase ends with a self-validation step. Do not advance until it passes.
@@ -165,26 +172,12 @@ block and rerun until exit 0.
 
 ---
 
-### Phase 4 — Post the bank (on request)
+### Done — handing off to posting
 
-Only when the user asks to seed/post. The token and API URL are read from macOS Keychain by
-the script — **you never read or print them.**
-
-```bash
-python3 .claude/skills/generate-level-test-bank/post_level_test_bank.py <level> --env <dev|prod>
-```
-
-- Default env is `dev`.
-- `409 / "bank already exists"` → the level already has a bank. To add exercises to it, rerun
-  with `--append` (hits `POST /levelTestBanks/<level>/exercises`).
-- Report only what the script prints: environment, level, mode, submitted, created/appended,
-  total in bank.
-
-**Security rules — never break these (same as `post-module-content`):**
-- Never call `security find-generic-password` directly.
-- Never read, print, echo, or inspect the auth token or API URL.
-- Never print HTTP request headers or raw response bodies.
-- Only report the non-sensitive summary the script prints.
+Once both Phase 3 gates exit 0, the bank is complete. **This skill stops here — it does not
+post.** Tell the user the bank is generated and validated, and that posting is done with the
+**`post-level-test-bank`** skill (e.g. "Post the `<level>` level test bank to dev"). If the
+user originally asked to "generate and post", invoke that skill now.
 
 ---
 
@@ -197,4 +190,4 @@ python3 .claude/skills/generate-level-test-bank/post_level_test_bank.py <level> 
 - A bank with no cross-module exercises (just single-module exercises stitched together).
 - Leaving any grammar concept at the level uncovered.
 - Declaring the bank complete while either Phase 3 gate FAILs.
-- Reading, printing, or otherwise surfacing the auth token or API URL.
+- Posting the bank from this skill — posting belongs to `post-level-test-bank`.

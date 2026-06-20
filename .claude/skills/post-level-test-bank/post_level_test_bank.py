@@ -5,15 +5,16 @@ Auth token and API endpoint are read from macOS Keychain and never printed or su
 Only a non-sensitive summary is written to stdout.
 
 Usage:
-    python3 post_level_test_bank.py <level> [--env dev|prod] [--append]
+    python3 post_level_test_bank.py <level> [--env dev|prod] [--append] [--content-folder PATH]
 
-    <level>     CEFR level, e.g. A1, A2, B1, B2, C1, C2
-    --env       Target environment (default: dev)
-    --append    Append to an EXISTING bank (POST /levelTestBanks/<level>/exercises)
-                instead of creating a new one (POST /levelTestBanks).
+    <level>            CEFR level, e.g. A1, A2, B1, B2, C1, C2
+    --env              Target environment (default: dev)
+    --append           Append to an EXISTING bank (POST /levelTestBanks/<level>/exercises)
+                       instead of creating a new one (POST /levelTestBanks).
+    --content-folder   Root content folder (default: content)
 
 Reads:
-    content/level-tests/<level>/<level>-level-test-exercises.json
+    <content-folder>/level-tests/<level>/<level>-level-test-exercises.json
 
 Keychain entries required (same as post-module-content, one-time setup per environment):
     security add-generic-password -s "tome-ms-language-api-dev"  -a "url"   -w "<DEV_URL>"
@@ -59,8 +60,8 @@ def _load_config(env: str) -> tuple[str, str]:
 # Content
 # ---------------------------------------------------------------------------
 
-def _load_exercises(level: str) -> list:
-    path = Path("content") / "level-tests" / level / f"{level}-level-test-exercises.json"
+def _load_exercises(level: str, content_folder: str) -> list:
+    path = Path(content_folder) / "level-tests" / level / f"{level}-level-test-exercises.json"
     if not path.exists():
         print(f"ERROR: Exercises file not found: {path}")
         sys.exit(1)
@@ -110,10 +111,10 @@ def _post(url: str, payload: dict, token: str) -> tuple[int, dict]:
 # CLI
 # ---------------------------------------------------------------------------
 
-def _parse_args() -> tuple[str, str, bool]:
+def _parse_args() -> tuple[str, str, bool, str]:
     args = sys.argv[1:]
     if not args or args[0].startswith("-"):
-        print("Usage: python3 post_level_test_bank.py <level> [--env dev|prod] [--append]")
+        print("Usage: python3 post_level_test_bank.py <level> [--env dev|prod] [--append] [--content-folder PATH]")
         sys.exit(1)
 
     level = args[0]
@@ -132,7 +133,15 @@ def _parse_args() -> tuple[str, str, bool]:
             print(f"ERROR: --env must be 'dev' or 'prod', got '{env}'")
             sys.exit(1)
 
-    return level, env, "--append" in args
+    content_folder = "content"
+    if "--content-folder" in args:
+        idx = args.index("--content-folder")
+        if idx + 1 >= len(args):
+            print("ERROR: --content-folder requires a value")
+            sys.exit(1)
+        content_folder = args[idx + 1]
+
+    return level, env, "--append" in args, content_folder
 
 
 # ---------------------------------------------------------------------------
@@ -140,8 +149,8 @@ def _parse_args() -> tuple[str, str, bool]:
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    level, env, append = _parse_args()
-    exercises = _load_exercises(level)
+    level, env, append, content_folder = _parse_args()
+    exercises = _load_exercises(level, content_folder)
     base_url, token = _load_config(env)
 
     border = "=" * 60
