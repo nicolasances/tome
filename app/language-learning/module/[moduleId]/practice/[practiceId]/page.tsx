@@ -6,8 +6,10 @@ import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
 import { reconstructSessionState } from '@/utils/reconstructSessionState';
+import { useAnswerVerification } from '@/utils/useAnswerVerification';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { ResultSheet } from '../components/ResultSheet';
+import { AIVerifyTray } from '../components/AIVerifyTray';
 import { ExMultipleChoice } from '../components/ExMultipleChoice';
 import { ExSentenceReorder } from '../components/ExSentenceReorder';
 import { ExFillBlank } from '../components/ExFillBlank';
@@ -41,7 +43,11 @@ export default function PracticeSessionPage() {
     // ── Session data ──────────────────────────────────────────────────────────
     const [exercises, setExercises] = useState<Exercise[]>([]);
     const [userId, setUserId] = useState('');
+    const [cefrLevel, setCefrLevel] = useState('');
     const [prevCoveredCount, setPrevCoveredCount] = useState(0);
+
+    // ── AI answer verification ("Check with AI") ──────────────────────────────
+    const verification = useAnswerVerification();
 
     // ── Queue management ──────────────────────────────────────────────────────
     const [queue, setQueue] = useState<string[]>([]);
@@ -92,6 +98,7 @@ export default function PracticeSessionPage() {
             const state = reconstructSessionState(session);
 
             setUserId(me.id);
+            setCefrLevel(me.cefrLevel);
             setPrevCoveredCount(coveredCount);
             setExercises(session.exercises);
             setQueue(state.queue);
@@ -138,12 +145,21 @@ export default function PracticeSessionPage() {
 
     function handleSend() { handleSubmit(inputValue); }
 
+    // ── AI answer verification ("Check with AI") ──────────────────────────────
+    function handleAiVerify() {
+        if (!currentExercise || !submissionState) return;
+        verification.verify({ exerciseId: currentExercise.id, userAnswer: inputValue, sessionId: practiceId, cefrLevel });
+    }
+
     // ── Continue (advance to next exercise) ───────────────────────────────────
-    async function handleContinue() {
+    // overrideCorrect overturns the verdict when AI accepts a wrong answer (valid: true).
+    async function handleContinue(overrideCorrect?: boolean) {
         if (!submissionState) return;
 
+        verification.reset();
+
         const currentId  = queue[0];
-        const wasCorrect = submissionState.isCorrect;
+        const wasCorrect = overrideCorrect ?? submissionState.isCorrect;
 
         if (wasCorrect) setMasteredCount(c => c + 1);
         setExerciseNumber(n => Math.min(n + 1, totalExercises));
@@ -291,14 +307,25 @@ export default function PracticeSessionPage() {
                         )}
                     </div>
 
-                    {/* Result sheet overlay */}
-                    {submissionState && (
+                    {/* Result sheet overlay (or the AI verification tray once "Check with AI" is tapped) */}
+                    {submissionState && verification.phase === null && (
                         <ResultSheet
                             ok={submissionState.isCorrect}
                             answer={submissionState.isCorrect ? undefined : submissionState.correctAnswer}
                             exercise={currentExercise}
                             aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
-                            onContinue={handleContinue}
+                            onContinue={() => handleContinue()}
+                            onAiVerify={handleAiVerify}
+                        />
+                    )}
+                    {submissionState && verification.phase !== null && (
+                        <AIVerifyTray
+                            phase={verification.phase}
+                            userAnswer={inputValue}
+                            correctAnswer={submissionState.correctAnswer}
+                            explanation={verification.explanation}
+                            onCancel={verification.cancel}
+                            onResolve={accepted => handleContinue(accepted)}
                         />
                     )}
                 </div>
