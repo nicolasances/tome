@@ -76,9 +76,9 @@ function Verdict({ ok, size = 34, noBg = TC.red, noFg = '#fff', mark }) {
   );
 }
 
-function SheetBtn({ icon, label, light }) {
+function SheetBtn({ icon, label, light, onClick }) {
   return (
-    <button style={{ display: 'inline-flex', alignItems: 'center', gap: 7, border: `1.5px solid ${light ? 'rgba(236,254,255,0.5)' : TC.c700}`, background: 'transparent', color: light ? TC.onDark : TC.fg1, borderRadius: 9999, padding: '9px 14px', fontFamily: 'inherit', fontWeight: 600, fontSize: 12.5, cursor: 'pointer' }}>
+    <button onClick={onClick} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, border: `1.5px solid ${light ? 'rgba(236,254,255,0.5)' : TC.c700}`, background: 'transparent', color: light ? TC.onDark : TC.fg1, borderRadius: 9999, padding: '9px 14px', fontFamily: 'inherit', fontWeight: 600, fontSize: 12.5, cursor: 'pointer' }}>
       <TIcon name={icon} size={15} color={light ? TC.onDark : TC.c800} />{label}
     </button>
   );
@@ -120,7 +120,7 @@ function RetryHint({ children }) {
    • Incorrect: reveals the answer. A long answer truncates to 2 lines; the user
      opens the rest by tapping the answer or dragging the handle up. When the
      answer is very long the expanded text scrolls inside the sheet. */
-function ResultSheet({ ok, answer, aiVerify }) {
+function ResultSheet({ ok, answer, aiVerify, onAiVerify }) {
   const [expanded, setExpanded] = React.useState(false);
   const [canExpand, setCanExpand] = React.useState(false);
   const ansRef = React.useRef(null);
@@ -176,7 +176,7 @@ function ResultSheet({ ok, answer, aiVerify }) {
       {!ok && (
         <div style={{ flex: '0 0 auto', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <SheetBtn icon="tome/magic" label="Explain my mistake" light />
-          {aiVerify && <SheetBtn icon="tome/teacher" label="Check with AI" light />}
+          {aiVerify && <SheetBtn icon="tome/teacher" label="Check with AI" light onClick={onAiVerify} />}
         </div>
       )}
       <ContinueBtn bg={TC.limeBright} color={TC.c900} />
@@ -353,25 +353,125 @@ function ExErrorCorrection({ state = 'idle' }) {
   );
 }
 
+/* ── AI answer verification ──────────────────────────────────────────
+   Triggered by "Check with AI" on a wrong production answer. Calls
+   PostExerciseAnswerVerification → { valid, explanation? }.
+   • loading — request in flight (dash spinner)
+   • valid:true  — AI accepts the translation; the wrong verdict is overturned
+   • valid:false — AI confirms it's wrong and returns an explanation */
+function Spinner({ size = 22, color = TC.limeBright, track = 'rgba(236,254,255,0.22)', stroke = 3 }) {
+  const r = (size - stroke) / 2, c = 2 * Math.PI * r;
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ animation: 'tomeSpin 0.85s linear infinite', display: 'block' }}>
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={track} strokeWidth={stroke} />
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * 0.72} />
+    </svg>
+  );
+}
+
+/* answer chip styled for the deep-teal tray */
+function DarkAnswerChip({ text, ok, block }) {
+  const edge = ok ? TC.limeBright : 'rgba(236,254,255,0.45)';
+  return (
+    <div style={{ display: block ? 'flex' : 'inline-flex', alignItems: block ? 'flex-start' : 'center', gap: 9, background: ok ? 'rgba(190,242,100,0.16)' : 'rgba(0,0,0,0.16)', border: `2px solid ${edge}`, borderRadius: 12, padding: '9px 15px', maxWidth: '100%' }}>
+      <span style={{ fontSize: block ? 15 : 17, fontWeight: 700, color: '#fff', whiteSpace: block ? 'normal' : 'nowrap', textWrap: 'pretty', lineHeight: 1.4, flex: block ? 1 : '0 1 auto' }}>{text}</span>
+      {ok && <span style={{ fontSize: 15, fontWeight: 800, color: TC.limeBright, flexShrink: 0, marginTop: block ? 2 : 0 }}>✓</span>}
+    </div>
+  );
+}
+
+function AIVerifyTray({ phase, userAnswer, correctAns, explanation, onCancel }) {
+  const loading = phase === 'loading', ok = phase === 'valid';
+  const title = loading ? 'Checking with AI…' : ok ? 'Accepted by AI' : 'Not accepted';
+  return (
+    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: 'calc(100% - 84px)', background: TC.c900, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: '8px 18px 22px', display: 'flex', flexDirection: 'column', gap: 13, color: TC.onDark, boxSizing: 'border-box', animation: 'tomeTrayIn 0.3s cubic-bezier(0.38,0.1,0.36,0.9)' }}>
+      <div style={{ flex: '0 0 auto', display: 'flex', justifyContent: 'center', padding: '4px 0 2px' }}>
+        <div style={{ width: 40, height: 4, borderRadius: 4, background: 'rgba(236,254,255,0.35)' }} />
+      </div>
+
+      {/* header — verdict badge / spinner + title + AI attribution */}
+      <div style={{ flex: '0 0 auto', display: 'flex', alignItems: 'center', gap: 12 }}>
+        {loading
+          ? <div style={{ width: 32, height: 32, borderRadius: '50%', flex: '0 0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(236,254,255,0.10)' }}><Spinner size={22} /></div>
+          : <Verdict ok={ok} size={32} noBg="rgba(185,28,28,0.92)" />}
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>{title}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 3, fontSize: 10.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: TC.c200 }}>
+            <TIcon name="tome/teacher" size={13} color={TC.spark} /> AI answer check
+          </div>
+        </div>
+      </div>
+
+      {/* the answer being verified */}
+      <div style={{ flex: '0 0 auto' }}>
+        <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: TC.c200, marginBottom: 6 }}>Your answer</div>
+        <DarkAnswerChip text={userAnswer} ok={ok} />
+      </div>
+
+      {/* phase body */}
+      {loading && (
+        <div style={{ flex: '0 0 auto', fontSize: 13, color: 'rgba(236,254,255,0.75)', lineHeight: 1.5 }}>
+          Comparing your translation against the meaning — accents and word order count, small variations are fine.
+        </div>
+      )}
+      {ok && (
+        <div style={{ flex: '0 0 auto', display: 'flex', alignItems: 'flex-start', gap: 9, fontSize: 13.5, color: '#fff', lineHeight: 1.5 }}>
+          <TIcon name="tome/magic" size={16} color={TC.limeBright} />
+          <span>Your translation works too — both <b style={{ color: TC.limeBright }}>“er du fra”</b> and <b style={{ color: TC.limeBright }}>“kommer du fra”</b> are natural here. Counting it as correct.</span>
+        </div>
+      )}
+      {phase === 'invalid' && (
+        <div style={{ flex: '0 1 auto', minHeight: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div>
+            <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: TC.c200, marginBottom: 5 }}>Why it's not accepted</div>
+            <div style={{ fontSize: 13.5, color: '#fff', lineHeight: 1.55, textWrap: 'pretty' }}>{explanation}</div>
+          </div>
+          <div>
+            <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: TC.c200, marginBottom: 6 }}>Correct answer</div>
+            <DarkAnswerChip text={correctAns} ok block />
+          </div>
+        </div>
+      )}
+
+      {/* footer action */}
+      {loading
+        ? <button onClick={onCancel} style={{ width: '100%', border: '1.5px solid rgba(236,254,255,0.4)', borderRadius: 9999, background: 'transparent', color: TC.onDark, fontFamily: 'inherit', fontWeight: 700, fontSize: 14, padding: 13, cursor: 'pointer', opacity: 0.85 }}>Cancel</button>
+        : <ContinueBtn bg={TC.limeBright} color={TC.c900} label={ok ? 'Continue' : 'Got it'} />}
+    </div>
+  );
+}
+
 /* 6 ── Translation (active) ─────────────────────────── */
-function ExTranslation({ state = 'idle', long }) {
+function ExTranslation({ state = 'idle', long, ai }) {
+  const [aiState, setAiState] = React.useState(null);
+  const live = ai || aiState;                         // static board prop wins; else live click state
   const prompt = long ? 'Where do you come from originally, and how long have you been living here in Denmark, if you don\u2019t mind me asking?' : 'Where are you from?';
   const correctAns = long ? 'Hvor kommer du oprindeligt fra, og hvor længe har du egentlig boet her i Danmark, hvis jeg må spørge?' : 'Hvor kommer du fra?';
-  const typed = state === 'wrong'
+  const baseTyped = state === 'wrong'
     ? (long ? 'Hvor du kommer fra oprindelig, og hvor lang tid har du boet her i Danmark nu, hvis jeg spørger?' : 'Hvor er du fra?')
     : correctAns;
+  // the invalid branch demonstrates a genuinely-wrong attempt (verb/subject order)
+  const typed = live === 'invalid' ? 'Hvor du kommer fra?' : baseTyped;
+  const explanation = 'In a Danish question the verb comes before the subject. “du kommer” should be “kommer du”, so it reads “Hvor kommer du fra?”';
+  const bodyOk = state === 'correct' || live === 'valid';
   return (
     <ExShell instruction="Translate to Danish">
       <PromptBlock kicker="In Danish, say" big={prompt} />
       {state !== 'idle' && (
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 28 }}>
-          <AnswerBox text={typed} ok={state === 'correct'} big block={long} />
+          <AnswerBox text={typed} ok={bodyOk} big block={long} />
         </div>
       )}
       <div style={{ flex: 1 }} />
-      {state === 'idle'
-        ? <SendFooter value={correctAns} placeholder="Type Danish translation…" hint />
-        : <ResultSheet ok={state === 'correct'} answer={correctAns} aiVerify={state === 'wrong'} />}
+      {state === 'idle' && <SendFooter value={correctAns} placeholder="Type Danish translation…" hint />}
+      {state !== 'idle' && !live && (
+        <ResultSheet ok={state === 'correct'} answer={correctAns} aiVerify={state === 'wrong'}
+          onAiVerify={() => { setAiState('loading'); setTimeout(() => setAiState('valid'), 1500); }} />
+      )}
+      {state !== 'idle' && live && (
+        <AIVerifyTray phase={live} userAnswer={typed} correctAns={correctAns} explanation={explanation}
+          onCancel={() => setAiState(null)} />
+      )}
     </ExShell>
   );
 }
@@ -379,5 +479,6 @@ function ExTranslation({ state = 'idle', long }) {
 Object.assign(window, {
   ExShell, FauxInput, SendFooter, CheckFooter, PromptBlock,
   Verdict, SheetBtn, ContinueBtn, AnswerBox, ResultSheet, WordTile,
+  Spinner, DarkAnswerChip, AIVerifyTray,
   ExMultipleChoice, ExReorder, ExFillBlank, ExConjugation, ExErrorCorrection, ExTranslation,
 });

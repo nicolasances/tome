@@ -24,16 +24,13 @@ function Canvas() {
 
       <DCSection id="home" title="1 · Home dashboard"
         subtitle="CEFR level is the motivational anchor — three ways to surface level + module progress. Continue-module CTA, Knowledge / Analyze, weekly stats.">
-        {board('home-a', 'A · Hero badge', <HomeA />)}
-        {board('home-b', 'B · Progress ring', <HomeB />)}
         {board('home-c', 'C · Level track', <HomeC />)}
+        {board('home-leveltest', 'C · Level Test unlocked (all 12 A1 modules complete)', <HomeLevelTest />)}
       </DCSection>
 
       <DCSection id="map" title="2 · Module map"
         subtitle="The 12 A1 modules — module 1 in progress, the rest locked until you finish the one before. Three metaphors for the same progression.">
         {board('map-a', 'A · List', <MapA />)}
-        {board('map-b', 'B · Journey path', <MapB />)}
-        {board('map-c', 'C · Grid', <MapC />)}
       </DCSection>
 
       <DCSection id="flow" title="3 · Module flow"
@@ -53,7 +50,7 @@ function Canvas() {
       </DCSection>
 
       <DCSection id="feedback" title="5 · Answer feedback"
-        subtitle="Correct vs incorrect per type. Every incorrect answer drops the deep feedback tray: a wrong attempt reveals the answer with “Explain my mistake” (translation also offers “Check with AI”). Correct shows only the verdict — no sentence. Long answers truncate and expand on tap or drag.">
+        subtitle="Correct vs incorrect per type. Every incorrect answer drops the deep feedback tray: a wrong attempt reveals the answer with “Explain my mistake” (translation also offers “Check with AI”). Correct shows only the verdict — no sentence. Long answers truncate and expand on tap or drag. “Check with AI” verifies the typed answer against the meaning — returning { valid, explanation? } — so a falsely-rejected translation can be overturned (tap it on the live incorrect board).">
         {board('fb1-ok', '1 · MC — correct', <ExMultipleChoice state="correct" />)}
         {board('fb1-no', '1 · MC — incorrect', <ExMultipleChoice state="retry" />)}
         {board('fb2-ok', '2 · Reorder — correct', <ExReorder state="correct" />)}
@@ -67,6 +64,9 @@ function Canvas() {
         {board('fb6-ok', '6 · Translation — correct', <ExTranslation state="correct" />)}
         {board('fb6-no', '6 · Translation — incorrect', <ExTranslation state="wrong" />)}
         {board('fb6-long', '6 · Translation — long answer (tap / drag to expand)', <ExTranslation state="wrong" long={true} />)}
+        {board('fb6-ai-load', '6 · Check with AI — verifying', <ExTranslation state="wrong" ai="loading" />)}
+        {board('fb6-ai-ok', '6 · Check with AI — accepted (valid: true)', <ExTranslation state="wrong" ai="valid" />)}
+        {board('fb6-ai-no', '6 · Check with AI — not accepted (valid: false + explanation)', <ExTranslation state="wrong" ai="invalid" />)}
       </DCSection>
 
       <DCSection id="test" title="6 · Module test"
@@ -80,6 +80,13 @@ function Canvas() {
         {board('test-pass', 'Result · passed (\u226580%)', <TestResultPass />)}
         {board('test-fail', 'Result · not passed (retry in 20m)', <TestResultFail />)}
         {board('test-review', 'Answer review · your answer vs correct', <TestReview />)}
+      </DCSection>
+
+      <DCSection id="leveltest" title="7 · Level Test"
+        subtitle="The CEFR-level sibling of the Module Test. Gated on completing all 12 modules of the level; samples across the whole level (40 questions); passing promotes you to the next level (A1 → A2). The in-test questions, submit, and review are IDENTICAL to §6 and are reused as-is — only these screens differ: how it surfaces on Home, the Ready intro, and the promotion result.">
+        {board('lt-home', 'Surfaces on Home · A1 complete, test unlocked', <HomeLevelTest />)}
+        {board('lt-ready', 'Ready · sampled across all 12 modules', <LevelTestReady />)}
+        {board('lt-pass', 'Result · passed → promoted to A2', <LevelTestPass />)}
       </DCSection>
     </DesignCanvas>
   );

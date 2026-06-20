@@ -10,6 +10,8 @@
   html, body { height: 100%; }
   body { font-family: 'Comfortaa','Poppins',system-ui,sans-serif; background: #f0eee9; overflow: hidden; }
   #root { height: 100%; }
+  @keyframes tomeSpin { to { transform: rotate(360deg); } }
+  @keyframes tomeTrayIn { from { transform: translateY(10px) scale(0.96); opacity: 0; } to { transform: none; opacity: 1; } }
 </style>
 </head>
 <body>
@@ -37,6 +39,7 @@
   <script type="text/babel" src="module-screens.jsx"></script>
   <script type="text/babel" src="exercise-screens.jsx"></script>
   <script type="text/babel" src="test-screens.jsx"></script>
+  <script type="text/babel" src="level-test-screens.jsx"></script>
   <script type="text/babel" src="app.jsx"></script>
 </body>
 </html>
