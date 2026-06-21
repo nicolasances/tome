@@ -37,12 +37,12 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
     return (
         <div>
             <div className="flex items-center justify-between mb-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-white/60 m-0">
+                <p className="text-sm font-semibold uppercase tracking-widest text-white/60 m-0 pl-4">
                     Up next in {levelName ?? 'this level'}
                 </p>
-                <button onClick={onOpenMap} className="bg-transparent border-0 cursor-pointer text-sm font-bold text-white flex items-center gap-1.5">
-                    All modules
-                    <MaskedSvgIcon src="/images/point-right.svg" alt="Go" size="w-3.5 h-3.5" color="bg-white" />
+                <button onClick={onOpenMap} className="bg-transparent border-0 cursor-pointer text-lg font-bold text-lime-200 flex items-center gap-1.5 pr-4">
+                    <span className="mr-2">All modules</span>
+                    <MaskedSvgIcon src="/images/point-right.svg" alt="Go" size="w-3.5 h-3.5" color="bg-lime-200" />
                 </button>
             </div>
             <div className="grid grid-cols-4 gap-4">
