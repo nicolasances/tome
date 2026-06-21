@@ -59,6 +59,7 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
                             <div className="flex items-center justify-between">
                                 <span className={`text-xl font-bold ${isCurrent ? 'text-cyan-800' : 'text-black/40'}`}>{num}</span>
                                 {isCompleted && <MaskedSvgIcon src="/images/tick.svg" alt="Completed" size="w-6 h-6" color="bg-black/50" />}
+                                {isCurrent && <MaskedSvgIcon src="/images/point-right.svg" alt="In Progress" size="w-5 h-5" color="bg-lime-700" />}
                                 {!isCurrent && !isCompleted && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-white/50" />}
                             </div>
                             <span className={`text-sm font-semibold leading-tight mt-2 ${isCurrent ? 'text-cyan-800 font-bold' : 'text-black/40'}`}>
