@@ -47,7 +47,8 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
             </div>
             <div className="grid grid-cols-4 gap-4">
                 {first4.map((m, i) => {
-                    const isCurrent = m.status === 'in_progress';
+                    const isCurrent = m.status === 'in_progress' || m.status === 'available';
+                    const isCompleted = m.status === 'completed';
                     const num = String(i + 1).padStart(2, '0');
                     return (
                         <div
@@ -56,10 +57,11 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
                             className={`rounded-2xl p-4 min-h-24 flex flex-col justify-between ${isCurrent ? 'bg-lime-200 cursor-pointer' : 'bg-cyan-700/20 border border-cyan-500/30'}`}
                         >
                             <div className="flex items-center justify-between">
-                                <span className={`text-xl font-bold ${isCurrent ? 'text-cyan-800' : 'text-black/30'}`}>{num}</span>
-                                {!isCurrent && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-white/50" />}
+                                <span className={`text-xl font-bold ${isCurrent ? 'text-cyan-800' : 'text-black/40'}`}>{num}</span>
+                                {isCompleted && <MaskedSvgIcon src="/images/tick.svg" alt="Completed" size="w-6 h-6" color="bg-black/50" />}
+                                {!isCurrent && !isCompleted && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-white/50" />}
                             </div>
-                            <span className={`text-sm font-semibold leading-tight mt-2 ${isCurrent ? 'text-cyan-800 font-bold' : 'text-white/70'}`}>
+                            <span className={`text-sm font-semibold leading-tight mt-2 ${isCurrent ? 'text-cyan-800 font-bold' : 'text-black/40'}`}>
                                 {m.title}
                             </span>
                         </div>
