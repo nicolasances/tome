@@ -92,9 +92,9 @@ function NavItem({icon, label, active, onClick}: {icon: string, label: string, a
         <button
             onClick={onClick}
             title={label}
-            className={`flex items-center gap-3.5 w-full text-left px-3.5 py-3 rounded-xl cursor-pointer border-[1.5px] bg-transparent ${active ? 'border-lime-200' : 'border-transparent'}`}
+            className={`flex items-center gap-3.5 w-full text-left px-3.5 py-3 rounded-xl cursor-pointer ${active ? 'bg-cyan-800' : 'bg-transparent '}`}
         >
-            <MaskedSvgIcon src={icon} alt={label} size="w-5 h-5" color={active ? 'bg-cyan-800' : 'bg-white/70'} />
+            <MaskedSvgIcon src={icon} alt={label} size="w-5 h-5" color="bg-white/70" />
             <span className={`text-base font-semibold whitespace-nowrap ${active ? 'text-white font-bold' : 'text-white/70'}`}>
                 {label}
             </span>
