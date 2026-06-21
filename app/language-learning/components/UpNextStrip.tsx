@@ -54,7 +54,7 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
                         <div
                             key={m.moduleId}
                             onClick={isCurrent ? () => router.push(`/language-learning/module/${m.moduleId}`) : undefined}
-                            className={`rounded-2xl p-4 min-h-24 flex flex-col justify-between ${isCurrent ? 'bg-lime-200 cursor-pointer' : 'bg-cyan-700/20 border border-cyan-500/30'}`}
+                            className={`rounded-2xl p-4 min-h-24 flex flex-col justify-between ${isCurrent ? 'bg-lime-200 cursor-pointer' : 'bg-cyan-700/40 border border-cyan-500/30'}`}
                         >
                             <div className="flex items-center justify-between">
                                 <span className={`text-xl font-bold ${isCurrent ? 'text-cyan-800' : 'text-black/40'}`}>{num}</span>
@@ -62,7 +62,7 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
                                 {isCurrent && <MaskedSvgIcon src="/images/point-right.svg" alt="In Progress" size="w-5 h-5" color="bg-lime-700" />}
                                 {!isCurrent && !isCompleted && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-white/50" />}
                             </div>
-                            <span className={`text-sm font-semibold leading-tight mt-2 ${isCurrent ? 'text-cyan-800 font-bold' : 'text-black/40'}`}>
+                            <span className={`text-sm font-semibold leading-tight mt-2 ${isCurrent ? 'text-cyan-800 font-bold' : 'text-black/50'}`}>
                                 {m.title}
                             </span>
                         </div>
