@@ -1,1 +1,1 @@
-{"sections":{"home":{"labels":{"home-b":"B · Progress ring"}},"exercises":{"title":"4 · Practice exercises"}}}
+{"sections":{"home":{"labels":{"home-b":"B · Progress ring"}},"exercises":{"title":"4 · Practice exercises"},"feedback":{"labels":{"fb6-ai-load":"6 · Check with AI — verifying","fb6-ai-ok":"6 · Check with AI — accepted (valid: true)","fb6-ai-no":"6 · Check with AI — not accepted (valid: false + explanation)"}}}}
