@@ -77,6 +77,7 @@ Participates in journey **J2** (browse the level & start a module).
 | 3 | Tapping the active module opens its Module overview. | J2. |
 | 4 | Locked modules are visibly non-interactive. | — |
 | 5 | Level progress header matches completed-module count. | — |
+| 6 | On desktop (`lg:` breakpoint), modules render as a 4-column grid of module cards instead of the mobile vertical list; page header shows level kicker, title, and completed/total count. | Responsive. |
 
 ## 7. Open Questions
 

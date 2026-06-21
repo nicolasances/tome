@@ -4,7 +4,6 @@ import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { StepState } from './StepList';
 
 interface StepRailItemProps {
-    stepId: string;
     number: number;
     title: string;
     subtitle: string;
@@ -13,7 +12,7 @@ interface StepRailItemProps {
     onClick: () => void;
 }
 
-export function StepRailItem({stepId, number, title, subtitle, state, selected, onClick}: StepRailItemProps) {
+export function StepRailItem({number, title, subtitle, state, selected, onClick}: StepRailItemProps) {
     const isDone = state === 'completed';
     const isActive = state === 'available';
     const isLocked = state === 'locked';

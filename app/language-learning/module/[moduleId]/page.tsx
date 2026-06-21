@@ -244,7 +244,6 @@ export default function ModuleOverviewPage() {
                                 {railSteps.map((s) => (
                                     <StepRailItem
                                         key={s.id}
-                                        stepId={s.id}
                                         number={s.number}
                                         title={s.title}
                                         subtitle={s.subtitle}

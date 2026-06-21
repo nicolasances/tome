@@ -11,7 +11,6 @@ import {
     CEFR_LEVEL_NAMES,
     CefrLevel,
     deriveCurrentModule,
-    ModuleProgressEntry,
 } from '@/api/TomeLearningDashboardAPI';
 import { LevelTrack } from './components/LevelTrack';
 import { ContinueCard } from './components/ContinueCard';
