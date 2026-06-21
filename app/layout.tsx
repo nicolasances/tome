@@ -7,6 +7,7 @@ import { CarModeContextProvider } from "@/context/CarModeContext";
 import { AudioProvider } from "@/context/AudioContext";
 import { HeaderProvider } from "@/context/HeaderContext";
 import TomeHeader from "@/app/ui/TomeHeader";
+import { DesktopSidebar } from "@/app/ui/DesktopSidebar";
 import { SettingsProvider } from "@/context/SettingsContext";
 
 // const geistMono = Geist_Mono({
@@ -45,28 +46,33 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         style={{ fontFamily: "'Comfortaa', sans-serif" }}
         className="antialiased h-screen flex flex-row"
       >
-        <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
-        </div>
-        <div className="w-full xl:w-[80vw] 2xl:w-[60vw] shadow-2xl xl:px-8 flex flex-col h-screen">
+        <SettingsProvider>
+          <AudioProvider>
+            <CarModeContextProvider>
+              <HeaderProvider>
 
-          <SettingsProvider>
-            <AudioProvider>
-              <CarModeContextProvider>
-                <HeaderProvider>
-                  <TomeHeader />
+                {/* Desktop sidebar */}
+                <div className="hidden lg:flex">
+                  <DesktopSidebar />
+                </div>
+
+                <div className="flex flex-col flex-1 min-w-0 h-screen">
+                  {/* Mobile header */}
+                  <div className="lg:hidden">
+                    <TomeHeader />
+                  </div>
+
                   <div className="flex flex-1 flex-col min-h-0 overflow-y-auto">
                     <TomeContextProvider>
                       {children}
                     </TomeContextProvider>
                   </div>
-                </HeaderProvider>
-              </CarModeContextProvider>
-            </AudioProvider>
-          </SettingsProvider>
+                </div>
 
-        </div>
-        <div className="xl:w-[10vw] 2xl:w-[20vw] bg-black opacity-[0.3]">
-        </div>
+              </HeaderProvider>
+            </CarModeContextProvider>
+          </AudioProvider>
+        </SettingsProvider>
       </body>
     </html>
   );
