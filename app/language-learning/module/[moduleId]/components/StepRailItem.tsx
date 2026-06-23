@@ -25,10 +25,10 @@ export function StepRailItem({number, title, subtitle, state, selected, onClick}
         <button
             onClick={isClickable ? onClick : undefined}
             disabled={!isClickable}
-            className={`flex items-center gap-3.5 w-full text-left px-4 py-3.5 rounded-2xl cursor-${isClickable ? 'pointer' : 'default'} border-[1.5px] ${selected ? 'border-lime-200 bg-lime-200/10' : 'border-cyan-500/30 bg-transparent'} ${isLocked || isUpcoming ? 'opacity-70' : ''}`}
+            className={`flex items-center gap-3.5 w-full text-left px-4 py-3.5 rounded-2xl cursor-${isClickable ? 'pointer' : 'default'} border-[1.5px] ${selected ? 'bg-cyan-700/30    ' : 'border-cyan-500/30 bg-transparent'} ${isLocked || isUpcoming ? 'opacity-70' : ''}`}
         >
             {/* Medallion */}
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${medallionFilled ? (isDone ? 'bg-lime-300' : 'bg-lime-200') : 'bg-transparent'} ${medallionFilled ? '' : isLocked ? 'border-2 border-black/20' : 'border-2 border-cyan-600'} ${isLocked ? 'text-white/50' : 'text-cyan-800'}`}>
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-cyan-800 ${medallionFilled ? (isDone ? 'bg-lime-300' : 'bg-lime-200') : 'bg-transparent'} ${medallionFilled ? '' : isLocked ? 'border-2 border-black/20' : 'border-2 border-cyan-600'}`}>
                 {isDone ? (
                     <MaskedSvgIcon src="/images/tick.svg" alt="Done" size="w-4 h-4" color="bg-cyan-800" />
                 ) : isLocked ? (
