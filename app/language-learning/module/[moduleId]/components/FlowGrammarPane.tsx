@@ -46,24 +46,6 @@ export function FlowGrammarPane({moduleId}: {moduleId: string}) {
                 <span className="text-xs font-bold text-white/60">{currentIndex + 1} / {total}</span>
             </div>
             <ConceptCard name={concept.name} explanation={concept.explanation} examples={concept.examples} />
-            {total > 1 && (
-                <div className="flex justify-between items-center mt-2">
-                    <button
-                        onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
-                        disabled={currentIndex === 0}
-                        className={`text-sm font-bold ${currentIndex === 0 ? 'text-white/30 cursor-default' : 'text-white cursor-pointer'} bg-transparent border-0`}
-                    >
-                        ← Previous
-                    </button>
-                    <button
-                        onClick={() => setCurrentIndex((i) => Math.min(total - 1, i + 1))}
-                        disabled={currentIndex === total - 1}
-                        className={`text-sm font-bold ${currentIndex === total - 1 ? 'text-white/30 cursor-default' : 'text-white cursor-pointer'} bg-transparent border-0`}
-                    >
-                        Next →
-                    </button>
-                </div>
-            )}
         </div>
     );
 }
