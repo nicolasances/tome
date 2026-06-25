@@ -218,27 +218,16 @@ export default function ModuleOverviewPage() {
             {/* ═══ DESKTOP TWO-PANE LAYOUT ═══ */}
             <div className="hidden lg:flex flex-col w-full max-w-5xl px-12 pt-10 pb-14 overflow-y-auto">
 
-                {/* Back link */}
-                <button
-                    onClick={() => router.push(`/language-learning/level/${data?.module.cefrLevel ?? 'A1'}`)}
-                    className="flex items-center gap-2 bg-transparent border-0 cursor-pointer text-sm font-bold text-white/70 mb-5 p-0"
-                >
-                    <span className="inline-flex rotate-180">
-                        <MaskedSvgIcon src="/images/point-right.svg" alt="Back" size="w-3.5 h-3.5" color="bg-white/70" />
-                    </span>
-                    All modules
-                </button>
-
                 {data === undefined && <ModuleOverviewSkeleton />}
-                {data === null && <p className="text-sm text-cyan-600 mt-4">Failed to load module. Please try again.</p>}
+                {data === null && <p className="text-sm text-cyan-800 mt-4">Failed to load module. Please try again.</p>}
 
                 {data && (
                     <div className="grid grid-cols-3 gap-7 items-start">
                         {/* LEFT RAIL */}
                         <div className="col-span-1">
-                            <p className="text-xs font-semibold uppercase tracking-widest text-white/60 m-0">{kicker}</p>
-                            <h1 className="text-3xl font-bold text-white leading-tight mt-2 m-0 p-0 border-0">{data.module.title}</h1>
-                            <p className="text-sm text-white/70 leading-relaxed mt-2 m-0">{data.module.communicationGoal}</p>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-black/60 m-0">{kicker}</p>
+                            <h1 className="text-3xl font-bold text-black leading-tight mt-2 m-0 p-0 border-0">{data.module.title}</h1>
+                            <p className="text-sm text-black/70 leading-relaxed mt-2 m-0">{data.module.communicationGoal}</p>
 
                             <div className="flex flex-col gap-3 mt-6">
                                 {railSteps.map((s) => (

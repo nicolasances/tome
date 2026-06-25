@@ -86,8 +86,8 @@ export default function LanguageLearningHomePage() {
                 {/* Page header */}
                 <div className="flex items-end gap-5 mb-7">
                     <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mb-2">Language Learning</p>
-                        <h1 className="text-3xl font-bold text-white leading-tight m-0 p-0 border-0">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mb-2">Language Learning</p>
+                        <h1 className="text-3xl font-bold text-black leading-tight m-0 p-0 border-0">
                             Goddag — let&apos;s keep going
                         </h1>
                     </div>
@@ -163,8 +163,8 @@ function DesktopWeekCounter({loading, count}: {loading: boolean, count: number})
     return (
         <div className="flex items-center gap-4">
             <div className="text-right">
-                <div className="text-2xl font-bold text-white leading-none">{count}</div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mt-1 m-0">sessions this week</p>
+                <div className="text-2xl font-bold text-blackwhite leading-none">{count}</div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mt-1 m-0">sessions this week</p>
             </div>
         </div>
     );

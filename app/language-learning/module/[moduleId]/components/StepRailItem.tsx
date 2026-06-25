@@ -32,7 +32,7 @@ export function StepRailItem({number, title, subtitle, state, selected, onClick}
                 {isDone ? (
                     <MaskedSvgIcon src="/images/tick.svg" alt="Done" size="w-4 h-4" color="bg-cyan-800" />
                 ) : isLocked ? (
-                    <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-white/50" />
+                    <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-cyan-700" />
                 ) : (
                     <span className="text-base font-bold">{number}</span>
                 )}
@@ -40,11 +40,11 @@ export function StepRailItem({number, title, subtitle, state, selected, onClick}
 
             {/* Text */}
             <div className="flex-1 min-w-0">
-                <span className="text-base font-bold text-white">{title}</span>
-                <span className="text-xs text-white/60 block mt-0.5">{subtitle}</span>
+                <span className="text-base font-bold text-black">{title}</span>
+                <span className="text-xs text-black/60 block mt-0.5">{subtitle}</span>
             </div>
 
-            {isLocked && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-white/40" />}
+            {isLocked && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-3.5 h-3.5" color="bg-cyan-700" />}
         </button>
     );
 }
