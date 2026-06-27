@@ -197,7 +197,9 @@ export default function ModuleOverviewPage() {
                     {data && (
                         <div className="flex flex-col">
                             <ModuleHeader kicker={kicker} title={data.module.title} communicationGoal={data.module.communicationGoal} />
-                            <div className="mt-4"><StepList steps={steps} /></div>
+                            <div className="mt-4">
+                                <StepList steps={steps} />
+                            </div>
                             <div className="flex-1" />
                         </div>
                     )}
