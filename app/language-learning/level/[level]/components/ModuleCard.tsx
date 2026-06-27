@@ -16,22 +16,23 @@ export function ModuleCard({module, index, onTap}: {module: ModuleProgressEntry,
     return (
         <div
             onClick={isActive ? onTap : undefined}
-            className={`rounded-2xl p-5 min-h-40 flex flex-col justify-between ${isCurrent ? 'bg-lime-200' : 'bg-cyan-700/20 border border-cyan-500/30'} ${isActive ? 'cursor-pointer' : 'cursor-default'}`}
+            className={`rounded-2xl p-5 min-h-40 flex flex-col justify-between ${isCurrent ? 'bg-cyan-800' : module.status == "completed" ? ' bg-cyan-600' : 'bg-cyan-700/20 text-cyan-700'} ${isActive ? 'cursor-pointer' : 'cursor-default'}`}
             role={isActive ? 'button' : undefined}
             tabIndex={isActive ? 0 : undefined}
             onKeyDown={isActive ? (e) => e.key === 'Enter' && onTap() : undefined}
             aria-label={isActive ? `Open module ${module.title}` : undefined}
         >
             <div className="flex items-start justify-between">
-                <span className={`text-3xl font-bold leading-none ${isCurrent ? 'text-cyan-800' : 'text-black/30'}`}>{num}</span>
-                {isCurrent ? (
-                    <RoundButton svgIconPath={{ src: '/images/point-right.svg', alt: 'Open' }} type="primary" onClick={() => {}} size="s" />
-                ) : (
-                    <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-4 h-4" color="bg-white/50" />
-                )}
+
+                <span className={`text-3xl font-bold leading-none ${isCurrent ? 'text-lime-200' : 'text-black/30'}`}>{num}</span>
+
+                {isCurrent && <RoundButton svgIconPath={{ src: '/images/point-right.svg', alt: 'Open' }} type="primary" onClick={() => {}} size="s" />}
+                {module.status === 'locked' && <MaskedSvgIcon src="/images/padlock.svg" alt="Locked" size="w-4 h-4" color="bg-white/50" />}
+                {module.status === 'completed' && <MaskedSvgIcon src='/images/tick.svg' alt='Completed' size="w-5 h-5" color="bg-black/50" />}
+                    
             </div>
             <div>
-                <span className={`text-base font-bold leading-tight ${isCurrent ? 'text-cyan-800' : 'text-white'}`}>
+                <span className={`text-base font-bold leading-tight ${isCurrent ? 'text-lime-200' : 'text-black/70'}`}>
                     {module.title}
                 </span>
                 {isCurrent ? (
@@ -39,11 +40,11 @@ export function ModuleCard({module, index, onTap}: {module: ModuleProgressEntry,
                         <div className="flex-1">
                             <ProgressBar current={stepNum} max={3} size="s" hideNumber id={`map-card-${module.moduleId}`} />
                         </div>
-                        <span className="text-xs font-bold text-cyan-800 whitespace-nowrap">Step {stepNum}/3</span>
+                        <span className="text-xs font-bold text-cyan-200 whitespace-nowrap">Step {stepNum}/3</span>
                     </div>
                 ) : (
-                    <p className="text-xs text-white/50 font-semibold mt-2 m-0">
-                        {module.status === 'locked' ? `Finish module ${String(index).padStart(2, '0')} to unlock` : 'Ready'}
+                    <p className="text-xs text-black/50 font-semibold mt-2 m-0">
+                        {module.status === 'locked' ? `Finish module ${String(index).padStart(2, '0')} to unlock` : module.status === 'completed' ? 'Completed' : 'Ready'}
                     </p>
                 )}
             </div>
