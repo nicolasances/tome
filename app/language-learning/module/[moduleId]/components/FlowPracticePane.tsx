@@ -1,7 +1,6 @@
 'use client';
 
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
-import { ProgressBar } from '@/app/ui/general/ProgressBar';
 
 interface FlowPracticePaneProps {
     vocabularySeen: number;
@@ -9,7 +8,7 @@ interface FlowPracticePaneProps {
     stepNumber: number;
 }
 
-export function FlowPracticePane({vocabularySeen, vocabularyTotal, stepNumber}: FlowPracticePaneProps) {
+export function FlowPracticePane({vocabularySeen, vocabularyTotal}: FlowPracticePaneProps) {
     const coveragePct = vocabularyTotal > 0 ? (vocabularySeen / vocabularyTotal) * 100 : 0;
 
     return (

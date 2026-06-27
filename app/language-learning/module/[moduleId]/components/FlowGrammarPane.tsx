@@ -7,7 +7,7 @@ import { SessionProgressBar } from '@/components/SessionProgressBar';
 
 export function FlowGrammarPane({moduleId}: {moduleId: string}) {
     const [concepts, setConcepts] = useState<GrammarConcept[] | null | undefined>(undefined);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex] = useState(0);
 
     useEffect(() => {
         new TomeModuleAPI()

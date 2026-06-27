@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI, MeProgressResponse, ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
-import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { startPracticeAndGetSessionId } from '@/utils/startPractice';
 import { ModuleOverviewSkeleton } from './components/ModuleOverviewSkeleton';
 import { ModuleHeader } from './components/ModuleHeader';

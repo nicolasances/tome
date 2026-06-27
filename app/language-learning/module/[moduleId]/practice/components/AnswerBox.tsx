@@ -20,7 +20,7 @@ export function AnswerBox({ text, ok, big, block }: AnswerBoxProps) {
     );
 }
 
-export function AnswerLine({ text, ok, big }: AnswerBoxProps) {
+export function AnswerLine({ text, ok }: AnswerBoxProps) {
     return (
         <div className={`flex items-center border-b-2 px-2 ${ok ? 'border-lime-200' : 'border-red-800'}`}>
             <span className={`inline-block min-w-20 py-0.5 pr-4 text-center ${ok ? 'text-lime-200' : 'text-red-800'}`}>
