@@ -48,7 +48,7 @@ function formatCountdown(testUnlocksAt: string): string {
 
 function deriveLockLabel(testState: StepState, step: ModuleProgressEntry['step'], testUnlocksAt: string | null, testUnlockDelayHours: number): string | undefined {
     if (testState === 'available' || testState === 'completed') return undefined;
-    if (step === 'test' && testUnlocksAt && new Date(testUnlocksAt) > new Date()) return formatCountdown(testUnlocksAt);
+    if (step === 'test' && testUnlocksAt && new Date(testUnlocksAt) > new Date()) return `Test unlocks in ${testUnlocksAt ? formatCountdown(testUnlocksAt) : ''}`;
     return `${testUnlockDelayHours}h after practice`;
 }
 
@@ -138,7 +138,7 @@ export default function ModuleOverviewPage() {
     // Set initial selected step based on progress
     useEffect(() => {
         if (data) setSelectedStep(deriveDefaultStep(stepStates));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
     const handleCtaClick = async () => {
@@ -246,7 +246,7 @@ export default function ModuleOverviewPage() {
 
                         {/* RIGHT PANE */}
                         <div className="col-span-2 rounded-2xl border border-cyan-500/30 bg-cyan-700/20 p-8 min-h-96 flex flex-col">
-                            <div className="flex-1">
+                            <div className="flex-1 flex">
                                 {selectedStep === 'grammar' && <FlowGrammarPane moduleId={moduleId} />}
                                 {selectedStep === 'practice' && (
                                     <FlowPracticePane
@@ -265,15 +265,17 @@ export default function ModuleOverviewPage() {
                                     />
                                 )}
                             </div>
-                            <div className="flex justify-end mt-7">
-                                <button
-                                    onClick={handleDesktopCta}
-                                    disabled={isDesktopCtaDisabled || isStartingPractice}
-                                    className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isDesktopCtaDisabled || isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
-                                >
-                                    {isStartingPractice ? 'Starting…' : desktopCtaLabel}
-                                </button>
-                            </div>
+                            {selectedStep !== 'test' && (
+                                <div className="flex justify-end mt-7">
+                                    <button
+                                        onClick={handleDesktopCta}
+                                        disabled={isDesktopCtaDisabled || isStartingPractice}
+                                        className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isDesktopCtaDisabled || isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
+                                    >
+                                        {isStartingPractice ? 'Starting…' : desktopCtaLabel}
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
