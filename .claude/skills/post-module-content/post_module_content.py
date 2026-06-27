@@ -257,13 +257,12 @@ def main():
     print(f"{'Status:':<{_W}} {module_status_label}")
 
     print(f"\n--- Exercises ---")
-    exercises_created = len(exercises_body.get("exerciseIds", []))
+    exercises_created = len(exercises_body.get("inserted", []))
+    exercises_already_present = exercises_body.get("duplicatesSkipped", 0)
     if exercises_status_code in (200, 201):
         print(f"{'Submitted:':<{_W}} {len(exercises)}")
         print(f"{'Created:':<{_W}} {exercises_created}")
-    elif exercises_status_code == 409:
-        print(f"{'Submitted:':<{_W}} {len(exercises)}")
-        print(f"{'Status:':<{_W}} bank already exists")
+        print(f"{'Already present:':<{_W}} {exercises_already_present}")
     elif exercises_status_code == 400:
         print(f"{'Status:':<{_W}} validation error: {exercises_body.get('message', '(no message)')}")
     else:
@@ -275,9 +274,11 @@ def main():
     print(f"{'Grammar:':<{_W}} {_batch_summary(grammar_result)}")
     print(f"{'Module:':<{_W}} {module_status_label}")
     if exercises_status_code in (200, 201):
-        print(f"{'Exercises:':<{_W}} {exercises_created} created")
+        print(f"{'Exercises:':<{_W}} {exercises_created} created, {exercises_already_present} already present")
+    elif exercises_status_code == 400:
+        print(f"{'Exercises:':<{_W}} validation error: {exercises_body.get('message', '(no message)')}")
     else:
-        print(f"{'Exercises:':<{_W}} {module_status_label}")
+        print(f"{'Exercises:':<{_W}} unexpected HTTP {exercises_status_code}")
     print(border)
 
 

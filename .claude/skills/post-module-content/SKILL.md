@@ -99,13 +99,14 @@ Status:          created
 --- Exercises ---
 Submitted:       50
 Created:         50
+Already present: 0
 
 ============================================================
 Summary
 Vocabulary:      47 created, 0 already present, 0 rejected
 Grammar:         3 created, 0 already present, 0 rejected
 Module:          created
-Exercises:       50 created
+Exercises:       50 created, 0 already present
 ============================================================
 ```
 
@@ -134,14 +135,15 @@ Status:          already exists
 
 --- Exercises ---
 Submitted:       50
-Created:         50
+Created:         0
+Already present: 50
 
 ============================================================
 Summary
 Vocabulary:      0 created, 47 already present, 0 rejected
 Grammar:         0 created, 3 already present, 0 rejected
 Module:          already exists
-Exercises:       50 created
+Exercises:       0 created, 50 already present
 ============================================================
 ```
 
