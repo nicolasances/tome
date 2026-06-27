@@ -266,17 +266,15 @@ export default function ModuleOverviewPage() {
                                     />
                                 )}
                             </div>
-                            {selectedStep !== 'test' && (
-                                <div className="flex justify-end mt-7">
-                                    <button
-                                        onClick={handleDesktopCta}
-                                        disabled={isDesktopCtaDisabled || isStartingPractice}
-                                        className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isDesktopCtaDisabled || isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
-                                    >
-                                        {isStartingPractice ? 'Starting…' : desktopCtaLabel}
-                                    </button>
-                                </div>
-                            )}
+                            <div className="flex justify-end mt-7">
+                                <button
+                                    onClick={handleDesktopCta}
+                                    disabled={isDesktopCtaDisabled || isStartingPractice}
+                                    className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isDesktopCtaDisabled || isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
+                                >
+                                    {isStartingPractice ? 'Starting…' : desktopCtaLabel}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}
