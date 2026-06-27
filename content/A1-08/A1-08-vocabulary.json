@@ -1,0 +1,272 @@
+[
+  {
+    "id": "A1-08-v-bus-1576",
+    "danish": "bus",
+    "english": "bus",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "public transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-tog-8709",
+    "danish": "tog",
+    "english": "train",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "public transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-metro-3527",
+    "danish": "metro",
+    "english": "metro / subway",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "public transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-cykel-4097",
+    "danish": "cykel",
+    "english": "bicycle",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-taxa-9577",
+    "danish": "taxa",
+    "english": "taxi",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-at-gaa-5456",
+    "danish": "at gå",
+    "english": "to walk / to go on foot",
+    "type": "verb",
+    "context": null,
+    "tags": ["movement", "directions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-at-koere-3007",
+    "danish": "at køre",
+    "english": "to drive / to go by vehicle",
+    "type": "verb",
+    "context": null,
+    "tags": ["movement", "transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-at-tage-2807",
+    "danish": "at tage",
+    "english": "to take (transport)",
+    "type": "verb",
+    "context": "taking transport, e.g. take the bus",
+    "tags": ["transport", "movement"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-billet-1186",
+    "danish": "billet",
+    "english": "ticket",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "tickets"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-station-3133",
+    "danish": "station",
+    "english": "station",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "landmarks"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-stoppested-8250",
+    "danish": "stoppested",
+    "english": "bus stop",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "public transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-til-venstre-5800",
+    "danish": "til venstre",
+    "english": "to the left",
+    "type": "phrase",
+    "context": null,
+    "tags": ["directions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-til-hoejre-8235",
+    "danish": "til højre",
+    "english": "to the right",
+    "type": "phrase",
+    "context": null,
+    "tags": ["directions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-ligeud-4928",
+    "danish": "ligeud",
+    "english": "straight ahead",
+    "type": "adverb",
+    "context": null,
+    "tags": ["directions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-rundt-om-hjoernet-8012",
+    "danish": "rundt om hjørnet",
+    "english": "around the corner",
+    "type": "phrase",
+    "context": null,
+    "tags": ["directions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-undskyld-1498",
+    "danish": "undskyld",
+    "english": "excuse me / sorry",
+    "type": "phrase",
+    "context": null,
+    "tags": ["directions", "communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-hvor-er-8146",
+    "danish": "Hvor er...?",
+    "english": "Where is...?",
+    "type": "pattern",
+    "context": null,
+    "tags": ["directions", "questions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-hvordan-kommer-jeg-til-5911",
+    "danish": "Hvordan kommer jeg til...?",
+    "english": "How do I get to...?",
+    "type": "pattern",
+    "context": null,
+    "tags": ["directions", "questions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-kirke-6152",
+    "danish": "kirke",
+    "english": "church",
+    "type": "noun",
+    "context": null,
+    "tags": ["landmarks"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-raadhus-1988",
+    "danish": "rådhus",
+    "english": "town hall",
+    "type": "noun",
+    "context": null,
+    "tags": ["landmarks"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-hospital-9217",
+    "danish": "hospital",
+    "english": "hospital",
+    "type": "noun",
+    "context": null,
+    "tags": ["landmarks"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-supermarked-3912",
+    "danish": "supermarked",
+    "english": "supermarket",
+    "type": "noun",
+    "context": null,
+    "tags": ["landmarks", "shopping"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-banegaard-7481",
+    "danish": "banegård",
+    "english": "train station / railway station",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "landmarks"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-lufthavn-2864",
+    "danish": "lufthavn",
+    "english": "airport",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "landmarks"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-enkeltbillet-8103",
+    "danish": "enkeltbillet",
+    "english": "single ticket",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "tickets"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-tur-retur-9745",
+    "danish": "tur-retur",
+    "english": "return ticket",
+    "type": "noun",
+    "context": null,
+    "tags": ["transport", "tickets"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-08-v-taet-paa-9360",
+    "danish": "tæt på",
+    "english": "close to / near",
+    "type": "phrase",
+    "context": null,
+    "tags": ["directions", "location"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

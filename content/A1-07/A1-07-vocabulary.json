@@ -1,0 +1,292 @@
+[
+  {
+    "id": "A1-07-v-spise-3847",
+    "danish": "spise",
+    "english": "to eat",
+    "type": "verb",
+    "context": null,
+    "tags": ["food", "eating"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-drikke-4339",
+    "danish": "drikke",
+    "english": "to drink",
+    "type": "verb",
+    "context": null,
+    "tags": ["drink", "beverage"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-bestille-5747",
+    "danish": "bestille",
+    "english": "to order",
+    "type": "verb",
+    "context": "ordering food or drink",
+    "tags": ["food", "restaurant", "ordering"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-kan-lide-1890",
+    "danish": "kan lide",
+    "english": "to like / to enjoy",
+    "type": "phrase",
+    "context": null,
+    "tags": ["preference", "expression"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-ikke-3263",
+    "danish": "ikke",
+    "english": "not",
+    "type": "adverb",
+    "context": "negation marker",
+    "tags": ["negation", "grammar"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-morgenmad-5156",
+    "danish": "morgenmad",
+    "english": "breakfast",
+    "type": "noun",
+    "context": null,
+    "tags": ["meal", "food", "morning"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-frokost-5732",
+    "danish": "frokost",
+    "english": "lunch",
+    "type": "noun",
+    "context": null,
+    "tags": ["meal", "food", "midday"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-aftensmad-1997",
+    "danish": "aftensmad",
+    "english": "dinner",
+    "type": "noun",
+    "context": null,
+    "tags": ["meal", "food", "evening"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-mad-3616",
+    "danish": "mad",
+    "english": "food",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "general"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-broed-3894",
+    "danish": "brød",
+    "english": "bread",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "bakery"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-smoerrebroed-2221",
+    "danish": "smørrebrød",
+    "english": "open sandwich",
+    "type": "noun",
+    "context": "traditional Danish open-faced rye bread with toppings",
+    "tags": ["food", "danish", "traditional", "lunch"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-ost-2717",
+    "danish": "ost",
+    "english": "cheese",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "dairy"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-aeg-9981",
+    "danish": "æg",
+    "english": "egg",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "protein"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-koed-5101",
+    "danish": "kød",
+    "english": "meat",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "protein"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-fisk-2403",
+    "danish": "fisk",
+    "english": "fish",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "seafood", "protein"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-frugt-4213",
+    "danish": "frugt",
+    "english": "fruit",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "produce"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-groentsager-1295",
+    "danish": "grøntsager",
+    "english": "vegetables",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "produce"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-suppe-1282",
+    "danish": "suppe",
+    "english": "soup",
+    "type": "noun",
+    "context": null,
+    "tags": ["food", "hot dish"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-vand-9415",
+    "danish": "vand",
+    "english": "water",
+    "type": "noun",
+    "context": null,
+    "tags": ["drink", "beverage"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-maelk-1719",
+    "danish": "mælk",
+    "english": "milk",
+    "type": "noun",
+    "context": null,
+    "tags": ["drink", "dairy", "beverage"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-kaffe-8181",
+    "danish": "kaffe",
+    "english": "coffee",
+    "type": "noun",
+    "context": null,
+    "tags": ["drink", "beverage"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-te-6610",
+    "danish": "te",
+    "english": "tea",
+    "type": "noun",
+    "context": null,
+    "tags": ["drink", "beverage"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-juice-6847",
+    "danish": "juice",
+    "english": "juice",
+    "type": "noun",
+    "context": null,
+    "tags": ["drink", "beverage"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-soed-3414",
+    "danish": "sød",
+    "english": "sweet",
+    "type": "adjective",
+    "context": "taste: sweet-tasting",
+    "tags": ["taste", "describing food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-salt-2875",
+    "danish": "salt",
+    "english": "salty",
+    "type": "adjective",
+    "context": "salty (taste), not the noun 'salt'",
+    "tags": ["taste", "describing food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-bitter-3735",
+    "danish": "bitter",
+    "english": "bitter",
+    "type": "adjective",
+    "context": null,
+    "tags": ["taste", "describing food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-laekker-9082",
+    "danish": "lækker",
+    "english": "delicious / tasty",
+    "type": "adjective",
+    "context": null,
+    "tags": ["taste", "describing food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-sulten-5616",
+    "danish": "sulten",
+    "english": "hungry",
+    "type": "adjective",
+    "context": null,
+    "tags": ["state", "physical"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-07-v-toerstig-3640",
+    "danish": "tørstig",
+    "english": "thirsty",
+    "type": "adjective",
+    "context": null,
+    "tags": ["state", "physical"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A1-08-g-question-formation-3755",
+    "name": "Question formation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish questions are formed by placing the question word first, then the verb, then the subject. Common question words for directions are 'Hvor' (Where), 'Hvordan' (How), and 'Hvornår' (When). When there is no question word, the verb simply moves to the front: 'Er det langt?' (Is it far?).",
+    "examples": [
+      { "danish": "Hvor er stationen?", "english": "Where is the station?" },
+      { "danish": "Hvordan kommer jeg til rådhuset?", "english": "How do I get to the town hall?" }
+    ]
+  },
+  {
+    "id": "A1-08-g-imperative-form-for-giving-4391",
+    "name": "Imperative form for giving directions",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "The imperative (command form) is used to give directions. It is formed by taking the verb stem — the infinitive without 'at'. For example: 'at gå' → 'Gå!' (Go/Walk!), 'at dreje' → 'Drej!' (Turn!), 'at tage' → 'Tag!' (Take!). The imperative always comes at the start of the sentence.",
+    "examples": [
+      { "danish": "Gå ligeud og drej til venstre ved kirken.", "english": "Go straight ahead and turn left at the church." },
+      { "danish": "Tag bussen til stationen og gå derfra.", "english": "Take the bus to the station and walk from there." }
+    ]
+  }
+]

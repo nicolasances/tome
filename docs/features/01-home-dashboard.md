@@ -41,7 +41,7 @@ browse the level).
 | Home dashboard | Level track | Horizontal A1→A2→B1→B2→C1→C2 row of nodes with connectors; current level enlarged + lime-filled, completed levels filled, future levels outlined. Below: level name ("Foundation") + a row of module dots for the current level. | Highlights the user's current level; module dots fill as modules complete. Static (not a navigation control in v2.0). |
 | Home dashboard | Continue CTA | Dark rounded card with a lime circular arrow, kicker "Continue · A1·01", and the current module title. | Tapping navigates to the current module (Module overview, or its current step). Hidden/replaced with an empty state when no module is in progress. |
 | Home dashboard | Primary nav row | Two `RoundButton`s (primary variant) with labels: **Modules**, **Analyze**. The third button (Sources/Knowledge) is **not rendered** in v2.0. | Modules → Module map (`02`). Analyze → Analyze Content (**skipped**). |
-| Home dashboard | Weekly stats | "This week" label + a 7-day bar chart (M–S) of modules completed per day. | Renders one bar per weekday; height = modules completed that day; today emphasised. |
+| Home dashboard | Weekly stats | "This week" label + a 7-day bar chart over a **rolling window** (the last 6 days + today) of practice sessions completed per day. | Renders one bar per day (oldest → today); height = practice sessions completed that day; today emphasised. |
 | Home dashboard | Screen chrome | `TomeScreen` titled "Language Learning". | Standard app header; layout shell, not a separate feature. |
 
 **Additional Notes:**
@@ -55,7 +55,7 @@ browse the level).
 - The level track marks levels < current as completed, the current level as active, and levels > current as future.
 - Module-dots / "x / N modules" reflect **UserModuleProgress** for the current level: count of `completed` modules out of the level's total.
 - The **current module** for the Continue CTA = the user's `in_progress` module; if none is in progress, the first `available` (not-yet-completed, unlocked) module at the current level.
-- Weekly stats show **modules completed per day** for the current calendar week (Mon–Sun); each bar height = count of modules with status `completed` on that day.
+- Weekly stats show **completed practice sessions per day** over a **rolling 7-day window** — the last 6 days plus today — **not** a fixed calendar week (Mon–Sun); each bar height = count of practice sessions the user completed on that day. The window always ends on today, so the chart shows the user's most recent week of activity regardless of which weekday it is.
 - The dashboard is **read-only** with respect to progress — it never mutates mastery or module state.
 
 ## 5. Technical Decisions & Integrations
@@ -74,7 +74,7 @@ browse the level).
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
 | Level track, Continue CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`) | Returns the user's current CEFR level, a status summary for all 6 levels, and the per-module status list for the current level. Drives the level track, the module-dot progress, and (via `deriveCurrentModule`) the Continue CTA's target module. |
-| Weekly stats | `GET /sessions/stats/weekly?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns completed-session counts per day (Mon–Sun) for the current calendar week; `from` is computed client-side as the Monday of the current ISO week. Drives the 7-day bar chart. |
+| Weekly stats | `GET /sessions/stats/weekly?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns completed practice-session counts per day for the **rolling 7-day window ending today**; `from` is computed client-side as **today − 6 days** (YYYYMMDD). Returns 7 entries, oldest day → today. Drives the 7-day bar chart. |
 
 ## 6. Success Criteria
 

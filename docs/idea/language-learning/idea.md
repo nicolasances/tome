@@ -384,6 +384,10 @@ The user's current CEFR level is always visible on the Home Dashboard. It should
 
 The user's module progress, within a CEFR level, should also always be visible in the Home Dashboard.
 
+#### Weekly Activity
+
+The Home Dashboard also surfaces the user's recent practice activity as a motivational anchor: a count of completed practice sessions and a per-day bar chart (labelled "This week"). Both cover a **rolling 7-day window — the last 6 days plus today — not a fixed calendar week (Mon–Sun)**. Each bar's height is the number of practice sessions the user completed on that day, with today emphasised, and the headline count is the sum across the window. The window always ends on today, so the view consistently shows the user's most recent week of effort regardless of which weekday it is.
+
 ---
 
 ### 3.6 Analyze Content

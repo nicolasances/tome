@@ -1,0 +1,292 @@
+[
+  {
+    "id": "A1-06-v-vaagne-1730",
+    "danish": "vågne",
+    "english": "to wake up",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "morning"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-staa-op-3030",
+    "danish": "stå op",
+    "english": "to get up",
+    "type": "phrase",
+    "context": "getting out of bed",
+    "tags": ["routine", "morning"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-spise-5529",
+    "danish": "spise",
+    "english": "to eat",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-drikke-7213",
+    "danish": "drikke",
+    "english": "to drink",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-koere-3465",
+    "danish": "køre",
+    "english": "to drive",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-arbejde-6762",
+    "danish": "arbejde",
+    "english": "to work",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "work"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-sove-8019",
+    "danish": "sove",
+    "english": "to sleep",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "night"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-gaa-3416",
+    "danish": "gå",
+    "english": "to walk / to go",
+    "type": "verb",
+    "context": "to go on foot",
+    "tags": ["routine", "transport"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-lave-mad-5097",
+    "danish": "lave mad",
+    "english": "to cook",
+    "type": "phrase",
+    "context": null,
+    "tags": ["routine", "food"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-laese-3002",
+    "danish": "læse",
+    "english": "to read",
+    "type": "verb",
+    "context": null,
+    "tags": ["routine", "leisure"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-se-fjernsyn-9059",
+    "danish": "se fjernsyn",
+    "english": "to watch TV",
+    "type": "phrase",
+    "context": null,
+    "tags": ["routine", "leisure", "evening"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-slappe-af-6058",
+    "danish": "slappe af",
+    "english": "to relax",
+    "type": "phrase",
+    "context": null,
+    "tags": ["routine", "leisure", "evening"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-morgenmad-8635",
+    "danish": "morgenmad",
+    "english": "breakfast",
+    "type": "noun",
+    "context": null,
+    "tags": ["routine", "meals"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-frokost-3106",
+    "danish": "frokost",
+    "english": "lunch",
+    "type": "noun",
+    "context": null,
+    "tags": ["routine", "meals"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-aftensmad-8725",
+    "danish": "aftensmad",
+    "english": "dinner",
+    "type": "noun",
+    "context": null,
+    "tags": ["routine", "meals"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-morgen-6202",
+    "danish": "morgen",
+    "english": "morning",
+    "type": "noun",
+    "context": "time of day, not 'i morgen' (tomorrow)",
+    "tags": ["routine", "time-of-day"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-middag-6015",
+    "danish": "middag",
+    "english": "noon / midday",
+    "type": "noun",
+    "context": "midday (around 12), the time of day",
+    "tags": ["routine", "time-of-day"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-eftermiddag-6773",
+    "danish": "eftermiddag",
+    "english": "afternoon",
+    "type": "noun",
+    "context": null,
+    "tags": ["routine", "time-of-day"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-aften-4487",
+    "danish": "aften",
+    "english": "evening",
+    "type": "noun",
+    "context": null,
+    "tags": ["routine", "time-of-day"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-nat-8372",
+    "danish": "nat",
+    "english": "night",
+    "type": "noun",
+    "context": null,
+    "tags": ["routine", "time-of-day"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-om-morgenen-9127",
+    "danish": "om morgenen",
+    "english": "in the morning",
+    "type": "phrase",
+    "context": "habitual time expression",
+    "tags": ["routine", "time-expression"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-om-aftenen-4622",
+    "danish": "om aftenen",
+    "english": "in the evening",
+    "type": "phrase",
+    "context": "habitual time expression",
+    "tags": ["routine", "time-expression"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-hver-dag-1781",
+    "danish": "hver dag",
+    "english": "every day",
+    "type": "phrase",
+    "context": null,
+    "tags": ["routine", "time-expression", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-altid-9866",
+    "danish": "altid",
+    "english": "always",
+    "type": "adverb",
+    "context": null,
+    "tags": ["routine", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-ofte-3014",
+    "danish": "ofte",
+    "english": "often",
+    "type": "adverb",
+    "context": null,
+    "tags": ["routine", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-normalt-2084",
+    "danish": "normalt",
+    "english": "normally / usually",
+    "type": "adverb",
+    "context": null,
+    "tags": ["routine", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-nogle-gange-5753",
+    "danish": "nogle gange",
+    "english": "sometimes",
+    "type": "phrase",
+    "context": null,
+    "tags": ["routine", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-sjaeldent-8215",
+    "danish": "sjældent",
+    "english": "rarely / seldom",
+    "type": "adverb",
+    "context": null,
+    "tags": ["routine", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-06-v-aldrig-8903",
+    "danish": "aldrig",
+    "english": "never",
+    "type": "adverb",
+    "context": null,
+    "tags": ["routine", "frequency"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]
