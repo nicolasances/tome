@@ -81,14 +81,14 @@ export default function ModuleMapPage() {
                 {/* Page header */}
                 <div className="flex items-end gap-5 mb-7">
                     <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mb-2">{level} · {levelName}</p>
-                        <h1 className="text-3xl font-bold text-white leading-tight m-0 p-0 border-0">Module map</h1>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mb-2">{level} · {levelName}</p>
+                        <h1 className="text-3xl font-bold text-black leading-tight m-0 p-0 border-0">Module map</h1>
                     </div>
                     <div className="text-right">
-                        <div className="text-2xl font-bold text-white leading-none">
-                            {completedCount}<span className="text-lg text-white/50"> / {totalCount}</span>
+                        <div className="text-2xl font-bold text-black leading-none">
+                            {completedCount}<span className="text-lg text-black/50"> / {totalCount}</span>
                         </div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-white/60 mt-1 m-0">modules complete</p>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mt-1 m-0">modules complete</p>
                     </div>
                 </div>
 
