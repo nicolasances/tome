@@ -132,7 +132,7 @@ function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, answe
 
     return (
         <div className="flex flex-1 flex-col items-center px-6 pt-1 text-center">
-            <span className="text-sm font-semibold uppercase tracking-widest text-black/50 mt-4">
+            <span className="text-sm font-semibold uppercase tracking-widest text-black/50 mt-4 mb-4">
                 Module {moduleNumber}
             </span>
 
