@@ -5,10 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 
 export function ProgressBar({ current, max, size, id, hideNumber = false }: { current: number, max: number, size?: "s" | "m", id?: string, hideNumber?: boolean }) {
     const containerRef = useRef<HTMLDivElement>(null);
+    const svgRef = useRef<SVGSVGElement>(null);
     const [containerWidth, setContainerWidth] = useState(0);
 
     const drawProgress = () => {
-        if (containerWidth === 0) return;
+        if (containerWidth === 0 || !svgRef.current) return;
 
         let height = 20;
         let barHeight = 12;
@@ -21,7 +22,7 @@ export function ProgressBar({ current, max, size, id, hideNumber = false }: { cu
             borderRadius = 3
         }
 
-        const svg = d3.select(`#daily-progress-card${id}`)
+        const svg = d3.select(svgRef.current)
             .attr("width", containerWidth)
             .attr("height", height);
 
@@ -75,7 +76,7 @@ export function ProgressBar({ current, max, size, id, hideNumber = false }: { cu
                 </div>
             }
             <div ref={containerRef} className="w-full">
-                <svg id={`daily-progress-card${id}`}></svg>
+                <svg ref={svgRef} id={`daily-progress-card${id}`}></svg>
             </div>
         </div>
     );

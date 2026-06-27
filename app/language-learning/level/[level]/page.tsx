@@ -96,16 +96,17 @@ export default function ModuleMapPage() {
                 {progress === null && (
                     <p className="text-sm text-cyan-600 mt-4">Failed to load modules. Please try again.</p>
                 )}
-
                 {progress && (
                     <>
                         {/* Progress bar + legend */}
-                        <div className="flex items-center gap-6 mb-7">
-                            <div className="flex-1 max-w-lg">
-                                <LevelProgressHeader completed={completedCount} total={totalCount} />
+                        {progress && (
+                            <div className="flex items-center gap-6 mb-7">
+                                <div className="flex flex-col mt-2">
+                                    <LevelProgressHeader completed={completedCount} total={totalCount} />
+                                    <StatusLegend />
+                                </div>
                             </div>
-                            <StatusLegend />
-                        </div>
+                        )}
 
                         {/* 4-column grid */}
                         <div className="grid grid-cols-4 gap-4">
