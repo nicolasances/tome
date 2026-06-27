@@ -145,7 +145,7 @@ export default function PracticeResultsPage() {
     }
 
     return (
-        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
+        <div className="flex flex-1 flex-col mt-8 items-stretch md:self-center md:max-w-2xl md:w-full">
             <PracticeComplete
                 step2Complete={recapData.step2Complete}
                 moduleTitle={recapData.moduleTitle}

@@ -1,6 +1,6 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { AnswerBox } from './AnswerBox';
+import { AnswerBox, AnswerLine } from './AnswerBox';
 import { SendFooter } from './SendFooter';
 
 interface ExFillBlankProps {
@@ -26,7 +26,7 @@ export function ExFillBlank({exercise, submissionState, inputValue, onInputChang
                     <div className="text-2xl font-bold text-black text-center leading-relaxed flex flex-wrap justify-center items-end gap-1.5">
                         <span>{parts[0].trim()}</span>
                         {submitted ? (
-                            <AnswerBox text={inputValue || submissionState.correctAnswer} ok={submissionState.isCorrect} />
+                            <AnswerLine text={inputValue || submissionState.correctAnswer} ok={submissionState.isCorrect} />
                         ) : (
                             <span className="inline-block min-w-20 border-b-2 border-cyan-600 px-2 py-0.5 text-center text-cyan-700">
                                 {inputValue || <span className="opacity-0">placeholder</span>}

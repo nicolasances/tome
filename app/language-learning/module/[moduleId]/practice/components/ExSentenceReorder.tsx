@@ -13,7 +13,7 @@ function WordTile({word, tone, onClick, disabled}: WordTileProps) {
     const styles: Record<string, string> = {
         placed: 'bg-white/80 text-black border-transparent cursor-pointer hover:bg-white',
         bank: 'bg-lime-200 text-cyan-900 border-transparent cursor-pointer hover:bg-lime-300',
-        correct: 'bg-lime-100/40 text-black border-lime-400 cursor-default',
+        correct: 'bg-lime-100/40 text-black border-lime-200 cursor-default',
         wrong: 'bg-red-600/10 text-red-700 border-red-500 cursor-default',
     };
     const base = styles[tone ?? 'bank'];

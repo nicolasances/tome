@@ -85,7 +85,7 @@ browse the level).
 | 3 | Continue CTA opens the correct current module. | J1. |
 | 4 | Modules button navigates to the Module map. | J2. |
 | 5 | Weekly stats render real activity counts with a sensible empty state. | — |
-| 6 | Layout matches variant C on a phone-width viewport. | Mobile-first. |
+| 6 | Layout matches variant C on a phone-width viewport / mobile-first. On desktop (`lg:` breakpoint), layout switches to the multi-column desktop dashboard (page header + level path + two-column Continue card & weekly chart + stat tiles + "Up next" 4-card strip). The nav row is hidden on desktop (sidebar handles navigation). | Responsive. |
 
 ## 7. Open Questions
 

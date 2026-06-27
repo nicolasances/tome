@@ -15,18 +15,17 @@ import {
 import { LevelTrack } from './components/LevelTrack';
 import { ContinueCard } from './components/ContinueCard';
 import { WeeklyModuleStats } from './components/WeeklyModuleStats';
-
-// ─── Page ────────────────────────────────────────────────────────────────────
+import { DesktopContinueCard } from './components/DesktopContinueCard';
+import { StatTile } from './components/StatTile';
+import { UpNextStrip } from './components/UpNextStrip';
 
 export default function LanguageLearningHomePage() {
     const { setConfig } = useHeader();
     const router = useRouter();
 
-    // undefined = loading, null = failed
     const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
     const [weeklyStats, setWeeklyStats] = useState<WeeklyStatDay[] | null | undefined>(undefined);
 
-    // ── Header ──────────────────────────────────────────────────────────────
     useEffect(() => {
         setConfig({
             title: 'Language Learning',
@@ -34,20 +33,12 @@ export default function LanguageLearningHomePage() {
         });
     }, [setConfig]);
 
-    // ── Data loading (two parallel calls) ────────────────────────────────────
     useEffect(() => {
         const api = new TomeLearningDashboardAPI();
-
-        api.getMeProgress()
-            .then(setProgress)
-            .catch(() => setProgress(null));
-
-        api.getWeeklySessionStats()
-            .then((res) => setWeeklyStats(res.days))
-            .catch(() => setWeeklyStats(null));
+        api.getMeProgress().then(setProgress).catch(() => setProgress(null));
+        api.getWeeklySessionStats().then((res) => setWeeklyStats(res.days)).catch(() => setWeeklyStats(null));
     }, []);
 
-    // ── Derived values ───────────────────────────────────────────────────────
     const isProgressLoading = progress === undefined;
     const isWeeklyLoading = weeklyStats === undefined;
 
@@ -56,11 +47,16 @@ export default function LanguageLearningHomePage() {
     const currentLevelSummary = progress?.levels.find((l) => l.status === 'current');
     const currentModule = progress ? deriveCurrentModule(progress) : undefined;
 
-    return (
-        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
-            <div className="flex flex-1 flex-col px-[18px] pt-6 pb-4 gap-8 overflow-y-auto">
+    const weekTotal = weeklyStats?.reduce((a, d) => a + d.count, 0) ?? 0;
+    const activeDays = weeklyStats?.filter((d) => d.count > 0).length ?? 0;
+    const currentModuleProgress = progress?.modules.find((m) => m.status === 'in_progress');
+    const wordsSeen = currentModuleProgress?.vocabularyItemsPracticedCount ?? 0;
 
-                {/* ── Level track ─────────────────────────────────────────── */}
+    return (
+        <div className="flex flex-1 flex-col items-stretch lg:items-center">
+
+            {/* ═══ MOBILE LAYOUT ═══ */}
+            <div className="flex flex-1 flex-col px-4 pt-6 pb-4 gap-8 overflow-y-auto lg:hidden">
                 <LevelTrack
                     loading={isProgressLoading}
                     error={!isProgressLoading && (!progress || !cefrLevel || !levelName || !currentLevelSummary)}
@@ -69,14 +65,7 @@ export default function LanguageLearningHomePage() {
                     totalModules={currentLevelSummary?.modulesTotal}
                     completedModules={currentLevelSummary?.modulesCompleted}
                 />
-
-                {/* ── Continue CTA ─────────────────────────────────────────── */}
-                <ContinueCard
-                    loading={isProgressLoading}
-                    module={currentModule}
-                />
-
-                {/* ── Primary nav row ──────────────────────────────────────── */}
+                <ContinueCard loading={isProgressLoading} module={currentModule} />
                 <div className="flex justify-around items-start gap-2">
                     <NavButton
                         icon="/images/book.svg"
@@ -85,32 +74,98 @@ export default function LanguageLearningHomePage() {
                         onClick={() => router.push(`/language-learning/level/${cefrLevel ?? 'A1'}`)}
                     />
                 </div>
-
-                {/* ── Spacer ───────────────────────────────────────────────── */}
                 <div className="flex-1" />
-
-                {/* ── Weekly stats ─────────────────────────────────────────── */}
                 <div className="mb-3.5">
-                    <WeeklyModuleStats
-                        loading={isWeeklyLoading}
-                        days={weeklyStats ?? undefined}
+                    <WeeklyModuleStats loading={isWeeklyLoading} days={weeklyStats ?? undefined} />
+                </div>
+            </div>
+
+            {/* ═══ DESKTOP LAYOUT ═══ */}
+            <div className="hidden lg:flex flex-col w-full max-w-5xl px-12 pt-10 pb-14 overflow-y-auto">
+
+                {/* Page header */}
+                <div className="flex items-end gap-5 mb-7">
+                    <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mb-2">Language Learning</p>
+                        <h1 className="text-3xl font-bold text-black leading-tight m-0 p-0 border-0">
+                            Goddag — let&apos;s keep going
+                        </h1>
+                    </div>
+                    <DesktopWeekCounter loading={isWeeklyLoading} count={weekTotal} />
+                </div>
+
+                {/* Level path */}
+                <div className="mb-8">
+                    <LevelTrack
+                        loading={isProgressLoading}
+                        error={!isProgressLoading && (!progress || !cefrLevel || !levelName || !currentLevelSummary)}
+                        cefrLevel={cefrLevel}
+                        levelName={levelName}
+                        totalModules={currentLevelSummary?.modulesTotal}
+                        completedModules={currentLevelSummary?.modulesCompleted}
                     />
                 </div>
 
+                {/* Two-column: Continue card + This week chart */}
+                <div className="grid grid-cols-5 gap-6 mb-6">
+                    <div className="col-span-3">
+                        <DesktopContinueCard loading={isProgressLoading} module={currentModule} progress={currentModuleProgress} />
+                    </div>
+                    <div className="col-span-2 flex flex-col px-1">
+                        <WeeklyModuleStats loading={isWeeklyLoading} days={weeklyStats ?? undefined} />
+                    </div>
+                </div>
+
+                {/* Stat tiles */}
+                <div className="grid grid-cols-3 gap-6 mb-7">
+                    <StatTile
+                        loading={isProgressLoading}
+                        value={String(currentLevelSummary?.modulesCompleted ?? 0)}
+                        suffix={`of ${currentLevelSummary?.modulesTotal ?? 0} modules`}
+                        label={`${cefrLevel ?? ''} ${levelName ?? ''}`}
+                    />
+                    <StatTile loading={isProgressLoading} value={String(wordsSeen)} suffix="words seen" label="this round" />
+                    <StatTile loading={isWeeklyLoading} value={`${activeDays}d`} suffix="active days" label="last 7 days" />
+                </div>
+
+                {/* Up next strip */}
+                <UpNextStrip
+                    loading={isProgressLoading}
+                    levelName={levelName}
+                    modules={progress?.modules}
+                    onOpenMap={() => router.push(`/language-learning/level/${cefrLevel ?? 'A1'}`)}
+                />
             </div>
         </div>
     );
 }
 
-// ─── Nav button (RoundButton + label below) ───────────────────────────────────
-
-function NavButton({ icon, alt, label, onClick }: { icon: string; alt: string; label: string; onClick: () => void }) {
+function NavButton({icon, alt, label, onClick}: {icon: string, alt: string, label: string, onClick: () => void}) {
     return (
         <div className="flex flex-col items-center gap-2">
             <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
-            <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-black/70">
-                {label}
-            </span>
+            <span className="text-xs font-semibold tracking-widest uppercase text-black/70">{label}</span>
+        </div>
+    );
+}
+
+function DesktopWeekCounter({loading, count}: {loading: boolean, count: number}) {
+    if (loading) {
+        return (
+            <div className="flex items-center gap-4" aria-busy="true" aria-label="Loading weekly count">
+                <div className="text-right">
+                    <div className="skeleton-shimmer h-7 w-10 rounded mb-1" />
+                    <div className="skeleton-shimmer h-3 w-24 rounded" />
+                </div>
+            </div>
+        );
+    }
+    return (
+        <div className="flex items-center gap-4">
+            <div className="text-right">
+                <div className="text-2xl font-bold text-blackwhite leading-none">{count}</div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mt-1 m-0">sessions this week</p>
+            </div>
         </div>
     );
 }

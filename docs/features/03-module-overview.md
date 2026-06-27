@@ -94,6 +94,7 @@ test is locked).
 | 5 | Returning to the overview after grammar/practice reflects updated step states. | Hub behaviour. |
 | 6 | While Practice is active, the coverage bar shows seen / total words and fills as sessions are completed. | §3.1.1 coverage gate. |
 | 7 | Practice stays `in_progress` until full vocabulary coverage is reached; only then does the test-unlock countdown begin. | §3.1.1. |
+| 8 | On desktop (`lg:` breakpoint), the overview renders as a two-pane flow: left rail (module meta + 3 step rail items) and right content pane (grammar concepts, practice status, or test locked/ready state) with a CTA. Mobile keeps the standalone overview route. | Responsive. |
 
 ## 7. Open Questions
 
