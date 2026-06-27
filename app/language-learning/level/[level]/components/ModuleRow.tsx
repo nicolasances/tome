@@ -28,7 +28,7 @@ function ModuleNode({ status, num }: { status: ModuleProgressEntry['status']; nu
             {status === 'locked' && <MaskedSvgIcon src='/images/padlock.svg' alt='Locked' />}
             {status === 'available' && num}
             {status === 'in_progress' && num}
-            {status === 'completed' && '✓'}
+            {status === 'completed' && <MaskedSvgIcon src='/images/tick.svg' alt='Completed' size="w-5 h-5" />}
         </div>
     );
 }
