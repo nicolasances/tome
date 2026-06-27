@@ -33,7 +33,7 @@ export function TestReady({kicker, title, questionCount, passThreshold, onStart,
     return (
         <div className="flex flex-1 flex-col px-5 pt-4 pb-0">
             <span className="text-xs font-semibold uppercase tracking-widest text-black/50">{kicker}</span>
-            <h1 className="text-2xl font-black text-cyan-800 mt-1 leading-snug">{title}</h1>
+            <span className="text-2xl text-black mt-1 leading-snug">{title}</span>
             <p className="text-sm text-black/60 mt-3">Ready to be assessed on this module?</p>
 
             <div className="mt-6 rounded-2xl bg-white/50 px-4">

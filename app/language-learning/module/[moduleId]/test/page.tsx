@@ -219,7 +219,7 @@ export default function ModuleTestPage() {
     const lockTimestamp = eligibility?.testUnlocksAt ?? eligibility?.testRetryAvailableAt ?? '';
 
     return (
-        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full">
+        <div className="flex flex-1 flex-col items-stretch md:self-center md:max-w-2xl md:w-full mt-4">
 
             {phase === 'loading' && (
                 <div className="flex flex-1 flex-col px-5 pt-2 gap-4" aria-busy="true" aria-label="Loading module test">
