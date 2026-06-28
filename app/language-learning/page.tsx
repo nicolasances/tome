@@ -44,12 +44,12 @@ export default function LanguageLearningHomePage() {
 
     const cefrLevel = progress?.currentCefrLevel as CefrLevel | undefined;
     const levelName = cefrLevel ? CEFR_LEVEL_NAMES[cefrLevel] : undefined;
-    const currentLevelSummary = progress?.levels.find((l) => l.status === 'current');
+    const currentLevelSummary = progress?.levels?.find((l) => l.status === 'current');
     const currentModule = progress ? deriveCurrentModule(progress) : undefined;
 
     const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions, 0) ?? 0;
     const activeDays = weeklyStats?.filter((d) => d.practiceSessions > 0).length ?? 0;
-    const currentModuleProgress = progress?.modules.find((m) => m.status === 'in_progress');
+    const currentModuleProgress = progress?.modules?.find((m) => m.status === 'in_progress');
     const wordsSeen = currentModuleProgress?.vocabularyItemsPracticedCount ?? 0;
 
     return (

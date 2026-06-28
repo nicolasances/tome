@@ -1,0 +1,282 @@
+[
+  {
+    "id": "A1-10-v-sol-5536",
+    "danish": "sol",
+    "english": "sun",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-regn-6524",
+    "danish": "regn",
+    "english": "rain",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-sne-7628",
+    "danish": "sne",
+    "english": "snow",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature", "winter"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-vind-7483",
+    "danish": "vind",
+    "english": "wind",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-taage-1689",
+    "danish": "tåge",
+    "english": "fog",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-sky-4533",
+    "danish": "sky",
+    "english": "cloud",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-storm-2662",
+    "danish": "storm",
+    "english": "storm",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-frost-1628",
+    "danish": "frost",
+    "english": "frost",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "winter"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-torden-1060",
+    "danish": "torden",
+    "english": "thunder",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-foraar-2338",
+    "danish": "forår",
+    "english": "spring",
+    "type": "noun",
+    "context": null,
+    "tags": ["seasons", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-sommer-3467",
+    "danish": "sommer",
+    "english": "summer",
+    "type": "noun",
+    "context": null,
+    "tags": ["seasons", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-efteraar-5867",
+    "danish": "efterår",
+    "english": "autumn / fall",
+    "type": "noun",
+    "context": null,
+    "tags": ["seasons", "nature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-vinter-4907",
+    "danish": "vinter",
+    "english": "winter",
+    "type": "noun",
+    "context": null,
+    "tags": ["seasons", "nature", "weather"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-at-regne-2595",
+    "danish": "at regne",
+    "english": "to rain",
+    "type": "verb",
+    "context": null,
+    "tags": ["weather", "verbs"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-at-sne-9917",
+    "danish": "at sne",
+    "english": "to snow",
+    "type": "verb",
+    "context": null,
+    "tags": ["weather", "verbs", "winter"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-at-blaese-1643",
+    "danish": "at blæse",
+    "english": "to blow / to be windy",
+    "type": "verb",
+    "context": null,
+    "tags": ["weather", "verbs"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-at-skinne-5562",
+    "danish": "at skinne",
+    "english": "to shine",
+    "type": "verb",
+    "context": "used of the sun",
+    "tags": ["weather", "verbs"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-varm-6416",
+    "danish": "varm",
+    "english": "warm / hot",
+    "type": "adjective",
+    "context": null,
+    "tags": ["temperature", "weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-kold-1358",
+    "danish": "kold",
+    "english": "cold",
+    "type": "adjective",
+    "context": null,
+    "tags": ["temperature", "weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-koelig-5703",
+    "danish": "kølig",
+    "english": "cool",
+    "type": "adjective",
+    "context": null,
+    "tags": ["temperature", "weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-grader-4247",
+    "danish": "grader",
+    "english": "degrees",
+    "type": "noun",
+    "context": null,
+    "tags": ["temperature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-temperatur-3472",
+    "danish": "temperatur",
+    "english": "temperature",
+    "type": "noun",
+    "context": null,
+    "tags": ["temperature"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-solrig-5935",
+    "danish": "solrig",
+    "english": "sunny",
+    "type": "adjective",
+    "context": null,
+    "tags": ["weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-overskyet-8691",
+    "danish": "overskyet",
+    "english": "cloudy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-taaget-4801",
+    "danish": "tåget",
+    "english": "foggy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-blaesende-9257",
+    "danish": "blæsende",
+    "english": "windy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["weather", "adjectives"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-vejret-2664",
+    "danish": "vejret",
+    "english": "the weather",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-10-v-vejrudsigt-6190",
+    "danish": "vejrudsigt",
+    "english": "weather forecast",
+    "type": "noun",
+    "context": null,
+    "tags": ["weather", "media"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

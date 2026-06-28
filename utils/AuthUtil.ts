@@ -100,6 +100,35 @@ function canUseCookiesOrStorage() {
 }
 
 /**
+ * Initializes the Google Identity Services library with the given callback.
+ */
+export function initializeGoogle(callback: (auth: any) => void) {
+    (window as any).google.accounts.id.initialize({
+        client_id: googleClientID,
+        auto_select: false,
+        callback,
+    });
+}
+
+/**
+ * Renders the Google Sign-In button into the given element.
+ * Calls onUser with the authenticated user when sign-in completes.
+ */
+export function renderGoogleButton(element: HTMLElement, onUser: (user: any) => void) {
+    initializeGoogle(async (auth: any) => {
+        if (auth.credential) {
+            const totoToken = await getTotoToken(auth.credential);
+            const user = userFromToken(totoToken.token);
+            if (user) {
+                storeUser(user);
+                onUser(user);
+            }
+        }
+    });
+    (window as any).google.accounts.id.renderButton(element, { theme: 'outline', size: 'large', text: 'signin_with' });
+}
+
+/**
  * Sign-in using Google
  */
 export async function googleSignIn(): Promise<any> {

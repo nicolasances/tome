@@ -6,6 +6,12 @@ import { ApiName, endpoint } from '@/Config';
 
 const cookies = new Cookies();
 
+export class ApiError extends Error {
+  constructor(public status: number) {
+    super('API error ' + status);
+  }
+}
+
 export function cid() {
 
   let ts = moment().format('YYYYMMDDHHmmssSSS');
@@ -36,14 +42,20 @@ export class TotoAPI {
       options.headers['Accept'] = 'application/json';
       options.headers['x-correlation-id'] = cid();
       // options.headers['x-client'] = "totoMoneyWeb";
-      options.headers['Authorization'] = 'Bearer ' + idToken;
+      if (idToken) options.headers['Authorization'] = 'Bearer ' + idToken;
       // options.headers['auth-provider'] = "toto";
 
       if (aws) options.headers['toto-service'] = api;
     }
 
     // console.log(`About to call api ${api} with endpoint -${endpoint(api)}- on path ${path}, with options ${options}`);
-    
+
     return fetch(endpoint(api) + path, options);
+  }
+
+  async fetchJson(api: ApiName, path: string, options?: any, aws: boolean = false, noHeaderOverride: boolean = false) {
+    const response = await this.fetch(api, path, options, aws, noHeaderOverride);
+    if (!response.ok) throw new ApiError(response.status);
+    return response.json();
   }
 }

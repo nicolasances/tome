@@ -40,7 +40,7 @@ export default function ModuleMapPage() {
             .catch(() => setProgress(null));
     }, [level]);
 
-    const completedCount = progress?.modules.filter(m => m.status === 'completed').length ?? 0;
+    const completedCount = progress?.modules?.filter(m => m.status === 'completed').length ?? 0;
     const totalCount = progress?.modules.length ?? 0;
 
     const handleModuleTap = (module: ModuleProgressEntry) => {
