@@ -14,7 +14,14 @@ function fakeResponse(body: unknown) {
 
 beforeEach(() => {
     mockFetch.mockReset();
-    (TotoAPI as unknown as jest.Mock).mockImplementation(() => ({ fetch: mockFetch }));
+    (TotoAPI as unknown as jest.Mock).mockImplementation(() => ({
+        fetch: mockFetch,
+        fetchJson: async (...args: any[]) => {
+            const response = await mockFetch(...args);
+            if (!response.ok) throw new Error('API error ' + response.status);
+            return response.json();
+        },
+    }));
 });
 
 // ─── getWeeklySessionStats ──────────────────────────────────────────────────────
