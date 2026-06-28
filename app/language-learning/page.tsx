@@ -7,7 +7,7 @@ import { RoundButton } from 'toto-react';
 import {
     TomeLearningDashboardAPI,
     MeProgressResponse,
-    WeeklyStatDay,
+    DailyActivityDay,
     CEFR_LEVEL_NAMES,
     CefrLevel,
     deriveCurrentModule,
@@ -24,7 +24,7 @@ export default function LanguageLearningHomePage() {
     const router = useRouter();
 
     const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
-    const [weeklyStats, setWeeklyStats] = useState<WeeklyStatDay[] | null | undefined>(undefined);
+    const [weeklyStats, setWeeklyStats] = useState<DailyActivityDay[] | null | undefined>(undefined);
 
     useEffect(() => {
         setConfig({
@@ -47,8 +47,8 @@ export default function LanguageLearningHomePage() {
     const currentLevelSummary = progress?.levels.find((l) => l.status === 'current');
     const currentModule = progress ? deriveCurrentModule(progress) : undefined;
 
-    const weekTotal = weeklyStats?.reduce((a, d) => a + d.count, 0) ?? 0;
-    const activeDays = weeklyStats?.filter((d) => d.count > 0).length ?? 0;
+    const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions, 0) ?? 0;
+    const activeDays = weeklyStats?.filter((d) => d.practiceSessions > 0).length ?? 0;
     const currentModuleProgress = progress?.modules.find((m) => m.status === 'in_progress');
     const wordsSeen = currentModuleProgress?.vocabularyItemsPracticedCount ?? 0;
 

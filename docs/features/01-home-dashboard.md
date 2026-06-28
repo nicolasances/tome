@@ -74,7 +74,7 @@ browse the level).
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
 | Level track, Continue CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`) | Returns the user's current CEFR level, a status summary for all 6 levels, and the per-module status list for the current level. Drives the level track, the module-dot progress, and (via `deriveCurrentModule`) the Continue CTA's target module. |
-| Weekly stats | `GET /sessions/stats/weekly?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns completed practice-session counts per day for the **rolling 7-day window ending today**; `from` is computed client-side as **today − 6 days** (YYYYMMDD). Returns 7 entries, oldest day → today. Drives the 7-day bar chart. |
+| Weekly stats | `GET /me/stats/dailyActivity?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns per-day activity counts for the **rolling 7-day window ending today** (F24). `from` is computed client-side as **today − 6 days** (YYYYMMDD). Response shape: `{ from, to, days: [{ date, practiceSessions, successfulModuleTests, successfulLevelTests }] }`, 7 entries oldest → today. The bar chart consumes `practiceSessions`; the other counts are available for future widgets. |
 
 ## 6. Success Criteria
 

@@ -6,9 +6,9 @@ import { TotoAPI } from "./TotoAPI";
  * Wraps the tome-ms-language backend.
  *
  * Endpoint mapping (basepath handled by NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT):
- *   - GET /me                    → user profile (id, email, cefrLevel)
+ *   - GET /me                        → user profile (id, email, cefrLevel)
  *   - GET /me/progress               → level info + modules at current level
- *   - GET /sessions/stats/weekly     → session counts per day for current week
+ *   - GET /me/stats/dailyActivity    → per-day activity counts for rolling 7-day window
  */
 export class TomeLearningDashboardAPI {
 
@@ -37,15 +37,14 @@ export class TomeLearningDashboardAPI {
     }
 
     /**
-     * Fetches completed session counts per day for the current calendar week (Mon–Sun).
-     * Computes the Monday of the current week and passes it as the required `from` param.
+     * Fetches per-day activity counts for the rolling 7-day window ending today
+     * (last 6 days + today). Computes `from` as today − 6 days.
      *
-     * Endpoint: GET /sessions/stats/weekly?from=YYYYMMDD
-     * `from` must be a Monday in YYYYMMDD format.
+     * Endpoint: GET /me/stats/dailyActivity?from=YYYYMMDD
      */
     async getWeeklySessionStats(): Promise<WeeklySessionStatsResponse> {
-        const from = getMondayOfCurrentWeek();
-        return (await new TotoAPI().fetch('tome-ms-language', `/sessions/stats/weekly?from=${from}`)).json();
+        const from = getRollingWindowStart();
+        return (await new TotoAPI().fetch('tome-ms-language', `/me/stats/dailyActivity?from=${from}`)).json();
     }
 }
 
@@ -92,15 +91,23 @@ export interface ModuleProgressEntry {
 }
 
 export interface WeeklySessionStatsResponse {
-    /** Seven entries, Mon → Sun, with date (YYYYMMDD) and completed-session count. */
-    days: WeeklyStatDay[];
+    /** First day of the 7-day window in YYYYMMDD format (= today − 6). */
+    from: string;
+    /** Last day of the window in YYYYMMDD format (= today). */
+    to: string;
+    /** Seven entries, oldest → today, one per day in the rolling window. */
+    days: DailyActivityDay[];
 }
 
-export interface WeeklyStatDay {
+export interface DailyActivityDay {
     /** Date in YYYYMMDD format */
     date: string;
-    /** Number of sessions completed on this day */
-    count: number;
+    /** Completed practice sessions on this day */
+    practiceSessions: number;
+    /** Passed module tests on this day */
+    successfulModuleTests: number;
+    /** Passed level tests on this day */
+    successfulLevelTests: number;
 }
 
 // ─── Frontend-facing derived types (built from the raw API data) ───────────
@@ -134,11 +141,11 @@ export interface CurrentModuleInfo {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /**
- * Returns the Monday of the current calendar week in YYYYMMDD format.
- * Required by GET /sessions/stats/weekly.
+ * Returns the start of the rolling 7-day window (today − 6 days) in YYYYMMDD format.
+ * Used as `from` for GET /me/stats/dailyActivity so the window ends on today.
  */
-function getMondayOfCurrentWeek(): string {
-    return moment().startOf('isoWeek').format('YYYYMMDD');
+function getRollingWindowStart(): string {
+    return moment().subtract(6, 'days').format('YYYYMMDD');
 }
 
 /**
