@@ -50,12 +50,12 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
     const maxCount = Math.max(...days.map((d) => d.practiceSessions), 1);
 
     return (
-        <div>
+        <div className="flex-1 flex flex-col items-stretch">
             <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/80 mb-3">
                 This week
             </p>
 
-            <div className="flex items-end gap-2" style={{ height: 110 }}>
+            <div className="flex flex-1 items-end gap-2" style={{ height: 110 }}>
                 {days.map((day) => {
                     const isToday = day.date === today;
                     const barHeight = day.practiceSessions > 0
