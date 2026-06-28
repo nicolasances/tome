@@ -58,7 +58,7 @@ export function DesktopContinueCard({loading, module, progress}: DesktopContinue
         >
             <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                    <p className="text-xs font-semibold tracking-widest uppercase text-cyan-200 m-0">{kicker}</p>
+                    <p className="text-base font-semibold tracking-widest uppercase text-cyan-200 m-0">{kicker}</p>
                     <p className="text-3xl font-bold text-white mt-2 leading-tight m-0">{module.title}</p>
                 </div>
                 <div className="w-16 h-16 rounded-full bg-lime-200 flex items-center justify-center flex-shrink-0">
