@@ -9,6 +9,8 @@ import { HeaderProvider } from "@/context/HeaderContext";
 import TomeHeader from "@/app/ui/TomeHeader";
 import { DesktopSidebar } from "@/app/ui/DesktopSidebar";
 import { SettingsProvider } from "@/context/SettingsContext";
+import { AuthProvider } from "@/context/AuthContext";
+import { AuthGuard } from "@/app/ui/AuthGuard";
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
@@ -46,33 +48,37 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         style={{ fontFamily: "'Comfortaa', sans-serif" }}
         className="antialiased h-screen flex flex-row"
       >
-        <SettingsProvider>
-          <AudioProvider>
-            <CarModeContextProvider>
-              <HeaderProvider>
+        <AuthProvider>
+          <AuthGuard>
+            <SettingsProvider>
+              <AudioProvider>
+                <CarModeContextProvider>
+                  <HeaderProvider>
 
-                {/* Desktop sidebar */}
-                <div className="hidden lg:flex">
-                  <DesktopSidebar />
-                </div>
+                    {/* Desktop sidebar */}
+                    <div className="hidden lg:flex">
+                      <DesktopSidebar />
+                    </div>
 
-                <div className="flex flex-col flex-1 min-w-0 h-screen">
-                  {/* Mobile header */}
-                  <div className="lg:hidden">
-                    <TomeHeader />
-                  </div>
+                    <div className="flex flex-col flex-1 min-w-0 h-screen">
+                      {/* Mobile header */}
+                      <div className="lg:hidden">
+                        <TomeHeader />
+                      </div>
 
-                  <div className="flex flex-1 flex-col min-h-0 overflow-y-auto">
-                    <TomeContextProvider>
-                      {children}
-                    </TomeContextProvider>
-                  </div>
-                </div>
+                      <div className="flex flex-1 flex-col min-h-0 overflow-y-auto">
+                        <TomeContextProvider>
+                          {children}
+                        </TomeContextProvider>
+                      </div>
+                    </div>
 
-              </HeaderProvider>
-            </CarModeContextProvider>
-          </AudioProvider>
-        </SettingsProvider>
+                  </HeaderProvider>
+                </CarModeContextProvider>
+              </AudioProvider>
+            </SettingsProvider>
+          </AuthGuard>
+        </AuthProvider>
       </body>
     </html>
   );

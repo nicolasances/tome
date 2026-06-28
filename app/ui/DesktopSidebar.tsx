@@ -40,7 +40,7 @@ export function DesktopSidebar() {
 
     const cefrLevel = progress?.currentCefrLevel as CefrLevel | undefined;
     const levelName = cefrLevel ? CEFR_LEVEL_NAMES[cefrLevel] : undefined;
-    const currentLevelSummary = progress?.levels.find((l) => l.status === 'current');
+    const currentLevelSummary = progress?.levels?.find((l) => l.status === 'current');
 
     const handleNav = (item: typeof NAV_ITEMS[number]) => {
         if (item.id === 'home') {

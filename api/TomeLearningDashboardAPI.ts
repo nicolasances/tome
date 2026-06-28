@@ -21,7 +21,7 @@ export class TomeLearningDashboardAPI {
      * Endpoint: GET /me
      */
     async getMe(): Promise<MeResponse> {
-        return (await new TotoAPI().fetch('tome-ms-language', '/me')).json();
+        return new TotoAPI().fetchJson('tome-ms-language', '/me');
     }
 
     /**
@@ -33,7 +33,7 @@ export class TomeLearningDashboardAPI {
      */
     async getMeProgress(cefrLevel?: string): Promise<MeProgressResponse> {
         const query = cefrLevel ? `?cefrLevel=${cefrLevel}` : '';
-        return (await new TotoAPI().fetch('tome-ms-language', `/me/progress${query}`)).json();
+        return new TotoAPI().fetchJson('tome-ms-language', `/me/progress${query}`);
     }
 
     /**
@@ -44,7 +44,7 @@ export class TomeLearningDashboardAPI {
      */
     async getWeeklySessionStats(): Promise<WeeklySessionStatsResponse> {
         const from = getRollingWindowStart();
-        return (await new TotoAPI().fetch('tome-ms-language', `/me/stats/dailyActivity?from=${from}`)).json();
+        return new TotoAPI().fetchJson('tome-ms-language', `/me/stats/dailyActivity?from=${from}`);
     }
 }
 
