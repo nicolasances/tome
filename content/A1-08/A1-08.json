@@ -1,0 +1,42 @@
+{
+  "id": "danish-A1-08",
+  "title": "Getting Around Town",
+  "theme": "Transport and directions",
+  "communicationGoal": "Ask for and understand directions, name forms of transport, buy a ticket",
+  "cefrLevel": "A1",
+  "vocabularyItemIds": [
+    "A1-08-v-bus-1576",
+    "A1-08-v-tog-8709",
+    "A1-08-v-metro-3527",
+    "A1-08-v-cykel-4097",
+    "A1-08-v-taxa-9577",
+    "A1-08-v-at-gaa-5456",
+    "A1-08-v-at-koere-3007",
+    "A1-08-v-at-tage-2807",
+    "A1-08-v-billet-1186",
+    "A1-08-v-station-3133",
+    "A1-08-v-stoppested-8250",
+    "A1-08-v-til-venstre-5800",
+    "A1-08-v-til-hoejre-8235",
+    "A1-08-v-ligeud-4928",
+    "A1-08-v-rundt-om-hjoernet-8012",
+    "A1-08-v-undskyld-1498",
+    "A1-08-v-hvor-er-8146",
+    "A1-08-v-hvordan-kommer-jeg-til-5911",
+    "A1-08-v-kirke-6152",
+    "A1-08-v-raadhus-1988",
+    "A1-08-v-hospital-9217",
+    "A1-08-v-supermarked-3912",
+    "A1-08-v-banegaard-7481",
+    "A1-08-v-lufthavn-2864",
+    "A1-08-v-enkeltbillet-8103",
+    "A1-08-v-tur-retur-9745",
+    "A1-08-v-taet-paa-9360"
+  ],
+  "grammarConceptIds": [
+    "A1-08-g-question-formation-3755",
+    "A1-08-g-imperative-form-for-giving-4391"
+  ],
+  "createdAt": "2026-06-28T00:00:00Z",
+  "isUserGenerated": false
+}
