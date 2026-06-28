@@ -1,0 +1,38 @@
+{
+  "id": "danish-A1-09",
+  "title": "Feelings & States",
+  "theme": "Emotions and physical states",
+  "communicationGoal": "Express how you feel, describe physical states, respond when someone asks \"Hvordan har du det?\"",
+  "cefrLevel": "A1",
+  "vocabularyItemIds": [
+    "A1-09-v-glad-4310",
+    "A1-09-v-ked-af-det-9372",
+    "A1-09-v-traet-9236",
+    "A1-09-v-nervoes-1939",
+    "A1-09-v-stolt-3889",
+    "A1-09-v-bange-6734",
+    "A1-09-v-sur-7424",
+    "A1-09-v-rolig-9284",
+    "A1-09-v-overrasket-5963",
+    "A1-09-v-forvirret-8539",
+    "A1-09-v-frustreret-7853",
+    "A1-09-v-ensom-9782",
+    "A1-09-v-lykkelig-4920",
+    "A1-09-v-sulten-8520",
+    "A1-09-v-toerstig-7068",
+    "A1-09-v-syg-1931",
+    "A1-09-v-rask-9377",
+    "A1-09-v-godt-7203",
+    "A1-09-v-daarligt-6343",
+    "A1-09-v-at-have-det-6379",
+    "A1-09-v-at-foele-sig-1252",
+    "A1-09-v-hvordan-har-du-det-9501"
+  ],
+  "grammarConceptIds": [
+    "A1-09-g-have-det-stative-construction-6116",
+    "A1-09-g-predicative-adjectives-with-at-3653",
+    "A1-09-g-negation-in-stative-expressions-7346"
+  ],
+  "createdAt": "2026-06-28T00:00:00Z",
+  "isUserGenerated": false
+}

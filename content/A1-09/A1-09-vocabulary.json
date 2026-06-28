@@ -1,0 +1,222 @@
+[
+  {
+    "id": "A1-09-v-glad-4310",
+    "danish": "glad",
+    "english": "happy / glad",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-ked-af-det-9372",
+    "danish": "ked af det",
+    "english": "sad / upset",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-traet-9236",
+    "danish": "træt",
+    "english": "tired",
+    "type": "adjective",
+    "context": null,
+    "tags": ["physical", "states", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-nervoes-1939",
+    "danish": "nervøs",
+    "english": "nervous",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-stolt-3889",
+    "danish": "stolt",
+    "english": "proud",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-bange-6734",
+    "danish": "bange",
+    "english": "scared / afraid",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-sur-7424",
+    "danish": "sur",
+    "english": "angry / annoyed",
+    "type": "adjective",
+    "context": "emotional state, not food taste",
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-rolig-9284",
+    "danish": "rolig",
+    "english": "calm",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-overrasket-5963",
+    "danish": "overrasket",
+    "english": "surprised",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-forvirret-8539",
+    "danish": "forvirret",
+    "english": "confused",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-frustreret-7853",
+    "danish": "frustreret",
+    "english": "frustrated",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-ensom-9782",
+    "danish": "ensom",
+    "english": "lonely",
+    "type": "adjective",
+    "context": null,
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-lykkelig-4920",
+    "danish": "lykkelig",
+    "english": "happy / joyful",
+    "type": "adjective",
+    "context": "deep happiness or bliss, stronger than glad",
+    "tags": ["emotions", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-sulten-8520",
+    "danish": "sulten",
+    "english": "hungry",
+    "type": "adjective",
+    "context": null,
+    "tags": ["physical", "states"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-toerstig-7068",
+    "danish": "tørstig",
+    "english": "thirsty",
+    "type": "adjective",
+    "context": null,
+    "tags": ["physical", "states"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-syg-1931",
+    "danish": "syg",
+    "english": "sick / ill",
+    "type": "adjective",
+    "context": null,
+    "tags": ["physical", "states", "health"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-rask-9377",
+    "danish": "rask",
+    "english": "well / healthy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["physical", "states", "health"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-godt-7203",
+    "danish": "godt",
+    "english": "well / fine",
+    "type": "adverb",
+    "context": "as in 'jeg har det godt' — used with 'have det'",
+    "tags": ["states", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-daarligt-6343",
+    "danish": "dårligt",
+    "english": "poorly / not well",
+    "type": "adverb",
+    "context": "as in 'jeg har det dårligt' — used with 'have det'",
+    "tags": ["states", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-at-have-det-6379",
+    "danish": "at have det",
+    "english": "to be (feeling) / to feel",
+    "type": "phrase",
+    "context": "used with godt/dårligt or an adjective: 'jeg har det godt', 'hun har det svært'",
+    "tags": ["states", "feelings", "expressions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-at-foele-sig-1252",
+    "danish": "at føle sig",
+    "english": "to feel (oneself)",
+    "type": "verb",
+    "context": "reflexive: 'jeg føler mig glad', 'hun føler sig træt'",
+    "tags": ["states", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-09-v-hvordan-har-du-det-9501",
+    "danish": "Hvordan har du det?",
+    "english": "How are you? / How are you feeling?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["social", "greetings", "feelings"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]
