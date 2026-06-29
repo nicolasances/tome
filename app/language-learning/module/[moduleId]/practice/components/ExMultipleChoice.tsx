@@ -17,7 +17,7 @@ interface ExMultipleChoiceProps {
     isSubmitting: boolean;
 }
 
-export function ExMultipleChoice({exercise, submissionState, selectedOption, onSelect, onCheck, isSubmitting}: ExMultipleChoiceProps) {
+export function ExMultipleChoice({ exercise, submissionState, selectedOption, onSelect, onCheck, isSubmitting }: ExMultipleChoiceProps) {
     // Build option list: correct answer + distractors, shuffled deterministically
     const options = useMemo(() => {
         const all = [exercise.answer, ...exercise.distractors];
@@ -127,7 +127,7 @@ export function ExMultipleChoice({exercise, submissionState, selectedOption, onS
 
             {/* Footer */}
             {!submitted && (
-                <CheckFooter enabled={selectedOption !== null && !isSubmitting} onCheck={onCheck} />
+                <CheckFooter enabled={selectedOption !== null && !isSubmitting} onCheck={() => { onCheck() }} />
             )}
         </div>
     );
