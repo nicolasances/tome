@@ -32,6 +32,23 @@ export function ExMultipleChoice({ exercise, submissionState, selectedOption, on
 
     useEffect(() => { setCursorIndex(0); }, [exercise.id]);
 
+    /**
+     * If the user explictly clicks the "Check" button: 
+     * - call the onCheck (with no argument)
+     * - resent the cursor Index to avoid seeing two highlighted options (the selected one and the cursor one)
+     */
+    const onExplicitClick = () => {
+
+        onCheck();
+        setCursorIndex(-1);
+
+    }
+
+    const onMouseSelect = (word: string) => {
+        onSelect(word);
+        setCursorIndex(-1);
+    }
+    
     const handleKeyboard = useCallback((e: KeyboardEvent) => {
 
         const result = multipleChoiceKeyHandler(e.key, cursorIndex, options.length);
@@ -110,7 +127,7 @@ export function ExMultipleChoice({ exercise, submissionState, selectedOption, on
                     return (
                         <button
                             key={key}
-                            onClick={() => !submitted && !isSubmitting && onSelect(word)}
+                            onClick={() => !submitted && !isSubmitting && onMouseSelect(word)}
                             disabled={submitted || isSubmitting}
                             className={`flex items-center gap-3 px-4 py-3 rounded-2xl border-2 transition-colors text-left w-full ${s.bg}`}>
                             <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${s.badgeBg}`}>
@@ -127,7 +144,7 @@ export function ExMultipleChoice({ exercise, submissionState, selectedOption, on
 
             {/* Footer */}
             {!submitted && (
-                <CheckFooter enabled={selectedOption !== null && !isSubmitting} onCheck={() => { onCheck() }} />
+                <CheckFooter enabled={selectedOption !== null && !isSubmitting} onCheck={onExplicitClick} />
             )}
         </div>
     );
