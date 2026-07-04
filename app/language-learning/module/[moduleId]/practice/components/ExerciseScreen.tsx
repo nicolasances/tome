@@ -1,19 +1,22 @@
 'use client';
 
-import { useVisualViewportHeight } from '@/utils/useVisualViewportHeight';
+import { useRef } from 'react';
+import { useKeyboardAwareMaxHeight } from '@/utils/useKeyboardAwareMaxHeight';
 
 /**
- * Shared shell for the practice and module-test in-progress screens. Sizes itself to
- * the live visual viewport (falling back to `100dvh`) instead of inheriting the
- * ancestor layout's fixed `h-screen`, so on iOS Safari the on-screen keyboard doesn't
- * push the prompt above it out of view when a text input is focused.
+ * Shared shell for the practice and module-test in-progress screens. Clamps itself to
+ * the space between its own top edge and the bottom of the live visual viewport, so on
+ * iOS Safari the exercise fits above the on-screen keyboard and the prompt is not
+ * scrolled out of view when a text input is focused. Falls back to `100dvh` when the
+ * Visual Viewport API is unavailable.
  */
 export function ExerciseScreen({children}: {children: React.ReactNode}) {
 
-    const viewportHeight = useVisualViewportHeight();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const maxHeight = useKeyboardAwareMaxHeight(containerRef);
 
     return (
-        <div className="relative flex flex-1 flex-col overflow-hidden" style={{maxHeight: viewportHeight ? `${viewportHeight}px` : '100dvh'}}>
+        <div ref={containerRef} className="relative flex flex-1 flex-col overflow-hidden" style={{maxHeight: maxHeight ? `${maxHeight}px` : '100dvh'}}>
             {children}
         </div>
     );
