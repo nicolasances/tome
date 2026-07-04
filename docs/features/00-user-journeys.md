@@ -55,10 +55,11 @@ The app is a **single responsive codebase** branching at the **layout** level at
 a Tailwind `lg:` breakpoint. Below `lg:` the existing phone layout is unchanged;
 above it the app re-lays into a browser-width layout:
 
-- **Persistent left sidebar** replaces the mobile `TomeHeader` + hamburger menu.
-  Contains brand, vertical nav (Home, Modules, Analyze, Knowledge, Sources),
-  Settings, and a level badge. Only Home and Modules navigate; others are
-  decorative placeholders.
+- **Persistent left sidebar** replaces the mobile `TomeHeader` hamburger button,
+  which on mobile navigates to a full-screen `/menu` page instead of opening a
+  slide-in panel. Contains brand, vertical nav (Home, Modules, Analyze,
+  Knowledge, Sources), Settings, and a level badge. Only Home and Modules
+  navigate; others are decorative placeholders.
 - **Home dashboard** → multi-column layout: page header with weekly session stat,
   level path, two-column Continue card + weekly chart band, stat tiles, "Up next"
   4-card module strip.
@@ -81,7 +82,8 @@ all screens on desktop viewports.
 
 | Shared component | Used by screens | Owning Feature |
 |------------------|-----------------|----------------|
-| DesktopSidebar | All (via root layout) | Cross-cutting (layout) |
+| DesktopSidebar | All (via root layout), desktop only | Cross-cutting (layout) |
+| TomeHeader + `/menu` full-screen page | All (via root layout), mobile only | Cross-cutting (layout) |
 
 ## Skipped — not yet covered (no wireframe)
 
