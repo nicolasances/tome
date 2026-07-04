@@ -1,5 +1,8 @@
 # Agent instructions
 
+## Communication to the user
+- Whenever using a skill, **always** tell the user what model you're using.
+
 ## Documentation
 
 Based on the work that you need to do, you must pay particular attention to specific documents: 
