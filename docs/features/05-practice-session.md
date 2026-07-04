@@ -152,6 +152,7 @@ Participates in journey **J4** (practise a module).
 | 10 | Round recap stats (answered / mastered / accuracy) are computed **client-side** from the round's local answer log; only coverage figures and unlock timing come from the backend. | Those stats are already known on the client from live play — no extra round-trip; coverage/unlock are server-authoritative. |
 | 6 | `RoundButton` for send/next controls; buttons per style guide. | Project convention. |
 | 7 | `ResultSheet` is `position: absolute; bottom: 0` within the screen, max-height `calc(100% - 84px)`. | Overlays the exercise content so the Continue button is always reachable without page scroll, per the wireframe. |
+| 11 | The exercise screen wrapper (shared `ExerciseScreen`, used by both practice and the module test) sizes itself to the live `visualViewport.height` (via `useVisualViewportHeight`), falling back to `100dvh`, instead of inheriting the app's fixed `h-screen` layout. | Fixes iOS Safari scrolling the prompt out of view when a typed-answer exercise's input is focused (issue #301) — the layout viewport doesn't shrink when the on-screen keyboard opens, so the fixed `h-screen` ancestor caused Safari to scroll the whole screen to reveal the input. Contained to the exercise screens; the shared app layout (`app/layout.tsx`) is untouched. |
 
 ### 5.1 API Integrations
 
