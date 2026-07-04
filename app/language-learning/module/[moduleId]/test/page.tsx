@@ -18,6 +18,7 @@ import { ExFillBlank } from '../practice/components/ExFillBlank';
 import { ExConjugation } from '../practice/components/ExConjugation';
 import { ExErrorCorrection } from '../practice/components/ExErrorCorrection';
 import { ExTranslation } from '../practice/components/ExTranslation';
+import { ExerciseScreen } from '../practice/components/ExerciseScreen';
 import { ResultSheet } from '../practice/components/ResultSheet';
 import { AIVerifyTray } from '../practice/components/AIVerifyTray';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
@@ -255,7 +256,7 @@ export default function ModuleTestPage() {
             )}
 
             {phase === 'in-test' && currentExercise && (
-                <div className="relative flex flex-1 flex-col overflow-hidden">
+                <ExerciseScreen>
                     <div className="px-5 pt-2">
                         <div className="flex justify-between items-center mb-2">
                             <span className="text-xs font-semibold uppercase tracking-widest text-black/50">{kicker}</span>
@@ -315,7 +316,7 @@ export default function ModuleTestPage() {
                             onResolve={accepted => handleContinue(accepted)}
                         />
                     )}
-                </div>
+                </ExerciseScreen>
             )}
 
             {phase === 'submit' && (

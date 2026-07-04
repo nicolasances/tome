@@ -16,6 +16,7 @@ import { ExFillBlank } from '../components/ExFillBlank';
 import { ExConjugation } from '../components/ExConjugation';
 import { ExErrorCorrection } from '../components/ExErrorCorrection';
 import { ExTranslation } from '../components/ExTranslation';
+import { ExerciseScreen } from '../components/ExerciseScreen';
 import { SubmissionState } from '../types';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -231,7 +232,7 @@ export default function PracticeSessionPage() {
             )}
 
             {loadState === 'loaded' && currentExercise && (
-                <div className="relative flex flex-1 flex-col overflow-hidden">
+                <ExerciseScreen>
                     {/* Progress bar + counter */}
                     <div className="px-5 pt-2">
                         <SessionProgressBar total={totalExercises} mastered={masteredCount} deferred={deferredCount} />
@@ -328,7 +329,7 @@ export default function PracticeSessionPage() {
                             onResolve={accepted => handleContinue(accepted)}
                         />
                     )}
-                </div>
+                </ExerciseScreen>
             )}
         </div>
     );
