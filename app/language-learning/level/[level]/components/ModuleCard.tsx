@@ -16,7 +16,7 @@ export function ModuleCard({module, index, onTap}: {module: ModuleProgressEntry,
     return (
         <div
             onClick={isActive ? onTap : undefined}
-            className={`rounded-2xl p-5 min-h-40 flex flex-col justify-between ${isCurrent || isActive ? 'bg-cyan-800' : module.status == "completed" ? ' bg-cyan-600' : 'bg-cyan-700/20 text-cyan-700'} ${isActive ? 'cursor-pointer' : 'cursor-default'}`}
+            className={`rounded-2xl p-5 min-h-40 flex flex-col justify-between overflow-hidden ${isCurrent || isActive ? 'bg-cyan-800' : module.status == "completed" ? ' bg-cyan-600' : 'bg-cyan-700/20 text-cyan-700'} ${isActive ? 'cursor-pointer' : 'cursor-default'}`}
             role={isActive ? 'button' : undefined}
             tabIndex={isActive ? 0 : undefined}
             onKeyDown={isActive ? (e) => e.key === 'Enter' && onTap() : undefined}
@@ -36,8 +36,8 @@ export function ModuleCard({module, index, onTap}: {module: ModuleProgressEntry,
                     {module.title}
                 </span>
                 {isCurrent || isActive ? (
-                    <div className="flex items-center gap-2 mt-3">
-                        <div className="flex-1">
+                    <div className="flex items-center gap-2 mt-3 min-w-0">
+                        <div className="flex-1 min-w-0">
                             <ProgressBar current={stepNum} max={3} size="s" hideNumber id={`map-card-${module.moduleId}`} />
                         </div>
                         <span className={`text-xs font-bold ${(isCurrent || isActive) ? 'text-lime-200' : 'text-cyan-200'} whitespace-nowrap`}>Step {stepNum}/3</span>
