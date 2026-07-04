@@ -13,7 +13,7 @@ export function ExerciseScreen({children}: {children: React.ReactNode}) {
     const viewportHeight = useVisualViewportHeight();
 
     return (
-        <div className="relative flex flex-1 flex-col overflow-hidden" style={{height: viewportHeight ? `${viewportHeight}px` : '100dvh'}}>
+        <div className="relative flex flex-1 flex-col overflow-hidden" style={{maxHeight: viewportHeight ? `${viewportHeight}px` : '100dvh'}}>
             {children}
         </div>
     );
