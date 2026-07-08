@@ -1,0 +1,222 @@
+[
+  {
+    "id": "A1-12-v-hvad-9556",
+    "danish": "hvad",
+    "english": "what",
+    "type": "pronoun",
+    "context": null,
+    "tags": ["question-word"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvor-6361",
+    "danish": "hvor",
+    "english": "where",
+    "type": "adverb",
+    "context": null,
+    "tags": ["question-word"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvornaar-3760",
+    "danish": "hvornår",
+    "english": "when",
+    "type": "adverb",
+    "context": null,
+    "tags": ["question-word"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvorfor-2691",
+    "danish": "hvorfor",
+    "english": "why",
+    "type": "adverb",
+    "context": null,
+    "tags": ["question-word"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvem-7849",
+    "danish": "hvem",
+    "english": "who",
+    "type": "pronoun",
+    "context": null,
+    "tags": ["question-word"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvordan-8622",
+    "danish": "hvordan",
+    "english": "how",
+    "type": "adverb",
+    "context": null,
+    "tags": ["question-word"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-forstaa-6972",
+    "danish": "forstå",
+    "english": "to understand",
+    "type": "verb",
+    "context": null,
+    "tags": ["communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-gentage-2253",
+    "danish": "gentage",
+    "english": "to repeat",
+    "type": "verb",
+    "context": null,
+    "tags": ["communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hjaelpe-9795",
+    "danish": "hjælpe",
+    "english": "to help",
+    "type": "verb",
+    "context": null,
+    "tags": ["communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-betyde-1248",
+    "danish": "betyde",
+    "english": "to mean",
+    "type": "verb",
+    "context": null,
+    "tags": ["communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-langsomt-2483",
+    "danish": "langsomt",
+    "english": "slowly",
+    "type": "adverb",
+    "context": null,
+    "tags": ["communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-kan-du-gentage-det-5244",
+    "danish": "Kan du gentage det?",
+    "english": "Can you repeat that?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication", "help-seeking"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-kan-du-tale-langsommere-3286",
+    "danish": "Kan du tale langsommere?",
+    "english": "Can you speak more slowly?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication", "help-seeking"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-jeg-forstaar-ikke-2377",
+    "danish": "Jeg forstår ikke",
+    "english": "I don't understand",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvad-hedder-det-paa-1534",
+    "danish": "Hvad hedder det på dansk?",
+    "english": "What is that called in Danish?",
+    "type": "pattern",
+    "context": null,
+    "tags": ["meta-communication", "help-seeking"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-hvad-betyder-det-1163",
+    "danish": "Hvad betyder det?",
+    "english": "What does that mean?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-kan-du-hjaelpe-mig-4601",
+    "danish": "Kan du hjælpe mig?",
+    "english": "Can you help me?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication", "help-seeking"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-jeg-er-ikke-sikker-4932",
+    "danish": "Jeg er ikke sikker",
+    "english": "I'm not sure",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-undskyld-hvad-sagde-du-4838",
+    "danish": "Undskyld, hvad sagde du?",
+    "english": "Sorry, what did you say?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication", "help-seeking"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-jeg-ved-det-ikke-1459",
+    "danish": "Jeg ved det ikke",
+    "english": "I don't know",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-undskyld-mig-8455",
+    "danish": "Undskyld mig",
+    "english": "Excuse me",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication", "politeness"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-12-v-kan-du-skrive-det-4678",
+    "danish": "Kan du skrive det?",
+    "english": "Can you write that down?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["meta-communication", "help-seeking"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

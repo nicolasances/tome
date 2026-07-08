@@ -1,0 +1,37 @@
+{
+  "id": "danish-A1-12",
+  "title": "Asking Questions & Getting Help",
+  "theme": "Communication repair and help-seeking",
+  "communicationGoal": "Ask someone to repeat or slow down, say you don't understand, ask how to say something in Danish",
+  "cefrLevel": "A1",
+  "vocabularyItemIds": [
+    "A1-12-v-hvad-9556",
+    "A1-12-v-hvor-6361",
+    "A1-12-v-hvornaar-3760",
+    "A1-12-v-hvorfor-2691",
+    "A1-12-v-hvem-7849",
+    "A1-12-v-hvordan-8622",
+    "A1-12-v-forstaa-6972",
+    "A1-12-v-gentage-2253",
+    "A1-12-v-hjaelpe-9795",
+    "A1-12-v-betyde-1248",
+    "A1-12-v-langsomt-2483",
+    "A1-12-v-kan-du-gentage-det-5244",
+    "A1-12-v-kan-du-tale-langsommere-3286",
+    "A1-12-v-jeg-forstaar-ikke-2377",
+    "A1-12-v-hvad-hedder-det-paa-1534",
+    "A1-12-v-hvad-betyder-det-1163",
+    "A1-12-v-kan-du-hjaelpe-mig-4601",
+    "A1-12-v-jeg-er-ikke-sikker-4932",
+    "A1-12-v-undskyld-hvad-sagde-du-4838",
+    "A1-12-v-jeg-ved-det-ikke-1459",
+    "A1-12-v-undskyld-mig-8455",
+    "A1-12-v-kan-du-skrive-det-4678"
+  ],
+  "grammarConceptIds": [
+    "A1-12-g-question-formation-1100",
+    "A1-12-g-modal-verbs-for-polite-6821"
+  ],
+  "createdAt": "2026-07-08T00:00:00Z",
+  "isUserGenerated": false
+}
