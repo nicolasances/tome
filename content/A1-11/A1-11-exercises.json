@@ -1,0 +1,1189 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Denne ___ sælger alt muligt — tøj, bøger og gaver.",
+    "promptTranslation": "This shop sells all sorts of things — clothes, books, and gifts.",
+    "answer": "butik",
+    "distractors": [
+      "bageri",
+      "apotek",
+      "kiosk"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-butik-4833",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg køber mælk og brød i ___.",
+    "promptTranslation": "I buy milk and bread at the supermarket.",
+    "answer": "supermarked",
+    "distractors": [
+      "bageri",
+      "apotek",
+      "kiosk"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-supermarked-6698",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg køber altid friskbagt brød i ___ om morgenen.",
+    "promptTranslation": "I always buy freshly baked bread at the bakery in the morning.",
+    "answer": "bageri",
+    "distractors": [
+      "apotek",
+      "kiosk",
+      "tøjbutik"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-bageri-6847",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg skal prøve tøj i ___.",
+    "promptTranslation": "I need to try on clothes at the clothing store.",
+    "answer": "tøjbutik",
+    "distractors": [
+      "supermarked",
+      "bageri",
+      "apotek"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-toejbutik-2839",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg køber altid en avis i ___ på hjørnet.",
+    "promptTranslation": "I always buy a newspaper at the kiosk on the corner.",
+    "answer": "kiosk",
+    "distractors": [
+      "bageri",
+      "apotek",
+      "supermarked"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kiosk-4810",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Om vinteren har jeg brug for varmt ___.",
+    "promptTranslation": "In winter I need warm clothes.",
+    "answer": "tøj",
+    "distractors": [
+      "sko",
+      "bog",
+      "gave"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-toej-8642",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har brug for nye ___ til løb.",
+    "promptTranslation": "I need new shoes for running.",
+    "answer": "sko",
+    "distractors": [
+      "bøger",
+      "tøj",
+      "gaver"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-sko-7210",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Denne ___ handler om Danmark.",
+    "promptTranslation": "This book is about Denmark.",
+    "answer": "bog",
+    "distractors": [
+      "gave",
+      "kvittering",
+      "pris"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-bog-1817",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg skal købe en ___ til min ven.",
+    "promptTranslation": "I need to buy a gift for my friend.",
+    "answer": "gave",
+    "distractors": [
+      "kvittering",
+      "rabat",
+      "pris"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-gave-9171",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Hvor meget ___ denne flotte bog?",
+    "promptTranslation": "How much does this nice book cost?",
+    "answer": "koster",
+    "distractors": [
+      "køber",
+      "betaler",
+      "prøver"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koste-5913",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Kan jeg ___ med kreditkort?",
+    "promptTranslation": "Can I pay by credit card?",
+    "answer": "betale",
+    "distractors": [
+      "købe",
+      "prøve",
+      "kigge"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-betale-8298",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Må jeg ___ de her sko?",
+    "promptTranslation": "May I try on these shoes?",
+    "answer": "prøve",
+    "distractors": [
+      "betale",
+      "kigge",
+      "købe"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-proeve-2192",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Må jeg få en ___, tak?",
+    "promptTranslation": "May I have a receipt, please?",
+    "answer": "kvittering",
+    "distractors": [
+      "rabat",
+      "pris",
+      "kreditkort"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kvittering-7850",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg betaler altid med ___, aldrig kontant.",
+    "promptTranslation": "I always pay by credit card, never with cash.",
+    "answer": "kreditkort",
+    "distractors": [
+      "kvittering",
+      "rabat",
+      "pris"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kreditkort-5353",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg fik 20 procent ___ på skoene.",
+    "promptTranslation": "I got a 20 percent discount on the shoes.",
+    "answer": "rabat",
+    "distractors": [
+      "pris",
+      "kvittering",
+      "kreditkort"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-rabat-6135",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Hvad er ___ på de her sko?",
+    "promptTranslation": "What is the price of these shoes?",
+    "answer": "pris",
+    "distractors": [
+      "rabat",
+      "kvittering",
+      "kreditkort"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-pris-7034",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Denne bog er meget ___, den koster kun 20 kroner.",
+    "promptTranslation": "This book is very cheap, it only costs 20 kroner.",
+    "answer": "billig",
+    "distractors": [
+      "dyr",
+      "ny",
+      "gammel"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-billig-2303",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Den her taske er alt for ___ til mig.",
+    "promptTranslation": "This bag is far too expensive for me.",
+    "answer": "dyr",
+    "distractors": [
+      "billig",
+      "ny",
+      "gammel"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-dyr-6641",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Kunden spørger: '___?' Ekspedienten svarer: 'Den koster 300 kroner.'",
+    "promptTranslation": "The customer asks: 'How much does it cost?' The shop assistant answers: 'It costs 300 kroner.'",
+    "answer": "Hvad koster det",
+    "distractors": [
+      "Har I det",
+      "Må jeg prøve det",
+      "Kan jeg få en kvittering"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-hvad-koster-det-3478",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Kunden spørger i butikken: '___ sko i str. 40?'",
+    "promptTranslation": "The customer asks in the shop: 'Do you have shoes in size 40?'",
+    "answer": "Har I",
+    "distractors": [
+      "Hvad koster det",
+      "Må jeg",
+      "Kan jeg få"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-har-i-8307",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "'___ prøve skoene, før jeg køber dem?'",
+    "promptTranslation": "'May I try on the shoes before I buy them?'",
+    "answer": "Må jeg",
+    "distractors": [
+      "Har I",
+      "Kan jeg få",
+      "Hvad koster det"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-maa-jeg-3306",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "'___ denne bog, tak.'",
+    "promptTranslation": "'I would like to have this book, please.'",
+    "answer": "Jeg vil gerne have",
+    "distractors": [
+      "Har I",
+      "Må jeg",
+      "Hvad koster det"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-jeg-vil-gerne-have-8917",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "'___ en kvittering, tak?'",
+    "promptTranslation": "'Can I get a receipt, please?'",
+    "answer": "Kan jeg få",
+    "distractors": [
+      "Har I",
+      "Må jeg",
+      "Hvad koster det"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kan-jeg-faa-2151",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vil du have en kvittering? — '___, jeg har ikke brug for det.'",
+    "promptTranslation": "Do you want a receipt? — 'No thanks, I don't need it.'",
+    "answer": "Nej tak",
+    "distractors": [
+      "Ja tak",
+      "Må jeg",
+      "Kan jeg få"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-nej-tak-7627",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vil du have en pose? — '___, det vil jeg gerne.'",
+    "promptTranslation": "Do you want a bag? — 'Yes please, I would like that.'",
+    "answer": "Ja tak",
+    "distractors": [
+      "Nej tak",
+      "Må jeg",
+      "Har I"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-ja-tak-3134",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Vi køber altid mad i det store ___ i byen.",
+    "promptTranslation": "We always buy food in the big supermarket in town.",
+    "answer": "supermarked",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-supermarked-6698",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg skal hen på ___ og købe noget medicin.",
+    "promptTranslation": "I need to go to the pharmacy and buy some medicine.",
+    "answer": "apotek",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-apotek-9678",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Sko og tøj kan du finde i den her ___.",
+    "promptTranslation": "You can find shoes and clothes in this clothing store.",
+    "answer": "tøjbutik",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-toejbutik-2839",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Om sommeren bruger jeg lettere ___.",
+    "promptTranslation": "In the summer I wear lighter clothes.",
+    "answer": "tøj",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-toej-8642",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Vi skal købe ___ til i aften.",
+    "promptTranslation": "We need to buy food for tonight.",
+    "answer": "mad",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-mad-3803",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg læser en spændende ___ for tiden.",
+    "promptTranslation": "I am reading an exciting book at the moment.",
+    "answer": "bog",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-bog-1817",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Kan jeg få en ___ med posen?",
+    "promptTranslation": "Can I get a receipt with the bag?",
+    "answer": "kvittering",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kvittering-7850",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg har ikke mit kreditkort, så jeg betaler ___.",
+    "promptTranslation": "I don't have my credit card, so I'll pay with cash.",
+    "answer": "kontant",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kontant-8197",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Er der ___ på den her bog i dag?",
+    "promptTranslation": "Is there a discount on this book today?",
+    "answer": "rabat",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-rabat-6135",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Skoene her er ___ (billig, plural) — kun 150 kroner.",
+    "promptTranslation": "These shoes are cheap — only 150 kroner.",
+    "answer": "billige",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-billig-2303",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at koste | present tense | den",
+    "promptTranslation": null,
+    "answer": "koster",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koste-5913",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Sidste år ___ (koste, preterite) denne bog 50 kroner.",
+    "promptTranslation": "Last year this book cost 50 kroner.",
+    "answer": "kostede",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koste-5913",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at købe | present tense | jeg",
+    "promptTranslation": null,
+    "answer": "køber",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koebe-2155",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "We bought bread yesterday.",
+    "promptTranslation": null,
+    "answer": "Vi købte brød i går.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koebe-2155",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at betale | present tense | du",
+    "promptTranslation": null,
+    "answer": "betaler",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-betale-8298",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at betale | preterite | han",
+    "promptTranslation": null,
+    "answer": "betalte",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-betale-8298",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at kigge | present tense | jeg",
+    "promptTranslation": null,
+    "answer": "kigger",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kigge-9354",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at kigge | preterite | de",
+    "promptTranslation": null,
+    "answer": "kiggede",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kigge-9354",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at prøve | present tense | hun",
+    "promptTranslation": null,
+    "answer": "prøver",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-proeve-2192",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at prøve | preterite | jeg",
+    "promptTranslation": null,
+    "answer": "prøvede",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-proeve-2192",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The shop closes at six o'clock.",
+    "promptTranslation": null,
+    "answer": "Butikken lukker klokken seks.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-butik-4833",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "There is a bakery around the corner.",
+    "promptTranslation": null,
+    "answer": "Der er et bageri om hjørnet.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-bageri-6847",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Where is the nearest pharmacy?",
+    "promptTranslation": null,
+    "answer": "Hvor er det nærmeste apotek?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-apotek-9678",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Can I buy chocolate at the kiosk?",
+    "promptTranslation": null,
+    "answer": "Kan jeg købe chokolade i kiosken?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kiosk-4810",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "These shoes are too expensive.",
+    "promptTranslation": null,
+    "answer": "De her sko er for dyre.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Disse sko er for dyre."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-sko-7210",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Where can I buy food nearby?",
+    "promptTranslation": null,
+    "answer": "Hvor kan jeg købe mad i nærheden?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-mad-3803",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I would like to buy a gift.",
+    "promptTranslation": null,
+    "answer": "Jeg vil gerne købe en gave.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg vil købe en gave."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-gave-9171",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I want to buy new shoes.",
+    "promptTranslation": null,
+    "answer": "Jeg vil gerne købe nye sko.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg vil købe nye sko."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koebe-2155",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I am just looking, thank you.",
+    "promptTranslation": null,
+    "answer": "Jeg kigger bare, tak.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kigge-9354",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I have a credit card.",
+    "promptTranslation": null,
+    "answer": "Jeg har et kreditkort.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kreditkort-5353",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Can I pay in cash?",
+    "promptTranslation": null,
+    "answer": "Kan jeg betale kontant?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kontant-8197",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The price is very high.",
+    "promptTranslation": null,
+    "answer": "Prisen er meget høj.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-pris-7034",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "This book is too expensive.",
+    "promptTranslation": null,
+    "answer": "Denne bog er for dyr.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-dyr-6641",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "How much does it cost?",
+    "promptTranslation": null,
+    "answer": "Hvad koster det?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-hvad-koster-det-3478",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Do you have this book in English?",
+    "promptTranslation": null,
+    "answer": "Har I den her bog på engelsk?",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Har I denne bog på engelsk?"
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-har-i-8307",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "May I look at the book?",
+    "promptTranslation": null,
+    "answer": "Må jeg kigge på bogen?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-maa-jeg-3306",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I would like to have this gift, please.",
+    "promptTranslation": null,
+    "answer": "Jeg vil gerne have denne gave, tak.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg vil gerne have den her gave, tak."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-jeg-vil-gerne-have-8917",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Can I get a bag?",
+    "promptTranslation": null,
+    "answer": "Kan jeg få en pose?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kan-jeg-faa-2151",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "No thank you, I don't need a bag.",
+    "promptTranslation": null,
+    "answer": "Nej tak, jeg har ikke brug for en pose.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-nej-tak-7627",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Yes please, I would like a receipt.",
+    "promptTranslation": null,
+    "answer": "Ja tak, jeg vil gerne have en kvittering.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-ja-tak-3134",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The book costs one hundred kroner.",
+    "promptTranslation": null,
+    "answer": "Bogen koster hundrede kroner.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Bogen koster 100 kroner."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-krone-7786",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "How many kroner do you have?",
+    "promptTranslation": null,
+    "answer": "Hvor mange kroner har du?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-krone-7786",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "How much does this shoe cost?",
+    "promptTranslation": null,
+    "answer": "Hvad koster den her sko?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "her",
+      "sko",
+      "Hvad",
+      "koster",
+      "den"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "Do you have this book in Danish?",
+    "promptTranslation": null,
+    "answer": "Har I den her bog på dansk?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "dansk",
+      "bog",
+      "på",
+      "her",
+      "den",
+      "I",
+      "Har"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "Where can I buy a gift?",
+    "promptTranslation": null,
+    "answer": "Hvor kan jeg købe en gave?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "en",
+      "gave",
+      "jeg",
+      "Hvor",
+      "købe",
+      "kan"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "Do you have shoes in size 40?",
+    "promptTranslation": null,
+    "answer": "Har I sko i størrelse 40?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "40",
+      "i",
+      "sko",
+      "størrelse",
+      "Har",
+      "I"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "May I try on these shoes?",
+    "promptTranslation": null,
+    "answer": "Må jeg prøve de her sko?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "de",
+      "sko",
+      "her",
+      "Må",
+      "prøve",
+      "jeg"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-modal-verbs-for-polite-2107",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "Can I pay with a credit card?",
+    "promptTranslation": null,
+    "answer": "Kan jeg betale med kreditkort?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "med",
+      "kreditkort",
+      "jeg",
+      "Kan",
+      "betale"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-modal-verbs-for-polite-2107",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "I would like to have a gift.",
+    "promptTranslation": null,
+    "answer": "Jeg vil gerne have en gave.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "gerne",
+      "en",
+      "have",
+      "gave",
+      "Jeg",
+      "vil"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-modal-verbs-for-polite-2107",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Koster hvad denne bog?",
+    "promptTranslation": "How much does this book cost?",
+    "answer": "Hvad koster denne bog?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "I har sko i størrelse 40?",
+    "promptTranslation": "Do you have shoes in size 40?",
+    "answer": "Har I sko i størrelse 40?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Hvor jeg kan finde et apotek?",
+    "promptTranslation": "Where can I find a pharmacy?",
+    "answer": "Hvor kan jeg finde et apotek?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-question-formation-1457",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg kan betaler med kreditkort.",
+    "promptTranslation": "I can pay with a credit card.",
+    "answer": "Jeg kan betale med kreditkort.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-modal-verbs-for-polite-2107",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Må jeg prøver skoene?",
+    "promptTranslation": "May I try on the shoes?",
+    "answer": "Må jeg prøve skoene?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-modal-verbs-for-polite-2107",
+    "timesShown": 0,
+    "moduleId": "danish-A1-11"
+  }
+]

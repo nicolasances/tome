@@ -18,6 +18,8 @@ Exit codes:
     1   One or more FAIL violations
 """
 
+from __future__ import annotations
+
 import json
 import os
 import sys

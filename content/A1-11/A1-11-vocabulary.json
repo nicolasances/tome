@@ -1,0 +1,312 @@
+[
+  {
+    "id": "A1-11-v-butik-4833",
+    "danish": "butik",
+    "english": "shop",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "places"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-supermarked-6698",
+    "danish": "supermarked",
+    "english": "supermarket",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "places"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-bageri-6847",
+    "danish": "bageri",
+    "english": "bakery",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "places"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-apotek-9678",
+    "danish": "apotek",
+    "english": "pharmacy",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "places"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-toejbutik-2839",
+    "danish": "tøjbutik",
+    "english": "clothing store",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "places"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-kiosk-4810",
+    "danish": "kiosk",
+    "english": "kiosk / newsstand",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "places"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-toej-8642",
+    "danish": "tøj",
+    "english": "clothes",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "products"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-sko-7210",
+    "danish": "sko",
+    "english": "shoes",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "products"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-mad-3803",
+    "danish": "mad",
+    "english": "food",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "products"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-bog-1817",
+    "danish": "bog",
+    "english": "book",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "products"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-gave-9171",
+    "danish": "gave",
+    "english": "gift",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "products"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-koste-5913",
+    "danish": "koste",
+    "english": "to cost",
+    "type": "verb",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-koebe-2155",
+    "danish": "købe",
+    "english": "to buy",
+    "type": "verb",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-betale-8298",
+    "danish": "betale",
+    "english": "to pay",
+    "type": "verb",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-kigge-9354",
+    "danish": "kigge",
+    "english": "to look / browse",
+    "type": "verb",
+    "context": "browsing in a shop",
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-proeve-2192",
+    "danish": "prøve",
+    "english": "to try on",
+    "type": "verb",
+    "context": "trying on clothes or shoes",
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-kvittering-7850",
+    "danish": "kvittering",
+    "english": "receipt",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-kreditkort-5353",
+    "danish": "kreditkort",
+    "english": "credit card",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-kontant-8197",
+    "danish": "kontant",
+    "english": "cash",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-rabat-6135",
+    "danish": "rabat",
+    "english": "discount",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-pris-7034",
+    "danish": "pris",
+    "english": "price",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "transactions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-billig-2303",
+    "danish": "billig",
+    "english": "cheap",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shopping", "descriptions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-dyr-6641",
+    "danish": "dyr",
+    "english": "expensive",
+    "type": "adjective",
+    "context": "price, not the animal sense",
+    "tags": ["shopping", "descriptions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-hvad-koster-det-3478",
+    "danish": "Hvad koster det?",
+    "english": "How much does it cost?",
+    "type": "pattern",
+    "context": null,
+    "tags": ["shopping", "questions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-har-i-8307",
+    "danish": "Har I...?",
+    "english": "Do you have...?",
+    "type": "pattern",
+    "context": "asking a shop if it stocks something",
+    "tags": ["shopping", "questions"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-maa-jeg-3306",
+    "danish": "Må jeg...?",
+    "english": "May I...?",
+    "type": "pattern",
+    "context": "polite request",
+    "tags": ["shopping", "politeness"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-jeg-vil-gerne-have-8917",
+    "danish": "Jeg vil gerne have...",
+    "english": "I would like to have...",
+    "type": "pattern",
+    "context": null,
+    "tags": ["shopping", "politeness"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-kan-jeg-faa-2151",
+    "danish": "Kan jeg få...?",
+    "english": "Can I get / have...?",
+    "type": "pattern",
+    "context": null,
+    "tags": ["shopping", "politeness"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-nej-tak-7627",
+    "danish": "Nej tak",
+    "english": "No thank you",
+    "type": "phrase",
+    "context": null,
+    "tags": ["shopping", "politeness"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-ja-tak-3134",
+    "danish": "Ja tak",
+    "english": "Yes please",
+    "type": "phrase",
+    "context": null,
+    "tags": ["shopping", "politeness"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A1-11-v-krone-7786",
+    "danish": "krone",
+    "english": "krone (Danish currency)",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  }
+]

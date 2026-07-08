@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A1-11-g-question-formation-1457",
+    "name": "Question formation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish questions either start with a question word (Hvad, Hvor, Hvor meget) followed by the verb, or — for yes/no questions — start directly with the verb, before the subject. In a shop, this covers asking about price ('Hvad koster...?') and asking whether something is available ('Har I...?').",
+    "examples": [
+      { "danish": "Hvad koster den her bog?", "english": "How much does this book cost?" },
+      { "danish": "Har I sko i str. 42?", "english": "Do you have shoes in size 42?" }
+    ]
+  },
+  {
+    "id": "A1-11-g-modal-verbs-for-polite-2107",
+    "name": "Modal verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Modal verbs are followed directly by another verb in the infinitive (without 'at'). In shops, 'må jeg' asks politely for permission and 'kan jeg få' asks politely for something, softening a request compared to a plain statement.",
+    "examples": [
+      { "danish": "Må jeg prøve den her?", "english": "May I try this on?" },
+      { "danish": "Kan jeg få en kvittering?", "english": "Can I get a receipt?" }
+    ]
+  }
+]
