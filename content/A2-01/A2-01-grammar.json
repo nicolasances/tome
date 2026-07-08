@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-01-g-present-tense-nutid-2191",
+    "name": "Present tense (nutid)",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish present tense (nutid) uses one verb form for all subjects — no conjugation changes with jeg, du, han, vi, etc. This module consolidates present tense to describe your job, your regular responsibilities, and your daily work — actions that are habitual or generally true.",
+    "examples": [
+      { "danish": "Jeg arbejder som konsulent i en stor virksomhed.", "english": "I work as a consultant in a large company." },
+      { "danish": "Min chef leder afdelingen, og vi løser opgaver sammen.", "english": "My boss manages the department, and we solve tasks together." }
+    ]
+  },
+  {
+    "id": "A2-01-g-main-clause-word-order-1801",
+    "name": "Main clause word order (SVO)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In a Danish main clause, the subject comes first, then the verb, then the rest of the sentence — including the prepositions 'som', 'med', and 'i' used with 'arbejde' to say what role you work as, what you work with, and where you work. The preposition stays right after the verb, before the noun it introduces.",
+    "examples": [
+      { "danish": "Jeg arbejder som sygeplejerske på et hospital.", "english": "I work as a nurse at a hospital." },
+      { "danish": "Hun arbejder med rapporter og møder hver dag.", "english": "She works with reports and meetings every day." }
+    ]
+  }
+]

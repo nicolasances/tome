@@ -1,0 +1,41 @@
+{
+  "id": "danish-A2-01",
+  "title": "Talking About Your Job",
+  "theme": "Work and profession (depth)",
+  "communicationGoal": "Describe your job, your responsibilities, your workplace, and your colleagues",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-01-v-chef-3698",
+    "A2-01-v-kollega-9037",
+    "A2-01-v-kontor-5638",
+    "A2-01-v-moede-8482",
+    "A2-01-v-rapport-9212",
+    "A2-01-v-opgave-6039",
+    "A2-01-v-projekt-2052",
+    "A2-01-v-virksomhed-8033",
+    "A2-01-v-branche-9789",
+    "A2-01-v-ansvar-5404",
+    "A2-01-v-sygeplejerske-5551",
+    "A2-01-v-advokat-7093",
+    "A2-01-v-konsulent-1880",
+    "A2-01-v-programmoer-6751",
+    "A2-01-v-direktoer-2313",
+    "A2-01-v-arbejde-6997",
+    "A2-01-v-arbejde-som-2997",
+    "A2-01-v-arbejde-med-3277",
+    "A2-01-v-arbejde-i-5444",
+    "A2-01-v-moedes-9432",
+    "A2-01-v-skrive-4390",
+    "A2-01-v-praesentere-4162",
+    "A2-01-v-planlaegge-9201",
+    "A2-01-v-samarbejde-7118",
+    "A2-01-v-loese-9875",
+    "A2-01-v-lede-8992"
+  ],
+  "grammarConceptIds": [
+    "A2-01-g-present-tense-nutid-2191",
+    "A2-01-g-main-clause-word-order-1801"
+  ],
+  "createdAt": "2026-07-08T00:00:00Z",
+  "isUserGenerated": false
+}

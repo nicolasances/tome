@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-01-v-chef-3698",
+    "danish": "chef",
+    "english": "boss",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "people"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-kollega-9037",
+    "danish": "kollega",
+    "english": "colleague",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "people"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-kontor-5638",
+    "danish": "kontor",
+    "english": "office",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-moede-8482",
+    "danish": "møde",
+    "english": "meeting",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-rapport-9212",
+    "danish": "rapport",
+    "english": "report",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-opgave-6039",
+    "danish": "opgave",
+    "english": "task",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-projekt-2052",
+    "danish": "projekt",
+    "english": "project",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-virksomhed-8033",
+    "danish": "virksomhed",
+    "english": "company",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "industry"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-branche-9789",
+    "danish": "branche",
+    "english": "industry / sector",
+    "type": "noun",
+    "context": null,
+    "tags": ["industry"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-ansvar-5404",
+    "danish": "ansvar",
+    "english": "responsibility",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-sygeplejerske-5551",
+    "danish": "sygeplejerske",
+    "english": "nurse",
+    "type": "noun",
+    "context": null,
+    "tags": ["job-title"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-advokat-7093",
+    "danish": "advokat",
+    "english": "lawyer",
+    "type": "noun",
+    "context": null,
+    "tags": ["job-title"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-konsulent-1880",
+    "danish": "konsulent",
+    "english": "consultant",
+    "type": "noun",
+    "context": null,
+    "tags": ["job-title"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-programmoer-6751",
+    "danish": "programmør",
+    "english": "programmer",
+    "type": "noun",
+    "context": null,
+    "tags": ["job-title"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-direktoer-2313",
+    "danish": "direktør",
+    "english": "director",
+    "type": "noun",
+    "context": null,
+    "tags": ["job-title"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-arbejde-6997",
+    "danish": "arbejde",
+    "english": "to work",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-arbejde-som-2997",
+    "danish": "arbejde som",
+    "english": "to work as",
+    "type": "pattern",
+    "context": "followed by a job title / role",
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-arbejde-med-3277",
+    "danish": "arbejde med",
+    "english": "to work with",
+    "type": "pattern",
+    "context": "followed by a subject, tool, or material",
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-arbejde-i-5444",
+    "danish": "arbejde i",
+    "english": "to work in",
+    "type": "pattern",
+    "context": "followed by a place, company, or industry",
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-moedes-9432",
+    "danish": "mødes",
+    "english": "to meet (with someone)",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-skrive-4390",
+    "danish": "skrive",
+    "english": "to write",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-praesentere-4162",
+    "danish": "præsentere",
+    "english": "to present",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-planlaegge-9201",
+    "danish": "planlægge",
+    "english": "to plan",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-samarbejde-7118",
+    "danish": "samarbejde",
+    "english": "to collaborate",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-loese-9875",
+    "danish": "løse",
+    "english": "to solve",
+    "type": "verb",
+    "context": "solving a task or problem",
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-01-v-lede-8992",
+    "danish": "lede",
+    "english": "to lead / manage",
+    "type": "verb",
+    "context": "to manage or direct — not 'to search for'",
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
