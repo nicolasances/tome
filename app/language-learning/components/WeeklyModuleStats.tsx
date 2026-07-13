@@ -2,6 +2,7 @@
 
 import moment from 'moment';
 import { DailyActivityDay } from '@/api/TomeLearningDashboardAPI';
+import { computeWeeklyBarStacks } from '@/utils/weeklyBarStack';
 
 interface WeeklyModuleStatsProps {
     loading?: boolean;
@@ -10,10 +11,12 @@ interface WeeklyModuleStatsProps {
 }
 
 /**
- * 7-day bar chart showing practice sessions completed per day over a rolling window (oldest → today).
+ * 7-day stacked bar chart over a rolling window (oldest → today): each bar stacks
+ * practice sessions (bottom), module tests passed (middle) and level tests passed
+ * (top), sized to the day's share of activity relative to the busiest day in the window.
  * Handles its own loading (skeleton) and empty states via props.
  * Day labels are derived from the date field.
- * Today's bar is highlighted with lime-200 accent.
+ * Today's bar is highlighted with a lime accent.
  */
 export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
 
@@ -47,7 +50,7 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
     }
 
     const today = moment().format('YYYYMMDD');
-    const maxCount = Math.max(...days.map((d) => d.practiceSessions), 1);
+    const stacks = computeWeeklyBarStacks(days);
 
     return (
         <div className="flex-1 flex flex-col items-stretch">
@@ -56,26 +59,51 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
             </p>
 
             <div className="flex flex-1 items-end gap-2" style={{ height: 110 }}>
-                {days.map((day) => {
+                {days.map((day, i) => {
                     const isToday = day.date === today;
-                    const barHeight = day.practiceSessions > 0
-                        ? Math.max((day.practiceSessions / maxCount) * 84, 8)
-                        : 2;
+                    const stack = stacks[i];
                     const dayLabel = moment(day.date, 'YYYYMMDD').format('dd').charAt(0);
+                    const ariaLabel = `${dayLabel}: ${stack.total} activit${stack.total !== 1 ? 'ies' : 'y'} `
+                        + `(${day.practiceSessions} practice session${day.practiceSessions !== 1 ? 's' : ''}, `
+                        + `${day.successfulModuleTests} module test${day.successfulModuleTests !== 1 ? 's' : ''}, `
+                        + `${day.successfulLevelTests} level test${day.successfulLevelTests !== 1 ? 's' : ''})`;
 
                     return (
                         <div key={day.date} className="flex-1 flex flex-col items-center justify-end" style={{ height: '100%' }}>
-                            {day.practiceSessions > 0 && (
+                            {stack.total > 0 && (
                                 <span className={`text-[10px] font-bold mb-1 ${isToday ? 'text-lime-200' : 'text-cyan-200'}`} aria-hidden="true">
-                                    {day.practiceSessions}
+                                    {stack.total}
                                 </span>
                             )}
-                            <div
-                                className={`w-full rounded-sm ${isToday ? 'bg-lime-200' : day.practiceSessions > 0 ? 'bg-cyan-800' : 'bg-cyan-800/40'}`}
-                                style={{ height: barHeight }}
-                                role="img"
-                                aria-label={`${dayLabel}: ${day.practiceSessions} session${day.practiceSessions !== 1 ? 's' : ''} completed`}
-                            />
+                            {stack.total > 0 ? (
+                                <div className="w-full flex flex-col justify-end" role="img" aria-label={ariaLabel} style={{ height: stack.barHeight }}>
+                                    {stack.levelTestHeight > 0 && (
+                                        <div
+                                            className={`w-full ${isToday ? 'bg-lime-400' : 'bg-cyan-400'} ${stack.moduleTestHeight === 0 && stack.practiceHeight === 0 ? 'rounded-sm' : 'rounded-t-sm'}`}
+                                            style={{ height: stack.levelTestHeight }}
+                                        />
+                                    )}
+                                    {stack.moduleTestHeight > 0 && (
+                                        <div
+                                            className={`w-full ${isToday ? 'bg-lime-300' : 'bg-cyan-600'} ${stack.levelTestHeight === 0 && stack.practiceHeight === 0 ? 'rounded-sm' : stack.levelTestHeight === 0 ? 'rounded-t-sm' : stack.practiceHeight === 0 ? 'rounded-b-sm' : ''}`}
+                                            style={{ height: stack.moduleTestHeight }}
+                                        />
+                                    )}
+                                    {stack.practiceHeight > 0 && (
+                                        <div
+                                            className={`w-full ${isToday ? 'bg-lime-200' : 'bg-cyan-800'} ${stack.moduleTestHeight === 0 && stack.levelTestHeight === 0 ? 'rounded-sm' : 'rounded-b-sm'}`}
+                                            style={{ height: stack.practiceHeight }}
+                                        />
+                                    )}
+                                </div>
+                            ) : (
+                                <div
+                                    className="w-full rounded-sm bg-cyan-800/40"
+                                    style={{ height: 2 }}
+                                    role="img"
+                                    aria-label={`${dayLabel}: no activity`}
+                                />
+                            )}
                             <span className={`text-[10px] mt-1.5 ${isToday ? 'text-lime-200 font-bold' : 'text-white/85'}`}>
                                 {dayLabel}
                             </span>
