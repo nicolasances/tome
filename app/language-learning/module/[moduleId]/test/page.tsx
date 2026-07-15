@@ -298,7 +298,8 @@ export default function ModuleTestPage() {
                     {submissionState && verification.phase === null && (
                         <ResultSheet
                             ok={submissionState.isCorrect}
-                            answer={submissionState.isCorrect ? undefined : submissionState.correctAnswer}
+                            answer={submissionState.correctAnswer}
+                            userAnswer={inputValue}
                             exercise={currentExercise}
                             aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
                             onContinue={() => handleContinue()}

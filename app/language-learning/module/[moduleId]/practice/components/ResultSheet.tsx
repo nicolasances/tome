@@ -3,17 +3,19 @@
 import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { MaskedSvgIcon } from 'toto-react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
+import { shouldRevealAnswer } from '@/utils/answerReveal';
 
 interface ResultSheetProps {
     ok: boolean;
     answer?: string;
+    userAnswer?: string;
     aiVerify?: boolean;
     exercise: Exercise;
     onContinue: () => void;
     onAiVerify?: () => void;
 }
 
-export function ResultSheet({ok, answer, aiVerify, exercise, onContinue, onAiVerify}: ResultSheetProps) {
+export function ResultSheet({ok, answer, userAnswer, aiVerify, exercise, onContinue, onAiVerify}: ResultSheetProps) {
     const [expanded, setExpanded] = useState(false);
     const [canExpand, setCanExpand] = useState(false);
     const ansRef = useRef<HTMLDivElement>(null);
@@ -31,16 +33,9 @@ export function ResultSheet({ok, answer, aiVerify, exercise, onContinue, onAiVer
         if (el) setCanExpand(el.scrollHeight - 2 > el.clientHeight);
     }, [answer, ok, expanded]);
 
-    const toggle = () => { if (!ok && canExpand) setExpanded(v => !v); };
+    const toggle = () => { if (canExpand) setExpanded(v => !v); };
 
-    /**
-     * Display logic:
-     * - Do not display the answer for exercises of type Multiple Choice
-     */
-    const shouldDisplayAnswer = () => {
-        if (exercise.type === 'multiple_choice') return false;
-        return !ok && !!answer;
-    };
+    const shouldDisplayAnswer = () => shouldRevealAnswer({ exerciseType: exercise.type, ok, correctAnswer: answer, userAnswer });
 
     return (
         <div className="absolute left-0 right-0 bottom-0 bg-cyan-900 rounded-t-3xl px-5 pb-6 pt-2 flex flex-col gap-3 text-white box-border"
@@ -62,7 +57,7 @@ export function ResultSheet({ok, answer, aiVerify, exercise, onContinue, onAiVer
             {/* Wrong-answer reveal */}
             {shouldDisplayAnswer() && (
                 <div className="flex-shrink-0 flex flex-col cursor-pointer min-h-0" onClick={toggle}>
-                    <span className="text-sm uppercase tracking-widest text-cyan-200 mb-1">Answer</span>
+                    <span className="text-sm uppercase tracking-widest text-cyan-200 mb-1">{ok ? 'Exact phrasing' : 'Answer'}</span>
                     <div
                         ref={ansRef}
                         className="text-base font-bold text-lime-200 leading-snug break-words"
