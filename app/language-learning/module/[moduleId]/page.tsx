@@ -76,9 +76,14 @@ const FLOW_CTA: Record<FlowStep, string> = {
 };
 
 function deriveDefaultStep(stepStates: { grammar: StepState; practice: StepState; test: StepState }): FlowStep {
+
     if (stepStates.practice === 'available') return 'practice';
     if (stepStates.grammar === 'available') return 'grammar';
     if (stepStates.test === 'available') return 'test';
+
+    // If practice and grammar are completed, always return test
+    if (stepStates.practice === 'completed' && stepStates.grammar === 'completed') return 'test';
+
     return 'grammar';
 }
 
