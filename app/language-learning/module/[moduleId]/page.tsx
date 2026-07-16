@@ -162,24 +162,46 @@ export default function ModuleOverviewPage() {
         }
     };
 
-    const handleDesktopCta = async () => {
+    /**
+     * Start a new practice
+     */
+    const startNewPractice = async () => {
+
         if (!data) return;
+        if (isStartingPractice) return;
+
+        setIsStartingPractice(true);
+
+        try {
+            const sid = await startPracticeAndGetSessionId(data.userId, moduleId);
+            if (!sid) { setIsStartingPractice(false); return; }
+            router.push(`/language-learning/module/${moduleId}/practice/${sid}`);
+        }
+        catch { setIsStartingPractice(false); }
+    }
+
+    const handleDesktopCta = async () => {
+
+        if (!data) return;
+
         if (selectedStep === 'grammar') {
             router.push(`/language-learning/module/${moduleId}/grammar`);
-        } else if (selectedStep === 'practice') {
-            if (isStartingPractice) return;
-            setIsStartingPractice(true);
-            try {
-                const sid = await startPracticeAndGetSessionId(data.userId, moduleId);
-                if (!sid) { setIsStartingPractice(false); return; }
-                router.push(`/language-learning/module/${moduleId}/practice/${sid}`);
-            } catch { setIsStartingPractice(false); }
-        } else if (selectedStep === 'test' && stepStates.test === 'available') {
+        }
+        else if (selectedStep === 'practice') {
+            await startNewPractice();
+        }
+        else if (selectedStep === 'test' && stepStates.test === 'available') {
             router.push(`/language-learning/module/${moduleId}/test`);
+        }
+        else if (selectedStep === 'test' && stepStates.test == 'locked' && stepStates.practice === 'completed') {
+            // If test is locked but practice is completed, allow to start a new practice
+            await startNewPractice();
         }
     };
 
-    const desktopCtaLabel = selectedStep === 'test' && stepStates.test !== 'available' ? 'Keep practicing' : FLOW_CTA[selectedStep];
+    let desktopCtaLabel = FLOW_CTA[selectedStep];
+    if (selectedStep === 'test' && stepStates.test !== 'available') desktopCtaLabel = 'Keep practicing';
+    else if (selectedStep === 'practice' && stepStates.practice == 'completed') desktopCtaLabel = 'Keep practicing';
 
     const stepNum = ctaStep === 'practice' ? 2 : ctaStep === 'test' ? 3 : ctaStep === 'done' ? 3 : 1;
 
