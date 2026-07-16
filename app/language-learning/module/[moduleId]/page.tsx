@@ -179,7 +179,6 @@ export default function ModuleOverviewPage() {
         }
     };
 
-    const isDesktopCtaDisabled = selectedStep === 'test' && stepStates.test !== 'available';
     const desktopCtaLabel = selectedStep === 'test' && stepStates.test !== 'available' ? 'Keep practicing' : FLOW_CTA[selectedStep];
 
     const stepNum = ctaStep === 'practice' ? 2 : ctaStep === 'test' ? 3 : ctaStep === 'done' ? 3 : 1;
@@ -274,8 +273,8 @@ export default function ModuleOverviewPage() {
                             <div className="flex justify-end mt-7">
                                 <button
                                     onClick={handleDesktopCta}
-                                    disabled={isDesktopCtaDisabled || isStartingPractice}
-                                    className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isDesktopCtaDisabled || isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
+                                    disabled={isStartingPractice}
+                                    className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
                                 >
                                     {isStartingPractice ? 'Starting…' : desktopCtaLabel}
                                 </button>
