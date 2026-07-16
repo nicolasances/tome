@@ -18,6 +18,7 @@ import { WeeklyModuleStats } from './components/WeeklyModuleStats';
 import { DesktopContinueCard } from './components/DesktopContinueCard';
 import { StatTile } from './components/StatTile';
 import { UpNextStrip } from './components/UpNextStrip';
+import { countActiveDays } from '@/utils/activeDays';
 
 export default function LanguageLearningHomePage() {
     const { setConfig } = useHeader();
@@ -48,7 +49,7 @@ export default function LanguageLearningHomePage() {
     const currentModule = progress ? deriveCurrentModule(progress) : undefined;
 
     const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions, 0) ?? 0;
-    const activeDays = weeklyStats?.filter((d) => d.practiceSessions > 0).length ?? 0;
+    const activeDays = weeklyStats ? countActiveDays(weeklyStats) : 0;
     const currentModuleProgress = progress?.modules?.find((m) => m.status === 'in_progress');
     const wordsSeen = currentModuleProgress?.vocabularyItemsPracticedCount ?? 0;
 
