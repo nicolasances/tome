@@ -1,13 +1,19 @@
 [
   {
     "id": "A1-07-g-regular-verb-conjugation-present-7458",
-    "name": "Regular verb conjugation (present tense)",
+    "name": "Present tense (nutid)",
     "category": "verbs",
     "cefrLevelIntroduced": "A1",
     "explanation": "Most Danish verbs form the present tense by adding -er to the verb stem. The form is the same for all persons — there is no separate ending for 'I', 'you', 'she', etc.",
     "examples": [
-      { "danish": "Jeg spiser brød til morgenmad.", "english": "I eat bread for breakfast." },
-      { "danish": "Vi drikker kaffe om morgenen.", "english": "We drink coffee in the morning." }
+      {
+        "danish": "Jeg spiser brød til morgenmad.",
+        "english": "I eat bread for breakfast."
+      },
+      {
+        "danish": "Vi drikker kaffe om morgenen.",
+        "english": "We drink coffee in the morning."
+      }
     ]
   },
   {
@@ -17,8 +23,14 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "To make a sentence negative, place 'ikke' (not) directly after the finite verb in a main clause. The verb itself does not change.",
     "examples": [
-      { "danish": "Jeg spiser ikke kød.", "english": "I don't eat meat." },
-      { "danish": "Han drikker ikke kaffe.", "english": "He doesn't drink coffee." }
+      {
+        "danish": "Jeg spiser ikke kød.",
+        "english": "I don't eat meat."
+      },
+      {
+        "danish": "Han drikker ikke kaffe.",
+        "english": "He doesn't drink coffee."
+      }
     ]
   },
   {
@@ -28,8 +40,14 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "'Kan lide' means 'to like' and is used to express preferences. It is a fixed two-part expression: 'kan' (modal) + 'lide' (infinitive). To say you don't like something, insert 'ikke' between 'kan' and 'lide'.",
     "examples": [
-      { "danish": "Jeg kan lide fisk.", "english": "I like fish." },
-      { "danish": "Hun kan ikke lide bitter mad.", "english": "She doesn't like bitter food." }
+      {
+        "danish": "Jeg kan lide fisk.",
+        "english": "I like fish."
+      },
+      {
+        "danish": "Hun kan ikke lide bitter mad.",
+        "english": "She doesn't like bitter food."
+      }
     ]
   }
 ]

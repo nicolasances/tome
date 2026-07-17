@@ -6,19 +6,31 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "Danish uses the present tense (nutid) to describe habits and things that happen regularly — perfect for talking about your daily routine. Unlike English, the verb form is the same for every subject: 'jeg arbejder', 'du arbejder', 'han arbejder'. There is no separate '-s' form for he/she.",
     "examples": [
-      { "danish": "Jeg vågner klokken syv hver dag.", "english": "I wake up at seven o'clock every day." },
-      { "danish": "Hun arbejder på et kontor.", "english": "She works in an office." }
+      {
+        "danish": "Jeg vågner klokken syv hver dag.",
+        "english": "I wake up at seven o'clock every day."
+      },
+      {
+        "danish": "Hun arbejder på et kontor.",
+        "english": "She works in an office."
+      }
     ]
   },
   {
     "id": "A1-06-g-regular-verb-conjugation-9852",
-    "name": "Regular verb conjugation",
+    "name": "Present tense (nutid)",
     "category": "verbs",
     "cefrLevelIntroduced": "A1",
     "explanation": "Most Danish verbs are regular: take the infinitive (the 'at' form) and add '-r' to make the present tense. So 'at spise' becomes 'spiser', 'at arbejde' becomes 'arbejder', and 'at vågne' becomes 'vågner'. The same form is used for all subjects.",
     "examples": [
-      { "danish": "Vi spiser morgenmad klokken otte.", "english": "We eat breakfast at eight o'clock." },
-      { "danish": "De sover længe i weekenden.", "english": "They sleep late at the weekend." }
+      {
+        "danish": "Vi spiser morgenmad klokken otte.",
+        "english": "We eat breakfast at eight o'clock."
+      },
+      {
+        "danish": "De sover længe i weekenden.",
+        "english": "They sleep late at the weekend."
+      }
     ]
   },
   {
@@ -28,8 +40,14 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "A Danish statement follows Subject-Verb-Object order, just like English. Frequency adverbs such as 'altid', 'ofte', 'aldrig' and 'sjældent' come right after the verb: 'Jeg spiser altid morgenmad'. Time expressions like 'om morgenen' usually go at the end of the sentence.",
     "examples": [
-      { "danish": "Jeg drikker altid kaffe om morgenen.", "english": "I always drink coffee in the morning." },
-      { "danish": "Han ser aldrig fjernsyn om aftenen.", "english": "He never watches TV in the evening." }
+      {
+        "danish": "Jeg drikker altid kaffe om morgenen.",
+        "english": "I always drink coffee in the morning."
+      },
+      {
+        "danish": "Han ser aldrig fjernsyn om aftenen.",
+        "english": "He never watches TV in the evening."
+      }
     ]
   }
 ]

@@ -6,30 +6,48 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "In Danish, weather and natural phenomena use \"det\" as an impersonal subject. This \"det\" doesn't refer to anything specific — it simply fills the grammatical subject slot. English also does this: \"It is raining\" = \"Det regner\".",
     "examples": [
-      { "danish": "Det regner i dag.", "english": "It is raining today." },
-      { "danish": "Det blæser meget om vinteren.", "english": "It is very windy in winter." }
+      {
+        "danish": "Det regner i dag.",
+        "english": "It is raining today."
+      },
+      {
+        "danish": "Det blæser meget om vinteren.",
+        "english": "It is very windy in winter."
+      }
     ]
   },
   {
     "id": "A1-10-g-regular-verb-conjugation-2406",
-    "name": "Regular verb conjugation (present tense)",
+    "name": "Present tense (nutid)",
     "category": "verbs",
     "cefrLevelIntroduced": "A1",
     "explanation": "Most Danish verbs form the present tense by adding -er to the verb stem. Remove the final -e from the infinitive, then add -er. Weather verbs follow this pattern: at regne → regner, at sne → sner, at skinne → skinner.",
     "examples": [
-      { "danish": "Det regner om efteråret.", "english": "It rains in autumn." },
-      { "danish": "Solen skinner i dag.", "english": "The sun is shining today." }
+      {
+        "danish": "Det regner om efteråret.",
+        "english": "It rains in autumn."
+      },
+      {
+        "danish": "Solen skinner i dag.",
+        "english": "The sun is shining today."
+      }
     ]
   },
   {
     "id": "A1-10-g-basic-adjective-agreement-9813",
-    "name": "Basic adjective agreement (en/et)",
+    "name": "Basic adjective agreement (en/et/plural)",
     "category": "adjectives",
     "cefrLevelIntroduced": "A1",
     "explanation": "Danish adjectives change form depending on the noun's grammatical gender. Common nouns (en-words) use the base form; neuter nouns (et-words) usually add -t. After \"det er\", weather adjectives also take the -t form because \"det\" is neuter.",
     "examples": [
-      { "danish": "Det er koldt i dag.", "english": "It is cold today." },
-      { "danish": "En kold vinter.", "english": "A cold winter." }
+      {
+        "danish": "Det er koldt i dag.",
+        "english": "It is cold today."
+      },
+      {
+        "danish": "En kold vinter.",
+        "english": "A cold winter."
+      }
     ]
   }
 ]

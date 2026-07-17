@@ -1,24 +1,36 @@
 [
   {
     "id": "A1-12-g-question-formation-1100",
-    "name": "Question formation with question words",
+    "name": "Question formation",
     "category": "sentence_structure",
     "cefrLevelIntroduced": "A1",
     "explanation": "Danish questions that ask for specific information start with a question word (hvad, hvor, hvornår, hvorfor, hvem, hvordan), immediately followed by the verb, then the subject. This is the same verb-second pattern used in other Danish sentences — the question word simply takes the first position.",
     "examples": [
-      { "danish": "Hvad hedder det på dansk?", "english": "What is that called in Danish?" },
-      { "danish": "Hvor kommer du fra?", "english": "Where do you come from?" }
+      {
+        "danish": "Hvad hedder det på dansk?",
+        "english": "What is that called in Danish?"
+      },
+      {
+        "danish": "Hvor kommer du fra?",
+        "english": "Where do you come from?"
+      }
     ]
   },
   {
     "id": "A1-12-g-modal-verbs-for-polite-6821",
-    "name": "Modal verb 'kan' for polite requests",
+    "name": "Modal verbs (kan, skal, vil, må, bør)",
     "category": "verbs",
     "cefrLevelIntroduced": "A1",
     "explanation": "To politely ask someone to do something, use 'kan du...?' followed by the main verb in its infinitive (base) form. This is the standard, everyday way to make a polite request in Danish, whether asking someone to repeat, help, or slow down.",
     "examples": [
-      { "danish": "Kan du gentage det?", "english": "Can you repeat that?" },
-      { "danish": "Kan du hjælpe mig?", "english": "Can you help me?" }
+      {
+        "danish": "Kan du gentage det?",
+        "english": "Can you repeat that?"
+      },
+      {
+        "danish": "Kan du hjælpe mig?",
+        "english": "Can you help me?"
+      }
     ]
   }
 ]
