@@ -6,8 +6,14 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "Danish uses \"at have det\" (literally \"to have it\") to express how someone feels. It is followed by an adverb like godt (well) or dårligt (poorly), or by an adjective. This construction is the most natural way to respond to \"Hvordan har du det?\"",
     "examples": [
-      { "danish": "Jeg har det godt.", "english": "I'm doing well. / I feel fine." },
-      { "danish": "Hun har det ikke godt i dag.", "english": "She is not feeling well today." }
+      {
+        "danish": "Jeg har det godt.",
+        "english": "I'm doing well. / I feel fine."
+      },
+      {
+        "danish": "Hun har det ikke godt i dag.",
+        "english": "She is not feeling well today."
+      }
     ]
   },
   {
@@ -17,19 +23,31 @@
     "cefrLevelIntroduced": "A1",
     "explanation": "To describe a person's state or emotion, use \"er\" (am/is/are) followed by an adjective. The adjective comes after the verb and does not change form for gender in this predicative position.",
     "examples": [
-      { "danish": "Jeg er træt.", "english": "I am tired." },
-      { "danish": "Han er nervøs for eksamen.", "english": "He is nervous about the exam." }
+      {
+        "danish": "Jeg er træt.",
+        "english": "I am tired."
+      },
+      {
+        "danish": "Han er nervøs for eksamen.",
+        "english": "He is nervous about the exam."
+      }
     ]
   },
   {
     "id": "A1-09-g-negation-in-stative-expressions-7346",
-    "name": "Negation placement (\"ikke\") in stative expressions",
+    "name": "Negation placement with ikke",
     "category": "sentence_structure",
     "cefrLevelIntroduced": "A1",
     "explanation": "To negate a feeling or state, place \"ikke\" directly after the finite verb. In \"at have det\" expressions, \"ikke\" goes after \"har\". In \"at være\" expressions, \"ikke\" goes after \"er\".",
     "examples": [
-      { "danish": "Jeg er ikke glad i dag.", "english": "I am not happy today." },
-      { "danish": "Han har det ikke dårligt.", "english": "He is not feeling bad." }
+      {
+        "danish": "Jeg er ikke glad i dag.",
+        "english": "I am not happy today."
+      },
+      {
+        "danish": "Han har det ikke dårligt.",
+        "english": "He is not feeling bad."
+      }
     ]
   }
 ]

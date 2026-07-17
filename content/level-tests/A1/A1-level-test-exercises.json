@@ -1,0 +1,928 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg ___ fra Skotland, men jeg bor i Danmark nu.",
+    "promptTranslation": "I come from Scotland, but I live in Denmark now.",
+    "answer": "kommer fra",
+    "distractors": [
+      "bor",
+      "hedder",
+      "taler"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-01-v-at-komme-fra-9092",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Bussen kører klokken ___ hver morgen.",
+    "promptTranslation": "The bus runs at seven o'clock every morning.",
+    "answer": "syv",
+    "distractors": [
+      "fire",
+      "ni",
+      "elleve"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-01-v-syv-5346",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Min ___ er rød, og jeg kører den til arbejde hver dag.",
+    "promptTranslation": "My car is red, and I drive it to work every day.",
+    "answer": "bil",
+    "distractors": [
+      "bog",
+      "taske",
+      "stol"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-03-v-bil-1425",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Min fars mor er min ___.",
+    "promptTranslation": "My father's mother is my grandmother.",
+    "answer": "bedstemor",
+    "distractors": [
+      "mor",
+      "søster",
+      "veninde"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-04-v-bedstemor-2212",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Vi kan låne bøger på ___, når vi vil læse noget nyt.",
+    "promptTranslation": "We can borrow books at the library when we want to read something new.",
+    "answer": "bibliotek",
+    "distractors": [
+      "supermarked",
+      "apotek",
+      "station"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-05-v-bibliotek-7246",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg ___ altid morgenmad ved køkkenbordet, før jeg tager på arbejde.",
+    "promptTranslation": "I always eat breakfast at the kitchen table before I go to work.",
+    "answer": "spiser",
+    "distractors": [
+      "drikker",
+      "køber",
+      "laver"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-06-v-spise-5529",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg ___ ikke kaffe, for den smager for bitter.",
+    "promptTranslation": "I don't like coffee, because it tastes too bitter.",
+    "answer": "kan lide",
+    "distractors": [
+      "bestiller",
+      "laver",
+      "køber"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-07-v-kan-lide-1890",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Du skal gå ___ ad denne gade, indtil du ser stationen på højre hånd.",
+    "promptTranslation": "You should walk straight ahead along this street until you see the station on your right hand.",
+    "answer": "ligeud",
+    "distractors": [
+      "til venstre",
+      "til højre",
+      "rundt om hjørnet"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-08-v-ligeud-4928",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg er meget ___ i dag, fordi jeg ikke sov godt i nat.",
+    "promptTranslation": "I am very tired today because I didn't sleep well last night.",
+    "answer": "træt",
+    "distractors": [
+      "glad",
+      "stolt",
+      "overrasket"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-09-v-traet-9236",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Det ___ meget i dag, så husk paraplyen.",
+    "promptTranslation": "It is raining a lot today, so remember the umbrella.",
+    "answer": "regner",
+    "distractors": [
+      "sner",
+      "blæser",
+      "skinner"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-10-v-at-regne-2595",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Denne bog er for ___, jeg har ikke så mange penge.",
+    "promptTranslation": "This book is too expensive, I don't have that much money.",
+    "answer": "dyr",
+    "distractors": [
+      "billig",
+      "stor",
+      "lille"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-dyr-6641",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Undskyld, kan du ___ det? Jeg hørte det ikke.",
+    "promptTranslation": "Excuse me, can you repeat that? I didn't hear it.",
+    "answer": "gentage",
+    "distractors": [
+      "forstå",
+      "betyde",
+      "hjælpe"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-12-v-gentage-2253",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Hvad ___ dette ord på dansk?",
+    "promptTranslation": "What does this word mean in Danish?",
+    "answer": "betyder",
+    "distractors": [
+      "gentager",
+      "forstår",
+      "hjælper"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-12-v-betyde-1248",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Ugens første hverdag er ___.",
+    "promptTranslation": "The first weekday of the week is Monday.",
+    "answer": "mandag",
+    "distractors": [
+      "tirsdag",
+      "fredag",
+      "søndag"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-02-v-mandag-2555",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Himlen er ___, når solen skinner.",
+    "promptTranslation": "The sky is blue when the sun is shining.",
+    "answer": "blå",
+    "distractors": [
+      "rød",
+      "gul",
+      "grøn"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-03-v-blaa-3591",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Kan jeg få en ___, når jeg betaler?",
+    "promptTranslation": "Can I get a receipt when I pay?",
+    "answer": "kvittering",
+    "distractors": [
+      "rabat",
+      "pris",
+      "kreditkort"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-kvittering-7850",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg ___ (bo) i en lejlighed i København.",
+    "promptTranslation": "I live in an apartment in Copenhagen.",
+    "answer": "bor",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-05-v-bo-3745",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Min søster ___ (arbejde) som lærer i en skole.",
+    "promptTranslation": "My sister works as a teacher in a school.",
+    "answer": "arbejder",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-04-v-arbejde-8667",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Vi ___ (spise) altid brød til morgenmad.",
+    "promptTranslation": "We always eat bread for breakfast.",
+    "answer": "spiser",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-06-v-spise-5529",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Det ___ (sne) meget om vinteren i Danmark.",
+    "promptTranslation": "It snows a lot in winter in Denmark.",
+    "answer": "sner",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-10-v-at-sne-9917",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg vil gerne købe en ___ til Aarhus.",
+    "promptTranslation": "I would like to buy a ticket to Aarhus.",
+    "answer": "billet",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-08-v-billet-1186",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Hun er ___ og har brug for at sove.",
+    "promptTranslation": "She is tired and needs to sleep.",
+    "answer": "træt",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-09-v-traet-9236",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Det er meget ___ (kold) i dag.",
+    "promptTranslation": "It is very cold today.",
+    "answer": "koldt",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-10-v-kold-1358",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Bedstemor er ___ i dag, så hun bliver hjemme.",
+    "promptTranslation": "Grandmother is sick today, so she is staying home.",
+    "answer": "syg",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-09-v-syg-1931",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Vi holder altid ferie i ___.",
+    "promptTranslation": "We always take vacation in July.",
+    "answer": "juli",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-02-v-juli-3812",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "I speak Danish and English.",
+    "promptTranslation": null,
+    "answer": "Jeg taler dansk og engelsk.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg taler engelsk og dansk."
+    ],
+    "words": [
+      "og",
+      "engelsk",
+      "Jeg",
+      "dansk",
+      "taler"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-01-g-main-clause-word-order-5638",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "What is the date today?",
+    "promptTranslation": null,
+    "answer": "Hvad er datoen i dag?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "Hvad",
+      "i",
+      "datoen",
+      "er",
+      "dag"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-02-g-question-formation-1684",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The kitchen is big and the garden is small.",
+    "promptTranslation": null,
+    "answer": "Køkkenet er stort og haven er lille.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Haven er lille og køkkenet er stort."
+    ],
+    "words": [
+      "stort",
+      "haven",
+      "er",
+      "Køkkenet",
+      "og",
+      "lille",
+      "er"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-definite-nouns-6934",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "I don't eat meat, but I eat fish.",
+    "promptTranslation": null,
+    "answer": "Jeg spiser ikke kød, men jeg spiser fisk.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg spiser fisk, men jeg spiser ikke kød."
+    ],
+    "words": [
+      "spiser",
+      "ikke",
+      "kød",
+      "Jeg",
+      "men",
+      "jeg",
+      "spiser",
+      "fisk"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-07-g-negation-placement-with-ikke-7511",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "Walk straight ahead and turn left at the station.",
+    "promptTranslation": null,
+    "answer": "Gå ligeud og drej til venstre ved stationen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "og",
+      "ligeud",
+      "til",
+      "Gå",
+      "drej",
+      "venstre",
+      "ved",
+      "stationen"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-08-g-imperative-form-for-giving-4391",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "My grandmother is not feeling well today.",
+    "promptTranslation": null,
+    "answer": "Min bedstemor har det ikke godt i dag.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "det",
+      "har",
+      "Min",
+      "godt",
+      "bedstemor",
+      "ikke",
+      "i",
+      "dag"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-09-g-have-det-stative-construction-6116",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "May I try this on?",
+    "promptTranslation": null,
+    "answer": "Må jeg prøve den her?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "jeg",
+      "den",
+      "Må",
+      "her",
+      "prøve"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-11-g-modal-verbs-for-polite-2107",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The book is under the table.",
+    "promptTranslation": null,
+    "answer": "Bogen er under bordet.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "under",
+      "Bogen",
+      "bordet",
+      "er"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-05-g-prepositions-of-place-6483",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at hedde | present tense | du",
+    "promptTranslation": null,
+    "answer": "hedder",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-01-v-at-hedde-3560",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at arbejde | present tense | hun",
+    "promptTranslation": null,
+    "answer": "arbejder",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-04-v-arbejde-8667",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at spise | present tense | vi",
+    "promptTranslation": null,
+    "answer": "spiser",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-06-v-spise-5529",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at tage | present tense | han",
+    "promptTranslation": null,
+    "answer": "tager",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-08-v-at-tage-2807",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at regne | present tense | det",
+    "promptTranslation": null,
+    "answer": "regner",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-10-v-at-regne-2595",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at købe | present tense | jeg",
+    "promptTranslation": null,
+    "answer": "køber",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koebe-2155",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at forstå | present tense | de",
+    "promptTranslation": null,
+    "answer": "forstår",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-12-v-forstaa-6972",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg bor i en stort hus.",
+    "promptTranslation": "I live in a big house.",
+    "answer": "Jeg bor i et stort hus.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-02-g-grammatical-gender-enet-9249",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg har en rødt bil.",
+    "promptTranslation": "I have a red car.",
+    "answer": "Jeg har en rød bil.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-03-g-basic-adjective-agreement-4103",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Det er en lille blåt taske.",
+    "promptTranslation": "It is a small, blue bag.",
+    "answer": "Det er en lille, blå taske.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Det er en blå, lille taske."
+    ],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-03-g-common-descriptive-patterns-8758",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Det er min forældre.",
+    "promptTranslation": "Those are my parents.",
+    "answer": "Det er mine forældre.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-04-g-possessive-pronouns-3646",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Han er nervøst for eksamen.",
+    "promptTranslation": "He is nervous about the exam.",
+    "answer": "Han er nervøs for eksamen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-09-g-predicative-adjectives-with-at-3653",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Han arbejde som ingeniør i Aarhus.",
+    "promptTranslation": "He works as an engineer in Aarhus.",
+    "answer": "Han arbejder som ingeniør i Aarhus.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-01-g-present-tense-nutid-6604",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg har en bror, og hun hedder Peter.",
+    "promptTranslation": "I have a brother, and his name is Peter.",
+    "answer": "Jeg har en bror, og han hedder Peter.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A1-01-g-personal-pronouns-1656",
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "My name is Sofie and I come from Norway.",
+    "promptTranslation": null,
+    "answer": "Jeg hedder Sofie og jeg kommer fra Norge.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Mit navn er Sofie og jeg kommer fra Norge."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-01-v-at-hedde-3560",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "We eat breakfast at seven o'clock every morning.",
+    "promptTranslation": null,
+    "answer": "Vi spiser morgenmad klokken syv hver morgen.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Hver morgen spiser vi morgenmad klokken syv."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-06-v-spise-5529",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "My sister lives in a small apartment in the city.",
+    "promptTranslation": null,
+    "answer": "Min søster bor i en lille lejlighed i byen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-04-v-soester-4791",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "It is cold and windy today.",
+    "promptTranslation": null,
+    "answer": "Det er koldt og blæsende i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Det er koldt, og der blæser meget i dag."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-10-v-kold-1358",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Can you help me? I don't understand.",
+    "promptTranslation": null,
+    "answer": "Kan du hjælpe mig? Jeg forstår ikke.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Kan du hjælpe mig? Jeg forstår det ikke."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-12-v-hjaelpe-9795",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I would like to buy a ticket to Aarhus.",
+    "promptTranslation": null,
+    "answer": "Jeg vil gerne købe en billet til Aarhus.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg vil gerne have en billet til Aarhus."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-koebe-2155",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Our neighbor has a big garden behind the house.",
+    "promptTranslation": null,
+    "answer": "Vores nabo har en stor have bag huset.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-05-v-nabo-8488",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Can I try this on? It's too expensive for me.",
+    "promptTranslation": null,
+    "answer": "Kan jeg prøve den her? Den er for dyr for mig.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-11-v-proeve-2192",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "It is half past eight now.",
+    "promptTranslation": null,
+    "answer": "Klokken er halv ni nu.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Den er halv ni nu."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-02-v-halv-9823",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "The house is big and red.",
+    "promptTranslation": null,
+    "answer": "Huset er stort og rødt.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-03-v-stor-3640",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I like fish, but I don't like meat.",
+    "promptTranslation": null,
+    "answer": "Jeg kan lide fisk, men jeg kan ikke lide kød.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A1-07-v-fisk-2403",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "How do I get to the train station?",
+    "promptTranslation": null,
+    "answer": "Hvordan kommer jeg til banegården?",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Hvordan kommer jeg til stationen?"
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-08-v-hvordan-kommer-jeg-til-5911",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I am very happy today.",
+    "promptTranslation": null,
+    "answer": "Jeg er meget glad i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "I dag er jeg meget glad."
+    ],
+    "words": null,
+    "vocabularyItemId": "A1-09-v-glad-4310",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": null
+  }
+]

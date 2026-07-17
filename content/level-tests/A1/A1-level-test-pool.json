@@ -1,0 +1,3314 @@
+{
+  "cefrLevel": "A1",
+  "modulesFound": [
+    "A1-01",
+    "A1-02",
+    "A1-03",
+    "A1-04",
+    "A1-05",
+    "A1-06",
+    "A1-07",
+    "A1-08",
+    "A1-09",
+    "A1-10",
+    "A1-11",
+    "A1-12"
+  ],
+  "vocabularyItems": [
+    {
+      "id": "A1-01-v-jeg-5325",
+      "danish": "jeg",
+      "english": "I",
+      "type": "pronoun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-du-5494",
+      "danish": "du",
+      "english": "you (singular)",
+      "type": "pronoun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-han-5047",
+      "danish": "han",
+      "english": "he",
+      "type": "pronoun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-hun-9359",
+      "danish": "hun",
+      "english": "she",
+      "type": "pronoun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-at-hedde-3560",
+      "danish": "at hedde",
+      "english": "to be called / to be named",
+      "type": "verb",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-at-vaere-6550",
+      "danish": "at være",
+      "english": "to be",
+      "type": "verb",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-at-komme-fra-9092",
+      "danish": "at komme fra",
+      "english": "to come from",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-at-arbejde-8546",
+      "danish": "at arbejde",
+      "english": "to work",
+      "type": "verb",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-at-tale-9021",
+      "danish": "at tale",
+      "english": "to speak",
+      "type": "verb",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-at-bo-8090",
+      "danish": "at bo",
+      "english": "to live / to reside",
+      "type": "verb",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-hej-8451",
+      "danish": "hej",
+      "english": "hi / hello",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-goddag-8450",
+      "danish": "goddag",
+      "english": "good day",
+      "type": "phrase",
+      "context": "formal daytime greeting",
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-farvel-8147",
+      "danish": "farvel",
+      "english": "goodbye",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-tak-6222",
+      "danish": "tak",
+      "english": "thank you",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-undskyld-2509",
+      "danish": "undskyld",
+      "english": "excuse me / sorry",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-dansk-1871",
+      "danish": "dansk",
+      "english": "Danish",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-engelsk-6827",
+      "danish": "engelsk",
+      "english": "English",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-tysk-9758",
+      "danish": "tysk",
+      "english": "German",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-svensk-4677",
+      "danish": "svensk",
+      "english": "Swedish",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-norsk-5086",
+      "danish": "norsk",
+      "english": "Norwegian",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-laerer-2287",
+      "danish": "lærer",
+      "english": "teacher",
+      "type": "noun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-ingenioer-7025",
+      "danish": "ingeniør",
+      "english": "engineer",
+      "type": "noun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-laege-6241",
+      "danish": "læge",
+      "english": "doctor",
+      "type": "noun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-direktoer-8378",
+      "danish": "direktør",
+      "english": "director / manager",
+      "type": "noun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-studerende-2844",
+      "danish": "studerende",
+      "english": "student",
+      "type": "noun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-navn-3032",
+      "danish": "navn",
+      "english": "name",
+      "type": "noun",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-aar-5206",
+      "danish": "år",
+      "english": "year / years old",
+      "type": "noun",
+      "context": "used for age: 'jeg er 25 år'",
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-en-8962",
+      "danish": "en",
+      "english": "one",
+      "type": "number",
+      "context": "the number 1; also used as the indefinite article 'a/an' for common-gender nouns",
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-to-7983",
+      "danish": "to",
+      "english": "two",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-tre-3715",
+      "danish": "tre",
+      "english": "three",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-fire-8356",
+      "danish": "fire",
+      "english": "four",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-fem-5349",
+      "danish": "fem",
+      "english": "five",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-seks-2450",
+      "danish": "seks",
+      "english": "six",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-syv-5346",
+      "danish": "syv",
+      "english": "seven",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-otte-3002",
+      "danish": "otte",
+      "english": "eight",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-ni-9203",
+      "danish": "ni",
+      "english": "nine",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-ti-2184",
+      "danish": "ti",
+      "english": "ten",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-elleve-4172",
+      "danish": "elleve",
+      "english": "eleven",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-tolv-7716",
+      "danish": "tolv",
+      "english": "twelve",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-tretten-2223",
+      "danish": "tretten",
+      "english": "thirteen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-fjorten-3694",
+      "danish": "fjorten",
+      "english": "fourteen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-femten-1346",
+      "danish": "femten",
+      "english": "fifteen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-seksten-7128",
+      "danish": "seksten",
+      "english": "sixteen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-sytten-7233",
+      "danish": "sytten",
+      "english": "seventeen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-atten-7168",
+      "danish": "atten",
+      "english": "eighteen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-nitten-7496",
+      "danish": "nitten",
+      "english": "nineteen",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-01-v-tyve-3177",
+      "danish": "tyve",
+      "english": "twenty",
+      "type": "number",
+      "context": null,
+      "module": "A1-01"
+    },
+    {
+      "id": "A1-02-v-mandag-2555",
+      "danish": "mandag",
+      "english": "Monday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-tirsdag-8129",
+      "danish": "tirsdag",
+      "english": "Tuesday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-onsdag-6834",
+      "danish": "onsdag",
+      "english": "Wednesday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-torsdag-8534",
+      "danish": "torsdag",
+      "english": "Thursday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-fredag-2962",
+      "danish": "fredag",
+      "english": "Friday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-loerdag-6817",
+      "danish": "lørdag",
+      "english": "Saturday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-soendag-1420",
+      "danish": "søndag",
+      "english": "Sunday",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-januar-5748",
+      "danish": "januar",
+      "english": "January",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-februar-5961",
+      "danish": "februar",
+      "english": "February",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-marts-8240",
+      "danish": "marts",
+      "english": "March",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-april-6541",
+      "danish": "april",
+      "english": "April",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-maj-9130",
+      "danish": "maj",
+      "english": "May",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-juni-5469",
+      "danish": "juni",
+      "english": "June",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-juli-3812",
+      "danish": "juli",
+      "english": "July",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-august-6192",
+      "danish": "august",
+      "english": "August",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-september-6996",
+      "danish": "september",
+      "english": "September",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-oktober-6281",
+      "danish": "oktober",
+      "english": "October",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-november-4931",
+      "danish": "november",
+      "english": "November",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-december-6881",
+      "danish": "december",
+      "english": "December",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-foraar-7545",
+      "danish": "forår",
+      "english": "spring",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-sommer-5978",
+      "danish": "sommer",
+      "english": "summer",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-efteraar-3389",
+      "danish": "efterår",
+      "english": "autumn",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-vinter-3187",
+      "danish": "vinter",
+      "english": "winter",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-klokken-9597",
+      "danish": "klokken",
+      "english": "o'clock / the clock",
+      "type": "noun",
+      "context": "used in clock expressions: klokken er tre = it is three o'clock",
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-time-2776",
+      "danish": "time",
+      "english": "hour",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-minut-6933",
+      "danish": "minut",
+      "english": "minute",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-halv-9823",
+      "danish": "halv",
+      "english": "half (past the previous hour)",
+      "type": "number",
+      "context": "used in clock expressions: halv tre = 2:30 (half towards three)",
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-kvart-over-6864",
+      "danish": "kvart over",
+      "english": "quarter past",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-kvart-i-6408",
+      "danish": "kvart i",
+      "english": "quarter to",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-aar-5921",
+      "danish": "år",
+      "english": "year",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-dato-2609",
+      "danish": "dato",
+      "english": "date",
+      "type": "noun",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-tyve-4455",
+      "danish": "tyve",
+      "english": "twenty",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-tredive-5065",
+      "danish": "tredive",
+      "english": "thirty",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-fyrre-3267",
+      "danish": "fyrre",
+      "english": "forty",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-halvtreds-5363",
+      "danish": "halvtreds",
+      "english": "fifty",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-tres-9179",
+      "danish": "tres",
+      "english": "sixty",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-halvfjerds-8702",
+      "danish": "halvfjerds",
+      "english": "seventy",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-firs-7460",
+      "danish": "firs",
+      "english": "eighty",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-halvfems-8390",
+      "danish": "halvfems",
+      "english": "ninety",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-hundrede-6305",
+      "danish": "hundrede",
+      "english": "a hundred",
+      "type": "number",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-foerste-4155",
+      "danish": "første",
+      "english": "first",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-anden-7784",
+      "danish": "anden",
+      "english": "second",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-tredje-1535",
+      "danish": "tredje",
+      "english": "third",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-at-begynde-6643",
+      "danish": "at begynde",
+      "english": "to begin / to start",
+      "type": "verb",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-02-v-at-slutte-9570",
+      "danish": "at slutte",
+      "english": "to end / to finish",
+      "type": "verb",
+      "context": null,
+      "module": "A1-02"
+    },
+    {
+      "id": "A1-03-v-roed-6873",
+      "danish": "rød",
+      "english": "red",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-blaa-3591",
+      "danish": "blå",
+      "english": "blue",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-groen-1986",
+      "danish": "grøn",
+      "english": "green",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-gul-3432",
+      "danish": "gul",
+      "english": "yellow",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-hvid-5537",
+      "danish": "hvid",
+      "english": "white",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-sort-5714",
+      "danish": "sort",
+      "english": "black",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-graa-6167",
+      "danish": "grå",
+      "english": "grey",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-brun-1814",
+      "danish": "brun",
+      "english": "brown",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-orange-5557",
+      "danish": "orange",
+      "english": "orange",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-lilla-6276",
+      "danish": "lilla",
+      "english": "purple / lilac",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-lyseroed-4303",
+      "danish": "lyserød",
+      "english": "pink",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-rund-3986",
+      "danish": "rund",
+      "english": "round",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-firkantet-2014",
+      "danish": "firkantet",
+      "english": "square / rectangular",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-trekant-3161",
+      "danish": "trekant",
+      "english": "triangle",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-stor-3640",
+      "danish": "stor",
+      "english": "big / large",
+      "type": "adjective",
+      "context": "physical size",
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-lille-8084",
+      "danish": "lille",
+      "english": "small / little",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-lang-6295",
+      "danish": "lang",
+      "english": "long / tall",
+      "type": "adjective",
+      "context": "physical length or height",
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-kort-3261",
+      "danish": "kort",
+      "english": "short",
+      "type": "adjective",
+      "context": "physical length",
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-bold-8416",
+      "danish": "bold",
+      "english": "ball",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-bil-1425",
+      "danish": "bil",
+      "english": "car",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-hus-9096",
+      "danish": "hus",
+      "english": "house",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-stol-7678",
+      "danish": "stol",
+      "english": "chair",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-bord-6909",
+      "danish": "bord",
+      "english": "table",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-taske-7470",
+      "danish": "taske",
+      "english": "bag",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-bog-4303",
+      "danish": "bog",
+      "english": "book",
+      "type": "noun",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-03-v-at-vaere-6129",
+      "danish": "at være",
+      "english": "to be",
+      "type": "verb",
+      "context": null,
+      "module": "A1-03"
+    },
+    {
+      "id": "A1-04-v-mor-3592",
+      "danish": "mor",
+      "english": "mother",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-far-6594",
+      "danish": "far",
+      "english": "father",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-foraeldre-5352",
+      "danish": "forældre",
+      "english": "parents",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-soester-4791",
+      "danish": "søster",
+      "english": "sister",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-bror-9031",
+      "danish": "bror",
+      "english": "brother",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-datter-5316",
+      "danish": "datter",
+      "english": "daughter",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-soen-7161",
+      "danish": "søn",
+      "english": "son",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-barn-4403",
+      "danish": "barn",
+      "english": "child",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-bedstemor-2212",
+      "danish": "bedstemor",
+      "english": "grandmother",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-bedstefar-4705",
+      "danish": "bedstefar",
+      "english": "grandfather",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-familie-7903",
+      "danish": "familie",
+      "english": "family",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-kaereste-1063",
+      "danish": "kæreste",
+      "english": "boyfriend / girlfriend / partner",
+      "type": "noun",
+      "context": "romantic partner, gender-neutral",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-ven-6717",
+      "danish": "ven",
+      "english": "friend",
+      "type": "noun",
+      "context": "male friend, or a friend in general",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-veninde-5575",
+      "danish": "veninde",
+      "english": "female friend",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-kollega-7100",
+      "danish": "kollega",
+      "english": "colleague",
+      "type": "noun",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-min-3247",
+      "danish": "min",
+      "english": "my",
+      "type": "pronoun",
+      "context": "possessive, used with en-words and plurals",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-din-5684",
+      "danish": "din",
+      "english": "your",
+      "type": "pronoun",
+      "context": "possessive, used with en-words and plurals",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-hans-8151",
+      "danish": "hans",
+      "english": "his",
+      "type": "pronoun",
+      "context": "possessive",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-hendes-4200",
+      "danish": "hendes",
+      "english": "her",
+      "type": "pronoun",
+      "context": "possessive",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-vores-3144",
+      "danish": "vores",
+      "english": "our",
+      "type": "pronoun",
+      "context": "possessive",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-have-4359",
+      "danish": "have",
+      "english": "to have",
+      "type": "verb",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-bo-4024",
+      "danish": "bo",
+      "english": "to live",
+      "type": "verb",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-arbejde-8667",
+      "danish": "arbejde",
+      "english": "to work",
+      "type": "verb",
+      "context": null,
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-04-v-gift-7028",
+      "danish": "gift",
+      "english": "married",
+      "type": "adjective",
+      "context": "marital status, not the word for poison",
+      "module": "A1-04"
+    },
+    {
+      "id": "A1-05-v-hus-6742",
+      "danish": "hus",
+      "english": "house",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-lejlighed-7252",
+      "danish": "lejlighed",
+      "english": "apartment",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-vaerelse-5494",
+      "danish": "værelse",
+      "english": "room",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-stue-4110",
+      "danish": "stue",
+      "english": "living room",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-koekken-1973",
+      "danish": "køkken",
+      "english": "kitchen",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-sovevaerelse-8215",
+      "danish": "soveværelse",
+      "english": "bedroom",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-badevaerelse-6606",
+      "danish": "badeværelse",
+      "english": "bathroom",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-have-7137",
+      "danish": "have",
+      "english": "garden",
+      "type": "noun",
+      "context": "garden/yard, not the verb 'to have'",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-butik-4700",
+      "danish": "butik",
+      "english": "shop / store",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-station-5681",
+      "danish": "station",
+      "english": "station",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-park-9387",
+      "danish": "park",
+      "english": "park",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-raadhus-9977",
+      "danish": "rådhus",
+      "english": "city hall",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-skole-9774",
+      "danish": "skole",
+      "english": "school",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-bibliotek-7246",
+      "danish": "bibliotek",
+      "english": "library",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-supermarked-5011",
+      "danish": "supermarked",
+      "english": "supermarket",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-gade-7335",
+      "danish": "gade",
+      "english": "street",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-by-4753",
+      "danish": "by",
+      "english": "city / town",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-nabo-8488",
+      "danish": "nabo",
+      "english": "neighbor",
+      "type": "noun",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-bo-3745",
+      "danish": "bo",
+      "english": "to live / to reside",
+      "type": "verb",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-ligge-7090",
+      "danish": "ligge",
+      "english": "to be located / to lie",
+      "type": "verb",
+      "context": "location of a place or building",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-i-4387",
+      "danish": "i",
+      "english": "in",
+      "type": "adverb",
+      "context": "spatial: in/inside a place",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-paa-8656",
+      "danish": "på",
+      "english": "on / at",
+      "type": "adverb",
+      "context": "spatial: on a surface or at a location",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-ved-6795",
+      "danish": "ved",
+      "english": "by / near / at",
+      "type": "adverb",
+      "context": "spatial: next to or near something",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-over-5662",
+      "danish": "over",
+      "english": "over / above",
+      "type": "adverb",
+      "context": "spatial: above something",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-under-3760",
+      "danish": "under",
+      "english": "under / below",
+      "type": "adverb",
+      "context": "spatial: below something",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-foran-7118",
+      "danish": "foran",
+      "english": "in front of",
+      "type": "adverb",
+      "context": "spatial: in front of something",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-bag-2799",
+      "danish": "bag",
+      "english": "behind",
+      "type": "adverb",
+      "context": "spatial: behind something",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-stor-2274",
+      "danish": "stor",
+      "english": "big / large",
+      "type": "adjective",
+      "context": "physical size",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-lille-7188",
+      "danish": "lille",
+      "english": "small / little",
+      "type": "adjective",
+      "context": "physical size",
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-hvor-bor-du-6373",
+      "danish": "Hvor bor du?",
+      "english": "Where do you live?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-05-v-jeg-bor-i-8998",
+      "danish": "Jeg bor i...",
+      "english": "I live in...",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-05"
+    },
+    {
+      "id": "A1-06-v-vaagne-1730",
+      "danish": "vågne",
+      "english": "to wake up",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-staa-op-3030",
+      "danish": "stå op",
+      "english": "to get up",
+      "type": "phrase",
+      "context": "getting out of bed",
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-spise-5529",
+      "danish": "spise",
+      "english": "to eat",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-drikke-7213",
+      "danish": "drikke",
+      "english": "to drink",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-koere-3465",
+      "danish": "køre",
+      "english": "to drive",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-arbejde-6762",
+      "danish": "arbejde",
+      "english": "to work",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-sove-8019",
+      "danish": "sove",
+      "english": "to sleep",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-gaa-3416",
+      "danish": "gå",
+      "english": "to walk / to go",
+      "type": "verb",
+      "context": "to go on foot",
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-lave-mad-5097",
+      "danish": "lave mad",
+      "english": "to cook",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-laese-3002",
+      "danish": "læse",
+      "english": "to read",
+      "type": "verb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-se-fjernsyn-9059",
+      "danish": "se fjernsyn",
+      "english": "to watch TV",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-slappe-af-6058",
+      "danish": "slappe af",
+      "english": "to relax",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-morgenmad-8635",
+      "danish": "morgenmad",
+      "english": "breakfast",
+      "type": "noun",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-frokost-3106",
+      "danish": "frokost",
+      "english": "lunch",
+      "type": "noun",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-aftensmad-8725",
+      "danish": "aftensmad",
+      "english": "dinner",
+      "type": "noun",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-morgen-6202",
+      "danish": "morgen",
+      "english": "morning",
+      "type": "noun",
+      "context": "time of day, not 'i morgen' (tomorrow)",
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-middag-6015",
+      "danish": "middag",
+      "english": "noon / midday",
+      "type": "noun",
+      "context": "midday (around 12), the time of day",
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-eftermiddag-6773",
+      "danish": "eftermiddag",
+      "english": "afternoon",
+      "type": "noun",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-aften-4487",
+      "danish": "aften",
+      "english": "evening",
+      "type": "noun",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-nat-8372",
+      "danish": "nat",
+      "english": "night",
+      "type": "noun",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-om-morgenen-9127",
+      "danish": "om morgenen",
+      "english": "in the morning",
+      "type": "phrase",
+      "context": "habitual time expression",
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-om-aftenen-4622",
+      "danish": "om aftenen",
+      "english": "in the evening",
+      "type": "phrase",
+      "context": "habitual time expression",
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-hver-dag-1781",
+      "danish": "hver dag",
+      "english": "every day",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-altid-9866",
+      "danish": "altid",
+      "english": "always",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-ofte-3014",
+      "danish": "ofte",
+      "english": "often",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-normalt-2084",
+      "danish": "normalt",
+      "english": "normally / usually",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-nogle-gange-5753",
+      "danish": "nogle gange",
+      "english": "sometimes",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-sjaeldent-8215",
+      "danish": "sjældent",
+      "english": "rarely / seldom",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-06-v-aldrig-8903",
+      "danish": "aldrig",
+      "english": "never",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-06"
+    },
+    {
+      "id": "A1-07-v-spise-3847",
+      "danish": "spise",
+      "english": "to eat",
+      "type": "verb",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-drikke-4339",
+      "danish": "drikke",
+      "english": "to drink",
+      "type": "verb",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-bestille-5747",
+      "danish": "bestille",
+      "english": "to order",
+      "type": "verb",
+      "context": "ordering food or drink",
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-kan-lide-1890",
+      "danish": "kan lide",
+      "english": "to like / to enjoy",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-ikke-3263",
+      "danish": "ikke",
+      "english": "not",
+      "type": "adverb",
+      "context": "negation marker",
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-morgenmad-5156",
+      "danish": "morgenmad",
+      "english": "breakfast",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-frokost-5732",
+      "danish": "frokost",
+      "english": "lunch",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-aftensmad-1997",
+      "danish": "aftensmad",
+      "english": "dinner",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-mad-3616",
+      "danish": "mad",
+      "english": "food",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-broed-3894",
+      "danish": "brød",
+      "english": "bread",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-smoerrebroed-2221",
+      "danish": "smørrebrød",
+      "english": "open sandwich",
+      "type": "noun",
+      "context": "traditional Danish open-faced rye bread with toppings",
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-ost-2717",
+      "danish": "ost",
+      "english": "cheese",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-aeg-9981",
+      "danish": "æg",
+      "english": "egg",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-koed-5101",
+      "danish": "kød",
+      "english": "meat",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-fisk-2403",
+      "danish": "fisk",
+      "english": "fish",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-frugt-4213",
+      "danish": "frugt",
+      "english": "fruit",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-groentsager-1295",
+      "danish": "grøntsager",
+      "english": "vegetables",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-suppe-1282",
+      "danish": "suppe",
+      "english": "soup",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-vand-9415",
+      "danish": "vand",
+      "english": "water",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-maelk-1719",
+      "danish": "mælk",
+      "english": "milk",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-kaffe-8181",
+      "danish": "kaffe",
+      "english": "coffee",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-te-6610",
+      "danish": "te",
+      "english": "tea",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-juice-6847",
+      "danish": "juice",
+      "english": "juice",
+      "type": "noun",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-soed-3414",
+      "danish": "sød",
+      "english": "sweet",
+      "type": "adjective",
+      "context": "taste: sweet-tasting",
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-salt-2875",
+      "danish": "salt",
+      "english": "salty",
+      "type": "adjective",
+      "context": "salty (taste), not the noun 'salt'",
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-bitter-3735",
+      "danish": "bitter",
+      "english": "bitter",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-laekker-9082",
+      "danish": "lækker",
+      "english": "delicious / tasty",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-sulten-5616",
+      "danish": "sulten",
+      "english": "hungry",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-07-v-toerstig-3640",
+      "danish": "tørstig",
+      "english": "thirsty",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-07"
+    },
+    {
+      "id": "A1-08-v-bus-1576",
+      "danish": "bus",
+      "english": "bus",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-tog-8709",
+      "danish": "tog",
+      "english": "train",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-metro-3527",
+      "danish": "metro",
+      "english": "metro / subway",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-cykel-4097",
+      "danish": "cykel",
+      "english": "bicycle",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-taxa-9577",
+      "danish": "taxa",
+      "english": "taxi",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-at-gaa-5456",
+      "danish": "at gå",
+      "english": "to walk / to go on foot",
+      "type": "verb",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-at-koere-3007",
+      "danish": "at køre",
+      "english": "to drive / to go by vehicle",
+      "type": "verb",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-at-tage-2807",
+      "danish": "at tage",
+      "english": "to take (transport)",
+      "type": "verb",
+      "context": "taking transport, e.g. take the bus",
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-billet-1186",
+      "danish": "billet",
+      "english": "ticket",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-station-3133",
+      "danish": "station",
+      "english": "station",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-stoppested-8250",
+      "danish": "stoppested",
+      "english": "bus stop",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-til-venstre-5800",
+      "danish": "til venstre",
+      "english": "to the left",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-til-hoejre-8235",
+      "danish": "til højre",
+      "english": "to the right",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-ligeud-4928",
+      "danish": "ligeud",
+      "english": "straight ahead",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-rundt-om-hjoernet-8012",
+      "danish": "rundt om hjørnet",
+      "english": "around the corner",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-undskyld-1498",
+      "danish": "undskyld",
+      "english": "excuse me / sorry",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-hvor-er-8146",
+      "danish": "Hvor er...?",
+      "english": "Where is...?",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-hvordan-kommer-jeg-til-5911",
+      "danish": "Hvordan kommer jeg til...?",
+      "english": "How do I get to...?",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-kirke-6152",
+      "danish": "kirke",
+      "english": "church",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-raadhus-1988",
+      "danish": "rådhus",
+      "english": "town hall",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-hospital-9217",
+      "danish": "hospital",
+      "english": "hospital",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-supermarked-3912",
+      "danish": "supermarked",
+      "english": "supermarket",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-banegaard-7481",
+      "danish": "banegård",
+      "english": "train station / railway station",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-lufthavn-2864",
+      "danish": "lufthavn",
+      "english": "airport",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-enkeltbillet-8103",
+      "danish": "enkeltbillet",
+      "english": "single ticket",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-tur-retur-9745",
+      "danish": "tur-retur",
+      "english": "return ticket",
+      "type": "noun",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-08-v-taet-paa-9360",
+      "danish": "tæt på",
+      "english": "close to / near",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-08"
+    },
+    {
+      "id": "A1-09-v-glad-4310",
+      "danish": "glad",
+      "english": "happy / glad",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-ked-af-det-9372",
+      "danish": "ked af det",
+      "english": "sad / upset",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-traet-9236",
+      "danish": "træt",
+      "english": "tired",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-nervoes-1939",
+      "danish": "nervøs",
+      "english": "nervous",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-stolt-3889",
+      "danish": "stolt",
+      "english": "proud",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-bange-6734",
+      "danish": "bange",
+      "english": "scared / afraid",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-sur-7424",
+      "danish": "sur",
+      "english": "angry / annoyed",
+      "type": "adjective",
+      "context": "emotional state, not food taste",
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-rolig-9284",
+      "danish": "rolig",
+      "english": "calm",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-overrasket-5963",
+      "danish": "overrasket",
+      "english": "surprised",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-forvirret-8539",
+      "danish": "forvirret",
+      "english": "confused",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-frustreret-7853",
+      "danish": "frustreret",
+      "english": "frustrated",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-ensom-9782",
+      "danish": "ensom",
+      "english": "lonely",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-lykkelig-4920",
+      "danish": "lykkelig",
+      "english": "happy / joyful",
+      "type": "adjective",
+      "context": "deep happiness or bliss, stronger than glad",
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-sulten-8520",
+      "danish": "sulten",
+      "english": "hungry",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-toerstig-7068",
+      "danish": "tørstig",
+      "english": "thirsty",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-syg-1931",
+      "danish": "syg",
+      "english": "sick / ill",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-rask-9377",
+      "danish": "rask",
+      "english": "well / healthy",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-godt-7203",
+      "danish": "godt",
+      "english": "well / fine",
+      "type": "adverb",
+      "context": "as in 'jeg har det godt' — used with 'have det'",
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-daarligt-6343",
+      "danish": "dårligt",
+      "english": "poorly / not well",
+      "type": "adverb",
+      "context": "as in 'jeg har det dårligt' — used with 'have det'",
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-at-have-det-6379",
+      "danish": "at have det",
+      "english": "to be (feeling) / to feel",
+      "type": "phrase",
+      "context": "used with godt/dårligt or an adjective: 'jeg har det godt', 'hun har det svært'",
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-at-foele-sig-1252",
+      "danish": "at føle sig",
+      "english": "to feel (oneself)",
+      "type": "verb",
+      "context": "reflexive: 'jeg føler mig glad', 'hun føler sig træt'",
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-09-v-hvordan-har-du-det-9501",
+      "danish": "Hvordan har du det?",
+      "english": "How are you? / How are you feeling?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-09"
+    },
+    {
+      "id": "A1-10-v-sol-5536",
+      "danish": "sol",
+      "english": "sun",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-regn-6524",
+      "danish": "regn",
+      "english": "rain",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-sne-7628",
+      "danish": "sne",
+      "english": "snow",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-vind-7483",
+      "danish": "vind",
+      "english": "wind",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-taage-1689",
+      "danish": "tåge",
+      "english": "fog",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-sky-4533",
+      "danish": "sky",
+      "english": "cloud",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-storm-2662",
+      "danish": "storm",
+      "english": "storm",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-frost-1628",
+      "danish": "frost",
+      "english": "frost",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-torden-1060",
+      "danish": "torden",
+      "english": "thunder",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-foraar-2338",
+      "danish": "forår",
+      "english": "spring",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-sommer-3467",
+      "danish": "sommer",
+      "english": "summer",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-efteraar-5867",
+      "danish": "efterår",
+      "english": "autumn / fall",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-vinter-4907",
+      "danish": "vinter",
+      "english": "winter",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-at-regne-2595",
+      "danish": "at regne",
+      "english": "to rain",
+      "type": "verb",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-at-sne-9917",
+      "danish": "at sne",
+      "english": "to snow",
+      "type": "verb",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-at-blaese-1643",
+      "danish": "at blæse",
+      "english": "to blow / to be windy",
+      "type": "verb",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-at-skinne-5562",
+      "danish": "at skinne",
+      "english": "to shine",
+      "type": "verb",
+      "context": "used of the sun",
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-varm-6416",
+      "danish": "varm",
+      "english": "warm / hot",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-kold-1358",
+      "danish": "kold",
+      "english": "cold",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-koelig-5703",
+      "danish": "kølig",
+      "english": "cool",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-grader-4247",
+      "danish": "grader",
+      "english": "degrees",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-temperatur-3472",
+      "danish": "temperatur",
+      "english": "temperature",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-solrig-5935",
+      "danish": "solrig",
+      "english": "sunny",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-overskyet-8691",
+      "danish": "overskyet",
+      "english": "cloudy",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-taaget-4801",
+      "danish": "tåget",
+      "english": "foggy",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-blaesende-9257",
+      "danish": "blæsende",
+      "english": "windy",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-vejret-2664",
+      "danish": "vejret",
+      "english": "the weather",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-10-v-vejrudsigt-6190",
+      "danish": "vejrudsigt",
+      "english": "weather forecast",
+      "type": "noun",
+      "context": null,
+      "module": "A1-10"
+    },
+    {
+      "id": "A1-11-v-butik-4833",
+      "danish": "butik",
+      "english": "shop",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-supermarked-6698",
+      "danish": "supermarked",
+      "english": "supermarket",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-bageri-6847",
+      "danish": "bageri",
+      "english": "bakery",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-apotek-9678",
+      "danish": "apotek",
+      "english": "pharmacy",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-toejbutik-2839",
+      "danish": "tøjbutik",
+      "english": "clothing store",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-kiosk-4810",
+      "danish": "kiosk",
+      "english": "kiosk / newsstand",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-toej-8642",
+      "danish": "tøj",
+      "english": "clothes",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-sko-7210",
+      "danish": "sko",
+      "english": "shoes",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-mad-3803",
+      "danish": "mad",
+      "english": "food",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-bog-1817",
+      "danish": "bog",
+      "english": "book",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-gave-9171",
+      "danish": "gave",
+      "english": "gift",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-koste-5913",
+      "danish": "koste",
+      "english": "to cost",
+      "type": "verb",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-koebe-2155",
+      "danish": "købe",
+      "english": "to buy",
+      "type": "verb",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-betale-8298",
+      "danish": "betale",
+      "english": "to pay",
+      "type": "verb",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-kigge-9354",
+      "danish": "kigge",
+      "english": "to look / browse",
+      "type": "verb",
+      "context": "browsing in a shop",
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-proeve-2192",
+      "danish": "prøve",
+      "english": "to try on",
+      "type": "verb",
+      "context": "trying on clothes or shoes",
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-kvittering-7850",
+      "danish": "kvittering",
+      "english": "receipt",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-kreditkort-5353",
+      "danish": "kreditkort",
+      "english": "credit card",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-kontant-8197",
+      "danish": "kontant",
+      "english": "cash",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-rabat-6135",
+      "danish": "rabat",
+      "english": "discount",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-pris-7034",
+      "danish": "pris",
+      "english": "price",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-billig-2303",
+      "danish": "billig",
+      "english": "cheap",
+      "type": "adjective",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-dyr-6641",
+      "danish": "dyr",
+      "english": "expensive",
+      "type": "adjective",
+      "context": "price, not the animal sense",
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-hvad-koster-det-3478",
+      "danish": "Hvad koster det?",
+      "english": "How much does it cost?",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-har-i-8307",
+      "danish": "Har I...?",
+      "english": "Do you have...?",
+      "type": "pattern",
+      "context": "asking a shop if it stocks something",
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-maa-jeg-3306",
+      "danish": "Må jeg...?",
+      "english": "May I...?",
+      "type": "pattern",
+      "context": "polite request",
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-jeg-vil-gerne-have-8917",
+      "danish": "Jeg vil gerne have...",
+      "english": "I would like to have...",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-kan-jeg-faa-2151",
+      "danish": "Kan jeg få...?",
+      "english": "Can I get / have...?",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-nej-tak-7627",
+      "danish": "Nej tak",
+      "english": "No thank you",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-ja-tak-3134",
+      "danish": "Ja tak",
+      "english": "Yes please",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-11-v-krone-7786",
+      "danish": "krone",
+      "english": "krone (Danish currency)",
+      "type": "noun",
+      "context": null,
+      "module": "A1-11"
+    },
+    {
+      "id": "A1-12-v-hvad-9556",
+      "danish": "hvad",
+      "english": "what",
+      "type": "pronoun",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvor-6361",
+      "danish": "hvor",
+      "english": "where",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvornaar-3760",
+      "danish": "hvornår",
+      "english": "when",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvorfor-2691",
+      "danish": "hvorfor",
+      "english": "why",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvem-7849",
+      "danish": "hvem",
+      "english": "who",
+      "type": "pronoun",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvordan-8622",
+      "danish": "hvordan",
+      "english": "how",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-forstaa-6972",
+      "danish": "forstå",
+      "english": "to understand",
+      "type": "verb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-gentage-2253",
+      "danish": "gentage",
+      "english": "to repeat",
+      "type": "verb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hjaelpe-9795",
+      "danish": "hjælpe",
+      "english": "to help",
+      "type": "verb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-betyde-1248",
+      "danish": "betyde",
+      "english": "to mean",
+      "type": "verb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-langsomt-2483",
+      "danish": "langsomt",
+      "english": "slowly",
+      "type": "adverb",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-kan-du-gentage-det-5244",
+      "danish": "Kan du gentage det?",
+      "english": "Can you repeat that?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-kan-du-tale-langsommere-3286",
+      "danish": "Kan du tale langsommere?",
+      "english": "Can you speak more slowly?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-jeg-forstaar-ikke-2377",
+      "danish": "Jeg forstår ikke",
+      "english": "I don't understand",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvad-hedder-det-paa-1534",
+      "danish": "Hvad hedder det på dansk?",
+      "english": "What is that called in Danish?",
+      "type": "pattern",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-hvad-betyder-det-1163",
+      "danish": "Hvad betyder det?",
+      "english": "What does that mean?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-kan-du-hjaelpe-mig-4601",
+      "danish": "Kan du hjælpe mig?",
+      "english": "Can you help me?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-jeg-er-ikke-sikker-4932",
+      "danish": "Jeg er ikke sikker",
+      "english": "I'm not sure",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-undskyld-hvad-sagde-du-4838",
+      "danish": "Undskyld, hvad sagde du?",
+      "english": "Sorry, what did you say?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-jeg-ved-det-ikke-1459",
+      "danish": "Jeg ved det ikke",
+      "english": "I don't know",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-undskyld-mig-8455",
+      "danish": "Undskyld mig",
+      "english": "Excuse me",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    },
+    {
+      "id": "A1-12-v-kan-du-skrive-det-4678",
+      "danish": "Kan du skrive det?",
+      "english": "Can you write that down?",
+      "type": "phrase",
+      "context": null,
+      "module": "A1-12"
+    }
+  ],
+  "grammarConcepts": [
+    {
+      "name": "Present tense (nutid)",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-01-g-present-tense-nutid-6604",
+      "ids": [
+        "A1-01-g-present-tense-nutid-6604",
+        "A1-06-g-present-tense-1678",
+        "A1-06-g-regular-verb-conjugation-9852",
+        "A1-07-g-regular-verb-conjugation-present-7458",
+        "A1-10-g-regular-verb-conjugation-2406"
+      ],
+      "modules": [
+        "A1-01",
+        "A1-06",
+        "A1-07",
+        "A1-10"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg hedder Maria og jeg er lærer.",
+          "english": "My name is Maria and I am a teacher."
+        },
+        {
+          "danish": "Han arbejder i København.",
+          "english": "He works in Copenhagen."
+        }
+      ]
+    },
+    {
+      "name": "Personal pronouns",
+      "category": "pronouns",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-01-g-personal-pronouns-1656",
+      "ids": [
+        "A1-01-g-personal-pronouns-1656"
+      ],
+      "modules": [
+        "A1-01"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg kommer fra England.",
+          "english": "I come from England."
+        },
+        {
+          "danish": "Hun er ingeniør.",
+          "english": "She is an engineer."
+        }
+      ]
+    },
+    {
+      "name": "Main clause word order (SVO)",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-01-g-main-clause-word-order-5638",
+      "ids": [
+        "A1-01-g-main-clause-word-order-5638",
+        "A1-02-g-main-clause-word-order-4891",
+        "A1-04-g-main-clause-word-order-4197",
+        "A1-05-g-main-clause-word-order-7290",
+        "A1-06-g-main-clause-word-order-6836"
+      ],
+      "modules": [
+        "A1-01",
+        "A1-02",
+        "A1-04",
+        "A1-05",
+        "A1-06"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg taler dansk.",
+          "english": "I speak Danish."
+        },
+        {
+          "danish": "Du bor i Danmark.",
+          "english": "You live in Denmark."
+        }
+      ]
+    },
+    {
+      "name": "Question formation",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-02-g-question-formation-1684",
+      "ids": [
+        "A1-02-g-question-formation-1684",
+        "A1-08-g-question-formation-3755",
+        "A1-11-g-question-formation-1457",
+        "A1-12-g-question-formation-1100"
+      ],
+      "modules": [
+        "A1-02",
+        "A1-08",
+        "A1-11",
+        "A1-12"
+      ],
+      "examples": [
+        {
+          "danish": "Hvad er klokken?",
+          "english": "What time is it?"
+        },
+        {
+          "danish": "Hvornår er din fødselsdag?",
+          "english": "When is your birthday?"
+        }
+      ]
+    },
+    {
+      "name": "Grammatical gender (en/et)",
+      "category": "nouns",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-02-g-grammatical-gender-enet-9249",
+      "ids": [
+        "A1-02-g-grammatical-gender-enet-9249",
+        "A1-03-g-grammatical-gender-en-et-7682",
+        "A1-04-g-grammatical-gender-7619"
+      ],
+      "modules": [
+        "A1-02",
+        "A1-03",
+        "A1-04"
+      ],
+      "examples": [
+        {
+          "danish": "Det er mandag den tredje oktober.",
+          "english": "It is Monday the third of October."
+        },
+        {
+          "danish": "Vi mødes den første fredag i måneden.",
+          "english": "We meet on the first Friday of the month."
+        }
+      ]
+    },
+    {
+      "name": "Basic adjective agreement (en/et/plural)",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-03-g-basic-adjective-agreement-4103",
+      "ids": [
+        "A1-03-g-basic-adjective-agreement-4103",
+        "A1-10-g-basic-adjective-agreement-9813"
+      ],
+      "modules": [
+        "A1-03",
+        "A1-10"
+      ],
+      "examples": [
+        {
+          "danish": "en grøn taske / et grønt bord / grønne tasker",
+          "english": "a green bag / a green table / green bags"
+        },
+        {
+          "danish": "en stor bold / et stort hus / store bolde",
+          "english": "a big ball / a big house / big balls"
+        }
+      ]
+    },
+    {
+      "name": "Common descriptive patterns",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-03-g-common-descriptive-patterns-8758",
+      "ids": [
+        "A1-03-g-common-descriptive-patterns-8758"
+      ],
+      "modules": [
+        "A1-03"
+      ],
+      "examples": [
+        {
+          "danish": "Det er en lille, blå taske.",
+          "english": "It is a small, blue bag."
+        },
+        {
+          "danish": "Bilen er rød og stor.",
+          "english": "The car is red and big."
+        }
+      ]
+    },
+    {
+      "name": "Possessive pronouns",
+      "category": "pronouns",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-04-g-possessive-pronouns-3646",
+      "ids": [
+        "A1-04-g-possessive-pronouns-3646"
+      ],
+      "modules": [
+        "A1-04"
+      ],
+      "examples": [
+        {
+          "danish": "Det er min bror.",
+          "english": "That is my brother."
+        },
+        {
+          "danish": "Mit barn hedder Anna, og mine forældre bor i Aarhus.",
+          "english": "My child is named Anna, and my parents live in Aarhus."
+        }
+      ]
+    },
+    {
+      "name": "Prepositions of place",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-05-g-prepositions-of-place-6483",
+      "ids": [
+        "A1-05-g-prepositions-of-place-6483"
+      ],
+      "modules": [
+        "A1-05"
+      ],
+      "examples": [
+        {
+          "danish": "Katten sidder på bordet.",
+          "english": "The cat is sitting on the table."
+        },
+        {
+          "danish": "Bilen er foran huset.",
+          "english": "The car is in front of the house."
+        }
+      ]
+    },
+    {
+      "name": "Definite nouns (the-form)",
+      "category": "nouns",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-05-g-definite-nouns-6934",
+      "ids": [
+        "A1-05-g-definite-nouns-6934"
+      ],
+      "modules": [
+        "A1-05"
+      ],
+      "examples": [
+        {
+          "danish": "Parken ligger ved stationen.",
+          "english": "The park is near the station."
+        },
+        {
+          "danish": "Køkkenet er stort.",
+          "english": "The kitchen is big."
+        }
+      ]
+    },
+    {
+      "name": "Negation placement with ikke",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-07-g-negation-placement-with-ikke-7511",
+      "ids": [
+        "A1-07-g-negation-placement-with-ikke-7511",
+        "A1-09-g-negation-in-stative-expressions-7346"
+      ],
+      "modules": [
+        "A1-07",
+        "A1-09"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg spiser ikke kød.",
+          "english": "I don't eat meat."
+        },
+        {
+          "danish": "Han drikker ikke kaffe.",
+          "english": "He doesn't drink coffee."
+        }
+      ]
+    },
+    {
+      "name": "Kan lide — expressing preference",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-07-g-kan-lide-expressing-preference-6830",
+      "ids": [
+        "A1-07-g-kan-lide-expressing-preference-6830"
+      ],
+      "modules": [
+        "A1-07"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg kan lide fisk.",
+          "english": "I like fish."
+        },
+        {
+          "danish": "Hun kan ikke lide bitter mad.",
+          "english": "She doesn't like bitter food."
+        }
+      ]
+    },
+    {
+      "name": "Imperative form for giving directions",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-08-g-imperative-form-for-giving-4391",
+      "ids": [
+        "A1-08-g-imperative-form-for-giving-4391"
+      ],
+      "modules": [
+        "A1-08"
+      ],
+      "examples": [
+        {
+          "danish": "Gå ligeud og drej til venstre ved kirken.",
+          "english": "Go straight ahead and turn left at the church."
+        },
+        {
+          "danish": "Tag bussen til stationen og gå derfra.",
+          "english": "Take the bus to the station and walk from there."
+        }
+      ]
+    },
+    {
+      "name": "\"have det\" stative construction",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-09-g-have-det-stative-construction-6116",
+      "ids": [
+        "A1-09-g-have-det-stative-construction-6116"
+      ],
+      "modules": [
+        "A1-09"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har det godt.",
+          "english": "I'm doing well. / I feel fine."
+        },
+        {
+          "danish": "Hun har det ikke godt i dag.",
+          "english": "She is not feeling well today."
+        }
+      ]
+    },
+    {
+      "name": "Predicative adjectives with \"at være\"",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-09-g-predicative-adjectives-with-at-3653",
+      "ids": [
+        "A1-09-g-predicative-adjectives-with-at-3653"
+      ],
+      "modules": [
+        "A1-09"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg er træt.",
+          "english": "I am tired."
+        },
+        {
+          "danish": "Han er nervøs for eksamen.",
+          "english": "He is nervous about the exam."
+        }
+      ]
+    },
+    {
+      "name": "Impersonal \"det\" (weather expressions)",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-10-g-impersonal-det-9575",
+      "ids": [
+        "A1-10-g-impersonal-det-9575"
+      ],
+      "modules": [
+        "A1-10"
+      ],
+      "examples": [
+        {
+          "danish": "Det regner i dag.",
+          "english": "It is raining today."
+        },
+        {
+          "danish": "Det blæser meget om vinteren.",
+          "english": "It is very windy in winter."
+        }
+      ]
+    },
+    {
+      "name": "Modal verbs (kan, skal, vil, må, bør)",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A1-11-g-modal-verbs-for-polite-2107",
+      "ids": [
+        "A1-11-g-modal-verbs-for-polite-2107",
+        "A1-12-g-modal-verbs-for-polite-6821"
+      ],
+      "modules": [
+        "A1-11",
+        "A1-12"
+      ],
+      "examples": [
+        {
+          "danish": "Må jeg prøve den her?",
+          "english": "May I try this on?"
+        },
+        {
+          "danish": "Kan jeg få en kvittering?",
+          "english": "Can I get a receipt?"
+        }
+      ]
+    }
+  ]
+}
