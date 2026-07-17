@@ -6,8 +6,10 @@ import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI, CefrLevel, MeProgressResponse } from '@/api/TomeLearningDashboardAPI';
 import { TomeLevelTestAPI, LevelTestEligibilityResponse, SubmitLevelTestResponse, LevelTestReviewItem, LevelTestAttempt } from '@/api/TomeLevelTestAPI';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
-import { LevelTestReady } from './components/LevelTestReady';
+import { LevelTestReady, LEVEL_TEST_PASS_THRESHOLD } from './components/LevelTestReady';
+import { LevelTestPass } from './components/LevelTestPass';
 import { TestSubmit } from '../module/[moduleId]/test/components/TestSubmit';
+import { TestResult } from '../module/[moduleId]/test/components/TestResult';
 import { TestReview } from '../module/[moduleId]/test/components/TestReview';
 import { ExMultipleChoice } from '../module/[moduleId]/practice/components/ExMultipleChoice';
 import { ExSentenceReorder } from '../module/[moduleId]/practice/components/ExSentenceReorder';
@@ -316,9 +318,13 @@ export default function LevelTestPage() {
     );
 }
 
-// ─── Result phase (temporary placeholder — replaced by LevelTestPass / TestResult in the next task) ──
+// ─── Result phase ───────────────────────────────────────────────────────────
+// On a pass, the promotion result (LevelTestPass) is new. On a fail, the
+// existing Module Test's TestResult is reused as-is for its fail-path visuals
+// (score ring, "So close", ThresholdBar, retry countdown) — it is never
+// rendered here with `passed: true`, so its Home button never appears.
 
-function LevelTestResult({onReview}: {
+function LevelTestResult({result, cefrLevel, correctCount, totalCount, retryAvailableAt, onReview, onHome}: {
     result: SubmitLevelTestResponse;
     cefrLevel: CefrLevel | null;
     progress: MeProgressResponse | null;
@@ -328,9 +334,30 @@ function LevelTestResult({onReview}: {
     onReview: () => void;
     onHome: () => void;
 }) {
+    if (result.passed && cefrLevel) {
+        return (
+            <LevelTestPass
+                score={result.score}
+                correctCount={correctCount}
+                totalCount={totalCount}
+                fromLevel={cefrLevel}
+                toLevel={result.advancedTo as CefrLevel | null}
+                onStartNext={onHome}
+                onReview={onReview}
+            />
+        );
+    }
+
     return (
-        <div className="flex flex-1 flex-col items-center justify-center px-5">
-            <button onClick={onReview} className="text-sm text-cyan-800 underline">Review answers</button>
-        </div>
+        <TestResult
+            result={result}
+            passThreshold={LEVEL_TEST_PASS_THRESHOLD}
+            moduleNumber=""
+            correctCount={correctCount}
+            totalCount={totalCount}
+            testRetryAvailableAt={retryAvailableAt}
+            onReview={onReview}
+            onHome={onHome}
+        />
     );
 }
