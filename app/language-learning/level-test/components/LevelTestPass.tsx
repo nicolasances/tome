@@ -97,13 +97,13 @@ export function LevelTestPass({score, correctCount, totalCount, fromLevel, toLev
                 )}
             </div>
 
-            <h1 className="text-2xl font-bold text-black/80 mt-5">{toLevel ? `You're now ${toLevel}!` : "You've completed every level!"}</h1>
+            <div className="text-2xl font-bold text-black/80 mt-5">{toLevel ? `You're now ${toLevel}!` : "You've completed every level!"}</div>
             {toLevel ? (
-                <p className="text-sm text-black/70 mt-2 leading-relaxed">
+                <p className="text-base text-black/70 mt-2 leading-relaxed">
                     <b>{fromLevelName}</b> is complete. The <b>{toLevelName}</b> modules are now open.
                 </p>
             ) : (
-                <p className="text-sm text-black/70 mt-2 leading-relaxed">
+                <p className="text-base text-black/70 mt-2 leading-relaxed">
                     <b>{fromLevelName}</b> is complete — you&apos;ve reached the top of the path.
                 </p>
             )}
