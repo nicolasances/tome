@@ -34,6 +34,7 @@ spec'd design — `practice-complete-app.jsx` pins A and C as the chosen designs
 | J3 | Learn a module's grammar | Read the module's grammar concepts before practising | Module overview → Grammar intro |
 | J4 | Practise a module | Work through practice rounds until every module word is covered | Module overview → Practice session → Practice complete (round recap → *Practice another round* loops back, or *Back to module*) → … → Practice complete (coverage milestone) → Module overview |
 | J5 | Take the module test | Pass the gated, scored test to complete the module and unlock the next | Module overview → Module test (locked countdown → ready → in-test → submit → result) → (Review) → Home / Module overview |
+| J6 | Take the level test | Once all modules of the level are complete, pass the level-wide test to be promoted to the next CEFR level | Home dashboard → (Take the Level Test) → Level test (ready → in-test → submit → result: pass promotes / fail retry) → (Review) → Home (promoted level) |
 
 ## Screen Inventory
 
@@ -48,6 +49,7 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Practice session | `/language-learning/module/[moduleId]/practice/[practiceId]` | `05-practice-session` | Step 2 — one screen rendering the 6 exercise types within a session; sessions repeat until full module vocabulary coverage. |
 | Practice complete | `/language-learning/module/[moduleId]/practice/[practiceId]/results` | `05-practice-session` | End-of-round recap. Two states: **Round complete** (every round before full coverage) and **Coverage milestone** (only when the round reaches full coverage). User chooses *Practice another round* or *Back to module*. |
 | Module test | `/language-learning/module/[moduleId]/test` | `06-module-test` | Step 3 — gated, scored flow as internal phases: locked → ready → in-test → submit → result (pass/fail) → review. Reuses the practice exercise interface. |
+| Level test | `/language-learning/level-test` | `07-level-test` | Level-wide, gated, scored flow as internal phases: ready → in-test → submit → result (pass promotes CEFR level / fail with retry cooldown) → review. Entry CTA lives on the Home dashboard (owned by `01`); the in-test / submit / fail / review phases reuse `06-module-test`. |
 
 ## Desktop responsive layout
 
@@ -94,7 +96,7 @@ produced for them. Listed here so the gap is explicit and tracked.
 |----------|---------------|-------------|
 | §3.4 / §5 | **"Explain my mistake"** AI panel (after wrong answers, practice & test) | No wireframe for the panel; the button is rendered (stub) in practice & test. |
 | §3.4 | **AI answer verification** for `translation_active` (on-demand) | No wireframe. |
-| §3.5 | **Level Test** — taking + results + weak-areas summary | No wireframe. |
+| §3.5 | **Level Test — weak-areas summary** (the post-test breakdown of grammar concepts / vocabulary the user underperformed on) | No wireframe. The Level Test flow itself is now covered by `07-level-test` (wireframe: `level-test-screens.jsx`); only the weak-areas summary lacks a design. The `GetLevelTestReview` endpoint already returns the data, so it can be folded into the Review phase once a design exists. |
 | §3.6 | **Analyze Content** — paste text → Content Report → actions (Home "Analyze" button destination) | No wireframe. |
 | §3.2 / US-05 | **Knowledge base** — vocabulary mastery view (Home "Knowledge" button destination) | No wireframe. |
 | §3.2.3 / US-10 | **Add user vocabulary** | No wireframe. |

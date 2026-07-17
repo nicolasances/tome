@@ -177,9 +177,10 @@ All endpoints are on `tome-ms-language` (basepath
 `NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT`).
 
 The Module Test backend (`tome-ms-language` feature **F11**) is implemented. The
-endpoints below are confirmed in that service's `index.ts`. A frontend wrapper
-(e.g. `TomeModuleTestAPI`) does not exist yet and must be added, mirroring
-`TomePracticeSessionAPI`.
+endpoints below are confirmed in that service's `index.ts`. The frontend wrapper
+`TomeModuleTestAPI` (`api/TomeModuleTestAPI.ts`) has since been added, exposing
+all six methods (eligibility / start / get / answer / submit / review) with their
+response interfaces.
 
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
@@ -195,11 +196,11 @@ endpoints below are confirmed in that service's `index.ts`. A frontend wrapper
 
 **Missing**
 
-None — all test-flow endpoints exist in `tome-ms-language` (F11). The only
-frontend work is adding the `TomeModuleTestAPI` wrapper around them. The exact
-request/response shapes (field names) should be read from the F11 delegates
-(`StartModuleTest`, `SubmitTestAnswer`, `SubmitModuleTest`, `GetTestReview`,
-`GetModuleTest`, `GetTestEligibility`) when the wrapper is written.
+None — all test-flow endpoints exist in `tome-ms-language` (F11), and the
+`TomeModuleTestAPI` wrapper around them is already implemented
+(`api/TomeModuleTestAPI.ts`), with request/response shapes mirroring the F11
+delegates (`StartModuleTest`, `SubmitTestAnswer`, `SubmitModuleTest`,
+`GetTestReview`, `GetModuleTest`, `GetTestEligibility`).
 
 ## 6. Success Criteria
 
