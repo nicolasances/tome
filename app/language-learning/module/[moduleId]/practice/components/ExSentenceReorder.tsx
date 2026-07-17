@@ -1,6 +1,7 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
 import { CheckFooter } from './CheckFooter';
+import { tagWords } from '@/utils/sentenceReorderWords';
 
 interface WordTileProps {
     word: string;
@@ -31,17 +32,18 @@ function WordTile({word, tone, onClick, disabled}: WordTileProps) {
 interface ExSentenceReorderProps {
     exercise: Exercise;
     submissionState: SubmissionState | null;
-    builtWords: string[];
-    onToggleWord: (word: string) => void;
+    builtWordIds: number[];
+    onToggleWord: (id: number) => void;
     onCheck: () => void;
     isSubmitting: boolean;
 }
 
-export function ExSentenceReorder({exercise, submissionState, builtWords, onToggleWord, onCheck, isSubmitting}: ExSentenceReorderProps) {
-    const allWords = exercise.words ?? [];
-    const bankWords = allWords.filter(w => !builtWords.includes(w));
+export function ExSentenceReorder({exercise, submissionState, builtWordIds, onToggleWord, onCheck, isSubmitting}: ExSentenceReorderProps) {
+    const allWords = tagWords(exercise.words ?? []);
+    const bankWords = allWords.filter(w => !builtWordIds.includes(w.id));
+    const placedWords = builtWordIds.map(id => allWords.find(w => w.id === id)!);
     const submitted = submissionState !== null;
-    const allPlaced = builtWords.length === allWords.length;
+    const allPlaced = builtWordIds.length === allWords.length;
 
     function tileTone(): 'correct' | 'wrong' {
         return submissionState?.isCorrect ? 'correct' : 'wrong';
@@ -61,15 +63,15 @@ export function ExSentenceReorder({exercise, submissionState, builtWords, onTogg
             <div className={`mt-6 min-h-14 border-b-2 pb-3 flex flex-wrap gap-2 items-center transition-colors ${
                 submitted && !submissionState?.isCorrect ? 'border-red-800' : 'border-cyan-400'
             }`}>
-                {builtWords.length === 0 && !submitted && (
+                {placedWords.length === 0 && !submitted && (
                     <span className="text-sm text-black/30">Tap words below to build the sentence</span>
                 )}
-                {builtWords.map((word, i) => (
+                {placedWords.map(word => (
                     <WordTile
-                        key={`placed-${i}`}
-                        word={word}
+                        key={`placed-${word.id}`}
+                        word={word.text}
                         tone={submitted ? tileTone() : 'placed'}
-                        onClick={() => !submitted && !isSubmitting && onToggleWord(word)}
+                        onClick={() => !submitted && !isSubmitting && onToggleWord(word.id)}
                         disabled={submitted || isSubmitting}
                     />
                 ))}
@@ -78,12 +80,12 @@ export function ExSentenceReorder({exercise, submissionState, builtWords, onTogg
             {/* Word bank */}
             {!submitted && (
                 <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                    {bankWords.map((word, i) => (
+                    {bankWords.map(word => (
                         <WordTile
-                            key={`bank-${i}`}
-                            word={word}
+                            key={`bank-${word.id}`}
+                            word={word.text}
                             tone="bank"
-                            onClick={() => !isSubmitting && onToggleWord(word)}
+                            onClick={() => !isSubmitting && onToggleWord(word.id)}
                             disabled={isSubmitting}
                         />
                     ))}

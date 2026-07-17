@@ -7,6 +7,7 @@ import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
 import { reconstructSessionState } from '@/utils/reconstructSessionState';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
+import { toggleWordId, resolveBuiltWords } from '@/utils/sentenceReorderWords';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { ResultSheet } from '../components/ResultSheet';
 import { AIVerifyTray } from '../components/AIVerifyTray';
@@ -60,7 +61,7 @@ export default function PracticeSessionPage() {
     const [submissionState, setSubmissionState] = useState<SubmissionState | null>(null);
     const [inputValue, setInputValue] = useState('');
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [builtWords, setBuiltWords] = useState<string[]>([]);
+    const [builtWords, setBuiltWords] = useState<number[]>([]);
 
     // ── Page meta state ───────────────────────────────────────────────────────
     const [loadState, setLoadState] = useState<LoadState>('loading');
@@ -138,7 +139,7 @@ export default function PracticeSessionPage() {
         if (!currentExercise) return;
         switch (currentExercise.type) {
             case 'multiple_choice':   handleSubmit(overrideAnswer ?? selectedOption ?? ''); break;
-            case 'sentence_reorder':  handleSubmit(builtWords.join(' ')); break;
+            case 'sentence_reorder':  handleSubmit(resolveBuiltWords(currentExercise.words ?? [], builtWords).join(' ')); break;
             case 'error_correction':  handleSubmit(inputValue); break;
         }
     }
@@ -257,10 +258,8 @@ export default function PracticeSessionPage() {
                             <ExSentenceReorder
                                 exercise={currentExercise}
                                 submissionState={submissionState}
-                                builtWords={builtWords}
-                                onToggleWord={w => setBuiltWords(prev =>
-                                    prev.includes(w) ? prev.filter(x => x !== w) : [...prev, w]
-                                )}
+                                builtWordIds={builtWords}
+                                onToggleWord={id => setBuiltWords(prev => toggleWordId(prev, id))}
                                 onCheck={handleCheck}
                                 isSubmitting={isSubmitting}
                             />

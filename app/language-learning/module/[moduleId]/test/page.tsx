@@ -7,6 +7,7 @@ import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
 import { TomeModuleTestAPI, TestEligibilityResponse, SubmitTestResponse, TestReviewItem, TestAttempt } from '@/api/TomeModuleTestAPI';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
+import { toggleWordId, resolveBuiltWords } from '@/utils/sentenceReorderWords';
 import { TestLocked } from './components/TestLocked';
 import { TestReady } from './components/TestReady';
 import { TestSubmit } from './components/TestSubmit';
@@ -66,7 +67,7 @@ export default function ModuleTestPage() {
     const [submissionState, setSubmissionState] = useState<SubmissionState | null>(null);
     const [inputValue, setInputValue] = useState('');
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const [builtWords, setBuiltWords] = useState<string[]>([]);
+    const [builtWords, setBuiltWords] = useState<number[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Result / review
@@ -165,7 +166,7 @@ export default function ModuleTestPage() {
     function handleCheck(overrideAnswer?: string) {
         if (!currentExercise) return;
         if (currentExercise.type === 'multiple_choice') handleSubmitAnswer(overrideAnswer ?? selectedOption ?? '');
-        else if (currentExercise.type === 'sentence_reorder') handleSubmitAnswer(builtWords.join(' '));
+        else if (currentExercise.type === 'sentence_reorder') handleSubmitAnswer(resolveBuiltWords(currentExercise.words ?? [], builtWords).join(' '));
         else if (currentExercise.type === 'error_correction') handleSubmitAnswer(inputValue);
     }
 
@@ -279,7 +280,7 @@ export default function ModuleTestPage() {
                             <ExMultipleChoice exercise={currentExercise} submissionState={submissionState} selectedOption={selectedOption} onSelect={setSelectedOption} onCheck={handleCheck} isSubmitting={isSubmitting} />
                         )}
                         {currentExercise.type === 'sentence_reorder' && (
-                            <ExSentenceReorder exercise={currentExercise} submissionState={submissionState} builtWords={builtWords} onToggleWord={w => setBuiltWords(prev => prev.includes(w) ? prev.filter(x => x !== w) : [...prev, w])} onCheck={handleCheck} isSubmitting={isSubmitting} />
+                            <ExSentenceReorder exercise={currentExercise} submissionState={submissionState} builtWordIds={builtWords} onToggleWord={id => setBuiltWords(prev => toggleWordId(prev, id))} onCheck={handleCheck} isSubmitting={isSubmitting} />
                         )}
                         {currentExercise.type === 'fill_blank' && (
                             <ExFillBlank exercise={currentExercise} submissionState={submissionState} inputValue={inputValue} onInputChange={setInputValue} onSend={handleSend} isSubmitting={isSubmitting} />
