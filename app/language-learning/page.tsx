@@ -12,10 +12,13 @@ import {
     CefrLevel,
     deriveCurrentModule,
 } from '@/api/TomeLearningDashboardAPI';
+import { TomeLevelTestAPI, LevelTestEligibilityResponse } from '@/api/TomeLevelTestAPI';
 import { LevelTrack } from './components/LevelTrack';
 import { ContinueCard } from './components/ContinueCard';
+import { HomeLevelTest } from './components/HomeLevelTest';
 import { WeeklyModuleStats } from './components/WeeklyModuleStats';
 import { DesktopContinueCard } from './components/DesktopContinueCard';
+import { DesktopHomeLevelTest } from './components/DesktopHomeLevelTest';
 import { StatTile } from './components/StatTile';
 import { UpNextStrip } from './components/UpNextStrip';
 import { countActiveDays } from '@/utils/activeDays';
@@ -26,6 +29,8 @@ export default function LanguageLearningHomePage() {
 
     const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
     const [weeklyStats, setWeeklyStats] = useState<DailyActivityDay[] | null | undefined>(undefined);
+    const [userId, setUserId] = useState<string | null | undefined>(undefined);
+    const [levelTestEligibility, setLevelTestEligibility] = useState<LevelTestEligibilityResponse | null | undefined>(undefined);
 
     useEffect(() => {
         setConfig({
@@ -36,6 +41,7 @@ export default function LanguageLearningHomePage() {
 
     useEffect(() => {
         const api = new TomeLearningDashboardAPI();
+        api.getMe().then((me) => setUserId(me.id)).catch(() => setUserId(null));
         api.getMeProgress().then(setProgress).catch(() => setProgress(null));
         api.getWeeklySessionStats().then((res) => setWeeklyStats(res.days)).catch(() => setWeeklyStats(null));
     }, []);
@@ -47,6 +53,13 @@ export default function LanguageLearningHomePage() {
     const levelName = cefrLevel ? CEFR_LEVEL_NAMES[cefrLevel] : undefined;
     const currentLevelSummary = progress?.levels?.find((l) => l.status === 'current');
     const currentModule = progress ? deriveCurrentModule(progress) : undefined;
+    const allModulesComplete = currentModule === null;
+
+    // Only worth checking once we know there's no in-progress/available module to continue.
+    useEffect(() => {
+        if (!userId || !allModulesComplete) return;
+        new TomeLevelTestAPI().getLevelTestEligibility(userId).then(setLevelTestEligibility).catch(() => setLevelTestEligibility(null));
+    }, [userId, allModulesComplete]);
 
     const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions, 0) ?? 0;
     const activeDays = weeklyStats ? countActiveDays(weeklyStats) : 0;
@@ -66,7 +79,11 @@ export default function LanguageLearningHomePage() {
                     totalModules={currentLevelSummary?.modulesTotal}
                     completedModules={currentLevelSummary?.modulesCompleted}
                 />
-                <ContinueCard loading={isProgressLoading} module={currentModule} />
+                {allModulesComplete && cefrLevel ? (
+                    <HomeLevelTest cefrLevel={cefrLevel} eligibility={levelTestEligibility} />
+                ) : (
+                    <ContinueCard loading={isProgressLoading} module={currentModule} />
+                )}
                 <div className="flex justify-around items-start gap-2">
                     <NavButton
                         icon="/images/book.svg"
@@ -110,7 +127,11 @@ export default function LanguageLearningHomePage() {
                 {/* Two-column: Continue card + This week chart */}
                 <div className="grid grid-cols-5 gap-6 mb-6">
                     <div className="col-span-3">
-                        <DesktopContinueCard loading={isProgressLoading} module={currentModule} progress={currentModuleProgress} />
+                        {allModulesComplete && cefrLevel ? (
+                            <DesktopHomeLevelTest cefrLevel={cefrLevel} eligibility={levelTestEligibility} />
+                        ) : (
+                            <DesktopContinueCard loading={isProgressLoading} module={currentModule} progress={currentModuleProgress} />
+                        )}
                     </div>
                     <div className="col-span-2 flex flex-col px-1">
                         <WeeklyModuleStats loading={isWeeklyLoading} days={weeklyStats ?? undefined} />
