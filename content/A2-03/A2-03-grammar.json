@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-03-g-present-perfect-8850",
+    "name": "Present Perfect (førnutid med \"har/er\")",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "The present perfect is used to talk about experiences or actions that are relevant now, without stating exactly when they happened. It is formed with \"har\" or \"er\" plus the past participle of the verb.",
+    "examples": [
+      { "danish": "Jeg har boet i Danmark i tre år.", "english": "I have lived in Denmark for three years." },
+      { "danish": "Hun er rejst til Spanien to gange.", "english": "She has traveled to Spain twice." }
+    ]
+  },
+  {
+    "id": "A2-03-g-auxiliary-verb-choice-har-1575",
+    "name": "Auxiliary Verb Choice: \"har\" vs. \"er\"",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Most verbs form the present perfect with \"har\". A smaller group of verbs — describing movement from one place to another or a change of state — use \"er\" instead, similar to how English says \"have become\" rather than \"have had become\".",
+    "examples": [
+      { "danish": "Jeg har spist morgenmad.", "english": "I have eaten breakfast." },
+      { "danish": "Han er flyttet til København.", "english": "He has moved to Copenhagen." }
+    ]
+  },
+  {
+    "id": "A2-03-g-preterite-vs-present-perfect-5465",
+    "name": "Preterite vs. Present Perfect",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use the preterite for an action tied to a specific, finished point in time (i går, sidste år, i 2019). Use the present perfect when the exact time doesn't matter and the focus is on the experience itself or its result now.",
+    "examples": [
+      { "danish": "Jeg besøgte Paris i 2019.", "english": "I visited Paris in 2019." },
+      { "danish": "Jeg har besøgt Paris.", "english": "I have visited Paris." }
+    ]
+  }
+]

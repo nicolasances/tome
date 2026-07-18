@@ -1,0 +1,232 @@
+[
+  {
+    "id": "A2-03-v-proevet-9150",
+    "danish": "prøvet",
+    "english": "tried",
+    "type": "verb",
+    "context": "past participle of \"at prøve\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-besoegt-3294",
+    "danish": "besøgt",
+    "english": "visited",
+    "type": "verb",
+    "context": "past participle of \"at besøge\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle", "travel"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-set-1251",
+    "danish": "set",
+    "english": "seen",
+    "type": "verb",
+    "context": "past participle of \"at se\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-spist-2365",
+    "danish": "spist",
+    "english": "eaten",
+    "type": "verb",
+    "context": "past participle of \"at spise\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-laest-2583",
+    "danish": "læst",
+    "english": "read",
+    "type": "verb",
+    "context": "past participle of \"at læse\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-moedt-9393",
+    "danish": "mødt",
+    "english": "met",
+    "type": "verb",
+    "context": "past participle of \"at møde\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-boet-3744",
+    "danish": "boet",
+    "english": "lived",
+    "type": "verb",
+    "context": "past participle of \"at bo\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-arbejdet-5358",
+    "danish": "arbejdet",
+    "english": "worked",
+    "type": "verb",
+    "context": "past participle of \"at arbejde\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle", "work"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-laert-5152",
+    "danish": "lært",
+    "english": "learned",
+    "type": "verb",
+    "context": "past participle of \"at lære\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-hoert-4520",
+    "danish": "hørt",
+    "english": "heard",
+    "type": "verb",
+    "context": "past participle of \"at høre\", used with \"har\"",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-rejst-7970",
+    "danish": "rejst",
+    "english": "traveled",
+    "type": "verb",
+    "context": "past participle of \"at rejse\", used with \"er\" (movement verb)",
+    "tags": ["experience", "present-perfect", "participle", "travel"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-kommet-7518",
+    "danish": "kommet",
+    "english": "come",
+    "type": "verb",
+    "context": "past participle of \"at komme\", used with \"er\" (movement verb)",
+    "tags": ["experience", "present-perfect", "participle", "travel"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-blevet-3397",
+    "danish": "blevet",
+    "english": "become / stayed",
+    "type": "verb",
+    "context": "past participle of \"at blive\", used with \"er\" (change-of-state verb)",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-flyttet-3423",
+    "danish": "flyttet",
+    "english": "moved",
+    "type": "verb",
+    "context": "past participle of \"at flytte\", used with \"er\" (change-of-state verb)",
+    "tags": ["experience", "present-perfect", "participle"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-nogensinde-1199",
+    "danish": "nogensinde",
+    "english": "ever",
+    "type": "adverb",
+    "context": null,
+    "tags": ["experience", "present-perfect", "marker"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-aldrig-9244",
+    "danish": "aldrig",
+    "english": "never",
+    "type": "adverb",
+    "context": null,
+    "tags": ["experience", "present-perfect", "marker"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-allerede-6586",
+    "danish": "allerede",
+    "english": "already",
+    "type": "adverb",
+    "context": null,
+    "tags": ["experience", "present-perfect", "marker"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-endnu-4253",
+    "danish": "endnu",
+    "english": "yet / still",
+    "type": "adverb",
+    "context": "temporal — used with negation to mean \"not yet\"",
+    "tags": ["experience", "present-perfect", "marker"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-lige-9564",
+    "danish": "lige",
+    "english": "just",
+    "type": "adverb",
+    "context": "temporal sense — \"just now/recently\", not the spatial/equal sense of \"lige\"",
+    "tags": ["experience", "present-perfect", "marker"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-for-nylig-2384",
+    "danish": "for nylig",
+    "english": "recently",
+    "type": "phrase",
+    "context": null,
+    "tags": ["experience", "present-perfect", "marker"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-oplevelse-2644",
+    "danish": "oplevelse",
+    "english": "experience",
+    "type": "noun",
+    "context": null,
+    "tags": ["experience"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-har-du-nogensinde-3197",
+    "danish": "Har du nogensinde...?",
+    "english": "Have you ever...?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["experience", "present-perfect", "conversation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-03-v-ikke-endnu-9255",
+    "danish": "Ikke endnu",
+    "english": "Not yet",
+    "type": "phrase",
+    "context": null,
+    "tags": ["experience", "present-perfect", "conversation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

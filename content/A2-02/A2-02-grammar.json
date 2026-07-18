@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-02-g-preterite-simple-past-6814",
+    "name": "Preterite / Simple past (datid)",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "The preterite (datid) is used to narrate completed events in the past — what happened yesterday, last week, or at some earlier point in time. Regular verbs form the preterite by adding '-ede' or '-te' to the stem (arbejde → arbejdede, spise → spiste). Many common verbs are irregular and must be learned individually (være → var, gå → gik, sige → sagde, komme → kom, få → fik, tage → tog, se → så, stå → stod). Unlike the present tense, the preterite still uses one form for all subjects — no conjugation changes with jeg, du, han, vi, etc.",
+    "examples": [
+      { "danish": "Jeg arbejdede hjemmefra i går.", "english": "I worked from home yesterday." },
+      { "danish": "Hun gik i skole og mødte sin ven bagefter.", "english": "She went to school and met her friend afterwards." }
+    ]
+  },
+  {
+    "id": "A2-02-g-inversion-verb-second-rule-1216",
+    "name": "Inversion (verb-second rule)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "When a Danish sentence starts with something other than the subject — very common in narration, where you often lead with a time expression like 'i går' or 'for en uge siden' — the verb must stay in second position and the subject moves after it. This is called inversion, or the verb-second rule.",
+    "examples": [
+      { "danish": "I går tog jeg bussen til arbejde.", "english": "Yesterday I took the bus to work." },
+      { "danish": "For en uge siden var vi til en fest.", "english": "A week ago we were at a party." }
+    ]
+  }
+]

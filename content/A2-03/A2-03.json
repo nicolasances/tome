@@ -1,0 +1,39 @@
+{
+  "id": "danish-A2-03",
+  "title": "What Have You Done? (Present Perfect)",
+  "theme": "Experience and recent past",
+  "communicationGoal": "Talk about life experiences and recent events using present perfect",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-03-v-proevet-9150",
+    "A2-03-v-besoegt-3294",
+    "A2-03-v-set-1251",
+    "A2-03-v-spist-2365",
+    "A2-03-v-laest-2583",
+    "A2-03-v-moedt-9393",
+    "A2-03-v-boet-3744",
+    "A2-03-v-arbejdet-5358",
+    "A2-03-v-laert-5152",
+    "A2-03-v-hoert-4520",
+    "A2-03-v-rejst-7970",
+    "A2-03-v-kommet-7518",
+    "A2-03-v-blevet-3397",
+    "A2-03-v-flyttet-3423",
+    "A2-03-v-nogensinde-1199",
+    "A2-03-v-aldrig-9244",
+    "A2-03-v-allerede-6586",
+    "A2-03-v-endnu-4253",
+    "A2-03-v-lige-9564",
+    "A2-03-v-for-nylig-2384",
+    "A2-03-v-oplevelse-2644",
+    "A2-03-v-har-du-nogensinde-3197",
+    "A2-03-v-ikke-endnu-9255"
+  ],
+  "grammarConceptIds": [
+    "A2-03-g-present-perfect-8850",
+    "A2-03-g-auxiliary-verb-choice-har-1575",
+    "A2-03-g-preterite-vs-present-perfect-5465"
+  ],
+  "createdAt": "2026-07-17T00:00:00Z",
+  "isUserGenerated": false
+}

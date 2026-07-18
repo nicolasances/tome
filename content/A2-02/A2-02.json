@@ -1,0 +1,41 @@
+{
+  "id": "danish-A2-02",
+  "title": "A Day in the Past (Simple Past)",
+  "theme": "Narrating past events",
+  "communicationGoal": "Describe what happened yesterday, last week, or in a past situation",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-02-v-var-3792",
+    "A2-02-v-gik-1183",
+    "A2-02-v-sagde-3132",
+    "A2-02-v-kom-7814",
+    "A2-02-v-fik-4904",
+    "A2-02-v-tog-9964",
+    "A2-02-v-saa-6565",
+    "A2-02-v-stod-2539",
+    "A2-02-v-arbejdede-4328",
+    "A2-02-v-spiste-6547",
+    "A2-02-v-moedte-6419",
+    "A2-02-v-cyklede-4280",
+    "A2-02-v-ringede-2113",
+    "A2-02-v-i-gaar-1458",
+    "A2-02-v-i-gaar-aftes-2999",
+    "A2-02-v-for-en-uge-siden-4183",
+    "A2-02-v-sidste-uge-8852",
+    "A2-02-v-sidst-6312",
+    "A2-02-v-dengang-4763",
+    "A2-02-v-pludselig-4991",
+    "A2-02-v-bagefter-3041",
+    "A2-02-v-til-sidst-6533",
+    "A2-02-v-moede-6938",
+    "A2-02-v-tur-3864",
+    "A2-02-v-weekend-2665",
+    "A2-02-v-fest-7371"
+  ],
+  "grammarConceptIds": [
+    "A2-02-g-preterite-simple-past-6814",
+    "A2-02-g-inversion-verb-second-rule-1216"
+  ],
+  "createdAt": "2026-07-17T00:00:00Z",
+  "isUserGenerated": false
+}

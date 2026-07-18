@@ -1,0 +1,232 @@
+[
+  {
+    "id": "A2-04-v-skal-8047",
+    "danish": "skal",
+    "english": "will / is going to (obligation, plan)",
+    "type": "verb",
+    "context": "future obligation or firm plan",
+    "tags": ["future", "modal", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-vil-8384",
+    "danish": "vil",
+    "english": "will / want to (desire, intention)",
+    "type": "verb",
+    "context": "future desire or personal will",
+    "tags": ["future", "modal", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-kommer-til-at-4837",
+    "danish": "kommer til at",
+    "english": "will end up (doing something) / is going to",
+    "type": "phrase",
+    "context": null,
+    "tags": ["future", "prediction"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-planlaegge-4263",
+    "danish": "planlægge",
+    "english": "to plan",
+    "type": "verb",
+    "context": null,
+    "tags": ["planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-haabe-8779",
+    "danish": "håbe",
+    "english": "to hope",
+    "type": "verb",
+    "context": null,
+    "tags": ["planning", "intention"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-taenke-at-2876",
+    "danish": "tænke at",
+    "english": "to be thinking of (doing something)",
+    "type": "phrase",
+    "context": null,
+    "tags": ["planning", "intention"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-regne-med-at-5831",
+    "danish": "regne med at",
+    "english": "to expect to / count on",
+    "type": "phrase",
+    "context": null,
+    "tags": ["planning", "expectation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-have-i-sinde-at-5337",
+    "danish": "have i sinde at",
+    "english": "to intend to",
+    "type": "phrase",
+    "context": null,
+    "tags": ["planning", "intention"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-forvente-3505",
+    "danish": "forvente",
+    "english": "to expect",
+    "type": "verb",
+    "context": null,
+    "tags": ["expectation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-droemme-om-at-9288",
+    "danish": "drømme om at",
+    "english": "to dream of (doing something)",
+    "type": "phrase",
+    "context": null,
+    "tags": ["planning", "aspiration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-i-morgen-1074",
+    "danish": "i morgen",
+    "english": "tomorrow",
+    "type": "adverb",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-naeste-uge-4681",
+    "danish": "næste uge",
+    "english": "next week",
+    "type": "phrase",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-naeste-maaned-1001",
+    "danish": "næste måned",
+    "english": "next month",
+    "type": "phrase",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-om-et-aar-9870",
+    "danish": "om et år",
+    "english": "in a year",
+    "type": "phrase",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-til-sommer-4516",
+    "danish": "til sommer",
+    "english": "next summer",
+    "type": "phrase",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-snart-1941",
+    "danish": "snart",
+    "english": "soon",
+    "type": "adverb",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-senere-9586",
+    "danish": "senere",
+    "english": "later",
+    "type": "adverb",
+    "context": null,
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-engang-1104",
+    "danish": "engang",
+    "english": "someday / at some point",
+    "type": "adverb",
+    "context": "future point in time, not past",
+    "tags": ["future", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-plan-9303",
+    "danish": "plan",
+    "english": "plan",
+    "type": "noun",
+    "context": null,
+    "tags": ["planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-maal-9363",
+    "danish": "mål",
+    "english": "goal",
+    "type": "noun",
+    "context": "objective / ambition",
+    "tags": ["planning", "aspiration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-fremtid-1162",
+    "danish": "fremtid",
+    "english": "future",
+    "type": "noun",
+    "context": null,
+    "tags": ["future"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-beslutning-5613",
+    "danish": "beslutning",
+    "english": "decision",
+    "type": "noun",
+    "context": null,
+    "tags": ["planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-04-v-forhaabentlig-8587",
+    "danish": "forhåbentlig",
+    "english": "hopefully",
+    "type": "adverb",
+    "context": null,
+    "tags": ["planning", "expectation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

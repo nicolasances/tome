@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-02-v-var-3792",
+    "danish": "var",
+    "english": "was / were",
+    "type": "verb",
+    "context": "preterite of at være",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-gik-1183",
+    "danish": "gik",
+    "english": "went / walked",
+    "type": "verb",
+    "context": "preterite of at gå",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-sagde-3132",
+    "danish": "sagde",
+    "english": "said",
+    "type": "verb",
+    "context": "preterite of at sige",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-kom-7814",
+    "danish": "kom",
+    "english": "came",
+    "type": "verb",
+    "context": "preterite of at komme",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-fik-4904",
+    "danish": "fik",
+    "english": "got / received",
+    "type": "verb",
+    "context": "preterite of at få",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-tog-9964",
+    "danish": "tog",
+    "english": "took",
+    "type": "verb",
+    "context": "preterite of at tage",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-saa-6565",
+    "danish": "så",
+    "english": "saw",
+    "type": "verb",
+    "context": "preterite of at se",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-stod-2539",
+    "danish": "stod",
+    "english": "stood",
+    "type": "verb",
+    "context": "preterite of at stå",
+    "tags": ["past-tense", "irregular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-arbejdede-4328",
+    "danish": "arbejdede",
+    "english": "worked",
+    "type": "verb",
+    "context": "preterite of at arbejde, regular",
+    "tags": ["past-tense", "regular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-spiste-6547",
+    "danish": "spiste",
+    "english": "ate",
+    "type": "verb",
+    "context": "preterite of at spise, regular",
+    "tags": ["past-tense", "regular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-moedte-6419",
+    "danish": "mødte",
+    "english": "met",
+    "type": "verb",
+    "context": "preterite of at møde, regular",
+    "tags": ["past-tense", "regular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-cyklede-4280",
+    "danish": "cyklede",
+    "english": "cycled / biked",
+    "type": "verb",
+    "context": "preterite of at cykle, regular",
+    "tags": ["past-tense", "regular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-ringede-2113",
+    "danish": "ringede",
+    "english": "called / phoned",
+    "type": "verb",
+    "context": "preterite of at ringe, regular",
+    "tags": ["past-tense", "regular-verb", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-i-gaar-1458",
+    "danish": "i går",
+    "english": "yesterday",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time-expression", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-i-gaar-aftes-2999",
+    "danish": "i går aftes",
+    "english": "yesterday evening",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time-expression", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-for-en-uge-siden-4183",
+    "danish": "for en uge siden",
+    "english": "a week ago",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time-expression", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-sidste-uge-8852",
+    "danish": "sidste uge",
+    "english": "last week",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time-expression", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-sidst-6312",
+    "danish": "sidst",
+    "english": "last time",
+    "type": "adverb",
+    "context": "meaning 'the last time something happened', not 'last in a sequence'",
+    "tags": ["time-expression", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-dengang-4763",
+    "danish": "dengang",
+    "english": "back then",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time-expression", "narration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-pludselig-4991",
+    "danish": "pludselig",
+    "english": "suddenly",
+    "type": "adverb",
+    "context": null,
+    "tags": ["narration", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-bagefter-3041",
+    "danish": "bagefter",
+    "english": "afterwards",
+    "type": "adverb",
+    "context": null,
+    "tags": ["narration", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-til-sidst-6533",
+    "danish": "til sidst",
+    "english": "finally / in the end",
+    "type": "phrase",
+    "context": null,
+    "tags": ["narration", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-moede-6938",
+    "danish": "møde",
+    "english": "meeting",
+    "type": "noun",
+    "context": null,
+    "tags": ["narration", "everyday-life"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-tur-3864",
+    "danish": "tur",
+    "english": "trip / outing",
+    "type": "noun",
+    "context": null,
+    "tags": ["narration", "everyday-life"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-weekend-2665",
+    "danish": "weekend",
+    "english": "weekend",
+    "type": "noun",
+    "context": null,
+    "tags": ["narration", "everyday-life"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-02-v-fest-7371",
+    "danish": "fest",
+    "english": "party",
+    "type": "noun",
+    "context": null,
+    "tags": ["narration", "everyday-life"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
