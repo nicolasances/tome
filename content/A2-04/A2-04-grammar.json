@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-04-g-future-with-skal-and-1826",
+    "name": "Future with skal and vil",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Danish has two common ways to talk about the future. Use 'skal' when something is a firm plan, obligation, or arrangement — close to English 'is going to'. Use 'vil' when it's about personal desire or willingness — close to English 'will / want to'. Both are followed by a verb in the infinitive.",
+    "examples": [
+      { "danish": "Jeg skal arbejde i morgen.", "english": "I'm going to work tomorrow (it's arranged)." },
+      { "danish": "Jeg vil rejse til Danmark en dag.", "english": "I want to travel to Denmark someday." }
+    ]
+  },
+  {
+    "id": "A2-04-g-infinitive-usage-6536",
+    "name": "Infinitive usage after modal and planning verbs",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "After modal verbs like 'skal' and 'vil', and after planning verbs like 'håbe at', 'planlægge at', and 'tænke at', the following verb stays in its infinitive (dictionary) form — it is never conjugated. With 'at'-verbs, the infinitive marker 'at' is required; after modals, it is dropped.",
+    "examples": [
+      { "danish": "Vi planlægger at flytte næste år.", "english": "We are planning to move next year." },
+      { "danish": "Hun skal begynde på et nyt job snart.", "english": "She is going to start a new job soon." }
+    ]
+  }
+]

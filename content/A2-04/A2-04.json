@@ -1,0 +1,38 @@
+{
+  "id": "danish-A2-04",
+  "title": "Plans & Intentions",
+  "theme": "Future and intentions",
+  "communicationGoal": "Talk about future plans, intentions, and obligations",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-04-v-skal-8047",
+    "A2-04-v-vil-8384",
+    "A2-04-v-kommer-til-at-4837",
+    "A2-04-v-planlaegge-4263",
+    "A2-04-v-haabe-8779",
+    "A2-04-v-taenke-at-2876",
+    "A2-04-v-regne-med-at-5831",
+    "A2-04-v-have-i-sinde-at-5337",
+    "A2-04-v-forvente-3505",
+    "A2-04-v-droemme-om-at-9288",
+    "A2-04-v-i-morgen-1074",
+    "A2-04-v-naeste-uge-4681",
+    "A2-04-v-naeste-maaned-1001",
+    "A2-04-v-om-et-aar-9870",
+    "A2-04-v-til-sommer-4516",
+    "A2-04-v-snart-1941",
+    "A2-04-v-senere-9586",
+    "A2-04-v-engang-1104",
+    "A2-04-v-plan-9303",
+    "A2-04-v-maal-9363",
+    "A2-04-v-fremtid-1162",
+    "A2-04-v-beslutning-5613",
+    "A2-04-v-forhaabentlig-8587"
+  ],
+  "grammarConceptIds": [
+    "A2-04-g-future-with-skal-and-1826",
+    "A2-04-g-infinitive-usage-6536"
+  ],
+  "createdAt": "2026-07-18T00:00:00Z",
+  "isUserGenerated": false
+}
