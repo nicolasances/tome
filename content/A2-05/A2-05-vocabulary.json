@@ -1,0 +1,312 @@
+[
+  {
+    "id": "A2-05-v-sekund-1809",
+    "danish": "sekund",
+    "english": "second",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-minut-2067",
+    "danish": "minut",
+    "english": "minute",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-time-6668",
+    "danish": "time",
+    "english": "hour",
+    "type": "noun",
+    "context": "hour — a unit of time, not \"gang\" (occurrence/instance)",
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-dag-7054",
+    "danish": "dag",
+    "english": "day",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-uge-4486",
+    "danish": "uge",
+    "english": "week",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-maaned-6875",
+    "danish": "måned",
+    "english": "month",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-aar-9011",
+    "danish": "år",
+    "english": "year",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-aarti-4062",
+    "danish": "årti",
+    "english": "decade",
+    "type": "noun",
+    "context": null,
+    "tags": ["time", "unit"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-allerede-9828",
+    "danish": "allerede",
+    "english": "already",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "aspect"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-endnu-9911",
+    "danish": "endnu",
+    "english": "yet / still",
+    "type": "adverb",
+    "context": "not yet, typically with negation (\"ikke endnu\") or in comparisons (\"endnu mere\")",
+    "tags": ["time", "aspect"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-stadig-4018",
+    "danish": "stadig",
+    "english": "still",
+    "type": "adverb",
+    "context": "an ongoing state that continues to be true",
+    "tags": ["time", "aspect"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-snart-5711",
+    "danish": "snart",
+    "english": "soon",
+    "type": "adverb",
+    "context": null,
+    "tags": ["time", "future"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-netop-1151",
+    "danish": "netop",
+    "english": "just now / recently",
+    "type": "adverb",
+    "context": "more formal register than \"lige\"",
+    "tags": ["time", "recent-past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-lige-5744",
+    "danish": "lige",
+    "english": "just",
+    "type": "adverb",
+    "context": "used with \"har\" + past participle, e.g. \"jeg har lige spist\" (I just ate)",
+    "tags": ["time", "recent-past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-for-nylig-1582",
+    "danish": "for nylig",
+    "english": "recently",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "recent-past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-i-fremtiden-8308",
+    "danish": "i fremtiden",
+    "english": "in the future",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "future"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-i-fortiden-8551",
+    "danish": "i fortiden",
+    "english": "in the past",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "past"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-hvor-laenge-8490",
+    "danish": "hvor længe",
+    "english": "how long",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "question"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-naeste-5873",
+    "danish": "næste",
+    "english": "next",
+    "type": "adjective",
+    "context": null,
+    "tags": ["time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-sidste-8541",
+    "danish": "sidste",
+    "english": "last / previous",
+    "type": "adjective",
+    "context": "used attributively before a time noun, e.g. \"sidste uge\" (last week)",
+    "tags": ["time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-siden-6969",
+    "danish": "siden",
+    "english": "since",
+    "type": "connector",
+    "context": "introduces the starting point of an ongoing state",
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-i-ti-aar-3842",
+    "danish": "i ti år",
+    "english": "for ten years",
+    "type": "phrase",
+    "context": "\"i\" + duration — an ongoing or completed span of time",
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-i-to-maaneder-3602",
+    "danish": "i to måneder",
+    "english": "for two months",
+    "type": "phrase",
+    "context": "\"i\" + duration — an ongoing or completed span of time",
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-siden-sidste-aar-6869",
+    "danish": "siden sidste år",
+    "english": "since last year",
+    "type": "phrase",
+    "context": "\"siden\" + point in time — the starting point of an ongoing state",
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-siden-i-morges-4666",
+    "danish": "siden i morges",
+    "english": "since this morning",
+    "type": "phrase",
+    "context": "\"siden\" + point in time — the starting point of an ongoing state",
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-om-to-uger-3067",
+    "danish": "om to uger",
+    "english": "in two weeks",
+    "type": "phrase",
+    "context": "\"om\" + duration — a future distance",
+    "tags": ["time", "future-distance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-om-en-maaned-2967",
+    "danish": "om en måned",
+    "english": "in a month",
+    "type": "phrase",
+    "context": "\"om\" + duration — a future distance",
+    "tags": ["time", "future-distance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-for-tre-dage-siden-4427",
+    "danish": "for tre dage siden",
+    "english": "three days ago",
+    "type": "phrase",
+    "context": "\"for\" + duration + \"siden\" — a completed past distance",
+    "tags": ["time", "past-distance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-for-et-aar-siden-8033",
+    "danish": "for et år siden",
+    "english": "a year ago",
+    "type": "phrase",
+    "context": "\"for\" + duration + \"siden\" — a completed past distance",
+    "tags": ["time", "past-distance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-vare-2963",
+    "danish": "vare",
+    "english": "to last / to take (time)",
+    "type": "verb",
+    "context": "how long an event or process takes, e.g. \"mødet varede i to timer\"",
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-05-v-vente-3105",
+    "danish": "vente",
+    "english": "to wait",
+    "type": "verb",
+    "context": null,
+    "tags": ["time", "duration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

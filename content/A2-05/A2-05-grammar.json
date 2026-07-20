@@ -1,0 +1,46 @@
+[
+  {
+    "id": "A2-05-g-duration-with-i-6411",
+    "name": "Duration with \"i\"",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use \"i\" + a length of time to say how long something lasts or lasted — the Danish equivalent of English \"for\" in \"I have lived here for ten years.\" Combine it with the present perfect (har/er + past participle) for a duration that continues up to now, or with the preterite for a duration that is fully finished in the past. Danish never uses \"for\" here — that word is reserved for the separate \"for ... siden\" pattern (ago).",
+    "examples": [
+      { "danish": "Jeg har boet her i ti år.", "english": "I have lived here for ten years." },
+      { "danish": "Hun arbejdede der i to måneder.", "english": "She worked there for two months." }
+    ]
+  },
+  {
+    "id": "A2-05-g-starting-point-with-siden-3066",
+    "name": "Starting Point with \"siden\"",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use \"siden\" + a point in time to mark when an ongoing state began — the Danish equivalent of English \"since.\" It is almost always paired with the present perfect, because the state started at that point and is still true now. Don't confuse it with \"for ... siden\" (ago), which marks a completed event, not an ongoing state.",
+    "examples": [
+      { "danish": "Jeg har lært dansk siden sidste år.", "english": "I have been learning Danish since last year." },
+      { "danish": "Han har ikke sovet siden i morges.", "english": "He hasn't slept since this morning." }
+    ]
+  },
+  {
+    "id": "A2-05-g-future-distance-with-om-5614",
+    "name": "Future Distance with \"om\"",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use \"om\" + a length of time to say how far in the future something will happen — the Danish equivalent of English \"in\" in \"in two weeks.\" It pairs naturally with the future forms \"skal\" or \"vil\", or can stand alone with the present tense when the plan is understood as certain.",
+    "examples": [
+      { "danish": "Vi skal rejse om to uger.", "english": "We are traveling in two weeks." },
+      { "danish": "Jeg starter på et nyt job om en måned.", "english": "I'm starting a new job in a month." }
+    ]
+  },
+  {
+    "id": "A2-05-g-past-distance-with-for-4737",
+    "name": "Past Distance with \"for ... siden\"",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use \"for\" + a length of time + \"siden\" to say how far back in the past something happened — the Danish equivalent of English \"ago.\" The duration always sits between \"for\" and \"siden\", and the verb is in the preterite because the event is a finished point in the past, not an ongoing state.",
+    "examples": [
+      { "danish": "Vi flyttede hertil for tre dage siden.", "english": "We moved here three days ago." },
+      { "danish": "Hun fik jobbet for et år siden.", "english": "She got the job a year ago." }
+    ]
+  }
+]
