@@ -1,7 +1,7 @@
+import { RoundButton } from 'toto-react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { AnswerBox, AnswerLine } from './AnswerBox';
-import { SendFooter } from './SendFooter';
+import { AnswerBox, AnswerLine, AnswerLineInput } from './AnswerBox';
 
 interface ExFillBlankProps {
     exercise: Exercise;
@@ -14,6 +14,7 @@ interface ExFillBlankProps {
 
 export function ExFillBlank({exercise, submissionState, inputValue, onInputChange, onSend, isSubmitting}: ExFillBlankProps) {
     const submitted = submissionState !== null;
+    const canSend = inputValue.trim().length > 0 && !isSubmitting;
 
     // Split prompt on ___ to render inline blank
     const parts = exercise.prompt.split('___');
@@ -28,9 +29,7 @@ export function ExFillBlank({exercise, submissionState, inputValue, onInputChang
                         {submitted ? (
                             <AnswerLine text={inputValue || submissionState.correctAnswer} ok={submissionState.isCorrect} />
                         ) : (
-                            <span className="inline-block min-w-20 border-b-2 border-cyan-600 px-2 py-0.5 text-center text-cyan-700">
-                                {inputValue || <span className="opacity-0">placeholder</span>}
-                            </span>
+                            <AnswerLineInput value={inputValue} onChange={onInputChange} onSend={onSend} canSend={canSend} disabled={isSubmitting} autoFocus />
                         )}
                         <span>{parts[1].trim()}</span>
                     </div>
@@ -52,14 +51,15 @@ export function ExFillBlank({exercise, submissionState, inputValue, onInputChang
             <div className="flex-1" />
 
             {!submitted && (
-                <SendFooter
-                    value={inputValue}
-                    autoFocus={true}
-                    onChange={onInputChange}
-                    onSend={onSend}
-                    placeholder="Type the missing word…"
-                    disabled={isSubmitting}
-                />
+                <div className="flex justify-end px-4 pb-4 pt-2">
+                    <RoundButton
+                        svgIconPath={{ src: '/images/send.svg', alt: 'Send' }}
+                        type="primary"
+                        size="m"
+                        disabled={!canSend}
+                        onClick={onSend}
+                    />
+                </div>
             )}
         </div>
     );

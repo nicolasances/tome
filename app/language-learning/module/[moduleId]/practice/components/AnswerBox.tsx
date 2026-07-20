@@ -30,3 +30,35 @@ export function AnswerLine({ text, ok }: AnswerBoxProps) {
         </div>
     );
 }
+
+interface AnswerLineInputProps {
+    value: string;
+    onChange: (v: string) => void;
+    onSend: () => void;
+    canSend: boolean;
+    disabled?: boolean;
+    autoFocus?: boolean;
+}
+
+export function AnswerLineInput({value, onChange, onSend, canSend, disabled, autoFocus}: AnswerLineInputProps) {
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter' && canSend) onSend();
+    }
+
+    return (
+        <span className="relative inline-flex max-w-[70vw]">
+            <span aria-hidden="true" className="invisible whitespace-pre min-w-20 max-w-[70vw] border-b-2 px-2 py-0.5 text-center">
+                {value || ' '}
+            </span>
+            <input
+                type="text"
+                autoFocus={autoFocus}
+                value={value}
+                onChange={e => onChange(e.target.value)}
+                onKeyDown={handleKeyDown}
+                disabled={disabled}
+                className="absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-cyan-700 bg-transparent outline-none transition-colors disabled:opacity-50"
+            />
+        </span>
+    );
+}
