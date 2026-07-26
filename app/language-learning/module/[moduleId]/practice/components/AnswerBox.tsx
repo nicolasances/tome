@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 
 interface AnswerBoxProps {
@@ -60,5 +61,47 @@ export function AnswerLineInput({value, onChange, onSend, canSend, disabled, aut
                 className="absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-cyan-700 bg-transparent outline-none transition-colors disabled:opacity-50"
             />
         </span>
+    );
+}
+
+interface AnswerAreaInputProps {
+    value: string;
+    onChange: (v: string) => void;
+    onSend: () => void;
+    canSend: boolean;
+    disabled?: boolean;
+    autoFocus?: boolean;
+}
+
+export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, autoFocus}: AnswerAreaInputProps) {
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    function resize(el: HTMLTextAreaElement) {
+        el.style.height = 'auto';
+        el.style.height = `${el.scrollHeight}px`;
+    }
+
+    function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+        onChange(e.target.value);
+        resize(e.target);
+    }
+
+    function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        if (canSend) onSend();
+    }
+
+    return (
+        <textarea
+            ref={textareaRef}
+            rows={1}
+            autoFocus={autoFocus}
+            value={value}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            disabled={disabled}
+            className="w-full resize-none overflow-hidden border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-1 text-center text-cyan-700 bg-transparent outline-none transition-colors disabled:opacity-50"
+        />
     );
 }
