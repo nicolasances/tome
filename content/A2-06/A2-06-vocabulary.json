@@ -1,0 +1,392 @@
+[
+  {
+    "id": "A2-06-v-lejlighed-5197",
+    "danish": "lejlighed",
+    "english": "apartment",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "housing-type"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-hus-6379",
+    "danish": "hus",
+    "english": "house",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "housing-type"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-raekkehus-8795",
+    "danish": "rækkehus",
+    "english": "townhouse / row house",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "housing-type"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-vaerelse-2044",
+    "danish": "værelse",
+    "english": "room",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "housing-type"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-stue-1329",
+    "danish": "stue",
+    "english": "living room",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "room"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-koekken-9668",
+    "danish": "køkken",
+    "english": "kitchen",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "room"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-sovevaerelse-5580",
+    "danish": "soveværelse",
+    "english": "bedroom",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "room"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-badevaerelse-8903",
+    "danish": "badeværelse",
+    "english": "bathroom",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "room"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-sofa-7570",
+    "danish": "sofa",
+    "english": "sofa",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "furniture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-bord-8666",
+    "danish": "bord",
+    "english": "table",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "furniture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-stol-7010",
+    "danish": "stol",
+    "english": "chair",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "furniture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-seng-5948",
+    "danish": "seng",
+    "english": "bed",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "furniture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-skab-5799",
+    "danish": "skab",
+    "english": "cabinet / wardrobe",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "furniture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-reol-9322",
+    "danish": "reol",
+    "english": "bookshelf",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "furniture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-vaskemaskine-8603",
+    "danish": "vaskemaskine",
+    "english": "washing machine",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "appliance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-opvaskemaskine-4899",
+    "danish": "opvaskemaskine",
+    "english": "dishwasher",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "appliance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-koeleskab-1717",
+    "danish": "køleskab",
+    "english": "fridge",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "appliance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-ovn-3261",
+    "danish": "ovn",
+    "english": "oven",
+    "type": "noun",
+    "context": "oven — for baking, not the stovetop",
+    "tags": ["home", "appliance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-komfur-5434",
+    "danish": "komfur",
+    "english": "stove / cooktop",
+    "type": "noun",
+    "context": "the stovetop with burners, not the oven",
+    "tags": ["home", "appliance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-stoevsuger-6735",
+    "danish": "støvsuger",
+    "english": "vacuum cleaner",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "appliance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-goere-rent-1192",
+    "danish": "gøre rent",
+    "english": "to clean",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-vaske-toej-8338",
+    "danish": "vaske tøj",
+    "english": "to do laundry",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-lave-mad-2673",
+    "danish": "lave mad",
+    "english": "to cook",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-stoevsuge-6606",
+    "danish": "støvsuge",
+    "english": "to vacuum",
+    "type": "verb",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-toerre-stoev-af-8697",
+    "danish": "tørre støv af",
+    "english": "to dust",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-tage-opvasken-6421",
+    "danish": "tage opvasken",
+    "english": "to do the dishes",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-rydde-op-4295",
+    "danish": "rydde op",
+    "english": "to tidy up",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "chore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-husleje-5884",
+    "danish": "husleje",
+    "english": "rent",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "rent"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-depositum-6993",
+    "danish": "depositum",
+    "english": "deposit",
+    "type": "noun",
+    "context": null,
+    "tags": ["home", "rent"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-leje-4070",
+    "danish": "leje",
+    "english": "to rent",
+    "type": "verb",
+    "context": null,
+    "tags": ["home", "rent"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-eje-6887",
+    "danish": "eje",
+    "english": "to own",
+    "type": "verb",
+    "context": null,
+    "tags": ["home", "rent"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-flytte-ind-6700",
+    "danish": "flytte ind",
+    "english": "to move in",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "moving"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-flytte-ud-6047",
+    "danish": "flytte ud",
+    "english": "to move out",
+    "type": "phrase",
+    "context": null,
+    "tags": ["home", "moving"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-stor-6057",
+    "danish": "stor",
+    "english": "big",
+    "type": "adjective",
+    "context": null,
+    "tags": ["home", "adjective", "size"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-lille-6745",
+    "danish": "lille",
+    "english": "small",
+    "type": "adjective",
+    "context": null,
+    "tags": ["home", "adjective", "size"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-gammel-8925",
+    "danish": "gammel",
+    "english": "old",
+    "type": "adjective",
+    "context": null,
+    "tags": ["home", "adjective", "age"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-ny-6302",
+    "danish": "ny",
+    "english": "new",
+    "type": "adjective",
+    "context": null,
+    "tags": ["home", "adjective", "age"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-lys-6715",
+    "danish": "lys",
+    "english": "bright / light-colored",
+    "type": "adjective",
+    "context": "describing a room or color — not the noun \"lys\" (light/candle)",
+    "tags": ["home", "adjective", "appearance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-06-v-hyggelig-5402",
+    "danish": "hyggelig",
+    "english": "cozy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["home", "adjective", "appearance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

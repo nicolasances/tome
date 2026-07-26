@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-06-g-double-definiteness-1199",
+    "name": "Double Definiteness",
+    "category": "nouns",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "When an adjective comes before a definite noun, Danish adds a separate article — \"den\" (common gender), \"det\" (neuter), or \"de\" (plural) — in front of the adjective. The noun itself then stays in its plain, unsuffixed form; it does not also take \"-en/-et/-ene\". This combination of the free-standing article plus the unsuffixed noun is called double definiteness.",
+    "examples": [
+      { "danish": "Det store hus ligger på hjørnet.", "english": "The big house is on the corner." },
+      { "danish": "Jeg kan godt lide den røde dør.", "english": "I really like the red door." }
+    ]
+  },
+  {
+    "id": "A2-06-g-adjective-inflection-in-definite-5811",
+    "name": "Adjective Inflection in Definite Form",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "In a definite noun phrase, the adjective always takes the ending \"-e\", no matter the noun's gender or number. This differs from indefinite phrases, where the adjective's ending changes: \"et stort hus\" (neuter, \"-t\") becomes \"det store hus\" (definite, \"-e\"); \"en stor stol\" (common gender, no ending) becomes \"den store stol\" (definite, \"-e\").",
+    "examples": [
+      { "danish": "Vi har lige malet det gamle skab.", "english": "We just painted the old cabinet." },
+      { "danish": "De nye møbler passer godt i stuen.", "english": "The new furniture fits well in the living room." }
+    ]
+  },
+  {
+    "id": "A2-06-g-predicative-vs-attributive-adjectives-8059",
+    "name": "Predicative vs. Attributive Adjectives",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "An attributive adjective sits directly before the noun and triggers double definiteness and the \"-e\" ending in definite phrases (den store lejlighed). A predicative adjective comes after a linking verb like \"være\" and instead follows the regular indefinite agreement pattern, even when the subject is definite: \"Lejligheden er stor\" (not \"store\").",
+    "examples": [
+      { "danish": "Den lyse stue er mit yndlingssted i huset.", "english": "The bright living room is my favorite spot in the house." },
+      { "danish": "Stuen er lys og hyggelig om aftenen.", "english": "The living room is bright and cozy in the evening." }
+    ]
+  }
+]
