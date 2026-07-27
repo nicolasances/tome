@@ -1,0 +1,1143 @@
+[
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har ondt i ___, og jeg vil gerne ligge ned lidt.",
+    "promptTranslation": "I have a headache, and I would like to lie down for a bit.",
+    "answer": "hovedet",
+    "distractors": [
+      "maven",
+      "ryggen",
+      "halsen"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-hoved-9919",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har ondt i ___ efter jeg spiste for meget aftensmad.",
+    "promptTranslation": "I have a stomach ache after I ate too much dinner.",
+    "answer": "maven",
+    "distractors": [
+      "hovedet",
+      "armen",
+      "foden"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-mave-7208",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Han har ondt i ___, fordi han sad ved skrivebordet hele dagen.",
+    "promptTranslation": "He has a backache because he sat at the desk all day.",
+    "answer": "ryggen",
+    "distractors": [
+      "halsen",
+      "øret",
+      "hånden"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-ryg-1556",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har ondt i ___ og kan næsten ikke tale.",
+    "promptTranslation": "I have a sore throat and can hardly speak.",
+    "answer": "halsen",
+    "distractors": [
+      "øjet",
+      "armen",
+      "benet"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-hals-6649",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Barnet har ondt i ___ og græder hele natten.",
+    "promptTranslation": "The child has an earache and cries all night.",
+    "answer": "øret",
+    "distractors": [
+      "øjet",
+      "hovedet",
+      "hånden"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-oere-4872",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Mit ___ er meget rødt og gør ondt, når jeg blinker.",
+    "promptTranslation": "My eye is very red and hurts when I blink.",
+    "answer": "øje",
+    "distractors": [
+      "øre",
+      "hoved",
+      "hånd"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-oeje-2684",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg slog mig på ___, da jeg faldt på cyklen.",
+    "promptTranslation": "I hurt my arm when I fell off my bike.",
+    "answer": "armen",
+    "distractors": [
+      "benet",
+      "hovedet",
+      "ryggen"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-arm-9722",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Hun kan ikke gå, fordi hun har ondt i ___.",
+    "promptTranslation": "She can't walk because her leg hurts.",
+    "answer": "benet",
+    "distractors": [
+      "armen",
+      "øret",
+      "maven"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-ben-5044",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg slog mig på ___, da jeg lavede mad i køkkenet.",
+    "promptTranslation": "I hurt my hand while cooking in the kitchen.",
+    "answer": "hånden",
+    "distractors": [
+      "foden",
+      "armen",
+      "halsen"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-haand-4187",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Han har ondt i ___ efter han løb en lang tur.",
+    "promptTranslation": "He has a sore foot after running a long distance.",
+    "answer": "foden",
+    "distractors": [
+      "hånden",
+      "ryggen",
+      "maven"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-fod-6629",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har ___ og skal blive hjemme fra arbejde i dag.",
+    "promptTranslation": "I have a fever and need to stay home from work today.",
+    "answer": "feber",
+    "distractors": [
+      "hoste",
+      "kvalme",
+      "smerte"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-feber-5216",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Hun har haft ___ i flere dage og kan ikke sove om natten.",
+    "promptTranslation": "She has had a cough for several days and can't sleep at night.",
+    "answer": "hoste",
+    "distractors": [
+      "feber",
+      "kvalme",
+      "smerte"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-hoste-3999",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har ___ og kan ikke spise noget lige nu.",
+    "promptTranslation": "I have nausea and can't eat anything right now.",
+    "answer": "kvalme",
+    "distractors": [
+      "feber",
+      "hoste",
+      "smerte"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-kvalme-6319",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Lægen spurgte, hvor stor ___ jeg havde i maven.",
+    "promptTranslation": "The doctor asked how much pain I had in my stomach.",
+    "answer": "smerte",
+    "distractors": [
+      "feber",
+      "kvalme",
+      "hoste"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-smerte-2712",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg er ___, fordi jeg nyser og har ondt i halsen.",
+    "promptTranslation": "I have a cold, because I'm sneezing and have a sore throat.",
+    "answer": "forkølet",
+    "distractors": [
+      "svimmel",
+      "syg",
+      "rask"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-forkoelet-8659",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg er ___ og kan ikke stå stille lige nu.",
+    "promptTranslation": "I am dizzy and cannot stand still right now.",
+    "answer": "svimmel",
+    "distractors": [
+      "forkølet",
+      "syg",
+      "rask"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-svimmel-2192",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Min kollega er ___ i dag og kommer ikke i arbejde.",
+    "promptTranslation": "My colleague is sick today and isn't coming to work.",
+    "answer": "syg",
+    "distractors": [
+      "rask",
+      "svimmel",
+      "forkølet"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-syg-7016",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Efter en uge med medicin er jeg endelig ___ igen.",
+    "promptTranslation": "After a week of medicine, I am finally healthy again.",
+    "answer": "rask",
+    "distractors": [
+      "syg",
+      "svimmel",
+      "forkølet"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-rask-7810",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg skal ringe til ___ og bestille en tid i morgen.",
+    "promptTranslation": "I need to call the doctor and book an appointment tomorrow.",
+    "answer": "læge",
+    "distractors": [
+      "apotek",
+      "sygehus",
+      "recept"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-laege-3270",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Lægen skrev en ___, så jeg kunne købe medicin på apoteket.",
+    "promptTranslation": "The doctor wrote a prescription, so I could buy medicine at the pharmacy.",
+    "answer": "recept",
+    "distractors": [
+      "tidsbestilling",
+      "sygehus",
+      "medicin"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-recept-5204",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg skal hente medicinen på ___ efter arbejde.",
+    "promptTranslation": "I need to pick up the medicine at the pharmacy after work.",
+    "answer": "apotek",
+    "distractors": [
+      "sygehus",
+      "læge",
+      "recept"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-apotek-9785",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Han blev meget syg og skulle på ___ i to dage.",
+    "promptTranslation": "He became very ill and had to go to the hospital for two days.",
+    "answer": "sygehus",
+    "distractors": [
+      "apotek",
+      "recept",
+      "tidsbestilling"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-sygehus-5265",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg tager ___ tre gange om dagen, indtil jeg er rask.",
+    "promptTranslation": "I take medicine three times a day until I am healthy.",
+    "answer": "medicin",
+    "distractors": [
+      "recept",
+      "tidsbestilling",
+      "feber"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-medicin-4579",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg har ___ maven efter jeg spiste for hurtigt.",
+    "promptTranslation": "I have a stomach ache after I ate too fast.",
+    "answer": "ondt i",
+    "distractors": [
+      "ondt af",
+      "træt i",
+      "syg i"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-ondt-i-4316",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "multiple_choice",
+    "prompt": "Jeg skal ___, fordi jeg er forkølet og har feber.",
+    "promptTranslation": "I need to book an appointment, because I have a cold and a fever.",
+    "answer": "bestille en tid",
+    "distractors": [
+      "tage medicin",
+      "gå på sygehuset",
+      "hente en recept"
+    ],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-bestille-en-tid-4862",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg har ondt i ___ og skal tage noget medicin.",
+    "promptTranslation": "I have a headache and need to take some medicine.",
+    "answer": "hovedet",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-hoved-9919",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Barnet har ondt i ___ efter at have spist for meget slik.",
+    "promptTranslation": "The child has a stomach ache after eating too much candy.",
+    "answer": "maven",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-mave-7208",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg har ondt i ___, fordi jeg bar tunge tasker hele dagen.",
+    "promptTranslation": "I have a backache because I carried heavy bags all day.",
+    "answer": "ryggen",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-ryg-1556",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Hun har ondt i ___ og drikker varm te med honning.",
+    "promptTranslation": "She has a sore throat and drinks warm tea with honey.",
+    "answer": "halsen",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-hals-6649",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg har ondt i ___, når jeg flyver med et fly.",
+    "promptTranslation": "My ear hurts when I fly on a plane.",
+    "answer": "øret",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-oere-4872",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg brændte ___ på komfuret og skal have plaster på.",
+    "promptTranslation": "I burned my hand on the stove and need a bandage.",
+    "answer": "hånden",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-haand-4187",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Han har haft en slem ___ (hoste) i næsten en uge nu.",
+    "promptTranslation": "He has had a bad cough for almost a week now.",
+    "answer": "hoste",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-hoste-3999",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Lægen ville vide, om jeg havde stærk ___ (smerte) i benet.",
+    "promptTranslation": "The doctor wanted to know if I had severe pain in my leg.",
+    "answer": "smerte",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-smerte-2712",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg blev ___ (svimmel, predikativ) og måtte sætte mig ned et øjeblik.",
+    "promptTranslation": "I became dizzy and had to sit down for a moment.",
+    "answer": "svimmel",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-svimmel-2192",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Lægen sagde, at jeg snart bliver ___ (rask, predikativ) igen.",
+    "promptTranslation": "The doctor said that I will soon be healthy again.",
+    "answer": "rask",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-rask-7810",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Jeg skal have en ny ___ (recept), fordi min gamle er brugt op.",
+    "promptTranslation": "I need a new prescription, because my old one is used up.",
+    "answer": "recept",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-recept-5204",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Min ___ (tidsbestilling) hos lægen er klokken ti i morgen.",
+    "promptTranslation": "My appointment with the doctor is at ten o'clock tomorrow.",
+    "answer": "tidsbestilling",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-tidsbestilling-8742",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "fill_blank",
+    "prompt": "Da lægen spurgte, hvordan jeg havde det, sagde jeg: \"___.\"",
+    "promptTranslation": "When the doctor asked how I was doing, I said: \"I feel unwell.\"",
+    "answer": "Jeg har det skidt",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-jeg-har-det-skidt-4513",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "My eye hurts a little today.",
+    "promptTranslation": null,
+    "answer": "Mit øje gør lidt ondt i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg har lidt ondt i øjet i dag."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-oeje-2684",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I hurt my arm when I fell.",
+    "promptTranslation": null,
+    "answer": "Jeg slog mig på armen, da jeg faldt.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-arm-9722",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Her leg hurts after the long run.",
+    "promptTranslation": null,
+    "answer": "Hendes ben gør ondt efter den lange løbetur.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Hun har ondt i benet efter den lange løbetur."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-ben-5044",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I have a sore foot today.",
+    "promptTranslation": null,
+    "answer": "Jeg har ondt i foden i dag.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-fod-6629",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "He has a fever and is staying home.",
+    "promptTranslation": null,
+    "answer": "Han har feber og bliver hjemme.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-feber-5216",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I have nausea and can't eat breakfast.",
+    "promptTranslation": null,
+    "answer": "Jeg har kvalme og kan ikke spise morgenmad.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-kvalme-6319",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I have a cold, so I am staying home today.",
+    "promptTranslation": null,
+    "answer": "Jeg er forkølet, så jeg bliver hjemme i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg er forkølet, så jeg holder mig hjemme i dag."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-forkoelet-8659",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "My colleague is sick and can't come to the meeting.",
+    "promptTranslation": null,
+    "answer": "Min kollega er syg og kan ikke komme til mødet.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-syg-7016",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I need to see a doctor tomorrow.",
+    "promptTranslation": null,
+    "answer": "Jeg skal se en læge i morgen.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg skal gå til lægen i morgen."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-laege-3270",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "Can you pick up my medicine at the pharmacy?",
+    "promptTranslation": null,
+    "answer": "Kan du hente min medicin på apoteket?",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-apotek-9785",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "She had to go to the hospital yesterday.",
+    "promptTranslation": null,
+    "answer": "Hun skulle på sygehuset i går.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Hun måtte på sygehuset i går."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-sygehus-5265",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I take medicine every morning.",
+    "promptTranslation": null,
+    "answer": "Jeg tager medicin hver morgen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-medicin-4579",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I have an appointment with the doctor on Friday.",
+    "promptTranslation": null,
+    "answer": "Jeg har en tidsbestilling hos lægen på fredag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg har bestilt en tid hos lægen på fredag."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-tidsbestilling-8742",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I have a stomach ache.",
+    "promptTranslation": null,
+    "answer": "Jeg har ondt i maven.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-ondt-i-4316",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I need to book an appointment with the doctor.",
+    "promptTranslation": null,
+    "answer": "Jeg skal bestille en tid hos lægen.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg skal have en tid hos lægen."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-bestille-en-tid-4862",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "translation_active",
+    "prompt": "I feel unwell today.",
+    "promptTranslation": null,
+    "answer": "Jeg har det skidt i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "Jeg har det dårligt i dag."
+    ],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-jeg-har-det-skidt-4513",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at føle sig | present tense | jeg",
+    "promptTranslation": null,
+    "answer": "føler mig",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-foele-sig-5537",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at føle sig | preterite | du",
+    "promptTranslation": null,
+    "answer": "følte dig",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-foele-sig-5537",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at føle sig | present tense | hun",
+    "promptTranslation": null,
+    "answer": "føler sig",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-foele-sig-5537",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at slå sig | preterite | jeg",
+    "promptTranslation": null,
+    "answer": "slog mig",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-slaa-sig-2431",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at slå sig | present tense | han",
+    "promptTranslation": null,
+    "answer": "slår sig",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-slaa-sig-2431",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "conjugation_drill",
+    "prompt": "at slå sig | preterite | vi",
+    "promptTranslation": null,
+    "answer": "slog os",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": "A2-07-v-at-slaa-sig-2431",
+    "grammarConceptId": null,
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "I have a headache today.",
+    "promptTranslation": null,
+    "answer": "Jeg har ondt i hovedet i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "I dag har jeg ondt i hovedet."
+    ],
+    "words": [
+      "hovedet",
+      "Jeg",
+      "i",
+      "dag",
+      "ondt",
+      "i",
+      "har"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-definiteness-with-body-parts-8792",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "He has a stomach ache and a backache.",
+    "promptTranslation": null,
+    "answer": "Han har ondt i maven og ryggen.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "ryggen",
+      "Han",
+      "og",
+      "ondt",
+      "i",
+      "maven",
+      "har"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-definiteness-with-body-parts-8792",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "The child has an earache and a fever.",
+    "promptTranslation": null,
+    "answer": "Barnet har ondt i øret og feber.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "feber",
+      "Barnet",
+      "øret",
+      "har",
+      "og",
+      "ondt",
+      "i"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-definiteness-with-body-parts-8792",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "I have had a fever for three days.",
+    "promptTranslation": null,
+    "answer": "Jeg har haft feber i tre dage.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "dage",
+      "Jeg",
+      "tre",
+      "haft",
+      "har",
+      "feber",
+      "i"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-present-perfect-for-symptoms-5411",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "She has been sick since yesterday.",
+    "promptTranslation": null,
+    "answer": "Hun har været syg siden i går.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "går",
+      "Hun",
+      "syg",
+      "været",
+      "siden",
+      "har",
+      "i"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-present-perfect-for-symptoms-5411",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "You must stay home if you have a fever.",
+    "promptTranslation": null,
+    "answer": "Du skal blive hjemme, hvis du har feber.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "feber",
+      "Du",
+      "hvis",
+      "blive",
+      "du",
+      "skal",
+      "har",
+      "hjemme"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-modal-verbs-for-health-1098",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "sentence_reorder",
+    "prompt": "You ought to call the doctor and book an appointment.",
+    "promptTranslation": null,
+    "answer": "Du bør ringe til lægen og bestille en tid.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": [
+      "en",
+      "Du",
+      "til",
+      "og",
+      "ringe",
+      "tid",
+      "lægen",
+      "bestille",
+      "bør"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-modal-verbs-for-health-1098",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg har ondt i hoved i dag.",
+    "promptTranslation": "I have a headache today.",
+    "answer": "Jeg har ondt i hovedet i dag.",
+    "distractors": [],
+    "alternativeAnswers": [
+      "I dag har jeg ondt i hovedet."
+    ],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-definiteness-with-body-parts-8792",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Hun har ondt i ryg efter en lang dag på kontoret.",
+    "promptTranslation": "She has a backache after a long day at the office.",
+    "answer": "Hun har ondt i ryggen efter en lang dag på kontoret.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-definiteness-with-body-parts-8792",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Jeg har have feber i tre dage.",
+    "promptTranslation": "I have had a fever for three days.",
+    "answer": "Jeg har haft feber i tre dage.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-present-perfect-for-symptoms-5411",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Hun har være syg siden i går.",
+    "promptTranslation": "She has been sick since yesterday.",
+    "answer": "Hun har været syg siden i går.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-present-perfect-for-symptoms-5411",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Du skal at blive hjemme, hvis du har feber.",
+    "promptTranslation": "You must stay home if you have a fever.",
+    "answer": "Du skal blive hjemme, hvis du har feber.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-modal-verbs-for-health-1098",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Du bør ringer til lægen og bestiller en tid.",
+    "promptTranslation": "You ought to call the doctor and book an appointment.",
+    "answer": "Du bør ringe til lægen og bestille en tid.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-modal-verbs-for-health-1098",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  },
+  {
+    "type": "error_correction",
+    "prompt": "Du må ikke tager medicinen, hvis du er gravid.",
+    "promptTranslation": "You must not take the medicine if you are pregnant.",
+    "answer": "Du må ikke tage medicinen, hvis du er gravid.",
+    "distractors": [],
+    "alternativeAnswers": [],
+    "words": null,
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-modal-verbs-for-health-1098",
+    "timesShown": 0,
+    "moduleId": "danish-A2-07"
+  }
+]

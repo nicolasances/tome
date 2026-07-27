@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-07-g-definiteness-with-body-parts-8792",
+    "name": "Definite/Indefinite Articles",
+    "category": "nouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "When you describe a pain or symptom in a specific body part, Danish almost always uses the definite form of the noun (the \"-en\", \"-et\", or plural \"-ene\" ending), not the indefinite form. This is because you are referring to your own specific head, stomach, or back — not a head or a stomach in general. The pattern \"ondt i + definite body part\" is the standard way to say something hurts.",
+    "examples": [
+      { "danish": "Jeg har ondt i hovedet.", "english": "I have a headache. (lit. I have pain in the head.)" },
+      { "danish": "Han har ondt i maven og ryggen.", "english": "He has a stomach ache and a backache." }
+    ]
+  },
+  {
+    "id": "A2-07-g-present-perfect-for-symptoms-5411",
+    "name": "Present Perfect (førnutid)",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "To say how long you have had a symptom or how long you have been sick, Danish uses the present perfect (\"har\" + past participle) combined with a duration expression like \"i tre dage\" (for three days) or \"siden i går\" (since yesterday). This mirrors English \"I have had...\" but the construction and word order must be learned as a fixed pattern.",
+    "examples": [
+      { "danish": "Jeg har haft feber i tre dage.", "english": "I have had a fever for three days." },
+      { "danish": "Hun har været syg siden i går.", "english": "She has been sick since yesterday." }
+    ]
+  },
+  {
+    "id": "A2-07-g-modal-verbs-for-health-1098",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In a healthcare context, modal verbs shift meaning slightly depending on how strong the advice is. \"Skal\" expresses a firm recommendation or instruction (you must/should), \"bør\" expresses a softer, more general recommendation (you ought to), and \"må\" expresses permission or a mild obligation. These are the same modal verbs from earlier modules, now used specifically to give or receive medical advice.",
+    "examples": [
+      { "danish": "Du skal blive hjemme, hvis du har feber.", "english": "You must stay home if you have a fever." },
+      { "danish": "Du bør ringe til lægen og bestille en tid.", "english": "You ought to call the doctor and book an appointment." }
+    ]
+  }
+]

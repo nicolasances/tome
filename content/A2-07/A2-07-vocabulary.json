@@ -1,0 +1,292 @@
+[
+  {
+    "id": "A2-07-v-hoved-9919",
+    "danish": "hoved",
+    "english": "head",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-mave-7208",
+    "danish": "mave",
+    "english": "stomach",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-ryg-1556",
+    "danish": "ryg",
+    "english": "back",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-hals-6649",
+    "danish": "hals",
+    "english": "throat",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-oere-4872",
+    "danish": "øre",
+    "english": "ear",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-oeje-2684",
+    "danish": "øje",
+    "english": "eye",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-arm-9722",
+    "danish": "arm",
+    "english": "arm",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-ben-5044",
+    "danish": "ben",
+    "english": "leg",
+    "type": "noun",
+    "context": "the body part — not \"bone\"",
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-haand-4187",
+    "danish": "hånd",
+    "english": "hand",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-fod-6629",
+    "danish": "fod",
+    "english": "foot",
+    "type": "noun",
+    "context": null,
+    "tags": ["body", "body-part"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-feber-5216",
+    "danish": "feber",
+    "english": "fever",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-hoste-3999",
+    "danish": "hoste",
+    "english": "cough",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-kvalme-6319",
+    "danish": "kvalme",
+    "english": "nausea",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-smerte-2712",
+    "danish": "smerte",
+    "english": "pain",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-forkoelet-8659",
+    "danish": "forkølet",
+    "english": "having a cold",
+    "type": "adjective",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-svimmel-2192",
+    "danish": "svimmel",
+    "english": "dizzy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-syg-7016",
+    "danish": "syg",
+    "english": "sick / ill",
+    "type": "adjective",
+    "context": null,
+    "tags": ["health", "state"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-rask-7810",
+    "danish": "rask",
+    "english": "healthy / well again",
+    "type": "adjective",
+    "context": null,
+    "tags": ["health", "state"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-laege-3270",
+    "danish": "læge",
+    "english": "doctor",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-recept-5204",
+    "danish": "recept",
+    "english": "prescription",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-apotek-9785",
+    "danish": "apotek",
+    "english": "pharmacy",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-sygehus-5265",
+    "danish": "sygehus",
+    "english": "hospital",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-medicin-4579",
+    "danish": "medicin",
+    "english": "medicine",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-tidsbestilling-8742",
+    "danish": "tidsbestilling",
+    "english": "appointment",
+    "type": "noun",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-at-foele-sig-5537",
+    "danish": "at føle sig",
+    "english": "to feel",
+    "type": "verb",
+    "context": "reflexive — followed by an adjective describing how one feels",
+    "tags": ["health", "reflexive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-at-slaa-sig-2431",
+    "danish": "at slå sig",
+    "english": "to hurt oneself",
+    "type": "verb",
+    "context": "reflexive — minor injury, e.g. bumping into something",
+    "tags": ["health", "reflexive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-ondt-i-4316",
+    "danish": "ondt i",
+    "english": "a pain/ache in...",
+    "type": "pattern",
+    "context": "always followed by a body part in its definite form, e.g. \"ondt i hovedet\"",
+    "tags": ["health", "symptom", "pattern"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-at-bestille-en-tid-4862",
+    "danish": "at bestille en tid",
+    "english": "to book an appointment",
+    "type": "phrase",
+    "context": null,
+    "tags": ["health", "healthcare"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-07-v-jeg-har-det-skidt-4513",
+    "danish": "jeg har det skidt",
+    "english": "I feel unwell",
+    "type": "phrase",
+    "context": null,
+    "tags": ["health", "symptom"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
