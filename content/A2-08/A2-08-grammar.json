@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-08-g-comparative-adjectives-1419",
+    "name": "Comparative Adjectives (større, billigere, bedre)",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "To compare two things in Danish, add -ere to most adjectives (billig → billigere, \"cheaper\"). Some common adjectives are irregular: stor → større (\"bigger\"), god → bedre (\"better\"), lille → mindre (\"smaller\"). Use \"end\" for \"than\": Den her er billigere end den der.",
+    "examples": [
+      { "danish": "Den her taske er billigere end den der.", "english": "This bag is cheaper than that one." },
+      { "danish": "Har I en større størrelse?", "english": "Do you have a bigger size?" }
+    ]
+  },
+  {
+    "id": "A2-08-g-modal-kan-polite-requests-5392",
+    "name": "Modal Verb 'kan' for Polite Requests",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "The modal verb \"kan\" (can) softens a request and is the standard way to ask for something politely in a shop: \"Kan jeg få...?\" (Can I get/have...?) or \"Kan jeg bytte...?\" (Can I exchange...?). The main verb stays in the infinitive after \"kan\", and \"kan\" takes second position in the sentence.",
+    "examples": [
+      { "danish": "Kan jeg få en kvittering?", "english": "Can I have a receipt?" },
+      { "danish": "Kan jeg bytte den her til en anden størrelse?", "english": "Can I exchange this for a different size?" }
+    ]
+  }
+]

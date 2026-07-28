@@ -1,0 +1,43 @@
+{
+  "id": "danish-A2-08",
+  "title": "Shopping & Money",
+  "theme": "Financial transactions and retail",
+  "communicationGoal": "Compare prices, ask about sizes and availability, exchange or return items",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-08-v-koste-9915",
+    "A2-08-v-betale-6515",
+    "A2-08-v-bytte-3569",
+    "A2-08-v-returnere-6598",
+    "A2-08-v-spare-9730",
+    "A2-08-v-proeve-3286",
+    "A2-08-v-billig-3193",
+    "A2-08-v-dyr-6973",
+    "A2-08-v-stor-9947",
+    "A2-08-v-lille-5350",
+    "A2-08-v-god-7017",
+    "A2-08-v-udsolgt-9179",
+    "A2-08-v-stoerrelse-6809",
+    "A2-08-v-pris-8840",
+    "A2-08-v-rabat-9543",
+    "A2-08-v-tilbud-6654",
+    "A2-08-v-udsalg-3428",
+    "A2-08-v-kvittering-5783",
+    "A2-08-v-kontanter-8157",
+    "A2-08-v-kort-3815",
+    "A2-08-v-byttepenge-9632",
+    "A2-08-v-krone-8068",
+    "A2-08-v-oere-4537",
+    "A2-08-v-gavekort-9800",
+    "A2-08-v-paa-lager-4654",
+    "A2-08-v-kan-jeg-faa-7139",
+    "A2-08-v-betale-med-mobilepay-7547",
+    "A2-08-v-en-anden-stoerrelse-8579"
+  ],
+  "grammarConceptIds": [
+    "A2-08-g-comparative-adjectives-1419",
+    "A2-08-g-modal-kan-polite-requests-5392"
+  ],
+  "createdAt": "2026-07-27T00:00:00Z",
+  "isUserGenerated": false
+}

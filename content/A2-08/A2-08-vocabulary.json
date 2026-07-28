@@ -1,0 +1,282 @@
+[
+  {
+    "id": "A2-08-v-koste-9915",
+    "danish": "koste",
+    "english": "to cost",
+    "type": "verb",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-betale-6515",
+    "danish": "betale",
+    "english": "to pay",
+    "type": "verb",
+    "context": null,
+    "tags": ["shopping", "money", "payment"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-bytte-3569",
+    "danish": "bytte",
+    "english": "to exchange",
+    "type": "verb",
+    "context": "exchanging a purchased item",
+    "tags": ["shopping", "returns"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-returnere-6598",
+    "danish": "returnere",
+    "english": "to return",
+    "type": "verb",
+    "context": "returning a purchased item",
+    "tags": ["shopping", "returns"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-spare-9730",
+    "danish": "spare",
+    "english": "to save (money)",
+    "type": "verb",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-proeve-3286",
+    "danish": "prøve",
+    "english": "to try on",
+    "type": "verb",
+    "context": "trying on clothing or shoes",
+    "tags": ["shopping", "clothing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-billig-3193",
+    "danish": "billig",
+    "english": "cheap",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shopping", "money", "comparison"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-dyr-6973",
+    "danish": "dyr",
+    "english": "expensive",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shopping", "money", "comparison"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-stor-9947",
+    "danish": "stor",
+    "english": "big / large",
+    "type": "adjective",
+    "context": "physical size, e.g. clothing size",
+    "tags": ["shopping", "size", "comparison"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-lille-5350",
+    "danish": "lille",
+    "english": "small",
+    "type": "adjective",
+    "context": "physical size, e.g. clothing size",
+    "tags": ["shopping", "size", "comparison"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-god-7017",
+    "danish": "god",
+    "english": "good",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shopping", "comparison"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-udsolgt-9179",
+    "danish": "udsolgt",
+    "english": "sold out",
+    "type": "adjective",
+    "context": null,
+    "tags": ["shopping", "availability"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-stoerrelse-6809",
+    "danish": "størrelse",
+    "english": "size",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "clothing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-pris-8840",
+    "danish": "pris",
+    "english": "price",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-rabat-9543",
+    "danish": "rabat",
+    "english": "discount",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-tilbud-6654",
+    "danish": "tilbud",
+    "english": "offer / deal",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-udsalg-3428",
+    "danish": "udsalg",
+    "english": "sale (seasonal sales event)",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-kvittering-5783",
+    "danish": "kvittering",
+    "english": "receipt",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "payment", "returns"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-kontanter-8157",
+    "danish": "kontanter",
+    "english": "cash",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "payment"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-kort-3815",
+    "danish": "kort",
+    "english": "card",
+    "type": "noun",
+    "context": "payment card",
+    "tags": ["shopping", "payment"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-byttepenge-9632",
+    "danish": "byttepenge",
+    "english": "change (money returned)",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "payment", "money"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-krone-8068",
+    "danish": "krone",
+    "english": "krone (Danish currency)",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money", "currency"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-oere-4537",
+    "danish": "øre",
+    "english": "øre (Danish currency subunit)",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "money", "currency"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-gavekort-9800",
+    "danish": "gavekort",
+    "english": "gift card",
+    "type": "noun",
+    "context": null,
+    "tags": ["shopping", "payment"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-paa-lager-4654",
+    "danish": "på lager",
+    "english": "in stock",
+    "type": "phrase",
+    "context": null,
+    "tags": ["shopping", "availability"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-kan-jeg-faa-7139",
+    "danish": "Kan jeg få...?",
+    "english": "Can I get / have...?",
+    "type": "pattern",
+    "context": "polite request in a shop",
+    "tags": ["shopping", "requests"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-betale-med-mobilepay-7547",
+    "danish": "betale med MobilePay",
+    "english": "to pay with MobilePay",
+    "type": "phrase",
+    "context": "Danish mobile payment culture",
+    "tags": ["shopping", "payment", "culture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-08-v-en-anden-stoerrelse-8579",
+    "danish": "en anden størrelse",
+    "english": "a different size",
+    "type": "phrase",
+    "context": null,
+    "tags": ["shopping", "clothing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
