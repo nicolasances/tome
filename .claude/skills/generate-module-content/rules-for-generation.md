@@ -42,18 +42,26 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 ## Cross-cutting rules (all exercise types)
 
 - Always set `type` to the correct string value: `multiple_choice`, `fill_blank`, `sentence_reorder`, `conjugation_drill`, `error_correction`, or `translation_active`.
-- **Exactly one of `vocabularyItemId` or `grammarConceptId` must be set — never both, never neither.** The assignment is determined by exercise type, not by content:
+- **Exactly one of `vocabularyItemId` or `grammarConceptId` must be set — never both, never neither.** For most types the assignment is fixed by exercise type; `translation_active` is the one exception, where it depends on content:
 
   | Type | Links to |
   |---|---|
   | `multiple_choice` | `vocabularyItemId` |
   | `fill_blank` | `vocabularyItemId` |
   | `conjugation_drill` | `vocabularyItemId` (the verb being drilled; its forms are part of knowing the word) |
-  | `translation_active` | `vocabularyItemId` |
+  | `translation_active` | `vocabularyItemId` **or** `grammarConceptId` — whichever the exercise's single focus is testing (see below) |
   | `sentence_reorder` | `grammarConceptId` |
   | `error_correction` | `grammarConceptId` |
 
-- **Coverage is a hard MUST.** The bank must include **at least one** exercise for **every vocabulary item** in the module — ideally **two** — and **at least one** for **every grammar concept**. Vocabulary items are covered by vocabulary exercise types; grammar concepts are covered by grammar exercise types. This is enforced by `validate_coverage.py` (Phase 4, Step 1): generation is not done until it exits 0. Aim for two exercises per vocabulary item as you generate, so coverage passes on the first run.
+  For `translation_active`, decide the link by what the exercise is actually testing: if the English prompt's only real challenge is recalling/producing a specific word, link `vocabularyItemId`; if the only real challenge is producing a specific grammatical structure (word order, inversion, negation placement, etc.), link `grammarConceptId` instead. See the "Translation (Active)" section below for authoring guidance on the grammar-linked case.
+
+- **Coverage is a hard MUST, and it now has two independent targets:**
+  - **Baseline (scaffolding) coverage** — every vocabulary item and every grammar concept must have **at least one** exercise of any type. This is the existing floor and stays as-is; aim for two exercises per item so this passes comfortably.
+  - **Production coverage (new, gates practice completion)** — every vocabulary item **and** every grammar concept must additionally have **at least two `translation_active` exercises** each. This is the number that actually matters: the app's practice-completion gate counts correct answers on `translation_active` exercises specifically, so a vocab item or grammar concept with only `multiple_choice`/`fill_blank`/`sentence_reorder`/etc. coverage will never let a user complete practice for it, no matter how many non-`translation_active` exercises exist. Two *distinct* exercises are required (not one exercise reused) so a user's two spaced production reps aren't the same question twice.
+
+  Both checks are enforced by `validate_coverage.py` (Phase 4, Step 1): generation is not done until it exits 0.
+
+  > **Bank-size note:** the production-coverage requirement is a much bigger ask than it looks. A typical A1 module (e.g. ~47 vocab items + ~3 grammar concepts) now needs on the order of **100 `translation_active` exercises** just to satisfy this, versus banks generated under the old rules that had as few as 17. In practice this means the overall exercise bank must grow substantially (roughly 2–3x current sizes) — you cannot hit this by only adding more `translation_active` exercises in isolation; the other exercise types must scale up proportionally too, or they'll fall below their own distribution floors (see the composition table above). `validate_distribution.py` needs no logic change for this — `translation_active` already has no ceiling — but expect noticeably larger banks going forward.
 - `timesShown` is always `0` at generation time.
 - Sentences must reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
 - Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering scaffolds this).
@@ -229,9 +237,13 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 - Store `alternativeAnswers` in natural form (not pre-normalized). The matching engine normalizes before comparing.
 - The English prompt must be unambiguous. If the sentence has two possible readings, constrain it with a context note or rewrite it.
 - At A1–A2, use single-clause sentences. At B1+, the prompt may include two clauses; at C1+, it may include a dependent clause or idiomatic structure.
-- If a vocabulary item carries a `context` note in the data model, scope the prompt and alternatives to that sense (e.g., *stor — physical size*).
+- This type links to **either** `vocabularyItemId` or `grammarConceptId` (see Cross-cutting rules above) — decide which before writing the prompt, since that decision shapes what the sentence must force:
+  - **Vocabulary-focused**: if a vocabulary item carries a `context` note in the data model, scope the prompt and alternatives to that sense (e.g., *stor — physical size*). Any grammar the sentence happens to involve is incidental — pick simple, already-mastered structures so the only real challenge is recalling/producing the target word.
+  - **Grammar-focused**: the English prompt must force the specific structure being tested (e.g. inversion after a fronted adverbial, subordinate-clause word order, negation placement) as an unavoidable, non-incidental part of a correct answer — the same standard `sentence_reorder`/`error_correction` already hold grammar exercises to. A learner must not be able to produce a correct Danish sentence while sidestepping the tested structure (e.g. by choosing a different word order that avoids it). Vocabulary used in the sentence should already be familiar/simple, so the difficulty is isolated to the grammar point, not split across two unknowns.
 
 **JSON output spec**
+
+Vocabulary-focused example:
 ```json
 {
   "type": "translation_active",
@@ -242,6 +254,21 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
   "alternativeAnswers": ["valid paraphrase 1", "valid paraphrase 2"],
   "vocabularyItemId": "<id>",
   "grammarConceptId": null,
+  "timesShown": 0
+}
+```
+
+Grammar-focused example (`vocabularyItemId`/`grammarConceptId` swap — everything else about the shape is identical):
+```json
+{
+  "type": "translation_active",
+  "prompt": "English sentence engineered so a correct answer requires the tested structure",
+  "promptTranslation": null,
+  "answer": "Canonical Danish translation exhibiting the tested structure",
+  "distractors": [],
+  "alternativeAnswers": ["valid paraphrase 1 (still exhibiting the structure)"],
+  "vocabularyItemId": null,
+  "grammarConceptId": "<id>",
   "timesShown": 0
 }
 ```
