@@ -66,7 +66,7 @@ Replace "seen once" with: each vocabulary item and grammar concept must receive 
 
 ### 3.3 Elapsed-time spacing enforcement
 
-Track a `lastCorrectProductionAt` timestamp per item per user. A correct `translation_active` answer only counts as the item's 2nd rep if `now - lastCorrectProductionAt >= practiceProductionSpacingHours` (proposed default: ~18h). If the user answers correctly twice in the same sitting, only the first counts — the item simply stays open and keeps appearing in future session pools. No blocking UI, no message explaining why (silent enforcement, per decision).
+Track a `lastCorrectProductionAt` timestamp per item per user. A correct `translation_active` answer only counts as the item's 2nd rep if `now - lastCorrectProductionAt >= practiceProductionSpacingHours` (proposed default: ~10h). If the user answers correctly twice in the same sitting, only the first counts — the item simply stays open and keeps appearing in future session pools. No blocking UI, no message explaining why (silent enforcement, per decision).
 
 ### 3.4 Grammar concepts join the gate
 
