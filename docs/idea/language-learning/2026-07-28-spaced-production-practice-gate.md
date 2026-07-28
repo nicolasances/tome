@@ -45,8 +45,8 @@ All Tome users progressing through CEFR-level modules. This changes default prac
 | Term | Definition |
 |---|---|
 | Coverage gate (current) | Existing rule: practice is "complete" once every vocab item has appeared in ≥1 exercise, regardless of correctness. Being replaced by this proposal. |
-| Production-type exercise | An exercise type requiring the user to construct an answer from memory rather than recognize/select it. In this proposal, only `translation_active` qualifies. |
-| Recognition-type exercise | `multiple_choice`, `sentence_reorder`, `fill_blank`, `conjugation_drill`, `error_correction` — useful scaffolded practice, but does not clear the completion gate under this proposal. |
+| Production-type exercise | An exercise type requiring the user to construct an answer from memory rather than recognize/select it. In this proposal, only `translation_active` qualifies — for **both** vocabulary items and grammar concepts (see 3.4/3.5). |
+| Recognition-type exercise | For vocabulary: `multiple_choice`, `fill_blank`, `conjugation_drill`. For grammar: `sentence_reorder`, `error_correction`. All remain useful scaffolded practice, but none clear the completion gate under this proposal. |
 | Production rep | One correct answer on a production-type exercise for a given item, counted toward that item's completion. |
 | Spacing threshold | Minimum elapsed time required between an item's counted production reps before the second one counts (e.g. ≥18h). Replaces a calendar-day requirement to avoid timezone/DST edge cases. |
 | `practiceMinUnseenVocabPercent` | Existing config controlling the minimum share of a session's exercises reserved for not-yet-seen items. Proposed to drop from 50% to 25%. |
@@ -72,6 +72,16 @@ Track a `lastCorrectProductionAt` timestamp per item per user. A correct `transl
 
 Grammar concepts get the same production + spacing requirement as vocabulary items, closing the existing gap where grammar has zero enforced practice today.
 
+This requires an architecture change: today `translation_active` exercises always set `vocabularyItemId` and never `grammarConceptId` (fixed 1:1 type→id mapping in the content-generation rules). This proposal loosens that — `translation_active` may set **either** id, chosen by what the exercise's single focus is testing. A grammar-focused `translation_active` exercise must be authored so the English prompt forces the specific structure being tested (e.g. inversion after a fronted adverbial, subordinate-clause word order, negation placement) as an unavoidable part of a correct answer, not an incidental one. This keeps the design symmetric: `sentence_reorder`/`error_correction` become grammar's recognition/scaffold tier, exactly as `multiple_choice`/`fill_blank`/`conjugation_drill` already are for vocabulary — one production type (`translation_active`) sits on top of both.
+
+### 3.5 Content-generation skill changes
+
+The `generate-module-content` skill must change to guarantee the exercise bank can actually satisfy this gate. Concretely, in `.claude/skills/generate-module-content/`:
+
+- **`rules-for-generation.md`**: loosen the type→id mapping table so `translation_active` can link to either id (per 3.4); add authoring guidance for the grammar case; make the coverage rule type-specific — the target becomes **≥2 `translation_active` exercises per vocabulary item AND per grammar concept**, not 2 exercises of any type.
+- **`validate_coverage.py`**: currently counts *any* exercise type toward the per-item target and only requires "≥1 of any type" for grammar concepts. Add a new, additional hard check requiring ≥2 `translation_active` specifically per vocab item and per grammar concept, since that's what this gate actually consumes. Keep the existing "≥1 of any type" check as-is — scaffolded-practice diversity still matters independently.
+- **`validate_distribution.py`**: no logic change, but the per-level `translation_active` floor percentages (10–35%, see the table in `rules-for-generation.md`) need re-checking against the new hard per-item ×2 floor summed across vocab **and** grammar — at A1 in particular (10% floor) the percentage may not translate into enough raw exercises once item counts are typical. A numbers check, not a code change, but may result in raised floors.
+
 ---
 
 ## 4. Data Models
@@ -84,6 +94,8 @@ Grammar concepts get the same production + spacing requirement as vocabulary ite
 | `lastCorrectProductionAt` | timestamp \| null | Timestamp of the last *counted* correct production rep, used for spacing checks. |
 
 **Completion determination:** `practiceCompletedAt` is set once every id in `Module.vocabularyItemIds` and `Module.grammarConceptIds` has `productionCorrectCount >= 2` for that user. The existing `testUnlockDelayHours` delay after `practiceCompletedAt` is unchanged.
+
+**`Exercise` model change:** the invariant "exactly one of `vocabularyItemId` or `grammarConceptId` must be set" is unchanged, but the fixed 1:1 binding between `type` and which id it sets is loosened for `translation_active` only — it may now set either, depending on what the exercise is designed to test (see 3.4). All other exercise types keep their current fixed binding.
 
 **New/changed config values:**
 
@@ -109,11 +121,12 @@ Grammar concepts get the same production + spacing requirement as vocabulary ite
 
 ## 6. Constraints and Assumptions
 
-- **Assumption** — `translation_active` exercises are actually generated/available for grammar concepts today, not just vocabulary items. Unverified; see OQ-01.
+- **Decision** — `translation_active` is extended to link to `grammarConceptId` as well as `vocabularyItemId` (previously vocab-only). This is a deliberate architecture change made during ideation, not an open question — see 3.4/3.5 and OQ-06 for the remaining rollout detail.
 - **Assumption** — two spaced production-correct reps meaningfully improves perceived depth and retention. Grounded in general spaced-repetition/production-effect principles, not validated against Tome's own retention data.
 - **Assumption** — an ~18h elapsed threshold is a good enough proxy for "a separate sitting," without needing calendar-day semantics. Cheap to implement; the exact number may need tuning after real usage data.
 - **Constraint** — `masteryScore` and its update formula remain untouched and unspecified server-side (`tome-ms-language`); this gate is intentionally independent of it.
-- **Constraint** — the exercise bank (~50 exercises/module) must contain enough `translation_active` exercises per item to serve 2 non-adjacent reps without feeling repetitive; unverified, see OQ-02.
+- **Constraint** — the exercise bank (~50 exercises/module) must contain enough `translation_active` exercises per item (vocab and grammar) to serve 2 non-adjacent reps without feeling repetitive; unverified, see OQ-02.
+- **Constraint** — this requires generation-tooling changes (3.5) to ship before or alongside the app-side gate — new modules generated under the old rules won't have enough `translation_active` coverage to ever satisfy this gate.
 - **Constraint** — this changes default behavior for every user with no flagging/rollout mechanism defined yet.
 
 ---
@@ -122,11 +135,12 @@ Grammar concepts get the same production + spacing requirement as vocabulary ite
 
 | # | Question | Options / Notes |
 |---|---|---|
-| OQ-01 | Are `translation_active` exercises currently generated for grammar concepts, or only vocabulary items? | Blocks grammar inclusion (3.4) until confirmed against the actual exercise bank / generation logic. |
+| OQ-01 | Do the current per-level `translation_active` bank percentage floors (`validate_distribution.py`, 10–35%) yield enough raw exercises to hit the new ≥2-per-item hard floor summed across vocab **and** grammar? | Especially at A1 (10% floor). May require raising the floors — a numbers check against typical module item counts, done as part of 3.5. |
 | OQ-02 | Is the per-module exercise bank large enough to reliably serve 2 non-adjacent `translation_active` reps per item? | May require enlarging the bank or generating on demand rather than from a fixed ~50-exercise pool. |
 | OQ-03 | What's the right default for `practiceProductionSpacingHours`? | Candidates: 16h, 18h, 24h. Could start conservative and tune from usage data. |
 | OQ-04 | Should an incorrect `translation_active` answer reset `productionCorrectCount` to 0, or just fail to advance it? | Not decided during ideation — affects how punishing the gate feels. |
 | OQ-05 | Could longer module-completion time hurt engagement (drop-off) instead of improving perceived depth? | Worth monitoring completion-time and drop-off metrics after ship. |
+| OQ-06 | What happens to modules already generated under the old rules, which likely lack enough `translation_active` coverage (especially for grammar, where it didn't exist at all)? | Options: backfill via a bank refresh pass before enabling the gate, or grandfather existing modules under the old coverage gate until refreshed. Not decided during ideation. |
 
 ---
 
@@ -136,7 +150,8 @@ Grammar concepts get the same production + spacing requirement as vocabulary ite
 - **Calendar-day-based spacing** — rejected for timezone/DST/day-boundary complexity (e.g. two reps 4 minutes apart technically spanning midnight); elapsed-hours threshold chosen instead.
 - **Hard-blocking "come back tomorrow" UI** — would fight user motivation instead of channeling it into more (recognition-type) practice.
 - **Per-user/per-level adaptive thresholds** — flat config for v1; revisit if usage data supports personalization.
-- **Including `conjugation_drill`/`error_correction` as production types** — deferred until there's confidence they're a comparably strong signal to `translation_active`.
+- **Including `conjugation_drill`/`sentence_reorder`/`error_correction` as production types** — deferred until there's confidence they're a comparably strong signal to `translation_active`.
+- **Backfilling existing modules' exercise banks as part of this issue** — tracked as OQ-06; treated as a separate rollout decision, not designed here.
 
 ---
 
