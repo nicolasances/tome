@@ -147,10 +147,10 @@ A typical A2 module (~24 vocabulary items, ~2 grammar concepts) needs roughly **
 
 The rung phase is the payoff of this structure and should be visible:
 
-- The practice screen and recap name the current rung — "Practice 3 · Recognition", "Practice 7 · Free production" — so the user understands why the exercises just got harder.
-- The recap's coverage ring switches from module-wide vocabulary coverage to **coverage within the current rung**, with the rung shown alongside ("Rung 2 of 3 · 14 / 26 items").
-- A **rung-complete** state on the practice-complete screen, distinct from today's single Coverage-milestone state: reaching the end of rung 1 or 2 is a real milestone that announces the difficulty step up. The existing milestone state becomes the rung-3 / ladder-complete case, which is where the test-unlock card belongs.
-- `POST .../complete` must return the current rung plus coverage before and after the session, and whether the session completed a rung. This closes the gap documented as *Missing* in `05-practice-session.md` §5.1 / OQ-6 — the current `step2Complete`-only response cannot drive the old→new ring sweep.
+- The recap's coverage ring switches from module-wide vocabulary coverage to two concentric coverage circles: 
+  1. **Rung Progress**: how many rungs out of total 3 rungs
+  2. **Total word coverage in the module** (as before, no change)
+- `POST .../complete` must now also return the current rung, and whether the session completed a rung. This closes the gap documented as *Missing* in `05-practice-session.md` §5.1 / OQ-6 — the current `step2Complete`-only response cannot drive the old→new ring sweep.
 
 ### 3.8 Measured starting position and expected cost
 
