@@ -107,7 +107,7 @@ Session size stays at `practiceSessionSize` (20). Selection, in order:
 2. **Unseen reservation** — unchanged mechanism, per-rung scope: at least `PRACTICE_MIN_UNSEEN_VOCAB_PERCENT` (50%) of the session reserved for items not yet covered *at this rung*. This is what bounds the phase length.
 3. **F08 selection** for the remaining slots over the rung-filtered pool — unchanged `(1 − masteryScore)` weighting plus the recent-miss boost. Items the user has failed sit near mastery 0 and surface naturally.
 4. **Retry queue** — unchanged. Missed exercises are re-presented until correct before the session closes.
-5. **Tail top-up** — when fewer uncovered items remain than would fill a session, do not pad to 20 with pure repetition. Draw the remaining uncovered items and top up from the covered pool to at most `2 × uncoveredCount`, so the phase's last session is short rather than 20 exercises to cover two items.
+5. **No special tail handling** — every session is `practiceSessionSize` (20), including a rung's last. When fewer uncovered items remain than the unseen reservation targets, the reservation simply takes all of them and F08 fills the remaining slots from the rung-filtered pool. This needs no new code: the ≥50% reservation is already a "reserve *up to* N" rule. Repetition in the fill is acceptable (within a rung a repeat is the identical sentence, §6) but is largely moot — the per-rung coverage floor (§3.5) makes the rung pool **≥ the module's item count** (~24 at A2), so a 20-exercise session rarely repeats at all. The only tail requirement is that the remaining uncovered items are included in the pick, which completes the rung.
 
 `ExerciseSelector` (F08) itself needs no change — it receives a pre-filtered pool.
 
@@ -124,32 +124,35 @@ In `tome/.claude/skills/generate-module-content/`:
   |---|---|---|
   | 1 · recognition | ≥ 1 | ≥ 1 |
   | 2 · cued production | ≥ 1 | ≥ 1 |
-  | 3 · free production | ≥ 1 | ≥ 2 |
+  | 3 · free production | ≥ 2 | ≥ 2 |
 
-  The hard floor is ≥1 at every rung: an item with no exercise at a rung can never be covered there, so the phase can never complete. Rung 3 targets 2 because the module test samples the same bank and free production is where variety matters most.
+  The hard floor is ≥1 at rungs 1–2 (an item with no exercise at a rung can never be covered there, so the phase can never complete) and **≥2 at rung 3** (OQ-06). The rung-3 floor is ≥2, not ≥1, because within a rung a repeat is the identical sentence (§6) and the module test samples this same bank: with only one free-production exercise, the test would have to reuse the exact sentence the user drilled, letting them pass by recall rather than production. Two rung-3 exercises guarantee the test can draw a sentence the user did not practise.
 
 - Add authoring guidance for grammar-linked `fill_blank` and `translation_active`.
-- **Demote the CEFR distribution table** (`rules-for-generation.md:26-33`) to advisory. See OQ-01.
+- **Remove the CEFR distribution table** (`rules-for-generation.md:26-33`) from module-content generation — per-rung coverage supersedes it. The table and `validate_distribution.py` are not deleted: they move to the `generate-level-test-bank` skill, which becomes their owner. The level test bank is a ~60-exercise cross-module breadth sample, is **not** rung-structured, and so keeps distribution as its only type-mix control. Resolves OQ-01.
 
-**`validate_coverage.py`** — replace the "≥1 of any type per item" check with per-rung coverage: every item must hold ≥1 exercise at each of the three rungs. Hard gate; generation is not done until it exits 0.
+**`validate_coverage.py`** — replace the "≥1 of any type per item" check with per-rung coverage: every item must hold **≥1 exercise at rungs 1 and 2, and ≥2 at rung 3** (OQ-06). Hard gate; generation is not done until it exits 0.
 
-**`validate_distribution.py`** — demoted to warning-only. It must not fail a bank that satisfies coverage.
+**`validate_distribution.py`** — removed from the module-content pipeline: drop the Phase 4 distribution step and its `SKILL.md` / checklist / `README.md` references. The script itself relocates to `generate-level-test-bank` (which already reuses it), where it stays a hard gate for the level test bank only. Its MC-ceiling exemption logic (`count_coverage_forced_mc`), which existed to reconcile the table against module coverage, is no longer needed on the module side.
 
 ### 3.6 Content regeneration scope
 
 - **A2-05 … A2-08 and all future modules** — regenerate under the new rules before the gate ships. Not yet started, so no progress state to reconcile.
-- **A2-01 … A2-04** — regenerate the banks. Completed or nearly so; regenerated exercise ids leave stale references in `UserVocabularyProgress.exerciseHistory`, which is append-only history and never read for correctness. See OQ-04 for the in-flight module.
+- **A2-01 … A2-04** — regenerate the banks. Regenerated exercise ids leave stale references in `UserVocabularyProgress.exerciseHistory`, which is append-only history and never read for correctness.
+  - **A2-01 … A2-03** — completed (module test passed). The ladder governs only incomplete modules, so these are inert on regeneration: no phase to satisfy, stale ids never read (as with A1, §3.6).
+  - **A2-04 (prod)** — a distinct third state: **practice done, waiting for the module test.** Its old-style `practiceCompletedAt` is set but the module isn't `completed`. On regeneration it is **reset to rung 1**: clear `practiceCompletedAt` (and the derived `testUnlocksAt`), and it re-runs the full ladder from rung 1 before the test unlocks again. This discards already-finished (old-style) practice deliberately, so A2-04 gets the graduated ladder rather than being grandfathered on one-exposure practice. Resolves OQ-04.
 - **A1-01 … A1-12 — untouched, and safe.** Their rung-2 coverage averages 38%, so a rung-2 phase could never complete there — but the ladder only governs modules not yet `completed`, and every A1 module is complete. Re-entering a completed module via "Keep practising" draws exercises with no phase to satisfy, so thin banks are inert rather than blocking.
 
-A typical A2 module (~24 vocabulary items, ~2 grammar concepts) needs roughly **104 exercises** under the §3.5 targets, against ~64 today — about 1.6×. Much of that is redistribution toward rung 2 and grammar-linked exercises rather than net new volume.
+A typical A2 module (~24 vocabulary items, ~2 grammar concepts) needs roughly **130 exercises** under the §3.5 rules — with rung 3 at a ≥2 hard floor (OQ-06) — against ~64 today, about 2×. Much of that is redistribution toward rung 2 and grammar-linked exercises rather than net new volume; the rung-3 floor accounts for the step from ~104 (rung 3 at ≥1) to ~130.
 
 ### 3.7 App-side changes (`tome`)
 
-The rung phase is the payoff of this structure and should be visible:
+The rung phase is the payoff of this structure and should be visible — but **no new screen is introduced**. The existing module-practice recap (end) screen carries the signal:
 
-- The recap's coverage ring switches from module-wide vocabulary coverage to two concentric coverage circles: 
-  1. **Rung Progress**: how many rungs out of total 3 rungs
-  2. **Total word coverage in the module** (as before, no change)
+- There is no dedicated "rung complete" milestone screen and no hard stop. When a session that happens to complete a rung ends, the user sees the ordinary recap screen, with the rung progress reflected in its rings. When they start the next session, it is simply the first of the new rung. When the last session of the last rung finishes, the existing module-test timer starts, exactly as today.
+- The recap's coverage ring switches from a single module-wide vocabulary coverage ring to two concentric rings, **both monotonic — neither ever resets**, which is what keeps the per-rung reset from reading as progress lost (OQ-03):
+  1. **Outer ring — rung coverage**: completed rungs out of 3 (`1/3 → 2/3 → 3/3`). The new ladder signal; only ever climbs.
+  2. **Inner ring — vocabulary coverage**: unchanged from today (distinct items covered / total). It climbs 0→100% during rung 1 and then sits at ~100% for rungs 2–3. This saturation is accepted: the inner ring is the familiar "have I met every word" circle, reused as-is, and the outer ring carries the ladder progress from that point on.
 - `POST .../complete` must now also return the current rung, and whether the session completed a rung. This closes the gap documented as *Missing* in `05-practice-session.md` §5.1 / OQ-6 — the current `step2Complete`-only response cannot drive the old→new ring sweep.
 
 ### 3.8 Measured starting position and expected cost
@@ -226,13 +229,24 @@ No schema change. The per-type constraint on *which* id may be set is relaxed fo
 | US-04 | see which rung I'm on and how far through it I am | I understand why the exercises got harder and how much is left |
 | US-05 | be told when I finish a rung, not only when I finish the whole module | the difficulty step-up is a moment, not a surprise |
 | US-06 | know roughly how many practices a module will take | I can plan, and the module doesn't feel endless |
-| US-07 | have a short final session when only a couple of items are left in a rung | I'm not doing 20 exercises to cover two words |
 
 ---
 
 ## 6. Constraints and Assumptions
 
 - **Decision — rung phases are module-level and strictly sequential.** No per-item rung state. Every item is covered at rung 1 before any rung-2 exercise appears. A per-item ladder was designed and rejected — see §8.
+
+- **Decision (OQ-06) — rung 3 has a ≥2 hard floor, not a target.** Every item must hold ≥2 free-production exercises or generation fails. This guarantees the module test can sample a rung-3 sentence the user did not drill, so the test measures production rather than recall of a single memorised sentence. Accepted cost: an A2 module goes from ~104 to ~130 exercises (~2× today's ~64).
+
+- **Decision (OQ-05) — no tail top-up; every session is a full 20.** The final session of a rung is a normal 20-exercise session: the unseen reservation includes the remaining uncovered items (which completes the rung) and F08 fills the rest from the rung-filtered pool. Dropped because the per-rung coverage floor makes the rung pool ≥ the module's item count, so a full session rarely repeats, and the session-count bound is unaffected by final-session length. Removes the `2 × uncoveredCount` cap and the `uncoveredCount` sizing logic entirely, and supersedes US-07.
+
+- **Decision (OQ-04) — A2-04 is reset to rung 1, not grandfathered.** A2-04 in prod is "practice done, waiting for module test." On regeneration its `practiceCompletedAt` is cleared and it re-runs the full ladder from rung 1. A2-01…A2-03 are completed and therefore inert. A single reset path (clear `practiceCompletedAt` → back to rung 1) covers every non-completed A2 module; no migration of old `vocabularyItemsPracticed` into rung coverage.
+
+- **Decision (OQ-03) — the recap shows two concentric rings, both monotonic.** Outer = rung coverage (`1/3 → 3/3`), inner = vocabulary coverage unchanged from today (saturating at ~100% after rung 1). Because neither ring resets, no separate `covered/(3×items)` module-wide figure is needed to counteract a per-rung reset.
+
+- **Decision (OQ-02) — rung boundaries introduce no new screen and no hard stop.** The existing module-practice recap screen is reused; its rung ring (§3.7) is how the user sees a rung tick over. The next session is the first of the new rung with no gate between them, and the last session of the last rung starts the test timer as today. The hard-break/spacing variant stays deferred to §9.
+
+- **Decision (OQ-01) — the CEFR distribution table is removed from module-content generation, not demoted.** Per-rung coverage is a stronger, more direct guarantee than a type-percentage table, and the table's grammar:vocab assumptions don't survive the actual ~2:24 ratio. The table and `validate_distribution.py` are not deleted — they move to the out-of-scope `generate-level-test-bank` skill, which is not rung-structured and keeps distribution as its only type-mix control. Scope of removal is deliberately module-content-only.
 
 - **Decision — coverage is exposure-based, and the practice gate does not measure recall.** An item is covered at a rung once served there; the session retry queue guarantees it ends answered correctly. The **module test's 80% pass threshold is the assessment**; practice's job is graduated, thorough repetition. Trying to make the practice gate also measure recall (by requiring first-attempt-correct advancement) was explored and rejected — it introduces stuck items and an unbounded practice count for no gain the test doesn't already provide.
 
@@ -254,14 +268,16 @@ No schema change. The per-type constraint on *which* id may be set is relaxed fo
 
 ## 7. Open Questions
 
-| # | Question | Options / Notes |
+All open questions are resolved; the decisions live in §6.
+
+| # | Question | Resolution |
 |---|---|---|
-| OQ-01 | The CEFR distribution table cannot coexist with per-item-per-rung coverage. Demote it, or change the content shape? | A compliant A2 bank lands at roughly `multiple_choice` 25%, `translation_active` 46%, `sentence_reorder` **2%**, `error_correction` **2%** — against table targets of 8–12% for the latter two. The table implicitly assumed a far higher grammar:vocab ratio than the actual ~2:24. Proposed: demote to advisory. Alternative: raise grammar concepts per module to 5–6, which fixes the ratio but changes the curriculum, not just the tooling. |
-| OQ-02 | Should the rung phase boundary be visible as a hard stop, or just a labelled milestone? | §3.7 assumes a milestone screen the user passes through. A harder break ("Rung 1 complete — come back for production practice") would add spacing between rungs, closer to real spaced repetition, at the cost of blocking a user with momentum. |
-| OQ-03 | Does the recap's per-rung ring need a module-wide progress figure alongside it? | Per-rung coverage resets to 0% at each rung transition, which will read as progress *lost* unless a module-wide figure (e.g. `covered / (3 × items)`) sits next to it. |
-| OQ-04 | How is the in-progress A2 module handled when its bank is regenerated? | "Done A2 until module 04" is ambiguous — if A2-04 is mid-practice, its `vocabularyItemsPracticed` has no per-rung equivalent. Simplest for a single user: reset that module's practice progress and let it re-run from rung 1. Confirm which module is actually in flight. |
-| OQ-05 | Does the tail top-up cap of `2 × uncoveredCount` (§3.4) produce sensible session lengths? | Picked by reasoning, not measurement. With two items left it yields ~4–6 exercises; the concern is whether that reads as a session at all, or should be merged into the previous one. |
-| OQ-06 | Should rung 3 require ≥2 exercises per item as a hard floor rather than a target? | Hard floor at ≥2 raises an A2 module from ~104 to ~130 exercises. Matters mainly because the module test samples the same bank and free production is where variety is most valuable. |
+| OQ-01 | CEFR distribution table vs. per-item-per-rung coverage | **Removed** from module-content generation (not demoted). Table + `validate_distribution.py` move to `generate-level-test-bank`, which keeps them. §3.5, §6. |
+| OQ-02 | Rung boundary: hard stop or milestone screen? | **Neither** — no new screen, no hard stop. The existing recap screen carries the rung signal. §3.7, §6. |
+| OQ-03 | Does the per-rung ring need a module-wide figure? | **No** — two concentric rings, both monotonic (outer = rungs 1/3→3/3, inner = vocab coverage as today). Nothing resets. §3.7, §6. |
+| OQ-04 | In-flight A2 module on regeneration | A2-04 (practice done, awaiting test) is **reset to rung 1**; A2-01…A2-03 are completed and inert. §3.6, §6. |
+| OQ-05 | Tail top-up session length | **Dropped** — every session is a full 20; the uncovered items are guaranteed in the pick, F08 fills the rest. §3.4, §6, §8. |
+| OQ-06 | Rung 3 ≥2 as hard floor or target? | **Hard floor ≥2.** Guarantees the test can sample an un-drilled free-production sentence. Cost ~104→~130 exercises/A2 module. §3.5, §6. |
 
 ---
 
@@ -271,6 +287,7 @@ No schema change. The per-type constraint on *which* id may be set is relaxed fo
 - **First-attempt-correct advancement** — requiring a rung to be cleared by a correct answer *before* the answer is revealed, so the gate measures recall rather than exposure. Rejected: it makes items stuck-able and the practice count unbounded, and the module test already measures recall at 80%. Its only real argument was that exposure-based coverage lets the retry queue launder failure into progress — true, but that's acceptable when the gate's job is thoroughness.
 - **Mercy caps, stuck-item allowances, terminal consolidation passes** — all machinery for bounding an earned-advancement ladder. Unnecessary once advancement is exposure-based.
 - **Unifying the ladder with `masteryScore`** — a properly type-weighted mastery score would make a separate structure unnecessary. Rejected for v1: it means rewriting `SrsAlgorithm.ts` and redefining "mastered" globally, affecting F08, F21's weak-areas report, and every stored progress record. §9 keeps it as the long-term direction.
+- **Tail top-up / short final sessions** — an earlier design shortened a rung's last session to ~`2 × uncoveredCount` exercises rather than pad to 20. Dropped (OQ-05): the per-rung coverage floor makes the rung pool ≥ the module's item count, so a full 20-exercise session rarely repeats anyway, and the session-count bound doesn't depend on final-session length. A normal 20 with the uncovered items guaranteed in the pick is simpler and removes a config knob.
 - **Generating rung-3 exercises on demand with AI** — unlimited prompt variety, but puts an AI call in the practice hot path against the bounded-cost rule in `idea.md` §3.4.3.
 - **Regenerating A1 banks** — unnecessary, not just deprioritised: the ladder only governs incomplete modules and all A1 modules are complete (§3.6).
 - **Elapsed-time spacing between rungs** — an earlier iteration required ~18h between production reps. Dropped: it forces multi-day module completion regardless of how well the user is doing. OQ-02 keeps a softer version alive.
