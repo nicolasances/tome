@@ -36,7 +36,7 @@ Starting from a curriculum that provides the list of modules of the language cou
 You will follow 5 phases. Each phase ends with a **self-validation** step. Do not advance until the current phase passes its checklist. No human review is required (per idea.md §3.1.3) — you are responsible for validating your own output against the data model and rules. Surface a one-line summary to the user at the end of each phase.
 
 ```
-GENERATE VOCABULARY ITEMS > GENERATE GRAMMAR CONCEPTS > GENERATE EXERCISES > COVERAGE & DISTRIBUTION QA > GENERATE MODULE
+GENERATE VOCABULARY ITEMS > GENERATE GRAMMAR CONCEPTS > GENERATE EXERCISES > COVERAGE QA > GENERATE MODULE
 ```
 
 First, **locate the target module's shell** in `default-modules.md` (theme, communication goal, grammar focus, vocabulary focus). This shell is your specification for all three phases.
@@ -162,7 +162,7 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 - Read the generated grammar concepts in `<user-specified-folder>/<module>/<module>-grammar.json`.
 - Generate the exercise bank. You **MUST** follow every rule in `rules-for-generation.md` (bundled with this skill) — this is **important**. Use `module-examples.md` as the style reference.
 - Every `vocabularyItemId` and `grammarConceptId` in an exercise **must** reference an `id` that exists in the files from Phases 1–2. Never invent ids here.
-- **Coverage requirement (MUST):** **every** vocabulary item must have **at least one** exercise — ideally **two** — and **every** grammar concept must have at least one (idea.md §3.1.3). This is a hard requirement, enforced by `validate_coverage.py` in Phase 4; the bank is not complete until the script exits 0. Bank size emerges from coverage, not a fixed target — aim for two exercises per vocabulary item from the start so Phase 4 passes cleanly.
+- **Coverage requirement (MUST), per rung of the practice ladder:** every vocabulary item and every grammar concept must hold **≥1 exercise at rung 1 (recognition), ≥1 at rung 2 (cued production), and ≥2 at rung 3 (free production)** — see the rung table and coverage table in `rules-for-generation.md`. This is a hard requirement, enforced by `validate_coverage.py` in Phase 4; the bank is not complete until the script exits 0. Bank size emerges from coverage, not a fixed target — aim to hit every rung's floor for every item from the start so Phase 4 passes cleanly. A typical A2 module (~24 vocab items, ~2 grammar concepts) needs roughly 130 exercises under these rules.
 
 **Expected file:** `<user-specified-folder>/<module>/<module>-exercises.json`.
 
@@ -170,74 +170,42 @@ The script outputs a JSON array of `{"name": ..., "id": ...}` pairs. Use those i
 - Every exercise has `moduleId` set to the module's id (e.g. `danish-A2-02`). Never `null` — level-test exercises use a separate generation path not covered by this skill.
 - Exactly one of `vocabularyItemId` / `grammarConceptId` set per exercise, per the type→link table in `rules-for-generation.md`.
 - Every referenced id exists in the Phase 1/2 files.
-- Every vocab item has ≥1 exercise (target: 2) and every grammar concept has ≥1 exercise. This is verified by `validate_coverage.py` in Phase 4 — do not rely on a manual count.
+- Every vocab item and every grammar concept has ≥1 exercise at rung 1, ≥1 at rung 2, and ≥2 at rung 3 — see the rung table in `rules-for-generation.md`. This is verified by `validate_coverage.py` in Phase 4 — do not rely on a manual count.
 - `timesShown` is `0` everywhere.
 - `translation_active`: `alternativeAnswers` covers word-order variants and paraphrases; canonical `answer` is the most natural spoken form.
 - `sentence_reorder`: if multiple word orderings are valid, canonical `answer` is the most natural spoken form and `alternativeAnswers` lists the others; `words` is unchanged (same tiles).
 - `error_correction`: if the corrected sentence admits multiple word orders, canonical `answer` is the most natural spoken form and `alternativeAnswers` lists the others.
 - `fill_blank`, `multiple_choice`, `conjugation_drill`: `alternativeAnswers` is always `[]`.
 - Every `sentence_reorder` exercise has a `words` array (shuffled tokens, no trailing punctuation) and its `prompt` is the English translation; `promptTranslation` is `null`.
-- Bank composition falls within the CEFR-level distribution targets in `rules-for-generation.md`. If the coverage requirement forces a type over its ceiling, note it explicitly.
+- Every `fill_blank` and `translation_active` exercise sets exactly one of `vocabularyItemId` / `grammarConceptId`, per whichever it actually tests; a grammar-linked one makes the structure unavoidable in a correct answer.
 
 ---
 
-### Phase 4: Coverage & Distribution QA
+### Phase 4: Coverage QA
 
-Two hard gates run against the generated exercise bank, in order. **Do not mark the module complete until both scripts exit 0.** Coverage runs first — a bank that fails coverage must be fixed before distribution matters.
+One hard gate runs against the generated exercise bank. **Do not mark the module complete until the script exits 0.**
 
-#### Step 1 — Coverage gate (MUST)
+#### Coverage gate (MUST)
 
-Verify that every vocabulary item has at least one exercise (target: two) and every grammar concept has at least one. This is the binding requirement from idea.md §3.1.3.
+Verify that every vocabulary item and every grammar concept meets the per-rung hard floor: ≥1 exercise at rung 1, ≥1 at rung 2, ≥2 at rung 3 (`rules-for-generation.md`).
 
 ```bash
 python3 .claude/skills/generate-module-content/validate_coverage.py \
   <module> <user-specified-folder>/<module>/<module>-exercises.json
 ```
 
-The script auto-detects the sibling `<module>-vocabulary.json` and `<module>-grammar.json`.
+The script auto-detects the sibling `<module>-vocabulary.json` and `<module>-grammar.json`, and derives each exercise's rung from its `type`.
 
 **Reading the output:**
 
 | Result | Meaning | Action |
 |---|---|---|
-| `PASS` (full coverage) | Every vocab item has ≥2 exercises; every grammar concept ≥1 | Done |
-| `PASS` (with WARN) | Every vocab item has ≥1 exercise, but some have only 1 (below the target of 2) | Add a second exercise for the listed items where the type distribution allows; acceptable to proceed if distribution targets would otherwise break |
-| `FAIL` | One or more vocab items or grammar concepts have **zero** exercises, or an exercise references a non-existent id | **MUST fix.** Generate the missing exercises (valid id references only), then rerun. Repeat until exit 0 |
+| `PASS` | Every vocab item and grammar concept meets the hard floor at all three rungs | Done |
+| `FAIL` | One or more items are below the floor at some rung, or an exercise references a non-existent id / carries an unrecognised type | **MUST fix.** Generate the missing exercises at the listed rung (valid id references only), then rerun. Repeat until exit 0 |
 
-**This loop is mandatory:** if the script exits 1, generate the missing exercises and rerun. Do not advance to Step 2, Phase 5, or declare the module complete while coverage FAILs. To additionally enforce the two-per-item target as a hard gate, run with `--strict` (optionally `--target N`).
+**This loop is mandatory:** if the script exits 1, generate the missing exercises and rerun. Do not advance to Phase 5 or declare the module complete while coverage FAILs.
 
-#### Step 2 — Distribution QA
-
-Once coverage passes, verify the exercise-type distribution against the CEFR-level targets.
-
-```bash
-python3 .claude/skills/generate-module-content/validate_distribution.py \
-  <module> <cefrLevel> <user-specified-folder>/<module>/<module>-exercises.json
-```
-
-**Reading the output:**
-
-| Result | Meaning | Action |
-|---|---|---|
-| `PASS` | All type percentages within targets | Done |
-| `PASS with WARN` | MC over ceiling but fully explained by coverage-forced exercises | Done — note the warning in your summary to the user |
-| `FAIL` | One or more types outside target range | Fix, then rerun |
-
-**How to fix a FAIL:**
-
-The script prints a "Required corrections" block with exact counts, e.g.:
-
-```
-✗ multiple_choice: 69.1% (target ≤ 45%) — replace ~14 with other types
-✗ translation_active: 7.3% (target ≥ 10%) — add ~2 more exercises of this type
-```
-
-- For surplus types: select exercises of that type that test vocabulary items already covered by other types; replace them with the deficit type(s), keeping the same `vocabularyItemId` or `grammarConceptId`.
-- For deficit types: generate new exercises of that type for vocabulary items or grammar concepts that are under-represented.
-- Do not add exercises without a valid id reference — every `vocabularyItemId` and `grammarConceptId` must still exist in the Phase 1/2 files.
-- After editing the exercises file, rerun the script. Repeat until exit 0.
-
-**Surface to the user:** one line per gate — e.g. `Coverage: PASS (24/24 vocab items, 18 at target 2)` and `Distribution QA: PASS (55 exercises)`, or `Coverage: FAIL (2 uncovered) → corrected → PASS`.
+**Surface to the user:** one line, e.g. `Coverage: PASS (24/24 items covered at all 3 rungs, 132 exercises)`, or `Coverage: FAIL (2 items below rung-2 floor) → corrected → PASS`.
 
 ---
 
@@ -314,8 +282,7 @@ Surface a one-line summary to the user: e.g. `Module: danish-A2-02 written (23 v
 - Writing any code other than running `generate_ids.py` to mint ids.
 - Generating exercises before vocabulary items and grammar concepts exist.
 - Generating exercises whose `vocabularyItemId` / `grammarConceptId` do not exist in the Phase 1/2 files.
-- Declaring the module complete while `validate_coverage.py` (Phase 4, Step 1) still FAILs — leaving any vocabulary item or grammar concept with zero exercises is a hard violation.
-- Declaring the module complete without running `validate_distribution.py` (Phase 4, Step 2).
+- Declaring the module complete while `validate_coverage.py` (Phase 4) still FAILs — leaving any vocabulary item or grammar concept below the per-rung hard floor (≥1 at rungs 1–2, ≥2 at rung 3) is a hard violation.
 - Writing `vocabularyItemIds` or `grammarConceptIds` by hand in Phase 5 instead of using `extract_module_ids.py`.
 - Inventing JSON fields not present in `data-model.md`.
 - Producing grammar concepts without an `explanation` and `examples`.

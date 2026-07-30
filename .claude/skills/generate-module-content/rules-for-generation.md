@@ -17,43 +17,70 @@ If the vocabulary or grammar concepts for the target module have not yet been ge
 
 ---
 
-## Exercise bank composition by CEFR level
+## The practice ladder: rung → exercise-type mapping
 
-The bank's distribution across exercise types must respect the targets below. These are **bank-level targets**, not per-exercise quotas — hit the range across the full bank, not on every individual exercise.
+Module practice runs as three sequential rung phases of increasing difficulty (issue #321;
+design: `docs/idea/language-learning/2026-07-29-practice-ladder.md`). The exercise bank is
+organised around this ladder — every vocabulary item and every grammar concept must be
+coverable at all three rungs.
 
-The progression reflects a deliberate pedagogical shift: at A1 recognition is appropriate while production skills are being bootstrapped; by C2 production should dominate and multiple choice is nearly useless.
+| Rung | Name | What it demands | Vocabulary types | Grammar types |
+|---|---|---|---|---|
+| 1 | Recognition | Select or assemble from provided material | `multiple_choice` | `sentence_reorder` |
+| 2 | Cued production | Produce a form, heavily constrained by context | `fill_blank`, `conjugation_drill` | `fill_blank` |
+| 3 | Free production | Produce from meaning alone | `translation_active` | `error_correction`, `translation_active` |
 
-| Level | `multiple_choice` | `fill_blank` | `sentence_reorder` | `conjugation_drill` | `error_correction` | `translation_active` |
-|---|---|---|---|---|---|---|
-| A1 | ≤ 45% | 10–15% | 8–12% | 8–12% | 5–10% | ≥ 10% |
-| A2 | ≤ 35% | 12–18% | 8–12% | 8–12% | 8–12% | ≥ 15% |
-| B1 | ≤ 25% | 15–20% | 10–15% | 10–15% | 10–15% | ≥ 20% |
-| B2 | ≤ 20% | 15–20% | 10–15% | 8–12% | 12–18% | ≥ 25% |
-| C1 | ≤ 15% | 15–20% | 10–15% | 5–10% | 15–20% | ≥ 30% |
-| C2 | ≤ 10% | 15–20% | 10–15% | 5–8% | 15–20% | ≥ 35% |
+`sentence_reorder` sits at rung 1 deliberately: the word tiles are supplied, so it is assembly,
+not production. This mapping is why the type→id binding below is loosened for `fill_blank` and
+`translation_active` — under a fixed one-type-one-id-field table, grammar would have no rung-2
+type at all, and a three-rung ladder covering grammar would not be expressible.
 
-**Notes:**
-- The percentages in a row do not sum to 100 — ranges overlap intentionally. The distribution should land within all stated bounds simultaneously; adjust proportions to fit.
-- At C1–C2, `conjugation_drill` is limited because regular conjugation is already mastered; target irregular or register-specific forms only.
-- The coverage requirement (≥1 exercise per vocabulary item — target 2 — and ≥1 per grammar concept) takes precedence. If a module has many vocabulary items, meeting coverage may push `multiple_choice` above the ceiling — flag this in the self-validation note rather than leaving items uncovered. Coverage is the hard gate; distribution targets yield to it.
+There is no CEFR-level distribution table here — per-rung coverage (below) is the bank's only
+composition control for module content. (The distribution table still exists for the
+cross-module **level test bank**, which is not rung-structured — see the `generate-level-test-bank`
+skill.)
 
 ---
 
 ## Cross-cutting rules (all exercise types)
 
 - Always set `type` to the correct string value: `multiple_choice`, `fill_blank`, `sentence_reorder`, `conjugation_drill`, `error_correction`, or `translation_active`.
-- **Exactly one of `vocabularyItemId` or `grammarConceptId` must be set — never both, never neither.** The assignment is determined by exercise type, not by content:
+- **Exactly one of `vocabularyItemId` or `grammarConceptId` must be set — never both, never neither.** For most types the assignment is fixed by exercise type; `fill_blank` and `translation_active` may link to **either**, chosen by what the exercise actually tests:
 
   | Type | Links to |
   |---|---|
   | `multiple_choice` | `vocabularyItemId` |
-  | `fill_blank` | `vocabularyItemId` |
+  | `fill_blank` | `vocabularyItemId` **or** `grammarConceptId` — whichever the exercise tests |
   | `conjugation_drill` | `vocabularyItemId` (the verb being drilled; its forms are part of knowing the word) |
-  | `translation_active` | `vocabularyItemId` |
+  | `translation_active` | `vocabularyItemId` **or** `grammarConceptId` — whichever the exercise tests |
   | `sentence_reorder` | `grammarConceptId` |
   | `error_correction` | `grammarConceptId` |
 
-- **Coverage is a hard MUST.** The bank must include **at least one** exercise for **every vocabulary item** in the module — ideally **two** — and **at least one** for **every grammar concept**. Vocabulary items are covered by vocabulary exercise types; grammar concepts are covered by grammar exercise types. This is enforced by `validate_coverage.py` (Phase 4, Step 1): generation is not done until it exits 0. Aim for two exercises per vocabulary item as you generate, so coverage passes on the first run.
+  **Authoring a grammar-linked `fill_blank` or `translation_active`:** the grammar structure
+  under test must be **unavoidable** in a correct answer — a fronted adverbial forcing
+  inversion, a subordinate clause forcing word order, a blank placed where negation must land —
+  not incidental to it. If a competent answer could sidestep the structure entirely, the
+  exercise doesn't test the concept and should link to a vocabulary item instead (or be
+  rewritten so the structure is forced).
+
+- **Coverage is a hard MUST, per rung.** Every vocabulary item and every grammar concept must
+  hold, at minimum:
+
+  | Rung | Hard floor | Target |
+  |---|---|---|
+  | 1 · recognition | ≥ 1 | ≥ 1 |
+  | 2 · cued production | ≥ 1 | ≥ 1 |
+  | 3 · free production | ≥ 2 | ≥ 2 |
+
+  The floor is ≥1 at rungs 1–2 — an item with no exercise at a rung can never be covered there,
+  so that rung phase can never complete for the module. The floor is **≥2 at rung 3**: exercise
+  content is fixed once inserted, so within a rung a repeat is the identical sentence, and the
+  module test samples this same bank. With only one free-production exercise, the test would
+  have to reuse the exact sentence the user drilled, letting them pass by recall rather than
+  production; two rung-3 exercises guarantee the test can draw a sentence the user didn't
+  practise. This is enforced by `validate_coverage.py` (Phase 4, Step 1): generation is not done
+  until it exits 0. Aim to hit every rung's target as you generate, so coverage passes on the
+  first run.
 - `timesShown` is always `0` at generation time.
 - Sentences must reflect the module's theme and CEFR register — a B2 business module should not produce A1-sounding sentences.
 - Use vocabulary the learner has already seen earlier in the session (the Multiple Choice → Translation ordering scaffolds this).
@@ -139,8 +166,9 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 - The sentence context must constrain the answer to exactly one correct form. If two different words or inflections are both valid in the blank, rewrite the exercise.
 - When the task is inflection (not lexical choice), include a form hint in parentheses: the infinitive, e.g., *(spise)*, optionally with the tense, e.g., *(spise, preterite)*.
 - The blank should not be the first word of the sentence — an unconstrained opening provides too little context.
+- **Vocabulary-linked vs. grammar-linked:** most `fill_blank` exercises link to `vocabularyItemId` (testing a word). A `fill_blank` may instead link to `grammarConceptId` when it is rung 2 for a grammar concept — in that case the blank must force the structure under test (see the authoring guidance above), not just any word choice. Exactly one of the two ids is set, matching whichever the exercise actually tests.
 
-**JSON output spec**
+**JSON output spec (vocabulary-linked)**
 ```json
 {
   "type": "fill_blank",
@@ -151,6 +179,21 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
   "alternativeAnswers": [],
   "vocabularyItemId": "<id>",
   "grammarConceptId": null,
+  "timesShown": 0
+}
+```
+
+**JSON output spec (grammar-linked — rung 2 for a grammar concept)**
+```json
+{
+  "type": "fill_blank",
+  "prompt": "Danish sentence with ___ marking the blank, structured so the blank can only be filled correctly by applying the grammar concept",
+  "promptTranslation": "Full English sentence with the target word included (no ___)",
+  "answer": "The correct Danish word or inflected form that demonstrates the concept",
+  "distractors": [],
+  "alternativeAnswers": [],
+  "vocabularyItemId": null,
+  "grammarConceptId": "<id>",
   "timesShown": 0
 }
 ```
@@ -230,8 +273,9 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
 - The English prompt must be unambiguous. If the sentence has two possible readings, constrain it with a context note or rewrite it.
 - At A1–A2, use single-clause sentences. At B1+, the prompt may include two clauses; at C1+, it may include a dependent clause or idiomatic structure.
 - If a vocabulary item carries a `context` note in the data model, scope the prompt and alternatives to that sense (e.g., *stor — physical size*).
+- **Vocabulary-linked vs. grammar-linked:** most `translation_active` exercises link to `vocabularyItemId` (free production of a word). A `translation_active` may instead link to `grammarConceptId` when it is rung 3 for a grammar concept — in that case the English prompt must make the structure under test **unavoidable** in a correct translation (see the authoring guidance above), not just any correct Danish rendering. Exactly one of the two ids is set, matching whichever the exercise actually tests.
 
-**JSON output spec**
+**JSON output spec (vocabulary-linked)**
 ```json
 {
   "type": "translation_active",
@@ -242,6 +286,21 @@ The progression reflects a deliberate pedagogical shift: at A1 recognition is ap
   "alternativeAnswers": ["valid paraphrase 1", "valid paraphrase 2"],
   "vocabularyItemId": "<id>",
   "grammarConceptId": null,
+  "timesShown": 0
+}
+```
+
+**JSON output spec (grammar-linked — rung 3 for a grammar concept)**
+```json
+{
+  "type": "translation_active",
+  "prompt": "English sentence whose only natural Danish translation applies the grammar concept",
+  "promptTranslation": null,
+  "answer": "Canonical Danish translation demonstrating the concept",
+  "distractors": [],
+  "alternativeAnswers": ["valid paraphrase 1", "valid paraphrase 2"],
+  "vocabularyItemId": null,
+  "grammarConceptId": "<id>",
   "timesShown": 0
 }
 ```
