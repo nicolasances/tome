@@ -6,13 +6,16 @@ import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 export interface PracticeCompleteProps {
-    step2Complete: boolean;
+    ladderCompleted: boolean;
     moduleTitle: string;
     moduleNumber: string;
     coverageBeforePct: number;
     coverageAfterPct: number;
     practicedWords: number;
     totalWords: number;
+    rungsCompletedBefore: number;
+    rungsCompletedAfter: number;
+    currentRung: number;
     answered: number;
     firstTryMastered: number;
     testUnlocksAt: string | null;
@@ -23,30 +26,55 @@ export interface PracticeCompleteProps {
 
 // ── Shared primitives ─────────────────────────────────────────────────────────
 
-function AnimRing({from, to}: {from: number, to: number}) {
-    const size = 188, stroke = 15;
-    const r = (size - stroke) / 2;
-    const circ = 2 * Math.PI * r;
-    const [p, setP] = useState(from);
+const LAST_RUNG = 3;
+const RUNG_NAMES: Record<number, string> = { 1: 'Recognition', 2: 'Cued production', 3: 'Free production' };
+
+/**
+ * Two concentric rings: outer = rungs completed out of 3 (the ladder signal, only ever
+ * climbs), inner = module vocabulary coverage (climbs 0->100% during rung 1, then sits
+ * near 100% for rungs 2-3). Neither ring ever resets across a rung-phase transition.
+ */
+function AnimRing({rungsCompletedFrom, rungsCompletedTo, currentRung, vocabFrom, vocabTo}: {rungsCompletedFrom: number, rungsCompletedTo: number, currentRung: number, vocabFrom: number, vocabTo: number}) {
+    const size = 188;
+    const outerStroke = 13, innerStroke = 11, gap = 6;
+    const outerR = (size - outerStroke) / 2;
+    const innerR = outerR - outerStroke / 2 - gap - innerStroke / 2;
+    const outerCirc = 2 * Math.PI * outerR;
+    const innerCirc = 2 * Math.PI * innerR;
+
+    const outerFrom = rungsCompletedFrom / LAST_RUNG;
+    const outerTo = rungsCompletedTo / LAST_RUNG;
+
+    const [outerP, setOuterP] = useState(outerFrom);
+    const [innerP, setInnerP] = useState(vocabFrom);
 
     useEffect(() => {
-        const t = setTimeout(() => setP(to), 90);
+        const t = setTimeout(() => { setOuterP(outerTo); setInnerP(vocabTo); }, 90);
         return () => clearTimeout(t);
-    }, [to]);
+    }, [outerTo, vocabTo]);
 
     return (
         <div className="relative" style={{ width: size, height: size }}>
             <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
-                <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#0891b2" strokeWidth={stroke} />
-                <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#bef264" strokeWidth={stroke}
-                    strokeDasharray={circ} strokeDashoffset={circ * (1 - p)} strokeLinecap="round"
+                <circle cx={size / 2} cy={size / 2} r={outerR} fill="none" stroke="#0891b2" strokeWidth={outerStroke} />
+                <circle cx={size / 2} cy={size / 2} r={outerR} fill="none" stroke="#bef264" strokeWidth={outerStroke}
+                    strokeDasharray={outerCirc} strokeDashoffset={outerCirc * (1 - outerP)} strokeLinecap="round"
                     style={{ transition: 'stroke-dashoffset 720ms cubic-bezier(0.22,1,0.36,1)' }} />
+                <circle cx={size / 2} cy={size / 2} r={innerR} fill="none" stroke="#0891b2" strokeWidth={innerStroke} opacity={0.45} />
+                <circle cx={size / 2} cy={size / 2} r={innerR} fill="none" stroke="#67e8f9" strokeWidth={innerStroke}
+                    strokeDasharray={innerCirc} strokeDashoffset={innerCirc * (1 - innerP)} strokeLinecap="round"
+                    style={{ transition: 'stroke-dashoffset 720ms cubic-bezier(0.22,1,0.36,1) 120ms' }} />
             </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
-                <span className="font-bold text-black leading-none" style={{ fontSize: 50 }}>
-                    {Math.round(to * 100)}<span className="text-2xl">%</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+                <span className="font-bold text-black leading-none" style={{ fontSize: 38 }}>
+                    {rungsCompletedTo}<span className="text-xl">/{LAST_RUNG}</span>
                 </span>
-                <span className="text-base font-bold text-black/50">module covered</span>
+                <span className="text-xs font-bold text-black/50 uppercase tracking-wide text-center px-4 leading-tight">
+                    Rung {currentRung} · {RUNG_NAMES[currentRung] ?? ''}
+                </span>
+                <span className="text-sm font-semibold text-black/40">
+                    {Math.round(vocabTo * 100)}% words
+                </span>
             </div>
         </div>
     );
@@ -106,7 +134,8 @@ function MiniStat({value, label, green = false, delay = 0}: {value: string, labe
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function deriveHeadline(accuracy: number): { headline: string; subline: string } {
+function deriveHeadline(accuracy: number, rungJustCompleted: boolean): { headline: string; subline: string } {
+    if (rungJustCompleted) return { headline: 'Rung complete!', subline: 'Time to level up — the exercises get harder from here.' };
     if (accuracy >= 0.85) return { headline: 'Strong round!', subline: 'Great momentum — keep it up.' };
     if (accuracy >= 0.60) return { headline: 'Round complete', subline: 'A little more practice and the test unlocks.' };
     return { headline: 'Keep going!', subline: "Every round builds the foundation. You've got this." };
@@ -125,9 +154,10 @@ function formatUnlockLabel(testUnlocksAt: string | null, testUnlockDelayHours: n
 
 // ── Round complete state ───────────────────────────────────────────────────────
 
-function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, answered, firstTryMastered, onPracticeAnother, onBackToModule}: Pick<PracticeCompleteProps, 'moduleNumber' | 'coverageBeforePct' | 'coverageAfterPct' | 'answered' | 'firstTryMastered' | 'onPracticeAnother' | 'onBackToModule'>) {
+function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, rungsCompletedBefore, rungsCompletedAfter, currentRung, answered, firstTryMastered, onPracticeAnother, onBackToModule}: Pick<PracticeCompleteProps, 'moduleNumber' | 'coverageBeforePct' | 'coverageAfterPct' | 'rungsCompletedBefore' | 'rungsCompletedAfter' | 'currentRung' | 'answered' | 'firstTryMastered' | 'onPracticeAnother' | 'onBackToModule'>) {
     const accuracy = answered > 0 ? firstTryMastered / answered : 0;
-    const { headline, subline } = deriveHeadline(accuracy);
+    const rungJustCompleted = rungsCompletedAfter > rungsCompletedBefore;
+    const { headline, subline } = deriveHeadline(accuracy, rungJustCompleted);
     const accuracyPct = `${Math.round(accuracy * 100)}%`;
 
     return (
@@ -138,7 +168,7 @@ function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, answe
 
             <div className="relative mt-4">
                 <SparkBurst radius={118} />
-                <AnimRing from={coverageBeforePct} to={coverageAfterPct} />
+                <AnimRing rungsCompletedFrom={rungsCompletedBefore} rungsCompletedTo={rungsCompletedAfter} currentRung={currentRung} vocabFrom={coverageBeforePct} vocabTo={coverageAfterPct} />
             </div>
 
             <p className="text-3xl font-bold text-black mt-5 anim-pc-rise" style={{ animationDelay: '120ms' }}>
@@ -239,11 +269,11 @@ function CoverageMilestone({moduleTitle, coverageBeforePct, practicedWords, tota
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export function PracticeComplete(props: PracticeCompleteProps) {
-    const { step2Complete, ...rest } = props;
+    const { ladderCompleted, ...rest } = props;
 
     return (
         <div className="flex flex-1 flex-col overflow-y-auto no-scrollbar">
-            {step2Complete
+            {ladderCompleted
                 ? <CoverageMilestone {...rest} />
                 : <RoundComplete {...rest} />
             }

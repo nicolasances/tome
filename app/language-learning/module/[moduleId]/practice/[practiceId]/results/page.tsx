@@ -19,11 +19,14 @@ interface RecapData {
     coverageAfterPct: number;
     practicedWords: number;
     totalWords: number;
+    rungsCompletedBefore: number;
+    rungsCompletedAfter: number;
+    currentRung: number;
     answered: number;
     firstTryMastered: number;
     testUnlocksAt: string | null;
     testUnlockDelayHours: number;
-    step2Complete: boolean;
+    ladderCompleted: boolean;
     userId: string;
 }
 
@@ -67,13 +70,20 @@ export default function PracticeResultsPage() {
             const moduleEntry = progress.modules.find(m => m.moduleId === moduleId);
             const moduleIdx   = progress.modules.findIndex(m => m.moduleId === moduleId);
 
-            const practicedWords       = moduleEntry?.vocabularyItemsPracticedCount ?? 0;
-            const totalWords           = module.vocabularyItemIds.length;
-            const coverageAfterPct     = totalWords > 0 ? practicedWords / totalWords : 0;
-            const prevCoveredRaw       = searchParams.get('prevCovered');
-            const prevCoveredCount     = prevCoveredRaw !== null ? parseInt(prevCoveredRaw, 10) : practicedWords;
-            const coverageBeforePct    = totalWords > 0 ? prevCoveredCount / totalWords : 0;
-            const step2Complete        = totalWords > 0 && practicedWords >= totalWords;
+            // Rung/coverage figures come from the query params threaded through by the
+            // practice screen's completeSession() call (POST .../complete response) — the
+            // recap trusts that response rather than re-deriving coverage from GET /me/progress,
+            // which does not carry per-rung state (see 03-module-overview.md §7).
+            const totalWords        = parseInt(searchParams.get('vocabTotalCount') ?? '', 10) || module.vocabularyItemIds.length;
+            const practicedWords    = parseInt(searchParams.get('vocabCoveredCount') ?? '', 10) || 0;
+            const coverageAfterPct  = totalWords > 0 ? practicedWords / totalWords : 0;
+            const prevCoveredRaw    = searchParams.get('prevCovered');
+            const prevCoveredCount  = prevCoveredRaw !== null ? parseInt(prevCoveredRaw, 10) : practicedWords;
+            const coverageBeforePct = totalWords > 0 ? prevCoveredCount / totalWords : 0;
+            const rungsCompletedBefore = parseInt(searchParams.get('rungsCompletedBefore') ?? '', 10) || 0;
+            const rungsCompletedAfter  = parseInt(searchParams.get('rungsCompletedAfter') ?? '', 10) || rungsCompletedBefore;
+            const currentRung          = parseInt(searchParams.get('currentRung') ?? '', 10) || 1;
+            const ladderCompleted      = searchParams.get('ladderCompleted') === 'true';
             const { firstTryMasteredCount } = reconstructSessionState(session);
 
             setRecapData({
@@ -83,11 +93,14 @@ export default function PracticeResultsPage() {
                 coverageAfterPct,
                 practicedWords,
                 totalWords,
+                rungsCompletedBefore,
+                rungsCompletedAfter,
+                currentRung,
                 answered:           session.exercises.length,
                 firstTryMastered:   firstTryMasteredCount,
                 testUnlocksAt:      moduleEntry?.testUnlocksAt ?? null,
                 testUnlockDelayHours: module.testUnlockDelayHours,
-                step2Complete,
+                ladderCompleted,
                 userId:             me.id,
             });
         }
@@ -147,13 +160,16 @@ export default function PracticeResultsPage() {
     return (
         <div className="flex flex-1 flex-col mt-8 items-stretch md:self-center md:max-w-2xl md:w-full">
             <PracticeComplete
-                step2Complete={recapData.step2Complete}
+                ladderCompleted={recapData.ladderCompleted}
                 moduleTitle={recapData.moduleTitle}
                 moduleNumber={recapData.moduleNumber}
                 coverageBeforePct={recapData.coverageBeforePct}
                 coverageAfterPct={recapData.coverageAfterPct}
                 practicedWords={recapData.practicedWords}
                 totalWords={recapData.totalWords}
+                rungsCompletedBefore={recapData.rungsCompletedBefore}
+                rungsCompletedAfter={recapData.rungsCompletedAfter}
+                currentRung={recapData.currentRung}
                 answered={recapData.answered}
                 firstTryMastered={recapData.firstTryMastered}
                 testUnlocksAt={recapData.testUnlocksAt}
