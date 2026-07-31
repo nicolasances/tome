@@ -195,10 +195,17 @@ export default function PracticeSessionPage() {
 
     async function doCompleteSession() {
         try {
-            await new TomePracticeSessionAPI().completeSession(userId, practiceId);
-            router.push(
-                `/language-learning/module/${moduleId}/practice/${practiceId}/results?prevCovered=${prevCoveredCount}`
-            );
+            const result = await new TomePracticeSessionAPI().completeSession(userId, practiceId);
+            const params = new URLSearchParams({
+                prevCovered: String(prevCoveredCount),
+                rungsCompletedBefore: String(result.rungsCompletedBefore),
+                rungsCompletedAfter: String(result.rungsCompletedAfter),
+                currentRung: String(result.currentRung),
+                ladderCompleted: String(result.ladderCompleted),
+                vocabCoveredCount: String(result.vocabularyCoverage.coveredCount),
+                vocabTotalCount: String(result.vocabularyCoverage.totalCount),
+            });
+            router.push(`/language-learning/module/${moduleId}/practice/${practiceId}/results?${params.toString()}`);
         } catch {
             setLoadState('error');
         }

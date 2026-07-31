@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
 """
-Validates the exercise bank distribution against CEFR-level targets.
+Validates an exercise bank's type distribution against CEFR-level targets.
+
+Owned by the generate-level-test-bank skill (Phase 3, Gate 2) — the level test
+bank is a cross-module breadth sample, not rung-structured, so distribution
+stays its only type-mix control. Module content (generate-module-content) uses
+per-rung coverage instead and no longer runs this gate (issue #321).
 
 Usage:
-    python3 validate_distribution.py <module_id> <cefr_level> <exercises_file>
+    python3 validate_distribution.py <label> <cefr_level> <exercises_file>
 
 Arguments:
-    module_id       Module code, e.g. A1-01
+    label           A label for the report header — the level test bank passes
+                    the CEFR level (e.g. A2); a module code also works.
     cefr_level      One of: A1, A2, B1, B2, C1, C2
-    exercises_file  Path to the module's *-exercises.json file
+    exercises_file  Path to the *-exercises.json file being validated.
 
 The vocabulary file is auto-detected as the sibling *-vocabulary.json. If found,
-it enables coverage-exemption detection for multiple_choice.
+it enables coverage-exemption detection for multiple_choice — moot for a level
+test bank, whose exercises file has no such sibling, so the exemption is
+naturally disabled there.
 
 Exit codes:
     0   All checks PASS, or only WARN (coverage-exemption) violations
@@ -128,7 +136,7 @@ def main() -> None:
         print(__doc__, file=sys.stderr)
         sys.exit(1)
 
-    module_id, cefr_level, exercises_file = sys.argv[1], sys.argv[2], sys.argv[3]
+    label, cefr_level, exercises_file = sys.argv[1], sys.argv[2], sys.argv[3]
 
     if cefr_level not in TARGETS:
         print(f"Error: unknown CEFR level '{cefr_level}'. Must be one of: {', '.join(TARGETS)}", file=sys.stderr)
@@ -152,7 +160,7 @@ def main() -> None:
     coverage_forced_mc = count_coverage_forced_mc(exercises, all_vocab_ids) if all_vocab_ids is not None else 0
 
     # ── Header ──────────────────────────────────────────────────────────────
-    print(f"\nExercise Bank Distribution — {module_id} ({cefr_level})")
+    print(f"\nExercise Bank Distribution — {label} ({cefr_level})")
     print(f"Total exercises: {total}")
     if all_vocab_ids is None:
         print("Note: vocabulary file not found — coverage-exemption detection disabled.")

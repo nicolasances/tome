@@ -189,8 +189,40 @@ export interface SubmitAnswerResponse {
     correctAnswer: string;
 }
 
+/** Coverage of one rung at a point in time: how many of the module's practice items are covered. */
+export interface RungCoverageSummary {
+    rung: number;
+    coveredCount: number;
+    totalCount: number;
+}
+
+/** Module-wide coverage of vocabulary items across all rungs — the practice recap's inner ring. */
+export interface VocabularyCoverageSummary {
+    coveredCount: number;
+    totalCount: number;
+}
+
 export interface CompleteSessionResponse {
-    /** True when every vocabulary item in the module has been seen at least once */
+    /** The rung the module is at after this session (1-3) */
+    currentRung: number;
+    /** The rung this session was practised at */
+    previousRung: number;
+    /** Whether this session completed the rung phase */
+    rungCompleted: boolean;
+    /** Whether this session completed rung 3 — the whole practice ladder */
+    ladderCompleted: boolean;
+    /** Rungs fully covered before this session — the recap's outer ring start value */
+    rungsCompletedBefore: number;
+    /** Rungs fully covered after this session — the recap's outer ring end value */
+    rungsCompletedAfter: number;
+    /** Current-rung coverage before this session */
+    rungCoverageBefore: RungCoverageSummary;
+    /** Current-rung coverage after this session */
+    rungCoverageAfter: RungCoverageSummary;
+    /** Module-wide vocabulary coverage across all rungs — the recap's inner ring (after-state only) */
+    vocabularyCoverage: VocabularyCoverageSummary;
+    /** Alias of ladderCompleted, kept for clients predating the practice ladder */
     step2Complete: boolean;
-    unseenVocabularyCount?: number;
+    /** Vocabulary items not yet covered at any rung, kept for clients predating the practice ladder */
+    unseenVocabCount: number;
 }

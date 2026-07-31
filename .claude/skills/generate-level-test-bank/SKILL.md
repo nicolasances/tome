@@ -41,10 +41,12 @@ the **`post-level-test-bank`** skill to seed it to dev or prod.
   match the `Exercise` schema; the bank maps to `LevelTestBank`.
 - You have read `docs/idea/language-learning/default-modules.md` — to know which modules
   belong to the level.
-- You have read the **sibling skill's** generation reference (shared, single source of truth):
-  - `.claude/skills/generate-module-content/rules-for-generation.md` — **the binding
-    per-type quality rules and the CEFR-level distribution table.** It explicitly applies
-    to level test banks. **Read before Phase 2.**
+- You have read the **sibling skill's** per-type quality rules (shared, single source of
+  truth): `.claude/skills/generate-module-content/rules-for-generation.md` — the binding
+  per-type quality rules for every exercise type. It explicitly applies to level test banks.
+  **Read before Phase 2.** Note: the CEFR-level **distribution table** is *not* in that file —
+  it moved here (§ Distribution targets below) when module content switched to per-rung
+  coverage (issue #321); this skill is now its sole owner.
   - `.claude/skills/generate-module-content/module-examples.md` — style/tone/sizing
     reference for every exercise type at every level.
 - You **MUST** have been told the target **CEFR level** (e.g. `A2`).
@@ -54,8 +56,9 @@ the **`post-level-test-bank`** skill to seed it to dev or prod.
 **Scripts bundled with this skill:**
 - `gather_level_pool.py` — Phase 1. Consolidates the level's vocab + grammar into a pool file.
 - `validate_level_coverage.py` — Phase 3 gate 1. References-valid + full grammar coverage.
-- Reused from the sibling skill: `.claude/skills/generate-module-content/validate_distribution.py`
-  — Phase 3 gate 2 (distribution), invoked as-is.
+- `validate_distribution.py` — Phase 3 gate 2. Distribution against the CEFR-level targets
+  below. Owned by this skill — `generate-module-content` no longer uses it (per-rung
+  coverage superseded distribution there).
 
 Posting is **not** part of this skill — the `post-level-test-bank` skill owns
 `post_level_test_bank.py`.
@@ -66,12 +69,14 @@ Posting is **not** part of this skill — the `post-level-test-bank` skill owns
 |---|---|---|
 | `moduleId` | the module's id | **`null`** on every exercise |
 | Vocab/grammar ids | minted here (`generate_ids.py`) | **referenced from existing module files — never minted** |
-| Coverage gate | ≥1 exercise per vocab item (exhaustive) | **breadth sample**: full grammar coverage, vocab sampled across modules |
+| Coverage gate | per-rung, exhaustive (≥1 at rungs 1–2, ≥2 at rung 3 per item) | **breadth sample**: full grammar coverage, vocab sampled across modules — not rung-structured |
+| Type-mix control | none (per-rung coverage only) | **CEFR-level distribution table** (this skill's own gate — see below) |
 | Scope of an exercise | one module's theme | **cross-module** — mixes vocab/grammar across modules |
-| Size | emerges from coverage (~50) | **~60** |
+| Size | emerges from coverage (~130 at A2) | **~60** |
 
-The per-type quality rules and the distribution table are **identical** and come from the
-shared `rules-for-generation.md`.
+The per-type quality rules come from the shared `rules-for-generation.md`. The distribution
+table lives only here — the level test bank is not rung-structured, so distribution stays its
+one type-mix control.
 
 ## The Workflow
 
@@ -122,8 +127,30 @@ for style. Rules specific to the level test bank:
 - **Coverage:** every **distinct grammar concept** at the level must have **≥1** exercise.
   Sample vocabulary **broadly** so every module is represented — but there is **no** per-item
   requirement (a 60-exercise bank cannot cover hundreds of items).
-- **Distribution:** land within the CEFR-level targets in `rules-for-generation.md` for `<level>`.
+- **Distribution:** land within the CEFR-level targets below for `<level>`.
 - For `grammarConceptId`, use the pool entry's `representativeId` for that concept name.
+
+**Distribution targets by CEFR level**
+
+The bank's distribution across exercise types must respect the targets below. These are
+**bank-level targets**, not per-exercise quotas — hit the range across the full bank. The
+progression reflects a deliberate pedagogical shift: at A1 recognition is appropriate while
+production skills are being bootstrapped; by C2 production should dominate and multiple choice
+is nearly useless.
+
+| Level | `multiple_choice` | `fill_blank` | `sentence_reorder` | `conjugation_drill` | `error_correction` | `translation_active` |
+|---|---|---|---|---|---|---|
+| A1 | ≤ 45% | 10–15% | 8–12% | 8–12% | 5–10% | ≥ 10% |
+| A2 | ≤ 35% | 12–18% | 8–12% | 8–12% | 8–12% | ≥ 15% |
+| B1 | ≤ 25% | 15–20% | 10–15% | 10–15% | 10–15% | ≥ 20% |
+| B2 | ≤ 20% | 15–20% | 10–15% | 8–12% | 12–18% | ≥ 25% |
+| C1 | ≤ 15% | 15–20% | 10–15% | 5–10% | 15–20% | ≥ 30% |
+| C2 | ≤ 10% | 15–20% | 10–15% | 5–8% | 15–20% | ≥ 35% |
+
+The percentages in a row do not sum to 100 — ranges overlap intentionally. The distribution
+should land within all stated bounds simultaneously; adjust proportions to fit. At C1–C2,
+`conjugation_drill` is limited because regular conjugation is already mastered; target
+irregular or register-specific forms only.
 
 **Expected file:** `<content-folder>/level-tests/<level>/<level>-level-test-exercises.json`
 — a plain JSON array of exercise objects (same shape as module exercises, with `moduleId: null`).
@@ -155,10 +182,10 @@ python3 .claude/skills/generate-level-test-bank/validate_level_coverage.py \
 | `PASS (with breadth warnings)` | Valid + grammar covered, but some module contributes no exercise | Acceptable; add exercises for the listed modules if practical |
 | `FAIL` | Dangling id reference, an uncovered grammar concept, or a non-null `moduleId` | **MUST fix**, then rerun until exit 0 |
 
-#### Gate 2 — Distribution (reused)
+#### Gate 2 — Distribution
 
 ```bash
-python3 .claude/skills/generate-module-content/validate_distribution.py \
+python3 .claude/skills/generate-level-test-bank/validate_distribution.py \
   <level> <level> <content-folder>/level-tests/<level>/<level>-level-test-exercises.json
 ```
 
