@@ -70,7 +70,7 @@ function AnimRing({rungsCompletedFrom, rungsCompletedTo, currentRung, vocabFrom,
                     {rungsCompletedTo}<span className="text-xl">/{LAST_RUNG}</span>
                 </span>
                 <span className="text-xs font-bold text-black/50 uppercase tracking-wide text-center px-4 leading-tight">
-                    Rung {currentRung} · {RUNG_NAMES[currentRung] ?? ''}
+                    Rung {currentRung}
                 </span>
                 <span className="text-sm font-semibold text-black/40">
                     {Math.round(vocabTo * 100)}% words
