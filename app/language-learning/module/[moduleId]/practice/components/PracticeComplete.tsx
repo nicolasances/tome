@@ -27,7 +27,6 @@ export interface PracticeCompleteProps {
 // ── Shared primitives ─────────────────────────────────────────────────────────
 
 const LAST_RUNG = 3;
-const RUNG_NAMES: Record<number, string> = { 1: 'Recognition', 2: 'Cued production', 3: 'Free production' };
 
 /**
  * Two concentric rings: outer = rungs completed out of 3 (the ladder signal, only ever
