@@ -11,8 +11,8 @@ export interface PracticeCompleteProps {
     moduleNumber: string;
     coverageBeforePct: number;
     coverageAfterPct: number;
-    practicedWords: number;
-    totalWords: number;
+    rungItemsCovered: number;
+    rungItemsTotal: number;
     rungsCompletedBefore: number;
     rungsCompletedAfter: number;
     currentRung: number;
@@ -30,10 +30,14 @@ const LAST_RUNG = 3;
 
 /**
  * Two concentric rings: outer = rungs completed out of 3 (the ladder signal, only ever
- * climbs), inner = module vocabulary coverage (climbs 0->100% during rung 1, then sits
- * near 100% for rungs 2-3). Neither ring ever resets across a rung-phase transition.
+ * climbs within a session and across sessions), inner = coverage of the rung just
+ * practiced (vocabulary + grammar concepts pooled). The outer ring never resets. The
+ * inner ring is intentionally NOT module-wide — it tracks progress within the current
+ * rung, so it visibly resets to a lower value the first time the recap shows a new rung
+ * (the rung-to-rung reset the practice ladder's design doc calls out as a deliberate
+ * supersession of the original "both rings monotonic" decision).
  */
-function AnimRing({rungsCompletedFrom, rungsCompletedTo, currentRung, vocabFrom, vocabTo}: {rungsCompletedFrom: number, rungsCompletedTo: number, currentRung: number, vocabFrom: number, vocabTo: number}) {
+function AnimRing({rungsCompletedFrom, rungsCompletedTo, currentRung, rungFrom, rungTo}: {rungsCompletedFrom: number, rungsCompletedTo: number, currentRung: number, rungFrom: number, rungTo: number}) {
     const size = 188;
     const outerStroke = 13, innerStroke = 11, gap = 6;
     const outerR = (size - outerStroke) / 2;
@@ -45,12 +49,12 @@ function AnimRing({rungsCompletedFrom, rungsCompletedTo, currentRung, vocabFrom,
     const outerTo = rungsCompletedTo / LAST_RUNG;
 
     const [outerP, setOuterP] = useState(outerFrom);
-    const [innerP, setInnerP] = useState(vocabFrom);
+    const [innerP, setInnerP] = useState(rungFrom);
 
     useEffect(() => {
-        const t = setTimeout(() => { setOuterP(outerTo); setInnerP(vocabTo); }, 90);
+        const t = setTimeout(() => { setOuterP(outerTo); setInnerP(rungTo); }, 90);
         return () => clearTimeout(t);
-    }, [outerTo, vocabTo]);
+    }, [outerTo, rungTo]);
 
     return (
         <div className="relative" style={{ width: size, height: size }}>
@@ -72,7 +76,7 @@ function AnimRing({rungsCompletedFrom, rungsCompletedTo, currentRung, vocabFrom,
                     Rung {currentRung}
                 </span>
                 <span className="text-sm font-semibold text-black/40">
-                    {Math.round(vocabTo * 100)}% words
+                    {Math.round(rungTo * 100)}% of rung
                 </span>
             </div>
         </div>
@@ -167,7 +171,7 @@ function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, rungs
 
             <div className="relative mt-4">
                 <SparkBurst radius={118} />
-                <AnimRing rungsCompletedFrom={rungsCompletedBefore} rungsCompletedTo={rungsCompletedAfter} currentRung={currentRung} vocabFrom={coverageBeforePct} vocabTo={coverageAfterPct} />
+                <AnimRing rungsCompletedFrom={rungsCompletedBefore} rungsCompletedTo={rungsCompletedAfter} currentRung={currentRung} rungFrom={coverageBeforePct} rungTo={coverageAfterPct} />
             </div>
 
             <p className="text-3xl font-bold text-black mt-5 anim-pc-rise" style={{ animationDelay: '120ms' }}>
@@ -205,7 +209,7 @@ function RoundComplete({moduleNumber, coverageBeforePct, coverageAfterPct, rungs
 
 // ── Coverage milestone state ───────────────────────────────────────────────────
 
-function CoverageMilestone({moduleTitle, coverageBeforePct, practicedWords, totalWords, testUnlocksAt, testUnlockDelayHours, onPracticeAnother, onBackToModule}: Pick<PracticeCompleteProps, 'moduleTitle' | 'coverageBeforePct' | 'practicedWords' | 'totalWords' | 'testUnlocksAt' | 'testUnlockDelayHours' | 'onPracticeAnother' | 'onBackToModule'>) {
+function CoverageMilestone({moduleTitle, coverageBeforePct, rungItemsCovered, rungItemsTotal, testUnlocksAt, testUnlockDelayHours, onPracticeAnother, onBackToModule}: Pick<PracticeCompleteProps, 'moduleTitle' | 'coverageBeforePct' | 'rungItemsCovered' | 'rungItemsTotal' | 'testUnlocksAt' | 'testUnlockDelayHours' | 'onPracticeAnother' | 'onBackToModule'>) {
     const unlockLabel = formatUnlockLabel(testUnlocksAt, testUnlockDelayHours);
 
     return (
@@ -218,16 +222,16 @@ function CoverageMilestone({moduleTitle, coverageBeforePct, practicedWords, tota
             </div>
 
             <p className="text-3xl font-bold text-black mt-6 anim-pc-rise" style={{ animationDelay: '160ms' }}>
-                All words covered
+                All items covered
             </p>
             <p className="text-lg text-black/50 mt-1.5 leading-relaxed anim-pc-rise" style={{ animationDelay: '220ms' }}>
-                You&apos;ve now practised every word in <strong className="text-black">{moduleTitle}</strong>
+                You&apos;ve now practised every word and grammar concept in <strong className="text-black">{moduleTitle}</strong>
             </p>
 
             <div className="w-full mt-6 anim-pc-rise" style={{ animationDelay: '280ms' }}>
                 <div className="flex justify-between items-baseline mb-2">
                     <span className="text-sm font-semibold uppercase tracking-widest text-black/50">Module coverage</span>
-                    <span className="text-base font-bold text-black">{practicedWords} / {totalWords} words</span>
+                    <span className="text-base font-bold text-black">{rungItemsCovered} / {rungItemsTotal} items</span>
                 </div>
                 <AnimBar from={coverageBeforePct} to={1} />
             </div>
