@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-09-g-definite-indefinite-articles-1839",
+    "name": "Definite/Indefinite Articles",
+    "category": "nouns",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish holiday names can appear in either their indefinite (bare) form or their definite (-en/-et) form, depending on the expression. After prepositions like 'om', the definite form refers to an entire festive period (om julen — 'during Christmastime'). In many fixed expressions with 'til', the bare indefinite form is used instead, referring to the holiday as a named occasion (til påske — 'at Easter').",
+    "examples": [
+      { "danish": "Vi rejser til Sverige om julen.", "english": "We travel to Sweden during Christmastime." },
+      { "danish": "Vi ses til påske.", "english": "We'll see each other at Easter." }
+    ]
+  },
+  {
+    "id": "A2-09-g-present-tense-verbs-of-3177",
+    "name": "Present tense (nutid)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Verbs describing traditions and celebrations — such as fejre (celebrate), pynte (decorate), and samles (gather) — conjugate regularly in the present tense by adding -r to the stem. This tense is used to describe what people habitually do during holidays and seasonal celebrations.",
+    "examples": [
+      { "danish": "Vi fejrer jul med hele familien hver år.", "english": "We celebrate Christmas with the whole family every year." },
+      { "danish": "Familien pynter juletræet sammen om aftenen.", "english": "The family decorates the Christmas tree together in the evening." }
+    ]
+  }
+]

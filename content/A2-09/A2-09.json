@@ -1,0 +1,41 @@
+{
+  "id": "danish-A2-09",
+  "title": "Danish Traditions & Holidays",
+  "theme": "Cultural calendar",
+  "communicationGoal": "Discuss Danish holidays, traditions, and seasonal celebrations with colleagues",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-09-v-jul-1728",
+    "A2-09-v-juleaften-5062",
+    "A2-09-v-nytaar-2754",
+    "A2-09-v-nytaarsaften-5229",
+    "A2-09-v-paaske-8640",
+    "A2-09-v-pinse-2846",
+    "A2-09-v-sankt-hans-7958",
+    "A2-09-v-fastelavn-1427",
+    "A2-09-v-fejre-1163",
+    "A2-09-v-samles-1458",
+    "A2-09-v-give-3711",
+    "A2-09-v-pynte-4785",
+    "A2-09-v-gave-1069",
+    "A2-09-v-juletrae-7840",
+    "A2-09-v-julemand-3835",
+    "A2-09-v-nisse-7740",
+    "A2-09-v-tradition-9463",
+    "A2-09-v-skik-7528",
+    "A2-09-v-flaeskesteg-5676",
+    "A2-09-v-risalamande-7918",
+    "A2-09-v-aebleskiver-4603",
+    "A2-09-v-paaskeaeg-6208",
+    "A2-09-v-baal-2660",
+    "A2-09-v-glaedelig-1570",
+    "A2-09-v-glaedelig-jul-4059",
+    "A2-09-v-godt-nytaar-4036"
+  ],
+  "grammarConceptIds": [
+    "A2-09-g-definite-indefinite-articles-1839",
+    "A2-09-g-present-tense-verbs-of-3177"
+  ],
+  "createdAt": "2026-08-04T00:00:00Z",
+  "isUserGenerated": false
+}

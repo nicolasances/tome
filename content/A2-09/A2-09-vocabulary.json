@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-09-v-jul-1728",
+    "danish": "jul",
+    "english": "Christmas",
+    "type": "noun",
+    "context": null,
+    "tags": ["holiday", "christmas"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-juleaften-5062",
+    "danish": "juleaften",
+    "english": "Christmas Eve",
+    "type": "noun",
+    "context": null,
+    "tags": ["holiday", "christmas"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-nytaar-2754",
+    "danish": "nytår",
+    "english": "New Year",
+    "type": "noun",
+    "context": null,
+    "tags": ["holiday", "new-year"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-nytaarsaften-5229",
+    "danish": "nytårsaften",
+    "english": "New Year's Eve",
+    "type": "noun",
+    "context": null,
+    "tags": ["holiday", "new-year"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-paaske-8640",
+    "danish": "påske",
+    "english": "Easter",
+    "type": "noun",
+    "context": null,
+    "tags": ["holiday", "easter"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-pinse-2846",
+    "danish": "pinse",
+    "english": "Whitsun / Pentecost",
+    "type": "noun",
+    "context": null,
+    "tags": ["holiday"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-sankt-hans-7958",
+    "danish": "Sankt Hans",
+    "english": "Midsummer's Eve",
+    "type": "phrase",
+    "context": "the Danish midsummer festival, celebrated on 23 June with bonfires",
+    "tags": ["holiday", "tradition"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-fastelavn-1427",
+    "danish": "fastelavn",
+    "english": "Shrovetide",
+    "type": "noun",
+    "context": "Danish carnival tradition in February, similar to Mardi Gras",
+    "tags": ["holiday", "tradition"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-fejre-1163",
+    "danish": "fejre",
+    "english": "to celebrate",
+    "type": "verb",
+    "context": null,
+    "tags": ["tradition", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-samles-1458",
+    "danish": "samles",
+    "english": "to gather / get together",
+    "type": "verb",
+    "context": null,
+    "tags": ["tradition", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-give-3711",
+    "danish": "give",
+    "english": "to give",
+    "type": "verb",
+    "context": null,
+    "tags": ["tradition", "gift"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-pynte-4785",
+    "danish": "pynte",
+    "english": "to decorate",
+    "type": "verb",
+    "context": null,
+    "tags": ["tradition", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-gave-1069",
+    "danish": "gave",
+    "english": "gift / present",
+    "type": "noun",
+    "context": null,
+    "tags": ["gift"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-juletrae-7840",
+    "danish": "juletræ",
+    "english": "Christmas tree",
+    "type": "noun",
+    "context": null,
+    "tags": ["christmas", "object"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-julemand-3835",
+    "danish": "julemand",
+    "english": "Santa Claus",
+    "type": "noun",
+    "context": null,
+    "tags": ["christmas", "folklore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-nisse-7740",
+    "danish": "nisse",
+    "english": "Christmas gnome / elf",
+    "type": "noun",
+    "context": null,
+    "tags": ["christmas", "folklore"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-tradition-9463",
+    "danish": "tradition",
+    "english": "tradition",
+    "type": "noun",
+    "context": null,
+    "tags": ["culture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-skik-7528",
+    "danish": "skik",
+    "english": "custom",
+    "type": "noun",
+    "context": null,
+    "tags": ["culture"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-flaeskesteg-5676",
+    "danish": "flæskesteg",
+    "english": "roast pork",
+    "type": "noun",
+    "context": null,
+    "tags": ["christmas", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-risalamande-7918",
+    "danish": "risalamande",
+    "english": "rice pudding with almonds",
+    "type": "noun",
+    "context": null,
+    "tags": ["christmas", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-aebleskiver-4603",
+    "danish": "æbleskiver",
+    "english": "Danish filled pancake balls",
+    "type": "noun",
+    "context": null,
+    "tags": ["christmas", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-paaskeaeg-6208",
+    "danish": "påskeæg",
+    "english": "Easter egg",
+    "type": "noun",
+    "context": null,
+    "tags": ["easter", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-baal-2660",
+    "danish": "bål",
+    "english": "bonfire",
+    "type": "noun",
+    "context": null,
+    "tags": ["tradition"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-glaedelig-1570",
+    "danish": "glædelig",
+    "english": "merry / joyous",
+    "type": "adjective",
+    "context": "used in holiday greetings, e.g. glædelig jul",
+    "tags": ["greeting"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-glaedelig-jul-4059",
+    "danish": "Glædelig jul",
+    "english": "Merry Christmas",
+    "type": "phrase",
+    "context": null,
+    "tags": ["greeting", "christmas"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-09-v-godt-nytaar-4036",
+    "danish": "Godt nytår",
+    "english": "Happy New Year",
+    "type": "phrase",
+    "context": null,
+    "tags": ["greeting", "new-year"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
