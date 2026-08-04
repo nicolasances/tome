@@ -3,13 +3,15 @@
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 
 interface FlowPracticePaneProps {
-    vocabularySeen: number;
-    vocabularyTotal: number;
+    currentRung: number;
+    rungCovered: number;
+    rungTotal: number;
+    progress: number;
     stepNumber: number;
 }
 
-export function FlowPracticePane({vocabularySeen, vocabularyTotal}: FlowPracticePaneProps) {
-    const coveragePct = vocabularyTotal > 0 ? (vocabularySeen / vocabularyTotal) * 100 : 0;
+export function FlowPracticePane({currentRung, rungCovered, rungTotal, progress}: FlowPracticePaneProps) {
+    const coveragePct = progress * 100;
 
     return (
         <div className="flex flex-col gap-6">
@@ -30,12 +32,12 @@ export function FlowPracticePane({vocabularySeen, vocabularyTotal}: FlowPractice
             {/* Coverage */}
             <div className="rounded-2xl border border-cyan-500/30 bg-cyan-700/40 p-5 flex items-center gap-4">
                 <div className="flex-1">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-white mb-2 m-0">Coverage this round</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-white mb-2 m-0">Rung {currentRung} coverage</p>
                     <div className="h-2 rounded-full bg-black/10">
                         <div className="h-full rounded-full bg-lime-200 transition-all" style={{ width: `${coveragePct}%` }} />
                     </div>
                 </div>
-                <span className="text-base font-bold text-white whitespace-nowrap">{vocabularySeen} / {vocabularyTotal} words</span>
+                <span className="text-base font-bold text-white whitespace-nowrap">{rungCovered}/{rungTotal} items</span>
             </div>
         </div>
     );

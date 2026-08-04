@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
-import { TomeLearningDashboardAPI, MeProgressResponse, ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
+import { TomeLearningDashboardAPI, MeProgressResponse, ModuleProgressEntry, calculateModuleProgress } from '@/api/TomeLearningDashboardAPI';
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
 import { startPracticeAndGetSessionId } from '@/utils/startPractice';
 import { ModuleOverviewSkeleton } from './components/ModuleOverviewSkeleton';
@@ -131,7 +131,7 @@ export default function ModuleOverviewPage() {
     const steps: StepItem[] = data
         ? [
             { number: 1, title: 'Grammar', subtitle: `${data.module.grammarConceptIds?.length} concepts · learn the rules`, state: stepStates.grammar },
-            { number: 2, title: 'Practice', subtitle: `${data.module.practiceSessionSize} exercises · no pressure`, state: stepStates.practice, coverage: stepStates.practice === 'available' ? { seen: moduleProgress?.vocabularyItemsPracticedCount ?? 0, total: data.module.vocabularyItemIds.length } : undefined },
+            { number: 2, title: 'Practice', subtitle: `${data.module.practiceSessionSize} exercises · no pressure`, state: stepStates.practice, coverage: stepStates.practice === 'available' && moduleProgress ? { progress: calculateModuleProgress(moduleProgress), currentRung: moduleProgress.currentRung, rungCovered: moduleProgress.currentRungCoverage.coveredCount, rungTotal: moduleProgress.currentRungCoverage.totalCount } : undefined },
             { number: 3, title: 'Module Test', subtitle: `${data.module.testQuestionCount ?? "?"} questions · ${data.module.testPassThreshold}% to pass`, state: stepStates.test, lockLabel: testLockLabel, onNavigate: stepStates.test === 'available' ? () => router.push(`/language-learning/module/${moduleId}/test`) : undefined },
         ]
         : [];
@@ -277,8 +277,10 @@ export default function ModuleOverviewPage() {
                                 {selectedStep === 'grammar' && <FlowGrammarPane moduleId={moduleId} />}
                                 {selectedStep === 'practice' && (
                                     <FlowPracticePane
-                                        vocabularySeen={moduleProgress?.vocabularyItemsPracticedCount ?? 0}
-                                        vocabularyTotal={data.module.vocabularyItemIds.length}
+                                        currentRung={moduleProgress?.currentRung ?? 1}
+                                        rungCovered={moduleProgress?.currentRungCoverage.coveredCount ?? 0}
+                                        rungTotal={moduleProgress?.currentRungCoverage.totalCount ?? 0}
+                                        progress={moduleProgress ? calculateModuleProgress(moduleProgress) : 0}
                                         stepNumber={stepNum}
                                     />
                                 )}
@@ -286,8 +288,10 @@ export default function ModuleOverviewPage() {
                                     <FlowTestPane
                                         testState={stepStates.test}
                                         lockLabel={testLockLabel}
-                                        vocabularySeen={moduleProgress?.vocabularyItemsPracticedCount ?? 0}
-                                        vocabularyTotal={data.module.vocabularyItemIds.length}
+                                        currentRung={moduleProgress?.currentRung ?? 1}
+                                        rungCovered={moduleProgress?.currentRungCoverage.coveredCount ?? 0}
+                                        rungTotal={moduleProgress?.currentRungCoverage.totalCount ?? 0}
+                                        progress={moduleProgress ? calculateModuleProgress(moduleProgress) : 0}
                                         testUnlockDelayHours={data.module.testUnlockDelayHours}
                                     />
                                 )}
