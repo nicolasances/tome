@@ -17,8 +17,8 @@ interface RecapData {
     moduleNumber: string;
     coverageBeforePct: number;
     coverageAfterPct: number;
-    practicedWords: number;
-    totalWords: number;
+    rungItemsCovered: number;
+    rungItemsTotal: number;
     rungsCompletedBefore: number;
     rungsCompletedAfter: number;
     currentRung: number;
@@ -72,14 +72,12 @@ export default function PracticeResultsPage() {
 
             // Rung/coverage figures come from the query params threaded through by the
             // practice screen's completeSession() call (POST .../complete response) — the
-            // recap trusts that response rather than re-deriving coverage from GET /me/progress,
-            // which does not carry per-rung state (see 03-module-overview.md §7).
-            const totalWords        = parseInt(searchParams.get('vocabTotalCount') ?? '', 10) || module.vocabularyItemIds.length;
-            const practicedWords    = parseInt(searchParams.get('vocabCoveredCount') ?? '', 10) || 0;
-            const coverageAfterPct  = totalWords > 0 ? practicedWords / totalWords : 0;
-            const prevCoveredRaw    = searchParams.get('prevCovered');
-            const prevCoveredCount  = prevCoveredRaw !== null ? parseInt(prevCoveredRaw, 10) : practicedWords;
-            const coverageBeforePct = totalWords > 0 ? prevCoveredCount / totalWords : 0;
+            // recap trusts that response rather than re-deriving coverage from GET /me/progress.
+            const rungTotal          = parseInt(searchParams.get('rungTotal') ?? '', 10) || module.vocabularyItemIds.length;
+            const rungCoveredAfter   = parseInt(searchParams.get('rungCoveredAfter') ?? '', 10) || 0;
+            const rungCoveredBefore  = parseInt(searchParams.get('rungCoveredBefore') ?? '', 10) || 0;
+            const coverageAfterPct   = rungTotal > 0 ? rungCoveredAfter / rungTotal : 0;
+            const coverageBeforePct  = rungTotal > 0 ? rungCoveredBefore / rungTotal : 0;
             const rungsCompletedBefore = parseInt(searchParams.get('rungsCompletedBefore') ?? '', 10) || 0;
             const rungsCompletedAfter  = parseInt(searchParams.get('rungsCompletedAfter') ?? '', 10) || rungsCompletedBefore;
             const currentRung          = parseInt(searchParams.get('currentRung') ?? '', 10) || 1;
@@ -91,8 +89,8 @@ export default function PracticeResultsPage() {
                 moduleNumber:       String(moduleIdx >= 0 ? moduleIdx + 1 : 1).padStart(2, '0'),
                 coverageBeforePct,
                 coverageAfterPct,
-                practicedWords,
-                totalWords,
+                rungItemsCovered: rungCoveredAfter,
+                rungItemsTotal: rungTotal,
                 rungsCompletedBefore,
                 rungsCompletedAfter,
                 currentRung,
@@ -165,8 +163,8 @@ export default function PracticeResultsPage() {
                 moduleNumber={recapData.moduleNumber}
                 coverageBeforePct={recapData.coverageBeforePct}
                 coverageAfterPct={recapData.coverageAfterPct}
-                practicedWords={recapData.practicedWords}
-                totalWords={recapData.totalWords}
+                rungItemsCovered={recapData.rungItemsCovered}
+                rungItemsTotal={recapData.rungItemsTotal}
                 rungsCompletedBefore={recapData.rungsCompletedBefore}
                 rungsCompletedAfter={recapData.rungsCompletedAfter}
                 currentRung={recapData.currentRung}

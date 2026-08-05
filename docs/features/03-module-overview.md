@@ -41,14 +41,14 @@ test is locked).
 | Module overview | Module header | Kicker (e.g. "A1·01 · Identity & introductions"), large module title, and the communication-goal description. | Renders from the module document. |
 | Module overview | Scope chips | Pill chips for the module's grammar concepts (e.g. "Present tense", "Pronouns", "Word order") + a "N words" count. | Summarises grammar focus and vocabulary set size. |
 | Module overview | Step list | Three step rows — **Grammar** (3 concepts), **Practice** (20 a round · no pressure), **Module Test** (30–40 questions · 80% to pass) — each with a numbered medallion and a state element: available → "Start"; upcoming → muted; locked → "4h after practice" lock tag. | Reflects per-step state; the available step is the entry point. |
-| Module overview | Practice coverage bar | On the **active Practice step row only**: a progress `Bar` + "*seen* / *total* words" count, showing how many of the module's vocabulary items the user has encountered across practice sessions so far (e.g. "18 / 30 words"). This is module-wide vocabulary coverage **across all rungs of the practice ladder** (`05-practice-session` §3.7) — it does not show which rung the module is currently practising at; see §7 OQ. | Fills as the user completes practice sessions; reaches full when Step 2 completes and the test-unlock countdown begins. |
+| Module overview | Practice coverage bar | On the **active Practice step row only**: a progress `Bar` + a rung-aware label, e.g. "42% · Rung 2 · 6/12 items in rung". Shows a blended progress figure across the practice ladder's 3 rungs — `(fullyCompletedRungs + currentRungCoverage.coveredCount/totalCount) / 3` — pooling vocabulary items and grammar concepts together, plus which rung the module is currently practising at (issue #323). | Fills as the user completes practice sessions and rungs advance; reaches 100% only once all 3 rungs are fully covered, at which point the test-unlock countdown begins. |
 | Module overview | Primary CTA | Full-width dark button, e.g. "Start grammar" / "Continue practice", reflecting the current actionable step. | Navigates into the current step (Grammar `04` / Practice `05`). |
 
 **Additional Notes:**
 - **Loading**: skeleton for header + step list while module + progress load.
 - The Test step is always shown as a row reflecting its state (locked / available / completed). Tapping it — or the primary CTA once practice is complete — navigates to the Module Test feature (`06-module-test`), which renders the locked countdown, ready, in-test, result and review phases. The overview itself does not render those.
 - Step CTA label/target adapt to where the user is: "Start grammar" → "Continue practice" → (locked) "Test unlocks in …". While practice is active, the CTA reads "Continue practice" and the coverage bar communicates remaining coverage.
-- **Practice is a loop**: because Step 2 runs multiple sessions until full vocabulary coverage (§3.1.1), the overview is the hub the user returns to between practice sessions; its coverage bar is the persistent indicator of how close Step 2 is to completing.
+- **Practice is a loop**: because Step 2 runs multiple sessions until full ladder coverage (§3.1.1), the overview is the hub the user returns to between practice sessions; its coverage bar is the persistent indicator of how close Step 2 is to completing, and of which rung it's currently on.
 
 ## 4. Business Logic
 
@@ -58,7 +58,7 @@ test is locked).
   - Practice becomes available after Grammar has been seen.
   - **Practice completes** only when the user has reached **full vocabulary coverage** — every module vocabulary item shown at least once, accumulated across however many sessions Step 2 takes (§3.1.1). The Practice step stays `in_progress` (showing the coverage bar) until then.
   - The **Module Test is locked** until `testUnlockDelayHours` (default 4h) have elapsed after **Practice completion** — i.e. measured from `practiceCompletedAt` (the moment full coverage is reached), not from the end of any single session. The lock tag communicates this delay; once elapsed the step becomes available.
-- **Coverage bar** on the active Practice step shows `vocabularyItemsPracticed.length / total module vocabulary items` (§3.1.1 / data model `UserModuleProgress`).
+- **Coverage bar** on the active Practice step shows a blended rung-aware progress: `(fullyCompletedRungs + currentRungCoverage.coveredCount/currentRungCoverage.totalCount) / 3`, pooling vocabulary items and grammar concepts (`GetMeProgress` fields on `GET /me/progress`, `tome-ms-language` issue #93). Reaches 100% only once all 3 rungs are fully covered.
 - Configurable display values come from module parameters (§3.1.2): practice session size (20), test question count (30–40), pass threshold (80%), unlock delay (4h).
 - The current actionable step drives the primary CTA's label and destination.
 - **Mastery is not updated on this screen** — it is a read-only hub. Mastery is updated inside the Practice (`05`) and Module Test steps, continuously (§3.1.1).
@@ -81,7 +81,7 @@ test is locked).
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
 | Module header, Scope chips, Step list | `GET /modules/:id` (`tome-ms-language`, via `TomeModuleAPI.getModule`) | Returns the module document: theme, communication goal, grammar-concept IDs, vocabulary count, and the configurable step parameters (`practiceSessionSize`, `testQuestionCount`, `testPassThreshold`, `testUnlockDelayHours`). |
-| Step list, Practice coverage bar, Primary CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`, shared with `01`/`02`) | Returns the user's per-module progress entries (status, current step, completion %, `testUnlocksAt`). Drives step lock/available/locked states, the module's numeric index, the coverage-bar inputs, and the primary CTA's target step. |
+| Step list, Practice coverage bar, Primary CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`, shared with `01`/`02`) | Returns the user's per-module progress entries (status, current step, completion %, `testUnlocksAt`, `currentRung`, `currentRungCoverage`, `fullyCompletedRungs`). Drives step lock/available/locked states, the module's numeric index, the rung-aware coverage-bar inputs, and the primary CTA's target step. |
 
 ## 6. Success Criteria
 
@@ -92,7 +92,7 @@ test is locked).
 | 3 | The test step shows the unlock-delay lock tag; the unlock timer is measured from full-coverage completion (`practiceCompletedAt`), not from a single session. | Spaced repetition. |
 | 4 | Primary CTA launches the correct current step. | J3/J4. |
 | 5 | Returning to the overview after grammar/practice reflects updated step states. | Hub behaviour. |
-| 6 | While Practice is active, the coverage bar shows seen / total words and fills as sessions are completed. | §3.1.1 coverage gate. |
+| 6 | While Practice is active, the coverage bar shows the blended rung-aware progress and current rung, and fills as sessions/rungs are completed. | §3.1.1 coverage gate; issue #323. |
 | 7 | Practice stays `in_progress` until full vocabulary coverage is reached; only then does the test-unlock countdown begin. | §3.1.1. |
 | 8 | On desktop (`lg:` breakpoint), the overview renders as a two-pane flow: left rail (module meta + 3 step rail items) and right content pane (grammar concepts, practice status, or test locked/ready state) with a CTA. Mobile keeps the standalone overview route. | Responsive. |
 
@@ -102,4 +102,4 @@ test is locked).
 |---|----------|-------|
 | ~~1~~ | ~~Once the test is unlocked, does the CTA point at the (skipped) Test, or does the step row handle it?~~ | **Resolved** — the Module Test feature now exists (`06-module-test`). Both the unlocked Test step row and the primary CTA navigate to `/language-learning/module/[moduleId]/test`. |
 | 3 | Can the user re-enter Grammar or re-run Practice after completing them? | Affects step row interactivity post-completion. Currently completed steps render as a muted row with a checkmark medallion; they are not tappable. |
-| 4 | Should the coverage bar also show which rung of the practice ladder the module is currently on (issue #321)? | `GET /me/progress` does not currently return per-rung state — only `vocabularyItemsPracticedCount`, coverage across all rungs combined (see backend `tome-ms-language` `GetMeProgress`). The practice-complete recap (`05-practice-session` §3.7) already shows rung progress at the end of each round; this screen cannot until the endpoint carries `currentRung` / `rungsCompletedCount`. Not implemented. |
+| ~~4~~ | ~~Should the coverage bar also show which rung of the practice ladder the module is currently on (issue #321)?~~ | **Resolved** (issue #323, backend `tome-ms-language`#93) — `GET /me/progress` now returns `currentRung`, `currentRungCoverage`, and `fullyCompletedRungs` per module, and the coverage bar renders the blended rung-aware progress described in §3/§4. |

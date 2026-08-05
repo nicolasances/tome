@@ -8,7 +8,7 @@ export interface StepItem {
     subtitle: string;
     state: StepState;
     lockLabel?: string;
-    coverage?: { seen: number; total: number };
+    coverage?: { progress: number; currentRung: number; rungCovered: number; rungTotal: number };
     onNavigate?: () => void;
 }
 
@@ -25,16 +25,16 @@ function StepMedallion({ number, state }: { number: number, state: StepState }) 
     );
 }
 
-function CoverageBar({ seen, total }: { seen: number; total: number }) {
-    const pct = total > 0 ? (seen / total) * 100 : 0;
+function CoverageBar({ progress, currentRung, rungCovered, rungTotal }: { progress: number; currentRung: number; rungCovered: number; rungTotal: number }) {
+    const pct = progress * 100;
 
     return (
-        <div className="flex items-center gap-2 mt-2">
-            <div className="flex-1 h-2 rounded-full bg-black/10">
+        <div className="mt-2">
+            <div className="h-2 rounded-full bg-black/10">
                 <div className="h-full rounded-full bg-lime-200" style={{ width: `${pct}%` }} />
             </div>
-            <span className="text-sm font-bold text-black/80 whitespace-nowrap">
-                {seen} / {total} <span className="font-semibold text-black/60">words</span>
+            <span className="text-sm font-bold text-black/80 mt-1 block">
+                {Math.round(pct)}% <span className="font-semibold text-black/60">· Rung {currentRung} · {rungCovered}/{rungTotal} items in rung</span>
             </span>
         </div>
     );
@@ -54,7 +54,7 @@ function StepRow({ step }: { step: StepItem }) {
             <div className="flex flex-col flex-1 min-w-0">
                 <span className="text-xl font-bold text-black/80">{title}</span>
                 <span className="text-sm text-black/70 mt-[2px]">{subtitle}</span>
-                {coverage && <CoverageBar seen={coverage.seen} total={coverage.total} />}
+                {coverage && <CoverageBar progress={coverage.progress} currentRung={coverage.currentRung} rungCovered={coverage.rungCovered} rungTotal={coverage.rungTotal} />}
             </div>
             {isAvailable && (
                 <span className="text-[11px] font-bold tracking-[0.10em] uppercase text-cyan-900 flex-shrink-0">

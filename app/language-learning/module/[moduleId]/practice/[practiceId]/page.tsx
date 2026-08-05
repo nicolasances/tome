@@ -45,7 +45,6 @@ export default function PracticeSessionPage() {
     const [exercises, setExercises] = useState<Exercise[]>([]);
     const [userId, setUserId] = useState('');
     const [cefrLevel, setCefrLevel] = useState('');
-    const [prevCoveredCount, setPrevCoveredCount] = useState(0);
 
     // ── AI answer verification ("Check with AI") ──────────────────────────────
     const verification = useAnswerVerification();
@@ -79,10 +78,7 @@ export default function PracticeSessionPage() {
     useEffect(() => {
         async function load() {
             const me = await new TomeLearningDashboardAPI().getMe();
-            const [session, progress] = await Promise.all([
-                new TomePracticeSessionAPI().getSession(me.id, practiceId),
-                new TomeLearningDashboardAPI().getMeProgress(),
-            ]);
+            const session = await new TomePracticeSessionAPI().getSession(me.id, practiceId);
 
             if (!session) {
                 router.push(`/language-learning/module/${moduleId}`);
@@ -93,14 +89,10 @@ export default function PracticeSessionPage() {
                 return;
             }
 
-            const moduleEntry = progress.modules.find(m => m.moduleId === moduleId);
-            const coveredCount = moduleEntry?.vocabularyItemsPracticedCount ?? 0;
-
             const state = reconstructSessionState(session);
 
             setUserId(me.id);
             setCefrLevel(me.cefrLevel);
-            setPrevCoveredCount(coveredCount);
             setExercises(session.exercises);
             setQueue(state.queue);
             setPendingRetry(state.pendingRetry);
@@ -197,13 +189,13 @@ export default function PracticeSessionPage() {
         try {
             const result = await new TomePracticeSessionAPI().completeSession(userId, practiceId);
             const params = new URLSearchParams({
-                prevCovered: String(prevCoveredCount),
                 rungsCompletedBefore: String(result.rungsCompletedBefore),
                 rungsCompletedAfter: String(result.rungsCompletedAfter),
                 currentRung: String(result.currentRung),
                 ladderCompleted: String(result.ladderCompleted),
-                vocabCoveredCount: String(result.vocabularyCoverage.coveredCount),
-                vocabTotalCount: String(result.vocabularyCoverage.totalCount),
+                rungCoveredBefore: String(result.rungCoverageBefore.coveredCount),
+                rungCoveredAfter: String(result.rungCoverageAfter.coveredCount),
+                rungTotal: String(result.rungCoverageAfter.totalCount),
             });
             router.push(`/language-learning/module/${moduleId}/practice/${practiceId}/results?${params.toString()}`);
         } catch {

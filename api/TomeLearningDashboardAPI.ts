@@ -88,6 +88,9 @@ export interface ModuleProgressEntry {
     testUnlocksAt: string | null;
     testRetryAvailableAt: string | null;
     vocabularyItemsPracticedCount: number;      // Number of unique vocabulary items encountered across all practice sessions for this module
+    currentRung: number;                        // The practice-ladder rung (1-3) the module is currently practising at
+    currentRungCoverage: { coveredCount: number; totalCount: number }; // Coverage of the module's combined vocabulary + grammar-concept items at currentRung
+    fullyCompletedRungs: number;                 // Rungs fully completed before currentRung; 3 once the whole ladder (or a pre-ladder-completed module) is done
 }
 
 export interface WeeklySessionStatsResponse {
@@ -172,4 +175,18 @@ export function deriveCurrentModule(progress: MeProgressResponse): CurrentModule
         moduleIndex,
         status: candidate.status as 'available' | 'in_progress',
     };
+}
+
+/**
+ * Blends a module's per-rung practice-ladder progress into a single fraction (0..1) across
+ * all 3 rungs: fully completed rungs count as whole units, the current rung contributes its
+ * own coverage fraction. Reaches 1.0 only once all 3 rungs are fully covered.
+ * Guards against a module with no practice items (totalCount 0) by treating the current
+ * rung's contribution as 0 rather than dividing by zero.
+ */
+export function calculateModuleProgress(entry: Pick<ModuleProgressEntry, 'fullyCompletedRungs' | 'currentRungCoverage'>): number {
+    const { fullyCompletedRungs, currentRungCoverage } = entry;
+    const currentRungFraction = currentRungCoverage.totalCount > 0 ? currentRungCoverage.coveredCount / currentRungCoverage.totalCount : 0;
+
+    return Math.min(1, (fullyCompletedRungs + currentRungFraction) / 3);
 }

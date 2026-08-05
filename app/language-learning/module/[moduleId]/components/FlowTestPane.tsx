@@ -6,13 +6,15 @@ import { StepState } from './StepList';
 interface FlowTestPaneProps {
     testState: StepState;
     lockLabel?: string;
-    vocabularySeen: number;
-    vocabularyTotal: number;
+    currentRung: number;
+    rungCovered: number;
+    rungTotal: number;
+    progress: number;
     testUnlockDelayHours: number;
 }
 
-export function FlowTestPane({ testState, lockLabel, vocabularySeen, vocabularyTotal, testUnlockDelayHours }: FlowTestPaneProps) {
-    const coveragePct = vocabularyTotal > 0 ? (vocabularySeen / vocabularyTotal) * 100 : 0;
+export function FlowTestPane({ testState, lockLabel, currentRung, rungCovered, rungTotal, progress, testUnlockDelayHours }: FlowTestPaneProps) {
+    const coveragePct = progress * 100;
 
     if (testState === 'available') {
         return (
@@ -61,12 +63,12 @@ export function FlowTestPane({ testState, lockLabel, vocabularySeen, vocabularyT
             </p>
             <div className="rounded-2xl border border-cyan-500/30 bg-cyan-700/40 p-5 flex items-center gap-4">
                 <div className="flex-1">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-white mb-2 m-0">Coverage this round</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-white mb-2 m-0">Rung {currentRung} coverage</p>
                     <div className="h-2 rounded-full bg-black/10">
                         <div className="h-full rounded-full bg-lime-200 transition-all" style={{ width: `${coveragePct}%` }} />
                     </div>
                 </div>
-                <span className="text-base font-bold text-white whitespace-nowrap">{vocabularySeen} / {vocabularyTotal} words</span>
+                <span className="text-base font-bold text-white whitespace-nowrap">{rungCovered}/{rungTotal} items</span>
             </div>
             {lockLabel && (
                 <div className="flex flex-1 items-end justify-end">

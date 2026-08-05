@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { TomeLearningDashboardAPI } from '../api/TomeLearningDashboardAPI';
+import { TomeLearningDashboardAPI, calculateModuleProgress } from '../api/TomeLearningDashboardAPI';
 import { TotoAPI } from '../api/TotoAPI';
 
 jest.mock('../api/TotoAPI');
@@ -56,5 +56,40 @@ describe('TomeLearningDashboardAPI.getWeeklySessionStats', () => {
             expect(calledPath).not.toContain(monday);
         }
         expect(calledPath).toContain(rollingStart);
+    });
+});
+
+// ─── calculateModuleProgress ─────────────────────────────────────────────────────
+
+describe('calculateModuleProgress', () => {
+
+    it('blends rung 1 partial coverage into a fraction of the 3-rung ladder', () => {
+        const progress = calculateModuleProgress({ fullyCompletedRungs: 0, currentRungCoverage: { coveredCount: 3, totalCount: 12 } });
+
+        expect(progress).toBeCloseTo(0.0833, 4);
+    });
+
+    it('blends rung 2 partial coverage with the one fully completed rung before it', () => {
+        const progress = calculateModuleProgress({ fullyCompletedRungs: 1, currentRungCoverage: { coveredCount: 6, totalCount: 12 } });
+
+        expect(progress).toBeCloseTo(0.5, 4);
+    });
+
+    it('reaches 1.0 when rung 3 is fully covered', () => {
+        const progress = calculateModuleProgress({ fullyCompletedRungs: 2, currentRungCoverage: { coveredCount: 12, totalCount: 12 } });
+
+        expect(progress).toBeCloseTo(1.0, 4);
+    });
+
+    it('reaches 1.0 once the whole ladder is complete, regardless of the current-rung counts', () => {
+        const progress = calculateModuleProgress({ fullyCompletedRungs: 3, currentRungCoverage: { coveredCount: 12, totalCount: 12 } });
+
+        expect(progress).toBeCloseTo(1.0, 4);
+    });
+
+    it('does not divide by zero when the module has no practice items', () => {
+        const progress = calculateModuleProgress({ fullyCompletedRungs: 1, currentRungCoverage: { coveredCount: 0, totalCount: 0 } });
+
+        expect(progress).toBeCloseTo(1 / 3, 4);
     });
 });
