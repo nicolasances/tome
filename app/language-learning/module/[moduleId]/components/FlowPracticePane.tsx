@@ -29,6 +29,10 @@ export function FlowPracticePane({currentRung, rungCovered, rungTotal, progress}
                 Work through practice rounds until every module word is covered. Each round presents exercises in a mix of formats — no pressure, just repetition.
             </p>
 
+            <div className="flex items-center gap-3 text-base">
+                <CurrentRungProgress currentRung={currentRung} />
+            </div>
+
             {/* Coverage */}
             <div className="rounded-2xl border border-cyan-500/30 bg-cyan-700/40 p-5 flex items-center gap-4">
                 <div className="flex-1">
@@ -40,5 +44,33 @@ export function FlowPracticePane({currentRung, rungCovered, rungTotal, progress}
                 <span className="text-base font-bold text-white whitespace-nowrap">{rungCovered}/{rungTotal} items</span>
             </div>
         </div>
+    );
+}
+
+
+function CurrentRungProgress({currentRung}: {currentRung: number}) {
+    return (
+        <div className="flex-1 flex items-center justify">
+            <div className="flex flex-1">You are current on rung <span className="font-bold">{currentRung} of 3</span>. </div>
+            <div className="flex items-center gap-4">
+                {Array.from({ length: 3 }).map((_, i) => (
+                    <RungDot key={i} completed={i < currentRung} />
+                ))}
+            </div>
+        </div>
+    )
+}
+
+
+function RungDot({ completed }: { completed: boolean }) {
+    return (
+        <span
+            className={`block rounded-full ${completed ? 'bg-lime-200' : 'bg-transparent'}`}
+            style={{
+                width: 7,
+                height: 7,
+                ...(completed ? {} : { border: '1.5px solid rgba(0,0,0,0.22)' }),
+            }}
+        />
     );
 }
