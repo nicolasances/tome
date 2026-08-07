@@ -21,6 +21,7 @@ import { ExTranslation } from '../module/[moduleId]/practice/components/ExTransl
 import { ResultSheet } from '../module/[moduleId]/practice/components/ResultSheet';
 import { AIVerifyTray } from '../module/[moduleId]/practice/components/AIVerifyTray';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
+import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -51,6 +52,7 @@ export default function LevelTestPage() {
 
     // AI answer verification ("Check with AI") — always stubbed off for the Level Test (OQ-2)
     const verification = useAnswerVerification();
+    useKeyboardShortcuts({});
 
     // Test session
     const [attemptId, setAttemptId] = useState('');

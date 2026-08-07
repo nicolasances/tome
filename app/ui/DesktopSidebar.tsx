@@ -78,6 +78,9 @@ export function DesktopSidebar() {
 
             <div className="flex-1" />
 
+            {/* Keyboard Shortcuts */}
+            <NavItem icon="/images/keyboard.svg" label="Keyboard Shortcuts" active={false} onClick={() => router.push('/keyboard-shortcuts')} />
+
             {/* Settings */}
             <NavItem icon="/images/settings.svg" label="Settings" active={false} onClick={() => router.push('/settings')} />
 

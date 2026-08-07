@@ -10,6 +10,7 @@ import { TranslationInput } from '@/components/TranslationInput';
 import { PracticeResult } from '@/app/components/PracticeResult';
 import { RoundButton } from 'toto-react';
 import { TomeLanguageAPI } from '@/api/TomeLanguageAPI';
+import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -45,6 +46,7 @@ export default function VocabularyPracticePage() {
     // can call startSession and accidentally create a duplicate backend session.
     const sessionLoadGenRef = useRef(0);
     const api = getVocabularyPracticeAPI();
+    useKeyboardShortcuts({});
 
     // Configure header
     useEffect(() => {
