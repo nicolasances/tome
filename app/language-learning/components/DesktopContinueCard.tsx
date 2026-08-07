@@ -73,7 +73,7 @@ export function DesktopContinueCard({loading, module, progress}: DesktopContinue
                     <span className="text-sm font-bold text-white whitespace-nowrap">{progressPct}%</span>
                 </div>
                 {progress && (
-                    <p className="text-xs text-cyan-100 mt-2 m-0">
+                    <p className="text-base text-cyan-100 mt-2 m-0">
                         Rung {progress.currentRung} · {progress.currentRungCoverage.coveredCount}/{progress.currentRungCoverage.totalCount} items in rung
                     </p>
                 )}
