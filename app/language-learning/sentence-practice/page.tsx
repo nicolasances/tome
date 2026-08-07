@@ -11,6 +11,7 @@ import { PracticeResult } from '@/app/components/PracticeResult';
 import { RoundButton } from 'toto-react';
 import { TomeLLMVerifyAPI, LLMVerifyResult } from '@/api/TomeLLMVerifyAPI';
 import { TomeLanguageAPI } from '@/api/TomeLanguageAPI';
+import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 
 type ResultState = { isCorrect: boolean; userAnswer: string } | null;
 
@@ -71,6 +72,7 @@ export default function SentencePracticePage() {
 
     const api = getSentencePracticeAPI();
     const llmApi = new TomeLLMVerifyAPI();
+    useKeyboardShortcuts({});
 
     useEffect(() => {
         setConfig({
