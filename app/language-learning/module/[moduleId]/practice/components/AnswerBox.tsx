@@ -58,7 +58,7 @@ export function AnswerLineInput({value, onChange, onSend, canSend, disabled, aut
                 onChange={e => onChange(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={disabled}
-                className="absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-cyan-700 bg-transparent outline-none transition-colors disabled:opacity-50"
+                className="absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
             />
         </span>
     );
@@ -101,7 +101,7 @@ export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, aut
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             disabled={disabled}
-            className="w-full resize-none overflow-hidden border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-1 text-center text-cyan-700 bg-transparent outline-none transition-colors disabled:opacity-50"
+            className="w-full resize-none overflow-hidden border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-1 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
         />
     );
 }
