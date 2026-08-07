@@ -29,7 +29,7 @@ export function FlowPracticePane({ currentRung, rungCovered, rungTotal, progress
                 </div>
             </div>
 
-            <p className="text-sm text-black/70 leading-relaxed m-0">
+            <p className="text-base text-black/70 leading-relaxed m-0">
                 Work through practice rounds until every module word is covered. Each round presents exercises in a mix of formats — no pressure, just repetition.
             </p>
 

@@ -28,7 +28,7 @@ export function FlowTestPane({ testState, lockLabel, currentRung, rungCovered, r
                         <p className="text-xl font-bold text-black mt-0.5 m-0">Ready to test</p>
                     </div>
                 </div>
-                <p className="text-sm text-black/70 leading-relaxed m-0">
+                <p className="text-base text-black/70 leading-relaxed m-0">
                     You&apos;ve covered all vocabulary. Take the test to complete this module and unlock the next.
                 </p>
             </div>
@@ -42,7 +42,7 @@ export function FlowTestPane({ testState, lockLabel, currentRung, rungCovered, r
                     <MaskedSvgIcon src="/images/tick.svg" alt="Passed" size="w-5 h-5" color="bg-cyan-800" />
                 </div>
                 <p className="text-xl font-bold text-black m-0">Test passed</p>
-                <p className="text-sm text-black/60 m-0">This module is complete.</p>
+                <p className="text-base text-black/60 m-0">This module is complete.</p>
             </div>
         );
     }
@@ -58,7 +58,7 @@ export function FlowTestPane({ testState, lockLabel, currentRung, rungCovered, r
                     <p className="text-xl font-bold text-black mt-0.5 m-0">Module Test is locked</p>
                 </div>
             </div>
-            <p className="text-sm text-black/70 leading-relaxed m-0">
+            <p className="text-base text-black/70 leading-relaxed m-0">
                 Finish practice so every word has been seen at least once. The test unlocks <b>{testUnlockDelayHours} hours</b> after full coverage — a short spaced-repetition gap so it tests memory, not recall.
             </p>
             <div className="rounded-2xl border border-cyan-500/30 bg-cyan-700/40 p-5 flex items-center gap-4">
