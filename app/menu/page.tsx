@@ -26,7 +26,6 @@ export default function Menu() {
                 <MenuItem onClick={() => router.push('/settings')} icon="/images/settings.svg" iconColor="bg-cyan-700" label="Settings" />
                 <div className="pt-4"></div>
                 <MenuItem onClick={() => router.push('/new-topic')} icon="/images/plus.svg" iconColor="bg-cyan-700" label="New Topic" />
-                <MenuItem onClick={() => router.push('/language-learning')} icon="/images/language.svg" iconColor="bg-cyan-700" label="Language Learning" />
             </div>
         </div>
     );
