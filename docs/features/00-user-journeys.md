@@ -50,6 +50,7 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Practice complete | `/language-learning/module/[moduleId]/practice/[practiceId]/results` | `05-practice-session` | End-of-round recap. Two states: **Round complete** (every round before full coverage) and **Coverage milestone** (only when the round reaches full coverage). User chooses *Practice another round* or *Back to module*. |
 | Module test | `/language-learning/module/[moduleId]/test` | `06-module-test` | Step 3 — gated, scored flow as internal phases: locked → ready → in-test → submit → result (pass/fail) → review. Reuses the practice exercise interface. |
 | Level test | `/language-learning/level-test` | `07-level-test` | Level-wide, gated, scored flow as internal phases: ready → in-test → submit → result (pass promotes CEFR level / fail with retry cooldown) → review. Entry CTA lives on the Home dashboard (owned by `01`); the in-test / submit / fail / review phases reuse `06-module-test`. |
+| Keyboard shortcuts | `/keyboard-shortcuts` | fix (issue #325) | Desktop-only reference list of the app's hard-coded keyboard shortcuts, read from the shared `utils/keyboardShortcuts.ts` registry. Reachable from the desktop sidebar, next to Settings. |
 
 ## Desktop responsive layout
 
@@ -60,7 +61,7 @@ above it the app re-lays into a browser-width layout:
 - **Persistent left sidebar** replaces the mobile `TomeHeader` hamburger button,
   which on mobile navigates to a full-screen `/menu` page instead of opening a
   slide-in panel. Contains brand, vertical nav (Home, Modules, Analyze,
-  Knowledge, Sources), Settings, and a level badge. Only Home and Modules
+  Knowledge, Sources), Keyboard Shortcuts, Settings, and a level badge. Only Home and Modules
   navigate; others are decorative placeholders.
 - **Home dashboard** → multi-column layout: page header with weekly session stat,
   level path, two-column Continue card + weekly chart band, stat tiles, "Up next"
