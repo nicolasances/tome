@@ -22,6 +22,7 @@ import { ExTranslation } from '../practice/components/ExTranslation';
 import { ResultSheet } from '../practice/components/ResultSheet';
 import { AIVerifyTray } from '../practice/components/AIVerifyTray';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
+import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -178,6 +179,9 @@ export default function ModuleTestPage() {
         verification.verify({ exerciseId: currentExercise.id, userAnswer: inputValue, sessionId: attemptId, cefrLevel });
     }
 
+    const aiVerifyVisible = !!submissionState && verification.phase === null && currentExercise?.type === 'translation_active' && !submissionState.isCorrect;
+    useKeyboardShortcuts({ onCheckWithAi: aiVerifyVisible ? handleAiVerify : undefined });
+
     // ── Continue (single-pass: no retry queue) ────────────────────────────────
     // overrideCorrect overturns the verdict when AI accepts a wrong answer (valid: true).
     function handleContinue(overrideCorrect?: boolean) {
@@ -302,7 +306,7 @@ export default function ModuleTestPage() {
                             answer={submissionState.correctAnswer}
                             userAnswer={inputValue}
                             exercise={currentExercise}
-                            aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
+                            aiVerify={aiVerifyVisible}
                             onContinue={() => handleContinue()}
                             onAiVerify={handleAiVerify}
                         />

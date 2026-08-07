@@ -7,6 +7,7 @@ import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomePracticeSessionAPI, Exercise } from '@/api/TomePracticeSessionAPI';
 import { reconstructSessionState } from '@/utils/reconstructSessionState';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
+import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 import { toggleWordId, resolveBuiltWords } from '@/utils/sentenceReorderWords';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { ResultSheet } from '../components/ResultSheet';
@@ -143,6 +144,9 @@ export default function PracticeSessionPage() {
         if (!currentExercise || !submissionState) return;
         verification.verify({ exerciseId: currentExercise.id, userAnswer: inputValue, sessionId: practiceId, cefrLevel });
     }
+
+    const aiVerifyVisible = !!submissionState && verification.phase === null && currentExercise?.type === 'translation_active' && !submissionState.isCorrect;
+    useKeyboardShortcuts({ onCheckWithAi: aiVerifyVisible ? handleAiVerify : undefined });
 
     // ── Continue (advance to next exercise) ───────────────────────────────────
     // overrideCorrect overturns the verdict when AI accepts a wrong answer (valid: true).
@@ -312,7 +316,7 @@ export default function PracticeSessionPage() {
                             answer={submissionState.correctAnswer}
                             userAnswer={inputValue}
                             exercise={currentExercise}
-                            aiVerify={currentExercise.type === 'translation_active' && !submissionState.isCorrect}
+                            aiVerify={aiVerifyVisible}
                             onContinue={() => handleContinue()}
                             onAiVerify={handleAiVerify}
                         />
