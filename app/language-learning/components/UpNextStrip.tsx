@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
+import { computeUpNextWindow } from '@/utils/upNextWindow';
 
 interface UpNextStripProps {
     loading?: boolean;
@@ -32,7 +33,7 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
 
     if (!modules || modules.length === 0) return null;
 
-    const first4 = modules.slice(0, 4);
+    const windowed = computeUpNextWindow(modules);
 
     return (
         <div>
@@ -46,10 +47,10 @@ export function UpNextStrip({loading, levelName, modules, onOpenMap}: UpNextStri
                 </button>
             </div>
             <div className="grid grid-cols-4 gap-4">
-                {first4.map((m, i) => {
+                {windowed.map(({ module: m, levelIndex }) => {
                     const isCurrent = m.status === 'in_progress' || m.status === 'available';
                     const isCompleted = m.status === 'completed';
-                    const num = String(i + 1).padStart(2, '0');
+                    const num = String(levelIndex).padStart(2, '0');
                     return (
                         <div
                             key={m.moduleId}
