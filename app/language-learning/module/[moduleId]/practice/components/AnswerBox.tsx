@@ -49,7 +49,7 @@ export function AnswerLineInput({value, onChange, onSend, canSend, disabled, aut
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         // Uppercase the first letter
-        if (e.target.value && e.target.value.length > 0) e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+        if (e.target.value && e.target.value.length > 0) e.target.value = (e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)).trimStart();
 
         onChange(e.target.value);
     }
@@ -91,8 +91,8 @@ export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, aut
 
     function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
         // Uppercase the first letter
-        if (e.target.value && e.target.value.length > 0) e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-        
+        if (e.target.value && e.target.value.length > 0) e.target.value = (e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)).trimStart();
+
         onChange(e.target.value);
         resize(e.target);
     }
