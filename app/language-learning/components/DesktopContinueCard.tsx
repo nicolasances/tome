@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
-import { CurrentModuleInfo, ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
+import { calculateModuleProgress, CurrentModuleInfo, ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
 import { ProgressBar } from '@/app/ui/general/ProgressBar';
 
 interface DesktopContinueCardProps {
@@ -44,7 +44,7 @@ export function DesktopContinueCard({loading, module, progress}: DesktopContinue
     }
 
     const kicker = `Continue · ${module.cefrLevel}·${String(module.moduleIndex).padStart(2, '0')}`;
-    const stepNum = progress?.step === 'practice' ? 2 : progress?.step === 'test' ? 3 : progress?.step === 'done' ? 3 : 1;
+    const progressPct = progress ? Math.round(calculateModuleProgress(progress) * 100) : 0;
 
     return (
         <button
@@ -68,13 +68,13 @@ export function DesktopContinueCard({loading, module, progress}: DesktopContinue
             <div className="mt-6">
                 <div className="flex items-center gap-3">
                     <div className="flex-1">
-                        <ProgressBar current={stepNum} max={3} size="s" hideNumber id="desktop-continue-step" />
+                        <ProgressBar current={progressPct} max={100} size="s" hideNumber id="desktop-continue-step" />
                     </div>
-                    <span className="text-sm font-bold text-white whitespace-nowrap">Step {stepNum} / 3</span>
+                    <span className="text-sm font-bold text-white whitespace-nowrap">{progressPct}%</span>
                 </div>
                 {progress && (
-                    <p className="text-xs text-cyan-100 mt-2 m-0">
-                        Practice · {progress.vocabularyItemsPracticedCount} words seen this round
+                    <p className="text-base text-cyan-100 mt-2 m-0">
+                        Rung {progress.currentRung} · {progress.currentRungCoverage.coveredCount}/{progress.currentRungCoverage.totalCount} items in rung
                     </p>
                 )}
             </div>

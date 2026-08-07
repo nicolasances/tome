@@ -31,7 +31,7 @@ export function ConceptCard({ name, explanation, examples }: GrammarConcept) {
             </div>
 
             {/* ── Explanation ─────────────────────────────────────────────── */}
-            <p className="text-sm text-black/80 leading-relaxed">{explanation}</p>
+            <p className="text-base text-black/80 leading-relaxed">{explanation}</p>
 
             {/* ── Examples ────────────────────────────────────────────────── */}
             {examples.length > 0 && (
@@ -39,7 +39,7 @@ export function ConceptCard({ name, explanation, examples }: GrammarConcept) {
                     {examples.map((ex, i) => (
                         <div key={i} className="border-l-4 border-lime-300 pl-3">
                             <div className="text-base font-bold text-black/80">{ex.danish}</div>
-                            <div className="text-xs text-black/60 mt-0.5">{ex.english}</div>
+                            <div className="text-base text-black/60 mt-0.5">{ex.english}</div>
                         </div>
                     ))}
                 </div>
