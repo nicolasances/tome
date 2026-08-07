@@ -42,8 +42,16 @@ interface AnswerLineInputProps {
 }
 
 export function AnswerLineInput({value, onChange, onSend, canSend, disabled, autoFocus}: AnswerLineInputProps) {
+
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter' && canSend) onSend();
+    }
+
+    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        // Uppercase the first letter
+        if (e.target.value && e.target.value.length > 0) e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+
+        onChange(e.target.value);
     }
 
     return (
@@ -58,7 +66,7 @@ export function AnswerLineInput({value, onChange, onSend, canSend, disabled, aut
                 onChange={e => onChange(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={disabled}
-                className="absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
+                className="first-letter:uppercase absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
             />
         </span>
     );
@@ -82,6 +90,9 @@ export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, aut
     }
 
     function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+        // Uppercase the first letter
+        if (e.target.value && e.target.value.length > 0) e.target.value = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+        
         onChange(e.target.value);
         resize(e.target);
     }
