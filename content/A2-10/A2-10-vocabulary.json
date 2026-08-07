@@ -1,0 +1,192 @@
+[
+  {
+    "id": "A2-10-v-fordi-1908",
+    "danish": "fordi",
+    "english": "because",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "cause", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-selvom-4922",
+    "danish": "selvom",
+    "english": "although / even though",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "contrast", "concession", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-selv-hvis-9482",
+    "danish": "selv hvis",
+    "english": "even if",
+    "type": "connector",
+    "context": "stronger, more hypothetical version of hvis",
+    "tags": ["connector", "condition", "concession", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-hvis-1755",
+    "danish": "hvis",
+    "english": "if",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "condition", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-naar-1751",
+    "danish": "når",
+    "english": "when",
+    "type": "connector",
+    "context": "habitual or future time, repeated events — contrast with da for a single past event",
+    "tags": ["connector", "time", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-da-5980",
+    "danish": "da",
+    "english": "when",
+    "type": "connector",
+    "context": "a single, specific event in the past — contrast with når for habitual/repeated time",
+    "tags": ["connector", "time", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-mens-7350",
+    "danish": "mens",
+    "english": "while",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "time", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-indtil-5800",
+    "danish": "indtil",
+    "english": "until",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "time", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-efter-at-1752",
+    "danish": "efter at",
+    "english": "after",
+    "type": "connector",
+    "context": "subordinating conjunction introducing a clause — contrast with the preposition efter",
+    "tags": ["connector", "time", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-foer-3807",
+    "danish": "før",
+    "english": "before",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "time", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-derfor-9959",
+    "danish": "derfor",
+    "english": "therefore / that's why",
+    "type": "adverb",
+    "context": null,
+    "tags": ["transition", "cause", "result"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-alligevel-6413",
+    "danish": "alligevel",
+    "english": "nevertheless / anyway",
+    "type": "adverb",
+    "context": null,
+    "tags": ["transition", "contrast"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-bagefter-4639",
+    "danish": "bagefter",
+    "english": "afterwards",
+    "type": "adverb",
+    "context": null,
+    "tags": ["transition", "time", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-foerst-7120",
+    "danish": "først",
+    "english": "first / at first",
+    "type": "adverb",
+    "context": null,
+    "tags": ["transition", "time", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-derefter-8163",
+    "danish": "derefter",
+    "english": "then / after that",
+    "type": "adverb",
+    "context": null,
+    "tags": ["transition", "time", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-til-sidst-3545",
+    "danish": "til sidst",
+    "english": "finally / in the end",
+    "type": "phrase",
+    "context": null,
+    "tags": ["transition", "time", "sequencing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-for-eksempel-4256",
+    "danish": "for eksempel",
+    "english": "for example",
+    "type": "phrase",
+    "context": null,
+    "tags": ["transition", "elaboration"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-paa-grund-af-5022",
+    "danish": "på grund af",
+    "english": "because of / due to",
+    "type": "phrase",
+    "context": "takes a noun phrase, not a full clause — contrast with fordi which takes a clause",
+    "tags": ["transition", "cause"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-10-v-grunden-til-at-9053",
+    "danish": "grunden til at",
+    "english": "the reason (that)",
+    "type": "pattern",
+    "context": null,
+    "tags": ["transition", "cause"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

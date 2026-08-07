@@ -1,0 +1,34 @@
+{
+  "id": "danish-A2-10",
+  "title": "Connecting Your Thoughts",
+  "theme": "Conjunctions and sentence linking",
+  "communicationGoal": "Express cause, contrast, condition, and time using subordinate connectors",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-10-v-fordi-1908",
+    "A2-10-v-selvom-4922",
+    "A2-10-v-selv-hvis-9482",
+    "A2-10-v-hvis-1755",
+    "A2-10-v-naar-1751",
+    "A2-10-v-da-5980",
+    "A2-10-v-mens-7350",
+    "A2-10-v-indtil-5800",
+    "A2-10-v-efter-at-1752",
+    "A2-10-v-foer-3807",
+    "A2-10-v-derfor-9959",
+    "A2-10-v-alligevel-6413",
+    "A2-10-v-bagefter-4639",
+    "A2-10-v-foerst-7120",
+    "A2-10-v-derefter-8163",
+    "A2-10-v-til-sidst-3545",
+    "A2-10-v-for-eksempel-4256",
+    "A2-10-v-paa-grund-af-5022",
+    "A2-10-v-grunden-til-at-9053"
+  ],
+  "grammarConceptIds": [
+    "A2-10-g-causal-conditional-connectors-9374",
+    "A2-10-g-inversion-8058"
+  ],
+  "createdAt": "2026-08-07T00:00:00Z",
+  "isUserGenerated": false
+}

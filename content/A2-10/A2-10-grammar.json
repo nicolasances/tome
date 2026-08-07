@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-10-g-causal-conditional-connectors-9374",
+    "name": "Causal/conditional connectors",
+    "category": "connectors_subordinate_clauses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Subordinating conjunctions like fordi (because), hvis (if), når (when), selvom (although), and selv hvis (even if) join a main clause to a subordinate clause that gives a reason, a condition, a time, or a contrast. Inside the subordinate clause, word order stays simple: connector + subject + verb, just like a normal sentence — there is no word-order change to learn yet. The subordinate clause can come after the main clause, or before it (see Inversion for what happens to the main clause when it comes first).",
+    "examples": [
+      { "danish": "Jeg bliver hjemme, fordi jeg er syg.", "english": "I'm staying home because I'm sick." },
+      { "danish": "Vi tager en paraply med, hvis det regner.", "english": "We'll bring an umbrella if it rains." }
+    ]
+  },
+  {
+    "id": "A2-10-g-inversion-8058",
+    "name": "Inversion (verb-second rule)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Danish main clauses always keep the finite verb in second position. When a subordinate clause (starting with fordi, hvis, når, selvom, mens, and similar connectors) is fronted — placed before the main clause instead of after it — the whole subordinate clause counts as the first position. That means the main clause's subject and verb swap: the verb comes immediately after the comma, and the subject follows it.",
+    "examples": [
+      { "danish": "Fordi det regnede, blev vi hjemme.", "english": "Because it was raining, we stayed home." },
+      { "danish": "Når jeg er færdig, ringer jeg til dig.", "english": "When I'm done, I'll call you." }
+    ]
+  }
+]
