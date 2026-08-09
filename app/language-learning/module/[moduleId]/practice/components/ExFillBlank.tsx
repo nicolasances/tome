@@ -29,7 +29,7 @@ export function ExFillBlank({exercise, submissionState, inputValue, onInputChang
                         {submitted ? (
                             <AnswerLine text={inputValue || submissionState.correctAnswer} ok={submissionState.isCorrect} />
                         ) : (
-                            <AnswerLineInput value={inputValue} onChange={onInputChange} onSend={onSend} canSend={canSend} disabled={isSubmitting} autoFocus />
+                            <AnswerLineInput value={inputValue} onChange={onInputChange} onSend={onSend} canSend={canSend} disabled={isSubmitting} capitalizeFirstLetter={false} autoFocus />
                         )}
                         <span>{parts[1].trim()}</span>
                     </div>

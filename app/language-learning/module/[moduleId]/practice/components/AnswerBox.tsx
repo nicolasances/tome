@@ -39,17 +39,21 @@ interface AnswerLineInputProps {
     canSend: boolean;
     disabled?: boolean;
     autoFocus?: boolean;
+    capitalizeFirstLetter?: boolean;
 }
 
-export function AnswerLineInput({value, onChange, onSend, canSend, disabled, autoFocus}: AnswerLineInputProps) {
+export function AnswerLineInput({value, onChange, onSend, canSend, disabled, autoFocus, capitalizeFirstLetter}: AnswerLineInputProps) {
 
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter' && canSend) onSend();
     }
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+
         // Uppercase the first letter
-        if (e.target.value && e.target.value.length > 0) e.target.value = (e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)).trimStart();
+        if (capitalizeFirstLetter == null || capitalizeFirstLetter == undefined || capitalizeFirstLetter === true) {
+            if (e.target.value && e.target.value.length > 0) e.target.value = (e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)).trimStart();
+        }
 
         onChange(e.target.value);
     }
@@ -66,7 +70,7 @@ export function AnswerLineInput({value, onChange, onSend, canSend, disabled, aut
                 onChange={onInputChange}
                 onKeyDown={handleKeyDown}
                 disabled={disabled}
-                className="first-letter:uppercase absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
+                className="absolute inset-0 w-full min-w-20 max-w-[70vw] border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-0.5 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
             />
         </span>
     );
