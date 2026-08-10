@@ -138,7 +138,7 @@ function LevelNode({ label, isCurrent, isCompleted, onLevelClick }: { label: str
 
     return (
         <div
-            className={`flex-none rounded-full flex items-center justify-center font-bold ${colorClasses}`}
+            className={`flex-none rounded-full flex items-center justify-center font-bold ${colorClasses} ${onLevelClick ? 'cursor-pointer' : ''}`}
             style={{
                 width: size,
                 height: size,
