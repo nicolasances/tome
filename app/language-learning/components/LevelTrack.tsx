@@ -21,6 +21,8 @@ interface LevelTrackProps {
     totalModules?: number;
     /** Number of completed modules at the current level */
     completedModules?: number;
+    /** Optional callback for when a level is clicked */
+    onLevelClick?: (level: CefrLevel) => void;
 }
 
 /**
@@ -39,6 +41,7 @@ export function LevelTrack({
     levelName,
     totalModules = 0,
     completedModules = 0,
+    onLevelClick,
 }: LevelTrackProps) {
 
     if (loading) {
@@ -97,7 +100,7 @@ export function LevelTrack({
 
                     return (
                         <React.Fragment key={level}>
-                            <LevelNode label={level} isCurrent={isCurrent} isCompleted={isCompleted} />
+                            <LevelNode label={level} isCurrent={isCurrent} isCompleted={isCompleted} onLevelClick={onLevelClick} />
                             {i < CEFR_LEVELS.length - 1 && (
                                 <div
                                     className={`flex-1 rounded ${isCompleted ? 'bg-lime-300' : 'bg-black/15'}`}
@@ -124,7 +127,7 @@ export function LevelTrack({
 
 // ─── Private sub-components ──────────────────────────────────────────────────
 
-function LevelNode({ label, isCurrent, isCompleted }: { label: string; isCurrent: boolean; isCompleted: boolean }) {
+function LevelNode({ label, isCurrent, isCompleted, onLevelClick }: { label: string; isCurrent: boolean; isCompleted: boolean; onLevelClick?: (level: CefrLevel) => void }) {
     const size = isCurrent ? 44 : 34;
 
     const colorClasses = isCurrent
@@ -143,6 +146,7 @@ function LevelNode({ label, isCurrent, isCompleted }: { label: string; isCurrent
                 fontSize: isCurrent ? 15 : 12,
                 ...(!isCurrent && !isCompleted ? { borderColor: 'rgba(0,0,0,0.22)' } : {}),
             }}
+            onClick={() => onLevelClick?.(label as CefrLevel)}
         >
             {label}
         </div>
