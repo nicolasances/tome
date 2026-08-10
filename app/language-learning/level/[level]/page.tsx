@@ -15,6 +15,7 @@ import { LevelProgressHeader } from './components/LevelProgressHeader';
 import { StatusLegend } from './components/StatusLegend';
 import { ModuleRow } from './components/ModuleRow';
 import { ModuleCard } from './components/ModuleCard';
+import { LevelTrack } from '../../components/LevelTrack';
 
 export default function ModuleMapPage() {
     const params = useParams();
@@ -90,6 +91,15 @@ export default function ModuleMapPage() {
                         </div>
                         <p className="text-xs font-semibold uppercase tracking-widest text-black/60 mt-1 m-0">modules complete</p>
                     </div>
+                </div>
+
+                <div>
+                    <LevelTrack
+                        loading={progress === undefined}
+                        error={false}
+                        cefrLevel={level}
+                        levelName={levelName}
+                    />
                 </div>
 
                 {progress === undefined && <ModuleMapSkeleton />}

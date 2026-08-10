@@ -72,6 +72,7 @@ export default function LanguageLearningHomePage() {
             {/* ═══ MOBILE LAYOUT ═══ */}
             <div className="flex flex-1 flex-col px-4 pt-6 pb-4 gap-8 overflow-y-auto lg:hidden">
                 <LevelTrack
+                    title="Your path to fluency"
                     loading={isProgressLoading}
                     error={!isProgressLoading && (!progress || !cefrLevel || !levelName || !currentLevelSummary)}
                     cefrLevel={cefrLevel}
@@ -115,6 +116,7 @@ export default function LanguageLearningHomePage() {
                 {/* Level path */}
                 <div className="mb-8">
                     <LevelTrack
+                        title="Your path to fluency"
                         loading={isProgressLoading}
                         error={!isProgressLoading && (!progress || !cefrLevel || !levelName || !currentLevelSummary)}
                         cefrLevel={cefrLevel}

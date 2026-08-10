@@ -9,6 +9,8 @@ const CEFR_LEVELS: CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 const MAX_DOTS = 16;
 
 interface LevelTrackProps {
+    /** If a title is wanted, to be displayed above the level track */
+    title?: string; 
     loading?: boolean;
     error?: boolean;
     /** User's current CEFR level */
@@ -30,6 +32,7 @@ interface LevelTrackProps {
  * Static — not interactive.
  */
 export function LevelTrack({
+    title,
     loading,
     error,
     cefrLevel,
@@ -77,9 +80,14 @@ export function LevelTrack({
 
     return (
         <div>
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-black/50 mb-3.5 text-center">
-                Your path to fluency
-            </p>
+            {title &&
+                (
+                    <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-black/50 mb-3.5 text-center">
+                        {title}
+                    </p>
+
+                )
+            }
 
             {/* ── Level nodes row ─────────────────────────────── */}
             <div className="flex items-center">
@@ -122,8 +130,8 @@ function LevelNode({ label, isCurrent, isCompleted }: { label: string; isCurrent
     const colorClasses = isCurrent
         ? 'bg-lime-200 border-[2.5px] border-lime-200 text-cyan-800'
         : isCompleted
-        ? 'bg-lime-300 border-2 border-lime-300 text-cyan-800'
-        : 'bg-transparent border-2 text-black/50';
+            ? 'bg-lime-300 border-2 border-lime-300 text-cyan-800'
+            : 'bg-transparent border-2 text-black/50';
 
     return (
         <div
@@ -131,7 +139,7 @@ function LevelNode({ label, isCurrent, isCompleted }: { label: string; isCurrent
             style={{
                 width: size,
                 height: size,
-                lineHeight: size, 
+                lineHeight: size,
                 fontSize: isCurrent ? 15 : 12,
                 ...(!isCurrent && !isCompleted ? { borderColor: 'rgba(0,0,0,0.22)' } : {}),
             }}
