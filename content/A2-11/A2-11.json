@@ -1,0 +1,41 @@
+{
+  "id": "danish-A2-11",
+  "title": "Talking About Experiences",
+  "theme": "Experiences, recommendations, advice",
+  "communicationGoal": "Ask about and share experiences, recommend places and activities, give and receive advice",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-11-v-proeve-4709",
+    "A2-11-v-opleve-9265",
+    "A2-11-v-anbefale-4517",
+    "A2-11-v-besoege-3363",
+    "A2-11-v-burde-2606",
+    "A2-11-v-har-du-proevet-3030",
+    "A2-11-v-jeg-har-aldrig-proevet-7836",
+    "A2-11-v-du-burde-proeve-5349",
+    "A2-11-v-man-kan-sagtens-8396",
+    "A2-11-v-jeg-vil-varmt-anbefale-6903",
+    "A2-11-v-det-er-vaerd-at-6931",
+    "A2-11-v-hvad-synes-du-om-5797",
+    "A2-11-v-museum-1578",
+    "A2-11-v-restaurant-3413",
+    "A2-11-v-koncert-4440",
+    "A2-11-v-udstilling-1484",
+    "A2-11-v-caf-7681",
+    "A2-11-v-biograf-4264",
+    "A2-11-v-teater-3425",
+    "A2-11-v-oplevelse-9015",
+    "A2-11-v-raad-2107",
+    "A2-11-v-fantastisk-3315",
+    "A2-11-v-kedelig-1307",
+    "A2-11-v-spaendende-3397",
+    "A2-11-v-skuffende-2734",
+    "A2-11-v-nogensinde-6243"
+  ],
+  "grammarConceptIds": [
+    "A2-11-g-present-perfect-2733",
+    "A2-11-g-modal-verbs-9553"
+  ],
+  "createdAt": "2026-08-10T00:00:00Z",
+  "isUserGenerated": false
+}

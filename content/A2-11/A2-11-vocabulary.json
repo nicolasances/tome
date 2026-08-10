@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-11-v-proeve-4709",
+    "danish": "prøve",
+    "english": "to try",
+    "type": "verb",
+    "context": null,
+    "tags": ["experiences", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-opleve-9265",
+    "danish": "opleve",
+    "english": "to experience",
+    "type": "verb",
+    "context": null,
+    "tags": ["experiences", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-anbefale-4517",
+    "danish": "anbefale",
+    "english": "to recommend",
+    "type": "verb",
+    "context": null,
+    "tags": ["recommendations", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-besoege-3363",
+    "danish": "besøge",
+    "english": "to visit",
+    "type": "verb",
+    "context": null,
+    "tags": ["experiences", "places", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-burde-2606",
+    "danish": "burde",
+    "english": "should / ought to",
+    "type": "verb",
+    "context": "modal verb used for giving advice",
+    "tags": ["advice", "modal-verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-har-du-proevet-3030",
+    "danish": "Har du prøvet...?",
+    "english": "Have you tried...?",
+    "type": "pattern",
+    "context": "asking someone about a past experience",
+    "tags": ["experiences", "questions", "present-perfect"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-jeg-har-aldrig-proevet-7836",
+    "danish": "Jeg har aldrig prøvet...",
+    "english": "I have never tried...",
+    "type": "pattern",
+    "context": "sharing that you have no experience with something",
+    "tags": ["experiences", "present-perfect"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-du-burde-proeve-5349",
+    "danish": "Du burde prøve...",
+    "english": "You should try...",
+    "type": "pattern",
+    "context": "giving personal advice",
+    "tags": ["advice", "recommendations"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-man-kan-sagtens-8396",
+    "danish": "Man kan sagtens...",
+    "english": "One can easily...",
+    "type": "pattern",
+    "context": "giving a general recommendation to anyone",
+    "tags": ["recommendations", "general-advice"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-jeg-vil-varmt-anbefale-6903",
+    "danish": "Jeg vil varmt anbefale...",
+    "english": "I would warmly recommend...",
+    "type": "pattern",
+    "context": "strongly recommending something",
+    "tags": ["recommendations"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-det-er-vaerd-at-6931",
+    "danish": "Det er værd at se",
+    "english": "It's worth seeing",
+    "type": "phrase",
+    "context": null,
+    "tags": ["recommendations", "evaluation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-hvad-synes-du-om-5797",
+    "danish": "Hvad synes du om...?",
+    "english": "What do you think of...?",
+    "type": "pattern",
+    "context": "asking for someone's opinion or evaluation",
+    "tags": ["opinions", "questions"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-museum-1578",
+    "danish": "museum",
+    "english": "museum",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-restaurant-3413",
+    "danish": "restaurant",
+    "english": "restaurant",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-koncert-4440",
+    "danish": "koncert",
+    "english": "concert",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-udstilling-1484",
+    "danish": "udstilling",
+    "english": "exhibition",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-caf-7681",
+    "danish": "café",
+    "english": "café",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-biograf-4264",
+    "danish": "biograf",
+    "english": "cinema",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-teater-3425",
+    "danish": "teater",
+    "english": "theatre",
+    "type": "noun",
+    "context": null,
+    "tags": ["places", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-oplevelse-9015",
+    "danish": "oplevelse",
+    "english": "experience",
+    "type": "noun",
+    "context": null,
+    "tags": ["experiences"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-raad-2107",
+    "danish": "råd",
+    "english": "advice",
+    "type": "noun",
+    "context": null,
+    "tags": ["advice"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-fantastisk-3315",
+    "danish": "fantastisk",
+    "english": "fantastic",
+    "type": "adjective",
+    "context": null,
+    "tags": ["evaluation", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-kedelig-1307",
+    "danish": "kedelig",
+    "english": "boring",
+    "type": "adjective",
+    "context": null,
+    "tags": ["evaluation", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-spaendende-3397",
+    "danish": "spændende",
+    "english": "exciting",
+    "type": "adjective",
+    "context": null,
+    "tags": ["evaluation", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-skuffende-2734",
+    "danish": "skuffende",
+    "english": "disappointing",
+    "type": "adjective",
+    "context": null,
+    "tags": ["evaluation", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-11-v-nogensinde-6243",
+    "danish": "nogensinde",
+    "english": "ever",
+    "type": "adverb",
+    "context": null,
+    "tags": ["experiences", "present-perfect"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

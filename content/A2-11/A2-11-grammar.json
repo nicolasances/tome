@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-11-g-present-perfect-2733",
+    "name": "Present Perfect (førnutid med \"har/er\")",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use 'har' + a past participle to ask or talk about whether something has ever happened, without saying exactly when. This is the natural way to ask about someone's experiences in Danish: 'Har du prøvet...?' (Have you tried...?). To answer that you have no experience with something, use 'Jeg har aldrig...' (I have never...).",
+    "examples": [
+      { "danish": "Har du prøvet at spise sushi?", "english": "Have you tried eating sushi?" },
+      { "danish": "Jeg har aldrig besøgt et museum i Aarhus.", "english": "I have never visited a museum in Aarhus." }
+    ]
+  },
+  {
+    "id": "A2-11-g-modal-verbs-9553",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Modal verbs are followed directly by an infinitive without 'at'. Use 'burde' (should / ought to) to give personal advice, and 'kan' together with the general subject 'man' (one / you in general) to make a recommendation that applies to anyone, not just the person you're talking to.",
+    "examples": [
+      { "danish": "Du burde prøve den nye restaurant.", "english": "You should try the new restaurant." },
+      { "danish": "Man kan sagtens gå til koncerten uden at booke på forhånd.", "english": "One can easily go to the concert without booking in advance." }
+    ]
+  }
+]

@@ -35,6 +35,8 @@ Exit codes:
         references a non-existent id.
 """
 
+from __future__ import annotations
+
 import json
 import os
 import sys
