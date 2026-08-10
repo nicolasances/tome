@@ -36,6 +36,17 @@ export default function ModuleMapPage() {
             .catch(() => setProgress(null));
     }
 
+    /**
+     * Changes the level and reloads the module progress for the new level
+     * @param newLevel 
+     */
+    const onChangeLevel = (newLevel: CefrLevel) => {
+
+        setLevel(newLevel);
+        setLevelName(CEFR_LEVEL_NAMES[newLevel] ?? newLevel);
+        router.push(`/language-learning/level/${newLevel.toLowerCase()}`);
+    }
+
     useEffect(() => {
         setConfig({
             title: `${level} · ${levelName}`,
@@ -105,6 +116,7 @@ export default function ModuleMapPage() {
                         error={false}
                         cefrLevel={level}
                         levelName={levelName}
+                        onLevelClick={onChangeLevel}
                     />
                 </div>
 
