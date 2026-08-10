@@ -22,10 +22,19 @@ export default function ModuleMapPage() {
     const router = useRouter();
     const { setConfig } = useHeader();
 
-    const level = (params.level as string).toUpperCase() as CefrLevel;
-    const levelName = CEFR_LEVEL_NAMES[level] ?? level;
-
+    const [level, setLevel] = useState<CefrLevel>((params.level as string).toUpperCase() as CefrLevel);
+    const [levelName, setLevelName] = useState<string>(CEFR_LEVEL_NAMES[level] ?? level);
     const [progress, setProgress] = useState<MeProgressResponse | null | undefined>(undefined);
+
+    /**
+     * Loads the module progress for the given level
+     */
+    const loadModule = () => {
+        new TomeLearningDashboardAPI()
+            .getMeProgress(level)
+            .then(setProgress)
+            .catch(() => setProgress(null));
+    }
 
     useEffect(() => {
         setConfig({
@@ -35,10 +44,7 @@ export default function ModuleMapPage() {
     }, [setConfig, level, levelName, router]);
 
     useEffect(() => {
-        new TomeLearningDashboardAPI()
-            .getMeProgress(level)
-            .then(setProgress)
-            .catch(() => setProgress(null));
+        loadModule();
     }, [level]);
 
     const completedCount = progress?.modules?.filter(m => m.status === 'completed').length ?? 0;
@@ -107,10 +113,10 @@ export default function ModuleMapPage() {
                     <p className="text-sm text-cyan-600 mt-4">Failed to load modules. Please try again.</p>
                 )}
                 {progress && (
-                    <>
+                    <div className="mt-8">
                         {/* Progress bar + legend */}
                         {progress && (
-                            <div className="flex items-center gap-6 mb-7">
+                            <div className="flex items-center gap-6 mb-10">
                                 <div className="flex flex-col mt-2">
                                     <LevelProgressHeader completed={completedCount} total={totalCount} />
                                     <StatusLegend />
@@ -129,7 +135,7 @@ export default function ModuleMapPage() {
                                 />
                             ))}
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </div>
