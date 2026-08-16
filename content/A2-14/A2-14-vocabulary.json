@@ -1,0 +1,242 @@
+[
+  {
+    "id": "A2-14-v-vejret-2779",
+    "danish": "vejret",
+    "english": "the weather",
+    "type": "noun",
+    "context": "definite form, used generically when talking about weather",
+    "tags": ["small-talk", "weather"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-ferie-8278",
+    "danish": "ferie",
+    "english": "holiday / vacation",
+    "type": "noun",
+    "context": null,
+    "tags": ["small-talk", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-weekend-4757",
+    "danish": "weekend",
+    "english": "weekend",
+    "type": "noun",
+    "context": null,
+    "tags": ["small-talk", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-sport-8430",
+    "danish": "sport",
+    "english": "sport",
+    "type": "noun",
+    "context": null,
+    "tags": ["small-talk", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-boern-4673",
+    "danish": "børn",
+    "english": "children",
+    "type": "noun",
+    "context": "plural of barn",
+    "tags": ["small-talk", "family"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-fritid-4492",
+    "danish": "fritid",
+    "english": "free time",
+    "type": "noun",
+    "context": null,
+    "tags": ["small-talk", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-planer-5268",
+    "danish": "planer",
+    "english": "plans",
+    "type": "noun",
+    "context": "plural of en plan",
+    "tags": ["small-talk", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-solskin-3514",
+    "danish": "solskin",
+    "english": "sunshine",
+    "type": "noun",
+    "context": null,
+    "tags": ["small-talk", "weather"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-regn-9800",
+    "danish": "regn",
+    "english": "rain",
+    "type": "noun",
+    "context": null,
+    "tags": ["small-talk", "weather"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-hyggeligt-6283",
+    "danish": "hyggeligt",
+    "english": "cozy / nice",
+    "type": "adjective",
+    "context": "neuter predicative form of hyggelig",
+    "tags": ["small-talk", "descriptive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-dejlig-2398",
+    "danish": "dejlig",
+    "english": "lovely / nice",
+    "type": "adjective",
+    "context": null,
+    "tags": ["small-talk", "descriptive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-koldt-5514",
+    "danish": "koldt",
+    "english": "cold",
+    "type": "adjective",
+    "context": "neuter form of kold, used for weather",
+    "tags": ["small-talk", "weather"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-varmt-7963",
+    "danish": "varmt",
+    "english": "warm",
+    "type": "adjective",
+    "context": "neuter form of varm, used for weather",
+    "tags": ["small-talk", "weather"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-egentlig-9038",
+    "danish": "egentlig",
+    "english": "actually / really",
+    "type": "adverb",
+    "context": "hedging word, softens a statement",
+    "tags": ["small-talk", "hedging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-faktisk-7351",
+    "danish": "faktisk",
+    "english": "in fact / actually",
+    "type": "adverb",
+    "context": "hedging word, adds a note of fact or mild surprise",
+    "tags": ["small-talk", "hedging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-ret-6466",
+    "danish": "ret",
+    "english": "quite / rather",
+    "type": "adverb",
+    "context": "degree modifier, softer than 'meget'",
+    "tags": ["small-talk", "hedging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-forresten-8631",
+    "danish": "forresten",
+    "english": "by the way / incidentally",
+    "type": "adverb",
+    "context": "introduces a side topic in conversation",
+    "tags": ["small-talk", "hedging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-synes-7764",
+    "danish": "synes",
+    "english": "to think / to have an opinion",
+    "type": "verb",
+    "context": "expressing a personal opinion, e.g. 'jeg synes'",
+    "tags": ["small-talk", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-lave-8981",
+    "danish": "lave",
+    "english": "to do / to make",
+    "type": "verb",
+    "context": "informal, what you're up to or doing",
+    "tags": ["small-talk", "activities"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-more-sig-4879",
+    "danish": "more sig",
+    "english": "to have a good time / to enjoy oneself",
+    "type": "verb",
+    "context": "reflexive verb",
+    "tags": ["small-talk", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-hvad-laver-du-i-3687",
+    "danish": "Hvad laver du i weekenden?",
+    "english": "What are you doing this weekend?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["small-talk", "opener"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-hvordan-gaar-det-3117",
+    "danish": "Hvordan går det?",
+    "english": "How's it going?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["small-talk", "opener"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-ikke-ogsaa-8824",
+    "danish": "ikke også?",
+    "english": "isn't that right? / don't you think?",
+    "type": "pattern",
+    "context": "confirmation tag added to the end of a statement",
+    "tags": ["small-talk", "confirmation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-14-v-det-er-rigtigt-5677",
+    "danish": "Det er rigtigt.",
+    "english": "That's right.",
+    "type": "phrase",
+    "context": "confirming what someone just said",
+    "tags": ["small-talk", "confirmation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

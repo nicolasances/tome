@@ -1,0 +1,36 @@
+[
+  {
+    "id": "A2-14-g-inversion-verb-second-rule-6165",
+    "name": "Inversion (verb-second rule)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Small talk often opens with a topic rather than 'jeg' — the weather, the weekend, today. When a Danish main clause starts with something other than the subject, the finite verb still has to come second, so the subject moves in right after it. This is inversion, or the verb-second rule, and it's what makes topic-fronted small talk openers sound natural instead of stiff.",
+    "examples": [
+      {
+        "danish": "I dag har jeg ikke lavet noget særligt.",
+        "english": "Today I haven't done anything special."
+      },
+      {
+        "danish": "I weekenden skal vi besøge mine forældre.",
+        "english": "This weekend we're going to visit my parents."
+      }
+    ]
+  },
+  {
+    "id": "A2-14-g-question-formation-9248",
+    "name": "Question formation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish small talk leans heavily on questions to keep a conversation going. A yes/no question simply puts the verb first, before the subject. To invite agreement or check in with the listener, Danes often add a short confirmation tag at the end of a statement, like 'ikke også?' (isn't that right?) or 'ikke sandt?' — these turn a statement into a soft question without changing its word order.",
+    "examples": [
+      {
+        "danish": "Har du nogen planer for weekenden?",
+        "english": "Do you have any plans for the weekend?"
+      },
+      {
+        "danish": "Det er ret koldt i dag, ikke også?",
+        "english": "It's quite cold today, isn't it?"
+      }
+    ]
+  }
+]

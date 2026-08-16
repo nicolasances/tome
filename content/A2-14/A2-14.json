@@ -1,0 +1,39 @@
+{
+  "id": "danish-A2-14",
+  "title": "Small Talk: The Danish Way",
+  "theme": "Social conversation and cultural norms",
+  "communicationGoal": "Hold a natural 3–5 minute small talk conversation with a Danish colleague on neutral topics",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-14-v-vejret-2779",
+    "A2-14-v-ferie-8278",
+    "A2-14-v-weekend-4757",
+    "A2-14-v-sport-8430",
+    "A2-14-v-boern-4673",
+    "A2-14-v-fritid-4492",
+    "A2-14-v-planer-5268",
+    "A2-14-v-solskin-3514",
+    "A2-14-v-regn-9800",
+    "A2-14-v-hyggeligt-6283",
+    "A2-14-v-dejlig-2398",
+    "A2-14-v-koldt-5514",
+    "A2-14-v-varmt-7963",
+    "A2-14-v-egentlig-9038",
+    "A2-14-v-faktisk-7351",
+    "A2-14-v-ret-6466",
+    "A2-14-v-forresten-8631",
+    "A2-14-v-synes-7764",
+    "A2-14-v-lave-8981",
+    "A2-14-v-more-sig-4879",
+    "A2-14-v-hvad-laver-du-i-3687",
+    "A2-14-v-hvordan-gaar-det-3117",
+    "A2-14-v-ikke-ogsaa-8824",
+    "A2-14-v-det-er-rigtigt-5677"
+  ],
+  "grammarConceptIds": [
+    "A2-14-g-inversion-verb-second-rule-6165",
+    "A2-14-g-question-formation-9248"
+  ],
+  "createdAt": "2026-08-16T00:00:00Z",
+  "isUserGenerated": false
+}
