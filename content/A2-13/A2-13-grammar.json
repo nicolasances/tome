@@ -1,0 +1,53 @@
+[
+  {
+    "id": "A2-13-g-future-with-skal-and-6757",
+    "name": "Future with skal and vil",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Danish has no separate future tense — you use a modal verb plus an infinitive without 'at'. Use 'skal' for a fixed plan or arrangement, which is what most travel planning is: booked tickets, a departure time, a trip you have decided on. Use 'vil' for what you want or intend, when nothing is arranged yet. With a destination, 'skal' can even drop the movement verb entirely: 'Jeg skal til Aarhus på fredag'.",
+    "examples": [
+      {
+        "danish": "Vi skal flyve til København på søndag.",
+        "english": "We're flying to Copenhagen on Sunday (it's booked)."
+      },
+      {
+        "danish": "Jeg vil gerne rejse til Bornholm til sommer.",
+        "english": "I'd like to travel to Bornholm this summer."
+      }
+    ]
+  },
+  {
+    "id": "A2-13-g-causalconditional-connectors-7090",
+    "name": "Causal/conditional connectors",
+    "category": "connectors",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Travel rarely goes to plan, so you need 'hvis' (if), 'når' (when), 'fordi' (because) and 'selvom' (although) to talk about what happens then. These connectors introduce a subordinate clause, and inside it the word order stays simple: connector + subject + verb. Note the difference between 'hvis' and 'når': 'hvis' is for something that may or may not happen, 'når' for something you expect to happen.",
+    "examples": [
+      {
+        "danish": "Jeg tager bussen, hvis toget er forsinket.",
+        "english": "I'll take the bus if the train is delayed."
+      },
+      {
+        "danish": "Vi tjekker ind på hotellet, når vi ankommer.",
+        "english": "We'll check in at the hotel when we arrive."
+      }
+    ]
+  },
+  {
+    "id": "A2-13-g-inversion-verb-second-rule-2785",
+    "name": "Inversion (verb-second rule)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "In a Danish main clause the finite verb always sits in second position. When you start with something other than the subject — a departure time, a place, or a whole 'hvis'-clause, all very common when talking about travel — the verb still comes second and the subject moves in right after it.",
+    "examples": [
+      {
+        "danish": "Klokken syv afgår toget fra perron 3.",
+        "english": "At seven o'clock the train leaves from platform 3."
+      },
+      {
+        "danish": "Hvis færgen er aflyst, kører vi over broen.",
+        "english": "If the ferry is cancelled, we'll drive over the bridge."
+      }
+    ]
+  }
+]

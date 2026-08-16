@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-13-v-tog-6145",
+    "danish": "tog",
+    "english": "train",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "transport"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-fly-1648",
+    "danish": "fly",
+    "english": "plane",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "transport"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-faerge-6274",
+    "danish": "færge",
+    "english": "ferry",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "transport", "geography"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-billet-4861",
+    "danish": "billet",
+    "english": "ticket",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "booking"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-perron-4736",
+    "danish": "perron",
+    "english": "platform",
+    "type": "noun",
+    "context": "railway platform at a station",
+    "tags": ["travel", "transport", "station"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-afgang-6408",
+    "danish": "afgang",
+    "english": "departure",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "schedule"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-ankomst-6350",
+    "danish": "ankomst",
+    "english": "arrival",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "schedule"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-omstigning-1831",
+    "danish": "omstigning",
+    "english": "connection / change of trains",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "transport", "schedule"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-bagage-9264",
+    "danish": "bagage",
+    "english": "luggage",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "airport"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-hotel-5353",
+    "danish": "hotel",
+    "english": "hotel",
+    "type": "noun",
+    "context": null,
+    "tags": ["travel", "accommodation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-vaerelse-4311",
+    "danish": "værelse",
+    "english": "room",
+    "type": "noun",
+    "context": "a room you stay in, e.g. a hotel room",
+    "tags": ["travel", "accommodation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-oe-9978",
+    "danish": "ø",
+    "english": "island",
+    "type": "noun",
+    "context": null,
+    "tags": ["geography", "travel"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-bro-7879",
+    "danish": "bro",
+    "english": "bridge",
+    "type": "noun",
+    "context": null,
+    "tags": ["geography", "travel", "transport"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-rejse-9692",
+    "danish": "rejse",
+    "english": "to travel",
+    "type": "verb",
+    "context": null,
+    "tags": ["travel", "movement"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-flyve-9161",
+    "danish": "flyve",
+    "english": "to fly",
+    "type": "verb",
+    "context": null,
+    "tags": ["travel", "movement"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-koere-5303",
+    "danish": "køre",
+    "english": "to drive / to go (by vehicle)",
+    "type": "verb",
+    "context": "travelling by car, bus or train",
+    "tags": ["travel", "movement"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-ankomme-4615",
+    "danish": "ankomme",
+    "english": "to arrive",
+    "type": "verb",
+    "context": null,
+    "tags": ["travel", "movement", "schedule"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-afgaa-9501",
+    "danish": "afgå",
+    "english": "to depart / to leave",
+    "type": "verb",
+    "context": "of a train, bus, plane or ferry",
+    "tags": ["travel", "movement", "schedule"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-skifte-8315",
+    "danish": "skifte",
+    "english": "to change (trains, buses)",
+    "type": "verb",
+    "context": "changing from one vehicle to another on a journey",
+    "tags": ["travel", "transport"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-bestille-3126",
+    "danish": "bestille",
+    "english": "to book / to order",
+    "type": "verb",
+    "context": null,
+    "tags": ["travel", "booking"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-tjekke-ind-7186",
+    "danish": "tjekke ind",
+    "english": "to check in",
+    "type": "phrase",
+    "context": null,
+    "tags": ["travel", "accommodation", "airport"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-forsinket-7289",
+    "danish": "forsinket",
+    "english": "delayed",
+    "type": "adjective",
+    "context": null,
+    "tags": ["travel", "disruption"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-aflyst-2941",
+    "danish": "aflyst",
+    "english": "cancelled",
+    "type": "adjective",
+    "context": null,
+    "tags": ["travel", "disruption"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-ledig-5272",
+    "danish": "ledig",
+    "english": "available / vacant",
+    "type": "adjective",
+    "context": "of a seat or a room that is free to take",
+    "tags": ["travel", "accommodation", "booking"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-jeg-skal-til-7422",
+    "danish": "Jeg skal til…",
+    "english": "I'm going to… (a place)",
+    "type": "pattern",
+    "context": "stating your destination",
+    "tags": ["travel", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-13-v-hvornaar-afgaar-toget-6510",
+    "danish": "Hvornår afgår toget?",
+    "english": "When does the train leave?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["travel", "schedule", "station"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

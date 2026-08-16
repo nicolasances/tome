@@ -1,0 +1,42 @@
+{
+  "id": "danish-A2-13",
+  "title": "Travel & Getting There",
+  "theme": "Travel and logistics",
+  "communicationGoal": "Plan a trip, buy tickets, check into accommodation, handle travel disruptions",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-13-v-tog-6145",
+    "A2-13-v-fly-1648",
+    "A2-13-v-faerge-6274",
+    "A2-13-v-billet-4861",
+    "A2-13-v-perron-4736",
+    "A2-13-v-afgang-6408",
+    "A2-13-v-ankomst-6350",
+    "A2-13-v-omstigning-1831",
+    "A2-13-v-bagage-9264",
+    "A2-13-v-hotel-5353",
+    "A2-13-v-vaerelse-4311",
+    "A2-13-v-oe-9978",
+    "A2-13-v-bro-7879",
+    "A2-13-v-rejse-9692",
+    "A2-13-v-flyve-9161",
+    "A2-13-v-koere-5303",
+    "A2-13-v-ankomme-4615",
+    "A2-13-v-afgaa-9501",
+    "A2-13-v-skifte-8315",
+    "A2-13-v-bestille-3126",
+    "A2-13-v-tjekke-ind-7186",
+    "A2-13-v-forsinket-7289",
+    "A2-13-v-aflyst-2941",
+    "A2-13-v-ledig-5272",
+    "A2-13-v-jeg-skal-til-7422",
+    "A2-13-v-hvornaar-afgaar-toget-6510"
+  ],
+  "grammarConceptIds": [
+    "A2-13-g-future-with-skal-and-6757",
+    "A2-13-g-causalconditional-connectors-7090",
+    "A2-13-g-inversion-verb-second-rule-2785"
+  ],
+  "createdAt": "2026-08-16T00:00:00Z",
+  "isUserGenerated": false
+}
