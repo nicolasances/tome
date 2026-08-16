@@ -1,0 +1,53 @@
+[
+  {
+    "id": "A2-15-g-comparison-stoerre-stoerst-9013",
+    "name": "Comparison (større, størst)",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "To compare people, add '-ere' to an adjective for the comparative and '-est' for the superlative: høj → højere → højest. A handful of common adjectives are irregular and must be learned separately, e.g. god → bedre → bedst, gammel → ældre → ældst. Use 'end' for 'than' in a comparison.",
+    "examples": [
+      {
+        "danish": "Han er højere end sin bror.",
+        "english": "He is taller than his brother."
+      },
+      {
+        "danish": "Hun er den venligste person, jeg kender.",
+        "english": "She is the friendliest person I know."
+      }
+    ]
+  },
+  {
+    "id": "A2-15-g-predicative-vs-attributive-adjectives-7696",
+    "name": "Predicative vs. Attributive Adjectives",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "An attributive adjective sits before the noun it describes and takes an ending to match it, exactly like a predicative adjective would after 'er'. When you stack more than one adjective before a noun to describe someone, they are simply listed one after another, usually separated by a comma, with the last one closest to the noun. In predicative position — after 'er' or 'virker' — the adjective still agrees with the subject, but there's no noun directly attached.",
+    "examples": [
+      {
+        "danish": "Hun er en venlig, ambitiøs kvinde.",
+        "english": "She is a friendly, ambitious woman."
+      },
+      {
+        "danish": "Han virker rolig, men bestemt.",
+        "english": "He seems calm, but determined."
+      }
+    ]
+  },
+  {
+    "id": "A2-15-g-basic-adjective-agreement-enetplural-2035",
+    "name": "Basic adjective agreement (en/et/plural)",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish adjectives change form to agree with the noun they describe. With an en-word, the adjective keeps its base form; with an et-word, it usually adds '-t'; in the plural or definite form, it adds '-e'. This matters constantly when describing people, since you switch between 'en mand', 'et barn', and 'mennesker' in the same conversation.",
+    "examples": [
+      {
+        "danish": "Barnet er genert.",
+        "english": "The child is shy."
+      },
+      {
+        "danish": "De er meget venlige.",
+        "english": "They are very friendly."
+      }
+    ]
+  }
+]

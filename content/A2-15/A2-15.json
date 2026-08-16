@@ -1,0 +1,42 @@
+{
+  "id": "danish-A2-15",
+  "title": "Describing People",
+  "theme": "Physical and personality descriptions",
+  "communicationGoal": "Describe what someone looks like and what they are like as a person",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-15-v-hoej-1803",
+    "A2-15-v-lav-7776",
+    "A2-15-v-slank-9678",
+    "A2-15-v-tyk-1281",
+    "A2-15-v-ung-6285",
+    "A2-15-v-gammel-8818",
+    "A2-15-v-moerk-4450",
+    "A2-15-v-lys-1009",
+    "A2-15-v-haar-9490",
+    "A2-15-v-oejne-3067",
+    "A2-15-v-skaeg-6154",
+    "A2-15-v-briller-5073",
+    "A2-15-v-venlig-4676",
+    "A2-15-v-direkte-8890",
+    "A2-15-v-ambitioes-6894",
+    "A2-15-v-rolig-7723",
+    "A2-15-v-sjov-2529",
+    "A2-15-v-genert-5756",
+    "A2-15-v-staedig-8115",
+    "A2-15-v-aaben-8442",
+    "A2-15-v-dansk-3988",
+    "A2-15-v-komme-fra-2464",
+    "A2-15-v-ligne-4780",
+    "A2-15-v-virke-som-3594",
+    "A2-15-v-udseende-1076",
+    "A2-15-v-personlighed-5032"
+  ],
+  "grammarConceptIds": [
+    "A2-15-g-comparison-stoerre-stoerst-9013",
+    "A2-15-g-predicative-vs-attributive-adjectives-7696",
+    "A2-15-g-basic-adjective-agreement-enetplural-2035"
+  ],
+  "createdAt": "2026-08-16T00:00:00Z",
+  "isUserGenerated": false
+}

@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-15-v-hoej-1803",
+    "danish": "høj",
+    "english": "tall",
+    "type": "adjective",
+    "context": "describing a person's height",
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-lav-7776",
+    "danish": "lav",
+    "english": "short",
+    "type": "adjective",
+    "context": "describing a person's height, opposite of høj",
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-slank-9678",
+    "danish": "slank",
+    "english": "slim",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-tyk-1281",
+    "danish": "tyk",
+    "english": "heavy-set / plump",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-ung-6285",
+    "danish": "ung",
+    "english": "young",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "physical", "age"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-gammel-8818",
+    "danish": "gammel",
+    "english": "old",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "physical", "age"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-moerk-4450",
+    "danish": "mørk",
+    "english": "dark",
+    "type": "adjective",
+    "context": "describing hair or eye color",
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-lys-1009",
+    "danish": "lys",
+    "english": "light / fair",
+    "type": "adjective",
+    "context": "describing hair color, fair-haired",
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-haar-9490",
+    "danish": "hår",
+    "english": "hair",
+    "type": "noun",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-oejne-3067",
+    "danish": "øjne",
+    "english": "eyes",
+    "type": "noun",
+    "context": "plural of øje",
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-skaeg-6154",
+    "danish": "skæg",
+    "english": "beard",
+    "type": "noun",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-briller-5073",
+    "danish": "briller",
+    "english": "glasses",
+    "type": "noun",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-venlig-4676",
+    "danish": "venlig",
+    "english": "friendly",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-direkte-8890",
+    "danish": "direkte",
+    "english": "direct / straightforward",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-ambitioes-6894",
+    "danish": "ambitiøs",
+    "english": "ambitious",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-rolig-7723",
+    "danish": "rolig",
+    "english": "calm",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-sjov-2529",
+    "danish": "sjov",
+    "english": "funny",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-genert-5756",
+    "danish": "genert",
+    "english": "shy",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-staedig-8115",
+    "danish": "stædig",
+    "english": "stubborn",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-aaben-8442",
+    "danish": "åben",
+    "english": "open-minded / open",
+    "type": "adjective",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-dansk-3988",
+    "danish": "dansk",
+    "english": "Danish",
+    "type": "adjective",
+    "context": "nationality/origin",
+    "tags": ["description", "origin"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-komme-fra-2464",
+    "danish": "komme fra",
+    "english": "to come from",
+    "type": "phrase",
+    "context": "stating a person's origin",
+    "tags": ["description", "origin"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-ligne-4780",
+    "danish": "ligne",
+    "english": "to look like / resemble",
+    "type": "verb",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-virke-som-3594",
+    "danish": "virke som",
+    "english": "to seem / to come across as",
+    "type": "pattern",
+    "context": "describing an impression of someone's character",
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-udseende-1076",
+    "danish": "udseende",
+    "english": "appearance",
+    "type": "noun",
+    "context": null,
+    "tags": ["description", "physical"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-15-v-personlighed-5032",
+    "danish": "personlighed",
+    "english": "personality",
+    "type": "noun",
+    "context": null,
+    "tags": ["description", "personality"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
