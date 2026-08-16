@@ -1,0 +1,42 @@
+{
+  "id": "danish-A2-12",
+  "title": "Eating Out in Denmark",
+  "theme": "Restaurants and food culture",
+  "communicationGoal": "Order a full meal, ask about dishes, handle the bill, make small talk at a business lunch",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-12-v-menukort-4355",
+    "A2-12-v-forret-5815",
+    "A2-12-v-hovedret-8172",
+    "A2-12-v-dessert-7071",
+    "A2-12-v-regning-6783",
+    "A2-12-v-tjener-1496",
+    "A2-12-v-bord-6354",
+    "A2-12-v-drikkepenge-1100",
+    "A2-12-v-ret-8658",
+    "A2-12-v-bestille-6278",
+    "A2-12-v-smage-3192",
+    "A2-12-v-betale-7670",
+    "A2-12-v-reservere-7323",
+    "A2-12-v-vaelge-6352",
+    "A2-12-v-dele-5168",
+    "A2-12-v-laekker-1476",
+    "A2-12-v-maet-4709",
+    "A2-12-v-vegetarisk-4921",
+    "A2-12-v-stegt-8085",
+    "A2-12-v-allergisk-5879",
+    "A2-12-v-glutenfri-2633",
+    "A2-12-v-jeg-vil-gerne-have-7667",
+    "A2-12-v-kan-jeg-faa-1905",
+    "A2-12-v-maa-jeg-bede-om-9113",
+    "A2-12-v-hvad-kan-du-anbefale-5618",
+    "A2-12-v-tak-for-mad-1617"
+  ],
+  "grammarConceptIds": [
+    "A2-12-g-modal-verbs-kan-skal-6601",
+    "A2-12-g-infinitive-usage-7260",
+    "A2-12-g-preterite-simple-past-datid-4989"
+  ],
+  "createdAt": "2026-08-16T00:00:00Z",
+  "isUserGenerated": false
+}

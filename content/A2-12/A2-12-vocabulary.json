@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-12-v-menukort-4355",
+    "danish": "menukort",
+    "english": "menu",
+    "type": "noun",
+    "context": null,
+    "tags": ["restaurant", "menu"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-forret-5815",
+    "danish": "forret",
+    "english": "starter / appetiser",
+    "type": "noun",
+    "context": null,
+    "tags": ["restaurant", "menu", "courses"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-hovedret-8172",
+    "danish": "hovedret",
+    "english": "main course",
+    "type": "noun",
+    "context": null,
+    "tags": ["restaurant", "menu", "courses"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-dessert-7071",
+    "danish": "dessert",
+    "english": "dessert",
+    "type": "noun",
+    "context": null,
+    "tags": ["restaurant", "menu", "courses"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-regning-6783",
+    "danish": "regning",
+    "english": "bill / check",
+    "type": "noun",
+    "context": null,
+    "tags": ["restaurant", "paying"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-tjener-1496",
+    "danish": "tjener",
+    "english": "waiter",
+    "type": "noun",
+    "context": null,
+    "tags": ["restaurant", "people"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-bord-6354",
+    "danish": "bord",
+    "english": "table",
+    "type": "noun",
+    "context": "a table booked or seated at in a restaurant",
+    "tags": ["restaurant", "booking"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-drikkepenge-1100",
+    "danish": "drikkepenge",
+    "english": "tip",
+    "type": "noun",
+    "context": "money left for service",
+    "tags": ["restaurant", "paying", "etiquette"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-ret-8658",
+    "danish": "ret",
+    "english": "dish",
+    "type": "noun",
+    "context": "a dish on a menu, not the adverb meaning 'quite'",
+    "tags": ["restaurant", "menu", "food"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-bestille-6278",
+    "danish": "bestille",
+    "english": "to order",
+    "type": "verb",
+    "context": null,
+    "tags": ["restaurant", "ordering", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-smage-3192",
+    "danish": "smage",
+    "english": "to taste",
+    "type": "verb",
+    "context": null,
+    "tags": ["restaurant", "food", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-betale-7670",
+    "danish": "betale",
+    "english": "to pay",
+    "type": "verb",
+    "context": null,
+    "tags": ["restaurant", "paying", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-reservere-7323",
+    "danish": "reservere",
+    "english": "to reserve / to book",
+    "type": "verb",
+    "context": null,
+    "tags": ["restaurant", "booking", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-vaelge-6352",
+    "danish": "vælge",
+    "english": "to choose",
+    "type": "verb",
+    "context": null,
+    "tags": ["restaurant", "ordering", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-dele-5168",
+    "danish": "dele",
+    "english": "to share",
+    "type": "verb",
+    "context": "splitting a dish or a bill",
+    "tags": ["restaurant", "etiquette", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-laekker-1476",
+    "danish": "lækker",
+    "english": "delicious",
+    "type": "adjective",
+    "context": "about food",
+    "tags": ["food", "describing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-maet-4709",
+    "danish": "mæt",
+    "english": "full (not hungry)",
+    "type": "adjective",
+    "context": "having eaten enough",
+    "tags": ["food", "describing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-vegetarisk-4921",
+    "danish": "vegetarisk",
+    "english": "vegetarian",
+    "type": "adjective",
+    "context": null,
+    "tags": ["food", "dietary"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-stegt-8085",
+    "danish": "stegt",
+    "english": "fried",
+    "type": "adjective",
+    "context": "how a dish is prepared",
+    "tags": ["food", "menu", "describing"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-allergisk-5879",
+    "danish": "allergisk",
+    "english": "allergic",
+    "type": "adjective",
+    "context": "used with 'over for' — allergisk over for nødder",
+    "tags": ["food", "dietary", "health"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-glutenfri-2633",
+    "danish": "glutenfri",
+    "english": "gluten-free",
+    "type": "adjective",
+    "context": null,
+    "tags": ["food", "dietary"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-jeg-vil-gerne-have-7667",
+    "danish": "Jeg vil gerne have...",
+    "english": "I would like...",
+    "type": "pattern",
+    "context": "polite request when ordering",
+    "tags": ["restaurant", "ordering", "politeness"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-kan-jeg-faa-1905",
+    "danish": "Kan jeg få...?",
+    "english": "Can I have...?",
+    "type": "pattern",
+    "context": "polite request when ordering",
+    "tags": ["restaurant", "ordering", "politeness"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-maa-jeg-bede-om-9113",
+    "danish": "Må jeg bede om regningen?",
+    "english": "Could I have the bill, please?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["restaurant", "paying", "politeness"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-hvad-kan-du-anbefale-5618",
+    "danish": "Hvad kan du anbefale?",
+    "english": "What can you recommend?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["restaurant", "ordering", "asking"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-12-v-tak-for-mad-1617",
+    "danish": "Tak for mad",
+    "english": "Thanks for the food (said after a meal)",
+    "type": "phrase",
+    "context": "Danish dining etiquette, said when the meal is over",
+    "tags": ["restaurant", "etiquette", "politeness"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

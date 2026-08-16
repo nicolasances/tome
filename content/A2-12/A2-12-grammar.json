@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-12-g-modal-verbs-kan-skal-6601",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Polite requests in Danish are built on a modal verb followed directly by an infinitive without 'at'. 'Jeg vil gerne have...' (I would like...) is the standard way to order, and 'Kan jeg få...?' / 'Må jeg bede om...?' are the polite question forms. In a question the modal comes first and the subject follows it.",
+    "examples": [
+      { "danish": "Jeg vil gerne have en forret først.", "english": "I would like a starter first." },
+      { "danish": "Må jeg bede om regningen?", "english": "Could I have the bill, please?" }
+    ]
+  },
+  {
+    "id": "A2-12-g-infinitive-usage-7260",
+    "name": "Infinitive usage",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "The infinitive takes 'at' after most verbs and expressions ('har lyst til at smage', 'plejer at bestille'), but never after a modal verb (kan, skal, vil, må, bør), where the bare infinitive follows directly.",
+    "examples": [
+      { "danish": "Har du lyst til at smage min hovedret?", "english": "Do you feel like tasting my main course?" },
+      { "danish": "Vi kan dele en dessert bagefter.", "english": "We can share a dessert afterwards." }
+    ]
+  },
+  {
+    "id": "A2-12-g-preterite-simple-past-datid-4989",
+    "name": "Preterite / Simple past (datid)",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use the preterite to say how a finished meal was. Regular verbs add -ede or -te to the stem (smage → smagte, bestille → bestilte), while common irregulars must be learned (være → var, få → fik, vælge → valgte).",
+    "examples": [
+      { "danish": "Maden smagte fantastisk.", "english": "The food tasted fantastic." },
+      { "danish": "Jeg bestilte den stegte fisk.", "english": "I ordered the fried fish." }
+    ]
+  }
+]
