@@ -4,6 +4,7 @@ import { RoundButton } from 'toto-react';
 import { ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
 import { ProgressBar } from '@/app/ui/general/ProgressBar';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { getProficiencyLevel } from '@/utils/proficiencyLevel';
 
 const STEP_NUMBER: Record<string, number> = {
     grammar: 1,
@@ -11,6 +12,28 @@ const STEP_NUMBER: Record<string, number> = {
     test: 3,
     done: 3,
 };
+
+const PROFICIENCY_ICON: Record<1 | 2 | 3 | 4, string> = {
+    1: '/images/signal-weak.svg',
+    2: '/images/signal-fair.svg',
+    3: '/images/signal-good.svg',
+    4: '/images/signal.svg',
+};
+
+function ProficiencySignal({ proficiency }: { proficiency: ModuleProgressEntry['proficiency'] }) {
+    if (proficiency === null) return null;
+
+    const level = getProficiencyLevel(proficiency.score);
+
+    return (
+        <MaskedSvgIcon
+            src={PROFICIENCY_ICON[level]}
+            alt={`Proficiency level ${level} of 4`}
+            color="bg-black/70"
+            backgroundSrc="/images/signal.svg"
+        />
+    );
+}
 
 function ModuleNode({ status, num }: { status: ModuleProgressEntry['status']; num: string }) {
     const isHighlighted = status === 'in_progress' || status === 'completed';
@@ -112,6 +135,8 @@ export function ModuleRow({
                     size="s"
                 />
             )}
+
+            {module.status === 'completed' && <ProficiencySignal proficiency={module.proficiency} />}
         </div>
     );
 }
