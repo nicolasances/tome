@@ -91,6 +91,17 @@ export interface ModuleProgressEntry {
     currentRung: number;                        // The practice-ladder rung (1-3) the module is currently practising at
     currentRungCoverage: { coveredCount: number; totalCount: number }; // Coverage of the module's combined vocabulary + grammar-concept items at currentRung
     fullyCompletedRungs: number;                 // Rungs fully completed before currentRung; 3 once the whole ladder (or a pre-ladder-completed module) is done
+    proficiency: ModuleProficiencyEntry | null;  // The User Proficiency Score breakdown; null for any module not completed, or completed without a scoreable test attempt
+}
+
+/** Which inputs a module's User Proficiency Score was computed from. Mirrors `PROFICIENCY_BASES` in tome-ms-language. */
+export type ProficiencyBasis = 'full' | 'practice-rung2-only' | 'practice-rung3-only' | 'test-only';
+
+export interface ModuleProficiencyEntry {
+    score: number;                     // The User Proficiency Score (0-100); lower means the module was harder work
+    testScore: number;                 // The test component: first submitted attempt, errors charged x3 (0-100)
+    practiceScore: number | null;      // The practice component: rung-weighted accuracy (0-100); null when no weighted practice answers exist
+    basis: ProficiencyBasis;           // Which inputs the score was computed from
 }
 
 export interface WeeklySessionStatsResponse {
