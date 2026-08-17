@@ -36,7 +36,7 @@ Participates in journey **J2** (browse the level & start a module).
 |--------|----------------|-------------|-------------------|
 | Module map | Level progress header | A progress `Bar` + "x / N" count of completed modules in the level. | Reflects completed-module count for the level. |
 | Module map | Status legend | Inline legend: ● In progress · ○ Up next · Locked. | Static key for the row states. |
-| Module map | Module row | One row per module: a numbered/locked node, the module title, and a trailing state element. **In-progress** row is highlighted with a mini step `Bar` + "Step n / 3" + a forward `RoundButton`. **Locked** rows show a "Locked" tag and a padlock node. **Completed** rows show a ✓ node. | Tapping an **actionable** (in-progress / available) row → Module overview. Locked rows are not tappable. |
+| Module map | Module row | One row per module: a numbered/locked node, the module title, and a trailing state element. **In-progress** row is highlighted with a mini step `Bar` + "Step n / 3" + a forward `RoundButton`. **Locked** rows show a "Locked" tag and a padlock node. **Completed** rows show a ✓ node, plus — when the module has a scoreable proficiency score — a four-level signal-strength icon in the row's own trailing slot / the card's bottom row beside "Completed" (`ProficiencySignal`, §4). | Tapping an **actionable** (in-progress / available) row → Module overview. Locked rows are not tappable. |
 | Module map | Overflow indicator | "+ N more modules" footer when the list is truncated. | Communicates that more locked modules exist; may expand/scroll to reveal. |
 
 **Additional Notes:**
@@ -52,6 +52,7 @@ Participates in journey **J2** (browse the level & start a module).
 - In-progress row's "Step n / 3" reflects the module execution step (Grammar → Practice → Test).
 - Tapping is enabled only for unlocked modules; locked rows give no navigation.
 - Read-only: this screen does not mutate progress or mastery.
+- **Proficiency signal (completed modules only, #333):** each module's `proficiency.score` (User Proficiency Score, 0-100) maps to a 4-level signal-strength icon via `utils/proficiencyLevel.ts`'s `getProficiencyLevel`: `score >= 80` → level 4 (`signal.svg`), `65 <= score < 80` → level 3 (`signal-good.svg`), `50 <= score < 65` → level 2 (`signal-fair.svg`), `score < 50` → level 1 (`signal-weak.svg`). Rendered via the shared `ProficiencySignal` component (`app/components/ProficiencySignal.tsx`), monochrome (no colour-coding), on a ghost background of the full signal icon at ~20% opacity (same idiom as `TopicsList`/`DifficultySignal`). When `proficiency` is `null` — any non-completed module, or a completed module without a scoreable test attempt — **no icon is rendered**; a missing score is never treated as level 1. `basis: "test-only"` scores are rendered identically to any other basis, with no distinguishing treatment.
 
 ## 5. Technical Decisions & Integrations
 
@@ -66,7 +67,7 @@ Participates in journey **J2** (browse the level & start a module).
 
 | Component or Screen | API Integration | Description |
 | ------------------- | --------------- | ----------- |
-| Module row, Level progress header | `GET /me/progress?cefrLevel={level}` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress(level)`) | Returns the per-module status list (`locked` / `available` / `in_progress` / `completed`, current step, completion %) for the requested CEFR level, plus the level's completed/total counts. Drives every module row's state and the progress header. |
+| Module row, Level progress header | `GET /me/progress?cefrLevel={level}` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress(level)`) | Returns the per-module status list (`locked` / `available` / `in_progress` / `completed`, current step, completion %) for the requested CEFR level, plus the level's completed/total counts. Drives every module row's state and the progress header. Each entry also carries `proficiency: ModuleProficiencyEntry \| null` (type owned by `01-home-dashboard`, #333) — the User Proficiency Score breakdown for completed modules, consumed only here to drive the signal icon. |
 
 ## 6. Success Criteria
 
@@ -78,6 +79,7 @@ Participates in journey **J2** (browse the level & start a module).
 | 4 | Locked modules are visibly non-interactive. | — |
 | 5 | Level progress header matches completed-module count. | — |
 | 6 | On desktop (`lg:` breakpoint), modules render as a 4-column grid of module cards instead of the mobile vertical list; page header shows level kicker, title, and completed/total count. | Responsive. |
+| 7 | A completed module with a scoreable `proficiency.score` shows the correct one of the four signal-strength icons on both breakpoints; a completed module with `proficiency: null` shows no icon (never level 1). | #333. |
 
 ## 7. Open Questions
 
