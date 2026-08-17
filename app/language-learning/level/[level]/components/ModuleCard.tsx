@@ -1,6 +1,7 @@
 'use client';
 
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { ProficiencySignal } from '@/app/components/ProficiencySignal';
 import { ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
 import { ProgressBar } from '@/app/ui/general/ProgressBar';
 import { RoundButton } from 'toto-react';
@@ -43,9 +44,12 @@ export function ModuleCard({module, index, onTap}: {module: ModuleProgressEntry,
                         <span className={`text-xs font-bold ${(isCurrent || isActive) ? 'text-lime-200' : 'text-cyan-200'} whitespace-nowrap`}>Step {stepNum}/3</span>
                     </div>
                 ) : (
-                    <p className="text-xs text-black/50 font-semibold mt-2 m-0">
-                        {module.status === 'locked' ? `Finish module ${String(index).padStart(2, '0')} to unlock` : module.status === 'completed' ? 'Completed' : 'Ready'}
-                    </p>
+                    <div className="flex items-center justify-between mt-2">
+                        <p className="text-xs text-black/50 font-semibold m-0">
+                            {module.status === 'locked' ? `Finish module ${String(index).padStart(2, '0')} to unlock` : module.status === 'completed' ? 'Completed' : 'Ready'}
+                        </p>
+                        {module.status === 'completed' && <ProficiencySignal proficiency={module.proficiency} color="bg-black/50" />}
+                    </div>
                 )}
             </div>
         </div>
