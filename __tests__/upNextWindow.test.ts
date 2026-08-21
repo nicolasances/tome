@@ -18,6 +18,7 @@ function module(id: string, status: ModuleProgressEntry['status']): ModuleProgre
         currentRung: 1,
         currentRungCoverage: { coveredCount: 0, totalCount: 0 },
         fullyCompletedRungs: 0,
+        proficiency: null,
     };
 }
 

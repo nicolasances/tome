@@ -71,6 +71,7 @@ browse the level).
 | 4 | Use `RoundButton` from `toto-react` for the nav row (no custom button). The `toto-react` `RoundButton` does **not** have a `label` prop — labels are rendered below each button in a wrapper `div`. | Project style guide. `RoundButton` API constraint. |
 | 5 | Two API calls (`getMeProgress`, `getWeeklySessionStats`) run in parallel on page load; the **current module** is derived client-side from the progress response (`deriveCurrentModule`) rather than fetched separately. | Avoids a third endpoint; the progress payload already carries everything needed to pick the in-progress/available module. Each section shows its own skeleton independently. |
 | 6 | All language-learning data is served by `tome-ms-language`. | All language learning logic lives in `tome-ms-language` per architecture doc. |
+| 7 | `ModuleProgressEntry` gained a `proficiency: ModuleProficiencyEntry \| null` field (mirroring the backend's `basis`-tagged User Proficiency Score). This dashboard reads none of it — `UpNextStrip` and `DesktopContinueCard` never show a completed module. Only `02-module-map` renders it, on completed rows. | #333. Type is owned here (decision 3); the field it grew is consumed elsewhere. |
 
 ### API Integrations
 

@@ -4,6 +4,7 @@ import { RoundButton } from 'toto-react';
 import { ModuleProgressEntry } from '@/api/TomeLearningDashboardAPI';
 import { ProgressBar } from '@/app/ui/general/ProgressBar';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { ProficiencySignal } from '@/app/components/ProficiencySignal';
 
 const STEP_NUMBER: Record<string, number> = {
     grammar: 1,
@@ -112,6 +113,8 @@ export function ModuleRow({
                     size="s"
                 />
             )}
+
+            {module.status === 'completed' && <ProficiencySignal proficiency={module.proficiency} color="bg-black/70" />}
         </div>
     );
 }
