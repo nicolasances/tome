@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import RoundButton from "@/app/ui/buttons/RoundButton";
 
 interface ConfirmationPopupProps {
-    message: string;
+    message: ReactNode;
     onConfirm: () => void;
     onCancel: () => void;
 }
@@ -25,7 +26,7 @@ export default function ConfirmationPopup({ message, onConfirm, onCancel }: Conf
                         maxWidth: '600px'
                     }}
                 >
-                    <p className="text-center text-lg mb-6">{message}</p>
+                    <div className="text-center text-lg mb-6">{message}</div>
                     <div className="flex space-x-4">
                         <RoundButton 
                             svgIconPath={{ src: "/images/wrong.svg", alt: "Cancel" }}

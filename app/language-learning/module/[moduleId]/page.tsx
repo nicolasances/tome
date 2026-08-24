@@ -6,6 +6,7 @@ import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI, MeProgressResponse, ModuleProgressEntry, calculateModuleProgress } from '@/api/TomeLearningDashboardAPI';
 import { TomeModuleAPI, ModuleResponse } from '@/api/TomeModuleAPI';
 import { startPracticeAndGetSessionId } from '@/utils/startPractice';
+import { deriveCtaInfo, formatCountdown, RE_PRACTICE_CTA } from '@/utils/moduleOverviewCta';
 import { ModuleOverviewSkeleton } from './components/ModuleOverviewSkeleton';
 import { ModuleHeader } from './components/ModuleHeader';
 import { StepList, StepItem, StepState } from './components/StepList';
@@ -13,6 +14,7 @@ import { StepRailItem } from './components/StepRailItem';
 import { FlowGrammarPane } from './components/FlowGrammarPane';
 import { FlowPracticePane } from './components/FlowPracticePane';
 import { FlowTestPane } from './components/FlowTestPane';
+import ConfirmationPopup from '@/app/components/ConfirmationPopup';
 
 interface PageData {
     module: ModuleResponse;
@@ -35,36 +37,10 @@ function deriveStepStates(step: ModuleProgressEntry['step'], testUnlocksAt: stri
     }
 }
 
-function formatCountdown(testUnlocksAt: string): string {
-    const ms = new Date(testUnlocksAt).getTime() - Date.now();
-    if (ms <= 0) return '';
-    const totalMinutes = Math.ceil(ms / 60000);
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
-    if (hours === 0) return `${minutes}m`;
-    return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
-}
-
 function deriveLockLabel(testState: StepState, step: ModuleProgressEntry['step'], testUnlocksAt: string | null, testUnlockDelayHours: number): string | undefined {
     if (testState === 'available' || testState === 'completed') return undefined;
     if (step === 'test' && testUnlocksAt && new Date(testUnlocksAt) > new Date()) return `Test unlocks in ${testUnlocksAt ? formatCountdown(testUnlocksAt) : ''}`;
     return `${testUnlockDelayHours}h after practice`;
-}
-
-function deriveCtaInfo(step: ModuleProgressEntry['step'], testUnlocksAt: string | null): { label: string; disabled: boolean } {
-    switch (step) {
-        case 'practice':
-            return { label: 'Start practice', disabled: false };
-        case 'test': {
-            const testLocked = testUnlocksAt ? new Date(testUnlocksAt) > new Date() : false;
-            if (testLocked) return { label: `Test unlocks in ${testUnlocksAt ? formatCountdown(testUnlocksAt) : ''}`, disabled: true };
-            return { label: 'Start test', disabled: false };
-        }
-        case 'done':
-            return { label: 'Module complete', disabled: true };
-        default:
-            return { label: 'Start grammar', disabled: false };
-    }
 }
 
 type FlowStep = 'grammar' | 'practice' | 'test';
@@ -97,6 +73,10 @@ export default function ModuleOverviewPage() {
     const [data, setData] = useState<PageData | null | undefined>(undefined);
     const [isStartingPractice, setIsStartingPractice] = useState(false);
     const [selectedStep, setSelectedStep] = useState<FlowStep>('grammar');
+    const [showRePracticeConfirmation, setShowRePracticeConfirmation] = useState(false);
+    const [isResetting, setIsResetting] = useState(false);
+    const [resetConflict, setResetConflict] = useState(false);
+    const [resetError, setResetError] = useState<string | null>(null);
 
     useEffect(() => {
         setConfig({
@@ -157,8 +137,52 @@ export default function ModuleOverviewPage() {
             } catch { setIsStartingPractice(false); }
         } else if (ctaStep === 'test') {
             router.push(`/language-learning/module/${moduleId}/test`);
+        } else if (ctaStep === 'done') {
+            setShowRePracticeConfirmation(true);
         } else {
             router.push(`/language-learning/module/${moduleId}/grammar`);
+        }
+    };
+
+    /**
+     * Re-fetches /me/progress in place after a successful reset, so the module
+     * renders as a fresh, first-pass module without navigating anywhere.
+     */
+    const refetchProgress = async () => {
+        if (!data) return;
+        const progress = await new TomeLearningDashboardAPI().getMeProgress();
+        setData({ ...data, progress });
+    };
+
+    /**
+     * Confirms the re-practice reset. A 409 means a practice session or test
+     * attempt for this module is still open — that is a first-class state
+     * (S5), not an error, and offers "Finish practice round" instead. Any
+     * other failure leaves the page as it was, with an inline error (S6).
+     */
+    const handleRePracticeConfirm = async () => {
+        if (!data) return;
+        if (isResetting) return;
+
+        setShowRePracticeConfirmation(false);
+        setResetConflict(false);
+        setResetError(null);
+        setIsResetting(true);
+
+        try {
+            const result = await new TomeLearningDashboardAPI().rePractice(data.userId, moduleId);
+
+            if (result.conflict) {
+                setResetConflict(true);
+                setIsResetting(false);
+                return;
+            }
+
+            await refetchProgress();
+            setIsResetting(false);
+        } catch {
+            setResetError('Could not reset this module. Please try again.');
+            setIsResetting(false);
         }
     };
 
@@ -184,6 +208,11 @@ export default function ModuleOverviewPage() {
 
         if (!data) return;
 
+        if (ctaStep === 'done') {
+            setShowRePracticeConfirmation(true);
+            return;
+        }
+
         if (selectedStep === 'grammar') {
             router.push(`/language-learning/module/${moduleId}/grammar`);
         }
@@ -200,7 +229,8 @@ export default function ModuleOverviewPage() {
     };
 
     let desktopCtaLabel = FLOW_CTA[selectedStep];
-    if (selectedStep === 'test' && stepStates.test !== 'available') desktopCtaLabel = 'Keep practicing';
+    if (ctaStep === 'done') desktopCtaLabel = RE_PRACTICE_CTA.label;
+    else if (selectedStep === 'test' && stepStates.test !== 'available') desktopCtaLabel = 'Keep practicing';
     else if (selectedStep === 'practice' && stepStates.practice == 'completed') desktopCtaLabel = 'Keep practicing';
 
     const stepNum = ctaStep === 'practice' ? 2 : ctaStep === 'test' ? 3 : ctaStep === 'done' ? 3 : 1;
@@ -225,18 +255,37 @@ export default function ModuleOverviewPage() {
                             <div className="mt-4">
                                 <StepList steps={steps} />
                             </div>
+                            {ctaStep === 'done' && (
+                                <div className="mt-4 rounded-xl border border-cyan-500/30 bg-cyan-700/20 p-4">
+                                    <p className="text-sm font-bold text-black/80">Re-practice this module</p>
+                                    <p className="text-sm text-black/70 mt-1">Starting over replays the grammar, practice and test from the beginning, and your current proficiency score is replaced by the new result.</p>
+                                </div>
+                            )}
                             <div className="flex-1" />
                         </div>
                     )}
                 </div>
                 {data && (
                     <div className="px-4 py-4">
+                        {resetConflict && (
+                            <div className="mb-3 rounded-xl border border-cyan-500/30 bg-cyan-700/20 p-4">
+                                <p className="text-sm text-black/70">You have an unfinished practice round for this module. Finish it before re-practising.</p>
+                                <button
+                                    onClick={startNewPractice}
+                                    disabled={isStartingPractice}
+                                    className="text-sm font-bold text-cyan-800 underline mt-2 disabled:opacity-50"
+                                >
+                                    {isStartingPractice ? 'Resuming…' : 'Finish practice round'}
+                                </button>
+                            </div>
+                        )}
+                        {resetError && <p className="text-sm text-red-600 mb-3">{resetError}</p>}
                         <button
-                            disabled={cta.disabled || isStartingPractice}
+                            disabled={cta.disabled || isStartingPractice || isResetting}
                             onClick={handleCtaClick}
-                            className={`w-full border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base py-4 tracking-wide transition-opacity duration-150 ${cta.disabled || isStartingPractice ? 'opacity-50 cursor-default' : 'opacity-100 cursor-pointer'}`}
+                            className={`w-full border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base py-4 tracking-wide transition-opacity duration-150 ${cta.disabled || isStartingPractice || isResetting ? 'opacity-50 cursor-default' : 'opacity-100 cursor-pointer'}`}
                         >
-                            {isStartingPractice ? 'Starting…' : cta.label}
+                            {isResetting ? 'Resetting…' : isStartingPractice ? 'Starting…' : cta.label}
                         </button>
                     </div>
                 )}
@@ -269,6 +318,13 @@ export default function ModuleOverviewPage() {
                                     />
                                 ))}
                             </div>
+
+                            {ctaStep === 'done' && (
+                                <div className="mt-6 rounded-xl border border-cyan-500/30 bg-cyan-700/20 p-4">
+                                    <p className="text-sm font-bold text-black/80">Re-practice this module</p>
+                                    <p className="text-sm text-black/70 mt-1">Starting over replays the grammar, practice and test from the beginning, and your current proficiency score is replaced by the new result.</p>
+                                </div>
+                            )}
                         </div>
 
                         {/* RIGHT PANE */}
@@ -296,19 +352,49 @@ export default function ModuleOverviewPage() {
                                     />
                                 )}
                             </div>
+                            {resetConflict && (
+                                <div className="mt-4 rounded-xl border border-cyan-500/30 bg-cyan-800/20 p-4">
+                                    <p className="text-sm text-black/70">You have an unfinished practice round for this module. Finish it before re-practising.</p>
+                                    <button
+                                        onClick={startNewPractice}
+                                        disabled={isStartingPractice}
+                                        className="text-sm font-bold text-cyan-800 underline mt-2 disabled:opacity-50"
+                                    >
+                                        {isStartingPractice ? 'Resuming…' : 'Finish practice round'}
+                                    </button>
+                                </div>
+                            )}
+                            {resetError && <p className="text-sm text-red-600 mt-4">{resetError}</p>}
                             <div className="flex justify-end mt-7">
                                 <button
                                     onClick={handleDesktopCta}
-                                    disabled={isStartingPractice}
-                                    className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isStartingPractice ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
+                                    disabled={isStartingPractice || isResetting}
+                                    className={`border-0 rounded-full bg-cyan-800 text-lime-200 font-bold text-base px-8 py-3.5 tracking-wide ${isStartingPractice || isResetting ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
                                 >
-                                    {isStartingPractice ? 'Starting…' : desktopCtaLabel}
+                                    {isResetting ? 'Resetting…' : isStartingPractice ? 'Starting…' : desktopCtaLabel}
                                 </button>
                             </div>
                         </div>
                     </div>
                 )}
             </div>
+
+            {showRePracticeConfirmation && (
+                <ConfirmationPopup
+                    message={
+                        <div className="flex flex-col gap-2 text-left">
+                            <p className="font-bold">Re-practice this module?</p>
+                            <ul className="list-disc pl-5 text-sm text-black/70 flex flex-col gap-1">
+                                <li>The module starts over from the grammar introduction — this is not a quick re-test.</li>
+                                <li>This cannot be undone.</li>
+                                <li>Your current proficiency score is hidden, and the level test is unavailable, until you complete the module again.</li>
+                            </ul>
+                        </div>
+                    }
+                    onConfirm={handleRePracticeConfirm}
+                    onCancel={() => setShowRePracticeConfirmation(false)}
+                />
+            )}
         </div>
     );
 }
