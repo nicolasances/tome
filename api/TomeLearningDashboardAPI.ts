@@ -6,9 +6,10 @@ import { TotoAPI } from "./TotoAPI";
  * Wraps the tome-ms-language backend.
  *
  * Endpoint mapping (basepath handled by NEXT_PUBLIC_TOME_LANGUAGE_API_ENDPOINT):
- *   - GET /me                        → user profile (id, email, cefrLevel)
- *   - GET /me/progress               → level info + modules at current level
- *   - GET /me/stats/dailyActivity    → per-day activity counts for rolling 7-day window
+ *   - GET /me                                          → user profile (id, email, cefrLevel)
+ *   - GET /me/progress                                 → level info + modules at current level
+ *   - GET /me/stats/dailyActivity                       → per-day activity counts for rolling 7-day window
+ *   - POST /users/:userId/modules/:moduleId/rePractice  → resets progress for a completed module, starting a new pass
  */
 export class TomeLearningDashboardAPI {
 
@@ -45,6 +46,36 @@ export class TomeLearningDashboardAPI {
     async getWeeklySessionStats(): Promise<WeeklySessionStatsResponse> {
         const from = getRollingWindowStart();
         return new TotoAPI().fetchJson('tome-ms-language', `/me/stats/dailyActivity?from=${from}`);
+    }
+
+    /**
+     * Resets the user's progress for a completed module, starting a new pass.
+     * A reset is refused (409) while a practice session or test attempt for that
+     * module is still open; the response then carries that session's id so the
+     * caller can offer to resume it instead of treating the refusal as an error.
+     *
+     * Endpoint: POST /users/:userId/modules/:moduleId/rePractice
+     */
+    async rePractice(userId: string, moduleId: string): Promise<RePracticeResult> {
+
+        const response = await new TotoAPI().fetch(
+            'tome-ms-language',
+            `/users/${userId}/modules/${moduleId}/rePractice`,
+            { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+        );
+
+        if (response.status === 409) {
+
+            const body: { sessionId?: string } = await response.json();
+
+            if (body.sessionId) return { conflict: true, sessionId: body.sessionId };
+
+            throw new Error(`Failed to re-practice module. Server answered 409 but did not include sessionId in the response body.`);
+        }
+
+        if (!response.ok) throw new Error(`Failed to re-practice module (${response.status})`);
+
+        return { conflict: false };
     }
 }
 
@@ -123,6 +154,16 @@ export interface DailyActivityDay {
     /** Passed level tests on this day */
     successfulLevelTests: number;
 }
+
+/**
+ * Tagged result returned by rePractice.
+ * conflict = false  →  the reset succeeded; the module is back to a fresh, first-pass state
+ * conflict = true   →  refused because a practice session or test attempt is still open;
+ *                       sessionId identifies it so the caller can offer to resume it
+ */
+export type RePracticeResult =
+    | { conflict: false }
+    | { conflict: true; sessionId: string };
 
 // ─── Frontend-facing derived types (built from the raw API data) ───────────
 
