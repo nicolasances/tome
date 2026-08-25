@@ -329,7 +329,7 @@ export default function ModuleOverviewPage() {
 
                         {/* RIGHT PANE */}
                         <div className="col-span-2 rounded-2xl border border-cyan-500/30 bg-cyan-700/20 p-8 min-h-96 flex flex-col">
-                            <div className="flex-1 flex">
+                            <div className="flex-1 flex items-start">
                                 {selectedStep === 'grammar' && <FlowGrammarPane moduleId={moduleId} />}
                                 {selectedStep === 'practice' && (
                                     <FlowPracticePane
