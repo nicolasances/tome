@@ -59,6 +59,50 @@ describe('TomeLearningDashboardAPI.getWeeklySessionStats', () => {
     });
 });
 
+// ─── rePractice ──────────────────────────────────────────────────────────────────
+
+describe('TomeLearningDashboardAPI.rePractice', () => {
+
+    it('calls POST /users/:userId/modules/:moduleId/rePractice and returns conflict: false on success', async () => {
+        mockFetch.mockResolvedValue({ ok: true, status: 200, json: async () => ({}) });
+
+        const api = new TomeLearningDashboardAPI();
+        const result = await api.rePractice('user-1', 'module-1');
+
+        expect(mockFetch).toHaveBeenCalledWith(
+            'tome-ms-language',
+            '/users/user-1/modules/module-1/rePractice',
+            { method: 'POST', headers: { 'Content-Type': 'application/json' } },
+        );
+        expect(result).toEqual({ conflict: false });
+    });
+
+    it('returns conflict: true with the open session id on 409', async () => {
+        mockFetch.mockResolvedValue({ ok: false, status: 409, json: async () => ({ sessionId: 'session-42' }) });
+
+        const api = new TomeLearningDashboardAPI();
+        const result = await api.rePractice('user-1', 'module-1');
+
+        expect(result).toEqual({ conflict: true, sessionId: 'session-42' });
+    });
+
+    it('throws when the server answers 409 without a sessionId in the body', async () => {
+        mockFetch.mockResolvedValue({ ok: false, status: 409, json: async () => ({}) });
+
+        const api = new TomeLearningDashboardAPI();
+
+        await expect(api.rePractice('user-1', 'module-1')).rejects.toThrow();
+    });
+
+    it('throws for any other non-ok status', async () => {
+        mockFetch.mockResolvedValue({ ok: false, status: 500, json: async () => ({}) });
+
+        const api = new TomeLearningDashboardAPI();
+
+        await expect(api.rePractice('user-1', 'module-1')).rejects.toThrow('500');
+    });
+});
+
 // ─── calculateModuleProgress ─────────────────────────────────────────────────────
 
 describe('calculateModuleProgress', () => {

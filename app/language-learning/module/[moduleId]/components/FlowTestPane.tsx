@@ -37,12 +37,16 @@ export function FlowTestPane({ testState, lockLabel, currentRung, rungCovered, r
 
     if (testState === 'completed') {
         return (
-            <div className="flex flex-col items-center justify-center gap-4 py-8">
-                <div className="w-11 h-11 rounded-full bg-lime-200 flex items-center justify-center">
-                    <MaskedSvgIcon src="/images/tick.svg" alt="Passed" size="w-5 h-5" color="bg-cyan-800" />
+            <div className="">
+                <div className="flex items-center gap-4">
+                    <div className="w-11 h-11 rounded-full bg-lime-200 flex items-center justify-center">
+                        <MaskedSvgIcon src="/images/tick.svg" alt="Passed" size="w-5 h-5" color="bg-cyan-800" />
+                    </div>
+                    <div>
+                        <p className="text-xl font-bold text-black m-0">Test passed</p>
+                        <p className="text-base text-black/60 m-0">This module is complete.</p>
+                    </div>
                 </div>
-                <p className="text-xl font-bold text-black m-0">Test passed</p>
-                <p className="text-base text-black/60 m-0">This module is complete.</p>
             </div>
         );
     }

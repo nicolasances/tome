@@ -89,4 +89,4 @@ Participates in journey **J2** (browse the level & start a module).
 
 **Resolved:**
 - **Overflow (Q1):** All modules are always rendered; the list scrolls naturally — no truncation.
-- **Completed tappability (Q2):** Only `in_progress` and `available` rows are tappable. Completed rows are non-interactive (same as locked).
+- **Completed tappability (Q2):** ~~Only `in_progress` and `available` rows are tappable. Completed rows are non-interactive (same as locked).~~ **Reversed by `08-module-re-practice`:** completed rows and cards are now tappable too, and navigate to the Module overview like `in_progress`/`available` ones. Only locked rows remain non-interactive.

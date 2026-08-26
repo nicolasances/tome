@@ -83,7 +83,7 @@ export function ModuleRow({
 }) {
     const num = String(index + 1).padStart(2, '0');
     const stepNum = STEP_NUMBER[module.status === 'in_progress' ? (module.step ?? 'grammar') : 'grammar'] ?? 1;
-    const isActive = module.status === 'in_progress' || module.status === 'available';
+    const isActive = module.status === 'in_progress' || module.status === 'available' || module.status === 'completed';
     const isInProgress = module.status === 'in_progress';
 
     const showBorder = !isInProgress && !isLast;

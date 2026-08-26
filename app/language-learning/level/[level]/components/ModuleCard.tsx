@@ -13,16 +13,17 @@ export function ModuleCard({module, index, onTap}: {module: ModuleProgressEntry,
     const num = String(index + 1).padStart(2, '0');
     const isCurrent = module.status === 'in_progress';
     const isActive = module.status === 'in_progress' || module.status === 'available';
+    const isTappable = isActive || module.status === 'completed';
     const stepNum = STEP_NUMBER[module.status === 'in_progress' ? (module.step ?? 'grammar') : 'grammar'] ?? 1;
 
     return (
         <div
-            onClick={isActive ? onTap : undefined}
-            className={`rounded-2xl p-5 min-h-40 flex flex-col justify-between overflow-hidden ${isCurrent || isActive ? 'bg-cyan-800' : module.status == "completed" ? ' bg-cyan-600' : 'bg-cyan-700/20 text-cyan-700'} ${isActive ? 'cursor-pointer' : 'cursor-default'}`}
-            role={isActive ? 'button' : undefined}
-            tabIndex={isActive ? 0 : undefined}
-            onKeyDown={isActive ? (e) => e.key === 'Enter' && onTap() : undefined}
-            aria-label={isActive ? `Open module ${module.title}` : undefined}
+            onClick={isTappable ? onTap : undefined}
+            className={`rounded-2xl p-5 min-h-40 flex flex-col justify-between overflow-hidden ${isCurrent || isActive ? 'bg-cyan-800' : module.status == "completed" ? ' bg-cyan-600' : 'bg-cyan-700/20 text-cyan-700'} ${isTappable ? 'cursor-pointer' : 'cursor-default'}`}
+            role={isTappable ? 'button' : undefined}
+            tabIndex={isTappable ? 0 : undefined}
+            onKeyDown={isTappable ? (e) => e.key === 'Enter' && onTap() : undefined}
+            aria-label={isTappable ? `Open module ${module.title}` : undefined}
         >
             <div className="flex items-start justify-between">
 
