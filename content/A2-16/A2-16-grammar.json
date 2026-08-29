@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-16-g-passive-voice-with-blive-4704",
+    "name": "Passive Voice with \"blive\" (basics)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "News reports often focus on the event rather than who did it. To form the passive, use a conjugated form of \"blive\" + the past participle of the main verb: regeringen blev valgt (the government was elected). This is the everyday spoken passive, used constantly in news and small talk about news — it's different from the '-s' passive, which sounds more formal and is not covered here.",
+    "examples": [
+      { "danish": "Det blev besluttet i går.", "english": "It was decided yesterday." },
+      { "danish": "Borgmesteren blev valgt for anden gang.", "english": "The mayor was elected for the second time." }
+    ]
+  },
+  {
+    "id": "A2-16-g-formal-news-register-vs-6932",
+    "name": "Formal News Register vs. Spoken Danish",
+    "category": "advanced",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Danish news reports and headlines use a slightly more formal vocabulary than everyday spoken Danish, even at a simple level. Journalists write \"regeringen meddelte\" (the government announced) instead of the more casual \"regeringen sagde\", and open a sentence with \"Ifølge...\" (according to...) rather than \"De siger, at...\" (they say that...). Recognizing these formal equivalents lets you follow a news headline and then talk about it casually with a colleague using the everyday version.",
+    "examples": [
+      { "danish": "Ifølge regeringen er krisen ovre.", "english": "According to the government, the crisis is over." },
+      { "danish": "Ministeren meddelte nyheden i dag.", "english": "The minister announced the news today." }
+    ]
+  }
+]

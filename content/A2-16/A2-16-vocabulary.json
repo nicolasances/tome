@@ -1,0 +1,252 @@
+[
+  {
+    "id": "A2-16-v-nyhed-7813",
+    "danish": "nyhed",
+    "english": "news / news item",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-regering-6564",
+    "danish": "regering",
+    "english": "government",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "politics"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-valg-5218",
+    "danish": "valg",
+    "english": "election",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "politics"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-krise-9543",
+    "danish": "krise",
+    "english": "crisis",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "politics"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-avis-5776",
+    "danish": "avis",
+    "english": "newspaper",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-netavis-2636",
+    "danish": "netavis",
+    "english": "online newspaper",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-kanal-4918",
+    "danish": "kanal",
+    "english": "channel",
+    "type": "noun",
+    "context": "TV/radio channel",
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-journalist-6896",
+    "danish": "journalist",
+    "english": "journalist",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-overskrift-8584",
+    "danish": "overskrift",
+    "english": "headline",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-minister-1547",
+    "danish": "minister",
+    "english": "minister",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "politics"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-borgmester-6303",
+    "danish": "borgmester",
+    "english": "mayor",
+    "type": "noun",
+    "context": null,
+    "tags": ["news", "politics"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-stemme-6125",
+    "danish": "stemme",
+    "english": "to vote",
+    "type": "verb",
+    "context": "casting a vote, not the noun \"voice\"",
+    "tags": ["news", "politics"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-meddele-2540",
+    "danish": "meddele",
+    "english": "to announce",
+    "type": "verb",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-rapportere-3044",
+    "danish": "rapportere",
+    "english": "to report",
+    "type": "verb",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-ske-3044",
+    "danish": "ske",
+    "english": "to happen",
+    "type": "verb",
+    "context": null,
+    "tags": ["news"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-forklare-4106",
+    "danish": "forklare",
+    "english": "to explain",
+    "type": "verb",
+    "context": null,
+    "tags": ["news", "communication"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-blive-valgt-5789",
+    "danish": "blive valgt",
+    "english": "to be elected",
+    "type": "pattern",
+    "context": null,
+    "tags": ["news", "politics", "passive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-det-blev-besluttet-at-9883",
+    "danish": "det blev besluttet at...",
+    "english": "it was decided that...",
+    "type": "pattern",
+    "context": null,
+    "tags": ["news", "passive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-har-du-hoert-om-2145",
+    "danish": "Har du hørt om...?",
+    "english": "Have you heard about...?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["news", "small-talk"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-der-stod-i-avisen-7300",
+    "danish": "Der stod i avisen, at...",
+    "english": "It said in the newspaper that...",
+    "type": "phrase",
+    "context": null,
+    "tags": ["news", "small-talk"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-ifoelge-9349",
+    "danish": "ifølge",
+    "english": "according to",
+    "type": "connector",
+    "context": null,
+    "tags": ["news", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-alvorlig-3592",
+    "danish": "alvorlig",
+    "english": "serious",
+    "type": "adjective",
+    "context": null,
+    "tags": ["news"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-vigtig-6473",
+    "danish": "vigtig",
+    "english": "important",
+    "type": "adjective",
+    "context": null,
+    "tags": ["news"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-aktuel-8814",
+    "danish": "aktuel",
+    "english": "current / topical",
+    "type": "adjective",
+    "context": null,
+    "tags": ["news"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-16-v-for-nylig-8428",
+    "danish": "for nylig",
+    "english": "recently",
+    "type": "adverb",
+    "context": null,
+    "tags": ["news", "time"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

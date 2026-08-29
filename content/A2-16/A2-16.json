@@ -1,0 +1,40 @@
+{
+  "id": "danish-A2-16",
+  "title": "The Danish Media (Basics)",
+  "theme": "News and media",
+  "communicationGoal": "Understand simple news headlines, talk about a news story with a colleague",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-16-v-nyhed-7813",
+    "A2-16-v-regering-6564",
+    "A2-16-v-valg-5218",
+    "A2-16-v-krise-9543",
+    "A2-16-v-avis-5776",
+    "A2-16-v-netavis-2636",
+    "A2-16-v-kanal-4918",
+    "A2-16-v-journalist-6896",
+    "A2-16-v-overskrift-8584",
+    "A2-16-v-minister-1547",
+    "A2-16-v-borgmester-6303",
+    "A2-16-v-stemme-6125",
+    "A2-16-v-meddele-2540",
+    "A2-16-v-rapportere-3044",
+    "A2-16-v-ske-3044",
+    "A2-16-v-forklare-4106",
+    "A2-16-v-blive-valgt-5789",
+    "A2-16-v-det-blev-besluttet-at-9883",
+    "A2-16-v-har-du-hoert-om-2145",
+    "A2-16-v-der-stod-i-avisen-7300",
+    "A2-16-v-ifoelge-9349",
+    "A2-16-v-alvorlig-3592",
+    "A2-16-v-vigtig-6473",
+    "A2-16-v-aktuel-8814",
+    "A2-16-v-for-nylig-8428"
+  ],
+  "grammarConceptIds": [
+    "A2-16-g-passive-voice-with-blive-4704",
+    "A2-16-g-formal-news-register-vs-6932"
+  ],
+  "createdAt": "2026-08-29T00:00:00Z",
+  "isUserGenerated": false
+}
