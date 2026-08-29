@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-17-g-modal-verbs-polite-requests-8179",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Formal requests at a public institution are built on a modal verb followed by a bare infinitive (no 'at'). 'Jeg skal bruge...' states what you need, 'Jeg vil gerne...' softens a request politely, and 'Må jeg...?' or 'Kan jeg...?' are the standard polite question forms. In a question the modal comes first and the subject follows it directly.",
+    "examples": [
+      { "danish": "Jeg skal bruge et nyt CPR-kort.", "english": "I need a new CPR card." },
+      { "danish": "Må jeg bede om din legitimation?", "english": "May I ask for your ID?" }
+    ]
+  },
+  {
+    "id": "A2-17-g-infinitive-usage-6228",
+    "name": "Infinitive usage",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "The infinitive takes 'at' after most verbs and expressions ('jeg har brug for at registrere mig', 'jeg glemte at udfylde formularen'), but never after a modal verb (kan, skal, vil, må, bør), where the bare infinitive follows directly.",
+    "examples": [
+      { "danish": "Jeg skal huske at bekræfte min adresse.", "english": "I need to remember to confirm my address." },
+      { "danish": "Du er nødt til at udfylde formularen først.", "english": "You have to fill out the form first." }
+    ]
+  },
+  {
+    "id": "A2-17-g-question-formation-formal-register-5621",
+    "name": "Question formation (formal register)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Formal questions on the phone or in writing follow the same verb-second rule as everyday questions, but use polite openers instead of a bare 'hvad' or 'hvorfor'. A staff member asks 'Hvad drejer det sig om?' to open a call, and you answer with 'Det drejer sig om...' or a direct question starting with the verb: 'Kan jeg bestille en tid?'",
+    "examples": [
+      { "danish": "Hvad drejer det sig om, og hvordan kan jeg hjælpe?", "english": "What is it regarding, and how can I help?" },
+      { "danish": "Kan jeg få en tid hos en sagsbehandler i morgen?", "english": "Can I get an appointment with a caseworker tomorrow?" }
+    ]
+  }
+]

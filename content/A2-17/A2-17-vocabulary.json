@@ -1,0 +1,292 @@
+[
+  {
+    "id": "A2-17-v-kommune-2593",
+    "danish": "kommune",
+    "english": "municipality",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "institution"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-borgerservice-4176",
+    "danish": "borgerservice",
+    "english": "citizen service center",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "institution"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-bank-4657",
+    "danish": "bank",
+    "english": "bank",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "institution", "finance"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-posthus-2587",
+    "danish": "posthus",
+    "english": "post office",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "institution"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-cpr-nummer-6915",
+    "danish": "CPR-nummer",
+    "english": "civil registration number",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-mitid-9518",
+    "danish": "MitID",
+    "english": "MitID (Danish digital ID)",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy", "digital"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-folkeregister-4234",
+    "danish": "folkeregister",
+    "english": "national register",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-konto-6108",
+    "danish": "konto",
+    "english": "account",
+    "type": "noun",
+    "context": "bank account",
+    "tags": ["civic", "finance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-formular-7811",
+    "danish": "formular",
+    "english": "form",
+    "type": "noun",
+    "context": "document to fill out",
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-legitimation-3431",
+    "danish": "legitimation",
+    "english": "identification",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-adresse-8955",
+    "danish": "adresse",
+    "english": "address",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-kvittering-5667",
+    "danish": "kvittering",
+    "english": "receipt",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "finance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-frist-5059",
+    "danish": "frist",
+    "english": "deadline",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-sagsbehandler-8377",
+    "danish": "sagsbehandler",
+    "english": "caseworker",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-ventenummer-2986",
+    "danish": "ventenummer",
+    "english": "queue number",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-gebyr-8420",
+    "danish": "gebyr",
+    "english": "fee",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "finance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-ansoegning-9553",
+    "danish": "ansøgning",
+    "english": "application",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-dokumentation-8670",
+    "danish": "dokumentation",
+    "english": "documentation",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-aabningstider-3866",
+    "danish": "åbningstider",
+    "english": "opening hours",
+    "type": "noun",
+    "context": null,
+    "tags": ["civic"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-registrere-sig-1638",
+    "danish": "registrere sig",
+    "english": "to register (oneself)",
+    "type": "verb",
+    "context": null,
+    "tags": ["civic", "bureaucracy", "reflexive"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-ansoege-om-6046",
+    "danish": "ansøge om",
+    "english": "to apply for",
+    "type": "verb",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-bekraefte-2705",
+    "danish": "bekræfte",
+    "english": "to confirm",
+    "type": "verb",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-udfylde-3408",
+    "danish": "udfylde",
+    "english": "to fill out",
+    "type": "verb",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-indsende-6247",
+    "danish": "indsende",
+    "english": "to submit",
+    "type": "verb",
+    "context": null,
+    "tags": ["civic", "bureaucracy"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-jeg-skal-bruge-8058",
+    "danish": "Jeg skal bruge...",
+    "english": "I need...",
+    "type": "phrase",
+    "context": "stating a request at a service counter",
+    "tags": ["civic", "polite-request"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-jeg-vil-gerne-bestille-3666",
+    "danish": "Jeg vil gerne bestille en tid",
+    "english": "I would like to book an appointment",
+    "type": "phrase",
+    "context": null,
+    "tags": ["civic", "polite-request", "phone"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-det-drejer-sig-om-1930",
+    "danish": "Det drejer sig om...",
+    "english": "It's regarding...",
+    "type": "phrase",
+    "context": "phone or written communication opener",
+    "tags": ["civic", "phone", "written"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-jeg-ringer-angaaende-9031",
+    "danish": "Jeg ringer angående...",
+    "english": "I'm calling regarding...",
+    "type": "phrase",
+    "context": "phone communication opener",
+    "tags": ["civic", "phone"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-17-v-med-venlig-hilsen-7451",
+    "danish": "Med venlig hilsen",
+    "english": "Kind regards",
+    "type": "phrase",
+    "context": "formal letter or email closing",
+    "tags": ["civic", "written"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
