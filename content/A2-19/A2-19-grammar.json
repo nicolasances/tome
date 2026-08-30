@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-19-g-formal-de-vs-du-3845",
+    "name": "Personal Pronouns: Formal \"De\" vs. Informal \"du\"",
+    "category": "pronouns",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "\"du\" is the everyday, informal way to say \"you\", used with friends, family, and people you know well. In formal or professional writing — emails to clients, official contacts, or people you don't know — Danish traditionally uses the capitalized pronoun \"De\" (object form \"Dem\", possessive \"Deres\") instead. Modern Danish business culture leans increasingly informal, but \"De\" still signals politeness and distance in written correspondence.",
+    "examples": [
+      { "danish": "Kunne De bekræfte mødet i morgen?", "english": "Could you (formal) confirm the meeting tomorrow?" },
+      { "danish": "Jeg sender Dem dagsordenen vedhæftet.", "english": "I am sending you (formal) the agenda attached." }
+    ]
+  },
+  {
+    "id": "A2-19-g-modal-phrases-for-politeness-3990",
+    "name": "Modal Phrases for Politeness (vil gerne, kunne, må jeg)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Modal verbs like \"vil\", \"kunne\" and \"må\" soften a request so it sounds polite rather than blunt — especially important in professional emails and meeting proposals. \"Jeg vil gerne...\" (I would like to...) and \"Kunne De/vi...?\" (Could you/we...?) are the standard polite openers in Danish business communication.",
+    "examples": [
+      { "danish": "Jeg vil gerne booke et møde med Dem.", "english": "I would like to book a meeting with you." },
+      { "danish": "Kunne vi flytte mødet til fredag?", "english": "Could we reschedule the meeting to Friday?" }
+    ]
+  },
+  {
+    "id": "A2-19-g-inversion-in-formal-written-4035",
+    "name": "Inversion in Formal Written Openings",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Danish main clauses always keep the verb in second position (the verb-second rule). Formal emails often open with something other than the subject — \"Hermed\", \"Vedrørende...\", a date or time — which pushes the subject after the verb. Recognizing and producing this word order is a key feature of professional written Danish.",
+    "examples": [
+      { "danish": "Hermed bekræfter jeg vores møde på tirsdag.", "english": "Hereby I confirm our meeting on Tuesday." },
+      { "danish": "Vedrørende dagsordenen har jeg et par kommentarer.", "english": "Regarding the agenda, I have a few comments." }
+    ]
+  }
+]
