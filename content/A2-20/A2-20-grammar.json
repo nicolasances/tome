@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-20-g-habitual-present-tense-9310",
+    "name": "Present tense for habits and routines",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Use the present tense to talk about sports and hobbies you do regularly. Most Danish verbs form the present tense by adding -r to the stem, and the form never changes with the subject (jeg spiller, du spiller, han spiller).",
+    "examples": [
+      { "danish": "Jeg spiller fodbold hver weekend.", "english": "I play football every weekend." },
+      { "danish": "Hun løber tre gange om ugen.", "english": "She runs three times a week." }
+    ]
+  },
+  {
+    "id": "A2-20-g-frequency-adverb-placement-1299",
+    "name": "Main clause word order (SVO)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In a Danish main clause, a frequency adverb such as tit, ofte, aldrig or sjældent goes right after the finite verb — not before it and not at the end of the sentence.",
+    "examples": [
+      { "danish": "Jeg spiller ofte tennis om sommeren.", "english": "I often play tennis in the summer." },
+      { "danish": "Han går sjældent til håndbold.", "english": "He rarely goes to handball." }
+    ]
+  }
+]

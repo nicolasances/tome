@@ -1,0 +1,41 @@
+{
+  "id": "danish-A2-20",
+  "title": "Hobbies, Sports & Leisure",
+  "theme": "Free time and personal interests",
+  "communicationGoal": "Talk about your hobbies and the sports you play or follow; understand and join a conversation about how Danes spend their free time",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-20-v-fodbold-3832",
+    "A2-20-v-haandbold-3203",
+    "A2-20-v-tennis-1272",
+    "A2-20-v-cykling-8491",
+    "A2-20-v-svoemning-7611",
+    "A2-20-v-spille-2103",
+    "A2-20-v-loebe-4851",
+    "A2-20-v-cykle-6952",
+    "A2-20-v-svoemme-3622",
+    "A2-20-v-traene-4378",
+    "A2-20-v-dyrke-5435",
+    "A2-20-v-madlavning-9131",
+    "A2-20-v-fotografering-5964",
+    "A2-20-v-musik-9157",
+    "A2-20-v-haandvaerk-8942",
+    "A2-20-v-havebrug-3956",
+    "A2-20-v-hobby-2729",
+    "A2-20-v-fritid-5927",
+    "A2-20-v-klub-3194",
+    "A2-20-v-hold-2088",
+    "A2-20-v-kamp-6682",
+    "A2-20-v-se-9298",
+    "A2-20-v-foelge-med-i-6025",
+    "A2-20-v-gaa-til-2174",
+    "A2-20-v-interesseret-i-2247",
+    "A2-20-v-hvor-tit-8005"
+  ],
+  "grammarConceptIds": [
+    "A2-20-g-habitual-present-tense-9310",
+    "A2-20-g-frequency-adverb-placement-1299"
+  ],
+  "createdAt": "2026-08-30T00:00:00Z",
+  "isUserGenerated": false
+}

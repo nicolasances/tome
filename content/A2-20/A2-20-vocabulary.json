@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-20-v-fodbold-3832",
+    "danish": "fodbold",
+    "english": "football / soccer",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports", "hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-haandbold-3203",
+    "danish": "håndbold",
+    "english": "handball",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports", "hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-tennis-1272",
+    "danish": "tennis",
+    "english": "tennis",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports", "hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-cykling-8491",
+    "danish": "cykling",
+    "english": "cycling",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports", "hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-svoemning-7611",
+    "danish": "svømning",
+    "english": "swimming",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports", "hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-spille-2103",
+    "danish": "spille",
+    "english": "to play",
+    "type": "verb",
+    "context": "playing a sport or game",
+    "tags": ["sports", "leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-loebe-4851",
+    "danish": "løbe",
+    "english": "to run",
+    "type": "verb",
+    "context": null,
+    "tags": ["sports", "leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-cykle-6952",
+    "danish": "cykle",
+    "english": "to cycle",
+    "type": "verb",
+    "context": null,
+    "tags": ["sports", "leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-svoemme-3622",
+    "danish": "svømme",
+    "english": "to swim",
+    "type": "verb",
+    "context": null,
+    "tags": ["sports", "leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-traene-4378",
+    "danish": "træne",
+    "english": "to train / to practise",
+    "type": "verb",
+    "context": null,
+    "tags": ["sports", "leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-dyrke-5435",
+    "danish": "dyrke",
+    "english": "to do / to practise (a sport)",
+    "type": "verb",
+    "context": "doing a sport or activity, e.g. dyrke sport",
+    "tags": ["sports", "leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-madlavning-9131",
+    "danish": "madlavning",
+    "english": "cooking",
+    "type": "noun",
+    "context": null,
+    "tags": ["hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-fotografering-5964",
+    "danish": "fotografering",
+    "english": "photography",
+    "type": "noun",
+    "context": null,
+    "tags": ["hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-musik-9157",
+    "danish": "musik",
+    "english": "music",
+    "type": "noun",
+    "context": null,
+    "tags": ["hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-haandvaerk-8942",
+    "danish": "håndværk",
+    "english": "handicraft / craftwork",
+    "type": "noun",
+    "context": null,
+    "tags": ["hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-havebrug-3956",
+    "danish": "havebrug",
+    "english": "gardening",
+    "type": "noun",
+    "context": null,
+    "tags": ["hobbies"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-hobby-2729",
+    "danish": "hobby",
+    "english": "hobby",
+    "type": "noun",
+    "context": null,
+    "tags": ["hobbies", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-fritid-5927",
+    "danish": "fritid",
+    "english": "free time / leisure",
+    "type": "noun",
+    "context": null,
+    "tags": ["leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-klub-3194",
+    "danish": "klub",
+    "english": "club",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports", "leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-hold-2088",
+    "danish": "hold",
+    "english": "team",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-kamp-6682",
+    "danish": "kamp",
+    "english": "match / game",
+    "type": "noun",
+    "context": null,
+    "tags": ["sports"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-se-9298",
+    "danish": "se",
+    "english": "to watch",
+    "type": "verb",
+    "context": "watching a match, film or programme",
+    "tags": ["leisure-verbs"],
+    "cefrLevel": "A1",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-foelge-med-i-6025",
+    "danish": "følge med i",
+    "english": "to follow / to keep up with",
+    "type": "phrase",
+    "context": "following a sport, team or hobby",
+    "tags": ["leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-gaa-til-2174",
+    "danish": "gå til",
+    "english": "to go to / to attend regularly (a class or activity)",
+    "type": "phrase",
+    "context": "attending a recurring hobby activity, e.g. gå til fodbold",
+    "tags": ["leisure-verbs"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-interesseret-i-2247",
+    "danish": "interesseret i",
+    "english": "interested in",
+    "type": "phrase",
+    "context": null,
+    "tags": ["leisure"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-20-v-hvor-tit-8005",
+    "danish": "hvor tit",
+    "english": "how often",
+    "type": "phrase",
+    "context": null,
+    "tags": ["leisure", "frequency"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]
