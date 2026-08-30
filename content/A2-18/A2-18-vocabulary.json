@@ -1,0 +1,252 @@
+[
+  {
+    "id": "A2-18-v-mene-3667",
+    "danish": "mene",
+    "english": "to think / to believe (an opinion)",
+    "type": "verb",
+    "context": "stating a firmer, more considered opinion — contrast with synes for a more casual feeling",
+    "tags": ["opinion", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-synes-6188",
+    "danish": "synes",
+    "english": "to think / to feel (an opinion)",
+    "type": "verb",
+    "context": "a subjective, everyday opinion or impression — contrast with mene for a firmer stance",
+    "tags": ["opinion", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-foretraekke-5746",
+    "danish": "foretrække",
+    "english": "to prefer",
+    "type": "verb",
+    "context": null,
+    "tags": ["preference", "verb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-skifte-mening-1985",
+    "danish": "skifte mening",
+    "english": "to change one's mind",
+    "type": "phrase",
+    "context": null,
+    "tags": ["opinion", "phrase"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-jeg-synes-at-5512",
+    "danish": "Jeg synes, at...",
+    "english": "I think that...",
+    "type": "pattern",
+    "context": null,
+    "tags": ["opinion", "pattern"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-efter-min-mening-5532",
+    "danish": "Efter min mening...",
+    "english": "In my opinion...",
+    "type": "pattern",
+    "context": null,
+    "tags": ["opinion", "pattern"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-jeg-er-ikke-sikker-6703",
+    "danish": "Jeg er ikke sikker på...",
+    "english": "I'm not sure...",
+    "type": "pattern",
+    "context": null,
+    "tags": ["hedging", "pattern"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-enig-7712",
+    "danish": "enig",
+    "english": "in agreement / agreeing",
+    "type": "adjective",
+    "context": null,
+    "tags": ["agreement", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-uenig-2436",
+    "danish": "uenig",
+    "english": "in disagreement / disagreeing",
+    "type": "adjective",
+    "context": null,
+    "tags": ["disagreement", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-det-synes-jeg-ogsaa-8350",
+    "danish": "Det synes jeg også",
+    "english": "I think so too",
+    "type": "phrase",
+    "context": null,
+    "tags": ["agreement", "phrase"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-det-synes-jeg-ikke-3271",
+    "danish": "Det synes jeg ikke",
+    "english": "I don't think so",
+    "type": "phrase",
+    "context": null,
+    "tags": ["disagreement", "phrase"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-det-kommer-an-paa-6881",
+    "danish": "Det kommer an på",
+    "english": "It depends on",
+    "type": "phrase",
+    "context": null,
+    "tags": ["hedging", "phrase"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-helt-sikkert-9488",
+    "danish": "Helt sikkert",
+    "english": "Definitely / for sure",
+    "type": "phrase",
+    "context": null,
+    "tags": ["agreement", "phrase"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-egentlig-2894",
+    "danish": "egentlig",
+    "english": "actually / really",
+    "type": "adverb",
+    "context": null,
+    "tags": ["hedging", "adverb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-nok-6740",
+    "danish": "nok",
+    "english": "probably / I suppose",
+    "type": "adverb",
+    "context": "hedging an opinion — softens a claim rather than expressing quantity",
+    "tags": ["hedging", "adverb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-vel-6575",
+    "danish": "vel",
+    "english": "I suppose / right? (tag)",
+    "type": "adverb",
+    "context": "sentence-final tag inviting agreement, or a hedge meaning 'presumably'",
+    "tags": ["hedging", "adverb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-maaske-2698",
+    "danish": "måske",
+    "english": "maybe",
+    "type": "adverb",
+    "context": null,
+    "tags": ["hedging", "adverb"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-men-1705",
+    "danish": "men",
+    "english": "but",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "contrast"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-selvom-3624",
+    "danish": "selvom",
+    "english": "although / even though",
+    "type": "connector",
+    "context": null,
+    "tags": ["connector", "contrast", "subordinating"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-paa-den-anden-side-9255",
+    "danish": "på den anden side",
+    "english": "on the other hand",
+    "type": "connector",
+    "context": "introduces a contrasting viewpoint, typically fronted at the start of a sentence",
+    "tags": ["connector", "contrast"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-til-gengaeld-3935",
+    "danish": "til gengæld",
+    "english": "on the other hand / in return",
+    "type": "connector",
+    "context": "balances a downside with an upside (or vice versa), typically fronted at the start of a sentence",
+    "tags": ["connector", "contrast"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-bedre-3273",
+    "danish": "bedre",
+    "english": "better",
+    "type": "adjective",
+    "context": "comparative of god — used when comparing preferences",
+    "tags": ["preference", "comparison", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-vaerre-4104",
+    "danish": "værre",
+    "english": "worse",
+    "type": "adjective",
+    "context": "comparative of dårlig — used when comparing preferences",
+    "tags": ["preference", "comparison", "adjective"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-mening-4309",
+    "danish": "mening",
+    "english": "opinion",
+    "type": "noun",
+    "context": "opinion or viewpoint — not the word's other sense of 'meaning'",
+    "tags": ["opinion", "noun"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-18-v-grund-4972",
+    "danish": "grund",
+    "english": "reason",
+    "type": "noun",
+    "context": null,
+    "tags": ["opinion", "noun"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

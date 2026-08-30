@@ -1,0 +1,40 @@
+{
+  "id": "danish-A2-18",
+  "title": "Opinions & Preferences",
+  "theme": "Expressing views and preferences",
+  "communicationGoal": "State opinions, agree and disagree, express preferences with reasons",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-18-v-mene-3667",
+    "A2-18-v-synes-6188",
+    "A2-18-v-foretraekke-5746",
+    "A2-18-v-skifte-mening-1985",
+    "A2-18-v-jeg-synes-at-5512",
+    "A2-18-v-efter-min-mening-5532",
+    "A2-18-v-jeg-er-ikke-sikker-6703",
+    "A2-18-v-enig-7712",
+    "A2-18-v-uenig-2436",
+    "A2-18-v-det-synes-jeg-ogsaa-8350",
+    "A2-18-v-det-synes-jeg-ikke-3271",
+    "A2-18-v-det-kommer-an-paa-6881",
+    "A2-18-v-helt-sikkert-9488",
+    "A2-18-v-egentlig-2894",
+    "A2-18-v-nok-6740",
+    "A2-18-v-vel-6575",
+    "A2-18-v-maaske-2698",
+    "A2-18-v-men-1705",
+    "A2-18-v-selvom-3624",
+    "A2-18-v-paa-den-anden-side-9255",
+    "A2-18-v-til-gengaeld-3935",
+    "A2-18-v-bedre-3273",
+    "A2-18-v-vaerre-4104",
+    "A2-18-v-mening-4309",
+    "A2-18-v-grund-4972"
+  ],
+  "grammarConceptIds": [
+    "A2-18-g-contrast-connectors-7064",
+    "A2-18-g-comparison-of-adjectives-1368"
+  ],
+  "createdAt": "2026-08-30T00:00:00Z",
+  "isUserGenerated": false
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-18-g-contrast-connectors-7064",
+    "name": "Contrast connectors",
+    "category": "connectors",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "To state an opinion with nuance, Danish uses several words for 'but' and 'on the other hand'. Men joins two main clauses directly and keeps normal word order (subject before verb) in both. Selvom introduces a subordinate clause of concession ('although') — at this level, word order inside it stays simple: connector + subject + verb, just like a regular sentence. På den anden side and til gengæld are adverbials that usually open the second sentence; because they come first, the finite verb must follow immediately and the subject comes after it (inversion) — 'På den anden side synes jeg...' not 'På den anden side jeg synes...'.",
+    "examples": [
+      { "danish": "Jeg kan godt lide kaffe, men jeg foretrækker te om aftenen.", "english": "I like coffee, but I prefer tea in the evening." },
+      { "danish": "På den anden side har han da også ret i noget.", "english": "On the other hand, he is also right about something." }
+    ]
+  },
+  {
+    "id": "A2-18-g-comparison-of-adjectives-1368",
+    "name": "Comparison of adjectives",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "When you state a preference, you often compare two things using the comparative form of an adjective, followed by end ('than'). Many common adjectives form the comparative irregularly rather than by adding -ere: god (good) → bedre (better), dårlig (bad) → værre (worse). The comparative form itself does not change for gender or number — 'bedre' stays 'bedre' whether the noun is en- or et-word, singular or plural.",
+    "examples": [
+      { "danish": "Jeg synes, denne løsning er bedre end den gamle.", "english": "I think this solution is better than the old one." },
+      { "danish": "Efter min mening er situationen værre end sidste år.", "english": "In my opinion, the situation is worse than last year." }
+    ]
+  }
+]
