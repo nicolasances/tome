@@ -1,0 +1,252 @@
+[
+  {
+    "id": "A2-21-v-aftale-6952",
+    "danish": "aftale",
+    "english": "agreement / appointment / plan",
+    "type": "noun",
+    "context": null,
+    "tags": ["social", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-moedes-2457",
+    "danish": "mødes",
+    "english": "to meet up (with each other)",
+    "type": "verb",
+    "context": "reciprocal — meeting with someone, not just seeing something",
+    "tags": ["social", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-ses-5127",
+    "danish": "ses",
+    "english": "to see each other / see you",
+    "type": "verb",
+    "context": "reciprocal; also used as a farewell phrase, e.g. 'Vi ses!'",
+    "tags": ["social", "greeting"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-aflyse-7500",
+    "danish": "aflyse",
+    "english": "to cancel",
+    "type": "verb",
+    "context": null,
+    "tags": ["social", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-rykke-4103",
+    "danish": "rykke",
+    "english": "to reschedule / move (an appointment)",
+    "type": "verb",
+    "context": "moving an appointment to another time, not physical movement",
+    "tags": ["social", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-invitere-9657",
+    "danish": "invitere",
+    "english": "to invite",
+    "type": "verb",
+    "context": null,
+    "tags": ["social", "invitation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-bekraefte-9496",
+    "danish": "bekræfte",
+    "english": "to confirm",
+    "type": "verb",
+    "context": null,
+    "tags": ["social", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-plan-9140",
+    "danish": "plan",
+    "english": "plan",
+    "type": "noun",
+    "context": null,
+    "tags": ["social", "planning"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-invitation-1438",
+    "danish": "invitation",
+    "english": "invitation",
+    "type": "noun",
+    "context": null,
+    "tags": ["social", "invitation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-fest-7282",
+    "danish": "fest",
+    "english": "party",
+    "type": "noun",
+    "context": null,
+    "tags": ["social", "event"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-har-du-lyst-til-6310",
+    "danish": "Har du lyst til...?",
+    "english": "Do you feel like...?",
+    "type": "pattern",
+    "context": "invitation opener, followed by a noun or 'at' + infinitive",
+    "tags": ["invitation", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-vil-du-med-1638",
+    "danish": "Vil du med...?",
+    "english": "Do you want to come along...?",
+    "type": "pattern",
+    "context": "invitation to join an activity or outing",
+    "tags": ["invitation", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-skal-vi-ikke-7682",
+    "danish": "Skal vi ikke...?",
+    "english": "Shall we...? / Why don't we...?",
+    "type": "pattern",
+    "context": "suggestion framed as a question, followed by an infinitive",
+    "tags": ["invitation", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-har-du-tid-5087",
+    "danish": "Har du tid...?",
+    "english": "Do you have time...?",
+    "type": "pattern",
+    "context": "asking about someone's availability",
+    "tags": ["invitation", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-det-lyder-skoent-5159",
+    "danish": "Det lyder skønt!",
+    "english": "That sounds great!",
+    "type": "phrase",
+    "context": null,
+    "tags": ["acceptance", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-ja-gerne-5922",
+    "danish": "Ja, gerne!",
+    "english": "Yes, gladly!",
+    "type": "phrase",
+    "context": null,
+    "tags": ["acceptance", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-det-passer-mig-godt-9077",
+    "danish": "Det passer mig godt",
+    "english": "That suits me well",
+    "type": "phrase",
+    "context": null,
+    "tags": ["acceptance", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-jeg-er-med-7222",
+    "danish": "Jeg er med!",
+    "english": "I'm in!",
+    "type": "phrase",
+    "context": null,
+    "tags": ["acceptance", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-desvaerre-kan-jeg-ikke-6943",
+    "danish": "Desværre kan jeg ikke",
+    "english": "Unfortunately I can't",
+    "type": "phrase",
+    "context": null,
+    "tags": ["decline", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-jeg-har-desvaerre-andre-7212",
+    "danish": "Jeg har desværre andre planer",
+    "english": "I unfortunately have other plans",
+    "type": "phrase",
+    "context": null,
+    "tags": ["decline", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-maaske-en-anden-gang-2318",
+    "danish": "Måske en anden gang",
+    "english": "Maybe another time",
+    "type": "phrase",
+    "context": null,
+    "tags": ["decline", "social"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-paa-loerdag-7816",
+    "danish": "på lørdag",
+    "english": "on Saturday",
+    "type": "phrase",
+    "context": "a specific upcoming day — 'på' + weekday name",
+    "tags": ["time", "scheduling"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-om-fredagen-9465",
+    "danish": "om fredagen",
+    "english": "on Fridays",
+    "type": "phrase",
+    "context": "habitual/recurring day — 'om' + definite form of the weekday",
+    "tags": ["time", "scheduling"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-klokken-7545",
+    "danish": "klokken",
+    "english": "at [time] / o'clock",
+    "type": "noun",
+    "context": "used before a specific clock time, e.g. 'klokken tre'",
+    "tags": ["time", "scheduling"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-21-v-i-naeste-uge-8762",
+    "danish": "i næste uge",
+    "english": "next week",
+    "type": "phrase",
+    "context": null,
+    "tags": ["time", "scheduling"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

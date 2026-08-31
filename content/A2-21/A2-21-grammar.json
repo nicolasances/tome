@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-21-g-future-with-skal-and-9221",
+    "name": "Future with skal and vil",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "When making or responding to a social plan, use 'skal' for something that is arranged or decided — close to English 'is going to' — and 'vil' for personal willingness or desire — close to English 'will / want to'. Both are followed by a verb in the infinitive, and both are common in invitations and confirmations.",
+    "examples": [
+      { "danish": "Vi skal mødes på lørdag klokken syv.", "english": "We're meeting up on Saturday at seven (it's arranged)." },
+      { "danish": "Jeg vil gerne komme til festen.", "english": "I would like to come to the party." }
+    ]
+  },
+  {
+    "id": "A2-21-g-prepositions-for-days-and-9936",
+    "name": "Prepositions for days and clock time",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Danish uses different prepositions depending on the kind of time expression: 'på' + a weekday name points to one specific upcoming day (på lørdag = on Saturday); 'om' + the definite form of a weekday describes something that happens habitually on that day (om fredagen = on Fridays, as a rule); and 'klokken' introduces a specific clock time (klokken syv = at seven o'clock). Choosing the wrong one changes whether the plan sounds like a one-off event or a recurring habit.",
+    "examples": [
+      { "danish": "Skal vi ikke ses på lørdag klokken tre?", "english": "Shall we meet up on Saturday at three?" },
+      { "danish": "Vi plejer at spille fodbold om fredagen.", "english": "We usually play football on Fridays." }
+    ]
+  },
+  {
+    "id": "A2-21-g-polite-decline-with-desvaerre-2326",
+    "name": "Polite decline with 'desværre' and negation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "To turn down an invitation politely, place the adverb 'desværre' (unfortunately) right after the modal verb, before 'ikke' and the infinitive: subject + modal + desværre + ikke + infinitive. This softens the refusal instead of stating a flat 'no'.",
+    "examples": [
+      { "danish": "Jeg kan desværre ikke komme til festen.", "english": "Unfortunately I can't come to the party." },
+      { "danish": "Vi kan desværre ikke mødes i morgen.", "english": "Unfortunately we can't meet up tomorrow." }
+    ]
+  }
+]
