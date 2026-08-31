@@ -1,0 +1,262 @@
+[
+  {
+    "id": "A2-22-v-besked-7342",
+    "danish": "besked",
+    "english": "message",
+    "type": "noun",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-sms-6959",
+    "danish": "sms",
+    "english": "text message",
+    "type": "noun",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-gruppechat-6271",
+    "danish": "gruppechat",
+    "english": "group chat",
+    "type": "noun",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-smiley-2970",
+    "danish": "smiley",
+    "english": "emoji / smiley",
+    "type": "noun",
+    "context": "the everyday Danish word for emoji/emoticon in casual writing",
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-skrive-2763",
+    "danish": "skrive",
+    "english": "to write / to text (someone)",
+    "type": "verb",
+    "context": "used casually for texting someone, not only formal writing",
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-sende-6423",
+    "danish": "sende",
+    "english": "to send",
+    "type": "verb",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-svare-8046",
+    "danish": "svare",
+    "english": "to reply",
+    "type": "verb",
+    "context": "replying to a message, not the general sense of 'answer'",
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-videresende-9063",
+    "danish": "videresende",
+    "english": "to forward",
+    "type": "verb",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-slette-6438",
+    "danish": "slette",
+    "english": "to delete",
+    "type": "verb",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-modtage-4194",
+    "danish": "modtage",
+    "english": "to receive",
+    "type": "verb",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-dele-6017",
+    "danish": "dele",
+    "english": "to share",
+    "type": "verb",
+    "context": "sharing content online, not dividing something",
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-chatte-9907",
+    "danish": "chatte",
+    "english": "to chat",
+    "type": "verb",
+    "context": "casual back-and-forth messaging, borrowed from English 'chat'",
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-hej-6655",
+    "danish": "Hej!",
+    "english": "Hi!",
+    "type": "phrase",
+    "context": "casual written greeting, e.g. opening a text or chat message",
+    "tags": ["digital", "greeting"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-vi-ses-8871",
+    "danish": "Vi ses!",
+    "english": "See you!",
+    "type": "phrase",
+    "context": "casual written sign-off",
+    "tags": ["digital", "greeting"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-skal-vi-ikke-bare-9217",
+    "danish": "Skal vi ikke bare...?",
+    "english": "Why don't we just...?",
+    "type": "pattern",
+    "context": null,
+    "tags": ["digital", "suggestion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-det-er-fedt-2736",
+    "danish": "Det er fedt!",
+    "english": "That's awesome!",
+    "type": "phrase",
+    "context": null,
+    "tags": ["digital", "reaction"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-det-er-traels-4637",
+    "danish": "Det er træls",
+    "english": "That's a bummer / annoying",
+    "type": "phrase",
+    "context": null,
+    "tags": ["digital", "reaction"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-hvad-saa-1264",
+    "danish": "Hvad så?",
+    "english": "What's up?",
+    "type": "phrase",
+    "context": "casual opener in a text or chat message",
+    "tags": ["digital", "greeting"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-er-du-der-1296",
+    "danish": "Er du der?",
+    "english": "Are you there?",
+    "type": "phrase",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-ring-mig-op-4236",
+    "danish": "Ring mig op",
+    "english": "Call me",
+    "type": "phrase",
+    "context": null,
+    "tags": ["digital", "messaging"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-ikk-7086",
+    "danish": "ikk'",
+    "english": "right? / isn't it",
+    "type": "phrase",
+    "context": "informal short form of 'ikke', tacked onto the end of a sentence as a casual tag seeking agreement",
+    "tags": ["digital", "shorthand"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-naa-7945",
+    "danish": "nå",
+    "english": "oh / well",
+    "type": "phrase",
+    "context": "interjection expressing mild surprise or realization — not the verb 'nå' meaning 'to reach/manage to'",
+    "tags": ["digital", "shorthand"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-oeh-1607",
+    "danish": "øh",
+    "english": "um / uh",
+    "type": "phrase",
+    "context": "hesitation filler used in casual written speech",
+    "tags": ["digital", "shorthand"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-haha-1285",
+    "danish": "haha",
+    "english": "haha",
+    "type": "phrase",
+    "context": "written laughter marker used in texting and chat",
+    "tags": ["digital", "shorthand"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-paa-vej-7269",
+    "danish": "På vej",
+    "english": "On my way",
+    "type": "phrase",
+    "context": "elliptical informal phrase for 'jeg er på vej', subject dropped",
+    "tags": ["digital", "shorthand"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-22-v-kommer-snart-6136",
+    "danish": "Kommer snart",
+    "english": "Coming soon",
+    "type": "phrase",
+    "context": "elliptical informal phrase for 'jeg kommer snart', subject dropped",
+    "tags": ["digital", "shorthand"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "A2-22-g-main-clause-word-order-9043",
+    "name": "Main clause word order (SVO)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "A Danish main clause normally needs an explicit subject in Subject–Verb–Object order — you can't drop 'jeg' or 'du' the way casual spoken English sometimes does. In texts and chat messages, though, Danes often drop the subject anyway once it's obvious from context, leaving a short fragment instead of a full sentence. Knowing the full SVO form helps you recognise exactly what has been left out.",
+    "examples": [
+      { "danish": "Jeg er på vej.", "english": "I'm on my way." },
+      { "danish": "På vej!", "english": "On my way!" }
+    ]
+  },
+  {
+    "id": "A2-22-g-negation-placement-5061",
+    "name": "Negation placement (ikke)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "In a Danish main clause, 'ikke' (not) goes right after the finite verb: subject + verb + ikke + rest of sentence. In casual texting, 'ikke' is often shortened to 'ikk'' and tacked onto the very end of a sentence as a quick check for agreement, similar to an English tag question like 'right?'.",
+    "examples": [
+      { "danish": "Jeg kommer ikke i aften.", "english": "I'm not coming tonight." },
+      { "danish": "Vi ses klokken syv, ikk'?", "english": "We're meeting at seven, right?" }
+    ]
+  },
+  {
+    "id": "A2-22-g-question-formation-6132",
+    "name": "Question formation",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Danish yes/no questions are formed by moving the finite verb before the subject ('Kommer du?'). In informal written Danish this inversion still applies, but the subject is sometimes dropped in very short chat messages once it's clear who is meant, leaving just the verb (and sometimes an adverb) standing alone.",
+    "examples": [
+      { "danish": "Kommer du snart?", "english": "Are you coming soon?" },
+      { "danish": "Kommer snart?", "english": "Coming soon?" }
+    ]
+  }
+]

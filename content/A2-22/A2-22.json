@@ -1,0 +1,42 @@
+{
+  "id": "danish-A2-22",
+  "title": "Texting & Informal Digital Communication",
+  "theme": "Digital language and informal written Danish",
+  "communicationGoal": "Write natural, informal Danish messages — texts, WhatsApp, social media comments — without sounding over-formal or stilted",
+  "cefrLevel": "A2",
+  "vocabularyItemIds": [
+    "A2-22-v-besked-7342",
+    "A2-22-v-sms-6959",
+    "A2-22-v-gruppechat-6271",
+    "A2-22-v-smiley-2970",
+    "A2-22-v-skrive-2763",
+    "A2-22-v-sende-6423",
+    "A2-22-v-svare-8046",
+    "A2-22-v-videresende-9063",
+    "A2-22-v-slette-6438",
+    "A2-22-v-modtage-4194",
+    "A2-22-v-dele-6017",
+    "A2-22-v-chatte-9907",
+    "A2-22-v-hej-6655",
+    "A2-22-v-vi-ses-8871",
+    "A2-22-v-skal-vi-ikke-bare-9217",
+    "A2-22-v-det-er-fedt-2736",
+    "A2-22-v-det-er-traels-4637",
+    "A2-22-v-hvad-saa-1264",
+    "A2-22-v-er-du-der-1296",
+    "A2-22-v-ring-mig-op-4236",
+    "A2-22-v-ikk-7086",
+    "A2-22-v-naa-7945",
+    "A2-22-v-oeh-1607",
+    "A2-22-v-haha-1285",
+    "A2-22-v-paa-vej-7269",
+    "A2-22-v-kommer-snart-6136"
+  ],
+  "grammarConceptIds": [
+    "A2-22-g-main-clause-word-order-9043",
+    "A2-22-g-negation-placement-5061",
+    "A2-22-g-question-formation-6132"
+  ],
+  "createdAt": "2026-08-31T00:00:00Z",
+  "isUserGenerated": false
+}
