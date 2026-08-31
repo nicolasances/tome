@@ -1,0 +1,302 @@
+[
+  {
+    "id": "A2-23-v-serie-8256",
+    "danish": "serie",
+    "english": "series / show",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-saeson-6903",
+    "danish": "sæson",
+    "english": "season",
+    "type": "noun",
+    "context": "a season of a TV series",
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-afsnit-9643",
+    "danish": "afsnit",
+    "english": "episode",
+    "type": "noun",
+    "context": "a TV episode, not a section of a document",
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-streame-6987",
+    "danish": "streame",
+    "english": "to stream",
+    "type": "verb",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-streamingtjeneste-7674",
+    "danish": "streamingtjeneste",
+    "english": "streaming service",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-kanal-9744",
+    "danish": "kanal",
+    "english": "channel",
+    "type": "noun",
+    "context": "a TV channel",
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-udsendelse-4048",
+    "danish": "udsendelse",
+    "english": "broadcast / program",
+    "type": "noun",
+    "context": "a TV or radio broadcast",
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-skuespiller-1935",
+    "danish": "skuespiller",
+    "english": "actor",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-instruktoer-2297",
+    "danish": "instruktør",
+    "english": "director",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-anmeldelse-3589",
+    "danish": "anmeldelse",
+    "english": "review",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-premiere-8990",
+    "danish": "premiere",
+    "english": "premiere",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-nomineret-2949",
+    "danish": "nomineret",
+    "english": "nominated",
+    "type": "adjective",
+    "context": null,
+    "tags": ["entertainment", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-vinde-en-pris-8862",
+    "danish": "vinde en pris",
+    "english": "to win an award",
+    "type": "phrase",
+    "context": null,
+    "tags": ["entertainment", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-genre-5357",
+    "danish": "genre",
+    "english": "genre",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "media"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-krimi-5424",
+    "danish": "krimi",
+    "english": "crime drama / thriller",
+    "type": "noun",
+    "context": "the genre, short for kriminalserie/kriminalroman",
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-komedie-4774",
+    "danish": "komedie",
+    "english": "comedy",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-dokumentar-5814",
+    "danish": "dokumentar",
+    "english": "documentary",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "tv"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-sang-5651",
+    "danish": "sang",
+    "english": "song",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "music"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-album-2211",
+    "danish": "album",
+    "english": "album",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "music"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-koncert-6728",
+    "danish": "koncert",
+    "english": "concert",
+    "type": "noun",
+    "context": null,
+    "tags": ["entertainment", "music"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-kunstner-8865",
+    "danish": "kunstner",
+    "english": "artist",
+    "type": "noun",
+    "context": "a musician or performer",
+    "tags": ["entertainment", "music"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-har-du-set-2710",
+    "danish": "Har du set...?",
+    "english": "Have you seen...?",
+    "type": "pattern",
+    "context": "used to ask if someone has watched a show or film",
+    "tags": ["entertainment", "recommendation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-har-du-hoert-2451",
+    "danish": "Har du hørt...?",
+    "english": "Have you heard...?",
+    "type": "pattern",
+    "context": "used to ask if someone has heard a song or artist",
+    "tags": ["entertainment", "recommendation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-synes-om-2720",
+    "danish": "synes om",
+    "english": "to think of / have an opinion about",
+    "type": "phrase",
+    "context": "giving an opinion, as in 'Hvad synes du om...?'",
+    "tags": ["entertainment", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-kan-lide-9103",
+    "danish": "kan lide",
+    "english": "to like",
+    "type": "phrase",
+    "context": "expressing enjoyment or preference",
+    "tags": ["entertainment", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-spaendende-1894",
+    "danish": "spændende",
+    "english": "exciting / suspenseful",
+    "type": "adjective",
+    "context": null,
+    "tags": ["entertainment", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-kedelig-6362",
+    "danish": "kedelig",
+    "english": "boring",
+    "type": "adjective",
+    "context": null,
+    "tags": ["entertainment", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-underholdende-1177",
+    "danish": "underholdende",
+    "english": "entertaining",
+    "type": "adjective",
+    "context": null,
+    "tags": ["entertainment", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-anbefale-3324",
+    "danish": "anbefale",
+    "english": "to recommend",
+    "type": "verb",
+    "context": null,
+    "tags": ["entertainment", "recommendation"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "A2-23-v-roerende-7423",
+    "danish": "rørende",
+    "english": "touching / moving",
+    "type": "adjective",
+    "context": null,
+    "tags": ["entertainment", "opinion"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  }
+]

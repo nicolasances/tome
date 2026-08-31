@@ -1,0 +1,24 @@
+[
+  {
+    "id": "A2-23-g-present-perfect-7083",
+    "name": "Present Perfect (førnutid med \"har/er\")",
+    "category": "tenses",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Use present perfect — \"har\" or \"er\" + past participle — to ask or talk about whether something has happened, without saying exactly when. This is the natural tense for recommending or discussing entertainment: \"Har du set...?\" (Have you seen...?) and \"Har du hørt...?\" (Have you heard...?) both use this pattern. Most verbs take \"har\"; a small group of movement/change verbs take \"er\" instead.",
+    "examples": [
+      { "danish": "Har du set den nye serie på DR?", "english": "Have you seen the new series on DR?" },
+      { "danish": "Jeg har hørt det album flere gange.", "english": "I have listened to that album several times." }
+    ]
+  },
+  {
+    "id": "A2-23-g-predicative-vs-attributive-adjectives-6878",
+    "name": "Predicative vs. attributive use",
+    "category": "adjectives",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "An adjective changes form depending on where it sits in the sentence. Attributive (before the noun): with a common-gender noun (en-word) the adjective stays in its base form (en kedelig film); with a neuter noun (et-word) it takes a -t ending (et kedeligt afsnit). Predicative (after \"er\"/\"var\"): it agrees with the subject the same way — base form for a common-gender subject (Filmen var kedelig), -t ending when the subject is neuter or the impersonal \"det\" (Det var kedeligt at se). Note that adjectives already ending in -ende, like spændende and rørende, never change form in either position. Opinion adjectives about entertainment show up constantly in both positions, so getting the agreement right matters for natural-sounding reviews and recommendations.",
+    "examples": [
+      { "danish": "Det var kedeligt at se hele sæsonen på én aften.", "english": "It was boring to watch the whole season in one evening." },
+      { "danish": "Filmen var faktisk slet ikke kedelig.", "english": "The film was actually not boring at all." }
+    ]
+  }
+]
