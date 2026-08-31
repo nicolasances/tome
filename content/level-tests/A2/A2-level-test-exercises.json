@@ -1,0 +1,1080 @@
+[
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "I take the train to the office every day.",
+    "promptTranslation": null,
+    "answer": "Jeg tager toget til kontoret hver dag.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "kontoret",
+      "dag",
+      "Jeg",
+      "hver",
+      "tager",
+      "til",
+      "toget"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-01-g-main-clause-word-order-1801",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "Yesterday the weather was very warm on the beach.",
+    "promptTranslation": null,
+    "answer": "I går var vejret meget varmt på stranden.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "stranden",
+      "I",
+      "meget",
+      "var",
+      "på",
+      "går",
+      "vejret",
+      "varmt"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-02-g-inversion-verb-second-rule-1216",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "Shall we eat breakfast at the café tomorrow?",
+    "promptTranslation": null,
+    "answer": "Skal vi spise morgenmad på cafeen i morgen?",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "på",
+      "morgen",
+      "Skal",
+      "cafeen",
+      "vi",
+      "i",
+      "spise",
+      "morgenmad"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-14-g-question-formation-9248",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "Can I book an appointment with the doctor on Friday?",
+    "promptTranslation": null,
+    "answer": "Kan jeg bestille en tid hos lægen på fredag?",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "hos",
+      "fredag",
+      "Kan",
+      "en",
+      "lægen",
+      "tid",
+      "på",
+      "jeg",
+      "bestille"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-17-g-question-formation-formal-register-5621",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "Hereby I confirm the meeting at the office tomorrow.",
+    "promptTranslation": null,
+    "answer": "Hermed bekræfter jeg mødet på kontoret i morgen.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "i",
+      "Hermed",
+      "kontoret",
+      "bekræfter",
+      "på",
+      "morgen",
+      "jeg",
+      "mødet"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-19-g-inversion-in-formal-written-4035",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "The train to the beach leaves on Sunday at ten.",
+    "promptTranslation": null,
+    "answer": "Toget til stranden kører på søndag klokken ti.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "klokken",
+      "Toget",
+      "på",
+      "stranden",
+      "ti",
+      "kører",
+      "til",
+      "søndag"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-21-g-prepositions-for-days-and-9936",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "sentence_reorder",
+    "prompt": "I'm not eating lunch at the office today.",
+    "promptTranslation": null,
+    "answer": "Jeg spiser ikke frokost på kontoret i dag.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": [
+      "på",
+      "Jeg",
+      "dag",
+      "frokost",
+      "ikke",
+      "kontoret",
+      "spiser",
+      "i"
+    ],
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-22-g-negation-placement-5061",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Han har flyttet til et nyt kontor.",
+    "promptTranslation": "He has moved to a new office.",
+    "answer": "Han er flyttet til et nyt kontor.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-03-g-auxiliary-verb-choice-har-1575",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Jeg har spist morgenmad klokken otte i morges.",
+    "promptTranslation": "I ate breakfast at eight o'clock this morning.",
+    "answer": "Jeg spiste morgenmad klokken otte i morges.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-03-g-preterite-vs-present-perfect-5465",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Jeg vil rejser til stranden i weekenden.",
+    "promptTranslation": "I want to travel to the beach on the weekend.",
+    "answer": "Jeg vil rejse til stranden i weekenden.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-04-g-infinitive-usage-6536",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Den hyggelig café ligger tæt på kontoret.",
+    "promptTranslation": "The cozy café is close to the office.",
+    "answer": "Den hyggelige café ligger tæt på kontoret.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-06-g-predicative-vs-attributive-adjectives-8059",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Mødet blive aflyst på grund af dårligt vejr.",
+    "promptTranslation": "The meeting was cancelled because of bad weather.",
+    "answer": "Mødet blev aflyst på grund af dårligt vejr.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-16-g-passive-voice-with-blive-4704",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Jeg kan ikke desværre komme til frokosten på kontoret.",
+    "promptTranslation": "Unfortunately I can't come to the lunch at the office.",
+    "answer": "Jeg kan desværre ikke komme til frokosten på kontoret.",
+    "alternativeAnswers": [
+      "Desværre kan jeg ikke komme til frokosten på kontoret."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-21-g-polite-decline-with-desvaerre-2326",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "error_correction",
+    "prompt": "Det var kedelig at vente på toget i regnvejr.",
+    "promptTranslation": "It was boring to wait for the train in the rain.",
+    "answer": "Det var kedeligt at vente på toget i regnvejr.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-23-g-predicative-vs-attributive-adjectives-6878",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Hun ___ på kontoret, selvom det sner udenfor. (arbejde, present tense)",
+    "promptTranslation": "She works at the office, even though it is snowing outside.",
+    "answer": "arbejder",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "arbejde",
+      "arbejdet",
+      "arbejdede"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-01-g-present-tense-nutid-2191",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Vi ___ rejse til Sverige i næste uge og spise nye retter.",
+    "promptTranslation": "We are traveling to Sweden next week and eating new dishes.",
+    "answer": "skal",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "vil",
+      "kan",
+      "må"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-04-g-future-with-skal-and-1826",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Han har arbejdet på kontoret ___ fem år.",
+    "promptTranslation": "He has worked at the office for five years.",
+    "answer": "i",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "på",
+      "for",
+      "om"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-05-g-duration-with-i-6411",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Jeg har lært dansk ___ sidste sommer.",
+    "promptTranslation": "I have been learning Danish since last summer.",
+    "answer": "siden",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "i",
+      "for",
+      "om"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-05-g-starting-point-with-siden-3066",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Vi skal mødes med kollegerne ___ to dage.",
+    "promptTranslation": "We are meeting with the colleagues in two days.",
+    "answer": "om",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "i",
+      "for",
+      "siden"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-05-g-future-distance-with-om-5614",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Vi flyttede til byen for tre uger ___.",
+    "promptTranslation": "We moved to the city three weeks ago.",
+    "answer": "siden",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "i",
+      "om",
+      "på"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-05-g-past-distance-with-for-4737",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Vi bor i ___ store hus, som ligger tæt på skoven.",
+    "promptTranslation": "We live in the big house that is close to the forest.",
+    "answer": "det",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "den",
+      "de",
+      "en"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-06-g-double-definiteness-1199",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Du ___ blive hjemme, hvis du har feber og det sner udenfor.",
+    "promptTranslation": "You must stay home if you have a fever and it is snowing outside.",
+    "answer": "skal",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "kan",
+      "vil",
+      "bør"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-modal-verbs-for-health-1098",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Restauranten i byen er ___ end den lille café. (stor, comparative)",
+    "promptTranslation": "The restaurant in town is bigger than the small café.",
+    "answer": "større",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "stor",
+      "størst",
+      "mere stor"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-15-g-comparison-stoerre-stoerst-9013",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "fill_blank",
+    "prompt": "Jeg ___ morgenmad, før jeg tager på arbejde hver dag. (spise, present tense)",
+    "promptTranslation": "I eat breakfast before I go to work every day.",
+    "answer": "spiser",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "spise",
+      "spist",
+      "spiste"
+    ],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-20-g-habitual-present-tense-9310",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "She traveled to the meeting by train yesterday.",
+    "promptTranslation": null,
+    "answer": "Hun rejste til mødet med tog i går.",
+    "alternativeAnswers": [
+      "Hun rejste til mødet med toget i går.",
+      "I går rejste hun til mødet med tog."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-02-g-preterite-simple-past-6814",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "We have eaten breakfast at the hotel every morning this week.",
+    "promptTranslation": null,
+    "answer": "Vi har spist morgenmad på hotellet hver morgen i denne uge.",
+    "alternativeAnswers": [
+      "Denne uge har vi spist morgenmad på hotellet hver morgen."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-03-g-present-perfect-8850",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "He fixed the broken window in the old office.",
+    "promptTranslation": null,
+    "answer": "Han reparerede det ødelagte vindue på det gamle kontor.",
+    "alternativeAnswers": [
+      "Han reparerede det ødelagte vindue i det gamle kontor."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-06-g-adjective-inflection-in-definite-5811",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "My back hurts after the long flight.",
+    "promptTranslation": null,
+    "answer": "Jeg har ondt i ryggen efter den lange flyvetur.",
+    "alternativeAnswers": [
+      "Efter den lange flyvetur har jeg ondt i ryggen."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-definiteness-with-body-parts-8792",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "She has had a cough since the meeting.",
+    "promptTranslation": null,
+    "answer": "Hun har haft hoste siden mødet.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-07-g-present-perfect-for-symptoms-5411",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "The new office is bigger than the old one.",
+    "promptTranslation": null,
+    "answer": "Det nye kontor er større end det gamle.",
+    "alternativeAnswers": [
+      "Det nye kontor er større end det gamle kontor."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-08-g-comparative-adjectives-1419",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "Can I borrow your umbrella before the meeting?",
+    "promptTranslation": null,
+    "answer": "Kan jeg låne din paraply før mødet?",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-08-g-modal-kan-polite-requests-5392",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "If it rains, we will stay at the hotel.",
+    "promptTranslation": null,
+    "answer": "Hvis det regner, bliver vi på hotellet.",
+    "alternativeAnswers": [
+      "Vi bliver på hotellet, hvis det regner."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-10-g-causal-conditional-connectors-9374",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "I don't have time to call the doctor today.",
+    "promptTranslation": null,
+    "answer": "Jeg har ikke tid til at ringe til lægen i dag.",
+    "alternativeAnswers": [
+      "I dag har jeg ikke tid til at ringe til lægen."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-12-g-infinitive-usage-7260",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "The colleagues are very tired after the trip.",
+    "promptTranslation": null,
+    "answer": "Kollegerne er meget trætte efter turen.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-15-g-basic-adjective-agreement-enetplural-2035",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "According to the police, the road was closed after the accident.",
+    "promptTranslation": null,
+    "answer": "Ifølge politiet var vejen lukket efter ulykken.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-16-g-formal-news-register-vs-6932",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "The weather was cold, but we still went for a walk after work.",
+    "promptTranslation": null,
+    "answer": "Vejret var koldt, men vi gik alligevel en tur efter arbejde.",
+    "alternativeAnswers": [
+      "Vejret var koldt, men vi gik alligevel en tur efter arbejdet."
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-18-g-contrast-connectors-7064",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "This restaurant is more expensive than the one at the airport.",
+    "promptTranslation": null,
+    "answer": "Denne restaurant er dyrere end den på lufthavnen.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-18-g-comparison-of-adjectives-1368",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "Could you (formal) send me the invoice before Friday?",
+    "promptTranslation": null,
+    "answer": "Kunne De sende mig fakturaen inden fredag?",
+    "alternativeAnswers": [
+      "Kunne De sende fakturaen til mig inden fredag?"
+    ],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-19-g-formal-de-vs-du-3845",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "translation_active",
+    "prompt": "I would like to change my plane ticket, please.",
+    "promptTranslation": null,
+    "answer": "Jeg vil gerne ændre min flybillet, tak.",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": null,
+    "grammarConceptId": "A2-19-g-modal-phrases-for-politeness-3990",
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Min ___ er meget sød og hjælpsom.",
+    "promptTranslation": "My boss is very kind and helpful.",
+    "answer": "chef",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "kollega",
+      "lærer",
+      "nabo"
+    ],
+    "vocabularyItemId": "A2-01-v-chef-3698",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "___ var vi i biografen sammen.",
+    "promptTranslation": "Yesterday we were at the cinema together.",
+    "answer": "I går",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "I dag",
+      "I aftes",
+      "For nylig"
+    ],
+    "vocabularyItemId": "A2-02-v-i-gaar-1458",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Har du ___ prøvet at lave sushi?",
+    "promptTranslation": "Have you ever tried making sushi?",
+    "answer": "nogensinde",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "altid",
+      "aldrig",
+      "somme tider"
+    ],
+    "vocabularyItemId": "A2-03-v-nogensinde-1199",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Vent lige et ___, jeg kommer straks.",
+    "promptTranslation": "Wait just a minute, I'm coming right away.",
+    "answer": "minut",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "sekund",
+      "øjeblik",
+      "år"
+    ],
+    "vocabularyItemId": "A2-05-v-minut-2067",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "De har lige købt en ny ___ i byen.",
+    "promptTranslation": "They just bought a new apartment in the city.",
+    "answer": "lejlighed",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "bolig",
+      "villa",
+      "grund"
+    ],
+    "vocabularyItemId": "A2-06-v-lejlighed-5197",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Min ___ gør ondt efter middagen.",
+    "promptTranslation": "My stomach hurts after dinner.",
+    "answer": "mave",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "ryg",
+      "arm",
+      "hånd"
+    ],
+    "vocabularyItemId": "A2-07-v-mave-7208",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Den nye telefon er alt for ___.",
+    "promptTranslation": "The new phone is far too expensive.",
+    "answer": "dyr",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "billig",
+      "gammel",
+      "stor"
+    ],
+    "vocabularyItemId": "A2-08-v-dyr-6973",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Vi holder altid ___ sammen med familien.",
+    "promptTranslation": "We always celebrate Christmas together with the family.",
+    "answer": "jul",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "påske",
+      "fødselsdag",
+      "ferie"
+    ],
+    "vocabularyItemId": "A2-09-v-jul-1728",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Jeg blev hjemme, ___ jeg var syg.",
+    "promptTranslation": "I stayed home because I was sick.",
+    "answer": "fordi",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "men",
+      "og",
+      "selvom"
+    ],
+    "vocabularyItemId": "A2-10-v-fordi-1908",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "___ at cykle til arbejde?",
+    "promptTranslation": "Have you tried cycling to work?",
+    "answer": "Har du prøvet",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "Kan du lide",
+      "Har du lyst til",
+      "Er du bange for"
+    ],
+    "vocabularyItemId": "A2-11-v-har-du-proevet-3030",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "I dag skal vi tjekke ___, før vi tager ud.",
+    "promptTranslation": "Today we should check the weather before we go out.",
+    "answer": "vejret",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "temperaturen",
+      "himlen",
+      "vinden"
+    ],
+    "vocabularyItemId": "A2-14-v-vejret-2779",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Min bror er meget ___ og slank.",
+    "promptTranslation": "My brother is very tall and slim.",
+    "answer": "høj",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "lav",
+      "tyk",
+      "gammel"
+    ],
+    "vocabularyItemId": "A2-15-v-hoej-1803",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Det var en overraskende ___ i avisen.",
+    "promptTranslation": "It was a surprising piece of news in the newspaper.",
+    "answer": "nyhed",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "artikel",
+      "historie",
+      "bog"
+    ],
+    "vocabularyItemId": "A2-16-v-nyhed-7813",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Vi bor i en stor ___ med mange indbyggere.",
+    "promptTranslation": "We live in a large municipality with many residents.",
+    "answer": "kommune",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "regering",
+      "virksomhed",
+      "skole"
+    ],
+    "vocabularyItemId": "A2-17-v-kommune-2593",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Det er svært at vide, hvad man skal ___ om sagen.",
+    "promptTranslation": "It's hard to know what to think about the matter.",
+    "answer": "mene",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "vide",
+      "sige",
+      "gøre"
+    ],
+    "vocabularyItemId": "A2-18-v-mene-3667",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Jeg har en vigtig ___ hos lægen i morgen.",
+    "promptTranslation": "I have an important appointment at the doctor's tomorrow.",
+    "answer": "aftale",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "tid",
+      "ferie",
+      "fest"
+    ],
+    "vocabularyItemId": "A2-21-v-aftale-6952",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Kan du ___ til mig, når du kommer hjem?",
+    "promptTranslation": "Can you text me when you get home?",
+    "answer": "skrive",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "ringe",
+      "vente",
+      "spørge"
+    ],
+    "vocabularyItemId": "A2-22-v-skrive-2763",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "multiple_choice",
+    "prompt": "Vi så en spændende ny ___ i weekenden.",
+    "promptTranslation": "We watched an exciting new series over the weekend.",
+    "answer": "serie",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [
+      "film",
+      "udsendelse",
+      "dokumentar"
+    ],
+    "vocabularyItemId": "A2-23-v-serie-8256",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "conjugation_drill",
+    "prompt": "at håbe | present | de",
+    "promptTranslation": null,
+    "answer": "håber",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": "A2-04-v-haabe-8779",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "conjugation_drill",
+    "prompt": "at anbefale | preterite | jeg",
+    "promptTranslation": null,
+    "answer": "anbefalede",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": "A2-11-v-anbefale-4517",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "conjugation_drill",
+    "prompt": "at bestille | present | hun",
+    "promptTranslation": null,
+    "answer": "bestiller",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": "A2-12-v-bestille-6278",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "conjugation_drill",
+    "prompt": "at rejse | preterite | vi",
+    "promptTranslation": null,
+    "answer": "rejste",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": "A2-13-v-rejse-9692",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "conjugation_drill",
+    "prompt": "at booke | present | I",
+    "promptTranslation": null,
+    "answer": "booker",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": "A2-19-v-booke-8653",
+    "grammarConceptId": null,
+    "timesShown": 0
+  },
+  {
+    "moduleId": null,
+    "type": "conjugation_drill",
+    "prompt": "at spille | preterite | du",
+    "promptTranslation": null,
+    "answer": "spillede",
+    "alternativeAnswers": [],
+    "userContributedAnswers": [],
+    "words": null,
+    "distractors": [],
+    "vocabularyItemId": "A2-20-v-spille-2103",
+    "grammarConceptId": null,
+    "timesShown": 0
+  }
+]

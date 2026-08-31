@@ -1,0 +1,5840 @@
+{
+  "cefrLevel": "A2",
+  "modulesFound": [
+    "A2-01",
+    "A2-02",
+    "A2-03",
+    "A2-04",
+    "A2-05",
+    "A2-06",
+    "A2-07",
+    "A2-08",
+    "A2-09",
+    "A2-10",
+    "A2-11",
+    "A2-12",
+    "A2-13",
+    "A2-14",
+    "A2-15",
+    "A2-16",
+    "A2-17",
+    "A2-18",
+    "A2-19",
+    "A2-20",
+    "A2-21",
+    "A2-22",
+    "A2-23"
+  ],
+  "vocabularyItems": [
+    {
+      "id": "A2-01-v-chef-3698",
+      "danish": "chef",
+      "english": "boss",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-kollega-9037",
+      "danish": "kollega",
+      "english": "colleague",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-kontor-5638",
+      "danish": "kontor",
+      "english": "office",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-moede-8482",
+      "danish": "møde",
+      "english": "meeting",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-rapport-9212",
+      "danish": "rapport",
+      "english": "report",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-opgave-6039",
+      "danish": "opgave",
+      "english": "task",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-projekt-2052",
+      "danish": "projekt",
+      "english": "project",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-virksomhed-8033",
+      "danish": "virksomhed",
+      "english": "company",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-branche-9789",
+      "danish": "branche",
+      "english": "industry / sector",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-ansvar-5404",
+      "danish": "ansvar",
+      "english": "responsibility",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-sygeplejerske-5551",
+      "danish": "sygeplejerske",
+      "english": "nurse",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-advokat-7093",
+      "danish": "advokat",
+      "english": "lawyer",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-konsulent-1880",
+      "danish": "konsulent",
+      "english": "consultant",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-programmoer-6751",
+      "danish": "programmør",
+      "english": "programmer",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-direktoer-2313",
+      "danish": "direktør",
+      "english": "director",
+      "type": "noun",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-arbejde-6997",
+      "danish": "arbejde",
+      "english": "to work",
+      "type": "verb",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-arbejde-som-2997",
+      "danish": "arbejde som",
+      "english": "to work as",
+      "type": "pattern",
+      "context": "followed by a job title / role",
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-arbejde-med-3277",
+      "danish": "arbejde med",
+      "english": "to work with",
+      "type": "pattern",
+      "context": "followed by a subject, tool, or material",
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-arbejde-i-5444",
+      "danish": "arbejde i",
+      "english": "to work in",
+      "type": "pattern",
+      "context": "followed by a place, company, or industry",
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-moedes-9432",
+      "danish": "mødes",
+      "english": "to meet (with someone)",
+      "type": "verb",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-skrive-4390",
+      "danish": "skrive",
+      "english": "to write",
+      "type": "verb",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-praesentere-4162",
+      "danish": "præsentere",
+      "english": "to present",
+      "type": "verb",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-planlaegge-9201",
+      "danish": "planlægge",
+      "english": "to plan",
+      "type": "verb",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-samarbejde-7118",
+      "danish": "samarbejde",
+      "english": "to collaborate",
+      "type": "verb",
+      "context": null,
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-loese-9875",
+      "danish": "løse",
+      "english": "to solve",
+      "type": "verb",
+      "context": "solving a task or problem",
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-01-v-lede-8992",
+      "danish": "lede",
+      "english": "to lead / manage",
+      "type": "verb",
+      "context": "to manage or direct — not 'to search for'",
+      "module": "A2-01"
+    },
+    {
+      "id": "A2-02-v-var-3792",
+      "danish": "var",
+      "english": "was / were",
+      "type": "verb",
+      "context": "preterite of at være",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-gik-1183",
+      "danish": "gik",
+      "english": "went / walked",
+      "type": "verb",
+      "context": "preterite of at gå",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-sagde-3132",
+      "danish": "sagde",
+      "english": "said",
+      "type": "verb",
+      "context": "preterite of at sige",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-kom-7814",
+      "danish": "kom",
+      "english": "came",
+      "type": "verb",
+      "context": "preterite of at komme",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-fik-4904",
+      "danish": "fik",
+      "english": "got / received",
+      "type": "verb",
+      "context": "preterite of at få",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-tog-9964",
+      "danish": "tog",
+      "english": "took",
+      "type": "verb",
+      "context": "preterite of at tage",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-saa-6565",
+      "danish": "så",
+      "english": "saw",
+      "type": "verb",
+      "context": "preterite of at se",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-stod-2539",
+      "danish": "stod",
+      "english": "stood",
+      "type": "verb",
+      "context": "preterite of at stå",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-arbejdede-4328",
+      "danish": "arbejdede",
+      "english": "worked",
+      "type": "verb",
+      "context": "preterite of at arbejde, regular",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-spiste-6547",
+      "danish": "spiste",
+      "english": "ate",
+      "type": "verb",
+      "context": "preterite of at spise, regular",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-moedte-6419",
+      "danish": "mødte",
+      "english": "met",
+      "type": "verb",
+      "context": "preterite of at møde, regular",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-cyklede-4280",
+      "danish": "cyklede",
+      "english": "cycled / biked",
+      "type": "verb",
+      "context": "preterite of at cykle, regular",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-ringede-2113",
+      "danish": "ringede",
+      "english": "called / phoned",
+      "type": "verb",
+      "context": "preterite of at ringe, regular",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-i-gaar-1458",
+      "danish": "i går",
+      "english": "yesterday",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-i-gaar-aftes-2999",
+      "danish": "i går aftes",
+      "english": "yesterday evening",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-for-en-uge-siden-4183",
+      "danish": "for en uge siden",
+      "english": "a week ago",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-sidste-uge-8852",
+      "danish": "sidste uge",
+      "english": "last week",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-sidst-6312",
+      "danish": "sidst",
+      "english": "last time",
+      "type": "adverb",
+      "context": "meaning 'the last time something happened', not 'last in a sequence'",
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-dengang-4763",
+      "danish": "dengang",
+      "english": "back then",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-pludselig-4991",
+      "danish": "pludselig",
+      "english": "suddenly",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-bagefter-3041",
+      "danish": "bagefter",
+      "english": "afterwards",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-til-sidst-6533",
+      "danish": "til sidst",
+      "english": "finally / in the end",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-moede-6938",
+      "danish": "møde",
+      "english": "meeting",
+      "type": "noun",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-tur-3864",
+      "danish": "tur",
+      "english": "trip / outing",
+      "type": "noun",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-weekend-2665",
+      "danish": "weekend",
+      "english": "weekend",
+      "type": "noun",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-02-v-fest-7371",
+      "danish": "fest",
+      "english": "party",
+      "type": "noun",
+      "context": null,
+      "module": "A2-02"
+    },
+    {
+      "id": "A2-03-v-proevet-9150",
+      "danish": "prøvet",
+      "english": "tried",
+      "type": "verb",
+      "context": "past participle of \"at prøve\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-besoegt-3294",
+      "danish": "besøgt",
+      "english": "visited",
+      "type": "verb",
+      "context": "past participle of \"at besøge\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-set-1251",
+      "danish": "set",
+      "english": "seen",
+      "type": "verb",
+      "context": "past participle of \"at se\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-spist-2365",
+      "danish": "spist",
+      "english": "eaten",
+      "type": "verb",
+      "context": "past participle of \"at spise\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-laest-2583",
+      "danish": "læst",
+      "english": "read",
+      "type": "verb",
+      "context": "past participle of \"at læse\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-moedt-9393",
+      "danish": "mødt",
+      "english": "met",
+      "type": "verb",
+      "context": "past participle of \"at møde\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-boet-3744",
+      "danish": "boet",
+      "english": "lived",
+      "type": "verb",
+      "context": "past participle of \"at bo\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-arbejdet-5358",
+      "danish": "arbejdet",
+      "english": "worked",
+      "type": "verb",
+      "context": "past participle of \"at arbejde\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-laert-5152",
+      "danish": "lært",
+      "english": "learned",
+      "type": "verb",
+      "context": "past participle of \"at lære\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-hoert-4520",
+      "danish": "hørt",
+      "english": "heard",
+      "type": "verb",
+      "context": "past participle of \"at høre\", used with \"har\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-rejst-7970",
+      "danish": "rejst",
+      "english": "traveled",
+      "type": "verb",
+      "context": "past participle of \"at rejse\", used with \"er\" (movement verb)",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-kommet-7518",
+      "danish": "kommet",
+      "english": "come",
+      "type": "verb",
+      "context": "past participle of \"at komme\", used with \"er\" (movement verb)",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-blevet-3397",
+      "danish": "blevet",
+      "english": "become / stayed",
+      "type": "verb",
+      "context": "past participle of \"at blive\", used with \"er\" (change-of-state verb)",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-flyttet-3423",
+      "danish": "flyttet",
+      "english": "moved",
+      "type": "verb",
+      "context": "past participle of \"at flytte\", used with \"er\" (change-of-state verb)",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-nogensinde-1199",
+      "danish": "nogensinde",
+      "english": "ever",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-aldrig-9244",
+      "danish": "aldrig",
+      "english": "never",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-allerede-6586",
+      "danish": "allerede",
+      "english": "already",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-endnu-4253",
+      "danish": "endnu",
+      "english": "yet / still",
+      "type": "adverb",
+      "context": "temporal — used with negation to mean \"not yet\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-lige-9564",
+      "danish": "lige",
+      "english": "just",
+      "type": "adverb",
+      "context": "temporal sense — \"just now/recently\", not the spatial/equal sense of \"lige\"",
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-for-nylig-2384",
+      "danish": "for nylig",
+      "english": "recently",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-oplevelse-2644",
+      "danish": "oplevelse",
+      "english": "experience",
+      "type": "noun",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-har-du-nogensinde-3197",
+      "danish": "Har du nogensinde...?",
+      "english": "Have you ever...?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-03-v-ikke-endnu-9255",
+      "danish": "Ikke endnu",
+      "english": "Not yet",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-03"
+    },
+    {
+      "id": "A2-04-v-skal-8047",
+      "danish": "skal",
+      "english": "will / is going to (obligation, plan)",
+      "type": "verb",
+      "context": "future obligation or firm plan",
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-vil-8384",
+      "danish": "vil",
+      "english": "will / want to (desire, intention)",
+      "type": "verb",
+      "context": "future desire or personal will",
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-kommer-til-at-4837",
+      "danish": "kommer til at",
+      "english": "will end up (doing something) / is going to",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-planlaegge-4263",
+      "danish": "planlægge",
+      "english": "to plan",
+      "type": "verb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-haabe-8779",
+      "danish": "håbe",
+      "english": "to hope",
+      "type": "verb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-taenke-at-2876",
+      "danish": "tænke på at",
+      "english": "to be thinking of (doing something)",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-regne-med-at-5831",
+      "danish": "regne med at",
+      "english": "to expect to / count on",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-have-i-sinde-at-5337",
+      "danish": "have i sinde at",
+      "english": "to intend to",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-forvente-3505",
+      "danish": "forvente",
+      "english": "to expect",
+      "type": "verb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-droemme-om-at-9288",
+      "danish": "drømme om at",
+      "english": "to dream of (doing something)",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-i-morgen-1074",
+      "danish": "i morgen",
+      "english": "tomorrow",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-naeste-uge-4681",
+      "danish": "næste uge",
+      "english": "next week",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-naeste-maaned-1001",
+      "danish": "næste måned",
+      "english": "next month",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-om-et-aar-9870",
+      "danish": "om et år",
+      "english": "in a year",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-til-sommer-4516",
+      "danish": "til sommer",
+      "english": "next summer",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-snart-1941",
+      "danish": "snart",
+      "english": "soon",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-senere-9586",
+      "danish": "senere",
+      "english": "later",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-engang-1104",
+      "danish": "engang",
+      "english": "someday / at some point",
+      "type": "adverb",
+      "context": "future point in time, not past",
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-plan-9303",
+      "danish": "plan",
+      "english": "plan",
+      "type": "noun",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-maal-9363",
+      "danish": "mål",
+      "english": "goal",
+      "type": "noun",
+      "context": "objective / ambition",
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-fremtid-1162",
+      "danish": "fremtid",
+      "english": "future",
+      "type": "noun",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-beslutning-5613",
+      "danish": "beslutning",
+      "english": "decision",
+      "type": "noun",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-04-v-forhaabentlig-8587",
+      "danish": "forhåbentlig",
+      "english": "hopefully",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-04"
+    },
+    {
+      "id": "A2-05-v-sekund-1809",
+      "danish": "sekund",
+      "english": "second",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-minut-2067",
+      "danish": "minut",
+      "english": "minute",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-time-6668",
+      "danish": "time",
+      "english": "hour",
+      "type": "noun",
+      "context": "hour — a unit of time, not \"gang\" (occurrence/instance)",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-dag-7054",
+      "danish": "dag",
+      "english": "day",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-uge-4486",
+      "danish": "uge",
+      "english": "week",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-maaned-6875",
+      "danish": "måned",
+      "english": "month",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-aar-9011",
+      "danish": "år",
+      "english": "year",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-aarti-4062",
+      "danish": "årti",
+      "english": "decade",
+      "type": "noun",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-allerede-9828",
+      "danish": "allerede",
+      "english": "already",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-endnu-9911",
+      "danish": "endnu",
+      "english": "yet / still",
+      "type": "adverb",
+      "context": "not yet, typically with negation (\"ikke endnu\") or in comparisons (\"endnu mere\")",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-stadig-4018",
+      "danish": "stadig",
+      "english": "still",
+      "type": "adverb",
+      "context": "an ongoing state that continues to be true",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-snart-5711",
+      "danish": "snart",
+      "english": "soon",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-netop-1151",
+      "danish": "netop",
+      "english": "just now / recently",
+      "type": "adverb",
+      "context": "more formal register than \"lige\"",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-lige-5744",
+      "danish": "lige",
+      "english": "just",
+      "type": "adverb",
+      "context": "used with \"har\" + past participle, e.g. \"jeg har lige spist\" (I just ate)",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-for-nylig-1582",
+      "danish": "for nylig",
+      "english": "recently",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-i-fremtiden-8308",
+      "danish": "i fremtiden",
+      "english": "in the future",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-i-fortiden-8551",
+      "danish": "i fortiden",
+      "english": "in the past",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-hvor-laenge-8490",
+      "danish": "hvor længe",
+      "english": "how long",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-naeste-5873",
+      "danish": "næste",
+      "english": "next",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-sidste-8541",
+      "danish": "sidste",
+      "english": "last / previous",
+      "type": "adjective",
+      "context": "used attributively before a time noun, e.g. \"sidste uge\" (last week)",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-siden-6969",
+      "danish": "siden",
+      "english": "since",
+      "type": "connector",
+      "context": "introduces the starting point of an ongoing state",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-i-ti-aar-3842",
+      "danish": "i ti år",
+      "english": "for ten years",
+      "type": "phrase",
+      "context": "\"i\" + duration — an ongoing or completed span of time",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-i-to-maaneder-3602",
+      "danish": "i to måneder",
+      "english": "for two months",
+      "type": "phrase",
+      "context": "\"i\" + duration — an ongoing or completed span of time",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-siden-sidste-aar-6869",
+      "danish": "siden sidste år",
+      "english": "since last year",
+      "type": "phrase",
+      "context": "\"siden\" + point in time — the starting point of an ongoing state",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-siden-i-morges-4666",
+      "danish": "siden i morges",
+      "english": "since this morning",
+      "type": "phrase",
+      "context": "\"siden\" + point in time — the starting point of an ongoing state",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-om-to-uger-3067",
+      "danish": "om to uger",
+      "english": "in two weeks",
+      "type": "phrase",
+      "context": "\"om\" + duration — a future distance",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-om-en-maaned-2967",
+      "danish": "om en måned",
+      "english": "in a month",
+      "type": "phrase",
+      "context": "\"om\" + duration — a future distance",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-for-tre-dage-siden-4427",
+      "danish": "for tre dage siden",
+      "english": "three days ago",
+      "type": "phrase",
+      "context": "\"for\" + duration + \"siden\" — a completed past distance",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-for-et-aar-siden-8033",
+      "danish": "for et år siden",
+      "english": "a year ago",
+      "type": "phrase",
+      "context": "\"for\" + duration + \"siden\" — a completed past distance",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-vare-2963",
+      "danish": "vare",
+      "english": "to last / to take (time)",
+      "type": "verb",
+      "context": "how long an event or process takes, e.g. \"mødet varede i to timer\"",
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-05-v-vente-3105",
+      "danish": "vente",
+      "english": "to wait",
+      "type": "verb",
+      "context": null,
+      "module": "A2-05"
+    },
+    {
+      "id": "A2-06-v-lejlighed-5197",
+      "danish": "lejlighed",
+      "english": "apartment",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-hus-6379",
+      "danish": "hus",
+      "english": "house",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-raekkehus-8795",
+      "danish": "rækkehus",
+      "english": "townhouse / row house",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-vaerelse-2044",
+      "danish": "værelse",
+      "english": "room",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-stue-1329",
+      "danish": "stue",
+      "english": "living room",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-koekken-9668",
+      "danish": "køkken",
+      "english": "kitchen",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-sovevaerelse-5580",
+      "danish": "soveværelse",
+      "english": "bedroom",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-badevaerelse-8903",
+      "danish": "badeværelse",
+      "english": "bathroom",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-sofa-7570",
+      "danish": "sofa",
+      "english": "sofa",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-bord-8666",
+      "danish": "bord",
+      "english": "table",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-stol-7010",
+      "danish": "stol",
+      "english": "chair",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-seng-5948",
+      "danish": "seng",
+      "english": "bed",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-skab-5799",
+      "danish": "skab",
+      "english": "cabinet / wardrobe",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-reol-9322",
+      "danish": "reol",
+      "english": "bookshelf",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-vaskemaskine-8603",
+      "danish": "vaskemaskine",
+      "english": "washing machine",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-opvaskemaskine-4899",
+      "danish": "opvaskemaskine",
+      "english": "dishwasher",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-koeleskab-1717",
+      "danish": "køleskab",
+      "english": "fridge",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-ovn-3261",
+      "danish": "ovn",
+      "english": "oven",
+      "type": "noun",
+      "context": "oven — for baking, not the stovetop",
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-komfur-5434",
+      "danish": "komfur",
+      "english": "stove / cooktop",
+      "type": "noun",
+      "context": "the stovetop with burners, not the oven",
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-stoevsuger-6735",
+      "danish": "støvsuger",
+      "english": "vacuum cleaner",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-goere-rent-1192",
+      "danish": "gøre rent",
+      "english": "to clean",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-vaske-toej-8338",
+      "danish": "vaske tøj",
+      "english": "to do laundry",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-lave-mad-2673",
+      "danish": "lave mad",
+      "english": "to cook",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-stoevsuge-6606",
+      "danish": "støvsuge",
+      "english": "to vacuum",
+      "type": "verb",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-toerre-stoev-af-8697",
+      "danish": "tørre støv af",
+      "english": "to dust",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-tage-opvasken-6421",
+      "danish": "tage opvasken",
+      "english": "to do the dishes",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-rydde-op-4295",
+      "danish": "rydde op",
+      "english": "to tidy up",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-husleje-5884",
+      "danish": "husleje",
+      "english": "rent",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-depositum-6993",
+      "danish": "depositum",
+      "english": "deposit",
+      "type": "noun",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-leje-4070",
+      "danish": "leje",
+      "english": "to rent",
+      "type": "verb",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-eje-6887",
+      "danish": "eje",
+      "english": "to own",
+      "type": "verb",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-flytte-ind-6700",
+      "danish": "flytte ind",
+      "english": "to move in",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-flytte-ud-6047",
+      "danish": "flytte ud",
+      "english": "to move out",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-stor-6057",
+      "danish": "stor",
+      "english": "big",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-lille-6745",
+      "danish": "lille",
+      "english": "small",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-gammel-8925",
+      "danish": "gammel",
+      "english": "old",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-ny-6302",
+      "danish": "ny",
+      "english": "new",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-lys-6715",
+      "danish": "lys",
+      "english": "bright / light-colored",
+      "type": "adjective",
+      "context": "describing a room or color — not the noun \"lys\" (light/candle)",
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-06-v-hyggelig-5402",
+      "danish": "hyggelig",
+      "english": "cozy",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-06"
+    },
+    {
+      "id": "A2-07-v-hoved-9919",
+      "danish": "hoved",
+      "english": "head",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-mave-7208",
+      "danish": "mave",
+      "english": "stomach",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-ryg-1556",
+      "danish": "ryg",
+      "english": "back",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-hals-6649",
+      "danish": "hals",
+      "english": "throat",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-oere-4872",
+      "danish": "øre",
+      "english": "ear",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-oeje-2684",
+      "danish": "øje",
+      "english": "eye",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-arm-9722",
+      "danish": "arm",
+      "english": "arm",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-ben-5044",
+      "danish": "ben",
+      "english": "leg",
+      "type": "noun",
+      "context": "the body part — not \"bone\"",
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-haand-4187",
+      "danish": "hånd",
+      "english": "hand",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-fod-6629",
+      "danish": "fod",
+      "english": "foot",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-feber-5216",
+      "danish": "feber",
+      "english": "fever",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-hoste-3999",
+      "danish": "hoste",
+      "english": "cough",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-kvalme-6319",
+      "danish": "kvalme",
+      "english": "nausea",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-smerte-2712",
+      "danish": "smerte",
+      "english": "pain",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-forkoelet-8659",
+      "danish": "forkølet",
+      "english": "having a cold",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-svimmel-2192",
+      "danish": "svimmel",
+      "english": "dizzy",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-syg-7016",
+      "danish": "syg",
+      "english": "sick / ill",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-rask-7810",
+      "danish": "rask",
+      "english": "healthy / well again",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-laege-3270",
+      "danish": "læge",
+      "english": "doctor",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-recept-5204",
+      "danish": "recept",
+      "english": "prescription",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-apotek-9785",
+      "danish": "apotek",
+      "english": "pharmacy",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-sygehus-5265",
+      "danish": "sygehus",
+      "english": "hospital",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-medicin-4579",
+      "danish": "medicin",
+      "english": "medicine",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-tidsbestilling-8742",
+      "danish": "tidsbestilling",
+      "english": "appointment",
+      "type": "noun",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-at-foele-sig-5537",
+      "danish": "at føle sig",
+      "english": "to feel",
+      "type": "verb",
+      "context": "reflexive — followed by an adjective describing how one feels",
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-at-slaa-sig-2431",
+      "danish": "at slå sig",
+      "english": "to hurt oneself",
+      "type": "verb",
+      "context": "reflexive — minor injury, e.g. bumping into something",
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-ondt-i-4316",
+      "danish": "ondt i",
+      "english": "a pain/ache in...",
+      "type": "pattern",
+      "context": "always followed by a body part in its definite form, e.g. \"ondt i hovedet\"",
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-at-bestille-en-tid-4862",
+      "danish": "at bestille en tid",
+      "english": "to book an appointment",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-07-v-jeg-har-det-skidt-4513",
+      "danish": "jeg har det skidt",
+      "english": "I feel unwell",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-07"
+    },
+    {
+      "id": "A2-08-v-koste-9915",
+      "danish": "koste",
+      "english": "to cost",
+      "type": "verb",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-betale-6515",
+      "danish": "betale",
+      "english": "to pay",
+      "type": "verb",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-bytte-3569",
+      "danish": "bytte",
+      "english": "to exchange",
+      "type": "verb",
+      "context": "exchanging a purchased item",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-returnere-6598",
+      "danish": "returnere",
+      "english": "to return",
+      "type": "verb",
+      "context": "returning a purchased item",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-spare-9730",
+      "danish": "spare",
+      "english": "to save (money)",
+      "type": "verb",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-proeve-3286",
+      "danish": "prøve",
+      "english": "to try on",
+      "type": "verb",
+      "context": "trying on clothing or shoes",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-billig-3193",
+      "danish": "billig",
+      "english": "cheap",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-dyr-6973",
+      "danish": "dyr",
+      "english": "expensive",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-stor-9947",
+      "danish": "stor",
+      "english": "big / large",
+      "type": "adjective",
+      "context": "physical size, e.g. clothing size",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-lille-5350",
+      "danish": "lille",
+      "english": "small",
+      "type": "adjective",
+      "context": "physical size, e.g. clothing size",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-god-7017",
+      "danish": "god",
+      "english": "good",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-udsolgt-9179",
+      "danish": "udsolgt",
+      "english": "sold out",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-stoerrelse-6809",
+      "danish": "størrelse",
+      "english": "size",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-pris-8840",
+      "danish": "pris",
+      "english": "price",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-rabat-9543",
+      "danish": "rabat",
+      "english": "discount",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-tilbud-6654",
+      "danish": "tilbud",
+      "english": "offer / deal",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-udsalg-3428",
+      "danish": "udsalg",
+      "english": "sale (seasonal sales event)",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-kvittering-5783",
+      "danish": "kvittering",
+      "english": "receipt",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-kontanter-8157",
+      "danish": "kontanter",
+      "english": "cash",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-kort-3815",
+      "danish": "kort",
+      "english": "card",
+      "type": "noun",
+      "context": "payment card",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-byttepenge-9632",
+      "danish": "byttepenge",
+      "english": "change (money returned)",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-krone-8068",
+      "danish": "krone",
+      "english": "krone (Danish currency)",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-oere-4537",
+      "danish": "øre",
+      "english": "øre (Danish currency subunit)",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-gavekort-9800",
+      "danish": "gavekort",
+      "english": "gift card",
+      "type": "noun",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-paa-lager-4654",
+      "danish": "på lager",
+      "english": "in stock",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-kan-jeg-faa-7139",
+      "danish": "Kan jeg få...?",
+      "english": "Can I get / have...?",
+      "type": "pattern",
+      "context": "polite request in a shop",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-betale-med-mobilepay-7547",
+      "danish": "betale med MobilePay",
+      "english": "to pay with MobilePay",
+      "type": "phrase",
+      "context": "Danish mobile payment culture",
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-08-v-en-anden-stoerrelse-8579",
+      "danish": "en anden størrelse",
+      "english": "a different size",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-08"
+    },
+    {
+      "id": "A2-09-v-jul-1728",
+      "danish": "jul",
+      "english": "Christmas",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-juleaften-5062",
+      "danish": "juleaften",
+      "english": "Christmas Eve",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-nytaar-2754",
+      "danish": "nytår",
+      "english": "New Year",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-nytaarsaften-5229",
+      "danish": "nytårsaften",
+      "english": "New Year's Eve",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-paaske-8640",
+      "danish": "påske",
+      "english": "Easter",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-pinse-2846",
+      "danish": "pinse",
+      "english": "Whitsun / Pentecost",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-sankt-hans-7958",
+      "danish": "Sankt Hans",
+      "english": "Midsummer's Eve",
+      "type": "phrase",
+      "context": "the Danish midsummer festival, celebrated on 23 June with bonfires",
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-fastelavn-1427",
+      "danish": "fastelavn",
+      "english": "Shrovetide",
+      "type": "noun",
+      "context": "Danish carnival tradition in February, similar to Mardi Gras",
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-fejre-1163",
+      "danish": "fejre",
+      "english": "to celebrate",
+      "type": "verb",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-samles-1458",
+      "danish": "samles",
+      "english": "to gather / get together",
+      "type": "verb",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-give-3711",
+      "danish": "give",
+      "english": "to give",
+      "type": "verb",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-pynte-4785",
+      "danish": "pynte",
+      "english": "to decorate",
+      "type": "verb",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-gave-1069",
+      "danish": "gave",
+      "english": "gift / present",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-juletrae-7840",
+      "danish": "juletræ",
+      "english": "Christmas tree",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-julemand-3835",
+      "danish": "julemand",
+      "english": "Santa Claus",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-nisse-7740",
+      "danish": "nisse",
+      "english": "Christmas gnome / elf",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-tradition-9463",
+      "danish": "tradition",
+      "english": "tradition",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-skik-7528",
+      "danish": "skik",
+      "english": "custom",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-flaeskesteg-5676",
+      "danish": "flæskesteg",
+      "english": "roast pork",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-risalamande-7918",
+      "danish": "risalamande",
+      "english": "rice pudding with almonds",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-aebleskiver-4603",
+      "danish": "æbleskiver",
+      "english": "Danish filled pancake balls",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-paaskeaeg-6208",
+      "danish": "påskeæg",
+      "english": "Easter egg",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-baal-2660",
+      "danish": "bål",
+      "english": "bonfire",
+      "type": "noun",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-glaedelig-1570",
+      "danish": "glædelig",
+      "english": "merry / joyous",
+      "type": "adjective",
+      "context": "used in holiday greetings, e.g. glædelig jul",
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-glaedelig-jul-4059",
+      "danish": "Glædelig jul",
+      "english": "Merry Christmas",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-09-v-godt-nytaar-4036",
+      "danish": "Godt nytår",
+      "english": "Happy New Year",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-09"
+    },
+    {
+      "id": "A2-10-v-fordi-1908",
+      "danish": "fordi",
+      "english": "because",
+      "type": "connector",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-selvom-4922",
+      "danish": "selvom",
+      "english": "although / even though",
+      "type": "connector",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-selv-hvis-9482",
+      "danish": "selv hvis",
+      "english": "even if",
+      "type": "connector",
+      "context": "stronger, more hypothetical version of hvis",
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-hvis-1755",
+      "danish": "hvis",
+      "english": "if",
+      "type": "connector",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-naar-1751",
+      "danish": "når",
+      "english": "when",
+      "type": "connector",
+      "context": "habitual or future time, repeated events — contrast with da for a single past event",
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-da-5980",
+      "danish": "da",
+      "english": "when",
+      "type": "connector",
+      "context": "a single, specific event in the past — contrast with når for habitual/repeated time",
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-mens-7350",
+      "danish": "mens",
+      "english": "while",
+      "type": "connector",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-indtil-5800",
+      "danish": "indtil",
+      "english": "until",
+      "type": "connector",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-efter-at-1752",
+      "danish": "efter at",
+      "english": "after",
+      "type": "connector",
+      "context": "subordinating conjunction introducing a clause — contrast with the preposition efter",
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-foer-3807",
+      "danish": "før",
+      "english": "before",
+      "type": "connector",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-derfor-9959",
+      "danish": "derfor",
+      "english": "therefore / that's why",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-alligevel-6413",
+      "danish": "alligevel",
+      "english": "nevertheless / anyway",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-bagefter-4639",
+      "danish": "bagefter",
+      "english": "afterwards",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-foerst-7120",
+      "danish": "først",
+      "english": "first / at first",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-derefter-8163",
+      "danish": "derefter",
+      "english": "then / after that",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-til-sidst-3545",
+      "danish": "til sidst",
+      "english": "finally / in the end",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-for-eksempel-4256",
+      "danish": "for eksempel",
+      "english": "for example",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-paa-grund-af-5022",
+      "danish": "på grund af",
+      "english": "because of / due to",
+      "type": "phrase",
+      "context": "takes a noun phrase, not a full clause — contrast with fordi which takes a clause",
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-10-v-grunden-til-at-9053",
+      "danish": "grunden til at",
+      "english": "the reason (that)",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-10"
+    },
+    {
+      "id": "A2-11-v-proeve-4709",
+      "danish": "prøve",
+      "english": "to try",
+      "type": "verb",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-opleve-9265",
+      "danish": "opleve",
+      "english": "to experience",
+      "type": "verb",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-anbefale-4517",
+      "danish": "anbefale",
+      "english": "to recommend",
+      "type": "verb",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-besoege-3363",
+      "danish": "besøge",
+      "english": "to visit",
+      "type": "verb",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-burde-2606",
+      "danish": "burde",
+      "english": "should / ought to",
+      "type": "verb",
+      "context": "modal verb used for giving advice",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-har-du-proevet-3030",
+      "danish": "Har du prøvet...?",
+      "english": "Have you tried...?",
+      "type": "pattern",
+      "context": "asking someone about a past experience",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-jeg-har-aldrig-proevet-7836",
+      "danish": "Jeg har aldrig prøvet...",
+      "english": "I have never tried...",
+      "type": "pattern",
+      "context": "sharing that you have no experience with something",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-du-burde-proeve-5349",
+      "danish": "Du burde prøve...",
+      "english": "You should try...",
+      "type": "pattern",
+      "context": "giving personal advice",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-man-kan-sagtens-8396",
+      "danish": "Man kan sagtens...",
+      "english": "One can easily...",
+      "type": "pattern",
+      "context": "giving a general recommendation to anyone",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-jeg-vil-varmt-anbefale-6903",
+      "danish": "Jeg vil varmt anbefale...",
+      "english": "I would warmly recommend...",
+      "type": "pattern",
+      "context": "strongly recommending something",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-det-er-vaerd-at-6931",
+      "danish": "Det er værd at se",
+      "english": "It's worth seeing",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-hvad-synes-du-om-5797",
+      "danish": "Hvad synes du om...?",
+      "english": "What do you think of...?",
+      "type": "pattern",
+      "context": "asking for someone's opinion or evaluation",
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-museum-1578",
+      "danish": "museum",
+      "english": "museum",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-restaurant-3413",
+      "danish": "restaurant",
+      "english": "restaurant",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-koncert-4440",
+      "danish": "koncert",
+      "english": "concert",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-udstilling-1484",
+      "danish": "udstilling",
+      "english": "exhibition",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-caf-7681",
+      "danish": "café",
+      "english": "café",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-biograf-4264",
+      "danish": "biograf",
+      "english": "cinema",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-teater-3425",
+      "danish": "teater",
+      "english": "theatre",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-oplevelse-9015",
+      "danish": "oplevelse",
+      "english": "experience",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-raad-2107",
+      "danish": "råd",
+      "english": "advice",
+      "type": "noun",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-fantastisk-3315",
+      "danish": "fantastisk",
+      "english": "fantastic",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-kedelig-1307",
+      "danish": "kedelig",
+      "english": "boring",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-spaendende-3397",
+      "danish": "spændende",
+      "english": "exciting",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-skuffende-2734",
+      "danish": "skuffende",
+      "english": "disappointing",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-11-v-nogensinde-6243",
+      "danish": "nogensinde",
+      "english": "ever",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-11"
+    },
+    {
+      "id": "A2-12-v-menukort-4355",
+      "danish": "menukort",
+      "english": "menu",
+      "type": "noun",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-forret-5815",
+      "danish": "forret",
+      "english": "starter / appetiser",
+      "type": "noun",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-hovedret-8172",
+      "danish": "hovedret",
+      "english": "main course",
+      "type": "noun",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-dessert-7071",
+      "danish": "dessert",
+      "english": "dessert",
+      "type": "noun",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-regning-6783",
+      "danish": "regning",
+      "english": "bill / check",
+      "type": "noun",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-tjener-1496",
+      "danish": "tjener",
+      "english": "waiter",
+      "type": "noun",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-bord-6354",
+      "danish": "bord",
+      "english": "table",
+      "type": "noun",
+      "context": "a table booked or seated at in a restaurant",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-drikkepenge-1100",
+      "danish": "drikkepenge",
+      "english": "tip",
+      "type": "noun",
+      "context": "money left for service",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-ret-8658",
+      "danish": "ret",
+      "english": "dish",
+      "type": "noun",
+      "context": "a dish on a menu, not the adverb meaning 'quite'",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-bestille-6278",
+      "danish": "bestille",
+      "english": "to order",
+      "type": "verb",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-smage-3192",
+      "danish": "smage",
+      "english": "to taste",
+      "type": "verb",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-betale-7670",
+      "danish": "betale",
+      "english": "to pay",
+      "type": "verb",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-reservere-7323",
+      "danish": "reservere",
+      "english": "to reserve / to book",
+      "type": "verb",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-vaelge-6352",
+      "danish": "vælge",
+      "english": "to choose",
+      "type": "verb",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-dele-5168",
+      "danish": "dele",
+      "english": "to share",
+      "type": "verb",
+      "context": "splitting a dish or a bill",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-laekker-1476",
+      "danish": "lækker",
+      "english": "delicious",
+      "type": "adjective",
+      "context": "about food",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-maet-4709",
+      "danish": "mæt",
+      "english": "full (not hungry)",
+      "type": "adjective",
+      "context": "having eaten enough",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-vegetarisk-4921",
+      "danish": "vegetarisk",
+      "english": "vegetarian",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-stegt-8085",
+      "danish": "stegt",
+      "english": "fried",
+      "type": "adjective",
+      "context": "how a dish is prepared",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-allergisk-5879",
+      "danish": "allergisk",
+      "english": "allergic",
+      "type": "adjective",
+      "context": "used with 'over for' — allergisk over for nødder",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-glutenfri-2633",
+      "danish": "glutenfri",
+      "english": "gluten-free",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-jeg-vil-gerne-have-7667",
+      "danish": "Jeg vil gerne have...",
+      "english": "I would like...",
+      "type": "pattern",
+      "context": "polite request when ordering",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-kan-jeg-faa-1905",
+      "danish": "Kan jeg få...?",
+      "english": "Can I have...?",
+      "type": "pattern",
+      "context": "polite request when ordering",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-maa-jeg-bede-om-9113",
+      "danish": "Må jeg bede om regningen?",
+      "english": "Could I have the bill, please?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-hvad-kan-du-anbefale-5618",
+      "danish": "Hvad kan du anbefale?",
+      "english": "What can you recommend?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-12-v-tak-for-mad-1617",
+      "danish": "Tak for mad",
+      "english": "Thanks for the food (said after a meal)",
+      "type": "phrase",
+      "context": "Danish dining etiquette, said when the meal is over",
+      "module": "A2-12"
+    },
+    {
+      "id": "A2-13-v-tog-6145",
+      "danish": "tog",
+      "english": "train",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-fly-1648",
+      "danish": "fly",
+      "english": "plane",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-faerge-6274",
+      "danish": "færge",
+      "english": "ferry",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-billet-4861",
+      "danish": "billet",
+      "english": "ticket",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-perron-4736",
+      "danish": "perron",
+      "english": "platform",
+      "type": "noun",
+      "context": "railway platform at a station",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-afgang-6408",
+      "danish": "afgang",
+      "english": "departure",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-ankomst-6350",
+      "danish": "ankomst",
+      "english": "arrival",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-omstigning-1831",
+      "danish": "omstigning",
+      "english": "connection / change of trains",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-bagage-9264",
+      "danish": "bagage",
+      "english": "luggage",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-hotel-5353",
+      "danish": "hotel",
+      "english": "hotel",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-vaerelse-4311",
+      "danish": "værelse",
+      "english": "room",
+      "type": "noun",
+      "context": "a room you stay in, e.g. a hotel room",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-oe-9978",
+      "danish": "ø",
+      "english": "island",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-bro-7879",
+      "danish": "bro",
+      "english": "bridge",
+      "type": "noun",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-rejse-9692",
+      "danish": "rejse",
+      "english": "to travel",
+      "type": "verb",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-flyve-9161",
+      "danish": "flyve",
+      "english": "to fly",
+      "type": "verb",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-koere-5303",
+      "danish": "køre",
+      "english": "to drive / to go (by vehicle)",
+      "type": "verb",
+      "context": "travelling by car, bus or train",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-ankomme-4615",
+      "danish": "ankomme",
+      "english": "to arrive",
+      "type": "verb",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-afgaa-9501",
+      "danish": "afgå",
+      "english": "to depart / to leave",
+      "type": "verb",
+      "context": "of a train, bus, plane or ferry",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-skifte-8315",
+      "danish": "skifte",
+      "english": "to change (trains, buses)",
+      "type": "verb",
+      "context": "changing from one vehicle to another on a journey",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-bestille-3126",
+      "danish": "bestille",
+      "english": "to book / to order",
+      "type": "verb",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-tjekke-ind-7186",
+      "danish": "tjekke ind",
+      "english": "to check in",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-forsinket-7289",
+      "danish": "forsinket",
+      "english": "delayed",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-aflyst-2941",
+      "danish": "aflyst",
+      "english": "cancelled",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-ledig-5272",
+      "danish": "ledig",
+      "english": "available / vacant",
+      "type": "adjective",
+      "context": "of a seat or a room that is free to take",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-jeg-skal-til-7422",
+      "danish": "Jeg skal til…",
+      "english": "I'm going to… (a place)",
+      "type": "pattern",
+      "context": "stating your destination",
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-13-v-hvornaar-afgaar-toget-6510",
+      "danish": "Hvornår afgår toget?",
+      "english": "When does the train leave?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-13"
+    },
+    {
+      "id": "A2-14-v-vejret-2779",
+      "danish": "vejret",
+      "english": "the weather",
+      "type": "noun",
+      "context": "definite form, used generically when talking about weather",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-ferie-8278",
+      "danish": "ferie",
+      "english": "holiday / vacation",
+      "type": "noun",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-weekend-4757",
+      "danish": "weekend",
+      "english": "weekend",
+      "type": "noun",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-sport-8430",
+      "danish": "sport",
+      "english": "sport",
+      "type": "noun",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-boern-4673",
+      "danish": "børn",
+      "english": "children",
+      "type": "noun",
+      "context": "plural of barn",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-fritid-4492",
+      "danish": "fritid",
+      "english": "free time",
+      "type": "noun",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-planer-5268",
+      "danish": "planer",
+      "english": "plans",
+      "type": "noun",
+      "context": "plural of en plan",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-solskin-3514",
+      "danish": "solskin",
+      "english": "sunshine",
+      "type": "noun",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-regn-9800",
+      "danish": "regn",
+      "english": "rain",
+      "type": "noun",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-hyggeligt-6283",
+      "danish": "hyggeligt",
+      "english": "cozy / nice",
+      "type": "adjective",
+      "context": "neuter predicative form of hyggelig",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-dejlig-2398",
+      "danish": "dejlig",
+      "english": "lovely / nice",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-koldt-5514",
+      "danish": "koldt",
+      "english": "cold",
+      "type": "adjective",
+      "context": "neuter form of kold, used for weather",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-varmt-7963",
+      "danish": "varmt",
+      "english": "warm",
+      "type": "adjective",
+      "context": "neuter form of varm, used for weather",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-egentlig-9038",
+      "danish": "egentlig",
+      "english": "actually / really",
+      "type": "adverb",
+      "context": "hedging word, softens a statement",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-faktisk-7351",
+      "danish": "faktisk",
+      "english": "in fact / actually",
+      "type": "adverb",
+      "context": "hedging word, adds a note of fact or mild surprise",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-ret-6466",
+      "danish": "ret",
+      "english": "quite / rather",
+      "type": "adverb",
+      "context": "degree modifier, softer than 'meget'",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-forresten-8631",
+      "danish": "forresten",
+      "english": "by the way / incidentally",
+      "type": "adverb",
+      "context": "introduces a side topic in conversation",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-synes-7764",
+      "danish": "synes",
+      "english": "to think / to have an opinion",
+      "type": "verb",
+      "context": "expressing a personal opinion, e.g. 'jeg synes'",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-lave-8981",
+      "danish": "lave",
+      "english": "to do / to make",
+      "type": "verb",
+      "context": "informal, what you're up to or doing",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-more-sig-4879",
+      "danish": "more sig",
+      "english": "to have a good time / to enjoy oneself",
+      "type": "verb",
+      "context": "reflexive verb",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-hvad-laver-du-i-3687",
+      "danish": "Hvad laver du i weekenden?",
+      "english": "What are you doing this weekend?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-hvordan-gaar-det-3117",
+      "danish": "Hvordan går det?",
+      "english": "How's it going?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-ikke-ogsaa-8824",
+      "danish": "ikke også?",
+      "english": "isn't that right? / don't you think?",
+      "type": "pattern",
+      "context": "confirmation tag added to the end of a statement",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-14-v-det-er-rigtigt-5677",
+      "danish": "Det er rigtigt.",
+      "english": "That's right.",
+      "type": "phrase",
+      "context": "confirming what someone just said",
+      "module": "A2-14"
+    },
+    {
+      "id": "A2-15-v-hoej-1803",
+      "danish": "høj",
+      "english": "tall",
+      "type": "adjective",
+      "context": "describing a person's height",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-lav-7776",
+      "danish": "lav",
+      "english": "short",
+      "type": "adjective",
+      "context": "describing a person's height, opposite of høj",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-slank-9678",
+      "danish": "slank",
+      "english": "slim",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-tyk-1281",
+      "danish": "tyk",
+      "english": "heavy-set / plump",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-ung-6285",
+      "danish": "ung",
+      "english": "young",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-gammel-8818",
+      "danish": "gammel",
+      "english": "old",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-moerk-4450",
+      "danish": "mørk",
+      "english": "dark",
+      "type": "adjective",
+      "context": "describing hair or eye color",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-lys-1009",
+      "danish": "lys",
+      "english": "light / fair",
+      "type": "adjective",
+      "context": "describing hair color, fair-haired",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-haar-9490",
+      "danish": "hår",
+      "english": "hair",
+      "type": "noun",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-oejne-3067",
+      "danish": "øjne",
+      "english": "eyes",
+      "type": "noun",
+      "context": "plural of øje",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-skaeg-6154",
+      "danish": "skæg",
+      "english": "beard",
+      "type": "noun",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-briller-5073",
+      "danish": "briller",
+      "english": "glasses",
+      "type": "noun",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-venlig-4676",
+      "danish": "venlig",
+      "english": "friendly",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-direkte-8890",
+      "danish": "direkte",
+      "english": "direct / straightforward",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-ambitioes-6894",
+      "danish": "ambitiøs",
+      "english": "ambitious",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-rolig-7723",
+      "danish": "rolig",
+      "english": "calm",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-sjov-2529",
+      "danish": "sjov",
+      "english": "funny",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-genert-5756",
+      "danish": "genert",
+      "english": "shy",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-staedig-8115",
+      "danish": "stædig",
+      "english": "stubborn",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-aaben-8442",
+      "danish": "åben",
+      "english": "open-minded / open",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-dansk-3988",
+      "danish": "dansk",
+      "english": "Danish",
+      "type": "adjective",
+      "context": "nationality/origin",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-komme-fra-2464",
+      "danish": "komme fra",
+      "english": "to come from",
+      "type": "phrase",
+      "context": "stating a person's origin",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-ligne-4780",
+      "danish": "ligne",
+      "english": "to look like / resemble",
+      "type": "verb",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-virke-som-3594",
+      "danish": "virke som",
+      "english": "to seem / to come across as",
+      "type": "pattern",
+      "context": "describing an impression of someone's character",
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-udseende-1076",
+      "danish": "udseende",
+      "english": "appearance",
+      "type": "noun",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-15-v-personlighed-5032",
+      "danish": "personlighed",
+      "english": "personality",
+      "type": "noun",
+      "context": null,
+      "module": "A2-15"
+    },
+    {
+      "id": "A2-16-v-nyhed-7813",
+      "danish": "nyhed",
+      "english": "news / news item",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-regering-6564",
+      "danish": "regering",
+      "english": "government",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-valg-5218",
+      "danish": "valg",
+      "english": "election",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-krise-9543",
+      "danish": "krise",
+      "english": "crisis",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-avis-5776",
+      "danish": "avis",
+      "english": "newspaper",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-netavis-2636",
+      "danish": "netavis",
+      "english": "online newspaper",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-kanal-4918",
+      "danish": "kanal",
+      "english": "channel",
+      "type": "noun",
+      "context": "TV/radio channel",
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-journalist-6896",
+      "danish": "journalist",
+      "english": "journalist",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-overskrift-8584",
+      "danish": "overskrift",
+      "english": "headline",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-minister-1547",
+      "danish": "minister",
+      "english": "minister",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-borgmester-6303",
+      "danish": "borgmester",
+      "english": "mayor",
+      "type": "noun",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-stemme-6125",
+      "danish": "stemme",
+      "english": "to vote",
+      "type": "verb",
+      "context": "casting a vote, not the noun \"voice\"",
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-meddele-2540",
+      "danish": "meddele",
+      "english": "to announce",
+      "type": "verb",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-rapportere-3044",
+      "danish": "rapportere",
+      "english": "to report",
+      "type": "verb",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-ske-3044",
+      "danish": "ske",
+      "english": "to happen",
+      "type": "verb",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-forklare-4106",
+      "danish": "forklare",
+      "english": "to explain",
+      "type": "verb",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-blive-valgt-5789",
+      "danish": "blive valgt",
+      "english": "to be elected",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-det-blev-besluttet-at-9883",
+      "danish": "det blev besluttet at...",
+      "english": "it was decided that...",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-har-du-hoert-om-2145",
+      "danish": "Har du hørt om...?",
+      "english": "Have you heard about...?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-der-stod-i-avisen-7300",
+      "danish": "Der stod i avisen, at...",
+      "english": "It said in the newspaper that...",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-ifoelge-9349",
+      "danish": "ifølge",
+      "english": "according to",
+      "type": "connector",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-alvorlig-3592",
+      "danish": "alvorlig",
+      "english": "serious",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-vigtig-6473",
+      "danish": "vigtig",
+      "english": "important",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-aktuel-8814",
+      "danish": "aktuel",
+      "english": "current / topical",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-16-v-for-nylig-8428",
+      "danish": "for nylig",
+      "english": "recently",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-16"
+    },
+    {
+      "id": "A2-17-v-kommune-2593",
+      "danish": "kommune",
+      "english": "municipality",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-borgerservice-4176",
+      "danish": "borgerservice",
+      "english": "citizen service center",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-bank-4657",
+      "danish": "bank",
+      "english": "bank",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-posthus-2587",
+      "danish": "posthus",
+      "english": "post office",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-cpr-nummer-6915",
+      "danish": "CPR-nummer",
+      "english": "civil registration number",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-mitid-9518",
+      "danish": "MitID",
+      "english": "MitID (Danish digital ID)",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-folkeregister-4234",
+      "danish": "folkeregister",
+      "english": "national register",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-konto-6108",
+      "danish": "konto",
+      "english": "account",
+      "type": "noun",
+      "context": "bank account",
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-formular-7811",
+      "danish": "formular",
+      "english": "form",
+      "type": "noun",
+      "context": "document to fill out",
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-legitimation-3431",
+      "danish": "legitimation",
+      "english": "identification",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-adresse-8955",
+      "danish": "adresse",
+      "english": "address",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-kvittering-5667",
+      "danish": "kvittering",
+      "english": "receipt",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-frist-5059",
+      "danish": "frist",
+      "english": "deadline",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-sagsbehandler-8377",
+      "danish": "sagsbehandler",
+      "english": "caseworker",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-ventenummer-2986",
+      "danish": "ventenummer",
+      "english": "queue number",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-gebyr-8420",
+      "danish": "gebyr",
+      "english": "fee",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-ansoegning-9553",
+      "danish": "ansøgning",
+      "english": "application",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-dokumentation-8670",
+      "danish": "dokumentation",
+      "english": "documentation",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-aabningstider-3866",
+      "danish": "åbningstider",
+      "english": "opening hours",
+      "type": "noun",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-registrere-sig-1638",
+      "danish": "registrere sig",
+      "english": "to register (oneself)",
+      "type": "verb",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-ansoege-om-6046",
+      "danish": "ansøge om",
+      "english": "to apply for",
+      "type": "verb",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-bekraefte-2705",
+      "danish": "bekræfte",
+      "english": "to confirm",
+      "type": "verb",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-udfylde-3408",
+      "danish": "udfylde",
+      "english": "to fill out",
+      "type": "verb",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-indsende-6247",
+      "danish": "indsende",
+      "english": "to submit",
+      "type": "verb",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-jeg-skal-bruge-8058",
+      "danish": "Jeg skal bruge...",
+      "english": "I need...",
+      "type": "phrase",
+      "context": "stating a request at a service counter",
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-jeg-vil-gerne-bestille-3666",
+      "danish": "Jeg vil gerne bestille en tid",
+      "english": "I would like to book an appointment",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-det-drejer-sig-om-1930",
+      "danish": "Det drejer sig om...",
+      "english": "It's regarding...",
+      "type": "phrase",
+      "context": "phone or written communication opener",
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-jeg-ringer-angaaende-9031",
+      "danish": "Jeg ringer angående...",
+      "english": "I'm calling regarding...",
+      "type": "phrase",
+      "context": "phone communication opener",
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-17-v-med-venlig-hilsen-7451",
+      "danish": "Med venlig hilsen",
+      "english": "Kind regards",
+      "type": "phrase",
+      "context": "formal letter or email closing",
+      "module": "A2-17"
+    },
+    {
+      "id": "A2-18-v-mene-3667",
+      "danish": "mene",
+      "english": "to think / to believe (an opinion)",
+      "type": "verb",
+      "context": "stating a firmer, more considered opinion — contrast with synes for a more casual feeling",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-synes-6188",
+      "danish": "synes",
+      "english": "to think / to feel (an opinion)",
+      "type": "verb",
+      "context": "a subjective, everyday opinion or impression — contrast with mene for a firmer stance",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-foretraekke-5746",
+      "danish": "foretrække",
+      "english": "to prefer",
+      "type": "verb",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-skifte-mening-1985",
+      "danish": "skifte mening",
+      "english": "to change one's mind",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-jeg-synes-at-5512",
+      "danish": "Jeg synes, at...",
+      "english": "I think that...",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-efter-min-mening-5532",
+      "danish": "Efter min mening...",
+      "english": "In my opinion...",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-jeg-er-ikke-sikker-6703",
+      "danish": "Jeg er ikke sikker på...",
+      "english": "I'm not sure...",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-enig-7712",
+      "danish": "enig",
+      "english": "in agreement / agreeing",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-uenig-2436",
+      "danish": "uenig",
+      "english": "in disagreement / disagreeing",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-det-synes-jeg-ogsaa-8350",
+      "danish": "Det synes jeg også",
+      "english": "I think so too",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-det-synes-jeg-ikke-3271",
+      "danish": "Det synes jeg ikke",
+      "english": "I don't think so",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-det-kommer-an-paa-6881",
+      "danish": "Det kommer an på",
+      "english": "It depends on",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-helt-sikkert-9488",
+      "danish": "Helt sikkert",
+      "english": "Definitely / for sure",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-egentlig-2894",
+      "danish": "egentlig",
+      "english": "actually / really",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-nok-6740",
+      "danish": "nok",
+      "english": "probably / I suppose",
+      "type": "adverb",
+      "context": "hedging an opinion — softens a claim rather than expressing quantity",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-vel-6575",
+      "danish": "vel",
+      "english": "I suppose / right? (tag)",
+      "type": "adverb",
+      "context": "sentence-final tag inviting agreement, or a hedge meaning 'presumably'",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-maaske-2698",
+      "danish": "måske",
+      "english": "maybe",
+      "type": "adverb",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-men-1705",
+      "danish": "men",
+      "english": "but",
+      "type": "connector",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-selvom-3624",
+      "danish": "selvom",
+      "english": "although / even though",
+      "type": "connector",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-paa-den-anden-side-9255",
+      "danish": "på den anden side",
+      "english": "on the other hand",
+      "type": "connector",
+      "context": "introduces a contrasting viewpoint, typically fronted at the start of a sentence",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-til-gengaeld-3935",
+      "danish": "til gengæld",
+      "english": "on the other hand / in return",
+      "type": "connector",
+      "context": "balances a downside with an upside (or vice versa), typically fronted at the start of a sentence",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-bedre-3273",
+      "danish": "bedre",
+      "english": "better",
+      "type": "adjective",
+      "context": "comparative of god — used when comparing preferences",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-vaerre-4104",
+      "danish": "værre",
+      "english": "worse",
+      "type": "adjective",
+      "context": "comparative of dårlig — used when comparing preferences",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-mening-4309",
+      "danish": "mening",
+      "english": "opinion",
+      "type": "noun",
+      "context": "opinion or viewpoint — not the word's other sense of 'meaning'",
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-18-v-grund-4972",
+      "danish": "grund",
+      "english": "reason",
+      "type": "noun",
+      "context": null,
+      "module": "A2-18"
+    },
+    {
+      "id": "A2-19-v-moede-6982",
+      "danish": "møde",
+      "english": "meeting",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-moedelokale-3161",
+      "danish": "mødelokale",
+      "english": "meeting room",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-deltager-4919",
+      "danish": "deltager",
+      "english": "participant",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-dagsorden-7019",
+      "danish": "dagsorden",
+      "english": "agenda",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-aftale-9084",
+      "danish": "aftale",
+      "english": "appointment",
+      "type": "noun",
+      "context": "a business appointment or agreement, not a casual date",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-booke-8653",
+      "danish": "booke",
+      "english": "to book",
+      "type": "verb",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-bekraefte-2320",
+      "danish": "bekræfte",
+      "english": "to confirm",
+      "type": "verb",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-flytte-5538",
+      "danish": "flytte",
+      "english": "to reschedule",
+      "type": "verb",
+      "context": "to move an appointment to a different time, not to physically move house",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-aflyse-9042",
+      "danish": "aflyse",
+      "english": "to cancel",
+      "type": "verb",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-deltage-3522",
+      "danish": "deltage",
+      "english": "to participate / to attend",
+      "type": "verb",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-kalender-5731",
+      "danish": "kalender",
+      "english": "calendar",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-tidspunkt-9865",
+      "danish": "tidspunkt",
+      "english": "time slot",
+      "type": "noun",
+      "context": "a specific point in time, e.g. for scheduling a meeting",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-i-naeste-uge-3693",
+      "danish": "i næste uge",
+      "english": "next week",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-om-to-dage-1176",
+      "danish": "om to dage",
+      "english": "in two days",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-passer-det-dem-6202",
+      "danish": "Passer det Dem?",
+      "english": "Does that suit you?",
+      "type": "phrase",
+      "context": "formal register — used when proposing a time to someone you address as \"De\"",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-jeg-har-tid-2655",
+      "danish": "Jeg har tid",
+      "english": "I have time",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-klokken-2885",
+      "danish": "klokken",
+      "english": "o'clock / the time",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-kaere-3803",
+      "danish": "Kære",
+      "english": "Dear",
+      "type": "phrase",
+      "context": "email opening formula, followed by the recipient's name",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-med-venlig-hilsen-6026",
+      "danish": "Med venlig hilsen",
+      "english": "Kind regards",
+      "type": "phrase",
+      "context": "standard email closing formula",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-hermed-6937",
+      "danish": "Hermed",
+      "english": "hereby",
+      "type": "adverb",
+      "context": "formal written opener, e.g. \"Hermed bekræfter jeg...\"",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-jeg-tillader-mig-at-5075",
+      "danish": "Jeg tillader mig at...",
+      "english": "I take the liberty of...",
+      "type": "pattern",
+      "context": "formal written pattern used to politely introduce a request or statement",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-vedroerende-3651",
+      "danish": "Vedrørende",
+      "english": "Regarding",
+      "type": "connector",
+      "context": "used to introduce the topic of a formal email or letter",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-venligst-9798",
+      "danish": "Venligst",
+      "english": "Kindly / Please",
+      "type": "adverb",
+      "context": "formal register, used in written requests, e.g. \"Venligst bekræft mødet\"",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-bekraeftelse-9570",
+      "danish": "bekræftelse",
+      "english": "confirmation",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-e-mail-5247",
+      "danish": "e-mail",
+      "english": "email",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-kollega-9038",
+      "danish": "kollega",
+      "english": "colleague",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-firma-4798",
+      "danish": "firma",
+      "english": "company",
+      "type": "noun",
+      "context": null,
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-de-5859",
+      "danish": "De",
+      "english": "you (formal)",
+      "type": "pronoun",
+      "context": "formal 2nd person pronoun, always capitalized; used for polite/business address instead of \"du\"",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-dem-8058",
+      "danish": "Dem",
+      "english": "you (formal, object form)",
+      "type": "pronoun",
+      "context": "formal object form of \"De\", always capitalized",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-19-v-deres-4414",
+      "danish": "Deres",
+      "english": "your (formal)",
+      "type": "pronoun",
+      "context": "formal possessive of \"De\", always capitalized; distinct from informal \"din/dit/dine\"",
+      "module": "A2-19"
+    },
+    {
+      "id": "A2-20-v-fodbold-3832",
+      "danish": "fodbold",
+      "english": "football / soccer",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-haandbold-3203",
+      "danish": "håndbold",
+      "english": "handball",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-tennis-1272",
+      "danish": "tennis",
+      "english": "tennis",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-cykling-8491",
+      "danish": "cykling",
+      "english": "cycling",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-svoemning-7611",
+      "danish": "svømning",
+      "english": "swimming",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-spille-2103",
+      "danish": "spille",
+      "english": "to play",
+      "type": "verb",
+      "context": "playing a sport or game",
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-loebe-4851",
+      "danish": "løbe",
+      "english": "to run",
+      "type": "verb",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-cykle-6952",
+      "danish": "cykle",
+      "english": "to cycle",
+      "type": "verb",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-svoemme-3622",
+      "danish": "svømme",
+      "english": "to swim",
+      "type": "verb",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-traene-4378",
+      "danish": "træne",
+      "english": "to train / to practise",
+      "type": "verb",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-dyrke-5435",
+      "danish": "dyrke",
+      "english": "to do / to practise (a sport)",
+      "type": "verb",
+      "context": "doing a sport or activity, e.g. dyrke sport",
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-madlavning-9131",
+      "danish": "madlavning",
+      "english": "cooking",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-fotografering-5964",
+      "danish": "fotografering",
+      "english": "photography",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-musik-9157",
+      "danish": "musik",
+      "english": "music",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-haandvaerk-8942",
+      "danish": "håndværk",
+      "english": "handicraft / craftwork",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-havebrug-3956",
+      "danish": "havebrug",
+      "english": "gardening",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-hobby-2729",
+      "danish": "hobby",
+      "english": "hobby",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-fritid-5927",
+      "danish": "fritid",
+      "english": "free time / leisure",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-klub-3194",
+      "danish": "klub",
+      "english": "club",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-hold-2088",
+      "danish": "hold",
+      "english": "team",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-kamp-6682",
+      "danish": "kamp",
+      "english": "match / game",
+      "type": "noun",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-se-9298",
+      "danish": "se",
+      "english": "to watch",
+      "type": "verb",
+      "context": "watching a match, film or programme",
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-foelge-med-i-6025",
+      "danish": "følge med i",
+      "english": "to follow / to keep up with",
+      "type": "phrase",
+      "context": "following a sport, team or hobby",
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-gaa-til-2174",
+      "danish": "gå til",
+      "english": "to go to / to attend regularly (a class or activity)",
+      "type": "phrase",
+      "context": "attending a recurring hobby activity, e.g. gå til fodbold",
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-interesseret-i-2247",
+      "danish": "interesseret i",
+      "english": "interested in",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-20-v-hvor-tit-8005",
+      "danish": "hvor tit",
+      "english": "how often",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-20"
+    },
+    {
+      "id": "A2-21-v-aftale-6952",
+      "danish": "aftale",
+      "english": "agreement / appointment / plan",
+      "type": "noun",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-moedes-2457",
+      "danish": "mødes",
+      "english": "to meet up (with each other)",
+      "type": "verb",
+      "context": "reciprocal — meeting with someone, not just seeing something",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-ses-5127",
+      "danish": "ses",
+      "english": "to see each other / see you",
+      "type": "verb",
+      "context": "reciprocal; also used as a farewell phrase, e.g. 'Vi ses!'",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-aflyse-7500",
+      "danish": "aflyse",
+      "english": "to cancel",
+      "type": "verb",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-rykke-4103",
+      "danish": "rykke",
+      "english": "to reschedule / move (an appointment)",
+      "type": "verb",
+      "context": "moving an appointment to another time, not physical movement",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-invitere-9657",
+      "danish": "invitere",
+      "english": "to invite",
+      "type": "verb",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-bekraefte-9496",
+      "danish": "bekræfte",
+      "english": "to confirm",
+      "type": "verb",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-plan-9140",
+      "danish": "plan",
+      "english": "plan",
+      "type": "noun",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-invitation-1438",
+      "danish": "invitation",
+      "english": "invitation",
+      "type": "noun",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-fest-7282",
+      "danish": "fest",
+      "english": "party",
+      "type": "noun",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-har-du-lyst-til-6310",
+      "danish": "Har du lyst til...?",
+      "english": "Do you feel like...?",
+      "type": "pattern",
+      "context": "invitation opener, followed by a noun or 'at' + infinitive",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-vil-du-med-1638",
+      "danish": "Vil du med...?",
+      "english": "Do you want to come along...?",
+      "type": "pattern",
+      "context": "invitation to join an activity or outing",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-skal-vi-ikke-7682",
+      "danish": "Skal vi ikke...?",
+      "english": "Shall we...? / Why don't we...?",
+      "type": "pattern",
+      "context": "suggestion framed as a question, followed by an infinitive",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-har-du-tid-5087",
+      "danish": "Har du tid...?",
+      "english": "Do you have time...?",
+      "type": "pattern",
+      "context": "asking about someone's availability",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-det-lyder-skoent-5159",
+      "danish": "Det lyder skønt!",
+      "english": "That sounds great!",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-ja-gerne-5922",
+      "danish": "Ja, gerne!",
+      "english": "Yes, gladly!",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-det-passer-mig-godt-9077",
+      "danish": "Det passer mig godt",
+      "english": "That suits me well",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-jeg-er-med-7222",
+      "danish": "Jeg er med!",
+      "english": "I'm in!",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-desvaerre-kan-jeg-ikke-6943",
+      "danish": "Desværre kan jeg ikke",
+      "english": "Unfortunately I can't",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-jeg-har-desvaerre-andre-7212",
+      "danish": "Jeg har desværre andre planer",
+      "english": "I unfortunately have other plans",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-maaske-en-anden-gang-2318",
+      "danish": "Måske en anden gang",
+      "english": "Maybe another time",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-paa-loerdag-7816",
+      "danish": "på lørdag",
+      "english": "on Saturday",
+      "type": "phrase",
+      "context": "a specific upcoming day — 'på' + weekday name",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-om-fredagen-9465",
+      "danish": "om fredagen",
+      "english": "on Fridays",
+      "type": "phrase",
+      "context": "habitual/recurring day — 'om' + definite form of the weekday",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-klokken-7545",
+      "danish": "klokken",
+      "english": "at [time] / o'clock",
+      "type": "noun",
+      "context": "used before a specific clock time, e.g. 'klokken tre'",
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-21-v-i-naeste-uge-8762",
+      "danish": "i næste uge",
+      "english": "next week",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-21"
+    },
+    {
+      "id": "A2-22-v-besked-7342",
+      "danish": "besked",
+      "english": "message",
+      "type": "noun",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-sms-6959",
+      "danish": "sms",
+      "english": "text message",
+      "type": "noun",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-gruppechat-6271",
+      "danish": "gruppechat",
+      "english": "group chat",
+      "type": "noun",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-smiley-2970",
+      "danish": "smiley",
+      "english": "emoji / smiley",
+      "type": "noun",
+      "context": "the everyday Danish word for emoji/emoticon in casual writing",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-skrive-2763",
+      "danish": "skrive",
+      "english": "to write / to text (someone)",
+      "type": "verb",
+      "context": "used casually for texting someone, not only formal writing",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-sende-6423",
+      "danish": "sende",
+      "english": "to send",
+      "type": "verb",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-svare-8046",
+      "danish": "svare",
+      "english": "to reply",
+      "type": "verb",
+      "context": "replying to a message, not the general sense of 'answer'",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-videresende-9063",
+      "danish": "videresende",
+      "english": "to forward",
+      "type": "verb",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-slette-6438",
+      "danish": "slette",
+      "english": "to delete",
+      "type": "verb",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-modtage-4194",
+      "danish": "modtage",
+      "english": "to receive",
+      "type": "verb",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-dele-6017",
+      "danish": "dele",
+      "english": "to share",
+      "type": "verb",
+      "context": "sharing content online, not dividing something",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-chatte-9907",
+      "danish": "chatte",
+      "english": "to chat",
+      "type": "verb",
+      "context": "casual back-and-forth messaging, borrowed from English 'chat'",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-hej-6655",
+      "danish": "Hej!",
+      "english": "Hi!",
+      "type": "phrase",
+      "context": "casual written greeting, e.g. opening a text or chat message",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-vi-ses-8871",
+      "danish": "Vi ses!",
+      "english": "See you!",
+      "type": "phrase",
+      "context": "casual written sign-off",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-skal-vi-ikke-bare-9217",
+      "danish": "Skal vi ikke bare...?",
+      "english": "Why don't we just...?",
+      "type": "pattern",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-det-er-fedt-2736",
+      "danish": "Det er fedt!",
+      "english": "That's awesome!",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-det-er-traels-4637",
+      "danish": "Det er træls",
+      "english": "That's a bummer / annoying",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-hvad-saa-1264",
+      "danish": "Hvad så?",
+      "english": "What's up?",
+      "type": "phrase",
+      "context": "casual opener in a text or chat message",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-er-du-der-1296",
+      "danish": "Er du der?",
+      "english": "Are you there?",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-ring-mig-op-4236",
+      "danish": "Ring mig op",
+      "english": "Call me",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-ikk-7086",
+      "danish": "ikk'",
+      "english": "right? / isn't it",
+      "type": "phrase",
+      "context": "informal short form of 'ikke', tacked onto the end of a sentence as a casual tag seeking agreement",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-naa-7945",
+      "danish": "nå",
+      "english": "oh / well",
+      "type": "phrase",
+      "context": "interjection expressing mild surprise or realization — not the verb 'nå' meaning 'to reach/manage to'",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-oeh-1607",
+      "danish": "øh",
+      "english": "um / uh",
+      "type": "phrase",
+      "context": "hesitation filler used in casual written speech",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-haha-1285",
+      "danish": "haha",
+      "english": "haha",
+      "type": "phrase",
+      "context": "written laughter marker used in texting and chat",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-paa-vej-7269",
+      "danish": "På vej",
+      "english": "On my way",
+      "type": "phrase",
+      "context": "elliptical informal phrase for 'jeg er på vej', subject dropped",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-22-v-kommer-snart-6136",
+      "danish": "Kommer snart",
+      "english": "Coming soon",
+      "type": "phrase",
+      "context": "elliptical informal phrase for 'jeg kommer snart', subject dropped",
+      "module": "A2-22"
+    },
+    {
+      "id": "A2-23-v-serie-8256",
+      "danish": "serie",
+      "english": "series / show",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-saeson-6903",
+      "danish": "sæson",
+      "english": "season",
+      "type": "noun",
+      "context": "a season of a TV series",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-afsnit-9643",
+      "danish": "afsnit",
+      "english": "episode",
+      "type": "noun",
+      "context": "a TV episode, not a section of a document",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-streame-6987",
+      "danish": "streame",
+      "english": "to stream",
+      "type": "verb",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-streamingtjeneste-7674",
+      "danish": "streamingtjeneste",
+      "english": "streaming service",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-kanal-9744",
+      "danish": "kanal",
+      "english": "channel",
+      "type": "noun",
+      "context": "a TV channel",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-udsendelse-4048",
+      "danish": "udsendelse",
+      "english": "broadcast / program",
+      "type": "noun",
+      "context": "a TV or radio broadcast",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-skuespiller-1935",
+      "danish": "skuespiller",
+      "english": "actor",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-instruktoer-2297",
+      "danish": "instruktør",
+      "english": "director",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-anmeldelse-3589",
+      "danish": "anmeldelse",
+      "english": "review",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-premiere-8990",
+      "danish": "premiere",
+      "english": "premiere",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-nomineret-2949",
+      "danish": "nomineret",
+      "english": "nominated",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-vinde-en-pris-8862",
+      "danish": "vinde en pris",
+      "english": "to win an award",
+      "type": "phrase",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-genre-5357",
+      "danish": "genre",
+      "english": "genre",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-krimi-5424",
+      "danish": "krimi",
+      "english": "crime drama / thriller",
+      "type": "noun",
+      "context": "the genre, short for kriminalserie/kriminalroman",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-komedie-4774",
+      "danish": "komedie",
+      "english": "comedy",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-dokumentar-5814",
+      "danish": "dokumentar",
+      "english": "documentary",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-sang-5651",
+      "danish": "sang",
+      "english": "song",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-album-2211",
+      "danish": "album",
+      "english": "album",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-koncert-6728",
+      "danish": "koncert",
+      "english": "concert",
+      "type": "noun",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-kunstner-8865",
+      "danish": "kunstner",
+      "english": "artist",
+      "type": "noun",
+      "context": "a musician or performer",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-har-du-set-2710",
+      "danish": "Har du set...?",
+      "english": "Have you seen...?",
+      "type": "pattern",
+      "context": "used to ask if someone has watched a show or film",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-har-du-hoert-2451",
+      "danish": "Har du hørt...?",
+      "english": "Have you heard...?",
+      "type": "pattern",
+      "context": "used to ask if someone has heard a song or artist",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-synes-om-2720",
+      "danish": "synes om",
+      "english": "to think of / have an opinion about",
+      "type": "phrase",
+      "context": "giving an opinion, as in 'Hvad synes du om...?'",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-kan-lide-9103",
+      "danish": "kan lide",
+      "english": "to like",
+      "type": "phrase",
+      "context": "expressing enjoyment or preference",
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-spaendende-1894",
+      "danish": "spændende",
+      "english": "exciting / suspenseful",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-kedelig-6362",
+      "danish": "kedelig",
+      "english": "boring",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-underholdende-1177",
+      "danish": "underholdende",
+      "english": "entertaining",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-anbefale-3324",
+      "danish": "anbefale",
+      "english": "to recommend",
+      "type": "verb",
+      "context": null,
+      "module": "A2-23"
+    },
+    {
+      "id": "A2-23-v-roerende-7423",
+      "danish": "rørende",
+      "english": "touching / moving",
+      "type": "adjective",
+      "context": null,
+      "module": "A2-23"
+    }
+  ],
+  "grammarConcepts": [
+    {
+      "name": "Present tense (nutid)",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-01-g-present-tense-nutid-2191",
+      "ids": [
+        "A2-01-g-present-tense-nutid-2191",
+        "A2-09-g-present-tense-verbs-of-3177"
+      ],
+      "modules": [
+        "A2-01",
+        "A2-09"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg arbejder som konsulent i en stor virksomhed.",
+          "english": "I work as a consultant in a large company."
+        },
+        {
+          "danish": "Min chef leder afdelingen, og vi løser opgaver sammen.",
+          "english": "My boss manages the department, and we solve tasks together."
+        }
+      ]
+    },
+    {
+      "name": "Main clause word order (SVO)",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-01-g-main-clause-word-order-1801",
+      "ids": [
+        "A2-01-g-main-clause-word-order-1801",
+        "A2-20-g-frequency-adverb-placement-1299",
+        "A2-22-g-main-clause-word-order-9043"
+      ],
+      "modules": [
+        "A2-01",
+        "A2-20",
+        "A2-22"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg arbejder som sygeplejerske på et hospital.",
+          "english": "I work as a nurse at a hospital."
+        },
+        {
+          "danish": "Hun arbejder med rapporter og møder hver dag.",
+          "english": "She works with reports and meetings every day."
+        }
+      ]
+    },
+    {
+      "name": "Preterite / Simple past (datid)",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-02-g-preterite-simple-past-6814",
+      "ids": [
+        "A2-02-g-preterite-simple-past-6814",
+        "A2-12-g-preterite-simple-past-datid-4989"
+      ],
+      "modules": [
+        "A2-02",
+        "A2-12"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg arbejdede hjemmefra i går.",
+          "english": "I worked from home yesterday."
+        },
+        {
+          "danish": "Hun gik i skole og mødte sin ven bagefter.",
+          "english": "She went to school and met her friend afterwards."
+        }
+      ]
+    },
+    {
+      "name": "Inversion (verb-second rule)",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-02-g-inversion-verb-second-rule-1216",
+      "ids": [
+        "A2-02-g-inversion-verb-second-rule-1216",
+        "A2-10-g-inversion-8058",
+        "A2-13-g-inversion-verb-second-rule-2785",
+        "A2-14-g-inversion-verb-second-rule-6165"
+      ],
+      "modules": [
+        "A2-02",
+        "A2-10",
+        "A2-13",
+        "A2-14"
+      ],
+      "examples": [
+        {
+          "danish": "I går tog jeg bussen til arbejde.",
+          "english": "Yesterday I took the bus to work."
+        },
+        {
+          "danish": "For en uge siden var vi til en fest.",
+          "english": "A week ago we were at a party."
+        }
+      ]
+    },
+    {
+      "name": "Present Perfect (førnutid med \"har/er\")",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-03-g-present-perfect-8850",
+      "ids": [
+        "A2-03-g-present-perfect-8850",
+        "A2-11-g-present-perfect-2733",
+        "A2-23-g-present-perfect-7083"
+      ],
+      "modules": [
+        "A2-03",
+        "A2-11",
+        "A2-23"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har boet i Danmark i tre år.",
+          "english": "I have lived in Denmark for three years."
+        },
+        {
+          "danish": "Hun er rejst til Spanien to gange.",
+          "english": "She has traveled to Spain twice."
+        }
+      ]
+    },
+    {
+      "name": "Auxiliary Verb Choice: \"har\" vs. \"er\"",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-03-g-auxiliary-verb-choice-har-1575",
+      "ids": [
+        "A2-03-g-auxiliary-verb-choice-har-1575"
+      ],
+      "modules": [
+        "A2-03"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har spist morgenmad.",
+          "english": "I have eaten breakfast."
+        },
+        {
+          "danish": "Han er flyttet til København.",
+          "english": "He has moved to Copenhagen."
+        }
+      ]
+    },
+    {
+      "name": "Preterite vs. Present Perfect",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-03-g-preterite-vs-present-perfect-5465",
+      "ids": [
+        "A2-03-g-preterite-vs-present-perfect-5465"
+      ],
+      "modules": [
+        "A2-03"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg besøgte Paris i 2019.",
+          "english": "I visited Paris in 2019."
+        },
+        {
+          "danish": "Jeg har besøgt Paris.",
+          "english": "I have visited Paris."
+        }
+      ]
+    },
+    {
+      "name": "Future with skal and vil",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-04-g-future-with-skal-and-1826",
+      "ids": [
+        "A2-04-g-future-with-skal-and-1826",
+        "A2-13-g-future-with-skal-and-6757",
+        "A2-21-g-future-with-skal-and-9221"
+      ],
+      "modules": [
+        "A2-04",
+        "A2-13",
+        "A2-21"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg skal arbejde i morgen.",
+          "english": "I'm going to work tomorrow (it's arranged)."
+        },
+        {
+          "danish": "Jeg vil rejse til Danmark en dag.",
+          "english": "I want to travel to Denmark someday."
+        }
+      ]
+    },
+    {
+      "name": "Infinitive usage after modal and planning verbs",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-04-g-infinitive-usage-6536",
+      "ids": [
+        "A2-04-g-infinitive-usage-6536"
+      ],
+      "modules": [
+        "A2-04"
+      ],
+      "examples": [
+        {
+          "danish": "Vi planlægger at flytte næste år.",
+          "english": "We are planning to move next year."
+        },
+        {
+          "danish": "Hun skal begynde på et nyt job snart.",
+          "english": "She is going to start a new job soon."
+        }
+      ]
+    },
+    {
+      "name": "Duration with \"i\"",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-05-g-duration-with-i-6411",
+      "ids": [
+        "A2-05-g-duration-with-i-6411"
+      ],
+      "modules": [
+        "A2-05"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har boet her i ti år.",
+          "english": "I have lived here for ten years."
+        },
+        {
+          "danish": "Hun arbejdede der i to måneder.",
+          "english": "She worked there for two months."
+        }
+      ]
+    },
+    {
+      "name": "Starting Point with \"siden\"",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-05-g-starting-point-with-siden-3066",
+      "ids": [
+        "A2-05-g-starting-point-with-siden-3066"
+      ],
+      "modules": [
+        "A2-05"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har lært dansk siden sidste år.",
+          "english": "I have been learning Danish since last year."
+        },
+        {
+          "danish": "Han har ikke sovet siden i morges.",
+          "english": "He hasn't slept since this morning."
+        }
+      ]
+    },
+    {
+      "name": "Future Distance with \"om\"",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-05-g-future-distance-with-om-5614",
+      "ids": [
+        "A2-05-g-future-distance-with-om-5614"
+      ],
+      "modules": [
+        "A2-05"
+      ],
+      "examples": [
+        {
+          "danish": "Vi skal rejse om to uger.",
+          "english": "We are traveling in two weeks."
+        },
+        {
+          "danish": "Jeg starter på et nyt job om en måned.",
+          "english": "I'm starting a new job in a month."
+        }
+      ]
+    },
+    {
+      "name": "Past Distance with \"for ... siden\"",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-05-g-past-distance-with-for-4737",
+      "ids": [
+        "A2-05-g-past-distance-with-for-4737"
+      ],
+      "modules": [
+        "A2-05"
+      ],
+      "examples": [
+        {
+          "danish": "Vi flyttede hertil for tre dage siden.",
+          "english": "We moved here three days ago."
+        },
+        {
+          "danish": "Hun fik jobbet for et år siden.",
+          "english": "She got the job a year ago."
+        }
+      ]
+    },
+    {
+      "name": "Double Definiteness",
+      "category": "nouns",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-06-g-double-definiteness-1199",
+      "ids": [
+        "A2-06-g-double-definiteness-1199"
+      ],
+      "modules": [
+        "A2-06"
+      ],
+      "examples": [
+        {
+          "danish": "Det store hus ligger på hjørnet.",
+          "english": "The big house is on the corner."
+        },
+        {
+          "danish": "Jeg kan godt lide den røde dør.",
+          "english": "I really like the red door."
+        }
+      ]
+    },
+    {
+      "name": "Adjective Inflection in Definite Form",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-06-g-adjective-inflection-in-definite-5811",
+      "ids": [
+        "A2-06-g-adjective-inflection-in-definite-5811"
+      ],
+      "modules": [
+        "A2-06"
+      ],
+      "examples": [
+        {
+          "danish": "Vi har lige malet det gamle skab.",
+          "english": "We just painted the old cabinet."
+        },
+        {
+          "danish": "De nye møbler passer godt i stuen.",
+          "english": "The new furniture fits well in the living room."
+        }
+      ]
+    },
+    {
+      "name": "Predicative vs. Attributive Adjectives",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-06-g-predicative-vs-attributive-adjectives-8059",
+      "ids": [
+        "A2-06-g-predicative-vs-attributive-adjectives-8059",
+        "A2-15-g-predicative-vs-attributive-adjectives-7696"
+      ],
+      "modules": [
+        "A2-06",
+        "A2-15"
+      ],
+      "examples": [
+        {
+          "danish": "Den lyse stue er mit yndlingssted i huset.",
+          "english": "The bright living room is my favorite spot in the house."
+        },
+        {
+          "danish": "Stuen er lys og hyggelig om aftenen.",
+          "english": "The living room is bright and cozy in the evening."
+        }
+      ]
+    },
+    {
+      "name": "Definite/Indefinite Articles",
+      "category": "nouns",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-07-g-definiteness-with-body-parts-8792",
+      "ids": [
+        "A2-07-g-definiteness-with-body-parts-8792",
+        "A2-09-g-definite-indefinite-articles-1839"
+      ],
+      "modules": [
+        "A2-07",
+        "A2-09"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har ondt i hovedet.",
+          "english": "I have a headache. (lit. I have pain in the head.)"
+        },
+        {
+          "danish": "Han har ondt i maven og ryggen.",
+          "english": "He has a stomach ache and a backache."
+        }
+      ]
+    },
+    {
+      "name": "Present Perfect (førnutid)",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-07-g-present-perfect-for-symptoms-5411",
+      "ids": [
+        "A2-07-g-present-perfect-for-symptoms-5411"
+      ],
+      "modules": [
+        "A2-07"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg har haft feber i tre dage.",
+          "english": "I have had a fever for three days."
+        },
+        {
+          "danish": "Hun har været syg siden i går.",
+          "english": "She has been sick since yesterday."
+        }
+      ]
+    },
+    {
+      "name": "Modal Verbs (kan, skal, vil, må, bør)",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-07-g-modal-verbs-for-health-1098",
+      "ids": [
+        "A2-07-g-modal-verbs-for-health-1098",
+        "A2-11-g-modal-verbs-9553",
+        "A2-12-g-modal-verbs-kan-skal-6601",
+        "A2-17-g-modal-verbs-polite-requests-8179"
+      ],
+      "modules": [
+        "A2-07",
+        "A2-11",
+        "A2-12",
+        "A2-17"
+      ],
+      "examples": [
+        {
+          "danish": "Du skal blive hjemme, hvis du har feber.",
+          "english": "You must stay home if you have a fever."
+        },
+        {
+          "danish": "Du bør ringe til lægen og bestille en tid.",
+          "english": "You ought to call the doctor and book an appointment."
+        }
+      ]
+    },
+    {
+      "name": "Comparative Adjectives (større, billigere, bedre)",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-08-g-comparative-adjectives-1419",
+      "ids": [
+        "A2-08-g-comparative-adjectives-1419"
+      ],
+      "modules": [
+        "A2-08"
+      ],
+      "examples": [
+        {
+          "danish": "Den her taske er billigere end den der.",
+          "english": "This bag is cheaper than that one."
+        },
+        {
+          "danish": "Har I en større størrelse?",
+          "english": "Do you have a bigger size?"
+        }
+      ]
+    },
+    {
+      "name": "Modal Verb 'kan' for Polite Requests",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-08-g-modal-kan-polite-requests-5392",
+      "ids": [
+        "A2-08-g-modal-kan-polite-requests-5392"
+      ],
+      "modules": [
+        "A2-08"
+      ],
+      "examples": [
+        {
+          "danish": "Kan jeg få en kvittering?",
+          "english": "Can I have a receipt?"
+        },
+        {
+          "danish": "Kan jeg bytte den her til en anden størrelse?",
+          "english": "Can I exchange this for a different size?"
+        }
+      ]
+    },
+    {
+      "name": "Causal/conditional connectors",
+      "category": "connectors",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-10-g-causal-conditional-connectors-9374",
+      "ids": [
+        "A2-10-g-causal-conditional-connectors-9374",
+        "A2-13-g-causalconditional-connectors-7090"
+      ],
+      "modules": [
+        "A2-10",
+        "A2-13"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg bliver hjemme, fordi jeg er syg.",
+          "english": "I'm staying home because I'm sick."
+        },
+        {
+          "danish": "Vi tager en paraply med, hvis det regner.",
+          "english": "We'll bring an umbrella if it rains."
+        }
+      ]
+    },
+    {
+      "name": "Infinitive usage",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-12-g-infinitive-usage-7260",
+      "ids": [
+        "A2-12-g-infinitive-usage-7260",
+        "A2-17-g-infinitive-usage-6228"
+      ],
+      "modules": [
+        "A2-12",
+        "A2-17"
+      ],
+      "examples": [
+        {
+          "danish": "Har du lyst til at smage min hovedret?",
+          "english": "Do you feel like tasting my main course?"
+        },
+        {
+          "danish": "Vi kan dele en dessert bagefter.",
+          "english": "We can share a dessert afterwards."
+        }
+      ]
+    },
+    {
+      "name": "Question formation",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-14-g-question-formation-9248",
+      "ids": [
+        "A2-14-g-question-formation-9248",
+        "A2-22-g-question-formation-6132"
+      ],
+      "modules": [
+        "A2-14",
+        "A2-22"
+      ],
+      "examples": [
+        {
+          "danish": "Har du nogen planer for weekenden?",
+          "english": "Do you have any plans for the weekend?"
+        },
+        {
+          "danish": "Det er ret koldt i dag, ikke også?",
+          "english": "It's quite cold today, isn't it?"
+        }
+      ]
+    },
+    {
+      "name": "Comparison (større, størst)",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-15-g-comparison-stoerre-stoerst-9013",
+      "ids": [
+        "A2-15-g-comparison-stoerre-stoerst-9013"
+      ],
+      "modules": [
+        "A2-15"
+      ],
+      "examples": [
+        {
+          "danish": "Han er højere end sin bror.",
+          "english": "He is taller than his brother."
+        },
+        {
+          "danish": "Hun er den venligste person, jeg kender.",
+          "english": "She is the friendliest person I know."
+        }
+      ]
+    },
+    {
+      "name": "Basic adjective agreement (en/et/plural)",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-15-g-basic-adjective-agreement-enetplural-2035",
+      "ids": [
+        "A2-15-g-basic-adjective-agreement-enetplural-2035"
+      ],
+      "modules": [
+        "A2-15"
+      ],
+      "examples": [
+        {
+          "danish": "Barnet er genert.",
+          "english": "The child is shy."
+        },
+        {
+          "danish": "De er meget venlige.",
+          "english": "They are very friendly."
+        }
+      ]
+    },
+    {
+      "name": "Passive Voice with \"blive\" (basics)",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-16-g-passive-voice-with-blive-4704",
+      "ids": [
+        "A2-16-g-passive-voice-with-blive-4704"
+      ],
+      "modules": [
+        "A2-16"
+      ],
+      "examples": [
+        {
+          "danish": "Det blev besluttet i går.",
+          "english": "It was decided yesterday."
+        },
+        {
+          "danish": "Borgmesteren blev valgt for anden gang.",
+          "english": "The mayor was elected for the second time."
+        }
+      ]
+    },
+    {
+      "name": "Formal News Register vs. Spoken Danish",
+      "category": "advanced",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-16-g-formal-news-register-vs-6932",
+      "ids": [
+        "A2-16-g-formal-news-register-vs-6932"
+      ],
+      "modules": [
+        "A2-16"
+      ],
+      "examples": [
+        {
+          "danish": "Ifølge regeringen er krisen ovre.",
+          "english": "According to the government, the crisis is over."
+        },
+        {
+          "danish": "Ministeren meddelte nyheden i dag.",
+          "english": "The minister announced the news today."
+        }
+      ]
+    },
+    {
+      "name": "Question formation (formal register)",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-17-g-question-formation-formal-register-5621",
+      "ids": [
+        "A2-17-g-question-formation-formal-register-5621"
+      ],
+      "modules": [
+        "A2-17"
+      ],
+      "examples": [
+        {
+          "danish": "Hvad drejer det sig om, og hvordan kan jeg hjælpe?",
+          "english": "What is it regarding, and how can I help?"
+        },
+        {
+          "danish": "Kan jeg få en tid hos en sagsbehandler i morgen?",
+          "english": "Can I get an appointment with a caseworker tomorrow?"
+        }
+      ]
+    },
+    {
+      "name": "Contrast connectors",
+      "category": "connectors",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-18-g-contrast-connectors-7064",
+      "ids": [
+        "A2-18-g-contrast-connectors-7064"
+      ],
+      "modules": [
+        "A2-18"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg kan godt lide kaffe, men jeg foretrækker te om aftenen.",
+          "english": "I like coffee, but I prefer tea in the evening."
+        },
+        {
+          "danish": "På den anden side har han da også ret i noget.",
+          "english": "On the other hand, he is also right about something."
+        }
+      ]
+    },
+    {
+      "name": "Comparison of adjectives",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-18-g-comparison-of-adjectives-1368",
+      "ids": [
+        "A2-18-g-comparison-of-adjectives-1368"
+      ],
+      "modules": [
+        "A2-18"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg synes, denne løsning er bedre end den gamle.",
+          "english": "I think this solution is better than the old one."
+        },
+        {
+          "danish": "Efter min mening er situationen værre end sidste år.",
+          "english": "In my opinion, the situation is worse than last year."
+        }
+      ]
+    },
+    {
+      "name": "Personal Pronouns: Formal \"De\" vs. Informal \"du\"",
+      "category": "pronouns",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-19-g-formal-de-vs-du-3845",
+      "ids": [
+        "A2-19-g-formal-de-vs-du-3845"
+      ],
+      "modules": [
+        "A2-19"
+      ],
+      "examples": [
+        {
+          "danish": "Kunne De bekræfte mødet i morgen?",
+          "english": "Could you (formal) confirm the meeting tomorrow?"
+        },
+        {
+          "danish": "Jeg sender Dem dagsordenen vedhæftet.",
+          "english": "I am sending you (formal) the agenda attached."
+        }
+      ]
+    },
+    {
+      "name": "Modal Phrases for Politeness (vil gerne, kunne, må jeg)",
+      "category": "verbs",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-19-g-modal-phrases-for-politeness-3990",
+      "ids": [
+        "A2-19-g-modal-phrases-for-politeness-3990"
+      ],
+      "modules": [
+        "A2-19"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg vil gerne booke et møde med Dem.",
+          "english": "I would like to book a meeting with you."
+        },
+        {
+          "danish": "Kunne vi flytte mødet til fredag?",
+          "english": "Could we reschedule the meeting to Friday?"
+        }
+      ]
+    },
+    {
+      "name": "Inversion in Formal Written Openings",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-19-g-inversion-in-formal-written-4035",
+      "ids": [
+        "A2-19-g-inversion-in-formal-written-4035"
+      ],
+      "modules": [
+        "A2-19"
+      ],
+      "examples": [
+        {
+          "danish": "Hermed bekræfter jeg vores møde på tirsdag.",
+          "english": "Hereby I confirm our meeting on Tuesday."
+        },
+        {
+          "danish": "Vedrørende dagsordenen har jeg et par kommentarer.",
+          "english": "Regarding the agenda, I have a few comments."
+        }
+      ]
+    },
+    {
+      "name": "Present tense for habits and routines",
+      "category": "tenses",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-20-g-habitual-present-tense-9310",
+      "ids": [
+        "A2-20-g-habitual-present-tense-9310"
+      ],
+      "modules": [
+        "A2-20"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg spiller fodbold hver weekend.",
+          "english": "I play football every weekend."
+        },
+        {
+          "danish": "Hun løber tre gange om ugen.",
+          "english": "She runs three times a week."
+        }
+      ]
+    },
+    {
+      "name": "Prepositions for days and clock time",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-21-g-prepositions-for-days-and-9936",
+      "ids": [
+        "A2-21-g-prepositions-for-days-and-9936"
+      ],
+      "modules": [
+        "A2-21"
+      ],
+      "examples": [
+        {
+          "danish": "Skal vi ikke ses på lørdag klokken tre?",
+          "english": "Shall we meet up on Saturday at three?"
+        },
+        {
+          "danish": "Vi plejer at spille fodbold om fredagen.",
+          "english": "We usually play football on Fridays."
+        }
+      ]
+    },
+    {
+      "name": "Polite decline with 'desværre' and negation",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-21-g-polite-decline-with-desvaerre-2326",
+      "ids": [
+        "A2-21-g-polite-decline-with-desvaerre-2326"
+      ],
+      "modules": [
+        "A2-21"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg kan desværre ikke komme til festen.",
+          "english": "Unfortunately I can't come to the party."
+        },
+        {
+          "danish": "Vi kan desværre ikke mødes i morgen.",
+          "english": "Unfortunately we can't meet up tomorrow."
+        }
+      ]
+    },
+    {
+      "name": "Negation placement (ikke)",
+      "category": "sentence_structure",
+      "cefrLevelIntroduced": "A1",
+      "representativeId": "A2-22-g-negation-placement-5061",
+      "ids": [
+        "A2-22-g-negation-placement-5061"
+      ],
+      "modules": [
+        "A2-22"
+      ],
+      "examples": [
+        {
+          "danish": "Jeg kommer ikke i aften.",
+          "english": "I'm not coming tonight."
+        },
+        {
+          "danish": "Vi ses klokken syv, ikk'?",
+          "english": "We're meeting at seven, right?"
+        }
+      ]
+    },
+    {
+      "name": "Predicative vs. attributive use",
+      "category": "adjectives",
+      "cefrLevelIntroduced": "A2",
+      "representativeId": "A2-23-g-predicative-vs-attributive-adjectives-6878",
+      "ids": [
+        "A2-23-g-predicative-vs-attributive-adjectives-6878"
+      ],
+      "modules": [
+        "A2-23"
+      ],
+      "examples": [
+        {
+          "danish": "Det var kedeligt at se hele sæsonen på én aften.",
+          "english": "It was boring to watch the whole season in one evening."
+        },
+        {
+          "danish": "Filmen var faktisk slet ikke kedelig.",
+          "english": "The film was actually not boring at all."
+        }
+      ]
+    }
+  ]
+}
