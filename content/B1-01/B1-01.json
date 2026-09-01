@@ -1,0 +1,42 @@
+{
+  "id": "danish-B1-01",
+  "title": "The Danish Workplace",
+  "theme": "Office culture and professional norms",
+  "communicationGoal": "Navigate Danish work culture: flat hierarchy, direct communication style, consensus decision-making, work-life balance",
+  "cefrLevel": "B1",
+  "vocabularyItemIds": [
+    "B1-01-v-arbejdsplads-4087",
+    "B1-01-v-kollega-7099",
+    "B1-01-v-leder-2672",
+    "B1-01-v-medarbejder-9588",
+    "B1-01-v-hierarki-8803",
+    "B1-01-v-konsensus-3649",
+    "B1-01-v-tillid-6721",
+    "B1-01-v-ansvar-7194",
+    "B1-01-v-feedback-7138",
+    "B1-01-v-balance-3445",
+    "B1-01-v-arbejdsliv-3174",
+    "B1-01-v-fritid-7041",
+    "B1-01-v-hygge-1876",
+    "B1-01-v-flad-6624",
+    "B1-01-v-direkte-7883",
+    "B1-01-v-uformel-8251",
+    "B1-01-v-formel-6312",
+    "B1-01-v-fleksibel-3849",
+    "B1-01-v-selvstaendig-1078",
+    "B1-01-v-stole-paa-9036",
+    "B1-01-v-tage-ansvar-4411",
+    "B1-01-v-naa-til-enighed-7258",
+    "B1-01-v-samarbejde-1444",
+    "B1-01-v-give-feedback-6053",
+    "B1-01-v-sige-sin-mening-8497",
+    "B1-01-v-forpligte-sig-8557"
+  ],
+  "grammarConceptIds": [
+    "B1-01-g-modal-verbs-2787",
+    "B1-01-g-subordinate-clause-word-order-8534",
+    "B1-01-g-reflexive-verbs-9360"
+  ],
+  "createdAt": "2026-08-31T00:00:00Z",
+  "isUserGenerated": false
+}

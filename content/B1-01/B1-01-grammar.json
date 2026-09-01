@@ -1,0 +1,35 @@
+[
+  {
+    "id": "B1-01-g-modal-verbs-2787",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Modal verbs signal how formal or direct a statement sounds — this matters a lot in Danish workplace register. 'Skal' states an obligation directly and can sound blunt or very direct in a professional setting, while 'bør' ('should/ought to') softens the same idea and is common in more formal or hierarchical communication. 'Kan' expresses ability or possibility, and 'vil' expresses intention or willingness. Choosing between them lets you shift a sentence from informal and direct to formal and polite without changing its basic meaning.",
+    "examples": [
+      { "danish": "Du skal aflevere rapporten i dag.", "english": "You must hand in the report today." },
+      { "danish": "Du bør aflevere rapporten i dag.", "english": "You should hand in the report today." }
+    ]
+  },
+  {
+    "id": "B1-01-g-subordinate-clause-word-order-8534",
+    "name": "Subordinate Clause Word Order",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "B1",
+    "explanation": "In a subordinate clause — one introduced by a connector like 'at', 'fordi', 'hvis' or 'når' — an adverb such as 'ikke' moves to before the verb, the reverse of its position in a main clause. This word order shows up constantly in professional Danish when reporting opinions, explaining reasons, or summarizing what was said or decided at work.",
+    "examples": [
+      { "danish": "Jeg tror, at vi ikke når deadline.", "english": "I think that we won't make the deadline." },
+      { "danish": "Han sagde, at han ikke var enig i beslutningen.", "english": "He said that he did not agree with the decision." }
+    ]
+  },
+  {
+    "id": "B1-01-g-reflexive-verbs-9360",
+    "name": "Reflexive Verbs",
+    "category": "verbs",
+    "cefrLevelIntroduced": "B1",
+    "explanation": "Some Danish verbs require a reflexive pronoun ('sig', 'mig', 'dig', etc.) that matches the subject, even where the English equivalent has no reflexive pronoun at all. Several verbs about professional commitment and involvement work this way — for example 'forpligte sig' (to commit oneself). The pronoun changes with the subject: 'jeg forpligter mig', 'han forpligter sig', 'vi forpligter os'.",
+    "examples": [
+      { "danish": "Vi forpligter os til at levere kvalitet.", "english": "We commit ourselves to delivering quality." },
+      { "danish": "Hun forpligter sig til projektet i seks måneder.", "english": "She commits herself to the project for six months." }
+    ]
+  }
+]

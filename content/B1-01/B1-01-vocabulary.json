@@ -1,0 +1,262 @@
+[
+  {
+    "id": "B1-01-v-arbejdsplads-4087",
+    "danish": "arbejdsplads",
+    "english": "workplace",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-kollega-7099",
+    "danish": "kollega",
+    "english": "colleague",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-leder-2672",
+    "danish": "leder",
+    "english": "manager / leader",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "hierarchy"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-medarbejder-9588",
+    "danish": "medarbejder",
+    "english": "employee",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "hierarchy"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-hierarki-8803",
+    "danish": "hierarki",
+    "english": "hierarchy",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "hierarchy"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-konsensus-3649",
+    "danish": "konsensus",
+    "english": "consensus",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "decision-making"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-tillid-6721",
+    "danish": "tillid",
+    "english": "trust",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "trust-responsibility"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-ansvar-7194",
+    "danish": "ansvar",
+    "english": "responsibility",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "trust-responsibility"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-feedback-7138",
+    "danish": "feedback",
+    "english": "feedback",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "communication"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-balance-3445",
+    "danish": "balance",
+    "english": "balance",
+    "type": "noun",
+    "context": "work-life balance",
+    "tags": ["workplace", "work-life-balance"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-arbejdsliv-3174",
+    "danish": "arbejdsliv",
+    "english": "work life",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "work-life-balance"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-fritid-7041",
+    "danish": "fritid",
+    "english": "leisure time / free time",
+    "type": "noun",
+    "context": null,
+    "tags": ["workplace", "work-life-balance"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-hygge-1876",
+    "danish": "hygge",
+    "english": "coziness / togetherness",
+    "type": "noun",
+    "context": "workplace culture — a relaxed, sociable atmosphere among colleagues",
+    "tags": ["workplace", "culture"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-flad-6624",
+    "danish": "flad",
+    "english": "flat",
+    "type": "adjective",
+    "context": "organizational structure",
+    "tags": ["workplace", "hierarchy"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-direkte-7883",
+    "danish": "direkte",
+    "english": "direct / straightforward",
+    "type": "adjective",
+    "context": "communication style",
+    "tags": ["workplace", "communication"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-uformel-8251",
+    "danish": "uformel",
+    "english": "informal",
+    "type": "adjective",
+    "context": null,
+    "tags": ["workplace", "communication"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-formel-6312",
+    "danish": "formel",
+    "english": "formal",
+    "type": "adjective",
+    "context": null,
+    "tags": ["workplace", "communication"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-fleksibel-3849",
+    "danish": "fleksibel",
+    "english": "flexible",
+    "type": "adjective",
+    "context": null,
+    "tags": ["workplace", "work-life-balance"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-selvstaendig-1078",
+    "danish": "selvstændig",
+    "english": "independent / self-reliant",
+    "type": "adjective",
+    "context": null,
+    "tags": ["workplace", "hierarchy"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-stole-paa-9036",
+    "danish": "stole på",
+    "english": "to trust",
+    "type": "phrase",
+    "context": null,
+    "tags": ["workplace", "trust-responsibility"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-tage-ansvar-4411",
+    "danish": "tage ansvar",
+    "english": "to take responsibility",
+    "type": "phrase",
+    "context": null,
+    "tags": ["workplace", "trust-responsibility"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-naa-til-enighed-7258",
+    "danish": "nå til enighed",
+    "english": "to reach agreement / consensus",
+    "type": "phrase",
+    "context": null,
+    "tags": ["workplace", "decision-making"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-samarbejde-1444",
+    "danish": "samarbejde",
+    "english": "to collaborate",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace", "decision-making"],
+    "cefrLevel": "A2",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-give-feedback-6053",
+    "danish": "give feedback",
+    "english": "to give feedback",
+    "type": "phrase",
+    "context": null,
+    "tags": ["workplace", "communication"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-sige-sin-mening-8497",
+    "danish": "sige sin mening",
+    "english": "to speak one's mind",
+    "type": "phrase",
+    "context": null,
+    "tags": ["workplace", "communication"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  },
+  {
+    "id": "B1-01-v-forpligte-sig-8557",
+    "danish": "forpligte sig",
+    "english": "to commit oneself",
+    "type": "verb",
+    "context": null,
+    "tags": ["workplace", "trust-responsibility"],
+    "cefrLevel": "B1",
+    "source": "curriculum"
+  }
+]
