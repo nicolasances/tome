@@ -5,9 +5,6 @@ import { CefrLevel } from '@/api/TomeLearningDashboardAPI';
 
 const CEFR_LEVELS: CefrLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
-/** Maximum number of module dots to render to avoid overflow on narrow screens. */
-const MAX_DOTS = 16;
-
 interface LevelTrackProps {
     /** If a title is wanted, to be displayed above the level track */
     title?: string; 
@@ -30,7 +27,7 @@ interface LevelTrackProps {
  * Handles its own loading (skeleton) and error states via props.
  * Current level is enlarged and lime-filled.
  * Completed levels are lime-filled. Future levels are outlined only.
- * Below: level name and a row of module-completion dots.
+ * Below: a wrapping row of module-completion dots, one per module at the level.
  * Static — not interactive.
  */
 export function LevelTrack({
@@ -79,7 +76,6 @@ export function LevelTrack({
     }
 
     const activeIndex = CEFR_LEVELS.indexOf(cefrLevel);
-    const visibleDots = Math.min(totalModules, MAX_DOTS);
 
     return (
         <div>
@@ -112,14 +108,11 @@ export function LevelTrack({
                 })}
             </div>
 
-            {/* ── Level name + module dots ─────────────────────── */}
-            <div className="flex items-center justify-between mt-3.5">
-                <span className="text-sm font-bold text-black/80">{levelName}</span>
-                <div className="flex gap-1.5">
-                    {Array.from({ length: visibleDots }).map((_, i) => (
-                        <ModuleDot key={i} completed={i < completedModules} />
-                    ))}
-                </div>
+            {/* ── Module dots ───────────────────────────────────── */}
+            <div className="flex flex-wrap items-center gap-1.5 mt-3.5">
+                {Array.from({ length: totalModules }).map((_, i) => (
+                    <ModuleDot key={i} completed={i < completedModules} />
+                ))}
             </div>
         </div>
     );
