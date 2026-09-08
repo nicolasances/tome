@@ -1,6 +1,7 @@
 'use client';
 
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { useEnterToConfirm } from '@/utils/useEnterToConfirm';
 
 function FeatureRow({icon, label}: {icon: string, label: string}) {
     return (
@@ -23,6 +24,8 @@ interface TestReadyProps {
 }
 
 export function TestReady({kicker, title, questionCount, passThreshold, onStart, isStarting}: TestReadyProps) {
+    useEnterToConfirm(onStart, isStarting);
+
     const features = [
         { icon: '/images/book.svg', label: `${questionCount} questions` },
         { icon: '/images/tick.svg', label: `${passThreshold}% to pass` },
