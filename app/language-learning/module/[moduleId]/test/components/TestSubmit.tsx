@@ -1,5 +1,7 @@
 'use client';
 
+import { useEnterToConfirm } from '@/utils/useEnterToConfirm';
+
 interface TestSubmitProps {
     totalCount: number;
     onSubmit: () => void;
@@ -7,6 +9,8 @@ interface TestSubmitProps {
 }
 
 export function TestSubmit({totalCount, onSubmit, isSubmitting}: TestSubmitProps) {
+    useEnterToConfirm(onSubmit, isSubmitting);
+
     return (
         <div className="flex flex-1 flex-col items-center px-5 pt-10 pb-4">
             <div className="flex flex-col items-center gap-1 mb-8">

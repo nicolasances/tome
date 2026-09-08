@@ -2,6 +2,7 @@
 
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { CefrLevel, CEFR_LEVEL_NAMES } from '@/api/TomeLearningDashboardAPI';
+import { useEnterToConfirm } from '@/utils/useEnterToConfirm';
 
 /** Presentational only — no backend endpoint exposes these yet (OQ-5). Kept in sync with tome-ms-language's Config.ts by hand. */
 export const LEVEL_TEST_SIZE = 40;
@@ -36,6 +37,8 @@ interface LevelTestReadyProps {
 }
 
 export function LevelTestReady({currentCefrLevel, onStart, isStarting}: LevelTestReadyProps) {
+    useEnterToConfirm(onStart, isStarting);
+
     const currentLevelName = CEFR_LEVEL_NAMES[currentCefrLevel];
     const nextLevel = nextCefrLevel(currentCefrLevel);
 
