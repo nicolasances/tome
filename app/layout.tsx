@@ -36,12 +36,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        {/* <link
-          rel="apple-touch-icon"
-          href="/apple-icon?<generated>"
-          type="image/<generated>"\
-          sizes="<generated>"
-        /> */}
         <title>Tome</title>
       </head>
       <body
