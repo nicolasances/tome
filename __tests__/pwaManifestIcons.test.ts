@@ -90,6 +90,19 @@ describe('PWA manifest icons', () => {
         expect(await alphaAt(file, 0, 0)).toBe(0);
     });
 
+    // macOS 26+ only accepts an .icns-only app icon without the grey plate when it follows Apple's
+    // pre-26 icon template, drop shadow included (checked on macOS 27 for #343).
+    it.each(pngIcons.filter(icon => icon.purpose === 'any').map(icon => [icon.src]))('"any" icon %s has a drop shadow just below the rounded shape', async (src) => {
+        const file = resolveIconFile(src)!;
+        const { width } = await sharp(file).metadata();
+        const bodyBottom = Math.round(width! * 924 / 1024);
+
+        const shadowAlpha = await alphaAt(file, Math.floor(width! / 2), bodyBottom + Math.max(1, Math.round(width! * 4 / 1024)));
+
+        expect(shadowAlpha).toBeGreaterThan(0);
+        expect(shadowAlpha).toBeLessThan(255);
+    });
+
     it.each(pngIcons.filter(icon => icon.purpose === 'any').map(icon => [icon.src]))('"any" icon %s is opaque in the centre', async (src) => {
         const file = resolveIconFile(src)!;
         const { width, height } = await sharp(file).metadata();

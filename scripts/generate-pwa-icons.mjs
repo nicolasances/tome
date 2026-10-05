@@ -3,9 +3,11 @@
  *
  * Outputs:
  * - public/icon-macos-512.png, public/icon-macos-192.png: manifest icons with purpose "any".
- *   The artwork is cut into the macOS rounded-square ("squircle") shape and sits on a transparent canvas
- *   following the macOS app icon grid (body = 824/1024 of the canvas). Chrome builds the macOS dock icon
- *   from these; macOS 26+ puts icons that don't follow this shape on a grey tile.
+ *   The artwork follows Apple's pre-macOS 26 app icon template: a rounded rectangle inset by 100/1024 with a
+ *   184/1024 corner radius, on a transparent canvas, with a soft drop shadow. Chrome copies these unchanged into
+ *   the macOS app's app.icns. macOS 26+ puts .icns icons that don't follow this template (shadow included) on a
+ *   grey plate (#343). The template values match Chromium's own Apple icon mask (chrome/browser/web_applications/
+ *   os_integration/mac/icon_utils.mm).
  * - public/apple-touch-icon.png: 180x180, opaque, for Safari "Add to Dock" and iOS home screen.
  *
  * public/logo512.png is only the source image: it is not declared in the manifest, because Chrome on macOS
@@ -20,39 +22,31 @@ import sharp from 'sharp';
 const PUBLIC_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'public');
 const MASTER_ICON = path.join(PUBLIC_DIR, 'logo512.png');
 
-const MACOS_BODY_RATIO = 824 / 1024;      // Size of the icon body relative to the canvas, per the macOS app icon grid.
-const SQUIRCLE_EXPONENT = 5;              // Superellipse exponent approximating the macOS continuous-corner rounded square.
-const SQUIRCLE_POINTS = 720;              // Number of points used to draw the superellipse outline.
-const BRAND_COLOR = '#00acc1';            // Tome theme colour, used to flatten the Apple touch icon.
+const TEMPLATE_INSET = 100 / 1024;            // Distance between the canvas edge and the icon body, relative to the canvas.
+const TEMPLATE_CORNER_RADIUS = 184 / 1024;    // Corner radius of the icon body, relative to the canvas.
+const SHADOW_OFFSET_Y = 10 / 1024;            // Vertical offset of the drop shadow, relative to the canvas.
+const SHADOW_BLUR = 10 / 1024;                // Blur radius of the drop shadow, relative to the canvas.
+const SHADOW_OPACITY = 77 / 255;              // Opacity of the (black) drop shadow.
+const BRAND_COLOR = '#00acc1';                // Tome theme colour, used to flatten the Apple touch icon.
 
 /**
- * Builds an SVG of a filled superellipse that fills a square of the given size.
+ * Builds the SVG rounded rectangle of the icon body for a canvas of the given size.
  *
- * @param {number} size - the side of the square, in pixels
+ * @param {number} canvasSize - the side of the canvas, in pixels
  *
- * @returns {Buffer} the SVG, ready to be used as a sharp input
+ * @returns {string} the SVG <rect> element
  */
-function squircleSvg(size) {
+function bodyRect(canvasSize) {
 
-    const half = size / 2;
-    const points = [];
+    const inset = canvasSize * TEMPLATE_INSET;
+    const side = canvasSize - 2 * inset;
 
-    for (let i = 0; i < SQUIRCLE_POINTS; i++) {
-
-        const t = (2 * Math.PI * i) / SQUIRCLE_POINTS;
-        const cos = Math.cos(t);
-        const sin = Math.sin(t);
-        const x = half + half * Math.sign(cos) * Math.pow(Math.abs(cos), 2 / SQUIRCLE_EXPONENT);
-        const y = half + half * Math.sign(sin) * Math.pow(Math.abs(sin), 2 / SQUIRCLE_EXPONENT);
-
-        points.push(`${x.toFixed(3)},${y.toFixed(3)}`);
-    }
-
-    return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><polygon points="${points.join(' ')}" fill="#fff"/></svg>`);
+    return `<rect x="${inset}" y="${inset}" width="${side}" height="${side}" rx="${canvasSize * TEMPLATE_CORNER_RADIUS}"/>`;
 }
 
 /**
- * Renders the master icon as a macOS-shaped icon: scaled to the icon body, cut into a squircle and centred on a transparent canvas.
+ * Renders the master icon following Apple's app icon template: scaled to the icon body, cut into a rounded rectangle,
+ * centred on a transparent canvas and lifted by a soft drop shadow.
  *
  * @param {number} canvasSize - the side of the output canvas, in pixels
  *
@@ -60,12 +54,15 @@ function squircleSvg(size) {
  */
 async function macosIcon(canvasSize) {
 
-    const bodySize = Math.round(canvasSize * MACOS_BODY_RATIO);
-    const margin = Math.floor((canvasSize - bodySize) / 2);
+    const inset = Math.round(canvasSize * TEMPLATE_INSET);
+    const bodySize = canvasSize - 2 * inset;
 
-    const body = await sharp(MASTER_ICON).resize(bodySize, bodySize).composite([{ input: squircleSvg(bodySize), blend: 'dest-in' }]).png().toBuffer();
+    const mask = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${canvasSize}" height="${canvasSize}"><g fill="#fff">${bodyRect(canvasSize)}</g></svg>`);
+    const shadow = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${canvasSize}" height="${canvasSize}"><defs><filter id="blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${canvasSize * SHADOW_BLUR / 2}"/></filter></defs><g transform="translate(0 ${canvasSize * SHADOW_OFFSET_Y})" filter="url(#blur)" fill="#000" fill-opacity="${SHADOW_OPACITY}">${bodyRect(canvasSize)}</g></svg>`);
 
-    return sharp(body).extend({ top: margin, left: margin, bottom: canvasSize - bodySize - margin, right: canvasSize - bodySize - margin, background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
+    const body = await sharp(MASTER_ICON).resize(bodySize, bodySize).extend({ top: inset, left: inset, bottom: inset, right: inset, background: BRAND_COLOR }).composite([{ input: mask, blend: 'dest-in' }]).png().toBuffer();
+
+    return sharp(shadow).composite([{ input: body }]).png().toBuffer();
 }
 
 /**
