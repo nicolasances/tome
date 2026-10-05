@@ -7,8 +7,8 @@ import sharp from 'sharp';
  *
  * macOS 26+ shrinks app icons that don't fill its rounded-square shape onto a grey tile.
  * Chrome builds the macOS dock icon from the manifest, so the "any" icons must already
- * carry the macOS shape (transparent corners), while "maskable" icons stay full-bleed
- * for platforms that apply their own mask (Android).
+ * carry the macOS shape (transparent corners). Chrome 154 on macOS was observed to pick
+ * the "maskable" icon and copy it in without rounding it (#343), so no "maskable" icons may be declared.
  */
 
 interface ManifestIcon {
@@ -68,10 +68,10 @@ describe('PWA manifest icons', () => {
         expect(any512).toBeDefined();
     });
 
-    it('declares a 512x512 PNG for purpose "maskable"', () => {
-        const maskable512 = pngIcons.find(icon => icon.purpose === 'maskable' && icon.sizes === '512x512');
+    it('declares no "maskable" icons, so Chrome on macOS builds the dock icon from the macOS-shaped "any" icons', () => {
+        const maskable = icons.filter(icon => icon.purpose === 'maskable');
 
-        expect(maskable512).toBeDefined();
+        expect(maskable).toEqual([]);
     });
 
     it.each(icons.map(icon => [icon.src]))('serves a file for %s', (src) => {
@@ -95,11 +95,5 @@ describe('PWA manifest icons', () => {
         const { width, height } = await sharp(file).metadata();
 
         expect(await alphaAt(file, Math.floor(width! / 2), Math.floor(height! / 4))).toBe(255);
-    });
-
-    it.each(pngIcons.filter(icon => icon.purpose === 'maskable').map(icon => [icon.src]))('"maskable" icon %s is full-bleed (opaque corners)', async (src) => {
-        const file = resolveIconFile(src)!;
-
-        expect(await alphaAt(file, 0, 0)).toBe(255);
     });
 });
