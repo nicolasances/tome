@@ -8,7 +8,8 @@
  *   from these; macOS 26+ puts icons that don't follow this shape on a grey tile.
  * - public/apple-touch-icon.png: 180x180, opaque, for Safari "Add to Dock" and iOS home screen.
  *
- * public/logo192.png and public/logo512.png are the full-bleed "maskable" icons and are not touched.
+ * public/logo512.png is only the source image: it is not declared in the manifest, because Chrome on macOS
+ * builds the dock icon from a full-bleed "maskable" icon without rounding it (#343).
  *
  * Usage: node scripts/generate-pwa-icons.mjs
  */
