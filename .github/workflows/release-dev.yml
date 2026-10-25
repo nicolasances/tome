@@ -7,6 +7,10 @@ on:
       - 'issue/**'
       - dev
       - main
+    paths-ignore: 
+      - 'docs/**'
+      - '**.md'
+      - 'content/**'
 
 jobs:
   # This workflow contains a single job called "release"
