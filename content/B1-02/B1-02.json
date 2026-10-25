@@ -1,0 +1,40 @@
+{
+  "id": "danish-B1-02",
+  "title": "Participating in Meetings (Basics)",
+  "theme": "Meetings and professional discourse",
+  "communicationGoal": "Follow and contribute to a basic Danish business meeting: agree, clarify, ask questions, summarize",
+  "cefrLevel": "B1",
+  "vocabularyItemIds": [
+    "B1-02-v-dagsorden-4047",
+    "B1-02-v-referat-3294",
+    "B1-02-v-punkt-3034",
+    "B1-02-v-opfoelgning-8163",
+    "B1-02-v-beslutning-8773",
+    "B1-02-v-afstemning-8535",
+    "B1-02-v-ordstyrer-9942",
+    "B1-02-v-pause-9507",
+    "B1-02-v-forslag-9099",
+    "B1-02-v-enig-2434",
+    "B1-02-v-uenig-6064",
+    "B1-02-v-tilfoeje-9531",
+    "B1-02-v-klarificere-4963",
+    "B1-02-v-foreslaa-3548",
+    "B1-02-v-opsummere-9984",
+    "B1-02-v-tage-ordet-6830",
+    "B1-02-v-maa-jeg-sige-noget-1481",
+    "B1-02-v-jeg-vil-gerne-tilfoeje-9842",
+    "B1-02-v-det-er-jeg-enig-9620",
+    "B1-02-v-det-mener-jeg-ogsaa-7008",
+    "B1-02-v-jeg-ser-det-lidt-6663",
+    "B1-02-v-det-er-et-godt-1383",
+    "B1-02-v-egentlig-6797",
+    "B1-02-v-desvaerre-7617"
+  ],
+  "grammarConceptIds": [
+    "B1-02-g-inversion-5981",
+    "B1-02-g-question-formation-2763",
+    "B1-02-g-modal-verbs-6044"
+  ],
+  "createdAt": "2026-10-25T00:00:00Z",
+  "isUserGenerated": false
+}

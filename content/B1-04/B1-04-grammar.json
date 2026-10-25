@@ -1,0 +1,35 @@
+[
+  {
+    "id": "B1-04-g-inversion-5785",
+    "name": "Inversion (verb-second rule)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "The verb must be the second element of a main clause. When you start with a sequence word like 'først', 'derefter', 'så' or 'til sidst', that word counts as the first element, so the verb comes next and the subject follows it: 'Først åbner du filen'. This is the backbone of step-by-step explanations in Danish.",
+    "examples": [
+      { "danish": "Først åbner du formularen.", "english": "First you open the form." },
+      { "danish": "Derefter sender vi den til godkendelse.", "english": "After that we send it for approval." }
+    ]
+  },
+  {
+    "id": "B1-04-g-infinitive-usage-9841",
+    "name": "Infinitive usage",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "Most verbs and expressions are followed by 'at' + infinitive ('Det næste trin er at teste løsningen'), while modal verbs take the bare infinitive ('Du skal teste løsningen'). In process descriptions the infinitive is also used after 'inden' + 'at' and 'for at' to give purposes and steps: 'for at sikre kvaliteten'.",
+    "examples": [
+      { "danish": "Det næste trin er at dokumentere resultatet.", "english": "The next step is to document the result." },
+      { "danish": "Vi tester løsningen for at sikre kvaliteten.", "english": "We test the solution to ensure the quality." }
+    ]
+  },
+  {
+    "id": "B1-04-g-subordinate-clause-word-order-3340",
+    "name": "Subordinate Clause Word Order",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "B1",
+    "explanation": "After 'når', 'inden', 'hvis' and 'at', adverbs such as 'ikke' and 'altid' go before the verb. When the 'når'-clause comes first, the main clause that follows it starts with the verb: 'Når chefen har godkendt det, sender vi det videre' — often with 'så' in front of the verb: 'så sender vi det videre'.",
+    "examples": [
+      { "danish": "Når vi ikke har godkendelsen, kan vi ikke starte.", "english": "When we do not have the approval, we cannot start." },
+      { "danish": "Når testen er færdig, så dokumenterer vi resultatet.", "english": "When the test is finished, then we document the result." }
+    ]
+  }
+]

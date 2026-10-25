@@ -1,0 +1,35 @@
+[
+  {
+    "id": "B1-03-g-subordinate-clause-word-order-9445",
+    "name": "Subordinate Clause Word Order",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "B1",
+    "explanation": "After a subordinating word such as 'at', 'fordi', 'hvis', 'da' or 'hvorfor', adverbs like 'ikke', 'allerede' and 'desværre' go before the verb: 'at jeg ikke kan deltage'. In a main clause they go after it: 'Jeg kan ikke deltage'. Formal emails use many subordinate clauses to give reasons, conditions and background.",
+    "examples": [
+      { "danish": "Jeg skriver, fordi jeg ikke har modtaget svar.", "english": "I am writing because I have not received a reply." },
+      { "danish": "Vi meddeler, at mødet desværre ikke finder sted.", "english": "We hereby inform you that the meeting unfortunately will not take place." }
+    ]
+  },
+  {
+    "id": "B1-03-g-infinitive-usage-8292",
+    "name": "Infinitive usage",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "After most verbs and expressions the infinitive is introduced by 'at' ('Jeg skriver for at bede om...', 'Jeg ser frem til at høre fra dig'), but after modal verbs it stands bare. Emails use 'for at' + infinitive to state the purpose of the message and 'at' + infinitive after expressions of intention or regret.",
+    "examples": [
+      { "danish": "Jeg skriver for at bekræfte vores aftale.", "english": "I am writing to confirm our agreement." },
+      { "danish": "Vi beklager at måtte afslå din anmodning.", "english": "We regret having to decline your request." }
+    ]
+  },
+  {
+    "id": "B1-03-g-modal-verbs-4226",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Modal verbs are followed by a bare infinitive. In written Danish the past forms 'kunne' and 'ville' make requests more polite and formal: 'Kunne du sende...?' and 'Jeg vil gerne bede om...' sound far more courteous than a direct 'Send...'. 'Skal' states an obligation, so it is used for deadlines and requirements, not for requests.",
+    "examples": [
+      { "danish": "Kunne du sende mig referatet inden fredag?", "english": "Could you send me the minutes before Friday?" },
+      { "danish": "Jeg vil gerne bede om en bekræftelse snarest muligt.", "english": "I would like to ask for a confirmation as soon as possible." }
+    ]
+  }
+]

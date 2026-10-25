@@ -1,0 +1,35 @@
+[
+  {
+    "id": "B1-02-g-inversion-5981",
+    "name": "Inversion (verb-second rule)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A2",
+    "explanation": "In a Danish main clause the verb always comes in second position. When you move something other than the subject to the front for emphasis — for example 'Det' in 'Det mener jeg også' — the verb stays second and the subject moves after it. This is how you give agreement and reactions in a meeting a natural, emphatic rhythm.",
+    "examples": [
+      { "danish": "Det er jeg enig i.", "english": "I agree with that." },
+      { "danish": "Det mener jeg også.", "english": "I think so too." }
+    ]
+  },
+  {
+    "id": "B1-02-g-question-formation-2763",
+    "name": "Question formation (formal register)",
+    "category": "sentence_structure",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Yes/no questions start with the verb ('Kan du...?', 'Har I...?'), and questions with a question word put the verb right after it ('Hvad betyder...?', 'Hvornår skal vi...?'). In a formal meeting you soften questions with modal verbs and polite wording, such as 'Kunne du forklare...?' or 'Må jeg spørge, hvorfor...?'.",
+    "examples": [
+      { "danish": "Kan du klarificere, hvad beslutningen betyder?", "english": "Can you clarify what the decision means?" },
+      { "danish": "Hvornår skal vi tage næste punkt?", "english": "When shall we take the next item?" }
+    ]
+  },
+  {
+    "id": "B1-02-g-modal-verbs-6044",
+    "name": "Modal Verbs (kan, skal, vil, må, bør)",
+    "category": "verbs",
+    "cefrLevelIntroduced": "A1",
+    "explanation": "Modal verbs are followed by a bare infinitive (no 'at'). In meetings they are the main tool for polite turn-taking and softening: 'må' asks permission ('Må jeg sige noget?'), 'vil gerne' makes a contribution sound courteous ('Jeg vil gerne tilføje...'), and 'bør' suggests rather than demands ('Vi bør tage en pause').",
+    "examples": [
+      { "danish": "Må jeg tage ordet et øjeblik?", "english": "May I take the floor for a moment?" },
+      { "danish": "Jeg vil gerne foreslå en pause.", "english": "I would like to suggest a break." }
+    ]
+  }
+]

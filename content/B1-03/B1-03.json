@@ -1,0 +1,39 @@
+{
+  "id": "danish-B1-03",
+  "title": "Professional Email 101",
+  "theme": "Business writing — email",
+  "communicationGoal": "Write a professional email in correct Danish: request, inform, follow up, decline politely",
+  "cefrLevel": "B1",
+  "vocabularyItemIds": [
+    "B1-03-v-kaere-5346",
+    "B1-03-v-med-venlig-hilsen-5957",
+    "B1-03-v-jeg-skriver-vedroerende-7608",
+    "B1-03-v-vedhaefte-9816",
+    "B1-03-v-henvendelse-2093",
+    "B1-03-v-anmodning-9440",
+    "B1-03-v-bede-om-3033",
+    "B1-03-v-meddele-9584",
+    "B1-03-v-bekraefte-1832",
+    "B1-03-v-foelge-op-paa-4156",
+    "B1-03-v-afslaa-4810",
+    "B1-03-v-orientere-3517",
+    "B1-03-v-fremsende-1553",
+    "B1-03-v-deltage-1970",
+    "B1-03-v-beklageligvis-7639",
+    "B1-03-v-snarest-muligt-2000",
+    "B1-03-v-svar-1926",
+    "B1-03-v-frist-1296",
+    "B1-03-v-tak-for-din-henvendelse-5710",
+    "B1-03-v-jeg-ser-frem-til-4668",
+    "B1-03-v-hermed-4246",
+    "B1-03-v-du-bedes-7826",
+    "B1-03-v-jeg-beklager-4420"
+  ],
+  "grammarConceptIds": [
+    "B1-03-g-subordinate-clause-word-order-9445",
+    "B1-03-g-infinitive-usage-8292",
+    "B1-03-g-modal-verbs-4226"
+  ],
+  "createdAt": "2026-10-25T00:00:00Z",
+  "isUserGenerated": false
+}

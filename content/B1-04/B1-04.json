@@ -1,0 +1,40 @@
+{
+  "id": "danish-B1-04",
+  "title": "Describing Work Processes",
+  "theme": "Procedures and processes",
+  "communicationGoal": "Explain how a process works, walk someone through a procedure step by step",
+  "cefrLevel": "B1",
+  "vocabularyItemIds": [
+    "B1-04-v-implementere-7193",
+    "B1-04-v-godkende-4690",
+    "B1-04-v-vurdere-9340",
+    "B1-04-v-tilpasse-5513",
+    "B1-04-v-gennemgaa-3371",
+    "B1-04-v-dokumentere-1760",
+    "B1-04-v-teste-8730",
+    "B1-04-v-afslutte-2451",
+    "B1-04-v-proces-5487",
+    "B1-04-v-procedure-9429",
+    "B1-04-v-trin-1248",
+    "B1-04-v-fase-3083",
+    "B1-04-v-raekkefoelge-3120",
+    "B1-04-v-godkendelse-4047",
+    "B1-04-v-arbejdsgang-1065",
+    "B1-04-v-kvalitetskontrol-3267",
+    "B1-04-v-ansvarlig-4849",
+    "B1-04-v-foerst-5542",
+    "B1-04-v-derefter-7807",
+    "B1-04-v-til-sidst-2734",
+    "B1-04-v-naar-7631",
+    "B1-04-v-saa-7399",
+    "B1-04-v-i-foerste-omgang-2240",
+    "B1-04-v-inden-8867"
+  ],
+  "grammarConceptIds": [
+    "B1-04-g-inversion-5785",
+    "B1-04-g-infinitive-usage-9841",
+    "B1-04-g-subordinate-clause-word-order-3340"
+  ],
+  "createdAt": "2026-10-25T00:00:00Z",
+  "isUserGenerated": false
+}
