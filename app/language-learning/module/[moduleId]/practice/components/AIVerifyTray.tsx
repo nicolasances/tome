@@ -86,7 +86,7 @@ export function AIVerifyTray({phase, userAnswer, correctAnswer, explanation, onC
             {/* Phase body */}
             {loading && (
                 <div className="flex-shrink-0 text-sm text-cyan-100/75 leading-relaxed">
-                    Comparing your translation against the meaning — accents and word order count, small variations are fine.
+                    Checking whether your translation is correct, natural Danish — it doesn't have to match the exercise's answer word for word.
                 </div>
             )}
             {ok && (
