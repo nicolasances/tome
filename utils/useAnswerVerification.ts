@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { TomeAnswerVerificationAPI } from '@/api/TomeAnswerVerificationAPI';
+import { toVerificationOutcome } from '@/utils/aiVerify';
 
 /** The live phase of an AI answer-verification flow; null means no verification is in progress (the ResultSheet is shown). */
 export type VerifyPhase = 'loading' | 'valid' | 'invalid' | null;
@@ -15,7 +16,7 @@ export interface VerifyArgs {
 
 export interface AnswerVerification {
     phase: VerifyPhase;             // Current verification phase driving which tray (or none) renders.
-    explanation: string;           // AI explanation shown when the answer is not accepted (phase === 'invalid').
+    explanation: string;           // AI explanation for either verdict: why it's not accepted, or a note on the expected phrasing when accepted.
     verify: (args: VerifyArgs) => void;  // Starts a verification; moves phase to 'loading' then 'valid'/'invalid'.
     cancel: () => void;            // Aborts an in-flight verification and returns to the ResultSheet (phase null).
     reset: () => void;             // Clears all verification state, used when advancing to the next exercise.
@@ -24,7 +25,7 @@ export interface AnswerVerification {
 /**
  * Manages the "Check with AI" translation answer-verification flow used by both
  * Practice and the Module Test. Owns the loading → valid/invalid phase, the AI
- * explanation, and an abort controller so a verification can be cancelled.
+ * explanation (for both verdicts), and an abort controller so a verification can be cancelled.
  *
  * On any failure (network error, 409 already-verified, 400 non-translation) the
  * flow silently returns to the ResultSheet so the learner can still continue —
@@ -50,9 +51,9 @@ export function useAnswerVerification(): AnswerVerification {
             .verifyAnswer({ ...args, signal: controller.signal })
             .then(result => {
                 if (controller.signal.aborted) return;
-                if (result.valid) { setPhase('valid'); return; }
-                setExplanation(result.explanation ?? '');
-                setPhase('invalid');
+                const outcome = toVerificationOutcome(result);
+                setExplanation(outcome.explanation);
+                setPhase(outcome.phase);
             })
             .catch(() => {
                 if (controller.signal.aborted) return;

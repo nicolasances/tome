@@ -22,8 +22,8 @@ export class TomeAnswerVerificationAPI {
      *        owning session (practice session id or module-test attempt id), the
      *        learner's CEFR level, and an optional abort signal.
      *
-     * @returns {Promise<VerifyAnswerResponse>} The verdict and, when not accepted,
-     *          the AI explanation.
+     * @returns {Promise<VerifyAnswerResponse>} The verdict and, optionally, the AI
+     *          explanation (for both verdicts).
      */
     async verifyAnswer(input: VerifyAnswerInput): Promise<VerifyAnswerResponse> {
 
@@ -69,5 +69,5 @@ export interface VerifyAnswerInput {
 
 export interface VerifyAnswerResponse {
     valid: boolean;          // True when the AI accepts the translation; the wrong verdict is overturned.
-    explanation?: string;    // Present only when valid is false — why the translation is not accepted.
+    explanation?: string;    // Why the translation is not accepted (valid false), or a note on the expected phrasing (valid true). May be absent.
 }
