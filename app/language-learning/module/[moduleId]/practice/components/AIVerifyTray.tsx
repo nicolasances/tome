@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { MaskedSvgIcon } from 'toto-react';
+import { acceptedNote } from '@/utils/aiVerify';
 
 type VerifyPhase = 'loading' | 'valid' | 'invalid';
 
@@ -9,7 +10,7 @@ interface AIVerifyTrayProps {
     phase: VerifyPhase;             // Which verification phase to render.
     userAnswer: string;            // The learner's typed translation being verified.
     correctAnswer: string;         // The canonical correct answer (shown when not accepted).
-    explanation: string;           // The AI explanation (shown when not accepted).
+    explanation: string;           // The AI explanation: why it's not accepted, or the accepted-state note (falls back to a fixed line when empty).
     onCancel: () => void;          // Aborts an in-flight verification (loading phase).
     onResolve: (accepted: boolean) => void;  // Advances to the next exercise; accepted overturns the wrong verdict.
 }
@@ -33,7 +34,7 @@ function DarkAnswerChip({text, ok, block}: {text: string, ok?: boolean, block?: 
  * Deep-teal bottom tray for the "Check with AI" translation answer-verification
  * flow, with the same footprint as ResultSheet. Renders three phases:
  * - loading: spinner + "Checking with AI…" + Cancel
- * - valid:   green verdict + "Accepted by AI" + Continue (overturns the verdict)
+ * - valid:   green verdict + "Accepted by AI" + AI note (or fixed line) + Continue (overturns the verdict)
  * - invalid: red verdict + "Not accepted" + explanation + correct answer + Got it
  */
 export function AIVerifyTray({phase, userAnswer, correctAnswer, explanation, onCancel, onResolve}: AIVerifyTrayProps) {
@@ -85,13 +86,13 @@ export function AIVerifyTray({phase, userAnswer, correctAnswer, explanation, onC
             {/* Phase body */}
             {loading && (
                 <div className="flex-shrink-0 text-sm text-cyan-100/75 leading-relaxed">
-                    Comparing your translation against the meaning — accents and word order count, small variations are fine.
+                    Checking whether your translation is correct.
                 </div>
             )}
             {ok && (
                 <div className="flex-shrink-0 flex items-start gap-2 text-sm text-white leading-relaxed">
                     <MaskedSvgIcon src="/images/magic.svg" alt="" size="w-4 h-4" color="bg-lime-200" />
-                    <span>Your translation works too — counting it as correct.</span>
+                    <span className="break-words min-w-0">{acceptedNote(explanation)}</span>
                 </div>
             )}
             {phase === 'invalid' && (
