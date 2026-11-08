@@ -24,6 +24,13 @@ spec'd design — `practice-complete-app.jsx` pins A and C as the chosen designs
 > Legacy note: the repo already contains `app/language-learning/*` from the *old*
 > (pre-v2.0) design (vocabulary-practice, sentence-practice, sources). It is not
 > the basis for these features and is expected to be replaced by the v2.0 build.
+> The legacy vocabulary-practice (and its `summary` route) is removed by
+> `09-words-practice`, which replaces it.
+
+> Wireframe exception: **J7 (Words Practice)** has no wireframe. By explicit user
+> decision its screens (`09-words-practice`) and its Home entry point (`01`) are
+> **designed without wireframe**, from wireframed patterns, and flagged with an
+> open question to validate the design.
 
 ## Journeys
 
@@ -35,6 +42,7 @@ spec'd design — `practice-complete-app.jsx` pins A and C as the chosen designs
 | J4 | Practise a module | Work through practice rounds until every module word is covered | Module overview → Practice session → Practice complete (round recap → *Practice another round* loops back, or *Back to module*) → … → Practice complete (coverage milestone) → Module overview |
 | J5 | Take the module test | Pass the gated, scored test to complete the module and unlock the next | Module overview → Module test (locked countdown → ready → in-test → submit → result) → (Review) → Home / Module overview |
 | J6 | Take the level test | Once all modules of the level are complete, pass the level-wide test to be promoted to the next CEFR level | Home dashboard → (Take the Level Test) → Level test (ready → in-test → submit → result: pass promotes / fail retry) → (Review) → Home (promoted level) |
+| J7 | Refresh my vocabulary | At any time, translate words from all completed modules (English → Danish) until each is right once, and see which ones I missed | Home dashboard → (Practice words / Resume) → Words Practice session (missed words retried) → Words Practice results → (*Practice more words* loops back, or *Back to home*) → Home dashboard |
 
 ## Screen Inventory
 
@@ -50,6 +58,8 @@ Every screen reachable in any journey above, mapped to its owning feature.
 | Practice complete | `/language-learning/module/[moduleId]/practice/[practiceId]/results` | `05-practice-session` | End-of-round recap. Two states: **Round complete** (every round before full coverage) and **Coverage milestone** (only when the round reaches full coverage). User chooses *Practice another round* or *Back to module*. |
 | Module test | `/language-learning/module/[moduleId]/test` | `06-module-test` | Step 3 — gated, scored flow as internal phases: locked → ready → in-test → submit → result (pass/fail) → review. Reuses the practice exercise interface. |
 | Level test | `/language-learning/level-test` | `07-level-test` | Level-wide, gated, scored flow as internal phases: ready → in-test → submit → result (pass promotes CEFR level / fail with retry cooldown) → review. Entry CTA lives on the Home dashboard (owned by `01`); the in-test / submit / fail / review phases reuse `06-module-test`. |
+| Words Practice session | `/language-learning/words-practice/[sessionId]` | `09-words-practice` | *Designed without wireframe.* One word at a time, English → Danish typed, "Check with AI" after a wrong answer, missed words retried until correct. Entry point lives on the Home dashboard (owned by `01`). |
+| Words Practice results | `/language-learning/words-practice/[sessionId]/results` | `09-words-practice` | *Designed without wireframe.* Words / First try / Accuracy + missed words; *Practice more words* or *Back to home*. |
 | Keyboard shortcuts | `/keyboard-shortcuts` | fix (issue #325) | Desktop-only reference list of the app's hard-coded keyboard shortcuts, read from the shared `utils/keyboardShortcuts.ts` registry. Reachable from the desktop sidebar, next to Settings. |
 
 ## Desktop responsive layout

@@ -12,13 +12,15 @@ destinations. Owns this one screen end-to-end (UI, presentation logic, data load
 
 Design: variant **C — Level track** (`home-screens.jsx` → `HomeC`).
 
-Participates in journeys **J1** (check standing & continue) and **J2** (entry to
-browse the level).
+Participates in journeys **J1** (check standing & continue), **J2** (entry to
+browse the level) and **J7** (entry to Words Practice — the entry point only;
+the session and results screens are owned by `09-words-practice`).
 
 **Out of scope**:
 - The Module map screen (owned by `02-module-map`).
 - The Module overview / step screens reached by "Continue" (owned by `03`/`04`/`05`).
 - The "Analyze" and "Knowledge/Sources" destinations — **skipped** (no wireframe; see `00-user-journeys.md`).
+- The Words Practice session and results screens, and the `TomeWordsPracticeAPI` client (owned by `09-words-practice`); this feature owns only the entry point.
 
 ## 2. Key User Stories
 
@@ -29,6 +31,8 @@ browse the level).
 | 3 | Resume my current module in one tap | I can get straight back to learning |
 | 4 | Reach Modules, Analyze and the knowledge area from the home screen | I can navigate the app |
 | 5 | See my activity for the current week | I feel a sense of momentum |
+| 6 | Start (or resume) a Words Practice session from Home at any time | I can refresh my vocabulary whenever I have a moment, even when no module step is available |
+| 7 | See my Words Practice sessions in the weekly chart and session count | that practice visibly counts as daily effort |
 
 ## 3. Interfaces
 
@@ -41,8 +45,9 @@ browse the level).
 | Home dashboard | Level track | Horizontal A1→A2→B1→B2→C1→C2 row of nodes with connectors; current level enlarged + lime-filled, completed levels filled, future levels outlined. Below: a full-width, wrapping row of module dots — one per module at the current level. | Highlights the user's current level; module dots fill as modules complete. One dot renders per module regardless of count, wrapping onto additional lines as needed (issue #337). Static (not a navigation control in v2.0). |
 | Home dashboard | Continue CTA | Dark rounded card with a lime circular arrow, kicker "Continue · A1·01", and the current module title. On **desktop** (`DesktopContinueCard`), also shows — below the title — a progress `Bar` + percentage label plus a rung-aware caption, e.g. "42%" and "Rung 2 · 6/12 items in rung"; the mobile card (`ContinueCard`) has no progress bar. | Tapping navigates to the current module (Module overview, or its current step). The desktop bar/caption show the same blended rung-aware progress as the Module Overview's coverage bar (`calculateModuleProgress`, pooling `fullyCompletedRungs` and `currentRungCoverage` across the practice ladder's 3 rungs — issue #323); it fills as sessions/rungs are completed, reaching 100% only once all 3 rungs are fully covered (issue #327). When no module is in progress, it is **replaced** by one of two states: (a) if all curated modules at the level are complete **and** the user is eligible for the Level Test → the **"Level Test unlocked"** CTA (see next row); (b) otherwise a passive empty state. |
 | Home dashboard | Level Test CTA (`HomeLevelTest`) | Celebratory **lime-filled** card (vs. the deep-teal Continue card): kicker "Level Test unlocked · A1 → A2", a "Prove your foundation" title, and a "Take the Level Test" button. Replaces the Continue CTA when all modules of the current level are complete. | Rendered when `GET …/levelTest/eligibility` reports the user is eligible (all curated modules `completed`). Tapping navigates to the Level Test flow (`/language-learning/level-test`, owned by `07-level-test`). This card owns only the **entry point**; the test flow itself is `07`'s. During a retry cooldown, show the eligibility state accordingly (CTA disabled or a countdown), consistent with `07` §4. |
-| Home dashboard | Primary nav row | Two `RoundButton`s (primary variant) with labels: **Modules**, **Analyze**. The third button (Sources/Knowledge) is **not rendered** in v2.0. | Modules → Module map (`02`). Analyze → Analyze Content (**skipped**). |
-| Home dashboard | Weekly stats | "This week" label + a 7-day **stacked** bar chart over a **rolling window** (the last 6 days + today) of practice sessions, module tests passed, and level tests passed per day. | Renders one stacked bar per day (oldest → today): practice sessions (bottom), successful module tests (middle), successful level tests (top), each in a shade of the bar color; bar height = day's total of all three, normalized against the busiest day in the window; today emphasised. |
+| Home dashboard | Primary nav row | `RoundButton`s (primary variant) with labels: **Modules**, **Words**, **Analyze**. The Sources/Knowledge button is **not rendered** in v2.0. **Mobile only** (the nav row is hidden on desktop). | Modules → Module map (`02`). **Words** → Words Practice entry (see the Words Practice entry row: same states and behaviour). Analyze → Analyze Content (**skipped**). |
+| Home dashboard | Words Practice entry (`WordsPracticeTile` on desktop; the **Words** `RoundButton` on mobile) — *designed without wireframe* | **Desktop**: replaces the "x of N modules" `StatTile` (first of the three stat tiles) with a tile of the same footprint: value = pool size (e.g. "312"), suffix "words to practise", label "Words Practice", and an action ("Practice words" / "Resume"). The module count stays visible in the Level track. **Mobile**: the **Words** button in the nav row, labelled "Words". | **Enabled** (`poolSize > 0`, no open session) → starts a session (`09`'s start flow) and navigates to it. **Resume** (`openSessionId` set) → desktop action reads "Resume"; mobile button gets a small dot badge; tapping navigates straight to the open session. **Disabled** (`poolSize = 0`) → desktop shows the hint "Complete a module to unlock"; mobile button is disabled with the same hint under its label. Loading → skeleton tile / disabled button. Summary error → entry hidden on mobile, tile shows "—" and is disabled on desktop. |
+| Home dashboard | Weekly stats | "This week" label + a 7-day **stacked** bar chart over a **rolling window** (the last 6 days + today) of module practice sessions, module tests passed, level tests passed, and Words Practice sessions per day. | Renders one stacked bar per day (oldest → today): module practice sessions (bottom), Words Practice sessions, successful module tests, successful level tests (top), each in a shade of the bar color; bar height = day's total of all four, normalized against the busiest day in the window; today emphasised. |
 | Home dashboard (**desktop only**) | "Up next" strip (`UpNextStrip`) | 4-card strip below the stat tiles, each card badged with its 1-based level-relative module number (e.g. "05"–"08"). | Windows the level's modules around the user's **current** module (first `in_progress`, else first `available`, else — level fully completed — the level's **last** module) via `computeUpNextWindow`: a 4-wide window with the current module in the 2nd slot (1 before, 2 after) by default, clamped to the level's start/end, shrinking to the whole level when it has fewer than 4 modules. Not rendered on mobile (issue #326). |
 | Home dashboard | Screen chrome | `TomeScreen` titled "Language Learning". | Standard app header; layout shell, not a separate feature. |
 
@@ -50,7 +55,8 @@ browse the level).
 - **Loading**: show a skeleton/placeholder for level track, continue CTA and weekly stats while data loads.
 - **Empty / first-run**: a brand-new A1 user with no module started shows level A1 at 0/12; the Continue CTA points at the first **available** module ("Who Are You?").
 - **All modules complete**: when every curated module at the level is `completed`, the Continue CTA is replaced by the **Level Test CTA** (gated by `GET …/levelTest/eligibility`), which enters the Level Test flow (`07-level-test`). This supersedes the earlier passive "Level test awaits!" empty state.
-- The nav row renders only **Modules** and **Analyze** in v2.0; the third button (Sources/Knowledge) is hidden.
+- The nav row renders **Modules**, **Words** and **Analyze** in v2.0; the Sources/Knowledge button is hidden.
+- **Words Practice entry — designed without wireframe**: neither the desktop tile nor the mobile button is in `home-screens.jsx` / `desktop-home.jsx`; they reuse the existing `StatTile` and `RoundButton` patterns (see OQ-01).
 
 ## 4. Business Logic
 
@@ -58,8 +64,10 @@ browse the level).
 - The level track marks levels < current as completed, the current level as active, and levels > current as future.
 - Module-dots / "x / N modules" reflect **UserModuleProgress** for the current level: count of `completed` modules out of the level's total.
 - The **current module** for the Continue CTA = the user's `in_progress` module; if none is in progress, the first `available` (not-yet-completed, unlocked) module at the current level.
-- Weekly stats show **completed practice sessions, passed module tests, and passed level tests per day**, stacked into one bar per day, over a **rolling 7-day window** — the last 6 days plus today — **not** a fixed calendar week (Mon–Sun); each bar's total height = the sum of the three counts for that day, normalized against the busiest day in the window. The window always ends on today, so the chart shows the user's most recent week of activity regardless of which weekday it is.
-- The dashboard is **read-only** with respect to progress — it never mutates mastery or module state.
+- Weekly stats show **completed module practice sessions, passed module tests, passed level tests and completed Words Practice sessions per day**, stacked into one bar per day, over a **rolling 7-day window** — the last 6 days plus today — **not** a fixed calendar week (Mon–Sun); each bar's total height = the sum of the four counts for that day, normalized against the busiest day in the window. The window always ends on today, so the chart shows the user's most recent week of activity regardless of which weekday it is.
+- The desktop "sessions this week" counter = sum over the window of `practiceSessions + wordsPracticeSessions`. A day with any Words Practice session counts as an active day (stat tile "active days").
+- **Words Practice entry state** comes from `GET /me/wordsPractice/summary`: `poolSize = 0` → disabled; `openSessionId` set → Resume (navigate to `/language-learning/words-practice/{openSessionId}`); otherwise → start a session via `POST /users/:userId/wordsPracticeSessions` (201 → navigate to it; 409 → navigate to the returned `sessionId`). The start call and navigation are the same as `09`'s "Practice more words".
+- The dashboard is **read-only** with respect to progress — it never mutates mastery or module state. (Starting a Words Practice session creates a session; it does not change progress.)
 
 ## 5. Technical Decisions & Integrations
 
@@ -73,6 +81,7 @@ browse the level).
 | 6 | All language-learning data is served by `tome-ms-language`. | All language learning logic lives in `tome-ms-language` per architecture doc. |
 | 7 | `ModuleProgressEntry` gained a `proficiency: ModuleProficiencyEntry \| null` field (mirroring the backend's `basis`-tagged User Proficiency Score). This dashboard reads none of it — `UpNextStrip` and `DesktopContinueCard` never show a completed module. Only `02-module-map` renders it, on completed rows. | #333. Type is owned here (decision 3); the field it grew is consumed elsewhere. |
 | 8 | Removed the undocumented 16-dot cap on the level track's module-dots row, and dropped the level-name text label that sat opposite it, letting the dot row take the full row width and wrap onto additional lines. | #337. The cap silently truncated levels with >16 modules (e.g. A2's 23); the Module Map page already showed the correct uncapped count for the same level. |
+| 9 | Words Practice entry: on desktop it **replaces** the "x of N modules" `StatTile`; on mobile it is a **Words** `RoundButton` in the nav row (the module dots stay in the Level track). The summary is fetched in parallel with the other Home calls; the start call goes through `09`'s `TomeWordsPracticeAPI`. | Words Practice idea (2026-11-08). The module count is already shown by the Level track on both layouts, so the desktop tile is redundant; on mobile the dots are the level-progress anchor and stay. |
 
 ### API Integrations
 
@@ -80,7 +89,9 @@ browse the level).
 | ------------------- | --------------- | ----------- |
 | Level track, Continue CTA | `GET /me/progress` (`tome-ms-language`, via `TomeLearningDashboardAPI.getMeProgress`) | Returns the user's current CEFR level, a status summary for all 6 levels, and the per-module status list for the current level. Drives the level track, the module-dot progress, and (via `deriveCurrentModule`) the Continue CTA's target module. |
 | Level Test CTA (`HomeLevelTest`) | `GET /users/:userId/levelTest/eligibility` (`tome-ms-language`, `GetLevelTestEligibility`) | Authoritative gate for whether the Level Test CTA is shown and startable: `{ eligible, reason?, retryAvailableAt?, activeAttemptId? }`. Only rendered/enabled when eligible (all curated modules `completed`). The Level Test flow it launches is owned by `07-level-test`. |
-| Weekly stats | `GET /me/stats/dailyActivity?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns per-day activity counts for the **rolling 7-day window ending today** (F24). `from` is computed client-side as **today − 6 days** (YYYYMMDD). Response shape: `{ from, to, days: [{ date, practiceSessions, successfulModuleTests, successfulLevelTests }] }`, 7 entries oldest → today. The stacked bar chart consumes all three counts (via `utils/weeklyBarStack.ts`'s `computeWeeklyBarStacks`); the "active days" stat tile derives from the same three counts (via `utils/activeDays.ts`'s `countActiveDays`), counting a day as active if it has any practice session, passed module test, or passed level test — kept consistent with the bar chart's definition (#307). No unused fields remain. |
+| Words Practice entry | `GET /me/wordsPractice/summary` (`tome-ms-language` F26, via `TomeWordsPracticeAPI`) | `{ poolSize, openSessionId }` — drives the entry's enabled / resume / disabled state. |
+| Words Practice entry | `POST /users/:userId/wordsPracticeSessions` (`tome-ms-language` F26, via `TomeWordsPracticeAPI`) | Starts a session (201) or returns the open one (409 `{ sessionId }`); the client navigates to the session route owned by `09`. |
+| Weekly stats | `GET /me/stats/dailyActivity?from=YYYYMMDD` (`tome-ms-language`, via `TomeLearningDashboardAPI.getWeeklySessionStats`) | Returns per-day activity counts for the **rolling 7-day window ending today** (F24). `from` is computed client-side as **today − 6 days** (YYYYMMDD). Response shape: `{ from, to, days: [{ date, practiceSessions, successfulModuleTests, successfulLevelTests, wordsPracticeSessions }] }`, 7 entries oldest → today. The stacked bar chart consumes all four counts (via `utils/weeklyBarStack.ts`'s `computeWeeklyBarStacks`); the "active days" stat tile derives from the same three counts (via `utils/activeDays.ts`'s `countActiveDays`), counting a day as active if it has any practice session, passed module test, or passed level test — kept consistent with the bar chart's definition (#307). No unused fields remain. |
 
 ## 6. Success Criteria
 
@@ -92,7 +103,13 @@ browse the level).
 | 4 | Modules button navigates to the Module map. | J2. |
 | 5 | Weekly stats render real activity counts with a sensible empty state. | — |
 | 6 | Layout matches variant C on a phone-width viewport / mobile-first. On desktop (`lg:` breakpoint), layout switches to the multi-column desktop dashboard (page header + level path + two-column Continue card & weekly chart + stat tiles + "Up next" 4-card strip). The nav row is hidden on desktop (sidebar handles navigation). | Responsive. |
+| 7 | Words Practice entry is disabled with a hint when the pool is empty, reads Resume when a session is open, and otherwise starts a session and lands on it — on both layouts. | J7. |
+| 8 | The weekly chart shows Words Practice sessions as their own segment; the desktop session counter and active-days tile include them. | F24 `wordsPracticeSessions`. |
 
 ## 7. Open Questions
 
-All open questions resolved — see §5 Technical Decisions for context.
+| # | Question | Notes |
+|---|----------|-------|
+| OQ-01 | Validate the Words Practice entry design (desktop tile, mobile **Words** button) — no wireframe exists. | **Open** — designed from the existing `StatTile` / `RoundButton` patterns. Approve or produce a wireframe before implementing the entry point. |
+
+All other questions resolved — see §5 Technical Decisions for context.
