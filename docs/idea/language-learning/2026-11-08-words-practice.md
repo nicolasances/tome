@@ -110,11 +110,11 @@ Notes:
 Answers are typed Danish, judged against the practice word's `VocabularyItem.danish`:
 
 1. **Normalization** of both sides: lowercase, trim, punctuation stripped, leading `at `/`en `/`et ` removed. So `at arbejde`, `arbejde` and `Arbejde.` all match `arbejde`; `et hus` matches `hus`.
-2. **Fuzzy tolerance**: a small edit-distance slack, consistent with how `translation_active` exercises are compared today (exact threshold to align with the existing implementation — not invented here).
+2. **Fuzzy tolerance** (OQ-06): reuse the existing Levenshtein check in `AnswerChecker` (`fuzzyThreshold`: ≤ 10 chars → 1 edit, ≤ 20 → 2, > 20 → 3), **except** that answers whose normalized canonical form is **≤ 4 characters** require an **exact** normalized match. Short Danish words are often one edit apart from a different real word (`mad`/`med`, `gå`/`få`, `kan`/`kat`), so 1-edit slack would accept wrong words. A genuine typo on a short word is rescued by the AI check.
 3. **No alternative answers exist** for vocabulary items (unlike exercises). A valid synonym will be marked wrong at first. The recovery path is the **AI check**:
    - Offered after any wrong answer (first attempt or retry).
-   - **Valid** → the answer is marked correct. If it was the first attempt, mastery is updated as *correct*. Nothing is persisted on the vocabulary item (one-off).
-   - **Invalid** → stays wrong; the AI explains why.
+   - **Valid** → the answer is marked correct. If it was the first attempt, mastery is updated as *correct*. Nothing is persisted on the vocabulary item (one-off — OQ-01).
+   - **Invalid** → stays wrong; the AI explains why. This explanation is the only "why was I wrong" surface — "Explain my mistake" (F12) is **not** offered in Words Practice (OQ-07).
    - One check per answer, on demand only — never automatic. Consistent with F13 and the "AI judges real Danish" change (`2026-10-28-ai-verify-judges-real-danish.md`): the AI judges whether the answer is real, correct Danish for the prompt, not whether it matches the stored form.
 
 ### 3.4 Prompt Display (frontend)
@@ -126,6 +126,8 @@ The English prompt alone is ambiguous for a meaningful share of the content: 805
 - `context`, when present.
 
 On wrong answers, the feedback shows the canonical `danish` form.
+
+Residual ambiguity is accepted in v1 (OQ-08): where `context` is null and the English collides with another item (e.g. *when* → `hvornår`), a valid alternative (`når`) is marked wrong first and rescued by the AI check.
 
 ### 3.5 Words Practice Screen (frontend)
 
@@ -155,7 +157,7 @@ Wireframes for this screen do not exist yet in `docs/ui-design/tome-language-lea
 - F24 `GET /me/stats/dailyActivity` gains a fourth per-day count: **`wordsPracticeSessions`** — completed Words Practice sessions whose `completedAt` falls on that day (same timezone bucketing as the other counts).
 - The Home "This week" chart stacks it as its **own segment** (a fourth shade).
 - `countActiveDays` counts a day with any Words Practice session as active.
-- The desktop "sessions this week" counter (`DesktopWeekCounter`, currently `practiceSessions` only) should include Words Practice sessions — see OQ-04.
+- The desktop "sessions this week" counter (`DesktopWeekCounter`, currently `practiceSessions` only) becomes `practiceSessions + wordsPracticeSessions`, consistent with the stacked chart (OQ-04).
 
 ---
 
@@ -201,11 +203,11 @@ Constraint: at most one `WordsPracticeSession` with `status = in_progress` per `
 
 ### 4.2 UserVocabularyProgress / ExerciseResult (existing, F06 — reused)
 
-No schema change to `UserVocabularyProgress`. Words Practice appends an `ExerciseResult` per group item on first attempt. Two fields need a decision because `ExerciseResult` was designed for exercises:
+No schema change to `UserVocabularyProgress`. Words Practice appends an `ExerciseResult` per group item on first attempt. One schema change to `ExerciseResult` (F06) is needed because it was designed for exercises:
 
 | Field | Value for Words Practice |
 |---|---|
-| `exerciseId` | Currently **required** — there is no exercise. Proposal: make nullable, or store the session id. See OQ-03. |
+| `exerciseId` | Becomes **`string \| null`** (was required); `null` for Words Practice results (OQ-03). Safe: no logic reads `exerciseId` from history — it is only echoed by the `GET .../vocabularyProgress` endpoints. |
 | `type` | New value `words_practice` |
 | `moduleId` | `null` (already nullable for level tests) |
 | `userAnswer`, `correctAnswer`, `isCorrect`, `timestamp` | As usual |
@@ -223,13 +225,13 @@ Paths are relative to the microservice basepath (the basepath lives in the `NEXT
 | Method | Path | Purpose |
 |---|---|---|
 | GET | `/me/wordsPractice/summary` | `{ poolSize, openSessionId \| null }` — drives the Home button state |
-| POST | `/me/wordsPractice/sessions` | Start a session (201) or return the open one (409 + `sessionId`); 400/409-style refusal when the pool is empty |
-| GET | `/me/wordsPractice/sessions/:sessionId` | Load / resume a session |
-| POST | `/me/wordsPractice/sessions/:sessionId/answers` | `{ wordKey, answer }` → `{ isCorrect, correctAnswer }`; updates mastery on first attempt |
-| POST | `/me/wordsPractice/sessions/:sessionId/answers/verify` | AI check of the latest wrong answer for a word → `{ valid, explanation? }` |
-| POST | `/me/wordsPractice/sessions/:sessionId/complete` | Close the session once all words are correct (or auto-complete on the last correct answer — implementation choice) |
+| POST | `/users/:userId/wordsPracticeSessions` | Start a session (201) or return the open one (409 + `sessionId`); refused when the pool is empty |
+| GET | `/users/:userId/wordsPracticeSessions/:sessionId` | Load / resume a session |
+| POST | `/users/:userId/wordsPracticeSessions/:sessionId/answers` | `{ wordKey, answer }` → `{ isCorrect, correctAnswer }`; updates mastery on first attempt |
+| POST | `/users/:userId/wordsPracticeSessions/:sessionId/answers/verify` | AI check of the latest wrong answer for a word → `{ valid, explanation? }` |
+| POST | `/users/:userId/wordsPracticeSessions/:sessionId/complete` | Close the session once all words are correct (or auto-complete on the last correct answer — implementation choice) |
 
-`/me` vs `/users/:userId`: F24 and `/me/progress` use `/me`; F10/F11 use `/users/:userId`. See OQ-05.
+Path convention (OQ-05) follows the existing split in `tome-ms-language`: session-shaped resources live under `/users/:userId/...` (as practice sessions, module tests and level tests do); read-only summaries of the authenticated user live under `/me/...` (as `/me/progress` and `/me/stats/dailyActivity` do).
 
 ---
 
@@ -273,16 +275,18 @@ Paths are relative to the microservice basepath (the basepath lives in the `NEXT
 
 ## 7. Open Questions
 
-| # | Question | Options / Notes |
+All open questions are resolved.
+
+| # | Question | Resolution |
 |---|---|---|
-| OQ-01 | Should AI-accepted answers be remembered? | v1 decision: **no** (one-off). Revisit after ~2 weeks of use. Option: `userContributedAnswers` on `VocabularyItem`, mirroring `Exercise`. |
-| OQ-02 | Should duplicate `VocabularyItem`s be merged in the content itself? | The data model says items are canonical and shared; the content duplicates them per module (120 forms). Words Practice works around it with grouping. A content/data clean-up would fix it at the root and also benefit F06/F08. |
-| OQ-03 | How does `ExerciseResult.exerciseId` (required) work without an exercise? | Make nullable, or store the session id / a synthetic id. Affects F06. |
-| OQ-04 | Should the desktop "sessions this week" counter include Words Practice? | Recommended yes; the chart already stacks it. |
-| OQ-05 | `/me/...` or `/users/:userId/...` paths? | F24 and `/me/progress` use `/me`; F10/F11/F25 use `/users/:userId`. Pick one for the backend spec. |
-| OQ-06 | What fuzzy-match threshold for single words? | Single words are short — a 1-edit tolerance on a 3-letter word can accept a different word. Align with the existing `translation_active` comparison, possibly length-scaled. |
-| OQ-07 | Should "Explain my mistake" (F12) be available too? | Probably not needed: the AI check already explains invalid answers. |
-| OQ-08 | Ambiguous prompts with no context (e.g. *when* → `hvornår`, `context: null`) | v1 shows type + context. Backfilling `context` for ambiguous items is a content task worth considering. |
+| OQ-01 | Should AI-accepted answers be remembered? | **Resolved — no, one-off in v1.** Nothing is persisted on `VocabularyItem`. Revisit after real use; kept in §9. |
+| OQ-02 | Should duplicate `VocabularyItem`s be merged in the content itself? | **Resolved — workaround in v1.** Words Practice groups by word key (§3.1) and updates every item in the group. Merging duplicates at the data level is a separate, later clean-up (§9). |
+| OQ-03 | How does `ExerciseResult.exerciseId` (required) work without an exercise? | **Resolved — make it nullable** (`string \| null`), `null` for `type = words_practice`. No logic reads it from history, so the change is safe (§4.2). |
+| OQ-04 | Should the desktop "sessions this week" counter include Words Practice? | **Resolved — yes**: `practiceSessions + wordsPracticeSessions` (§3.7). |
+| OQ-05 | `/me/...` or `/users/:userId/...` paths? | **Resolved — follow the existing split**: sessions under `/users/:userId/wordsPracticeSessions/...`, the read-only summary under `/me/wordsPractice/summary` (§4.4). |
+| OQ-06 | What fuzzy-match threshold for single words? | **Resolved** — reuse `AnswerChecker.fuzzyThreshold`, but require an exact normalized match when the canonical form is ≤ 4 characters (§3.3). |
+| OQ-07 | Should "Explain my mistake" (F12) be available too? | **Resolved — no.** The AI check already explains invalid answers; F12 is exercise-bound (§3.3). |
+| OQ-08 | Ambiguous prompts with no context (e.g. *when* → `hvornår`, `context: null`) | **Resolved — type + context only in v1.** Residual ambiguity is accepted and absorbed by the AI check (§3.4). A context backfill for colliding items is kept in §9. |
 
 ---
 
@@ -303,7 +307,9 @@ Paths are relative to the microservice basepath (the basepath lives in the `NEXT
 ## 9. Ideas for Future Versions
 
 - **Noun gender nudge** — accept `hus`, but show `et hus` in feedback; optionally require en/et later. Needs an en/et `gender` field on the 422 nouns (AI backfill + content-generation skill changes). Knowing a noun without its gender is half-knowing it.
-- **Remember AI-accepted answers** — `userContributedAnswers` on `VocabularyItem` (OQ-01).
+- **Remember AI-accepted answers** — `userContributedAnswers` on `VocabularyItem`, mirroring `Exercise` (OQ-01).
+- **Merge duplicate vocabulary items** — collapse the ~120 Danish forms stored as separate `VocabularyItem`s into canonical items (re-pointing module and exercise references, merging progress records), as the data model intends. Removes the grouping workaround and gives F06/F08 one mastery per word (OQ-02).
+- **Context backfill for colliding prompts** — add `context` to items whose English collides with another item's English (~105 English strings, e.g. *when* → `da` / `når` / `hvornår`), so English → Danish prompts are never ambiguous (OQ-08).
 - **Backfill alternative Danish answers** per vocabulary item at seeding time, removing most false negatives without AI calls.
 - **Mastery decay in F06** — would let Words Practice switch to "due words" and make mastery honest over time.
 - **Weakest-words view** — browse words by mastery / staleness, start a session from a filtered set.
