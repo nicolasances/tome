@@ -1,6 +1,6 @@
 # 09 — Words Practice
 
-![Status](https://img.shields.io/badge/status-not%20implemented-lightgrey?style=flat-square)
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
 
 > **Designed without wireframe.** There is no wireframe for these screens in `docs/ui-design/tome-language-learning`. They are specified by reusing the patterns of screens that *are* wireframed — the practice session's Translation exercise and `ResultSheet` / `AIVerifyTray` (`exercise-screens.jsx`) and the Practice complete screen, variant A (`practice-complete-screens.jsx` → `PCRoundComplete`). See OQ-01: the design must be validated (or a wireframe produced) before UI implementation.
 
@@ -102,6 +102,10 @@ Both render inside the standard `TomeScreen` chrome, titled "Words Practice", wi
 | 4 | The AI tray is driven by a different endpoint than in module practice (F27, not F13). `AIVerifyTray` takes its verify action as an input rather than calling F13 itself, if it does not already. | Keeps one tray component for both flows. |
 | 5 | Delete the legacy vocabulary practice code instead of evolving it. | Its data shape and backend no longer exist; `00-user-journeys` already flags it as legacy to be replaced. Keeping it alongside invites confusion. |
 | 6 | Screens designed without a wireframe, from wireframed patterns. | User decision for this feature; to be validated (OQ-01). |
+| 7 | `AIVerifyTray` already took its phase and answers as props. The verify call is what differs, so `useAnswerVerification` takes an optional verifier (default: F13); Words Practice passes its F27 call. `ResultSheet` takes `exerciseType` instead of a module-practice `Exercise`, plus `showExplain` (default true; false here). | Keeps one tray and one sheet for all flows, with no behaviour change for `05`/`06`/`07`. |
+| 8 | Shared practice components live in `components/practice/` (`ResultSheet`, `CheckFooter`, `AIVerifyTray`, `MiniStat`, `SavedChip`). | Moved, not copied. |
+| 9 | The queue / resume logic (`utils/wordsPracticeQueue.ts`) and the results derivation (`utils/wordsPracticeResults.ts`) are pure functions with unit tests. | The screens only render them. |
+| 10 | On an error or timeout of "Check with AI", the hook returns silently to the wrong-answer sheet (shared behaviour with module practice); no inline error text is shown. | Reused as is; the user can continue. An explicit error message in the tray is not implemented. |
 
 ### 5.1. API Integrations
 
@@ -115,12 +119,9 @@ Both render inside the standard `TomeScreen` chrome, titled "Words Practice", wi
 
 **Missing**
 
-All endpoints are specified in `tome-ms-language` F26/F27, which are **not yet implemented**. This feature cannot be integrated end-to-end before they ship.
+None. `tome-ms-language` F26 and F27 are implemented.
 
-| Component or Screen | Missing API endpoint |
-| ------------------- | -------------------- |
-| All | F26 endpoints (start / get / answers / complete) — specified, not implemented |
-| AI verify tray | F27 verify endpoint — specified, not implemented |
+---
 
 ## 6. Success Criteria
 
@@ -140,4 +141,4 @@ All endpoints are specified in `tome-ms-language` F26/F27, which are **not yet i
 
 | # | Question | Notes |
 |---|----------|-------|
-| OQ-01 | Validate the session and results screen design (no wireframe exists). | **Open** — designed from the module practice and Practice complete patterns. Produce or approve a wireframe in `docs/ui-design/tome-language-learning` before UI implementation. |
+| OQ-01 | Validate the session and results screen design (no wireframe exists). | **Open** — implemented from the module practice and Practice complete patterns by explicit user decision, without a wireframe. Still to be validated visually; produce a wireframe in `docs/ui-design/tome-language-learning` if the design needs to change. |
