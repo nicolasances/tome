@@ -18,8 +18,8 @@ import { ExFillBlank } from '../module/[moduleId]/practice/components/ExFillBlan
 import { ExConjugation } from '../module/[moduleId]/practice/components/ExConjugation';
 import { ExErrorCorrection } from '../module/[moduleId]/practice/components/ExErrorCorrection';
 import { ExTranslation } from '../module/[moduleId]/practice/components/ExTranslation';
-import { ResultSheet } from '../module/[moduleId]/practice/components/ResultSheet';
-import { AIVerifyTray } from '../module/[moduleId]/practice/components/AIVerifyTray';
+import { ResultSheet } from '@/components/practice/ResultSheet';
+import { AIVerifyTray } from '@/components/practice/AIVerifyTray';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
 import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 
