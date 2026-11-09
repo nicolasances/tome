@@ -279,7 +279,7 @@ export default function LevelTestPage() {
                             ok={submissionState.isCorrect}
                             answer={submissionState.correctAnswer}
                             userAnswer={inputValue}
-                            exercise={currentExercise}
+                            exerciseType={currentExercise.type}
                             aiVerify={false}
                             onContinue={() => handleContinue()}
                         />

@@ -315,7 +315,7 @@ export default function PracticeSessionPage() {
                             ok={submissionState.isCorrect}
                             answer={submissionState.correctAnswer}
                             userAnswer={inputValue}
-                            exercise={currentExercise}
+                            exerciseType={currentExercise.type}
                             aiVerify={aiVerifyVisible}
                             onContinue={() => handleContinue()}
                             onAiVerify={handleAiVerify}

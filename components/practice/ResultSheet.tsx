@@ -2,7 +2,6 @@
 
 import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { MaskedSvgIcon } from 'toto-react';
-import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { shouldRevealAnswer } from '@/utils/answerReveal';
 
 interface ResultSheetProps {
@@ -10,12 +9,13 @@ interface ResultSheetProps {
     answer?: string;
     userAnswer?: string;
     aiVerify?: boolean;
-    exercise: Exercise;
+    exerciseType: string;       // The exercise type, which decides whether the correct answer is revealed.
+    showExplain?: boolean;      // Whether to offer the "Explain my mistake" action on a wrong answer (default true).
     onContinue: () => void;
     onAiVerify?: () => void;
 }
 
-export function ResultSheet({ok, answer, userAnswer, aiVerify, exercise, onContinue, onAiVerify}: ResultSheetProps) {
+export function ResultSheet({ok, answer, userAnswer, aiVerify, exerciseType, showExplain = true, onContinue, onAiVerify}: ResultSheetProps) {
     const [expanded, setExpanded] = useState(false);
     const [canExpand, setCanExpand] = useState(false);
     const ansRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export function ResultSheet({ok, answer, userAnswer, aiVerify, exercise, onConti
 
     const toggle = () => { if (canExpand) setExpanded(v => !v); };
 
-    const shouldDisplayAnswer = () => shouldRevealAnswer({ exerciseType: exercise.type, ok, correctAnswer: answer, userAnswer });
+    const shouldDisplayAnswer = () => shouldRevealAnswer({ exerciseType, ok, correctAnswer: answer, userAnswer });
 
     return (
         <div className="absolute left-0 right-0 bottom-0 bg-cyan-900 rounded-t-3xl px-5 pb-6 pt-2 flex flex-col gap-3 text-white box-border"
@@ -79,10 +79,12 @@ export function ResultSheet({ok, answer, userAnswer, aiVerify, exercise, onConti
             {/* Action buttons. "Explain my mistake" is still a stub; "Check with AI" verifies the answer with AI. */}
             {!ok && (
                 <div className="flex gap-2 flex-wrap flex-shrink-0">
-                    <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-sm">
-                        <MaskedSvgIcon src="/images/magic.svg" alt="Explain my mistake" size="w-4 h-4" color="bg-white" />
-                        Explain my mistake
-                    </button>
+                    {showExplain && (
+                        <button className="inline-flex items-center gap-1.5 border border-white/40 bg-transparent text-white/90 rounded-full py-2 px-3 text-sm">
+                            <MaskedSvgIcon src="/images/magic.svg" alt="Explain my mistake" size="w-4 h-4" color="bg-white" />
+                            Explain my mistake
+                        </button>
+                    )}
                     {aiVerify && (
                         <button
                             onClick={onAiVerify}
