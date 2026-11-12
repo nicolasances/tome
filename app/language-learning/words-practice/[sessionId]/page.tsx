@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
@@ -8,7 +8,7 @@ import { TomeWordsPracticeAPI, WordsPracticeError, WordsPracticeWord, SubmitWord
 import { applyAnswer, buildQueueState, kickerLabel, restoreOutstanding, WordsQueueState } from '@/utils/wordsPracticeQueue';
 import { AnswerVerifier, useAnswerVerification } from '@/utils/useAnswerVerification';
 import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
-import { TranslationInput } from '@/components/TranslationInput';
+import { AnswerAreaInput, AnswerBox } from '@/components/practice/AnswerBox';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
 import { CheckFooter } from '@/components/practice/CheckFooter';
 import { ResultSheet } from '@/components/practice/ResultSheet';
@@ -34,7 +34,6 @@ export default function WordsPracticeSessionPage() {
     const [verdict, setVerdict] = useState<SubmitWordAnswerResponse | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(false);
-    const inputRef = useRef<HTMLTextAreaElement>(null);
 
     // AI check goes to F27 rather than F13: the verifier is the only difference from module practice.
     const verifier: AnswerVerifier = (args, signal) => new TomeWordsPracticeAPI().verifyAnswer(userId, sessionId, { wordKey: args.exerciseId, cefrLevel: args.cefrLevel }, signal);
@@ -63,12 +62,6 @@ export default function WordsPracticeSessionPage() {
 
     const wordMap = useMemo(() => new Map(words.map(w => [w.wordKey, w])), [words]);
     const currentWord = queueState.queue.length > 0 ? wordMap.get(queueState.queue[0]) ?? null : null;
-
-    // Autofocus the input on every new word (and again after a retry of the same word).
-    const headKey = queueState.queue[0];
-    useEffect(() => {
-        if (!verdict && loadState === 'loaded') inputRef.current?.focus();
-    }, [headKey, queueState.attempted.length, verdict, loadState]);
 
     async function handleCheck() {
         if (!currentWord || isSubmitting || verdict || !inputValue.trim()) return;
@@ -152,14 +145,21 @@ export default function WordsPracticeSessionPage() {
                     <div className="flex flex-1 flex-col px-5 pb-0 overflow-y-auto">
                         <WordPrompt word={currentWord} />
                         <div className="mt-6">
-                            <TranslationInput
-                                ref={inputRef}
-                                value={inputValue}
-                                onChange={setInputValue}
-                                onSubmit={handleCheck}
-                                disabled={isSubmitting || !!verdict}
-                                placeholder="Type the Danish…"
-                            />
+                            {verdict ? (
+                                <div className="flex justify-center">
+                                    <AnswerBox text={submittedAnswer} ok={verdict.isCorrect} block big />
+                                </div>
+                            ) : (
+                                <AnswerAreaInput
+                                    value={inputValue}
+                                    onChange={setInputValue}
+                                    onSend={handleCheck}
+                                    canSend={inputValue.trim().length > 0 && !isSubmitting}
+                                    disabled={isSubmitting}
+                                    placeholder="Type the Danish…"
+                                    autoFocus
+                                />
+                            )}
                             {submitError && (
                                 <p role="alert" className="mt-2 text-sm text-red-800">Could not check your answer. Press Check to try again.</p>
                             )}

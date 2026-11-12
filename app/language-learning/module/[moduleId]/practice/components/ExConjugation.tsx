@@ -1,7 +1,7 @@
 import { RoundButton } from 'toto-react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { AnswerBox } from './AnswerBox';
+import { AnswerBox } from '@/components/practice/AnswerBox';
 
 interface ExConjugationProps {
     exercise: Exercise;

@@ -83,9 +83,10 @@ interface AnswerAreaInputProps {
     canSend: boolean;
     disabled?: boolean;
     autoFocus?: boolean;
+    placeholder?: string;
 }
 
-export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, autoFocus}: AnswerAreaInputProps) {
+export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, autoFocus, placeholder}: AnswerAreaInputProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     function resize(el: HTMLTextAreaElement) {
@@ -112,11 +113,12 @@ export function AnswerAreaInput({value, onChange, onSend, canSend, disabled, aut
             ref={textareaRef}
             rows={1}
             autoFocus={autoFocus}
+            placeholder={placeholder}
             value={value}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             disabled={disabled}
-            className="w-full resize-none overflow-hidden border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-1 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50"
+            className="w-full resize-none overflow-hidden border-b-2 border-cyan-600 focus:border-lime-200 px-2 py-1 text-center text-black bg-transparent outline-none transition-colors disabled:opacity-50 placeholder:text-black/30"
         />
     );
 }
