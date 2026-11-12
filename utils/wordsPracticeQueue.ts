@@ -59,3 +59,9 @@ export function restoreOutstanding(state: WordsQueueState, outstandingWordKeys: 
         attempted: state.attempted,
     };
 }
+
+/** Words that were presented, answered wrong and are still waiting for a retry: the right-hand segment of the progress bar. */
+export function deferredCount(state: WordsQueueState): number {
+
+    return state.queue.filter(k => state.attempted.includes(k)).length;
+}

@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useHeader } from '@/context/HeaderContext';
 import { TomeLearningDashboardAPI } from '@/api/TomeLearningDashboardAPI';
 import { TomeWordsPracticeAPI, WordsPracticeError, WordsPracticeWord, SubmitWordAnswerResponse } from '@/api/TomeWordsPracticeAPI';
-import { applyAnswer, buildQueueState, kickerLabel, restoreOutstanding, WordsQueueState } from '@/utils/wordsPracticeQueue';
+import { applyAnswer, buildQueueState, deferredCount, kickerLabel, restoreOutstanding, WordsQueueState } from '@/utils/wordsPracticeQueue';
 import { AnswerVerifier, useAnswerVerification } from '@/utils/useAnswerVerification';
 import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 import { AnswerAreaInput, AnswerBox } from '@/components/practice/AnswerBox';
@@ -136,7 +136,7 @@ export default function WordsPracticeSessionPage() {
             {loadState === 'loaded' && currentWord && (
                 <div className="relative flex flex-1 flex-col overflow-hidden">
                     <div className="px-5 pt-2">
-                        <SessionProgressBar total={words.length} mastered={queueState.correct.length} deferred={0} />
+                        <SessionProgressBar total={words.length} mastered={queueState.correct.length} deferred={deferredCount(queueState)} />
                         <div className="mt-2">
                             <span className="text-xs font-semibold uppercase tracking-widest text-black/50">{kickerLabel(queueState, words.length)}</span>
                         </div>

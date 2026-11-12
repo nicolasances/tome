@@ -1,4 +1,4 @@
-import { buildQueueState, applyAnswer, kickerLabel, restoreOutstanding } from '../utils/wordsPracticeQueue';
+import { buildQueueState, applyAnswer, kickerLabel, restoreOutstanding, deferredCount } from '../utils/wordsPracticeQueue';
 import { WordsPracticeWord } from '../api/TomeWordsPracticeAPI';
 
 function word(wordKey: string, attempts: boolean[] = [], correct = false): WordsPracticeWord {
@@ -82,5 +82,29 @@ describe('restoreOutstanding (complete drift)', () => {
         const r = restoreOutstanding(s, ['b']);
         expect(r.queue).toEqual(['b']);
         expect(r.correct).toEqual(['a']);
+    });
+});
+
+describe('deferredCount (right-hand segment of the progress bar)', () => {
+
+    it('is 0 before any wrong answer', () => {
+        expect(deferredCount(buildQueueState([word('a'), word('b')]))).toBe(0);
+    });
+
+    it('counts words waiting for a retry, and does not count words not yet presented', () => {
+        const s = applyAnswer(buildQueueState([word('a'), word('b'), word('c')]), 'a', false);
+        expect(deferredCount(s)).toBe(1);
+    });
+
+    it('drops when the missed word is finally answered correctly', () => {
+        let s = buildQueueState([word('a'), word('b')]);
+        s = applyAnswer(s, 'a', false);
+        s = applyAnswer(s, 'b', true);
+        s = applyAnswer(s, 'a', true);
+        expect(deferredCount(s)).toBe(0);
+    });
+
+    it('is restored on resume from words with only wrong attempts', () => {
+        expect(deferredCount(buildQueueState([word('a', [false]), word('b'), word('c', [false, false])]))).toBe(2);
     });
 });

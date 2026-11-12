@@ -51,7 +51,7 @@ Both render inside the standard `TomeScreen` chrome, titled "Words Practice", wi
 
 | Screen | Component Name | Description | Expected Behavior |
 |--------|----------------|-------------|-------------------|
-| Session | Session progress bar (`SessionProgressBar`) | Thin bar at the top. | Fills with **words answered correctly ÷ words in the session** (including words accepted by the AI). Does not move on a wrong answer. |
+| Session | Session progress bar (`SessionProgressBar`) | Thin bar at the top. | Fills with **words answered correctly ÷ words in the session** (including words accepted by the AI). The green part does not move on a wrong answer; instead the words waiting for a retry fill the lime segment on the right, as in module practice. |
 | Session | Kicker | Small uppercase label above the prompt, e.g. "Word 12 of 40", or "Retry · 3 left" once the user is in the retry loop. | Tells the user where they are; switches to the retry wording after the first pass through the list. |
 | Session | Prompt card | The English prompt in large type (`english`, including slash variants such as "to live / to reside"), with two small chips beneath: the word **type** (noun, verb, connector …) and, when present, the **context** note. | Always shows type; shows context only when the word has one. Same visual language as the Translation exercise prompt (`ExTranslation`). |
 | Session | Answer input (`AnswerAreaInput`) | Borderless, underlined, centred Danish text input (the one used by the Translation exercise) with placeholder "Type the Danish…". | Autofocused on each new word. Keeps the existing æ/ø/å keyboard shortcuts (e.g. Cmd+A → æ). Disabled while an answer is being checked. |
