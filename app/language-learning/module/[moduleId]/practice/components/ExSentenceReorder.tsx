@@ -1,6 +1,6 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { CheckFooter } from './CheckFooter';
+import { CheckFooter } from '@/components/practice/CheckFooter';
 import { tagWords } from '@/utils/sentenceReorderWords';
 
 interface WordTileProps {

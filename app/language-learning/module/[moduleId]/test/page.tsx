@@ -19,8 +19,8 @@ import { ExFillBlank } from '../practice/components/ExFillBlank';
 import { ExConjugation } from '../practice/components/ExConjugation';
 import { ExErrorCorrection } from '../practice/components/ExErrorCorrection';
 import { ExTranslation } from '../practice/components/ExTranslation';
-import { ResultSheet } from '../practice/components/ResultSheet';
-import { AIVerifyTray } from '../practice/components/AIVerifyTray';
+import { ResultSheet } from '@/components/practice/ResultSheet';
+import { AIVerifyTray } from '@/components/practice/AIVerifyTray';
 import { useAnswerVerification } from '@/utils/useAnswerVerification';
 import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 
@@ -305,7 +305,7 @@ export default function ModuleTestPage() {
                             ok={submissionState.isCorrect}
                             answer={submissionState.correctAnswer}
                             userAnswer={inputValue}
-                            exercise={currentExercise}
+                            exerciseType={currentExercise.type}
                             aiVerify={aiVerifyVisible}
                             onContinue={() => handleContinue()}
                             onAiVerify={handleAiVerify}
