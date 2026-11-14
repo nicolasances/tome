@@ -1,5 +1,6 @@
 'use client';
 
+import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { WordsPracticeEntry } from '@/utils/wordsPracticeEntry';
 
 export function WordsPracticeTile({entry, starting, onOpen}: {entry: WordsPracticeEntry, starting?: boolean, onOpen: () => void}) {
@@ -17,7 +18,6 @@ export function WordsPracticeTile({entry, starting, onOpen}: {entry: WordsPracti
     }
 
     const enabled = (entry.status === 'start' || entry.status === 'resume') && !starting;
-    const value = entry.status === 'error' ? '—' : String(entry.poolSize);
     const action = entry.status === 'resume' ? 'Resume' : 'Practice words';
     const hint = entry.status === 'disabled' ? 'Complete a module to unlock' : null;
 
@@ -25,18 +25,17 @@ export function WordsPracticeTile({entry, starting, onOpen}: {entry: WordsPracti
         <button
             onClick={onOpen}
             disabled={!enabled}
-            className="w-full text-left rounded-2xl border border-cyan-300 p-5 enabled:cursor-pointer enabled:hover:bg-cyan-300/10 disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200"
+            className="flex items-center w-full text-left rounded-2xl border enabled:border-lime-200 enabled:bg-lime-200 p-5 enabled:cursor-pointer disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200"
             aria-label={hint ? `Words Practice. ${hint}` : `Words Practice. ${action}`}
         >
-            <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-black/90 leading-none">{value}</span>
-                <span className="text-base font-semibold text-black/70">words to practise</span>
+            <div className="flex items-center gap-2 flex-1">
+                <MaskedSvgIcon src="/images/notes.svg" alt="In Progress" size="w-8 h-8" color="bg-lime-700" />
+                <span className="text-lg font-semibold text-black/90">Words Practice</span>
             </div>
-            <div className="flex items-center justify-between gap-2 mt-2">
-                <p className="text-xs font-semibold uppercase tracking-widest text-black/50 m-0">Words Practice</p>
+            <div className="flex items-center justify-between gap-2">
                 {hint
                     ? <span className="text-xs font-semibold text-black/60">{hint}</span>
-                    : entry.status !== 'error' && <span className="text-xs font-semibold uppercase tracking-widest text-black/90">{action} →</span>}
+                    : entry.status !== 'error' && <MaskedSvgIcon src="/images/point-right.svg" alt="In Progress" size="w-6 h-6" color="bg-lime-700" />}
             </div>
         </button>
     );
