@@ -42,7 +42,7 @@ export function UserButton() {
     return (
         <div ref={containerRef} className="relative mt-2">
             {open && (
-                <div role="dialog" aria-label="Account" className="absolute bottom-full left-0 right-0 mb-2 flex flex-col items-center gap-3 p-4 rounded-2xl border-[1.5px] border-cyan-500/30 bg-cyan-950">
+                <div role="dialog" aria-label="Account" style={{ zIndex: 1000 }} className="absolute bottom-full left-0 right-0 mb-2 flex flex-col items-center gap-3 p-4 rounded-2xl border-[1.5px] border-cyan-500/30 bg-cyan-950">
                     <UserAvatar user={user} size="w-16 h-16" textSize="text-2xl" />
                     <div className="w-full text-center min-w-0">
                         <div className="text-xs text-white/50 font-semibold">Logged in as</div>
