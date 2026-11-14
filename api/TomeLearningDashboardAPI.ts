@@ -153,6 +153,8 @@ export interface DailyActivityDay {
     successfulModuleTests: number;
     /** Passed level tests on this day */
     successfulLevelTests: number;
+    /** Completed Words Practice sessions on this day */
+    wordsPracticeSessions: number;
 }
 
 /**

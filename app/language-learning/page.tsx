@@ -20,8 +20,11 @@ import { WeeklyModuleStats } from './components/WeeklyModuleStats';
 import { DesktopContinueCard } from './components/DesktopContinueCard';
 import { DesktopHomeLevelTest } from './components/DesktopHomeLevelTest';
 import { StatTile } from './components/StatTile';
+import { WordsPracticeTile } from './components/WordsPracticeTile';
 import { UpNextStrip } from './components/UpNextStrip';
 import { countActiveDays } from '@/utils/activeDays';
+import { TomeWordsPracticeAPI, WordsPracticeSummary } from '@/api/TomeWordsPracticeAPI';
+import { deriveWordsPracticeEntry, resolveWordsPracticeSessionId } from '@/utils/wordsPracticeEntry';
 
 export default function LanguageLearningHomePage() {
     const { setConfig } = useHeader();
@@ -31,6 +34,9 @@ export default function LanguageLearningHomePage() {
     const [weeklyStats, setWeeklyStats] = useState<DailyActivityDay[] | null | undefined>(undefined);
     const [userId, setUserId] = useState<string | null | undefined>(undefined);
     const [levelTestEligibility, setLevelTestEligibility] = useState<LevelTestEligibilityResponse | null | undefined>(undefined);
+
+    const [wordsSummary, setWordsSummary] = useState<WordsPracticeSummary | null | undefined>(undefined);
+    const [startingWords, setStartingWords] = useState(false);
 
     useEffect(() => {
         setConfig({
@@ -44,6 +50,7 @@ export default function LanguageLearningHomePage() {
         api.getMe().then((me) => setUserId(me.id)).catch(() => setUserId(null));
         api.getMeProgress().then(setProgress).catch(() => setProgress(null));
         api.getWeeklySessionStats().then((res) => setWeeklyStats(res.days)).catch(() => setWeeklyStats(null));
+        new TomeWordsPracticeAPI().getSummary().then(setWordsSummary).catch(() => setWordsSummary(null));
     }, []);
 
     const isProgressLoading = progress === undefined;
@@ -61,7 +68,20 @@ export default function LanguageLearningHomePage() {
         new TomeLevelTestAPI().getLevelTestEligibility(userId).then(setLevelTestEligibility).catch(() => setLevelTestEligibility(null));
     }, [userId, allModulesComplete]);
 
-    const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions, 0) ?? 0;
+    const wordsEntry = deriveWordsPracticeEntry(wordsSummary);
+
+    const openWordsPractice = async () => {
+        if (!userId || startingWords) return;
+        setStartingWords(true);
+        try {
+            const sessionId = await resolveWordsPracticeSessionId(wordsEntry, userId, new TomeWordsPracticeAPI());
+            router.push(`/language-learning/words-practice/${sessionId}`);
+        } catch {
+            setStartingWords(false);
+        }
+    };
+
+    const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions + d.wordsPracticeSessions, 0) ?? 0;
     const activeDays = weeklyStats ? countActiveDays(weeklyStats) : 0;
     const currentModuleProgress = progress?.modules?.find((m) => m.status === 'in_progress');
     const wordsSeen = currentModuleProgress?.vocabularyItemsPracticedCount ?? 0;
@@ -92,6 +112,17 @@ export default function LanguageLearningHomePage() {
                         label="Modules"
                         onClick={() => router.push(`/language-learning/level/${cefrLevel ?? 'A1'}`)}
                     />
+                    {wordsEntry.status !== 'error' && (
+                        <NavButton
+                            icon="/images/language.svg"
+                            alt="Words Practice"
+                            label="Words"
+                            hint={wordsEntry.status === 'disabled' ? 'Complete a module to unlock' : undefined}
+                            badge={wordsEntry.status === 'resume'}
+                            disabled={wordsEntry.status === 'loading' || wordsEntry.status === 'disabled' || !userId || startingWords}
+                            onClick={openWordsPractice}
+                        />
+                    )}
                 </div>
                 <div className="flex-1" />
                 <div className="mb-3.5">
@@ -142,12 +173,7 @@ export default function LanguageLearningHomePage() {
 
                 {/* Stat tiles */}
                 <div className="grid grid-cols-3 gap-6 mb-7">
-                    <StatTile
-                        loading={isProgressLoading}
-                        value={String(currentLevelSummary?.modulesCompleted ?? 0)}
-                        suffix={`of ${currentLevelSummary?.modulesTotal ?? 0} modules`}
-                        label={`${cefrLevel ?? ''} ${levelName ?? ''}`}
-                    />
+                    <WordsPracticeTile entry={wordsEntry} starting={startingWords || !userId} onOpen={openWordsPractice} />
                     <StatTile loading={isProgressLoading} value={String(wordsSeen)} suffix="words seen" label="this round" />
                     <StatTile loading={isWeeklyLoading} value={`${activeDays}d`} suffix="active days" label="last 7 days" />
                 </div>
@@ -164,11 +190,15 @@ export default function LanguageLearningHomePage() {
     );
 }
 
-function NavButton({icon, alt, label, onClick}: {icon: string, alt: string, label: string, onClick: () => void}) {
+function NavButton({icon, alt, label, onClick, disabled, badge, hint}: {icon: string, alt: string, label: string, onClick: () => void, disabled?: boolean, badge?: boolean, hint?: string}) {
     return (
         <div className="flex flex-col items-center gap-2">
-            <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} />
+            <div className="relative">
+                <RoundButton svgIconPath={{ src: icon, alt }} type="primary" onClick={onClick} disabled={disabled} />
+                {badge && <span className="absolute top-0 right-0 w-3 h-3 rounded-full bg-lime-400" aria-label="Session in progress" />}
+            </div>
             <span className="text-xs font-semibold tracking-widest uppercase text-black/70">{label}</span>
+            {hint && <span className="text-xs text-black/60 text-center max-w-24">{hint}</span>}
         </div>
     );
 }

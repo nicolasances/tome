@@ -6,14 +6,22 @@ import { computeWeeklyBarStacks } from '@/utils/weeklyBarStack';
 
 interface WeeklyModuleStatsProps {
     loading?: boolean;
-    /** Seven entries for the rolling 7-day window (oldest → today); days with no sessions have practiceSessions: 0. */
+    /** Seven entries for the rolling 7-day window (oldest → today); days with no sessions have all counts 0. */
     days?: DailyActivityDay[];
+}
+
+/** Rounds the outer corners of the stack: top segment gets a rounded top, bottom a rounded bottom, a lone segment both. Segments are listed top → bottom. */
+function segmentRounding(index: number, count: number) {
+    if (count === 1) return 'rounded-sm';
+    if (index === 0) return 'rounded-t-sm';
+    if (index === count - 1) return 'rounded-b-sm';
+    return '';
 }
 
 /**
  * 7-day stacked bar chart over a rolling window (oldest → today): each bar stacks
- * practice sessions (bottom), module tests passed (middle) and level tests passed
- * (top), sized to the day's share of activity relative to the busiest day in the window.
+ * practice sessions (bottom), Words Practice sessions, module tests passed and
+ * level tests passed (top), sized to the day's share of activity relative to the busiest day in the window.
  * Handles its own loading (skeleton) and empty states via props.
  * Day labels are derived from the date field.
  * Today's bar is highlighted with a lime accent.
@@ -63,8 +71,15 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
                     const isToday = day.date === today;
                     const stack = stacks[i];
                     const dayLabel = moment(day.date, 'YYYYMMDD').format('dd').charAt(0);
+                    const segments = [
+                        { key: 'levelTest', height: stack.levelTestHeight, color: 'bg-cyan-400', todayColor: 'bg-lime-400' },
+                        { key: 'moduleTest', height: stack.moduleTestHeight, color: 'bg-cyan-600', todayColor: 'bg-lime-300' },
+                        { key: 'wordsPractice', height: stack.wordsPracticeHeight, color: 'bg-cyan-800', todayColor: 'bg-lime-800' },
+                        { key: 'practice', height: stack.practiceHeight, color: 'bg-cyan-800', todayColor: 'bg-lime-100' },
+                    ].filter((segment) => segment.height > 0);
                     const ariaLabel = `${dayLabel}: ${stack.total} activit${stack.total !== 1 ? 'ies' : 'y'} `
                         + `(${day.practiceSessions} practice session${day.practiceSessions !== 1 ? 's' : ''}, `
+                        + `${day.wordsPracticeSessions} words practice session${day.wordsPracticeSessions !== 1 ? 's' : ''}, `
                         + `${day.successfulModuleTests} module test${day.successfulModuleTests !== 1 ? 's' : ''}, `
                         + `${day.successfulLevelTests} level test${day.successfulLevelTests !== 1 ? 's' : ''})`;
 
@@ -77,24 +92,13 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
                             )}
                             {stack.total > 0 ? (
                                 <div className="w-full flex flex-col justify-end" role="img" aria-label={ariaLabel} style={{ height: stack.barHeight }}>
-                                    {stack.levelTestHeight > 0 && (
+                                    {segments.map((segment, s) => (
                                         <div
-                                            className={`w-full ${isToday ? 'bg-lime-400' : 'bg-cyan-400'} ${stack.moduleTestHeight === 0 && stack.practiceHeight === 0 ? 'rounded-sm' : 'rounded-t-sm'}`}
-                                            style={{ height: stack.levelTestHeight }}
+                                            key={segment.key}
+                                            className={`w-full ${isToday ? segment.todayColor : segment.color} ${segmentRounding(s, segments.length)}`}
+                                            style={{ height: segment.height }}
                                         />
-                                    )}
-                                    {stack.moduleTestHeight > 0 && (
-                                        <div
-                                            className={`w-full ${isToday ? 'bg-lime-300' : 'bg-cyan-600'} ${stack.levelTestHeight === 0 && stack.practiceHeight === 0 ? 'rounded-sm' : stack.levelTestHeight === 0 ? 'rounded-t-sm' : stack.practiceHeight === 0 ? 'rounded-b-sm' : ''}`}
-                                            style={{ height: stack.moduleTestHeight }}
-                                        />
-                                    )}
-                                    {stack.practiceHeight > 0 && (
-                                        <div
-                                            className={`w-full ${isToday ? 'bg-lime-200' : 'bg-cyan-800'} ${stack.moduleTestHeight === 0 && stack.levelTestHeight === 0 ? 'rounded-sm' : 'rounded-b-sm'}`}
-                                            style={{ height: stack.practiceHeight }}
-                                        />
-                                    )}
+                                    ))}
                                 </div>
                             ) : (
                                 <div

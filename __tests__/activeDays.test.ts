@@ -3,8 +3,8 @@ import { DailyActivityDay } from '../api/TomeLearningDashboardAPI';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function day(date: string, practiceSessions: number, successfulModuleTests: number, successfulLevelTests: number): DailyActivityDay {
-    return { date, practiceSessions, successfulModuleTests, successfulLevelTests };
+function day(date: string, practiceSessions: number, successfulModuleTests: number, successfulLevelTests: number, wordsPracticeSessions = 0): DailyActivityDay {
+    return { date, practiceSessions, successfulModuleTests, successfulLevelTests, wordsPracticeSessions };
 }
 
 // ─── Tests ──────────────────────────────────────────────────────────────────
@@ -48,5 +48,11 @@ describe('countActiveDays', () => {
 
     it('returns 0 for an empty week', () => {
         expect(countActiveDays([])).toBe(0);
+    });
+
+    it('counts a day with only Words Practice sessions as active', () => {
+        const days = [day('20260706', 0, 0, 0, 1)];
+
+        expect(countActiveDays(days)).toBe(1);
     });
 });
