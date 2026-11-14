@@ -3,8 +3,8 @@ import { DailyActivityDay } from '../api/TomeLearningDashboardAPI';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function day(date: string, practiceSessions: number, successfulModuleTests: number, successfulLevelTests: number): DailyActivityDay {
-    return { date, practiceSessions, successfulModuleTests, successfulLevelTests };
+function day(date: string, practiceSessions: number, successfulModuleTests: number, successfulLevelTests: number, wordsPracticeSessions = 0): DailyActivityDay {
+    return { date, practiceSessions, successfulModuleTests, successfulLevelTests, wordsPracticeSessions };
 }
 
 // ─── Tests ──────────────────────────────────────────────────────────────────
@@ -74,5 +74,33 @@ describe('computeWeeklyBarStacks', () => {
         const [, lowDay] = computeWeeklyBarStacks(days);
 
         expect(lowDay.barHeight).toBe(8);
+    });
+
+    it('stacks Words Practice sessions as their own segment between practice and module tests', () => {
+        const days = [
+            day('20260706', 2, 1, 1, 4),
+            day('20260707', 1, 0, 0),
+        ];
+
+        const [mixed] = computeWeeklyBarStacks(days);
+
+        expect(mixed.total).toBe(8);
+        expect(mixed.wordsPracticeHeight).toBeCloseTo(mixed.barHeight * (4 / 8));
+        expect(mixed.practiceHeight + mixed.wordsPracticeHeight + mixed.moduleTestHeight + mixed.levelTestHeight).toBeCloseTo(mixed.barHeight);
+    });
+
+    it('renders a day with only Words Practice sessions as a non-empty bar', () => {
+        const [result] = computeWeeklyBarStacks([day('20260706', 0, 0, 0, 3)]);
+
+        expect(result.total).toBe(3);
+        expect(result.barHeight).toBeGreaterThan(0);
+        expect(result.practiceHeight).toBe(0);
+        expect(result.wordsPracticeHeight).toBeCloseTo(result.barHeight);
+    });
+
+    it('normalizes bar height against the busiest day including Words Practice sessions', () => {
+        const [quiet, busy] = computeWeeklyBarStacks([day('20260706', 1, 0, 0), day('20260707', 0, 0, 0, 5)]);
+
+        expect(busy.barHeight).toBeGreaterThan(quiet.barHeight);
     });
 });

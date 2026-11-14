@@ -61,7 +61,7 @@ export default function LanguageLearningHomePage() {
         new TomeLevelTestAPI().getLevelTestEligibility(userId).then(setLevelTestEligibility).catch(() => setLevelTestEligibility(null));
     }, [userId, allModulesComplete]);
 
-    const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions, 0) ?? 0;
+    const weekTotal = weeklyStats?.reduce((a, d) => a + d.practiceSessions + d.wordsPracticeSessions, 0) ?? 0;
     const activeDays = weeklyStats ? countActiveDays(weeklyStats) : 0;
     const currentModuleProgress = progress?.modules?.find((m) => m.status === 'in_progress');
     const wordsSeen = currentModuleProgress?.vocabularyItemsPracticedCount ?? 0;

@@ -2,7 +2,7 @@ import { DailyActivityDay } from '@/api/TomeLearningDashboardAPI';
 
 /**
  * Counts how many days in a rolling window had any learning activity at all:
- * a practice session, a passed module test, or a passed level test. This
+ * a practice session, a Words Practice session, a passed module test, or a passed level test. This
  * mirrors the "any activity" definition already used by the weekly bar chart
  * (see computeWeeklyBarStacks), so a day with e.g. only a passed module test
  * counts as active here too.
@@ -13,5 +13,5 @@ import { DailyActivityDay } from '@/api/TomeLearningDashboardAPI';
  */
 export function countActiveDays(days: DailyActivityDay[]): number {
 
-    return days.filter((d) => d.practiceSessions + d.successfulModuleTests + d.successfulLevelTests > 0).length;
+    return days.filter((d) => d.practiceSessions + d.wordsPracticeSessions + d.successfulModuleTests + d.successfulLevelTests > 0).length;
 }
