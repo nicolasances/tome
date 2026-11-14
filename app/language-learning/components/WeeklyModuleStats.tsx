@@ -74,7 +74,7 @@ export function WeeklyModuleStats({ loading, days }: WeeklyModuleStatsProps) {
                     const segments = [
                         { key: 'levelTest', height: stack.levelTestHeight, color: 'bg-cyan-400', todayColor: 'bg-lime-400' },
                         { key: 'moduleTest', height: stack.moduleTestHeight, color: 'bg-cyan-600', todayColor: 'bg-lime-300' },
-                        { key: 'wordsPractice', height: stack.wordsPracticeHeight, color: 'bg-cyan-700', todayColor: 'bg-lime-200' },
+                        { key: 'wordsPractice', height: stack.wordsPracticeHeight, color: 'bg-cyan-800', todayColor: 'bg-lime-800' },
                         { key: 'practice', height: stack.practiceHeight, color: 'bg-cyan-800', todayColor: 'bg-lime-100' },
                     ].filter((segment) => segment.height > 0);
                     const ariaLabel = `${dayLabel}: ${stack.total} activit${stack.total !== 1 ? 'ies' : 'y'} `
