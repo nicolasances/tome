@@ -5,10 +5,13 @@ import { useRouter } from 'next/navigation';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { useCarMode } from '@/context/CarModeContext';
 import { useHeader } from '@/context/HeaderContext';
+import { useAuth } from '@/context/AuthContext';
+import { UserAvatar } from '@/app/components/UserAvatar';
 
 export default function Menu() {
     const { carMode, toggleCarMode } = useCarMode();
     const { setConfig } = useHeader();
+    const { user, signOut } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
@@ -27,6 +30,19 @@ export default function Menu() {
                 <div className="pt-4"></div>
                 <MenuItem onClick={() => router.push('/new-topic')} icon="/images/plus.svg" iconColor="bg-cyan-700" label="New Topic" />
             </div>
+
+            {user && (
+                <div className="flex flex-col gap-4 mt-10 pt-6 border-t border-cyan-500/30">
+                    <div className="flex items-center gap-3 min-w-0">
+                        <UserAvatar user={user} size="w-12 h-12" textSize="text-lg" />
+                        <div className="min-w-0">
+                            <div className="text-sm">Logged in as <span className="font-bold">{user.name}</span></div>
+                            <div className="text-xs opacity-60 truncate">{user.email}</div>
+                        </div>
+                    </div>
+                    <MenuItem onClick={signOut} icon="/images/log-off.svg" iconColor="bg-cyan-700" label="Log off" />
+                </div>
+            )}
         </div>
     );
 }

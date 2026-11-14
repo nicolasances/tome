@@ -3,12 +3,8 @@
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
-import {
-    TomeLearningDashboardAPI,
-    MeProgressResponse,
-    CEFR_LEVEL_NAMES,
-    CefrLevel,
-} from '@/api/TomeLearningDashboardAPI';
+import { TomeLearningDashboardAPI, MeProgressResponse, CefrLevel } from '@/api/TomeLearningDashboardAPI';
+import { UserButton } from '@/app/ui/UserButton';
 
 const NAV_ITEMS = [
     { id: 'home', icon: '/images/home.svg', label: 'Home', href: '/language-learning' },
@@ -39,8 +35,6 @@ export function DesktopSidebar() {
     }, []);
 
     const cefrLevel = progress?.currentCefrLevel as CefrLevel | undefined;
-    const levelName = cefrLevel ? CEFR_LEVEL_NAMES[cefrLevel] : undefined;
-    const currentLevelSummary = progress?.levels?.find((l) => l.status === 'current');
 
     const handleNav = (item: typeof NAV_ITEMS[number]) => {
         if (item.id === 'home') {
@@ -84,8 +78,8 @@ export function DesktopSidebar() {
             {/* Settings */}
             <NavItem icon="/images/settings.svg" label="Settings" active={false} onClick={() => router.push('/settings')} />
 
-            {/* Level badge */}
-            <LevelBadge cefrLevel={cefrLevel} levelName={levelName} modulesCompleted={currentLevelSummary?.modulesCompleted} modulesTotal={currentLevelSummary?.modulesTotal} />
+            {/* Logged-in user */}
+            <UserButton />
         </aside>
     );
 }
@@ -102,23 +96,5 @@ function NavItem({icon, label, active, onClick}: {icon: string, label: string, a
                 {label}
             </span>
         </button>
-    );
-}
-
-function LevelBadge({cefrLevel, levelName, modulesCompleted, modulesTotal}: {cefrLevel?: string, levelName?: string, modulesCompleted?: number, modulesTotal?: number}) {
-    if (!cefrLevel) return null;
-
-    return (
-        <div className="flex items-center gap-3 px-2.5 py-3 mt-2 rounded-2xl border-[1.5px] border-cyan-500/30">
-            <div className="w-10 h-10 rounded-full border-[2.5px] border-lime-200 flex items-center justify-center flex-shrink-0 bg-lime-200/10">
-                <span className="text-base font-bold text-white">{cefrLevel}</span>
-            </div>
-            <div className="min-w-0">
-                <div className="text-sm font-bold text-white">{levelName}</div>
-                <div className="text-xs text-white/50 font-semibold">
-                    {modulesCompleted ?? 0} / {modulesTotal ?? 0} modules
-                </div>
-            </div>
-        </div>
     );
 }

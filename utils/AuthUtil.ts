@@ -1,17 +1,9 @@
 import Cookies from "universal-cookie";
 import { AuthAPI } from "../api/AuthAPI";
-import { jwtDecode } from "jwt-decode";
+import { AuthenticatedUser, buildAuthenticatedUser } from "./userProfile";
 
 const cookies = new Cookies()
 const googleClientID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-
-interface AuthenticatedUser {
-
-    name: string,
-    email: string,
-    idToken: string
-
-}
 
 /**
  * Checks if the user token is stored in the local storage and 
@@ -49,28 +41,6 @@ export async function getTotoToken(googleToken: string): Promise<any> {
 
     return await new AuthAPI().getTotoToken(googleToken);
 
-}
-
-/**
- * Retrieves a user object from the Toto Token
- * 
- * @param totoToken the Toto Token
- * @returns the user
- */
-export function userFromToken(totoToken: string): AuthenticatedUser | null {
-
-    const decodedToken = jwtDecode(totoToken) as any;
-
-    console.log("Decoded Token: ");
-    console.log(decodedToken);
-
-    if (!decodedToken) return null;
-
-    return {
-        name: decodedToken.user,
-        email: decodedToken.user,
-        idToken: totoToken
-    }
 }
 
 /**
@@ -118,7 +88,7 @@ export function renderGoogleButton(element: HTMLElement, onUser: (user: any) => 
     initializeGoogle(async (auth: any) => {
         if (auth.credential) {
             const totoToken = await getTotoToken(auth.credential);
-            const user = userFromToken(totoToken.token);
+            const user = buildAuthenticatedUser(totoToken.token, auth.credential);
             if (user) {
                 storeUser(user);
                 onUser(user);
@@ -160,7 +130,7 @@ export async function googleSignIn(): Promise<any> {
 
                         getTotoToken(auth.credential).then((totoToken) => {
 
-                            const user = userFromToken(totoToken.token);
+                            const user = buildAuthenticatedUser(totoToken.token, auth.credential);
 
                             if (!user) {
                                 console.log(`No user was extracted from token [${JSON.stringify(totoToken)}]`);
@@ -198,4 +168,13 @@ export async function googleSignIn(): Promise<any> {
 
     })
 
+}
+
+/**
+ * Prevents Google One Tap from automatically signing the user back in after a log off.
+ * No-op when the Google Identity Services library is not loaded.
+ */
+export function disableGoogleAutoSelect() {
+
+    (window as any).google?.accounts?.id?.disableAutoSelect();
 }
