@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useCallback } from 'react';
-import { TomeAnswerVerificationAPI } from '@/api/TomeAnswerVerificationAPI';
+import { TomeAnswerVerificationAPI, VerifyAnswerResponse } from '@/api/TomeAnswerVerificationAPI';
 import { toVerificationOutcome } from '@/utils/aiVerify';
 
 /** The live phase of an AI answer-verification flow; null means no verification is in progress (the ResultSheet is shown). */
@@ -13,6 +13,11 @@ export interface VerifyArgs {
     sessionId: string;      // The practice session id or module-test attempt id the exercise belongs to.
     cefrLevel: string;      // The learner's CEFR level, e.g. "A1".
 }
+
+/** Performs the actual verification request. Defaults to F13 (exercise answers); Words Practice passes its F27 call. */
+export type AnswerVerifier = (args: VerifyArgs, signal: AbortSignal) => Promise<VerifyAnswerResponse>;
+
+const verifyExerciseAnswer: AnswerVerifier = (args, signal) => new TomeAnswerVerificationAPI().verifyAnswer({ ...args, signal });
 
 export interface AnswerVerification {
     phase: VerifyPhase;             // Current verification phase driving which tray (or none) renders.
@@ -31,9 +36,14 @@ export interface AnswerVerification {
  * flow silently returns to the ResultSheet so the learner can still continue —
  * the button is one-shot, so re-verification is not offered.
  *
+ * @param {AnswerVerifier} [verifier] - How to call the backend; defaults to the exercise verification (F13).
+ *
  * @returns {AnswerVerification} The verification state and its control functions.
  */
-export function useAnswerVerification(): AnswerVerification {
+export function useAnswerVerification(verifier: AnswerVerifier = verifyExerciseAnswer): AnswerVerification {
+
+    const verifierRef = useRef(verifier);
+    verifierRef.current = verifier;
 
     const [phase, setPhase] = useState<VerifyPhase>(null);
     const [explanation, setExplanation] = useState('');
@@ -47,8 +57,7 @@ export function useAnswerVerification(): AnswerVerification {
         setExplanation('');
         setPhase('loading');
 
-        new TomeAnswerVerificationAPI()
-            .verifyAnswer({ ...args, signal: controller.signal })
+        verifierRef.current(args, controller.signal)
             .then(result => {
                 if (controller.signal.aborted) return;
                 const outcome = toVerificationOutcome(result);

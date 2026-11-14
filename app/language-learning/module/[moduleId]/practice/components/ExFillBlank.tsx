@@ -1,7 +1,7 @@
 import { RoundButton } from 'toto-react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { AnswerBox, AnswerLine, AnswerLineInput } from './AnswerBox';
+import { AnswerBox, AnswerLine, AnswerLineInput } from '@/components/practice/AnswerBox';
 
 interface ExFillBlankProps {
     exercise: Exercise;

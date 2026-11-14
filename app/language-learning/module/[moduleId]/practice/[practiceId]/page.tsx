@@ -10,8 +10,8 @@ import { useAnswerVerification } from '@/utils/useAnswerVerification';
 import { useKeyboardShortcuts } from '@/utils/useKeyboardShortcuts';
 import { toggleWordId, resolveBuiltWords } from '@/utils/sentenceReorderWords';
 import { SessionProgressBar } from '@/components/SessionProgressBar';
-import { ResultSheet } from '../components/ResultSheet';
-import { AIVerifyTray } from '../components/AIVerifyTray';
+import { ResultSheet } from '@/components/practice/ResultSheet';
+import { AIVerifyTray } from '@/components/practice/AIVerifyTray';
 import { ExMultipleChoice } from '../components/ExMultipleChoice';
 import { ExSentenceReorder } from '../components/ExSentenceReorder';
 import { ExFillBlank } from '../components/ExFillBlank';
@@ -315,7 +315,7 @@ export default function PracticeSessionPage() {
                             ok={submissionState.isCorrect}
                             answer={submissionState.correctAnswer}
                             userAnswer={inputValue}
-                            exercise={currentExercise}
+                            exerciseType={currentExercise.type}
                             aiVerify={aiVerifyVisible}
                             onContinue={() => handleContinue()}
                             onAiVerify={handleAiVerify}

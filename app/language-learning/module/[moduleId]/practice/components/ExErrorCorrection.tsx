@@ -1,7 +1,7 @@
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { AnswerAreaInput, AnswerBox } from './AnswerBox';
-import { CheckFooter } from './CheckFooter';
+import { AnswerAreaInput, AnswerBox } from '@/components/practice/AnswerBox';
+import { CheckFooter } from '@/components/practice/CheckFooter';
 
 interface ExErrorCorrectionProps {
     exercise: Exercise;

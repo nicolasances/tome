@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect, useCallback } from 'react';
 import { Exercise } from '@/api/TomePracticeSessionAPI';
 import { SubmissionState } from '../types';
-import { CheckFooter } from './CheckFooter';
+import { CheckFooter } from '@/components/practice/CheckFooter';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
 import { seededShuffle } from '@/utils/seededShuffle';
 import { multipleChoiceKeyHandler } from '@/utils/multipleChoiceKeyHandler';

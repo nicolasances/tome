@@ -1,6 +1,6 @@
 # 09 — Words Practice
 
-![Status](https://img.shields.io/badge/status-not%20implemented-lightgrey?style=flat-square)
+![Status](https://img.shields.io/badge/status-implemented-brightgreen?style=flat-square)
 
 > **Designed without wireframe.** There is no wireframe for these screens in `docs/ui-design/tome-language-learning`. They are specified by reusing the patterns of screens that *are* wireframed — the practice session's Translation exercise and `ResultSheet` / `AIVerifyTray` (`exercise-screens.jsx`) and the Practice complete screen, variant A (`practice-complete-screens.jsx` → `PCRoundComplete`). See OQ-01: the design must be validated (or a wireframe produced) before UI implementation.
 
@@ -51,10 +51,10 @@ Both render inside the standard `TomeScreen` chrome, titled "Words Practice", wi
 
 | Screen | Component Name | Description | Expected Behavior |
 |--------|----------------|-------------|-------------------|
-| Session | Session progress bar (`SessionProgressBar`) | Thin bar at the top. | Fills with **words answered correctly ÷ words in the session** (including words accepted by the AI). Does not move on a wrong answer. |
+| Session | Session progress bar (`SessionProgressBar`) | Thin bar at the top. | Fills with **words answered correctly ÷ words in the session** (including words accepted by the AI). The green part does not move on a wrong answer; instead the words waiting for a retry fill the lime segment on the right, as in module practice. |
 | Session | Kicker | Small uppercase label above the prompt, e.g. "Word 12 of 40", or "Retry · 3 left" once the user is in the retry loop. | Tells the user where they are; switches to the retry wording after the first pass through the list. |
 | Session | Prompt card | The English prompt in large type (`english`, including slash variants such as "to live / to reside"), with two small chips beneath: the word **type** (noun, verb, connector …) and, when present, the **context** note. | Always shows type; shows context only when the word has one. Same visual language as the Translation exercise prompt (`ExTranslation`). |
-| Session | Answer input (`TranslationInput`) | Single-line Danish text input with placeholder "Type the Danish…". | Autofocused on each new word. Keeps the existing æ/ø/å keyboard shortcuts (e.g. Cmd+A → æ). Disabled while an answer is being checked. |
+| Session | Answer input (`AnswerAreaInput`) | Borderless, underlined, centred Danish text input (the one used by the Translation exercise) with placeholder "Type the Danish…". | Autofocused on each new word. Keeps the existing æ/ø/å keyboard shortcuts (e.g. Cmd+A → æ). Disabled while an answer is being checked. |
 | Session | Check footer (`CheckFooter`) | "Check" button pinned at the bottom. | Enabled when the input is non-empty. Enter submits. Calls the answer endpoint, then shows the result sheet. |
 | Session | Result sheet — correct (`ResultSheet`) | Same bottom sheet as module practice, correct state. | Shows "Correct" and the canonical Danish (useful when a typo was accepted, or an article was dropped). **Continue** (or Enter) goes to the next word. |
 | Session | Result sheet — wrong (`ResultSheet`) | Same bottom sheet, wrong state, with the user's answer and the correct Danish. Contains one action button: **"Check with AI"** (teacher icon, `SheetBtn`). No "Explain my mistake". | **Continue** re-queues the word at the end of the list and goes to the next word. "Check with AI" (also Cmd+. on desktop) replaces the sheet with the AI verify tray. |
@@ -97,11 +97,15 @@ Both render inside the standard `TomeScreen` chrome, titled "Words Practice", wi
 | # | Decision | Rationale |
 |---|----------|-----------|
 | 1 | Two routes, session and results, as for module practice (`05`, decision 1). | Deep-linkable; the results page can be refreshed; the session page never owns the recap. |
-| 2 | Reuse `TranslationInput`, `SessionProgressBar`, `CheckFooter`, `ResultSheet`, `SheetBtn`, `AIVerifyTray`, `MiniStat`, `SavedChip`, `PrimaryBtn`, `GhostBtn`. Components currently under the module practice folder that are needed here are moved to a shared location rather than duplicated. | Same interaction language as module practice; no second copy of the AI tray. The move is a refactor with no behaviour change for `05`/`06`. |
+| 2 | Reuse `AnswerAreaInput` / `AnswerBox`, `SessionProgressBar`, `CheckFooter`, `ResultSheet`, `SheetBtn`, `AIVerifyTray`, `MiniStat`, `SavedChip`, `PrimaryBtn`, `GhostBtn`. Components currently under the module practice folder that are needed here are moved to a shared location rather than duplicated. | Same interaction language as module practice; no second copy of the AI tray. The move is a refactor with no behaviour change for `05`/`06`. |
 | 3 | All Words Practice calls go through a new `TomeWordsPracticeAPI` class in `/api`, with paths relative to the `tome-ms-language` basepath (AGENTS.md). | Project convention; shared with `01`'s entry point. |
 | 4 | The AI tray is driven by a different endpoint than in module practice (F27, not F13). `AIVerifyTray` takes its verify action as an input rather than calling F13 itself, if it does not already. | Keeps one tray component for both flows. |
 | 5 | Delete the legacy vocabulary practice code instead of evolving it. | Its data shape and backend no longer exist; `00-user-journeys` already flags it as legacy to be replaced. Keeping it alongside invites confusion. |
 | 6 | Screens designed without a wireframe, from wireframed patterns. | User decision for this feature; to be validated (OQ-01). |
+| 7 | `AIVerifyTray` already took its phase and answers as props. The verify call is what differs, so `useAnswerVerification` takes an optional verifier (default: F13); Words Practice passes its F27 call. `ResultSheet` takes `exerciseType` instead of a module-practice `Exercise`, plus `showExplain` (default true; false here). | Keeps one tray and one sheet for all flows, with no behaviour change for `05`/`06`/`07`. |
+| 8 | Shared practice components live in `components/practice/` (`ResultSheet`, `CheckFooter`, `AIVerifyTray`, `MiniStat`, `SavedChip`, `AnswerBox` / `AnswerAreaInput`). | Moved, not copied. |
+| 9 | The queue / resume logic (`utils/wordsPracticeQueue.ts`) and the results derivation (`utils/wordsPracticeResults.ts`) are pure functions with unit tests. | The screens only render them. |
+| 10 | On an error or timeout of "Check with AI", the hook returns silently to the wrong-answer sheet (shared behaviour with module practice); no inline error text is shown. | Reused as is; the user can continue. An explicit error message in the tray is not implemented. |
 
 ### 5.1. API Integrations
 
@@ -115,12 +119,9 @@ Both render inside the standard `TomeScreen` chrome, titled "Words Practice", wi
 
 **Missing**
 
-All endpoints are specified in `tome-ms-language` F26/F27, which are **not yet implemented**. This feature cannot be integrated end-to-end before they ship.
+None. `tome-ms-language` F26 and F27 are implemented.
 
-| Component or Screen | Missing API endpoint |
-| ------------------- | -------------------- |
-| All | F26 endpoints (start / get / answers / complete) — specified, not implemented |
-| AI verify tray | F27 verify endpoint — specified, not implemented |
+---
 
 ## 6. Success Criteria
 
@@ -140,4 +141,4 @@ All endpoints are specified in `tome-ms-language` F26/F27, which are **not yet i
 
 | # | Question | Notes |
 |---|----------|-------|
-| OQ-01 | Validate the session and results screen design (no wireframe exists). | **Open** — designed from the module practice and Practice complete patterns. Produce or approve a wireframe in `docs/ui-design/tome-language-learning` before UI implementation. |
+| OQ-01 | Validate the session and results screen design (no wireframe exists). | **Open** — implemented from the module practice and Practice complete patterns by explicit user decision, without a wireframe. Still to be validated visually; produce a wireframe in `docs/ui-design/tome-language-learning` if the design needs to change. |

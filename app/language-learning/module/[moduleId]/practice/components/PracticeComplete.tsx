@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { MaskedSvgIcon } from '@/app/components/MaskedSvgIcon';
+import { SavedChip } from '@/components/practice/SavedChip';
+import { MiniStat } from '@/components/practice/MiniStat';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -111,27 +113,6 @@ function SparkBurst({radius = 118, dots = [12, 64, 122, 196, 248, 312]}: {radius
                 </span>
             ))}
         </>
-    );
-}
-
-function SavedChip() {
-    return (
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-400/40 anim-pc-rise"
-            style={{ animationDelay: '440ms' }}>
-            <span className="w-4 h-4 rounded-full bg-lime-200 text-cyan-900 flex items-center justify-center text-sm font-black">
-                <MaskedSvgIcon src="/images/tick.svg" alt="Saved" size="w-3 h-3" />
-            </span>
-            <span className="text-base font-semibold text-black/50 whitespace-nowrap">Progress saved</span>
-        </div>
-    );
-}
-
-function MiniStat({value, label, green = false, delay = 0}: {value: string, label: string, green?: boolean, delay?: number}) {
-    return (
-        <div className="flex flex-col items-center gap-1 anim-pc-rise" style={{ animationDelay: `${delay}ms` }}>
-            <span className={`text-3xl font-bold leading-none ${green ? 'text-green-200' : 'text-black'}`}>{value}</span>
-            <span className="text-sm font-semibold uppercase tracking-widest text-black/40">{label}</span>
-        </div>
     );
 }
 
