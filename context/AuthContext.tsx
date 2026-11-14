@@ -2,16 +2,11 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import Cookies from 'universal-cookie';
-import { getStoredUserToken } from '@/utils/AuthUtil';
+import { disableGoogleAutoSelect, getStoredUserToken } from '@/utils/AuthUtil';
+import { AuthenticatedUser } from '@/utils/userProfile';
 import { AuthAPI } from '@/api/AuthAPI';
 
 const cookies = new Cookies();
-
-interface AuthenticatedUser {
-    name: string;
-    email: string;
-    idToken: string;
-}
 
 type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';
 
@@ -58,6 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const signOut = () => {
         window.localStorage.removeItem('user');
         cookies.remove('user', { path: '/' });
+        disableGoogleAutoSelect();
         setUser(null);
         setStatus('unauthenticated');
     };
