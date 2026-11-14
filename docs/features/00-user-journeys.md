@@ -71,8 +71,12 @@ above it the app re-lays into a browser-width layout:
 - **Persistent left sidebar** replaces the mobile `TomeHeader` hamburger button,
   which on mobile navigates to a full-screen `/menu` page instead of opening a
   slide-in panel. Contains brand, vertical nav (Home, Modules, Analyze,
-  Knowledge, Sources), Keyboard Shortcuts, Settings, and a level badge. Only Home and Modules
-  navigate; others are decorative placeholders.
+  Knowledge, Sources), Keyboard Shortcuts, Settings, and a **user button** (issue #353:
+  avatar — Google picture or initial — + "Logged in as {name}"). Clicking the user
+  button opens a popover anchored above it with the larger avatar, name, email and a
+  **Log off** button; it closes on outside click and `Esc`. The former level badge was
+  removed (the CEFR level stays in the brand subtitle and on the Home dashboard level
+  path). Only Home and Modules navigate; others are decorative placeholders.
 - **Home dashboard** → multi-column layout: page header with weekly session stat,
   level path, two-column Continue card + weekly chart band, stat tiles, "Up next"
   4-card module strip.
@@ -97,6 +101,15 @@ all screens on desktop viewports.
 |------------------|-----------------|----------------|
 | DesktopSidebar | All (via root layout), desktop only | Cross-cutting (layout) |
 | TomeHeader + `/menu` full-screen page | All (via root layout), mobile only | Cross-cutting (layout) |
+| UserAvatar (Google picture or initial fallback) | DesktopSidebar user button + popover, `/menu` user block | Cross-cutting (layout) |
+
+**Log off (issue #353).** Available from the desktop sidebar user popover and from
+the bottom of the mobile `/menu` page (user block + *Log off* item). Logs off
+immediately, with no confirmation: `AuthContext.signOut()` clears the `user` cookie
+and localStorage entry, disables Google One Tap auto-select, and sets the status to
+`unauthenticated`, so `AuthGuard` renders the `LoginScreen`. The Google display name
+and picture are captured from the Google credential at sign-in; sessions created
+before that show the user's initial until the next sign-in.
 
 ## Skipped — not yet covered (no wireframe)
 
