@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { renderGoogleButton, googleSignIn } from '@/utils/AuthUtil';
 import { useAuth } from '@/context/AuthContext';
+import { MaskedSvgIcon } from '../components/MaskedSvgIcon';
 
 export function LoginScreen() {
     const { setAuthenticated } = useAuth();
@@ -26,12 +27,12 @@ export function LoginScreen() {
     }, [setAuthenticated]);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen gap-8 bg-cyan-950">
+        <div className="flex flex-1 flex-col items-center justify-center h-screen gap-8 bg-cyan-950">
             <div className="flex flex-col items-center gap-3">
-                <div className="w-16 h-16 rounded-2xl bg-cyan-800 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-white">T</span>
+                <div className="w-24 h-24 rounded-2xl flex items-center justify-center">
+                    <img src="/icon-macos-512.png" alt="Tome" />
                 </div>
-                <h1 className="text-3xl font-bold text-white">Welcome to Tome</h1>
+                <h1 className="text-3xl font-bold text-cyan-200">Welcome to Tome</h1>
                 <p className="text-white/60 text-base">Sign in to continue</p>
             </div>
             <div ref={buttonRef} />
